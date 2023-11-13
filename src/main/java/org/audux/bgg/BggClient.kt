@@ -10,16 +10,13 @@ import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.HttpRequestRetry
-import io.ktor.client.request.get
-import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
-import io.ktor.http.appendPathSegments
-import io.ktor.util.StringValues
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.data.response.Items
+import org.audux.bgg.data.request.things
+import org.audux.bgg.data.response.Things
 
 class BggClient {
-    private val client = HttpClient(OkHttp) {
+    internal val client = HttpClient(OkHttp) {
         install(HttpRequestRetry) {
             retryOnServerErrors(maxRetries = 5)
             exponentialDelay()
@@ -28,98 +25,11 @@ class BggClient {
         expectSuccess = true
     }
 
-    suspend fun things(
-        /**
-         * Specifies the id of the thing(s) to retrieve. To request multiple things with a single
-         * query, can specify a comma-delimited list of ids.
-         */
-        ids: Array<Int>,
-
-        /**
-         * Specifies that, regardless of the type of thing asked for by id, the results are
-         * filtered by the THINGTYPE(s) specified. Multiple THINGTYPEs can be specified in
-         * a comma-delimited list. Leave empty to return all types.
-         * @see ThingType
-         */
-        types: Array<ThingType> = arrayOf(),
-
-        /** Returns ranking and rating stats for the item. */
-        stats: Boolean = false,
-
-        /** Returns version info for the item. */
-        versions: Boolean = false,
-
-        /** Returns videos for the item. */
-        videos: Boolean = false,
-
-        /** Returns marketplace data. */
-        marketplace: Boolean = false,
-
-        /**
-         * Returns all comments about the item. Also includes ratings when commented.
-         * See page parameter.
-         */
-        comments: Boolean = false,
-
-        /**
-         * Returns all ratings for the item. Also includes comments when rated. See page parameter.
-         * The [ratingcomments] and [comments] parameters cannot be used together, as the output
-         * always appears in the <comments> node of the XML; comments parameter takes precedence if
-         * both are specified.
-         *
-         * Ratings are sorted in descending rating value, based on the highest rating they have
-         * assigned to that item (each item in the collection can have a different rating).
-         */
-        ratingComments: Boolean = false,
-
-        /** Defaults to 1, controls the page of data to see for comments, and ratings data. */
-        page: Int = 1,
-
-        /**
-         * Set the number of records to return in paging. Minimum is 10, maximum is 100.
-         * Defaults to 100
-         */
-        pageSize: Int = 100,
-    ): HttpResponse {
-        if (!(10..100).contains(pageSize)) {
-            throw BggRequestException("pageSize must be between 10 and 100")
-        }
-        if (comments && ratingComments) {
-            throw BggRequestException("comments and ratingsComments can't both be true.")
-        }
-
-
-        return client.get(BASE_URL) {
-            url {
-                appendPathSegments(PATH_THING)
-
-                parameters.appendAll(
-                    StringValues.build {
-                        append(PARAM_ID, ids.joinToString(","))
-
-                        if (types.isNotEmpty()) {
-                            append(PARAM_TYPE, types.joinToString { "${it.param}," })
-                        }
-
-                        if (stats) append(PARAM_STATS, "1")
-                        if (versions) append(PARAM_VERSIONS, "1")
-                        if (videos) append(PARAM_VIDEOS, "1")
-                        if (marketplace) append(PARAM_MARKETPLACE, "1")
-                        if (comments) append(PARAM_COMMENTS, "1")
-                        if (ratingComments) append(PARAM_RATING_COMMENTS, "1")
-                        if (page > 1) append(PARAM_PAGE, page.toString())
-                        if (pageSize != 100) append(PARAM_PAGE_SIZE, pageSize.toString())
-                    }
-                )
-            }
-        }
-    }
-
     fun close() {
         client.close()
     }
 
-    private companion object {
+    internal companion object {
         const val BASE_URL = "https://boardgamegeek.com/xmlapi2"
 
         const val PATH_THING = "thing"
@@ -149,17 +59,18 @@ class BggClient {
                     pageSize = 100
                 )
 
-                val xmlDeserializer = XmlMapper(JacksonXmlModule().apply {
-                    setDefaultUseWrapper(false)
-                }).registerKotlinModule()
-                    .configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
-                    .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                val xmlDeserializer = XmlMapper.builder().apply {
+                    configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
+                    configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+
+                    addModule(JacksonXmlModule())
+
+                    defaultUseWrapper(false)
+                }.build().registerKotlinModule()
 
                 Napier.i(
-                    xmlDeserializer.readValue(response.bodyAsText(), Items::class.java).toString()
+                    xmlDeserializer.readValue(response.bodyAsText(), Things::class.java).toString()
                 )
-
-
             }
 
             client.close()

@@ -2,10 +2,13 @@ package org.audux.bgg.data.request
 
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
+import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
+import io.ktor.http.parameters
 import io.ktor.util.StringValues
 import org.audux.bgg.BggClient
 import org.audux.bgg.BggRequestException
+import org.audux.bgg.data.response.Things
 
 /**
  * The different kind/type of things the API may return such as a board game or expansion etc.
@@ -77,7 +80,7 @@ suspend fun BggClient.things(
      * Defaults to 100
      */
     pageSize: Int = 100,
-): HttpResponse {
+): Things {
     if (!(10..100).contains(pageSize)) {
         throw BggRequestException("pageSize must be between 10 and 100")
     }
@@ -85,7 +88,7 @@ suspend fun BggClient.things(
         throw BggRequestException("comments and ratingsComments can't both be true.")
     }
 
-    return client.get(BggClient.BASE_URL) {
+    val response = client.get(BggClient.BASE_URL) {
         url {
             appendPathSegments(BggClient.PATH_THING)
 
@@ -109,4 +112,7 @@ suspend fun BggClient.things(
             )
         }
     }
+
+    return mapper.readValue(response.bodyAsText(), Things::class.java)
+
 }

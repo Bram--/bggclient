@@ -1,29 +1,28 @@
 package org.audux.bgg
 
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.MapperFeature
-import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule
-import com.fasterxml.jackson.dataformat.xml.XmlMapper
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import com.fasterxml.jackson.databind.ObjectMapper
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.okhttp.OkHttp
-import io.ktor.client.plugins.HttpRequestRetry
-import io.ktor.client.statement.bodyAsText
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.data.request.things
 import org.audux.bgg.data.request.ThingType
-import org.audux.bgg.data.response.Things
+import org.audux.bgg.data.request.things
+import org.audux.bgg.module.BggKtorClient
+import org.audux.bgg.module.BggXmlObjectMapper
+import org.audux.bgg.module.appModule
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
+import org.koin.core.context.startKoin
+import org.koin.core.qualifier.named
 
-class BggClient {
-    internal val client = HttpClient(OkHttp) {
-        install(HttpRequestRetry) {
-            retryOnServerErrors(maxRetries = 5)
-            exponentialDelay()
+class BggClient : KoinComponent {
+    internal val client : HttpClient by inject(named<BggKtorClient>())
+    internal val mapper : ObjectMapper by inject(named<BggXmlObjectMapper>())
+
+    init {
+        startKoin {
+            modules(appModule)
         }
-
-        expectSuccess = true
     }
 
     fun close() {
@@ -55,23 +54,12 @@ class BggClient {
                 val response = client.things(
                     ids = arrayOf(1),
                     types = arrayOf(ThingType.BOARD_GAME),
-                    videos = true,
+                    stats = true,
                     page = 1,
                     pageSize = 100
                 )
 
-                val xmlDeserializer = XmlMapper.builder().apply {
-                    configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
-                    configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-
-                    addModule(JacksonXmlModule())
-
-                    defaultUseWrapper(false)
-                }.build().registerKotlinModule()
-
-                Napier.i(
-                    xmlDeserializer.readValue(response.bodyAsText(), Things::class.java).toString()
-                )
+                Napier.i(response.toString())
             }
 
             client.close()

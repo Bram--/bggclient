@@ -13,6 +13,7 @@ import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.statement.bodyAsText
 import kotlinx.coroutines.runBlocking
 import org.audux.bgg.data.request.things
+import org.audux.bgg.data.request.ThingType
 import org.audux.bgg.data.response.Things
 
 class BggClient {
@@ -54,7 +55,7 @@ class BggClient {
                 val response = client.things(
                     ids = arrayOf(1),
                     types = arrayOf(ThingType.BOARD_GAME),
-                    ratingComments = true,
+                    videos = true,
                     page = 1,
                     pageSize = 100
                 )
@@ -77,15 +78,6 @@ class BggClient {
         }
     }
 
-    enum class ThingType(val param: String) {
-        BOARD_GAME("boardgame"),
-        BOARD_GAME_EXPANSION("boardgameexpansion"),
-        BOARD_GAME_ACCESSORY("boardgameaccessory"),
-        VIDEO_GAME("videogame"),
-        RPG_ITEM("rpgitem"),
-        RPG_ISSUE("rpgissue")
-
-    }
 }
 
 class BggRequestException(message: String) : Exception(message)

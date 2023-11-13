@@ -5,15 +5,25 @@ import io.ktor.client.statement.HttpResponse
 import io.ktor.http.appendPathSegments
 import io.ktor.util.StringValues
 import org.audux.bgg.BggClient
-import org.audux.bgg.BggClient.ThingType
 import org.audux.bgg.BggRequestException
 
 /**
- * Request a Thing or list of things. Multiple items can be requested by passing in several IDs.
+ * The different kind/type of things the API may return such as a board game or expansion etc.
+ * [See docs for more info](https://boardgamegeek.com/wiki/page/BGG_XML_API2#Thing_Items).
+ */
+enum class ThingType(val param: String) {
+    BOARD_GAME("boardgame"),
+    BOARD_GAME_EXPANSION("boardgameexpansion"),
+    BOARD_GAME_ACCESSORY("boardgameaccessory"),
+    VIDEO_GAME("videogame"),
+    RPG_ITEM("rpgitem"),
+    RPG_ISSUE("rpgissue")
+}
+
+/**
+ * Request a Thing or list of things. Multiple things can be requested by passing in several IDs.
  * At least one ID is required to make this request. Sending along [types] might result in an empty
  * as the API filters based on the [ThingType].
- *
- *
  */
 suspend fun BggClient.things(
     /**
@@ -30,32 +40,32 @@ suspend fun BggClient.things(
      */
     types: Array<ThingType> = arrayOf(),
 
-    /** Returns ranking and rating stats for the item. */
+    /** Returns ranking and rating stats for the thing. */
     stats: Boolean = false,
 
-    /** Returns version info for the item. */
+    /** Returns version info for the thing. */
     versions: Boolean = false,
 
-    /** Returns videos for the item. */
+    /** Returns videos for the thing. */
     videos: Boolean = false,
 
     /** Returns marketplace data. */
     marketplace: Boolean = false,
 
     /**
-     * Returns all comments about the item. Also includes ratings when commented.
+     * Returns all comments about the thing. Also includes ratings when commented.
      * See page parameter.
      */
     comments: Boolean = false,
 
     /**
-     * Returns all ratings for the item. Also includes comments when rated. See page parameter.
+     * Returns all ratings for the thing. Also includes comments when rated. See page parameter.
      * The [ratingComments] and [comments] parameters cannot be used together, as the output
      * always appears in the <comments> node of the XML; comments parameter takes precedence if
      * both are specified.
      *
      * Ratings are sorted in descending rating value, based on the highest rating they have
-     * assigned to that item (each item in the collection can have a different rating).
+     * assigned to that thing (each thing in the collection can have a different rating).
      */
     ratingComments: Boolean = false,
 

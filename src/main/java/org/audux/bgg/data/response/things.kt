@@ -2,10 +2,10 @@ package org.audux.bgg.data.response
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import java.nio.channels.NotYetBoundException
+import kotlinx.datetime.LocalDateTime
+import java.net.URI
 
 /** Response wrapper for the things to be returned. */
 @JsonRootName("items")
@@ -92,6 +92,10 @@ data class Thing(
 
     /** Ratings/Statistics for the thing. */
     val statistics: Statistics?,
+
+    @JacksonXmlElementWrapper(useWrapping = true)
+    @JacksonXmlProperty(localName = "marketplacelistings", isAttribute = false)
+    val listings: List<MarketplaceListing> = listOf(),
 )
 
 /** Encapsulates the name of a Thing either primary or alternate name. */
@@ -241,7 +245,7 @@ data class Comment(
 
     /** A rating expressed in a number ranging from 1-10. May be expressed as a decimal number. */
     @JacksonXmlProperty(isAttribute = true)
-    val rating: Int?,
+    val rating: Number?,
 
     /** The comment the user posted. */
     @JacksonXmlProperty(isAttribute = true)
@@ -327,6 +331,42 @@ data class Rank(
     /** It's bayesian average in this ranking. */
     @JacksonXmlProperty(isAttribute = true)
     val bayesAverage: Number?,
+)
+
+data class MarketplaceListing(
+    /** When the listing was created. */
+    // TODO: Parse Datetime.
+    val listDate: WrappedValue<LocalDateTime>,
+
+    /** The requested price for the listing. */
+    val price: Price,
+
+    /** The condition of the item e.g. 'new' etc. */
+    val condition: WrappedValue<String>?,
+
+    /** Description of the listing. */
+    val notes: WrappedValue<String>?,
+
+    /** Link to the listing. */
+    val link: Weblink,
+)
+
+/** Encapsulates a price for a given [MarketplaceListing] */
+data class Price(
+    /** The actual price. */
+    val value: Number,
+
+    /** The currency for the listing - ISO 4217. */
+    val currency: String,
+)
+
+/** Link to a web resource including a title/description. */
+data class Weblink(
+    /** Link to web resource. */
+    val href: URI,
+
+    /** The title of the resource. */
+    val title: String,
 )
 
 /** 'Hack' as many BGG API values are stored in an attribute e.g. '<element value='2.123 />'' */

@@ -52,11 +52,10 @@ class BggClient : KoinComponent {
             val client = BggClient()
             runBlocking {
                 val response = client.things(
-                    ids = arrayOf(1),
+                    ids = arrayOf(202517),
                     types = arrayOf(ThingType.BOARD_GAME),
+                    marketplace = true,
                     stats = true,
-                    page = 1,
-                    pageSize = 100
                 )
 
                 Napier.i(response.toString())

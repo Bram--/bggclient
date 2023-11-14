@@ -7,17 +7,23 @@ kotlin = "1.9.20"
 ktor = "2.3.5"
 napier = "2.6.1"
 org-jetbrains-kotlin-jvm = "1.9.20"
+serialization = "1.6.0"
+slf4j = "1.7.36"
 
 [libraries]
 jackson-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
+jackson-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
 jackson-xml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-xml", version.ref = "jackson" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlin-datetime = { module =  "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "dateTime" }
+kotlin-serialization = { module =  "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "serialization" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
+slf4j = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
+
 
 [plugins]
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

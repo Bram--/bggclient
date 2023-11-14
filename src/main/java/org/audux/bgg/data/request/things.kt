@@ -1,10 +1,8 @@
 package org.audux.bgg.data.request
 
 import io.ktor.client.request.get
-import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import io.ktor.http.parameters
 import io.ktor.util.StringValues
 import org.audux.bgg.BggClient
 import org.audux.bgg.BggRequestException
@@ -114,5 +112,4 @@ suspend fun BggClient.things(
     }
 
     return mapper.readValue(response.bodyAsText(), Things::class.java)
-
 }

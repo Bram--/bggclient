@@ -1,10 +1,14 @@
 package org.audux.bgg.data.response
 
+import com.fasterxml.jackson.annotation.JsonFormat
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import kotlinx.datetime.LocalDateTime
+import java.time.LocalDateTime
 import java.net.URI
 
 /** Response wrapper for the things to be returned. */
@@ -96,6 +100,9 @@ data class Thing(
     @JacksonXmlElementWrapper(useWrapping = true)
     @JacksonXmlProperty(localName = "marketplacelistings", isAttribute = false)
     val listings: List<MarketplaceListing> = listOf(),
+
+    @JacksonXmlProperty(localName = "poll")
+    val polls: List<Poll>
 )
 
 /** Encapsulates the name of a Thing either primary or alternate name. */
@@ -198,9 +205,9 @@ data class Video(
     val userid: Int,
 
     /** When the video was posted. */
-    // TODO: Change to DateTime.
     @JacksonXmlProperty(isAttribute = true)
-    val postdate: String
+    @JsonFormat(pattern = "EEE, dd MMM yyyy HH:mm:ss Z")
+    val postdate: LocalDateTime
 )
 
 /**
@@ -254,6 +261,11 @@ data class Comment(
 
 /** Wrapper for [Ratings]. */
 data class Statistics(
+    /** Unused attribute? */
+    @JacksonXmlProperty(isAttribute = true)
+    val page: Int?,
+
+    /** The set of ratings */
     val ratings: Ratings,
 )
 
@@ -335,8 +347,7 @@ data class Rank(
 
 data class MarketplaceListing(
     /** When the listing was created. */
-    // TODO: Parse Datetime.
-    val listDate: WrappedValue<LocalDateTime>,
+    val listDate: WrappedValueLocalDateTime,
 
     /** The requested price for the listing. */
     val price: Price,
@@ -369,7 +380,110 @@ data class Weblink(
     val title: String,
 )
 
+/**
+ * Base type for creating the different polls in the response e.g. player poll/votes for the best
+ * number of players to play a particular game with.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.EXISTING_PROPERTY,
+    property = "name")
+@JsonSubTypes(
+    JsonSubTypes.Type(value = NumberOfPlayersPoll::class, name = "suggested_numplayers"),
+    JsonSubTypes.Type(value = LanguageDependenceResults::class, name = "language_dependence"),
+    JsonSubTypes.Type(value = PlayerAgeResults::class, name = "suggested_playerage"))
+interface Poll
+
+/** Poll that contains the votes for the minimum age to engage with the thing. */
+data class NumberOfPlayersPoll(
+    /** The name of the poll - used to select the correct `class`. */
+    @JacksonXmlProperty(isAttribute = true)
+    val name: String,
+
+    /** English name/title of the poll e.g. "User Suggested Number of Players". */
+    @JacksonXmlProperty(isAttribute = true)
+    val title: String,
+
+    /** Total number of votes cast. */
+    @JacksonXmlProperty(isAttribute = true)
+    val totalVotes: Int,
+
+    /** Result set for the poll. */
+    val results : NumberOfPlayersResults,
+) : Poll
+
+
 /** 'Hack' as many BGG API values are stored in an attribute e.g. '<element value='2.123 />'' */
 data class WrappedValue<T>(
+    @JacksonXmlProperty(isAttribute = true)
     val value: T,
+)
+
+/**
+ * Suggested number of players for associated thing. These results are 2-dimensional meaning each
+ * 'results' contains three singular results.
+ *
+ * The XML looks as follows (Repeated for each `numplayer` possibility):
+ * ```
+ *  <results numplayers="1">
+ *      <result value="Best" numvotes="0"/>
+ *      <result value="Recommended" numvotes="0"/>
+ *      <result value="Not Recommended" numvotes="2"/>
+ *  </results>
+ * ```
+ * */
+data class NumberOfPlayersResults(
+    /** The number of players these votes were cast for. */
+    @JacksonXmlProperty(localName = "numplayers")
+    val numberOfPlayers: Int,
+
+    /** The list of results/votes. */
+    @JacksonXmlProperty(localName = "result")
+    val results: List<PollResult>,
+)
+
+/** Suggested age of the players engaging with Thing. */
+data class PlayerAgeResults(
+    /** The list of results/votes. */
+    @JacksonXmlProperty(localName = "result")
+    val results: List<PollResult>,
+)
+
+/** How dependent the thing is on language, ranging from 1..5. */
+data class LanguageDependenceResults(
+    /** The list of results/votes. */
+    @JacksonXmlProperty(localName = "result")
+    val results: List<LeveledPollResult>,
+)
+
+/** A single aggregate result i.e. votes for a single poll option. */
+data class PollResult(
+    /** The name/value of the poll option. */
+    @JacksonXmlProperty(isAttribute = true)
+    val value: String,
+
+    /** The number of votes cast on this option. */
+    @JacksonXmlProperty(localName = "numvotes", isAttribute = true)
+    val numberOfVotes: Int,
+)
+
+/** A single aggregate result i.e. votes for a single poll option. */
+data class LeveledPollResult(
+    /** The name/value of the poll option. */
+    @JacksonXmlProperty(isAttribute = true)
+    val value: String,
+
+    /** The number of votes cast on this option. */
+    @JacksonXmlProperty(localName = "numvotes", isAttribute = true)
+    val numberOfVotes: Int,
+
+    /** The number of votes cast on this option. */
+    @JacksonXmlProperty(isAttribute = true)
+    val level: Int,
+)
+
+data class WrappedValueLocalDateTime(
+    @JacksonXmlProperty(isAttribute = true)
+    @JsonFormat(pattern = "EEE, dd MMM yyyy HH:mm:ss Z")
+    val value: LocalDateTime,
 )

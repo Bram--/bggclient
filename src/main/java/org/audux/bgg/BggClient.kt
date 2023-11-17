@@ -52,13 +52,23 @@ class BggClient : KoinComponent {
             val client = BggClient()
             runBlocking {
                 val response = client.things(
-                    ids = arrayOf(202517),
+                    ids = arrayOf(224517),
                     types = arrayOf(ThingType.BOARD_GAME),
                     marketplace = true,
+                    ratingComments = true,
+                    videos = true,
+                    versions = true,
                     stats = true,
                 )
 
-                Napier.i(response.toString())
+                val game = response.things[0]
+                Napier.i("""
+                    Got board game: ${game.name[0]}
+                    ${game.description}
+                    
+                    versions: ${game.versions.size}
+                    
+                    """.trimIndent())
             }
 
             client.close()

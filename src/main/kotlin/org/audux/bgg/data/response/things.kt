@@ -128,7 +128,7 @@ data class Thing(
     val polls: List<Poll> = listOf(),
 
     /** */
-    @JacksonXmlElementWrapper( useWrapping = true)
+    @JacksonXmlElementWrapper(useWrapping = true)
     @JacksonXmlProperty(localName = "versions", isAttribute = false)
     val versions: List<Version> = listOf(),
 )
@@ -279,7 +279,7 @@ data class Video(
     /** When the video was posted. */
     @JacksonXmlProperty(isAttribute = true)
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssz")
-    val postdate: LocalDateTime
+    val postDate: LocalDateTime
 )
 
 //region Comments
@@ -466,11 +466,13 @@ data class Weblink(
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
-    property = "name")
+    property = "name"
+)
 @JsonSubTypes(
     JsonSubTypes.Type(value = NumberOfPlayersPoll::class, name = "suggested_numplayers"),
     JsonSubTypes.Type(value = LanguageDependencePoll::class, name = "language_dependence"),
-    JsonSubTypes.Type(value = PlayerAgePoll::class, name = "suggested_playerage"))
+    JsonSubTypes.Type(value = PlayerAgePoll::class, name = "suggested_playerage")
+)
 interface Poll
 
 
@@ -485,7 +487,7 @@ data class NumberOfPlayersPoll(
     val totalVotes: Int,
 
     /** Result set for the poll. */
-    val results : NumberOfPlayersResults,
+    val results: NumberOfPlayersResults,
 ) : Poll
 
 /**
@@ -522,7 +524,7 @@ data class PlayerAgePoll(
     val totalVotes: Int,
 
     /** Result set for the poll. */
-    val results : PlayerAgeResults,
+    val results: PlayerAgeResults,
 ) : Poll
 
 /** Suggested age of the players engaging with Thing. */
@@ -543,7 +545,7 @@ data class LanguageDependencePoll(
     val totalVotes: Int,
 
     /** Result set for the poll. */
-    val results : LanguageDependenceResults,
+    val results: LanguageDependenceResults,
 ) : Poll
 
 /** How dependent the thing is on language, ranging from 1..5. */
@@ -590,7 +592,7 @@ data class WrappedValue<T>(
 /** 'Hack' as many BGG API values are stored in an attribute e.g. '<element value='2.123 />'' */
 data class WrappedValueLocalDateTime(
     @JacksonXmlProperty(isAttribute = true)
-    @JsonFormat(pattern = "EEE, dd MMM yyyy HH:mm:ss Z")
+    @JsonFormat(pattern = "E, dd MMM yyyy HH:mm:ss Z")
     val value: LocalDateTime,
 )
 //endregion

@@ -1,8 +1,11 @@
 plugins {
-  id("java-library")
+  `java-library`
   alias(libs.plugins.org.jetbrains.kotlin.jvm)
 }
 
+tasks.test {
+  useJUnitPlatform()
+}
 
 repositories {
   mavenCentral()
@@ -19,4 +22,12 @@ dependencies {
   implementation(libs.ktor.client)
   implementation(libs.napier)
   implementation(libs.slf4j)
+
+  // Testing dependencies.
+  testImplementation(libs.junit5.api)
+  testImplementation(libs.koin.test)
+  testImplementation(libs.koin.test.junit)
+  testImplementation(libs.truth)
+
+  testRuntimeOnly(libs.junit5.engine)
 }

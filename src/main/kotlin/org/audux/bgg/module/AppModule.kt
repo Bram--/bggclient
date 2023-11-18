@@ -12,6 +12,7 @@ import io.ktor.client.plugins.HttpRequestRetry
 import org.koin.core.module.dsl.named
 import org.koin.core.module.dsl.withOptions
 import org.koin.dsl.module
+import java.util.Locale
 
 /** Used to ensure usage of correct Jackson [com.fasterxml.jackson.databind.ObjectMapper]. */
 annotation class BggXmlObjectMapper()
@@ -31,7 +32,10 @@ val appModule = module {
             addModule(JacksonXmlModule())
             addModule(JavaTimeModule())
 
-
+            // Keep hardcoded to US: https://bugs.openjdk.org/browse/JDK-8251317
+            // en_GB Locale uses 'Sept' as a shortname when formatting dates (e.g. 'MMM'). The
+            // locale en_US remains 'Sep'.
+            defaultLocale(Locale.US)
             defaultUseWrapper(false)
         }.build().registerKotlinModule()
     } withOptions {

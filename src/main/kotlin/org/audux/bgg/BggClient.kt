@@ -16,8 +16,8 @@ import org.koin.core.context.startKoin
 import org.koin.core.qualifier.named
 
 class BggClient : KoinComponent {
-    internal val client : HttpClient by inject(named<BggKtorClient>())
-    internal val mapper : ObjectMapper by inject(named<BggXmlObjectMapper>())
+    internal val client: HttpClient by inject(named<BggKtorClient>())
+    internal val mapper: ObjectMapper by inject(named<BggXmlObjectMapper>())
 
     init {
         startKoin {
@@ -62,13 +62,15 @@ class BggClient : KoinComponent {
                 )
 
                 val game = response.things[0]
-                Napier.i("""
+                Napier.i(
+                    """
                     Got board game: ${game.name[0]}
                     ${game.description}
                     
                     versions: ${game.versions.size}
                     
-                    """.trimIndent())
+                    """.trimIndent()
+                )
             }
 
             client.close()

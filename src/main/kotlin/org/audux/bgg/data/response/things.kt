@@ -14,6 +14,7 @@
 package org.audux.bgg.data.response
 
 import com.fasterxml.jackson.annotation.JsonFormat
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonMerge
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
@@ -64,9 +65,6 @@ data class Thing(
 
     /** URL to full sized image. */
     val image: String?,
-
-    /** Names of the thing, consisting of a primary and optionally alternatives. */
-    @JacksonXmlProperty(localName = "name") val names: List<Name>,
 
     /** Long form description of the thing. */
     val description: String?,
@@ -126,6 +124,21 @@ data class Thing(
     set(value) {
       field = field + value
     }
+
+    /** Names of the thing, consisting of a primary and optionally alternatives. */
+    @JsonProperty("name")
+    var names: List<Name> = listOf()
+        set(value) {
+            field = field + value
+
+            field.forEach {
+                if (it.type == "primary") name = it.value
+            }
+        }
+
+    /** Primary name. */
+    @JsonIgnore
+    var name: String = ""
 }
 
 /** Available versions of the thing e.g. Different prints of a boardgame. */
@@ -384,6 +397,7 @@ data class Rank(
 // endregion
 
 // region Marketplace
+/** A single listing for the thing i.e. a 'for sale'-listing.  */
 data class MarketplaceListing(
     /** When the listing was created. */
     val listDate: WrappedLocalDateTime,
@@ -443,7 +457,7 @@ data class NumberOfPlayersPoll(
     @JacksonXmlProperty(isAttribute = true) val totalVotes: Int,
 
     /** Result set for the poll. */
-    val results: NumberOfPlayersResults,
+    val results: List<NumberOfPlayersResults>,
 ) : Poll
 
 /**

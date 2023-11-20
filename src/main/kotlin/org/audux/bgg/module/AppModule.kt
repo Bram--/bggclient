@@ -2,9 +2,12 @@ package org.audux.bgg.module
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.MapperFeature
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import com.fasterxml.jackson.module.kotlin.KotlinFeature
+import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
@@ -31,13 +34,19 @@ val appModule = module {
 
             addModule(JacksonXmlModule())
             addModule(JavaTimeModule())
+            addModule(KotlinModule.Builder()
+                .enable(KotlinFeature.NullToEmptyCollection)
+                .enable(KotlinFeature.StrictNullChecks)
+                .build()
+            )
 
             // Keep hardcoded to US: https://bugs.openjdk.org/browse/JDK-8251317
             // en_GB Locale uses 'Sept' as a shortname when formatting dates (e.g. 'MMM'). The
             // locale en_US remains 'Sep'.
             defaultLocale(Locale.US)
+            defaultMergeable(true)
             defaultUseWrapper(false)
-        }.build().registerKotlinModule()
+        }.build() as ObjectMapper
     } withOptions {
         named<BggXmlObjectMapper>()
     }

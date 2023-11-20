@@ -64,7 +64,7 @@ class BggClient : KoinComponent {
                 val game = response.things[0]
                 Napier.i(
                     """
-                    Got board game: ${game.name[0]}
+                    Got board game: ${game.names[0]}
                     ${game.description}
                     
                     versions: ${game.versions.size}

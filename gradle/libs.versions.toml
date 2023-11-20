@@ -1,7 +1,7 @@
 [versions]
 coroutines = "1.7.3"
 dateTime = "0.4.1"
-jackson = "2.15.+"
+jackson = "2.16.+"
 junit5 = "5.8.1"
 koin = "3.5.0"
 kotlin = "1.9.20"
@@ -13,8 +13,8 @@ slf4j = "1.7.36"
 truth = "1.1.4"
 
 [libraries]
-jackson-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
 jackson-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
+jackson-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
 jackson-xml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-xml", version.ref = "jackson" }
 junit5-api = { module =  "org.junit.jupiter:junit-jupiter-api" , version.ref = "junit5" }
 junit5-engine = { module =  "org.junit.jupiter:junit-jupiter-engine" , version.ref = "junit5" }

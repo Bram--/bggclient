@@ -12,8 +12,8 @@ repositories {
 }
 
 dependencies {
-  implementation(libs.jackson.kotlin)
   implementation(libs.jackson.jsr310)
+  implementation(libs.jackson.kotlin)
   implementation(libs.jackson.xml)
   implementation(libs.koin.core)
   implementation(libs.kotlin.datetime)

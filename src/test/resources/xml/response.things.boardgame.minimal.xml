@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+    <item type="boardgame" id="1">
+        <name type="primary" sortindex="5" value="Die Macher"/>
+        <name type="alternate" sortindex="1" value="德国大选"/>
+        <name type="alternate" sortindex="1" value="디 마허"/>
+        <description>Die Macher is a game about seven sequential political races in different regions of Germany. Players are in charge of national political parties, and must manage limited resources to help their party to victory. The winning party will have the most victory points after all the regional elections. There are four different ways of scoring victory points. First, each regional election can supply one to eighty victory points, depending on the size of the region and how well your party does in it. Second, if a party wins a regional election and has some media influence in the region, then the party will receive some media-control victory points. Third, each party has a national party membership which will grow as the game progresses and this will supply a fair number of victory points. Lastly, parties score some victory points if their party platform matches the national opinions at the end of the game.&#10;&#10;The 1986 edition featured four parties from the old West Germany and supported 3-4 players. The 1997 edition supports up to five players in the re-united Germany and updated several features of the rules as well. The 2006 edition also supports up to five players and adds a shorter five-round variant and additional rules updates by the original designer.&#10;&#10;</description>
+        <yearpublished value="1986"/>
+        <minplayers value="3"/>
+        <maxplayers value="5"/>
+        <poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="136">
+            <results numplayers="1">
+                <result value="Best" numvotes="0"/>
+                <result value="Recommended" numvotes="1"/>
+                <result value="Not Recommended" numvotes="86"/>
+            </results>
+            <results numplayers="2">
+                <result value="Best" numvotes="0"/>
+                <result value="Recommended" numvotes="1"/>
+                <result value="Not Recommended" numvotes="88"/>
+            </results>
+            <results numplayers="3">
+                <result value="Best" numvotes="2"/>
+                <result value="Recommended" numvotes="26"/>
+                <result value="Not Recommended" numvotes="76"/>
+            </results>
+            <results numplayers="4">
+                <result value="Best" numvotes="25"/>
+                <result value="Recommended" numvotes="86"/>
+                <result value="Not Recommended" numvotes="9"/>
+            </results>
+            <results numplayers="5">
+                <result value="Best" numvotes="116"/>
+                <result value="Recommended" numvotes="11"/>
+                <result value="Not Recommended" numvotes="2"/>
+            </results>
+            <results numplayers="5+">
+                <result value="Best" numvotes="1"/>
+                <result value="Recommended" numvotes="0"/>
+                <result value="Not Recommended" numvotes="62"/>
+            </results>
+        </poll>
+        <playingtime value="240"/>
+        <minplaytime value="240"/>
+        <maxplaytime value="240"/>
+        <minage value="14"/>
+        <poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="31">
+            <results>
+                <result value="2" numvotes="0"/>
+                <result value="3" numvotes="0"/>
+                <result value="4" numvotes="0"/>
+                <result value="5" numvotes="0"/>
+                <result value="6" numvotes="0"/>
+                <result value="8" numvotes="0"/>
+                <result value="10" numvotes="0"/>
+                <result value="12" numvotes="6"/>
+                <result value="14" numvotes="18"/>
+                <result value="16" numvotes="4"/>
+                <result value="18" numvotes="2"/>
+                <result value="21 and up" numvotes="1"/>
+            </results>
+        </poll>
+        <poll name="language_dependence" title="Language Dependence" totalvotes="48">
+            <results>
+                <result level="1" value="No necessary in-game text" numvotes="36"/>
+                <result level="2" value="Some necessary text - easily memorized or small crib sheet" numvotes="5"/>
+                <result level="3" value="Moderate in-game text - needs crib sheet or paste ups" numvotes="7"/>
+                <result level="4" value="Extensive use of text - massive conversion needed to be playable" numvotes="0"/>
+                <result level="5" value="Unplayable in another language" numvotes="0"/>
+            </results>
+        </poll>
+    </item>
+</items>

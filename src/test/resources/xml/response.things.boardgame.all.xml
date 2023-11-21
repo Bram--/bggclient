@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+    <item type="boardgame" id="396790">
+        <thumbnail>https://cf.geekdo-images.com/fIVUaMvbfy6GCOgfxt7xaw__thumb/img/jKsO4nKmtNjX5bfH7aCPeK7hsqU=/fit-in/200x150/filters:strip_icc()/pic7647168.jpg</thumbnail>
+        <image>https://cf.geekdo-images.com/fIVUaMvbfy6GCOgfxt7xaw__original/img/dBMnuz3SrgxsDLHT6pwbQFPQBIw=/0x0/filters:format(jpeg)/pic7647168.jpg</image>
+        <name type="primary" sortindex="1" value="Nucleum"/>
+        <name type="alternate" sortindex="1" value="Nukleum"/>
+        <description>When Elsa von Fr&amp;uuml;hlingfeld presented her invention to King Frederik Augustus II of Saxony, people thought it was trickery. She used the recently isolated element Uranium to heat up a jar of water and used the resulting steam to power an engine that kept the Uranium active via a process she called &amp;ldquo;atomization.&amp;rdquo; Her device, the Nucleum, ushered in a new era of energy and prosperity over the next decades. Saxony went from a minor regional power to the hub of European science and engineering. Now, a generation later, factories are still hungry for more power, demanding bigger and more Nucleums to be built, more Uranium imported from the nearby country of Bohemia, and railways and power lines built across the country to carry the tamed power of the atoms to Saxony&amp;rsquo;s great cities. Inventors, engineers, and industrialists flock to the Saxon court, vying to be the leader in this new industrial revolution.&amp;#10;&amp;#10;Nucleum is a heavy euro board game in which players take role of industrialists trying to succeed during the economic and technological boom of 19th-century Saxony, fueled by the invention and spread of the Nucleum (a nuclear reactor).&amp;#10;&amp;#10;Players earn victory points by developing their networks, building and powering urban buildings, securing contracts, and meeting milestones (randomized endgame goals). Each player also gets unique asymmetric technologies, giving them special powers when unlocked. Gameplay is continuous; players take turns one after another with no rounds or phases.&amp;#10;&amp;#10;&amp;mdash;description from the publisher&amp;#10;&amp;#10;</description>
+        <yearpublished value="2023"/>
+        <minplayers value="1"/>
+        <maxplayers value="4"/>
+        <poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="78">
+            <results numplayers="1">
+                <result value="Best" numvotes="3"/>
+                <result value="Recommended" numvotes="24"/>
+                <result value="Not Recommended" numvotes="12"/>
+            </results>
+            <results numplayers="2">
+                <result value="Best" numvotes="17"/>
+                <result value="Recommended" numvotes="37"/>
+                <result value="Not Recommended" numvotes="5"/>
+            </results>
+            <results numplayers="3">
+                <result value="Best" numvotes="32"/>
+                <result value="Recommended" numvotes="25"/>
+                <result value="Not Recommended" numvotes="2"/>
+            </results>
+            <results numplayers="4">
+                <result value="Best" numvotes="25"/>
+                <result value="Recommended" numvotes="23"/>
+                <result value="Not Recommended" numvotes="7"/>
+            </results>
+            <results numplayers="4+">
+                <result value="Best" numvotes="0"/>
+                <result value="Recommended" numvotes="0"/>
+                <result value="Not Recommended" numvotes="29"/>
+            </results>
+        </poll>
+        <playingtime value="150"/>
+        <minplaytime value="60"/>
+        <maxplaytime value="150"/>
+        <minage value="14"/>
+        <poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="5">
+            <results>
+                <result value="2" numvotes="0"/>
+                <result value="3" numvotes="0"/>
+                <result value="4" numvotes="0"/>
+                <result value="5" numvotes="0"/>
+                <result value="6" numvotes="0"/>
+                <result value="8" numvotes="0"/>
+                <result value="10" numvotes="0"/>
+                <result value="12" numvotes="0"/>
+                <result value="14" numvotes="4"/>
+                <result value="16" numvotes="1"/>
+                <result value="18" numvotes="0"/>
+                <result value="21 and up" numvotes="0"/>
+            </results>
+        </poll>
+        <poll name="language_dependence" title="Language Dependence" totalvotes="6">
+            <results>
+                <result level="1" value="No necessary in-game text" numvotes="6"/>
+                <result level="2" value="Some necessary text - easily memorized or small crib sheet" numvotes="0"/>
+                <result level="3" value="Moderate in-game text - needs crib sheet or paste ups" numvotes="0"/>
+                <result level="4" value="Extensive use of text - massive conversion needed to be playable" numvotes="0"/>
+                <result level="5" value="Unplayable in another language" numvotes="0"/>
+            </results>
+        </poll>
+        <link type="boardgamecategory" id="1021" value="Economic"/>
+        <link type="boardgamecategory" id="1088" value="Industry / Manufacturing"/>
+        <link type="boardgamecategory" id="1016" value="Science Fiction"/>
+        <link type="boardgamemechanic" id="2839" value="Action Retrieval"/>
+        <link type="boardgamemechanic" id="2912" value="Contracts"/>
+        <link type="boardgamemechanic" id="2875" value="End Game Bonuses"/>
+        <link type="boardgamemechanic" id="2040" value="Hand Management"/>
+        <link type="boardgamemechanic" id="2902" value="Income"/>
+        <link type="boardgamemechanic" id="2900" value="Market"/>
+        <link type="boardgamemechanic" id="2081" value="Network and Route Building"/>
+        <link type="boardgamemechanic" id="2819" value="Solo / Solitaire Game"/>
+        <link type="boardgamemechanic" id="2849" value="Tech Trees / Tech Tracks"/>
+        <link type="boardgamemechanic" id="2015" value="Variable Player Powers"/>
+        <link type="boardgamefamily" id="50152" value="History: Industrial Revolution"/>
+        <link type="boardgamefamily" id="59705" value="Misc: LongPack Games"/>
+        <link type="boardgamefamily" id="75798" value="Region: Saxony (Germany)"/>
+        <link type="boardgamefamily" id="26464" value="Theme: Alternate History"/>
+        <link type="boardgamefamily" id="99080" value="Theme: Electricity Generation"/>
+        <link type="boardgameexpansion" id="400823" value="Nucleum: Acrylic Nucleums Promo"/>
+        <link type="boardgameexpansion" id="400825" value="Nucleum: Nucleum Half Tiles Promo"/>
+        <link type="boardgamedesigner" id="35418" value="Simone Luciani"/>
+        <link type="boardgamedesigner" id="76227" value="Dávid Turczi"/>
+        <link type="boardgameartist" id="11898" value="Andreas Resch"/>
+        <link type="boardgameartist" id="123923" value="Piotr Sokołowski"/>
+        <link type="boardgameartist" id="86237" value="Zbigniew Umgelter"/>
+        <link type="boardgamepublisher" id="26630" value="Board&amp;Dice"/>
+        <link type="boardgamepublisher" id="6194" value="Delta Vision Publishing"/>
+        <link type="boardgamepublisher" id="42147" value="Giant Roc"/>
+        <link type="boardgamepublisher" id="5380" value="Intrafin Games"/>
+        <link type="boardgamepublisher" id="30677" value="Maldito Games"/>
+        <link type="boardgamepublisher" id="44349" value="Mosaico Jogos"/>
+        <link type="boardgamepublisher" id="55187" value="Old Dawg"/>
+        <link type="boardgamepublisher" id="7466" value="Rebel Sp. z o.o."/>
+        <videos total="50">
+            <video id="467319" title="NUCLEUM | Review" category="review" language="English" link="http://www.youtube.com/watch?v=7bPr4ACH8hI" username="danijel2008" userid="748277" postdate="2023-11-20T10:00:17-06:00"/>
+            <video id="467278" title="Nucleum (unboxing) by fabiofiol" category="unboxing" language="Italian" link="http://www.youtube.com/watch?v=2qirQNzG_0w" username="fabiofiol" userid="819076" postdate="2023-11-20T04:44:46-06:00"/>
+            <video id="467187" title="Nucleum Unboxing!" category="unboxing" language="English" link="http://www.youtube.com/watch?v=7_wIPBWeDyk" username="oburunner" userid="1239378" postdate="2023-11-19T13:13:24-06:00"/>
+            <video id="467109" title="Nucleum, électrifiez vos parties !" category="instructional" language="French" link="http://www.youtube.com/watch?v=NbBQApyjFVM" username="Pardieu" userid="695661" postdate="2023-11-19T04:05:47-06:00"/>
+            <video id="467063" title="{ Règles Et Partie } ON JOUE À NUCLEUM | Jeu De Société | Intrafin games" category="session" language="French" link="http://www.youtube.com/watch?v=4YdjvdAGvjA" username="Nicolas21992" userid="3179281" postdate="2023-11-18T12:35:01-06:00"/>
+            <video id="466811" title="Règles et partie, avec Pénélope et Amélie" category="session" language="French" link="http://www.youtube.com/watch?v=zW578vlTVBA" username="servalwolverine" userid="1976235" postdate="2023-11-17T06:01:58-06:00"/>
+            <video id="466779" title="Nucleum - Legends of Nerdvana Review" category="review" language="English" link="http://www.youtube.com/watch?v=MJsZjYwv31A" username="randrac" userid="28944" postdate="2023-11-16T20:40:26-06:00"/>
+            <video id="466247" title="Nucleum 核子激盪 (Simone Luciani &amp; Dávid Turczi)(Board&amp;Dice)︱BG Port Review桌遊港 玩桌遊(407)︱強作核聚變 核子激盪出新高度" category="review" language="Chinese" link="http://www.youtube.com/watch?v=X3GtGNo06Ow" username="bgport" userid="1485663" postdate="2023-11-13T02:38:05-06:00"/>
+            <video id="466192" title="Nucleum Review - Brass Tacks in Sector 7G" category="review" language="English" link="http://www.youtube.com/watch?v=_z4jnw4vUvA" username="TomVasel" userid="722" postdate="2023-11-12T14:02:42-06:00"/>
+            <video id="465905" title="Nukleum - Zu viel gemixt? Wir lösen auf!" category="review" language="German" link="http://www.youtube.com/watch?v=-fTnBsZdDQg" username="rare6482" userid="2666409" postdate="2023-11-10T07:29:38-06:00"/>
+            <video id="465894" title="Nucleum - Tutorial - KludiK" category="instructional" language="Spanish" link="http://www.youtube.com/watch?v=bg31FYDpE_Q" username="karallan" userid="585668" postdate="2023-11-10T05:47:13-06:00"/>
+            <video id="465838" title="Nucleum - We Just Played It!" category="other" language="English" link="http://www.youtube.com/watch?v=0U8p9HNAaK4" username="Bencer" userid="638398" postdate="2023-11-09T15:00:29-06:00"/>
+            <video id="465505" title="Nucleum - Règles et Tours de jeu" category="review" language="French" link="http://www.youtube.com/watch?v=fPJqDSbNOHI" username="ADKTSickness" userid="2618876" postdate="2023-11-07T11:40:52-06:00"/>
+            <video id="465219" title="Nucleum : Explication et analyse du jeu" category="review" language="French" link="http://www.youtube.com/watch?v=zWNth5_WkW4" username="chaps31" userid="1175222" postdate="2023-11-05T16:21:22-06:00"/>
+            <video id="465084" title="Nucleum - Board Game Review - Alternate Brass" category="review" language="English" link="http://www.youtube.com/watch?v=tY6tKp9atc0" username="farmergiles" userid="694709" postdate="2023-11-05T01:52:08-05:00"/>
+        </videos>
+        <versions>
+            <item type="boardgameversion" id="685632">
+                <thumbnail>https://cf.geekdo-images.com/D3TEgieEudyIiY70hkQiKw__thumb/img/DhEkGYrwkfDTAUWK7EFjwiVdBMU=/fit-in/200x150/filters:strip_icc()/pic7800352.png</thumbnail>
+                <image>https://cf.geekdo-images.com/D3TEgieEudyIiY70hkQiKw__original/img/G9XIuskUuVU0he4ywThrz9bbpEA=/0x0/filters:format(png)/pic7800352.png</image>
+                <link type="boardgameversion" id="396790" value="Nucleum" inbound="true"/>
+                <name type="primary" sortindex="1" value="Czech edition"/>
+                <link type="boardgamepublisher" id="26630" value="Board&amp;Dice"/>
+                <link type="boardgamepublisher" id="55187" value="Old Dawg"/>
+                <link type="boardgameartist" id="11898" value="Andreas Resch"/>
+                <link type="boardgameartist" id="123923" value="Piotr Sokołowski"/>
+                <link type="boardgameartist" id="86237" value="Zbigniew Umgelter"/>
+                <yearpublished value="2024"/>
+                <productcode value="8593085104517"/>
+                <width value="11.7"/>
+                <length value="11.7"/>
+                <depth value="2.8"/>
+                <weight value="0"/>
+                <link type="language" id="2180" value="Czech"/>
+            </item>
+            <item type="boardgameversion" id="674275">
+                <thumbnail>https://cf.geekdo-images.com/fIVUaMvbfy6GCOgfxt7xaw__thumb/img/jKsO4nKmtNjX5bfH7aCPeK7hsqU=/fit-in/200x150/filters:strip_icc()/pic7647168.jpg</thumbnail>
+                <image>https://cf.geekdo-images.com/fIVUaMvbfy6GCOgfxt7xaw__original/img/dBMnuz3SrgxsDLHT6pwbQFPQBIw=/0x0/filters:format(jpeg)/pic7647168.jpg</image>
+                <link type="boardgameversion" id="396790" value="Nucleum" inbound="true"/>
+                <name type="primary" sortindex="1" value="English edition"/>
+                <link type="boardgamepublisher" id="26630" value="Board&amp;Dice"/>
+                <link type="boardgameartist" id="11898" value="Andreas Resch"/>
+                <link type="boardgameartist" id="123923" value="Piotr Sokołowski"/>
+                <link type="boardgameartist" id="86237" value="Zbigniew Umgelter"/>
+                <yearpublished value="2023"/>
+                <productcode value="BND0076"/>
+                <width value="11.7"/>
+                <length value="11.7"/>
+                <depth value="2.8"/>
+                <weight value="0"/>
+                <link type="language" id="2184" value="English"/>
+            </item>
+            <item type="boardgameversion" id="674316">
+                <thumbnail>https://cf.geekdo-images.com/27Br3pj9k5NEIG1q2xbQzA__thumb/img/0zCAL2QxiiAh9UfjinjQGIhoKyc=/fit-in/200x150/filters:strip_icc()/pic7647161.jpg</thumbnail>
+                <image>https://cf.geekdo-images.com/27Br3pj9k5NEIG1q2xbQzA__original/img/PN7mntwZtsvvUI1I6ohD-CbjKiI=/0x0/filters:format(jpeg)/pic7647161.jpg</image>
+                <link type="boardgameversion" id="396790" value="Nucleum" inbound="true"/>
+                <name type="primary" sortindex="1" value="French edition"/>
+                <link type="boardgamepublisher" id="26630" value="Board&amp;Dice"/>
+                <link type="boardgamepublisher" id="5380" value="Intrafin Games"/>
+                <link type="boardgameartist" id="11898" value="Andreas Resch"/>
+                <link type="boardgameartist" id="123923" value="Piotr Sokołowski"/>
+                <link type="boardgameartist" id="86237" value="Zbigniew Umgelter"/>
+                <yearpublished value="2023"/>
+                <productcode value=""/>
+                <width value="11.7"/>
+                <length value="11.7"/>
+                <depth value="2.8"/>
+                <weight value="0"/>
+                <link type="language" id="2187" value="French"/>
+            </item>
+            <item type="boardgameversion" id="675705">
+                <thumbnail>https://cf.geekdo-images.com/Ci3Tf1P-Q4LVgbu07g10Mw__thumb/img/zFi6MK0YIVzDffac4oWprdZMzHg=/fit-in/200x150/filters:strip_icc()/pic7751011.jpg</thumbnail>
+                <image>https://cf.geekdo-images.com/Ci3Tf1P-Q4LVgbu07g10Mw__original/img/bHeXriLwFfSp8H0Gy3aJwJIr0RE=/0x0/filters:format(jpeg)/pic7751011.jpg</image>
+                <link type="boardgameversion" id="396790" value="Nucleum" inbound="true"/>
+                <name type="primary" sortindex="1" value="German edition"/>
+                <link type="boardgamepublisher" id="42147" value="Giant Roc"/>
+                <link type="boardgameartist" id="11898" value="Andreas Resch"/>
+                <link type="boardgameartist" id="123923" value="Piotr Sokołowski"/>
+                <link type="boardgameartist" id="86237" value="Zbigniew Umgelter"/>
+                <yearpublished value="2023"/>
+                <productcode value=""/>
+                <width value="11.7"/>
+                <length value="11.7"/>
+                <depth value="2.8"/>
+                <weight value="0"/>
+                <link type="language" id="2188" value="German"/>
+            </item>
+            <item type="boardgameversion" id="686335">
+                <link type="boardgameversion" id="396790" value="Nucleum" inbound="true"/>
+                <name type="primary" sortindex="1" value="Hungarian edition"/>
+                <link type="boardgamepublisher" id="6194" value="Delta Vision Publishing"/>
+                <yearpublished value="2024"/>
+                <productcode value=""/>
+                <width value="0"/>
+                <length value="0"/>
+                <depth value="0"/>
+                <weight value="0"/>
+                <link type="language" id="2191" value="Hungarian"/>
+            </item>
+            <item type="boardgameversion" id="679998">
+                <link type="boardgameversion" id="396790" value="Nucleum" inbound="true"/>
+                <name type="primary" sortindex="1" value="Polish edition"/>
+                <link type="boardgamepublisher" id="26630" value="Board&amp;Dice"/>
+                <link type="boardgamepublisher" id="7466" value="Rebel Sp. z o.o."/>
+                <link type="boardgameartist" id="11898" value="Andreas Resch"/>
+                <link type="boardgameartist" id="123923" value="Piotr Sokołowski"/>
+                <link type="boardgameartist" id="86237" value="Zbigniew Umgelter"/>
+                <yearpublished value="2024"/>
+                <productcode value=""/>
+                <width value="0"/>
+                <length value="0"/>
+                <depth value="0"/>
+                <weight value="0"/>
+                <link type="language" id="2199" value="Polish"/>
+            </item>
+            <item type="boardgameversion" id="675344">
+                <thumbnail>https://cf.geekdo-images.com/digig4XSYmGfN7Inq5ep1g__thumb/img/HJiYQWlt8QQfCw4GK_cuKkuTX5U=/fit-in/200x150/filters:strip_icc()/pic7755378.jpg</thumbnail>
+                <image>https://cf.geekdo-images.com/digig4XSYmGfN7Inq5ep1g__original/img/3T9MZTLHsBgW8H2NXxPTntnpY7o=/0x0/filters:format(jpeg)/pic7755378.jpg</image>
+                <link type="boardgameversion" id="396790" value="Nucleum" inbound="true"/>
+                <name type="primary" sortindex="1" value="Portuguese edition"/>
+                <link type="boardgamepublisher" id="26630" value="Board&amp;Dice"/>
+                <link type="boardgamepublisher" id="44349" value="Mosaico Jogos"/>
+                <link type="boardgameartist" id="11898" value="Andreas Resch"/>
+                <link type="boardgameartist" id="123923" value="Piotr Sokołowski"/>
+                <link type="boardgameartist" id="86237" value="Zbigniew Umgelter"/>
+                <yearpublished value="2023"/>
+                <productcode value=""/>
+                <width value="11.7"/>
+                <length value="11.7"/>
+                <depth value="2.8"/>
+                <weight value="0"/>
+                <link type="language" id="2200" value="Portuguese"/>
+            </item>
+            <item type="boardgameversion" id="680122">
+                <link type="boardgameversion" id="396790" value="Nucleum" inbound="true"/>
+                <name type="primary" sortindex="1" value="Spanish edition"/>
+                <link type="boardgamepublisher" id="26630" value="Board&amp;Dice"/>
+                <link type="boardgamepublisher" id="30677" value="Maldito Games"/>
+                <link type="boardgameartist" id="11898" value="Andreas Resch"/>
+                <link type="boardgameartist" id="123923" value="Piotr Sokołowski"/>
+                <link type="boardgameartist" id="86237" value="Zbigniew Umgelter"/>
+                <yearpublished value="2023"/>
+                <productcode value=""/>
+                <width value="0"/>
+                <length value="0"/>
+                <depth value="0"/>
+                <weight value="0"/>
+                <link type="language" id="2203" value="Spanish"/>
+            </item>
+        </versions>
+        <comments page="1" totalitems="1402">
+            <comment username="Gonzaga" rating="10" value=""/>
+            <comment username="actiondan87" rating="10" value="This game is amazing. Turns are fairly quick despite the decision space, and fiddliness is marginal. There are many helpful graphical rules reminders on all the boards and the iconography is easy to understand. The AI is very easy to run and comes with a near-comprehensive aid on the back of the solo rulebook. Figuring out where the AI will build is the thinky-est procedure, but it is far simpler than in Barrage. Nucleum is far less cutthroat than Barrage because there is little worker placement blockage. You can always do what you want as long as you have the tile and can pay for it, and it's not often that you are boxed in or out of a network. There is also no randomness as far as power sources go (i.e. Barrage's water placement tiles)."/>
+            <comment username="coroner" rating="10" value=""/>
+            <comment username="bogdanp" rating="10" value=""/>
+            <comment username="settlersfan" rating="10" value=""/>
+            <comment username="jordan3491" rating="10" value=""/>
+            <comment username="Sergeant_T" rating="10" value="'Nu-cu-lum'. It's pronounced 'Nu-cu-lum'."/>
+            <comment username="jaffawahha" rating="10" value=""/>
+            <comment username="nucleartrask" rating="10" value="Played 2 games in a single day. Would play more. Must be a 10/10 then!"/>
+            <comment username="hasan1929" rating="10" value=""/>
+            <comment username="mnovinec" rating="10" value="Great game, just not very color blind friendly."/>
+            <comment username="Marcio8125" rating="10" value=""/>
+            <comment username="Emmdizzle24" rating="10" value="Two of my favorite designers = instabuy! Received 10/16/2023 Just played my first game and Wow! Exceeded my expectations, and they were already high!"/>
+            <comment username="Rednas79" rating="10" value=""/>
+            <comment username="trezemauro" rating="10" value=""/>
+            <comment username="Spyron" rating="10" value=""/>
+            <comment username="pommern36" rating="10" value=""/>
+            <comment username="Thirsty Dragon" rating="10" value=""/>
+            <comment username="Wretched Git" rating="10" value=""/>
+            <comment username="whimsicaltyrant" rating="10" value="Wow! Love the theme. Love the mechanisms. Great use of multi use tiles. Great graphic design. This really made a great first impression."/>
+            <comment username="Poeppeltje" rating="10" value=""/>
+            <comment username="Tawejea_" rating="10" value="Had a chance to play this earlier this year before it was released. I played it 3 times and each time found a new part to enjoy!"/>
+            <comment username="Teejplays" rating="10" value=""/>
+            <comment username="Prismattic" rating="10" value=""/>
+            <comment username="tgiang27" rating="10" value="good"/>
+            <comment username="supergraphis" rating="10" value=""/>
+            <comment username="KennethSkjerven" rating="10" value=""/>
+            <comment username="jimterr" rating="10" value=""/>
+            <comment username="RollsBen" rating="10" value="Truly innovative. A solid 10 out of 10."/>
+            <comment username="ktuluh" rating="10" value=""/>
+            <comment username="j_chambel" rating="10" value=""/>
+            <comment username="misskitten" rating="10" value="This instantly jumped up into my favourites, I love the action tiles and the tough choice between which to hold onto and which to use for rail connections. I love the asymmetry between the different experiments and look forward to trying out the different ones in future plays. My only real critique of the game is how much of a table hog it is. I definitely cannot play more than 2 players at home as there just isn't enough table space to incorporate another player. At the same time I don't mind keeping this at 2 players since it works really well that way."/>
+            <comment username="Lludd" rating="10" value=""/>
+            <comment username="Murdoch7" rating="10" value="Initial rating 10, but may go higher :)"/>
+            <comment username="zubor" rating="10" value="Essen"/>
+            <comment username="Gavroche" rating="10" value=""/>
+            <comment username="PestLee" rating="10" value=""/>
+            <comment username="rafaukov" rating="10" value=""/>
+            <comment username="Yaropaw" rating="10" value="One of the best euro style game this year (Probably the best i’ve ever played)."/>
+            <comment username="Tjlovebg" rating="10" value=""/>
+            <comment username="Boto12" rating="10" value=""/>
+            <comment username="Krucial91" rating="10" value=""/>
+            <comment username="anovac" rating="10" value=""/>
+            <comment username="KRWoods1" rating="10" value="This is...glowing! I will say that the rules could have been clearer but other than that this was just fantastic. I played it and could not stop thinking about it. Networks can be a bit of a confusing concept, but once you get that out of the way, the game moves so smoothly and is so very satisfying. Everything fits together nicely and nothing feels tacked on. I am excited to try it solo as well."/>
+            <comment username="Boardgame_Inspo" rating="10" value=""/>
+            <comment username="Sparthan" rating="10" value=""/>
+            <comment username="PaulWong" rating="10" value=""/>
+            <comment username="mauriciokv12" rating="10" value=""/>
+            <comment username="kReal92" rating="10" value="Sleeved Deluxe: No Inlay: no "/>
+            <comment username="PhantomTrickster" rating="10" value=""/>
+            <comment username="henchie12345" rating="10" value="Better than Brass and Barrage. Great game."/>
+            <comment username="STP077" rating="10" value=""/>
+            <comment username="Raffacipu" rating="10" value=""/>
+            <comment username="katanasword13" rating="10" value="Great mechanics that make you think well in advanced. Quick turns in such a heavy game. Always ends a bit too soon, and every play seems fast yet 3 hours went by. Fantastic design."/>
+            <comment username="derekpears" rating="10" value=""/>
+            <comment username="Bortolazzi" rating="10" value=""/>
+            <comment username="reggaeirie" rating="10" value=""/>
+            <comment username="boomingsooner" rating="10" value="Does a game have to be perfect to score a 10? How would you even know something was truly perfect? Whatever this game is, it just meets my expectations at every level. I love a good race, I love to build a hand of cards (in this case tiles), be forced to use them permanently during the game and saying goodbye to them. This is probably my favorite game to hit the table since Gaia Project?? It does new things, it has elements of other GREAT games.... New twists, thinky, puzzly. The sign for me of a great game is one I think about when it is over and actively think...when can I get another game of this in. Nucleum does that. Might be Turczi's opus."/>
+            <comment username="CountAugust" rating="10" value=""/>
+            <comment username="milovmil" rating="10" value=""/>
+            <comment username="Gulapa" rating="10" value=""/>
+            <comment username="Dots1" rating="10" value=""/>
+            <comment username="Harveus" rating="10" value=""/>
+            <comment username="Wouvan" rating="10" value=""/>
+            <comment username="BojtiHun" rating="10" value=""/>
+            <comment username="Herbic" rating="10" value=""/>
+            <comment username="Slezzer" rating="10" value=""/>
+            <comment username="JerryHomes" rating="10" value=""/>
+            <comment username="Denga" rating="10" value=""/>
+            <comment username="Reevs" rating="10" value=""/>
+            <comment username="bartek_d" rating="10" value=""/>
+            <comment username="Stasis1977" rating="10" value=""/>
+            <comment username="Nick_88" rating="10" value="So good this game! Only played it once last weekend and pretty sure of the 10/10!!"/>
+            <comment username="zoldac7" rating="10" value=""/>
+            <comment username="magnus1515" rating="10" value=""/>
+            <comment username="Mockbax" rating="10" value=""/>
+            <comment username="amanal_lake" rating="10" value=""/>
+            <comment username="petejacko" rating="10" value=""/>
+            <comment username="MTS_Games" rating="10" value=""/>
+            <comment username="Bisqp" rating="10" value="Excellent euro game. Some player interaction in a way of &quot;take that&quot; (spot, action tile, etc), but not that at the level of e.g. Barrage. People describe it as a mix of Barrage and Brass: B and I agree, with being more skewed towards Brass: B, maybe like 60-65% more like Brass:B. Quite interesting mechanism with tiles which can act both as action as well as tracks but the last one only once a game and then they stay there. If you like heavy and complex euros which still offer smooth play and demands strategic thinking - definitely this is the way to go and one should try it."/>
+            <comment username="Mosaico" rating="10" value=""/>
+            <comment username="Didacqs2" rating="10" value=""/>
+            <comment username="Drimm" rating="10" value=""/>
+            <comment username="GussMuss" rating="10" value=""/>
+            <comment username="Affenhagel" rating="10" value=""/>
+            <comment username="Baever" rating="10" value=""/>
+            <comment username="Bravissimo83" rating="10" value=""/>
+            <comment username="Renegade_B" rating="10" value="Best game of 2023 by far"/>
+            <comment username="shaunclinton" rating="10" value=""/>
+            <comment username="oaidoaidoaidoaidoaid" rating="10" value=""/>
+            <comment username="oaidoaidoaidoaidoaid" rating="10" value=""/>
+            <comment username="oaidoaidoaidoaidoaid" rating="10" value=""/>
+            <comment username="hangjeremy" rating="10" value=""/>
+            <comment username="Bloodguts" rating="10" value=""/>
+            <comment username="juliusm" rating="10" value=""/>
+            <comment username="jedimike" rating="10" value="This is a really good Euro. I love a good Euro and this fits me like a glove. It is easily my favorite game of the year so far. It's a classic with the rest like Powergrid, Barrage, Brass. Just pure excellence."/>
+            <comment username="BrunoMagus" rating="10" value=""/>
+            <comment username="Marcelfelipe" rating="10" value=""/>
+            <comment username="melodyman" rating="10" value=""/>
+            <comment username="bballmartin14" rating="10" value=""/>
+        </comments>
+        <statistics page="1">
+            <ratings>
+                <usersrated value="1373"/>
+                <average value="8.27146"/>
+                <bayesaverage value="6.57535"/>
+                <ranks>
+                    <rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="1045" bayesaverage="6.57535"/>
+                    <rank type="family" id="5497" name="strategygames" friendlyname="Strategy Game Rank" value="484" bayesaverage="6.8133"/>
+                </ranks>
+                <stddev value="1.25647"/>
+                <median value="0"/>
+                <owned value="2911"/>
+                <trading value="9"/>
+                <wanting value="381"/>
+                <wishing value="3076"/>
+                <numcomments value="324"/>
+                <numweights value="173"/>
+                <averageweight value="4.0578"/>
+            </ratings>
+        </statistics>
+        <marketplacelistings>
+            <listing>
+                <listdate value="Fri, 06 Oct 2023 19:41:25 +0000"/>
+                <price currency="USD" value="80.00"/>
+                <condition value="new"/>
+                <notes value="Game is NIS&#10;&#10;Buyer pays shipping from 78540. Payment accepted through PayPal's or Venmo. Goods &amp; Services users please add $2.50 to the total payment, so we share costs equally. Shipping will be in the $10-15 range depending on where in CONUS you live.&#10;&#10;Feel free to check some of my other games, as I am happy to offer discounted shipping for multiple games purchased. GM me for questions"/>
+                <link href="https://boardgamegeek.com/market/product/3276360" title="marketlisting"/>
+            </listing>
+            <listing>
+                <listdate value="Sun, 22 Oct 2023 11:02:57 +0000"/>
+                <price currency="EUR" value="90.00"/>
+                <condition value="likenew"/>
+                <notes value="Nucleum + both promo's&#10;Unplayed&#10;Only shrink removed to put the promo's in the box&#10;&#10;&#10;I pay the Geekcommission, you pay the Paypalcosts"/>
+                <link href="https://boardgamegeek.com/market/product/3288164" title="marketlisting"/>
+            </listing>
+            <listing>
+                <listdate value="Tue, 31 Oct 2023 14:12:20 +0000"/>
+                <price currency="EUR" value="69.99"/>
+                <condition value="new"/>
+                <notes value=""/>
+                <link href="https://boardgamegeek.com/market/product/3295866" title="marketlisting"/>
+            </listing>
+            <listing>
+                <listdate value="Sun, 05 Nov 2023 10:21:07 +0000"/>
+                <price currency="USD" value="60.00"/>
+                <condition value="likenew"/>
+                <notes value="Opened but not punched or played. &#10;15 dollars shipped anywhere in US"/>
+                <link href="https://boardgamegeek.com/market/product/3299644" title="marketlisting"/>
+            </listing>
+            <listing>
+                <listdate value="Mon, 06 Nov 2023 15:54:04 +0000"/>
+                <price currency="USD" value="60.00"/>
+                <condition value="new"/>
+                <notes value="New in shrink. $15 shipped anywhere in the US. Or will arrange local pickup in the south Denver, CO area.&#10;&#10;Venmo or paypal."/>
+                <link href="https://boardgamegeek.com/market/product/3300842" title="marketlisting"/>
+            </listing>
+            <listing>
+                <listdate value="Fri, 10 Nov 2023 14:53:19 +0000"/>
+                <price currency="USD" value="90.00"/>
+                <condition value="likenew"/>
+                <notes value="Opened to verify components. Otherwise untouched. Free shipping to continental USA will offer reduced worldwide shipping. Will reduce price for local pickup."/>
+                <link href="https://boardgamegeek.com/market/product/3304142" title="marketlisting"/>
+            </listing>
+            <listing>
+                <listdate value="Fri, 10 Nov 2023 14:54:31 +0000"/>
+                <price currency="EUR" value="69.95"/>
+                <condition value="new"/>
+                <notes value="weight: 3190 grams + packaging"/>
+                <link href="https://boardgamegeek.com/market/product/3304144" title="marketlisting"/>
+            </listing>
+            <listing>
+                <listdate value="Sun, 12 Nov 2023 04:18:18 +0000"/>
+                <price currency="USD" value="60.00"/>
+                <condition value="likenew"/>
+                <notes value="Note that I purchased the game new and the teal player color income markers (3) were not in the box. For my couple of plays we were able to easily proxy this since they are solely used on the individual player board. Board &amp; Dice is sending me replacements. I will forward them on to the purchaser when they arrive.&amp;#10;&amp;#10;Flat $15 shipping. I combine shipping with other items." />
+                <link href="https://boardgamegeek.com/market/product/3311129" title="marketlisting"/>
+            </listing>
+            <listing>
+                <listdate value="Sun, 12 Nov 2023 13:42:07 +0000"/>
+                <price currency="EUR" value="70.00"/>
+                <condition value="new"/>
+                <notes value="Game weight: 3.200 kg"/>
+                <link href="https://boardgamegeek.com/market/product/3312701" title="marketlisting"/>
+            </listing>
+            <listing>
+                <listdate value="Wed, 15 Nov 2023 08:08:12 +0000"/>
+                <price currency="EUR" value="70.00"/>
+                <condition value="new"/>
+                <notes value=""/>
+                <link href="https://boardgamegeek.com/market/product/3315313" title="marketlisting"/>
+            </listing>
+            <listing>
+                <listdate value="Sat, 18 Nov 2023 08:04:41 +0000"/>
+                <price currency="EUR" value="60.00"/>
+                <condition value="likenew"/>
+                <notes value="Like new (with cardboard insert)&amp;#10;&amp;#10;PayPal - if payment is made with option Sending to a friend or family no extra % is needed&amp;#10;Tracked shipping:&amp;#10;Italy 10 &amp;#226;&amp;#130;&amp;#172;&amp;#10;EU 20 &amp;#226;&amp;#130;&amp;#172;" />
+                <link href="https://boardgamegeek.com/market/product/3317682" title="marketlisting"/>
+            </listing>
+        </marketplacelistings>
+    </item>
+</items>

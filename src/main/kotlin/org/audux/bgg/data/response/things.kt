@@ -297,7 +297,8 @@ data class Comments(
      * List of comments which will either always have `rating` set or value set depending on the
      * request.
      */
-    val comment: List<Comment> = listOf(),
+    @JacksonXmlProperty(localName = "comment")
+    val comments: List<Comment> = listOf(),
 )
 
 /**

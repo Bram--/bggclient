@@ -181,6 +181,19 @@ class ThingsResponseTest : KoinTest {
   }
 
   @Test
+  fun `parses ratingcomments`() {
+    val things = mapper.readValue(xml("response.things.boardgame.all"), Things::class.java)
+
+    assertThat(things.things).hasSize(1)
+    val thing = things.things[0]
+    assertThat(thing.comments?.page).isEqualTo(1)
+    assertThat(thing.comments?.totalItems).isEqualTo(1402)
+    assertThat(thing.comments?.comments).hasSize(100)
+
+    val ratings = thing.comments?.comments?.map { it.rating }
+  }
+
+  @Test
   fun `WrappedValue Parses self closing elements - Int`() {
     val xml = """<item value="100" />""""
     val wrappedInt = mapper.readValue(xml, object : TypeReference<WrappedValue<Int>>() {})

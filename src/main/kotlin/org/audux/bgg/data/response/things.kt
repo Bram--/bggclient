@@ -130,7 +130,6 @@ data class Thing(
     var names: List<Name> = listOf()
         set(value) {
             field = field + value
-
             field.forEach {
                 if (it.type == "primary") name = it.value
             }

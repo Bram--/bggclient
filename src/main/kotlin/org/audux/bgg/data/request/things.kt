@@ -71,13 +71,13 @@ suspend fun BggClient.things(
     ratingComments: Boolean = false,
 
     /** Defaults to 1, controls the page of data to see for comments, and ratings data. */
-    page: Int = 1,
+    page: Int = 0,
 
     /**
      * Set the number of records to return in paging. Minimum is 10, maximum is 100.
      * Defaults to 100
      */
-    pageSize: Int = 100,
+    pageSize: Int = 0,
 ): Things {
     if (!(10..100).contains(pageSize)) {
         throw BggRequestException("pageSize must be between 10 and 100")
@@ -104,8 +104,8 @@ suspend fun BggClient.things(
                     if (marketplace) append(BggClient.PARAM_MARKETPLACE, "1")
                     if (comments) append(BggClient.PARAM_COMMENTS, "1")
                     if (ratingComments) append(BggClient.PARAM_RATING_COMMENTS, "1")
-                    if (page > 1) append(BggClient.PARAM_PAGE, page.toString())
-                    if (pageSize != 100) append(BggClient.PARAM_PAGE_SIZE, pageSize.toString())
+                    if (page > 0) append(BggClient.PARAM_PAGE, page.toString())
+                    if (pageSize > 0) append(BggClient.PARAM_PAGE_SIZE, pageSize.toString())
                 }
             )
         }

@@ -189,8 +189,13 @@ class ThingsResponseTest : KoinTest {
     assertThat(thing.comments?.page).isEqualTo(1)
     assertThat(thing.comments?.totalItems).isEqualTo(1402)
     assertThat(thing.comments?.comments).hasSize(100)
+    assertThat(thing.comments?.comments?.get(0)?.rating).isEqualTo(10)
+    assertThat(thing.comments?.comments?.get(0)?.value).contains("This game is amazing")
+    assertThat(thing.comments?.comments?.get(0)?.username).contains("actiondan87")
 
     val ratings = thing.comments?.comments?.map { it.rating }
+    assertThat(ratings).hasSize(100)
+    assertThat(ratings).containsExactlyElementsIn(Array(100) { 10 } )
   }
 
   @Test

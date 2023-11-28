@@ -119,11 +119,11 @@ data class Thing(
     @JacksonXmlProperty(localName = "versions")
     val versions: List<Version> = listOf(),
 ) {
-  @JsonProperty("poll")
-  var polls: List<Poll> = listOf()
-    set(value) {
-      field = field + value
-    }
+    @JsonProperty("poll")
+    var polls: List<Poll> = listOf()
+        set(value) {
+            field = field + value
+        }
 
     /** Names of the thing, consisting of a primary and optionally alternatives. */
     @JsonProperty("name")
@@ -154,12 +154,6 @@ data class Version(
     /** Full suze image of the product. */
     val image: String?,
 
-    /** Additional information about this product e.g. Language, artist(s) etc. */
-    @JacksonXmlProperty(localName = "link") val links: List<Link> = listOf(),
-
-    /** Names of the product, consisting of a primary and optionally alternatives. */
-    val name: List<Name>,
-
     /** When the product was published. */
     val yearPublished: WrappedValue<Number>,
 
@@ -177,7 +171,29 @@ data class Version(
 
     /** Weight in lbs (pounds). */
     val weight: WrappedValue<Number>?,
-)
+) {
+    /** Names of the product, consisting of a primary and optionally alternatives. */
+    @JsonProperty("name")
+    var names: List<Name> = listOf()
+        set(value) {
+            field = field + value
+            field.forEach {
+                if (it.type == "primary") name = it.value
+            }
+        }
+
+    /** Primary name. */
+    @JsonIgnore
+    var name = ""
+
+    /** Additional information about this product e.g. Language, artist(s) etc. */
+    @JsonProperty("link")
+    var links: List<Link> = listOf()
+        set(value) {
+            field = field + value
+        }
+
+}
 
 /** Encapsulates the name of a Thing either primary or alternate name. */
 data class Name(

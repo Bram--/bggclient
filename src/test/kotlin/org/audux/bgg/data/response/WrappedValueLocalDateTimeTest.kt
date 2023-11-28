@@ -199,6 +199,52 @@ class ThingsResponseTest : KoinTest {
   }
 
   @Test
+  fun `parses links`() {
+    val things = mapper.readValue(xml("response.things.boardgame.all"), Things::class.java)
+
+    assertThat(things.things).hasSize(1)
+    val links = things.things[0].links
+    assertThat(links).hasSize(33)
+    assertThat(links[0].id).isEqualTo(1021)
+    assertThat(links[0].inbound).isNull()
+    assertThat(links[0].value).isEqualTo("Economic")
+    assertThat(links[0].type).isEqualTo("boardgamecategory")
+    assertThat(links.filter { it.type == "boardgamecategory" }).hasSize(3)
+    assertThat(links.filter { it.type == "boardgamemechanic" }).hasSize(10)
+    assertThat(links.filter { it.type == "boardgamefamily" }).hasSize(5)
+    assertThat(links.filter { it.type == "boardgameexpansion" }).hasSize(2)
+    assertThat(links.filter { it.type == "boardgamedesigner" }).hasSize(2)
+    assertThat(links.filter { it.type == "boardgameartist" }).hasSize(3)
+    assertThat(links.filter { it.type == "boardgamepublisher" }).hasSize(8)
+  }
+
+  @Test
+  fun `parses versions`() {
+    val things = mapper.readValue(xml("response.things.boardgame.all"), Things::class.java)
+
+    assertThat(things.things).hasSize(1)
+    val versions = things.things[0].versions
+    assertThat(versions).hasSize(8)
+    assertThat(versions[0].id).isEqualTo(685632)
+    assertThat(versions[0].type).isEqualTo("boardgameversion")
+    assertThat(versions[0].yearPublished.value).isEqualTo(2024)
+    assertThat(versions[0].productCode?.value).isEqualTo("8593085104517")
+    assertThat(versions[0].width?.value).isEqualTo(11.7)
+    assertThat(versions[0].length?.value).isEqualTo(11.7)
+    assertThat(versions[0].depth?.value).isEqualTo(2.8)
+    assertThat(versions[0].weight?.value).isEqualTo(0)
+    assertThat(versions[0].thumbnail)
+    .isEqualTo("https://cf.geekdo-images.com/D3TEgieEudyIiY70hkQiKw__thumb/img/DhEkGYrwkfDTAUWK7EFjwiVdBMU=/fit-in/200x150/filters:strip_icc()/pic7800352.png")
+    assertThat(versions[0].image)
+      .isEqualTo("https://cf.geekdo-images.com/D3TEgieEudyIiY70hkQiKw__original/img/G9XIuskUuVU0he4ywThrz9bbpEA=/0x0/filters:format(png)/pic7800352.png")
+    assertThat(versions[0].names).hasSize(1)
+    assertThat(versions[0].name).isEqualTo("Czech edition")
+
+    val links = versions[0].links
+    assertThat(links).hasSize(7)
+  }
+
+  @Test
   fun `WrappedValue Parses self closing elements - Int`() {
     val xml = """<item value="100" />""""
     val wrappedInt = mapper.readValue(xml, object : TypeReference<WrappedValue<Int>>() {})

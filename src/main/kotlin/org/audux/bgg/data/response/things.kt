@@ -428,7 +428,8 @@ data class MarketplaceListing(
     val notes: WrappedValue<String>?,
 
     /** Link to the listing. */
-    val link: Weblink,
+    @JsonProperty("link")
+    val webLink: Weblink,
 )
 
 /** Encapsulates a price for a given [MarketplaceListing] */

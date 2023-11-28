@@ -18,13 +18,14 @@ import org.koin.test.junit5.KoinTestExtension
 class ThingsResponseTest : KoinTest {
   @JvmField
   @RegisterExtension
+  @Suppress("unused")
   val koinTestExtension = KoinTestExtension.create { modules(appModule) }
 
   private val mapper: ObjectMapper by inject(named<BggXmlObjectMapper>())
 
   @Test
   fun `parses a simple response`() {
-    val things = mapper.readValue(xml("response.things.boardgame.minimal"), Things::class.java)
+    val things = mapper.readValue(xml("thing?id=1"), Things::class.java)
 
     assertThat(things.things).hasSize(1)
     val thing = things.things[0]
@@ -42,7 +43,7 @@ class ThingsResponseTest : KoinTest {
 
   @Test
   fun `parses polls`() {
-    val things = mapper.readValue(xml("response.things.boardgame.minimal"), Things::class.java)
+    val things = mapper.readValue(xml("thing?id=1"), Things::class.java)
 
     assertThat(things.things).hasSize(1)
     val thing = things.things[0]
@@ -56,7 +57,7 @@ class ThingsResponseTest : KoinTest {
 
   @Test
   fun `parses poll - PlayerAgePoll`() {
-    val things = mapper.readValue(xml("response.things.boardgame.minimal"), Things::class.java)
+    val things = mapper.readValue(xml("thing?id=1"), Things::class.java)
 
     val thing = things.things[0]
     val playerAgePoll = thing.polls.findLast { it is PlayerAgePoll }!! as PlayerAgePoll
@@ -92,7 +93,7 @@ class ThingsResponseTest : KoinTest {
 
   @Test
   fun `parses poll - LanguageDependencePoll`() {
-    val things = mapper.readValue(xml("response.things.boardgame.minimal"), Things::class.java)
+    val things = mapper.readValue(xml("thing?id=1"), Things::class.java)
 
     val thing = things.things[0]
     val languageDependencePoll =
@@ -122,7 +123,7 @@ class ThingsResponseTest : KoinTest {
 
   @Test
   fun `parses poll - NumberOfPlayersPoll`() {
-    val things = mapper.readValue(xml("response.things.boardgame.minimal"), Things::class.java)
+    val things = mapper.readValue(xml("thing?id=1"), Things::class.java)
 
     val thing = things.things[0]
     val numberOfPlayersPoll =
@@ -182,7 +183,10 @@ class ThingsResponseTest : KoinTest {
 
   @Test
   fun `parses ratingcomments`() {
-    val things = mapper.readValue(xml("response.things.boardgame.all"), Things::class.java)
+    val things =
+        mapper.readValue(
+            xml("thing?id=396790&stats=1&ratingcomments=1&versions=1&marketplace=1&videos=1"),
+            Things::class.java)
 
     assertThat(things.things).hasSize(1)
     val thing = things.things[0]
@@ -195,12 +199,15 @@ class ThingsResponseTest : KoinTest {
 
     val ratings = thing.comments?.comments?.map { it.rating }
     assertThat(ratings).hasSize(100)
-    assertThat(ratings).containsExactlyElementsIn(Array(100) { 10 } )
+    assertThat(ratings).containsExactlyElementsIn(Array(100) { 10 })
   }
 
   @Test
   fun `parses links`() {
-    val things = mapper.readValue(xml("response.things.boardgame.all"), Things::class.java)
+    val things =
+        mapper.readValue(
+            xml("thing?id=396790&stats=1&ratingcomments=1&versions=1&marketplace=1&videos=1"),
+            Things::class.java)
 
     assertThat(things.things).hasSize(1)
     val links = things.things[0].links
@@ -220,7 +227,10 @@ class ThingsResponseTest : KoinTest {
 
   @Test
   fun `parses versions`() {
-    val things = mapper.readValue(xml("response.things.boardgame.all"), Things::class.java)
+    val things =
+        mapper.readValue(
+            xml("thing?id=396790&stats=1&ratingcomments=1&versions=1&marketplace=1&videos=1"),
+            Things::class.java)
 
     assertThat(things.things).hasSize(1)
     val versions = things.things[0].versions
@@ -234,9 +244,11 @@ class ThingsResponseTest : KoinTest {
     assertThat(versions[0].depth?.value).isEqualTo(2.8)
     assertThat(versions[0].weight?.value).isEqualTo(0)
     assertThat(versions[0].thumbnail)
-    .isEqualTo("https://cf.geekdo-images.com/D3TEgieEudyIiY70hkQiKw__thumb/img/DhEkGYrwkfDTAUWK7EFjwiVdBMU=/fit-in/200x150/filters:strip_icc()/pic7800352.png")
+        .isEqualTo(
+            "https://cf.geekdo-images.com/D3TEgieEudyIiY70hkQiKw__thumb/img/DhEkGYrwkfDTAUWK7EFjwiVdBMU=/fit-in/200x150/filters:strip_icc()/pic7800352.png")
     assertThat(versions[0].image)
-      .isEqualTo("https://cf.geekdo-images.com/D3TEgieEudyIiY70hkQiKw__original/img/G9XIuskUuVU0he4ywThrz9bbpEA=/0x0/filters:format(png)/pic7800352.png")
+        .isEqualTo(
+            "https://cf.geekdo-images.com/D3TEgieEudyIiY70hkQiKw__original/img/G9XIuskUuVU0he4ywThrz9bbpEA=/0x0/filters:format(png)/pic7800352.png")
     assertThat(versions[0].names).hasSize(1)
     assertThat(versions[0].name).isEqualTo("Czech edition")
 

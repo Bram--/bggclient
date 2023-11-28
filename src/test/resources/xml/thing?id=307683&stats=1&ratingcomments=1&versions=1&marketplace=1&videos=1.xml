@@ -1,0 +1,1136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+    <item
+        id="307683"
+        type="boardgameexpansion">
+        <thumbnail>
+            https://cf.geekdo-images.com/1rf6L2NfsM4LTIH9KwHJkg__thumb/img/T6zgfc99T9uq0RVqsqxdmFDuhEo=/fit-in/200x150/filters:strip_icc()/pic6520341.jpg
+        </thumbnail>
+        <image>
+            https://cf.geekdo-images.com/1rf6L2NfsM4LTIH9KwHJkg__original/img/Duq3Zkvlajxqsy7Vh1scYKru70M=/0x0/filters:format(jpeg)/pic6520341.jpg
+        </image>
+
+        <name
+            sortindex="1"
+            type="primary"
+            value="Final Girl: The Happy Trails Horror" />
+
+
+        <name
+            sortindex="1"
+            type="alternate"
+            value="Final Girl: Horror w Szczęśliwej Przystani" />
+
+        <name
+            sortindex="1"
+            type="alternate"
+            value="Final Girl: La Colo de l&#039;Horreur" />
+
+        <name
+            sortindex="1"
+            type="alternate"
+            value="Final Girl: Terror en Camp Happy Trails" />
+
+        <name
+            sortindex="1"
+            type="alternate"
+            value="绝命少女：凶营惊魂" />
+
+        <description>Final Girl Feature Film Box&amp;#10;&amp;#10;Summer camp turns deadly in The
+            Happy Trails Horror. Produced by Evan Derrick, this Feature Film box stars Hans - The
+            Butcher, who murders and feasts on unsuspecting campers. When an unlikely heroine
+            emerges, will it be enough to stop the killing? Don't miss this engrossing film with
+            gorgeous scenes by Director of Photography, Tyler Johnson.&amp;#10;&amp;#10;The Core
+            Box, when combined with one of our Feature Film Boxes, has everything you need to play
+            the game. Each Feature Film Box features a unique Killer and and iconic Location, and
+            the more Feature Films you have, the more killer/location combinations you can
+            experience!&amp;#10;&amp;#10;Each Feature Film Box is double-sided, with amazingly
+            illustrated covers on the front AND back. Not only that, but the magnetically attached
+            box covers are removable, with the reverse of each functioning as the Killer and
+            Location boards respectively.&amp;#10;&amp;#10;NOTE: The 2023 First Printing Correction
+            Pack contained 3 corrected cards:&amp;#10;&amp;#10; EVENT - &amp;quot;Vengeance&amp;quot;&amp;#10;
+            ITEM - &amp;quot;Bear Trap&amp;quot;&amp;#10; ITEM - &amp;quot;Fireworks&amp;quot;&amp;#10;&amp;#10;&amp;#10;
+        </description>
+        <yearpublished value="2021" />
+        <minplayers value="1" />
+        <maxplayers value="1" />
+        <poll
+            name="suggested_numplayers"
+            title="User Suggested Number of Players"
+            totalvotes="8">
+
+            <results numplayers="1">
+                <result
+                    numvotes="8"
+                    value="Best" />
+                <result
+                    numvotes="0"
+                    value="Recommended" />
+                <result
+                    numvotes="0"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="1+">
+                <result
+                    numvotes="0"
+                    value="Best" />
+                <result
+                    numvotes="0"
+                    value="Recommended" />
+                <result
+                    numvotes="7"
+                    value="Not Recommended" />
+            </results>
+        </poll>
+        <playingtime value="60" />
+        <minplaytime value="20" />
+        <maxplaytime value="60" />
+        <minage value="14" />
+        <poll
+            name="suggested_playerage"
+            title="User Suggested Player Age"
+            totalvotes="3">
+            <results>
+                <result
+                    numvotes="0"
+                    value="2" />
+                <result
+                    numvotes="0"
+                    value="3" />
+                <result
+                    numvotes="0"
+                    value="4" />
+                <result
+                    numvotes="0"
+                    value="5" />
+                <result
+                    numvotes="0"
+                    value="6" />
+                <result
+                    numvotes="0"
+                    value="8" />
+                <result
+                    numvotes="0"
+                    value="10" />
+                <result
+                    numvotes="0"
+                    value="12" />
+                <result
+                    numvotes="3"
+                    value="14" />
+                <result
+                    numvotes="0"
+                    value="16" />
+                <result
+                    numvotes="0"
+                    value="18" />
+                <result
+                    numvotes="0"
+                    value="21 and up" />
+            </results>
+        </poll>
+        <poll
+            name="language_dependence"
+            title="Language Dependence"
+            totalvotes="1">
+
+            <results>
+                <result
+                    level="1"
+                    numvotes="0"
+                    value="No necessary in-game text" />
+                <result
+                    level="2"
+                    numvotes="0"
+                    value="Some necessary text - easily memorized or small crib sheet" />
+                <result
+                    level="3"
+                    numvotes="1"
+                    value="Moderate in-game text - needs crib sheet or paste ups" />
+                <result
+                    level="4"
+                    numvotes="0"
+                    value="Extensive use of text - massive conversion needed to be playable" />
+                <result
+                    level="5"
+                    numvotes="0"
+                    value="Unplayable in another language" />
+            </results>
+        </poll>
+
+
+        <link
+            id="1042"
+            type="boardgamecategory"
+            value="Expansion for Base-game" />
+
+
+        <link
+            id="1024"
+            type="boardgamecategory"
+            value="Horror" />
+
+
+        <link
+            id="2819"
+            type="boardgamemechanic"
+            value="Solo / Solitaire Game" />
+
+
+        <link
+            id="8374"
+            type="boardgamefamily"
+            value="Crowdfunding: Kickstarter" />
+
+
+        <link
+            id="28659"
+            type="boardgamefamily"
+            value="Crowdfunding: Wspieram" />
+
+
+        <link
+            id="61684"
+            type="boardgamefamily"
+            value="Game: Final Girl" />
+
+
+        <link
+            id="74451"
+            type="boardgamefamily"
+            value="Game: Final Girl, Series 1" />
+
+
+        <link
+            id="59705"
+            type="boardgamefamily"
+            value="Misc: LongPack Games" />
+
+
+        <link
+            id="62042"
+            type="boardgamefamily"
+            value="Movies: Horror Movies" />
+
+
+        <link
+            id="61977"
+            type="boardgamefamily"
+            value="Players: Solitaire Only Games" />
+
+
+        <link
+            id="354817"
+            type="boardgameexpansion"
+            value="Final Girl: Lore &amp; Scenario Book – Series 1" />
+
+
+        <link
+            id="383418"
+            type="boardgameexpansion"
+            value="Final Girl: Series 1 Bonus Features Box" />
+
+
+        <link
+            id="310177"
+            type="boardgameexpansion"
+            value="Final Girl: Terror From Above" />
+
+
+        <link
+            id="277659"
+            inbound="true"
+            type="boardgameexpansion"
+            value="Final Girl" />
+
+
+        <link
+            id="385650"
+            type="boardgameaccessory"
+            value="Final Girl: First Printing Correction Pack" />
+
+
+        <link
+            id="354818"
+            type="boardgameaccessory"
+            value="Final Girl: Gruesome Deaths Books Series 1" />
+
+
+        <link
+            id="307688"
+            type="boardgameaccessory"
+            value="Final Girl: Miniatures Series 1" />
+
+
+        <link
+            id="352360"
+            type="boardgameaccessory"
+            value="Final Girl: Mystery Box" />
+
+
+        <link
+            id="358850"
+            type="boardgameaccessory"
+            value="Final Girl: Replacement Tray Pack" />
+
+
+        <link
+            id="393099"
+            type="boardgameaccessory"
+            value="Final Girl: Series 1 Alternate Killer Miniatures" />
+
+
+        <link
+            id="354813"
+            type="boardgameaccessory"
+            value="Final Girl: Storage Box Series 1" />
+
+
+        <link
+            id="354811"
+            type="boardgameaccessory"
+            value="Final Girl: Vehicle Miniatures Series 1" />
+
+
+        <link
+            id="386835"
+            type="boardgamecompilation"
+            value="Final Girl: Starter Set" />
+
+
+        <link
+            id="53303"
+            type="boardgamedesigner"
+            value="Evan Derrick" />
+
+
+        <link
+            id="48981"
+            type="boardgamedesigner"
+            value="A. J. Porfirio" />
+
+
+        <link
+            id="85335"
+            type="boardgameartist"
+            value="Tyler Johnson" />
+
+
+        <link
+            id="17028"
+            type="boardgamepublisher"
+            value="Van Ryder Games" />
+
+
+        <link
+            id="27389"
+            type="boardgamepublisher"
+            value="Don't Panic Games" />
+
+
+        <link
+            id="8351"
+            type="boardgamepublisher"
+            value="Gen-X Games" />
+
+
+        <link
+            id="33626"
+            type="boardgamepublisher"
+            value="Lucky Duck Games" />
+
+
+        <videos total="7">
+            <video
+                category="unboxing"
+                id="444211"
+                language="French"
+                link="http://www.youtube.com/watch?v=UazxFQ4fpwg"
+                postdate="2023-06-30T09:24:17-05:00"
+                title="Déballage de Final Girl : The Happy Trails Horror"
+                userid="513208"
+                username="No_Way301" />
+            <video
+                category="session"
+                id="443647"
+                language="English"
+                link="http://www.youtube.com/watch?v=yYQvrLU7LR0"
+                postdate="2023-06-26T10:33:13-05:00"
+                title="DGA Plays Board Games: Final Girl: The Happy Trails Horror - Solo Playthrough"
+                userid="485335"
+                username="vmp0514" />
+            <video
+                category="session"
+                id="434102"
+                language="English"
+                link="http://www.youtube.com/watch?v=3AfzAOHAySc"
+                postdate="2023-04-20T10:29:26-05:00"
+                title="Final Girl - Reiko vs Hans at Camp Happy Trails"
+                userid="1599070"
+                username="ceephour" />
+            <video
+                category="session"
+                id="434098"
+                language="English"
+                link="http://www.youtube.com/watch?v=qCulvDvSXBc"
+                postdate="2023-04-20T10:26:27-05:00"
+                title="Final Girl - Laurie vs Hans at Camp Happy Trails"
+                userid="1599070"
+                username="ceephour" />
+            <video
+                category="session"
+                id="416061"
+                language="English"
+                link="http://www.youtube.com/watch?v=XOw-gUl0EpI"
+                postdate="2022-12-30T20:10:14-06:00"
+                title="Learn to Play Presents: Final Girl Hans Play Through"
+                userid="828220"
+                username="DragonLance17" />
+            <video
+                category="session"
+                id="367224"
+                language="English"
+                link="http://www.youtube.com/watch?v=ETprGqwmgis"
+                postdate="2022-02-18T15:44:23-06:00"
+                title="Die Rollin vs Final Girl - Laurie "
+                userid="237877"
+                username="AdeptusAce" />
+            <video
+                category="unboxing"
+                id="359565"
+                language="English"
+                link="http://www.youtube.com/watch?v=4IGLGuuWOVI"
+                postdate="2022-01-04T16:43:26-06:00"
+                title="What&#039;s inside the Feature Film box"
+                userid="163332"
+                username="Shamus" />
+        </videos>
+
+        <versions>
+            <item
+                id="649771"
+                type="boardgameversion">
+                <thumbnail>
+                    https://cf.geekdo-images.com/SjtDdxzJy-Uix6HU64uYZw__thumb/img/hH9d4GQ4qolF0k0S_1SnHR06xuk=/fit-in/200x150/filters:strip_icc()/pic7344309.jpg
+                </thumbnail>
+                <image>
+                    https://cf.geekdo-images.com/SjtDdxzJy-Uix6HU64uYZw__original/img/42510mpSdSluOQLQW8LLZiTwtmg=/0x0/filters:format(jpeg)/pic7344309.jpg
+                </image>
+
+
+                <link
+                    id="307683"
+                    inbound="true"
+                    type="boardgameversion"
+                    value="Final Girl: The Happy Trails Horror" />
+
+
+                <name
+                    sortindex="1"
+                    type="primary"
+                    value="Chinese edition" />
+
+
+                <link
+                    id="17028"
+                    type="boardgamepublisher"
+                    value="Van Ryder Games" />
+
+
+                <yearpublished value="2023" />
+                <productcode value="" />
+                <width value="0" />
+                <length value="0" />
+                <depth value="0" />
+                <weight value="0" />
+
+
+                <link
+                    id="2181"
+                    type="language"
+                    value="Chinese" />
+
+
+            </item>
+            <item
+                id="504966"
+                type="boardgameversion">
+                <thumbnail>
+                    https://cf.geekdo-images.com/1rf6L2NfsM4LTIH9KwHJkg__thumb/img/T6zgfc99T9uq0RVqsqxdmFDuhEo=/fit-in/200x150/filters:strip_icc()/pic6520341.jpg
+                </thumbnail>
+                <image>
+                    https://cf.geekdo-images.com/1rf6L2NfsM4LTIH9KwHJkg__original/img/Duq3Zkvlajxqsy7Vh1scYKru70M=/0x0/filters:format(jpeg)/pic6520341.jpg
+                </image>
+
+
+                <link
+                    id="307683"
+                    inbound="true"
+                    type="boardgameversion"
+                    value="Final Girl: The Happy Trails Horror" />
+
+
+                <name
+                    sortindex="1"
+                    type="primary"
+                    value="English edition" />
+
+
+                <link
+                    id="17028"
+                    type="boardgamepublisher"
+                    value="Van Ryder Games" />
+
+
+                <link
+                    id="85335"
+                    type="boardgameartist"
+                    value="Tyler Johnson" />
+
+
+                <yearpublished value="2021" />
+                <productcode value="" />
+                <width value="8.66142" />
+                <length value="6.29921" />
+                <depth value="1.5748" />
+                <weight value="0.81571" />
+
+
+                <link
+                    id="2184"
+                    type="language"
+                    value="English" />
+
+
+            </item>
+            <item
+                id="659638"
+                type="boardgameversion">
+                <thumbnail>
+                    https://cf.geekdo-images.com/iZ8JwDaNad70UAUlnpW1zA__thumb/img/vthyLag_aeu8twq6G14GmSxYc40=/fit-in/200x150/filters:strip_icc()/pic7497102.jpg
+                </thumbnail>
+                <image>
+                    https://cf.geekdo-images.com/iZ8JwDaNad70UAUlnpW1zA__original/img/ttkzkyVj2uGZLMmnYheU7xydU2o=/0x0/filters:format(jpeg)/pic7497102.jpg
+                </image>
+
+
+                <link
+                    id="307683"
+                    inbound="true"
+                    type="boardgameversion"
+                    value="Final Girl: The Happy Trails Horror" />
+
+
+                <name
+                    sortindex="1"
+                    type="primary"
+                    value="French edition" />
+
+
+                <link
+                    id="27389"
+                    type="boardgamepublisher"
+                    value="Don't Panic Games" />
+
+
+                <link
+                    id="17028"
+                    type="boardgamepublisher"
+                    value="Van Ryder Games" />
+
+
+                <yearpublished value="2023" />
+                <productcode value="" />
+                <width value="0" />
+                <length value="0" />
+                <depth value="0" />
+                <weight value="0" />
+
+
+                <link
+                    id="2187"
+                    type="language"
+                    value="French" />
+
+
+            </item>
+            <item
+                id="631686"
+                type="boardgameversion">
+
+
+                <link
+                    id="307683"
+                    inbound="true"
+                    type="boardgameversion"
+                    value="Final Girl: The Happy Trails Horror" />
+
+
+                <name
+                    sortindex="1"
+                    type="primary"
+                    value="Polish edition" />
+
+
+                <link
+                    id="33626"
+                    type="boardgamepublisher"
+                    value="Lucky Duck Games" />
+
+
+                <link
+                    id="17028"
+                    type="boardgamepublisher"
+                    value="Van Ryder Games" />
+
+
+                <yearpublished value="2023" />
+                <productcode value="" />
+                <width value="0" />
+                <length value="0" />
+                <depth value="0" />
+                <weight value="0" />
+
+
+                <link
+                    id="2199"
+                    type="language"
+                    value="Polish" />
+
+
+            </item>
+            <item
+                id="690768"
+                type="boardgameversion">
+                <thumbnail>
+                    https://cf.geekdo-images.com/kN_GDIODGaHST3YihCf8XQ__thumb/img/mffrJFmEMWsMRjwa4hXE-2p2GFE=/fit-in/200x150/filters:strip_icc()/pic7874348.jpg
+                </thumbnail>
+                <image>
+                    https://cf.geekdo-images.com/kN_GDIODGaHST3YihCf8XQ__original/img/Qn3HxE1-V6zqhBbJFfYQrQ0nntE=/0x0/filters:format(jpeg)/pic7874348.jpg
+                </image>
+
+
+                <link
+                    id="307683"
+                    inbound="true"
+                    type="boardgameversion"
+                    value="Final Girl: The Happy Trails Horror" />
+
+
+                <name
+                    sortindex="1"
+                    type="primary"
+                    value="Spanish edition" />
+
+
+                <link
+                    id="8351"
+                    type="boardgamepublisher"
+                    value="Gen-X Games" />
+
+
+                <link
+                    id="17028"
+                    type="boardgamepublisher"
+                    value="Van Ryder Games" />
+
+
+                <yearpublished value="2023" />
+                <productcode value="" />
+                <width value="0" />
+                <length value="0" />
+                <depth value="0" />
+                <weight value="0" />
+
+
+                <link
+                    id="2203"
+                    type="language"
+                    value="Spanish" />
+
+
+            </item>
+        </versions>
+
+
+        <comments
+            page="1"
+            totalitems="1238">
+            <comment
+                rating="10"
+                username="AgentMeat"
+                value="Hans 10/10 - Great killer, he seems unbeatable because of his high lifepool and the chance to even increase his lifepool through dark powers or the final health token. Also terrifying because of the crazy amount of damage that he can deal at some point. But he also allows for the most freedom on how to approach him before you defeat him.
+Keep his bloodrage down by rescuing his possible victims, why not, damaging him early on while he is kinda weak, yes of course, building up your repertoire of cards for the final showdown, let&apos;s try it. Or a combination of the things mentioned above and other ideas, sure! Let&apos;s bring it on!!!
+
+Camp happy trails 10/10 - Great map layout paired with cool events and good items. It is always a joy to visit this location" />
+            <comment
+                rating="10"
+                username="indianajo883"
+                value="" />
+            <comment
+                rating="10"
+                username="pgph"
+                value="PO
+PM
+SH
+
+May 21" />
+            <comment
+                rating="10"
+                username="brobinson"
+                value="" />
+            <comment
+                rating="10"
+                username="PatrickusMaximus"
+                value="" />
+            <comment
+                rating="10"
+                username="javinsword"
+                value="" />
+            <comment
+                rating="10"
+                username="lonelytylenol"
+                value="" />
+            <comment
+                rating="10"
+                username="zima1106"
+                value="" />
+            <comment
+                rating="10"
+                username="poet117"
+                value="" />
+            <comment
+                rating="10"
+                username="Octavian"
+                value="" />
+            <comment
+                rating="10"
+                username="STIFFbrand"
+                value="" />
+            <comment
+                rating="10"
+                username="AndersGabrielsson"
+                value="" />
+            <comment
+                rating="10"
+                username="oniramarf"
+                value="" />
+            <comment
+                rating="10"
+                username="mrsuitcase"
+                value="" />
+            <comment
+                rating="10"
+                username="meeshpod"
+                value="" />
+            <comment
+                rating="10"
+                username="AngelinaN"
+                value="" />
+            <comment
+                rating="10"
+                username="lupusg"
+                value="" />
+            <comment
+                rating="10"
+                username="runrul"
+                value="great !!" />
+            <comment
+                rating="10"
+                username="Dannn"
+                value="" />
+            <comment
+                rating="10"
+                username="Fat Google"
+                value="" />
+            <comment
+                rating="10"
+                username="Prodigy1971"
+                value="" />
+            <comment
+                rating="10"
+                username="bern1106"
+                value="" />
+            <comment
+                rating="10"
+                username="Moemmel89"
+                value="" />
+            <comment
+                rating="10"
+                username="mjp72"
+                value="" />
+            <comment
+                rating="10"
+                username="BinaryBallerina"
+                value="sleeved" />
+            <comment
+                rating="10"
+                username="KoRnFedZombie"
+                value="" />
+            <comment
+                rating="10"
+                username="SpiderRunnerTim"
+                value="" />
+            <comment
+                rating="10"
+                username="Match215"
+                value="" />
+            <comment
+                rating="10"
+                username="SimpleStaci"
+                value="" />
+            <comment
+                rating="10"
+                username="ShaggermeisterL"
+                value="" />
+            <comment
+                rating="10"
+                username="scratcher21"
+                value="" />
+            <comment
+                rating="10"
+                username="Kirdavrob"
+                value="Sleeved" />
+            <comment
+                rating="10"
+                username="Filemoner"
+                value="Episode" />
+            <comment
+                rating="10"
+                username="Daoneindreams"
+                value="" />
+            <comment
+                rating="10"
+                username="Bertyking"
+                value="" />
+            <comment
+                rating="10"
+                username="BG05"
+                value="" />
+            <comment
+                rating="10"
+                username="Harvey_Quinn"
+                value="" />
+            <comment
+                rating="10"
+                username="Chawk99"
+                value="" />
+            <comment
+                rating="10"
+                username="Twilightorder"
+                value="" />
+            <comment
+                rating="10"
+                username="pepple69"
+                value="" />
+            <comment
+                rating="10"
+                username="alamothe"
+                value="" />
+            <comment
+                rating="10"
+                username="tyroneaq"
+                value="" />
+            <comment
+                rating="10"
+                username="AgentIowa"
+                value="" />
+            <comment
+                rating="10"
+                username="Doomsum"
+                value="" />
+            <comment
+                rating="10"
+                username="stuchao"
+                value="" />
+            <comment
+                rating="10"
+                username="Richard_F03"
+                value="" />
+            <comment
+                rating="10"
+                username="bdhchef"
+                value="" />
+            <comment
+                rating="10"
+                username="metalfoot21"
+                value="" />
+            <comment
+                rating="10"
+                username="xanadu1215"
+                value="" />
+            <comment
+                rating="10"
+                username="ArkhamBOREer"
+                value="" />
+            <comment
+                rating="10"
+                username="Ensign53"
+                value="" />
+            <comment
+                rating="10"
+                username="LittleJacob1631"
+                value="" />
+            <comment
+                rating="10"
+                username="SidneyFA"
+                value="" />
+            <comment
+                rating="10"
+                username="Kilnmouth"
+                value="" />
+            <comment
+                rating="10"
+                username="Sagazaky"
+                value="" />
+            <comment
+                rating="10"
+                username="daylightgambler"
+                value="" />
+            <comment
+                rating="10"
+                username="grags325"
+                value="" />
+            <comment
+                rating="10"
+                username="ydigiusto13"
+                value="" />
+            <comment
+                rating="10"
+                username="silva002"
+                value="" />
+            <comment
+                rating="10"
+                username="viarhet"
+                value="" />
+            <comment
+                rating="10"
+                username="Alisttair"
+                value="" />
+            <comment
+                rating="10"
+                username="jonesjd1"
+                value="" />
+            <comment
+                rating="10"
+                username="kcallbeck"
+                value="" />
+            <comment
+                rating="10"
+                username="Lessismoore522"
+                value="" />
+            <comment
+                rating="10"
+                username="blackchaos369"
+                value="" />
+            <comment
+                rating="10"
+                username="Sfcconner"
+                value="" />
+            <comment
+                rating="10"
+                username="paulv1958"
+                value="" />
+            <comment
+                rating="10"
+                username="HerhuthDesign"
+                value="" />
+            <comment
+                rating="10"
+                username="birki69"
+                value="" />
+            <comment
+                rating="10"
+                username="Tardisbabe346"
+                value="" />
+            <comment
+                rating="10"
+                username="LaytforLife"
+                value="" />
+            <comment
+                rating="10"
+                username="Kaare7"
+                value="" />
+            <comment
+                rating="10"
+                username="model359"
+                value="" />
+            <comment
+                rating="10"
+                username="Franklin_Gracida"
+                value="" />
+            <comment
+                rating="10"
+                username="CharlesDC69"
+                value="" />
+            <comment
+                rating="10"
+                username="MarcKo"
+                value="" />
+            <comment
+                rating="10"
+                username="HootieDOwl"
+                value="" />
+            <comment
+                rating="10"
+                username="Sean Campbell"
+                value="" />
+            <comment
+                rating="10"
+                username="RSiur111"
+                value="" />
+            <comment
+                rating="10"
+                username="bonocrow"
+                value="" />
+            <comment
+                rating="10"
+                username="Ouamnc"
+                value="" />
+            <comment
+                rating="10"
+                username="wowbagger1966"
+                value="" />
+            <comment
+                rating="10"
+                username="BGGjohnny"
+                value="" />
+            <comment
+                rating="10"
+                username="KopogtiasVH"
+                value="" />
+            <comment
+                rating="10"
+                username="Grizz78"
+                value="" />
+            <comment
+                rating="10"
+                username="keithm"
+                value="" />
+            <comment
+                rating="10"
+                username="teycha"
+                value="" />
+            <comment
+                rating="10"
+                username="River4fx"
+                value="" />
+            <comment
+                rating="10"
+                username="Coffinjoe1978"
+                value="" />
+            <comment
+                rating="10"
+                username="Larry_Garbage"
+                value="" />
+            <comment
+                rating="10"
+                username="V3LiO"
+                value="" />
+            <comment
+                rating="10"
+                username="oldvetgamester"
+                value="" />
+            <comment
+                rating="10"
+                username="Forke"
+                value="" />
+            <comment
+                rating="10"
+                username="Mikesofl9"
+                value="" />
+            <comment
+                rating="10"
+                username="Keelan1982"
+                value="" />
+            <comment
+                rating="10"
+                username="Pinkrabbitson"
+                value="" />
+            <comment
+                rating="10"
+                username="RandomNick47"
+                value="" />
+            <comment
+                rating="10"
+                username="Apathetic_Jedi"
+                value="This is the most basic version of Final Girl you can play, but that&apos;s not a bad thing. The killer is simple yet brutal. I like playing him at the Maple Lane location to make it closer to a Halloween film scenario. The location is also pretty simple but has some cool surprises that can come up. It&apos;s a great one to try all the other killers out on. The vignettes work great here, too. Fighting zombies at a summer camp is peak &apos;80&apos;s horror greatness. This is the first Feature Film box you should get once you have the Core Box." />
+            <comment
+                rating="10"
+                username="mattcharlton"
+                value="" />
+            <comment
+                rating="10"
+                username="pirateart"
+                value="" />
+        </comments>
+
+
+        <statistics page="1">
+            <ratings>
+                <usersrated value="1236" />
+                <average value="8.322" />
+                <bayesaverage value="6.51453" />
+
+                <ranks>
+                    <rank
+                        name="boardgame"
+                        bayesaverage="6.51453"
+                        friendlyname="Board Game Rank"
+                        id="1"
+                        type="subtype"
+                        value="Not Ranked" />
+                </ranks>
+
+                <stddev value="1.06692" />
+                <median value="0" />
+                <owned value="7158" />
+                <trading value="44" />
+                <wanting value="72" />
+                <wishing value="236" />
+                <numcomments value="229" />
+                <numweights value="16" />
+                <averageweight value="2.625" />
+            </ratings>
+        </statistics>
+
+
+        <marketplacelistings>
+            <listing>
+                <listdate value="Fri, 04 Feb 2022 12:08:22 +0000" />
+                <price
+                    currency="EUR"
+                    value="22.99" />
+                <condition value="new" />
+                <notes value="Weight: 368 grams + packing" />
+                <link
+                    href="https://boardgamegeek.com/market/product/2777874"
+                    title="marketlisting" />
+            </listing>
+            <listing>
+                <listdate value="Thu, 06 Apr 2023 12:44:04 +0000" />
+                <price
+                    currency="EUR"
+                    value="22.00" />
+                <condition value="new" />
+                <notes value="Brand new copy of the game, in shrink wrap.&amp;#10;&amp;#10;Shipping to EU would be 10 euro and the package should arrive in 7-10 days. Elsewhere &amp;#226;&amp;#128;&amp;#147; please ask!&amp;#10;&amp;#10;Check out my other products for sale as well! If you buy multiple items, I will combine shipping costs. It&amp;#226;&amp;#128;&amp;#153;s much cheaper this way." />
+                <link
+                    href="https://boardgamegeek.com/market/product/3135276"
+                    title="marketlisting" />
+            </listing>
+            <listing>
+                <listdate value="Mon, 11 Sep 2023 19:52:35 +0000" />
+                <price
+                    currency="EUR"
+                    value="20.00" />
+                <condition value="new" />
+                <notes value="Game weight: 0.380 kg" />
+                <link
+                    href="https://boardgamegeek.com/market/product/3257899"
+                    title="marketlisting" />
+            </listing>
+        </marketplacelistings>
+
+    </item>
+</items>

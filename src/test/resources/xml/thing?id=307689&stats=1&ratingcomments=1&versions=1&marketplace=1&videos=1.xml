@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+    <item id="307689" type="boardgameaccessory">
+        <thumbnail>
+            https://cf.geekdo-images.com/wglexLRqsbq1Y0GASuWZbQ__thumb/img/Iv24VIJgXkwqMDQSbrb1HBt3gWI=/fit-in/200x150/filters:strip_icc()/pic6547476.jpg
+        </thumbnail>
+        <image>
+            https://cf.geekdo-images.com/wglexLRqsbq1Y0GASuWZbQ__original/img/eI0-anIUPjq9MyHxAjsu54HaZHs=/0x0/filters:format(jpeg)/pic6547476.jpg
+        </image>
+        <name
+            sortindex="1"
+            type="primary"
+            value="Final Girl: Play Mat Set" />
+        <name
+            sortindex="1"
+            type="alternate"
+            value="Final Girl: Series 1 Game Mat Set" />
+        <description>A high quality game mat bundle that comes with two game mats for placement of
+            boards, cards, and components. This optional add-on will add even more wow factor to
+            your Final Girl experience.&amp;#10;Each mat size is 28x12&amp;quot; inches or
+            711x305mm.&amp;#10;&amp;#10;
+        </description>
+        <yearpublished value="2021" />
+        <link id="17028" type="boardgamepublisher" value="Van Ryder Games" />
+        <link id="277659" inbound="true" type="boardgameaccessory" value="Final Girl" />
+        <videos total="1">
+            <video
+                category="unboxing"
+                id="443766"
+                language="French"
+                link="http://www.youtube.com/watch?v=UO8YA9vHXoA"
+                postdate="2023-06-27T08:38:39-05:00"
+                title="Déballage de Final Girl - Series 1 - Game Mat Set"
+                userid="513208"
+                username="No_Way301" />
+        </videos>
+        <versions>
+            <item
+                id="504972"
+                type="bgaccessoryversion">
+                <thumbnail>
+                    https://cf.geekdo-images.com/wglexLRqsbq1Y0GASuWZbQ__thumb/img/Iv24VIJgXkwqMDQSbrb1HBt3gWI=/fit-in/200x150/filters:strip_icc()/pic6547476.jpg
+                </thumbnail>
+                <image>
+                    https://cf.geekdo-images.com/wglexLRqsbq1Y0GASuWZbQ__original/img/eI0-anIUPjq9MyHxAjsu54HaZHs=/0x0/filters:format(jpeg)/pic6547476.jpg
+                </image>
+            </item>
+            <item
+                id="655439"
+                type="bgaccessoryversion">
+                <thumbnail>
+                    https://cf.geekdo-images.com/vM-MrfSajD-YYo15sw86lg__thumb/img/FnFlPH0IAcyIySsdQTtampHQLzw=/fit-in/200x150/filters:strip_icc()/pic7419677.jpg
+                </thumbnail>
+                <image>
+                    https://cf.geekdo-images.com/vM-MrfSajD-YYo15sw86lg__original/img/KOsVr3e2BiFTp8wnwewdpX6ZiKk=/0x0/filters:format(jpeg)/pic7419677.jpg
+                </image>
+            </item>
+        </versions>
+        <comments page="1" totalitems="22">
+            <comment rating="10" username="david14" value="" />
+            <comment rating="10" username="lonelytylenol" value="" />
+            <comment rating="10" username="Ensign53" value="" />
+            <comment rating="10" username="Smkrin95" value="" />
+            <comment rating="10" username="ClumpNugget" value="" />
+            <comment rating="9" username="Rev618" value="" />
+            <comment rating="9" username="Ontrevant" value="" />
+            <comment rating="9" username="Keep_On_Gaming" value="" />
+            <comment rating="9" username="tugdad93" value="" />
+            <comment rating="9" username="navya" value="" />
+            <comment rating="9" username="adaleigh" value="" />
+            <comment rating="9" username="Schkipper" value="" />
+            <comment rating="8" username="FearForTheBear" value="" />
+            <comment rating="8" username="lvscarecrow" value="" />
+            <comment rating="8" username="dakerr" value="" />
+            <comment rating="8" username="horheyology" value="" />
+            <comment rating="8" username="unshod" value="" />
+            <comment rating="8" username="Alex66" value="" />
+            <comment rating="7" username="MoBeeLex" value="Final Girl has no real board to keep track of everything, so the two playmats (yes two) give everything a neat, organized place. They do take up quite a bit of table space though, but again it provides room for everything." />
+            <comment rating="7" username="tonyjwalton" value="" />
+            <comment rating="7" username="Moemmel89" value="" />
+            <comment rating="6" username="Nap16" value="See FG" />
+        </comments>
+        <statistics page="1">
+            <ratings>
+                <usersrated value="22" />
+                <average value="8.54545" />
+                <bayesaverage value="6.90631" />
+
+                <ranks>
+                    <rank
+                        name="boardgameaccessory"
+                        bayesaverage="6.90631"
+                        friendlyname="Accessory Rank"
+                        id="62"
+                        type="subtype"
+                        value="111" />
+                </ranks>
+
+                <stddev value="1.11711" />
+                <median value="0" />
+                <owned value="315" />
+                <trading value="3" />
+                <wanting value="2" />
+                <wishing value="8" />
+                <numcomments value="7" />
+                <numweights value="0" />
+                <averageweight value="0" />
+            </ratings>
+        </statistics>
+        <marketplacelistings>
+            <listing>
+                <listdate value="Wed, 25 Jan 2023 17:28:34 +0000" />
+                <price
+                    currency="EUR"
+                    value="35.99" />
+                <condition value="new" />
+                <notes value="weight: 831 grams + packaging" />
+                <link
+                    href="https://boardgamegeek.com/market/product/3074284"
+                    title="marketlisting" />
+            </listing>
+            <listing>
+                <listdate value="Tue, 07 Mar 2023 11:37:27 +0000" />
+                <price
+                    currency="EUR"
+                    value="30.00" />
+                <condition value="new" />
+                <notes value="Brand new, in shrink wrap.&amp;#10;&amp;#10;Shipping to EU would be 15 euro and the package should arrive in 7-10 days. Elsewhere &amp;#226;&amp;#128;&amp;#147; please ask!&amp;#10;&amp;#10;Check out my other products for sale as well! If you buy multiple items, I will combine shipping costs. It&amp;#226;&amp;#128;&amp;#153;s much cheaper this way." />
+                <link
+                    href="https://boardgamegeek.com/market/product/3113917"
+                    title="marketlisting" />
+            </listing>
+            <listing>
+                <listdate value="Wed, 15 Nov 2023 14:32:10 +0000" />
+                <price
+                    currency="EUR"
+                    value="40.00" />
+                <condition value="likenew" />
+                <notes value="" />
+                <link
+                    href="https://boardgamegeek.com/market/product/3315603"
+                    title="marketlisting" />
+            </listing>
+        </marketplacelistings>
+    </item>
+</items>

@@ -67,6 +67,7 @@ data class Thing(
     val image: String?,
 
     /** Long form description of the thing. */
+    // TODO: Unescape HTML.
     val description: String?,
 
     /** The year it was published in e.g. `2019`. */
@@ -155,7 +156,7 @@ data class Version(
     val image: String?,
 
     /** When the product was published. */
-    val yearPublished: WrappedValue<Number>,
+    val yearPublished: WrappedValue<Number>?,
 
     /** Product code of the product. */
     val productCode: WrappedValue<String>?,
@@ -404,8 +405,8 @@ data class Rank(
     /** Friendly/Natural language name of the ranking. */
     @JacksonXmlProperty(isAttribute = true) val friendlyName: String,
 
-    /** The actual rank of the thing in this ranking. */
-    @JacksonXmlProperty(isAttribute = true) val value: Number?,
+    /** The actual rank of the thing in this ranking. Either a number or 'Not Ranked'. */
+    @JacksonXmlProperty(isAttribute = true) val value: String?,
 
     /** It's bayesian average in this ranking. */
     @JacksonXmlProperty(isAttribute = true) val bayesAverage: Number?,

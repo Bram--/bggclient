@@ -26,7 +26,7 @@ class ThingsResponseTest : KoinTest {
   private val mapper: ObjectMapper by inject(named<BggXmlObjectMapper>())
 
   @Nested
-  inner class Boardgames {
+  inner class BoardGame {
     @Test
     fun `parses a simple response`() {
       val things = mapper.readValue(xml("thing?id=1"), Things::class.java)
@@ -34,6 +34,7 @@ class ThingsResponseTest : KoinTest {
       assertThat(things.things).hasSize(1)
       val thing = things.things[0]
       assertThat(thing.name).isEqualTo("Die Macher")
+      assertThat(thing.type).isEqualTo("boardgame")
       assertThat(thing.names).hasSize(3)
       assertThat(thing.description).hasLength(1270)
       assertThat(thing.yearPublished?.value).isEqualTo(1986)
@@ -241,7 +242,7 @@ class ThingsResponseTest : KoinTest {
       assertThat(versions).hasSize(8)
       assertThat(versions[0].id).isEqualTo(685632)
       assertThat(versions[0].type).isEqualTo("boardgameversion")
-      assertThat(versions[0].yearPublished.value).isEqualTo(2024)
+      assertThat(versions[0].yearPublished?.value).isEqualTo(2024)
       assertThat(versions[0].productCode?.value).isEqualTo("8593085104517")
       assertThat(versions[0].width?.value).isEqualTo(11.7)
       assertThat(versions[0].length?.value).isEqualTo(11.7)
@@ -279,7 +280,7 @@ class ThingsResponseTest : KoinTest {
       assertThat(ratings.ranks[0].id).isEqualTo(1)
       assertThat(ratings.ranks[0].name).isEqualTo("boardgame")
       assertThat(ratings.ranks[0].friendlyName).isEqualTo("Board Game Rank")
-      assertThat(ratings.ranks[0].value).isEqualTo(1045)
+      assertThat(ratings.ranks[0].value).isEqualTo("1045")
       assertThat(ratings.ranks[0].bayesAverage).isEqualTo(6.57535)
       assertThat(ratings.stdDev?.value).isEqualTo(1.25647)
       assertThat(ratings.median?.value).isEqualTo(0)
@@ -312,6 +313,76 @@ class ThingsResponseTest : KoinTest {
           .isEqualTo(URI.create("https://boardgamegeek.com/market/product/3276360"))
     }
   }
+
+  @Nested
+  inner class BoardGameExpansion {
+    @Test
+    fun `Parses all available data`() {
+      val things =
+        mapper.readValue(
+          xml("thing?id=307683&stats=1&ratingcomments=1&versions=1&marketplace=1&videos=1"),
+          Things::class.java)
+
+      assertThat(things.things).hasSize(1)
+      val thing = things.things[0]
+      assertThat(thing.name).isEqualTo("Final Girl: The Happy Trails Horror")
+      assertThat(thing.type).isEqualTo("boardgameexpansion")
+      assertThat(thing.names).hasSize(5)
+      assertThat(thing.description)
+        .startsWith("Final Girl Feature Film Box&#10;&#10;Summer camp ")
+      assertThat(thing.yearPublished?.value).isEqualTo(2021)
+      assertThat(thing.minPlayers?.value).isEqualTo(1)
+      assertThat(thing.maxPlayers?.value).isEqualTo(1)
+      assertThat(thing.playingTimeInMinutes?.value).isEqualTo(60)
+      assertThat(thing.minPlayingTimeInMinutes?.value).isEqualTo(20)
+      assertThat(thing.maxPlayingTimeInMinutes?.value).isEqualTo(60)
+      assertThat(thing.minAge?.value).isEqualTo(14)
+      assertThat(thing.thumbnail).contains("T6zgfc99T9uq0RVqsqxdmFDuhEo")
+      assertThat(thing.image).contains("Duq3Zkvlajxqsy7Vh1scYKru70M")
+      assertThat(thing.links).hasSize(30)
+      assertThat(thing.videos).hasSize(7)
+      assertThat(thing.versions).hasSize(5)
+      assertThat(thing.comments?.totalItems).isEqualTo(1238)
+      assertThat(thing.comments?.comments).hasSize(100)
+      assertThat(thing.statistics?.ratings?.usersRated?.value).isEqualTo(1236) // Bug in BGG?
+      assertThat(thing.listings).hasSize(3)
+    }
+  }
+
+  @Nested
+  inner class BoardGameAccessory {
+    @Test
+    fun `Parses all available data`() {
+      val things =
+          mapper.readValue(
+              xml("thing?id=307689&stats=1&ratingcomments=1&versions=1&marketplace=1&videos=1"),
+              Things::class.java)
+
+      assertThat(things.things).hasSize(1)
+      val thing = things.things[0]
+      assertThat(thing.name).isEqualTo("Final Girl: Play Mat Set")
+      assertThat(thing.type).isEqualTo("boardgameaccessory")
+      assertThat(thing.names).hasSize(2)
+      assertThat(thing.description)
+          .startsWith("A high quality game mat bundle that comes with two game mats")
+      assertThat(thing.yearPublished?.value).isEqualTo(2021)
+      assertThat(thing.thumbnail).contains("Iv24VIJgXkwqMDQSbrb1HBt3gWI")
+      assertThat(thing.image).contains("eI0-anIUPjq9MyHxAjsu54HaZHs=")
+      assertThat(thing.links).hasSize(2)
+      assertThat(thing.videos).hasSize(1)
+      assertThat(thing.versions).hasSize(2)
+      assertThat(thing.comments?.totalItems).isEqualTo(22)
+      assertThat(thing.comments?.comments).hasSize(22)
+      assertThat(thing.statistics?.ratings?.usersRated?.value).isEqualTo(22)
+      assertThat(thing.listings).hasSize(3)
+    }
+  }
+
+  @Nested inner class VideoGame
+
+  @Nested inner class RpgItem
+
+  @Nested inner class RpgIssue
 
   @Test
   fun `WrappedValue Parses self closing elements - Int`() {

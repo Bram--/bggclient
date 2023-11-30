@@ -18,15 +18,15 @@ package org.audux.bgg.data.common
  * [See docs for more info](https://boardgamegeek.com/wiki/page/BGG_XML_API2#Thing_Items).
  */
 enum class ThingType(val param: String) {
-  UNKNOWN(""), // Used whenever the type is empty or not recognized.
-  BOARD_GAME("boardgame"),
-  BOARD_GAME_EXPANSION("boardgameexpansion"),
-  BOARD_GAME_ACCESSORY("boardgameaccessory"),
-  VIDEO_GAME("videogame"),
-  RPG_ITEM("rpgitem"),
-  RPG_ISSUE("rpgissue");
+    UNKNOWN(""), // Used whenever the type is empty or not recognized.
+    BOARD_GAME("boardgame"),
+    BOARD_GAME_EXPANSION("boardgameexpansion"),
+    BOARD_GAME_ACCESSORY("boardgameaccessory"),
+    VIDEO_GAME("videogame"),
+    RPG_ITEM("rpgitem"),
+    RPG_ISSUE("rpgissue");
 
-  companion object {
-    fun fromParam(param: String?) = values().find { it.param == param } ?: UNKNOWN
-  }
+    companion object {
+        fun fromParam(param: String?) = values().find { it.param == param } ?: UNKNOWN
+    }
 }

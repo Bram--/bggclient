@@ -33,9 +33,7 @@ class BggClient : KoinComponent {
     internal val mapper: ObjectMapper by inject(named<BggXmlObjectMapper>())
 
     init {
-        startKoin {
-            modules(appModule)
-        }
+        startKoin { modules(appModule) }
     }
 
     fun close() {
@@ -64,15 +62,16 @@ class BggClient : KoinComponent {
 
             val client = BggClient()
             runBlocking {
-                val response = client.things(
-                    ids = arrayOf(224517),
-                    types = arrayOf(ThingType.BOARD_GAME),
-                    marketplace = true,
-                    ratingComments = true,
-                    videos = true,
-                    versions = true,
-                    stats = true,
-                )
+                val response =
+                    client.things(
+                        ids = arrayOf(224517),
+                        types = arrayOf(ThingType.BOARD_GAME),
+                        marketplace = true,
+                        ratingComments = true,
+                        videos = true,
+                        versions = true,
+                        stats = true,
+                    )
 
                 val game = response.things[0]
                 Napier.i(
@@ -82,14 +81,14 @@ class BggClient : KoinComponent {
                     
                     versions: ${game.versions.size}
                     
-                    """.trimIndent()
+                    """
+                        .trimIndent()
                 )
             }
 
             client.close()
         }
     }
-
 }
 
 class BggRequestException(message: String) : Exception(message)

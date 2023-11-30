@@ -24,10 +24,10 @@ import com.fasterxml.jackson.annotation.Nulls
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import org.audux.bgg.data.common.ThingType
 import java.net.URI
 import java.time.LocalDate
 import java.time.LocalDateTime
+import org.audux.bgg.data.common.ThingType
 
 /** Response wrapper for the things to be returned. */
 @JsonRootName("items")
@@ -40,9 +40,9 @@ data class Things(
 )
 
 /**
- * An item or thing which could be either of the [org.audux.bgg.data.common.ThingType] objects. As
- * a result of the loose overlap of the types most values are Nullable, however type specific data
- * is supplied via the [Link] property.
+ * An item or thing which could be either of the [org.audux.bgg.data.common.ThingType] objects. As a
+ * result of the loose overlap of the types most values are Nullable, however type specific data is
+ * supplied via the [Link] property.
  *
  * Furthermore, the settings/filling of the properties is highly dependent on the request. This is
  * because additional parameters need to be set in order for the data to be retrieved. For example
@@ -60,8 +60,7 @@ data class Thing(
      *
      * @see org.audux.bgg.data.common.ThingType
      */
-    @JsonDeserialize(using = ThingTypeDeserializer::class)
-    val type: ThingType,
+    @JsonDeserialize(using = ThingTypeDeserializer::class) val type: ThingType,
 
     /** URL to 200 by 150 thumbnail image. */
     val thumbnail: String?,
@@ -76,7 +75,8 @@ data class Thing(
     /** The year it was published in e.g. `2019`. */
     val yearPublished: WrappedValue<Int>?,
 
-    /** The date it was published (For RPG-issues).
+    /**
+     * The date it was published (For RPG-issues).
      *
      * Note: Most publish dates only contain years and have an invalid date format, i.e. '1999-0-0'
      */
@@ -154,14 +154,11 @@ data class Thing(
     var names: List<Name> = listOf()
         set(value) {
             field = field + value
-            field.forEach {
-                if (it.type == "primary") name = it.value
-            }
+            field.forEach { if (it.type == "primary") name = it.value }
         }
 
     /** Primary name. */
-    @JsonIgnore
-    var name: String = ""
+    @JsonIgnore var name: String = ""
 }
 
 /** Available versions of the thing e.g. Different prints of a boardgame. */
@@ -204,14 +201,11 @@ data class Version(
     var names: List<Name> = listOf()
         set(value) {
             field = field + value
-            field.forEach {
-                if (it.type == "primary") name = it.value
-            }
+            field.forEach { if (it.type == "primary") name = it.value }
         }
 
     /** Primary name. */
-    @JsonIgnore
-    var name = ""
+    @JsonIgnore var name = ""
 
     /** Additional information about this product e.g. Language, artist(s) etc. */
     @JsonProperty("link")
@@ -219,7 +213,6 @@ data class Version(
         set(value) {
             field = field + value
         }
-
 }
 
 /** Encapsulates the name of a Thing either primary or alternate name. */
@@ -339,8 +332,7 @@ data class Comments(
      * List of comments which will either always have `rating` set or value set depending on the
      * request.
      */
-    @JacksonXmlProperty(localName = "comment")
-    val comments: List<Comment> = listOf(),
+    @JacksonXmlProperty(localName = "comment") val comments: List<Comment> = listOf(),
 )
 
 /**
@@ -440,7 +432,7 @@ data class Rank(
 // endregion
 
 // region Marketplace
-/** A single listing for the thing i.e. a 'for sale'-listing.  */
+/** A single listing for the thing i.e. a 'for sale'-listing. */
 data class MarketplaceListing(
     /** When the listing was created. */
     val listDate: WrappedLocalDateTime,
@@ -455,8 +447,7 @@ data class MarketplaceListing(
     val notes: WrappedValue<String>?,
 
     /** Link to the listing. */
-    @JsonProperty("link")
-    val webLink: Weblink,
+    @JsonProperty("link") val webLink: Weblink,
 )
 
 /** Encapsulates a price for a given [MarketplaceListing] */
@@ -484,7 +475,10 @@ data class Weblink(
  * number of players to play a particular game with.
  */
 @JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "name")
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.EXISTING_PROPERTY,
+    property = "name"
+)
 @JsonSubTypes(
     JsonSubTypes.Type(value = LanguageDependencePoll::class, name = "language_dependence"),
     JsonSubTypes.Type(value = PlayerAgePoll::class, name = "suggested_playerage"),

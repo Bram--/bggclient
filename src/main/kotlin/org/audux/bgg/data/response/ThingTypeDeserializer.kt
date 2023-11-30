@@ -20,6 +20,6 @@ import org.audux.bgg.data.common.ThingType
 
 /** Deserializes thing types to the associated [ThingType] enum value. */
 internal class ThingTypeDeserializer : JsonDeserializer<ThingType>() {
-  override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
-      ThingType.fromParam(parser?.valueAsString)
+    override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
+        ThingType.fromParam(parser?.valueAsString)
 }

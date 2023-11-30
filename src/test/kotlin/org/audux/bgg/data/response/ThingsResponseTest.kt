@@ -16,6 +16,7 @@ package org.audux.bgg.data.response
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
+import org.audux.bgg.data.common.ThingType
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
 import org.audux.bgg.util.extension.WrappedValueSubject.Companion.assertThat
@@ -64,7 +65,7 @@ class ThingsResponseTest : KoinTest {
       assertThat(things.things).hasSize(1)
       val thing = things.things[0]
       assertThat(thing.name).isEqualTo("Die Macher")
-      assertThat(thing.type).isEqualTo("boardgame")
+      assertThat(thing.type).isEqualTo(ThingType.BOARD_GAME)
       assertThat(thing.names).hasSize(3)
       assertThat(thing.description).hasLength(1270)
       assertThat(thing.yearPublished).hasValue(1986)
@@ -356,7 +357,7 @@ class ThingsResponseTest : KoinTest {
       assertThat(things.things).hasSize(1)
       val thing = things.things[0]
       assertThat(thing.name).isEqualTo("Final Girl: The Happy Trails Horror")
-      assertThat(thing.type).isEqualTo("boardgameexpansion")
+      assertThat(thing.type).isEqualTo(ThingType.BOARD_GAME_EXPANSION)
       assertThat(thing.names).hasSize(5)
       assertThat(thing.description).startsWith("Final Girl Feature Film Box&#10;&#10;Summer camp ")
       assertThat(thing.yearPublished).hasValue(2021)
@@ -390,11 +391,11 @@ class ThingsResponseTest : KoinTest {
       assertThat(things.things).hasSize(1)
       val thing = things.things[0]
       assertThat(thing.name).isEqualTo("Final Girl: Play Mat Set")
-      assertThat(thing.type).isEqualTo("boardgameaccessory")
+      assertThat(thing.type).isEqualTo(ThingType.BOARD_GAME_ACCESSORY)
       assertThat(thing.names).hasSize(2)
       assertThat(thing.description)
           .startsWith("A high quality game mat bundle that comes with two game mats")
-      assertThat(thing.yearPublished?.value).isEqualTo(2021)
+      assertThat(thing.yearPublished).hasValue(2021)
       assertThat(thing.thumbnail).contains("Iv24VIJgXkwqMDQSbrb1HBt3gWI")
       assertThat(thing.image).contains("eI0-anIUPjq9MyHxAjsu54HaZHs=")
       assertThat(thing.links).hasSize(2)
@@ -402,7 +403,7 @@ class ThingsResponseTest : KoinTest {
       assertThat(thing.versions).hasSize(2)
       assertThat(thing.comments?.totalItems).isEqualTo(22)
       assertThat(thing.comments?.comments).hasSize(22)
-      assertThat(thing.statistics?.ratings?.usersRated?.value).isEqualTo(22)
+      assertThat(thing.statistics?.ratings?.usersRated).hasValue(22)
       assertThat(thing.listings).hasSize(3)
     }
   }
@@ -419,7 +420,7 @@ class ThingsResponseTest : KoinTest {
       assertThat(things.things).hasSize(1)
       val thing = things.things[0]
       assertThat(thing.name).isEqualTo("Hearthstone: Heroes of Warcraft")
-      assertThat(thing.type).isEqualTo("videogame")
+      assertThat(thing.type).isEqualTo(ThingType.VIDEO_GAME)
       assertThat(thing.names).hasSize(2)
       assertThat(thing.description)
           .startsWith("Sheathe your sword, draw your deck, and get ready for Hearthstone")
@@ -449,7 +450,7 @@ class ThingsResponseTest : KoinTest {
       assertThat(things.things).hasSize(1)
       val thing = things.things[0]
       assertThat(thing.name).isEqualTo("Alice is Missing")
-      assertThat(thing.type).isEqualTo("rpgitem")
+      assertThat(thing.type).isEqualTo(ThingType.RPG_ITEM)
       assertThat(thing.names).hasSize(2)
       assertThat(thing.seriesCode).hasValue("")
       assertThat(thing.description).startsWith("From the kickstarter:&#10;&#10;Alice is Missing")
@@ -477,7 +478,7 @@ class ThingsResponseTest : KoinTest {
       assertThat(things.things).hasSize(1)
       val thing = things.things[0]
       assertThat(thing.name).isEqualTo("Dragon Magazine Archive")
-      assertThat(thing.type).isEqualTo("rpgissue")
+      assertThat(thing.type).isEqualTo(ThingType.RPG_ISSUE)
       assertThat(thing.names).hasSize(1)
       assertThat(thing.description).startsWith("A boxed set of 5 Data CD's that includes up to")
       assertThat(thing.yearPublished).isNull()
@@ -500,7 +501,7 @@ class ThingsResponseTest : KoinTest {
     val xml = """<item value="100" />""""
     val wrappedInt = mapper.readValue(xml, object : TypeReference<WrappedValue<Int>>() {})
 
-    assertThat(wrappedInt.value).isEqualTo(100)
+    assertThat(wrappedInt).hasValue(100)
   }
 
   @Test
@@ -508,7 +509,7 @@ class ThingsResponseTest : KoinTest {
     val xml = """<item value="Hello" />""""
     val wrappedInt = mapper.readValue(xml, object : TypeReference<WrappedValue<String>>() {})
 
-    assertThat(wrappedInt.value).isEqualTo("Hello")
+    assertThat(wrappedInt).hasValue("Hello")
   }
 
   @Test
@@ -516,7 +517,7 @@ class ThingsResponseTest : KoinTest {
     val localDateXml = """<item value="Sun, 13 Sep 2020 10:43:49 +0000" />""""
     val localDateTime = mapper.readValue(localDateXml, WrappedLocalDateTime::class.java)
 
-    assertThat(localDateTime.value).isEqualTo(LocalDateTime.of(2020, 9, 13, 10, 43, 49))
+    assertThat(localDateTime).hasValue(LocalDateTime.of(2020, 9, 13, 10, 43, 49))
   }
 
   companion object {

@@ -80,7 +80,7 @@ suspend fun BggClient.things(
      */
     pageSize: Int = 0,
 ): Things {
-    if (!(10..100).contains(pageSize)) {
+    if (page != 0 && !(10..100).contains(pageSize)) {
         throw BggRequestException("pageSize must be between 10 and 100")
     }
     if (comments && ratingComments) {

@@ -21,8 +21,10 @@ import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.annotation.Nulls
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
+import org.audux.bgg.data.common.ThingType
 import java.net.URI
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -58,7 +60,8 @@ data class Thing(
      *
      * @see org.audux.bgg.data.common.ThingType
      */
-    val type: String,
+    @JsonDeserialize(using = ThingTypeDeserializer::class)
+    val type: ThingType,
 
     /** URL to 200 by 150 thumbnail image. */
     val thumbnail: String?,

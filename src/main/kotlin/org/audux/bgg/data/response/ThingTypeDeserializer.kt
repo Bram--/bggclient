@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer
 import org.audux.bgg.data.common.ThingType
 
 /** Deserializes thing types to the associated [ThingType] enum value. */
-class ThingTypeDeserializer : JsonDeserializer<ThingType>() {
+internal class ThingTypeDeserializer : JsonDeserializer<ThingType>() {
   override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
       ThingType.fromParam(parser?.valueAsString)
 }

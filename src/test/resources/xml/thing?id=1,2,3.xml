@@ -1,0 +1,1023 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+    <item
+        id="1"
+        type="boardgame">
+        <thumbnail>
+            https://cf.geekdo-images.com/rpwCZAjYLD940NWwP3SRoA__thumb/img/YT6svCVsWqLrDitcMEtyazVktbQ=/fit-in/200x150/filters:strip_icc()/pic4718279.jpg
+        </thumbnail>
+        <image>
+            https://cf.geekdo-images.com/rpwCZAjYLD940NWwP3SRoA__original/img/yR0aoBVKNrAmmCuBeSzQnMflLYg=/0x0/filters:format(jpeg)/pic4718279.jpg
+        </image>
+
+        <name
+            sortindex="5"
+            type="primary"
+            value="Die Macher" />
+
+
+        <name
+            sortindex="1"
+            type="alternate"
+            value="德国大选" />
+
+        <name
+            sortindex="1"
+            type="alternate"
+            value="디 마허" />
+
+        <description>Die Macher is a game about seven sequential political races in different
+            regions of Germany. Players are in charge of national political parties, and must manage
+            limited resources to help their party to victory. The winning party will have the most
+            victory points after all the regional elections. There are four different ways of
+            scoring victory points. First, each regional election can supply one to eighty victory
+            points, depending on the size of the region and how well your party does in it. Second,
+            if a party wins a regional election and has some media influence in the region, then the
+            party will receive some media-control victory points. Third, each party has a national
+            party membership which will grow as the game progresses and this will supply a fair
+            number of victory points. Lastly, parties score some victory points if their party
+            platform matches the national opinions at the end of the game.&amp;#10;&amp;#10;The 1986
+            edition featured four parties from the old West Germany and supported 3-4 players. The
+            1997 edition supports up to five players in the re-united Germany and updated several
+            features of the rules as well. The 2006 edition also supports up to five players and
+            adds a shorter five-round variant and additional rules updates by the original designer.&amp;#10;&amp;#10;
+        </description>
+        <yearpublished value="1986" />
+        <minplayers value="3" />
+        <maxplayers value="5" />
+        <poll
+            name="suggested_numplayers"
+            title="User Suggested Number of Players"
+            totalvotes="136">
+
+            <results numplayers="1">
+                <result
+                    numvotes="0"
+                    value="Best" />
+                <result
+                    numvotes="1"
+                    value="Recommended" />
+                <result
+                    numvotes="86"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="2">
+                <result
+                    numvotes="0"
+                    value="Best" />
+                <result
+                    numvotes="1"
+                    value="Recommended" />
+                <result
+                    numvotes="88"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="3">
+                <result
+                    numvotes="2"
+                    value="Best" />
+                <result
+                    numvotes="26"
+                    value="Recommended" />
+                <result
+                    numvotes="76"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="4">
+                <result
+                    numvotes="25"
+                    value="Best" />
+                <result
+                    numvotes="86"
+                    value="Recommended" />
+                <result
+                    numvotes="9"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="5">
+                <result
+                    numvotes="116"
+                    value="Best" />
+                <result
+                    numvotes="11"
+                    value="Recommended" />
+                <result
+                    numvotes="2"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="5+">
+                <result
+                    numvotes="1"
+                    value="Best" />
+                <result
+                    numvotes="0"
+                    value="Recommended" />
+                <result
+                    numvotes="62"
+                    value="Not Recommended" />
+            </results>
+        </poll>
+        <playingtime value="240" />
+        <minplaytime value="240" />
+        <maxplaytime value="240" />
+        <minage value="14" />
+        <poll
+            name="suggested_playerage"
+            title="User Suggested Player Age"
+            totalvotes="31">
+            <results>
+                <result
+                    numvotes="0"
+                    value="2" />
+                <result
+                    numvotes="0"
+                    value="3" />
+                <result
+                    numvotes="0"
+                    value="4" />
+                <result
+                    numvotes="0"
+                    value="5" />
+                <result
+                    numvotes="0"
+                    value="6" />
+                <result
+                    numvotes="0"
+                    value="8" />
+                <result
+                    numvotes="0"
+                    value="10" />
+                <result
+                    numvotes="6"
+                    value="12" />
+                <result
+                    numvotes="18"
+                    value="14" />
+                <result
+                    numvotes="4"
+                    value="16" />
+                <result
+                    numvotes="2"
+                    value="18" />
+                <result
+                    numvotes="1"
+                    value="21 and up" />
+            </results>
+        </poll>
+        <poll
+            name="language_dependence"
+            title="Language Dependence"
+            totalvotes="49">
+
+            <results>
+                <result
+                    level="1"
+                    numvotes="37"
+                    value="No necessary in-game text" />
+                <result
+                    level="2"
+                    numvotes="5"
+                    value="Some necessary text - easily memorized or small crib sheet" />
+                <result
+                    level="3"
+                    numvotes="7"
+                    value="Moderate in-game text - needs crib sheet or paste ups" />
+                <result
+                    level="4"
+                    numvotes="0"
+                    value="Extensive use of text - massive conversion needed to be playable" />
+                <result
+                    level="5"
+                    numvotes="0"
+                    value="Unplayable in another language" />
+            </results>
+        </poll>
+
+
+        <link
+            id="1021"
+            type="boardgamecategory"
+            value="Economic" />
+
+
+        <link
+            id="1026"
+            type="boardgamecategory"
+            value="Negotiation" />
+
+
+        <link
+            id="1001"
+            type="boardgamecategory"
+            value="Political" />
+
+
+        <link
+            id="2916"
+            type="boardgamemechanic"
+            value="Alliances" />
+
+
+        <link
+            id="2080"
+            type="boardgamemechanic"
+            value="Area Majority / Influence" />
+
+
+        <link
+            id="2012"
+            type="boardgamemechanic"
+            value="Auction/Bidding" />
+
+
+        <link
+            id="2072"
+            type="boardgamemechanic"
+            value="Dice Rolling" />
+
+
+        <link
+            id="2040"
+            type="boardgamemechanic"
+            value="Hand Management" />
+
+
+        <link
+            id="2020"
+            type="boardgamemechanic"
+            value="Simultaneous Action Selection" />
+
+
+        <link
+            id="10643"
+            type="boardgamefamily"
+            value="Country: Germany" />
+
+
+        <link
+            id="81575"
+            type="boardgamefamily"
+            value="Digital Implementations: VASSAL" />
+
+
+        <link
+            id="34116"
+            type="boardgamefamily"
+            value="Political: Elections" />
+
+
+        <link
+            id="91"
+            type="boardgamefamily"
+            value="Series: Classic Line (Valley Games)" />
+
+
+        <link
+            id="1"
+            type="boardgamedesigner"
+            value="Karl-Heinz Schmiel" />
+
+
+        <link
+            id="928"
+            type="boardgameartist"
+            value="Bernd Brunnhofer" />
+
+
+        <link
+            id="12517"
+            type="boardgameartist"
+            value="Marcus Gschwendtner" />
+
+
+        <link
+            id="4959"
+            type="boardgameartist"
+            value="Harald Lieske" />
+
+
+        <link
+            id="133"
+            type="boardgamepublisher"
+            value="Hans im Glück" />
+
+
+        <link
+            id="2"
+            type="boardgamepublisher"
+            value="Moskito Spiele" />
+
+
+        <link
+            id="24883"
+            type="boardgamepublisher"
+            value="Ediciones MasQueOca" />
+
+
+        <link
+            id="2726"
+            type="boardgamepublisher"
+            value="Portal Games" />
+
+
+        <link
+            id="15108"
+            type="boardgamepublisher"
+            value="Spielworxx" />
+
+
+        <link
+            id="39249"
+            type="boardgamepublisher"
+            value="sternenschimmermeer" />
+
+
+        <link
+            id="11652"
+            type="boardgamepublisher"
+            value="Stronghold Games" />
+
+
+        <link
+            id="5382"
+            type="boardgamepublisher"
+            value="Valley Games, Inc." />
+
+
+        <link
+            id="8147"
+            type="boardgamepublisher"
+            value="YOKA Games" />
+
+
+    </item>
+    <item
+        id="2"
+        type="boardgame">
+        <thumbnail>
+            https://cf.geekdo-images.com/oQYhaJx5Lg3KcGis2reuWQ__thumb/img/3bIZnNfVM1viwH9A9d2Rrip1Y80=/fit-in/200x150/filters:strip_icc()/pic4001505.jpg
+        </thumbnail>
+        <image>
+            https://cf.geekdo-images.com/oQYhaJx5Lg3KcGis2reuWQ__original/img/owag4VgJDPyPt2ciYB9Hc5l4GnQ=/0x0/filters:format(jpeg)/pic4001505.jpg
+        </image>
+
+        <name
+            sortindex="1"
+            type="primary"
+            value="Dragonmaster" />
+
+
+        <description>Dragonmaster is a trick-taking card game based on an older game called Coup d'&amp;#195;&amp;#137;tat.
+            Each player is given a supply of plastic gems, which represent points. Each player will
+            get to be the dealer for five different hands, with slightly different goals for each
+            hand. After all cards have been dealt out, the dealer decides which hand best suits his
+            or her current cards, and the other players are penalized points (in the form of
+            crystals) for taking certain tricks or cards. For instance, if &amp;quot;first&amp;quot;
+            or &amp;quot;last&amp;quot; is called, then a player is penalized for taking the first
+            or last tricks. All players will get a chance to be dealer for five hands, but other
+            players can steal this opportunity by taking all of the tricks during certain hands. At
+            the end, the biggest pile of gems wins the game.&amp;#10;&amp;#10;Jewel contents:&amp;#10;&amp;#10;10
+            clear (2 extra)&amp;#10;14 green (2 extra)&amp;#10;22 red (2 extra)&amp;#10;22 blue (2
+            extra)&amp;#10;&amp;#10;
+        </description>
+        <yearpublished value="1981" />
+        <minplayers value="3" />
+        <maxplayers value="4" />
+        <poll
+            name="suggested_numplayers"
+            title="User Suggested Number of Players"
+            totalvotes="3">
+
+            <results numplayers="1">
+                <result
+                    numvotes="0"
+                    value="Best" />
+                <result
+                    numvotes="0"
+                    value="Recommended" />
+                <result
+                    numvotes="2"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="2">
+                <result
+                    numvotes="0"
+                    value="Best" />
+                <result
+                    numvotes="0"
+                    value="Recommended" />
+                <result
+                    numvotes="2"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="3">
+                <result
+                    numvotes="0"
+                    value="Best" />
+                <result
+                    numvotes="1"
+                    value="Recommended" />
+                <result
+                    numvotes="1"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="4">
+                <result
+                    numvotes="3"
+                    value="Best" />
+                <result
+                    numvotes="0"
+                    value="Recommended" />
+                <result
+                    numvotes="0"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="4+">
+                <result
+                    numvotes="0"
+                    value="Best" />
+                <result
+                    numvotes="0"
+                    value="Recommended" />
+                <result
+                    numvotes="2"
+                    value="Not Recommended" />
+            </results>
+        </poll>
+        <playingtime value="30" />
+        <minplaytime value="30" />
+        <maxplaytime value="30" />
+        <minage value="12" />
+        <poll
+            name="suggested_playerage"
+            title="User Suggested Player Age"
+            totalvotes="0">
+            <results>
+                <result
+                    numvotes="0"
+                    value="2" />
+                <result
+                    numvotes="0"
+                    value="3" />
+                <result
+                    numvotes="0"
+                    value="4" />
+                <result
+                    numvotes="0"
+                    value="5" />
+                <result
+                    numvotes="0"
+                    value="6" />
+                <result
+                    numvotes="0"
+                    value="8" />
+                <result
+                    numvotes="0"
+                    value="10" />
+                <result
+                    numvotes="0"
+                    value="12" />
+                <result
+                    numvotes="0"
+                    value="14" />
+                <result
+                    numvotes="0"
+                    value="16" />
+                <result
+                    numvotes="0"
+                    value="18" />
+                <result
+                    numvotes="0"
+                    value="21 and up" />
+            </results>
+        </poll>
+        <poll
+            name="language_dependence"
+            title="Language Dependence"
+            totalvotes="1">
+
+            <results>
+                <result
+                    level="6"
+                    numvotes="0"
+                    value="No necessary in-game text" />
+                <result
+                    level="7"
+                    numvotes="1"
+                    value="Some necessary text - easily memorized or small crib sheet" />
+                <result
+                    level="8"
+                    numvotes="0"
+                    value="Moderate in-game text - needs crib sheet or paste ups" />
+                <result
+                    level="9"
+                    numvotes="0"
+                    value="Extensive use of text - massive conversion needed to be playable" />
+                <result
+                    level="10"
+                    numvotes="0"
+                    value="Unplayable in another language" />
+            </results>
+        </poll>
+
+
+        <link
+            id="1002"
+            type="boardgamecategory"
+            value="Card Game" />
+
+
+        <link
+            id="1010"
+            type="boardgamecategory"
+            value="Fantasy" />
+
+
+        <link
+            id="2009"
+            type="boardgamemechanic"
+            value="Trick-taking" />
+
+
+        <link
+            id="73592"
+            type="boardgamefamily"
+            value="Components: Gems/Crystals" />
+
+
+        <link
+            id="7005"
+            type="boardgamefamily"
+            value="Creatures: Dragons" />
+
+
+        <link
+            id="75454"
+            type="boardgamefamily"
+            value="Theme: Art style – Art Nouveau" />
+
+
+        <link
+            id="215308"
+            type="boardgameimplementation"
+            value="Indulgence" />
+
+
+        <link
+            id="2174"
+            inbound="true"
+            type="boardgameimplementation"
+            value="Coup d'État" />
+
+
+        <link
+            id="8384"
+            type="boardgamedesigner"
+            value="G. W. &quot;Jerry&quot; D'Arcey" />
+
+
+        <link
+            id="12424"
+            type="boardgameartist"
+            value="Bob Pepper" />
+
+
+        <link
+            id="64"
+            type="boardgamepublisher"
+            value="E. S. Lowe Company Inc." />
+
+
+        <link
+            id="20"
+            type="boardgamepublisher"
+            value="Milton Bradley" />
+
+
+    </item>
+    <item
+        id="3"
+        type="boardgame">
+        <thumbnail>
+            https://cf.geekdo-images.com/o9-sNXmFS_TLAb7ZlZ4dRA__thumb/img/22MSUC0-ZWgwzhi_VKIbENJik1w=/fit-in/200x150/filters:strip_icc()/pic3211873.jpg
+        </thumbnail>
+        <image>
+            https://cf.geekdo-images.com/o9-sNXmFS_TLAb7ZlZ4dRA__original/img/TPKZgpNxB_C73RNbhKyP6UR76X0=/0x0/filters:format(jpeg)/pic3211873.jpg
+        </image>
+
+        <name
+            sortindex="1"
+            type="primary"
+            value="Samurai" />
+
+
+        <name
+            sortindex="1"
+            type="alternate"
+            value="Samouraï" />
+
+        <name
+            sortindex="1"
+            type="alternate"
+            value="Samurái" />
+
+        <name
+            sortindex="1"
+            type="alternate"
+            value="Samuraj" />
+
+        <name
+            sortindex="1"
+            type="alternate"
+            value="Самурай" />
+
+        <name
+            sortindex="1"
+            type="alternate"
+            value="サムライ・ボードゲーム" />
+
+        <name
+            sortindex="1"
+            type="alternate"
+            value="侍" />
+
+        <name
+            sortindex="1"
+            type="alternate"
+            value="사무라이" />
+
+        <description>Samurai is set in medieval Japan. Players compete to gain the favor of three
+            factions: samurai, peasants, and priests, which are represented by helmet, rice paddy,
+            and Buddha figures scattered about the board, which features the islands of Japan. The
+            competition is waged through the use of hexagonal tiles, each of which help curry favor
+            of one of the three factions &amp;mdash; or all three at once! Players can make
+            lightning-quick strikes with horseback ronin and ships or approach their conquests more
+            methodically. As each figure (helmets, rice paddies, and Buddhas) is surrounded, it is
+            awarded to the player who has gained the most favor with the corresponding group.&amp;#10;&amp;#10;Gameplay
+            continues until all the symbols of one type have been removed from the board or four
+            figures have been removed from play due to a tie for influence.&amp;#10;&amp;#10;At the
+            end of the game, players compare captured symbols of each type, competing for majorities
+            in each of the three types. Ties are not uncommon and are broken based on the number of
+            other, &amp;quot;non-majority&amp;quot; symbols each player has collected.&amp;#10;&amp;#10;The
+            game is part of what is sometimes called the Knizia tile-laying trilogy.&amp;#10;&amp;#10;
+        </description>
+        <yearpublished value="1998" />
+        <minplayers value="2" />
+        <maxplayers value="4" />
+        <poll
+            name="suggested_numplayers"
+            title="User Suggested Number of Players"
+            totalvotes="343">
+
+            <results numplayers="1">
+                <result
+                    numvotes="0"
+                    value="Best" />
+                <result
+                    numvotes="0"
+                    value="Recommended" />
+                <result
+                    numvotes="162"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="2">
+                <result
+                    numvotes="111"
+                    value="Best" />
+                <result
+                    numvotes="170"
+                    value="Recommended" />
+                <result
+                    numvotes="17"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="3">
+                <result
+                    numvotes="197"
+                    value="Best" />
+                <result
+                    numvotes="102"
+                    value="Recommended" />
+                <result
+                    numvotes="3"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="4">
+                <result
+                    numvotes="88"
+                    value="Best" />
+                <result
+                    numvotes="156"
+                    value="Recommended" />
+                <result
+                    numvotes="33"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="4+">
+                <result
+                    numvotes="0"
+                    value="Best" />
+                <result
+                    numvotes="1"
+                    value="Recommended" />
+                <result
+                    numvotes="137"
+                    value="Not Recommended" />
+            </results>
+        </poll>
+        <playingtime value="60" />
+        <minplaytime value="30" />
+        <maxplaytime value="60" />
+        <minage value="10" />
+        <poll
+            name="suggested_playerage"
+            title="User Suggested Player Age"
+            totalvotes="56">
+            <results>
+                <result
+                    numvotes="0"
+                    value="2" />
+                <result
+                    numvotes="0"
+                    value="3" />
+                <result
+                    numvotes="0"
+                    value="4" />
+                <result
+                    numvotes="0"
+                    value="5" />
+                <result
+                    numvotes="5"
+                    value="6" />
+                <result
+                    numvotes="16"
+                    value="8" />
+                <result
+                    numvotes="30"
+                    value="10" />
+                <result
+                    numvotes="5"
+                    value="12" />
+                <result
+                    numvotes="0"
+                    value="14" />
+                <result
+                    numvotes="0"
+                    value="16" />
+                <result
+                    numvotes="0"
+                    value="18" />
+                <result
+                    numvotes="0"
+                    value="21 and up" />
+            </results>
+        </poll>
+        <poll
+            name="language_dependence"
+            title="Language Dependence"
+            totalvotes="77">
+
+            <results>
+                <result
+                    level="11"
+                    numvotes="76"
+                    value="No necessary in-game text" />
+                <result
+                    level="12"
+                    numvotes="0"
+                    value="Some necessary text - easily memorized or small crib sheet" />
+                <result
+                    level="13"
+                    numvotes="1"
+                    value="Moderate in-game text - needs crib sheet or paste ups" />
+                <result
+                    level="14"
+                    numvotes="0"
+                    value="Extensive use of text - massive conversion needed to be playable" />
+                <result
+                    level="15"
+                    numvotes="0"
+                    value="Unplayable in another language" />
+            </results>
+        </poll>
+
+
+        <link
+            id="1009"
+            type="boardgamecategory"
+            value="Abstract Strategy" />
+
+
+        <link
+            id="1035"
+            type="boardgamecategory"
+            value="Medieval" />
+
+
+        <link
+            id="2080"
+            type="boardgamemechanic"
+            value="Area Majority / Influence" />
+
+
+        <link
+            id="2040"
+            type="boardgamemechanic"
+            value="Hand Management" />
+
+
+        <link
+            id="2026"
+            type="boardgamemechanic"
+            value="Hexagon Grid" />
+
+
+        <link
+            id="2846"
+            type="boardgamemechanic"
+            value="Once-Per-Game Abilities" />
+
+
+        <link
+            id="2004"
+            type="boardgamemechanic"
+            value="Set Collection" />
+
+
+        <link
+            id="2002"
+            type="boardgamemechanic"
+            value="Tile Placement" />
+
+
+        <link
+            id="64960"
+            type="boardgamefamily"
+            value="Components: Map (Continental / National scale)" />
+
+
+        <link
+            id="10634"
+            type="boardgamefamily"
+            value="Country: Japan" />
+
+
+        <link
+            id="70711"
+            type="boardgamefamily"
+            value="Digital Implementations: Triqqy" />
+
+
+        <link
+            id="60111"
+            type="boardgamefamily"
+            value="Series: Euro Classics (Reiner Knizia)" />
+
+
+        <link
+            id="42"
+            type="boardgamefamily"
+            value="Series: Tile-Laying Trilogy (Reiner Knizia)" />
+
+
+        <link
+            id="28732"
+            type="boardgamefamily"
+            value="Theme: Samurai" />
+
+
+        <link
+            id="35634"
+            type="boardgameimplementation"
+            value="Samurai: The Card Game" />
+
+
+        <link
+            id="2"
+            type="boardgamedesigner"
+            value="Reiner Knizia" />
+
+
+        <link
+            id="11883"
+            type="boardgameartist"
+            value="Franz Vohwinkel" />
+
+
+        <link
+            id="17"
+            type="boardgamepublisher"
+            value="Fantasy Flight Games" />
+
+
+        <link
+            id="133"
+            type="boardgamepublisher"
+            value="Hans im Glück" />
+
+
+        <link
+            id="267"
+            type="boardgamepublisher"
+            value="999 Games" />
+
+
+        <link
+            id="29"
+            type="boardgamepublisher"
+            value="ABACUSSPIELE" />
+
+
+        <link
+            id="7340"
+            type="boardgamepublisher"
+            value="Astrel Games" />
+
+
+        <link
+            id="7335"
+            type="boardgamepublisher"
+            value="Ceilikan Jogos" />
+
+
+        <link
+            id="41"
+            type="boardgamepublisher"
+            value="Descartes Editeur" />
+
+
+        <link
+            id="2973"
+            type="boardgamepublisher"
+            value="Edge Entertainment" />
+
+
+        <link
+            id="4617"
+            type="boardgamepublisher"
+            value="Galakta" />
+
+
+        <link
+            id="1391"
+            type="boardgamepublisher"
+            value="Hobby Japan" />
+
+
+        <link
+            id="8291"
+            type="boardgamepublisher"
+            value="Korea Boardgames Co., Ltd." />
+
+
+        <link
+            id="5812"
+            type="boardgamepublisher"
+            value="Lacerta" />
+
+
+        <link
+            id="3218"
+            type="boardgamepublisher"
+            value="Lautapelit.fi" />
+
+
+        <link
+            id="3"
+            type="boardgamepublisher"
+            value="Rio Grande Games" />
+
+
+        <link
+            id="3954"
+            type="boardgamepublisher"
+            value="Skandinavisk  Spil Kompagni" />
+
+
+        <link
+            id="8313"
+            type="boardgamepublisher"
+            value="Smart Ltd" />
+
+
+        <link
+            id="8759"
+            type="boardgamepublisher"
+            value="Wargames Club Publishing" />
+
+
+    </item>
+</items>

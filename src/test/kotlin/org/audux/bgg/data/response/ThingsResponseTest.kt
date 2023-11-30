@@ -48,6 +48,13 @@ class ThingsResponseTest : KoinTest {
     assertThat(things.things).hasSize(0)
   }
 
+  @Test
+  fun `parses multiple things`() {
+    val things = mapper.readValue(xml("thing?id=1,2,3"), Things::class.java)
+
+    assertThat(things.things).hasSize(3)
+  }
+
   @Nested
   inner class BoardGame {
     @Test

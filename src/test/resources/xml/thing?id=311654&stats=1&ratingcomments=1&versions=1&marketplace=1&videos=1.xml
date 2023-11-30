@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+    <item
+        id="311654"
+        type="rpgitem">
+        <thumbnail>
+            https://cf.geekdo-images.com/211476emISgQLsa2h3BAYw__thumb/img/g9QMstNAY2uOVSR1rH5Hx7Gxquk=/fit-in/200x150/filters:strip_icc()/pic5625807.png
+        </thumbnail>
+        <image>
+            https://cf.geekdo-images.com/211476emISgQLsa2h3BAYw__original/img/nGOu9LrFF5udRimbJrei6HExde8=/0x0/filters:format(png)/pic5625807.png
+        </image>
+
+        <name
+            sortindex="1"
+            type="primary"
+            value="Alice is Missing" />
+
+
+        <name
+            sortindex="1"
+            type="alternate"
+            value="Zaginięcie Alice" />
+
+
+        <link
+            id="62210"
+            type="rpg"
+            value="Alice is Missing" />
+
+
+        <description>From the kickstarter:&amp;#10;&amp;#10;Alice is Missing, a silent role-playing
+            game about the disappearance of Alice Briarwood, a high school junior in the small town
+            of Silent Falls.&amp;#10;...&amp;#10;The game is played live and without verbal
+            communication. Players inhabit their character for the entirety of the 90-minute play
+            session, and instead of speaking, send text messages back and forth to the other
+            characters in a group chat, as well as individually, as though they aren&amp;rsquo;t in
+            the same place together.&amp;#10;&amp;#10;Publisher's blurb:&amp;#10;&amp;#10;The game
+            is played live and without verbal communication. Players inhabit their character for the
+            entirety of the 90-minute play session, and instead of speaking, send text messages back
+            and forth to the other characters in a group chat, as well as individually, as though
+            they aren&amp;rsquo;t in the same place together.&amp;#10;&amp;#10;Haunting beautiful,
+            deeply personal, and highly innovative Alice is Missing puts a strong focus on the
+            emotional engagement between players, immersing them in a tense, dramatic mystery that
+            unfolds organically through the text messages they send to one another. Right at home
+            with games like Life Is Strange, Gone Home, Oxenfree, and Firewatch, it&amp;rsquo;s
+            designed to feel as much like an event-style experience as it does a role-playing game.&amp;#10;&amp;#10;
+        </description>
+        <yearpublished value="2020" />
+
+
+        <link
+            id="178"
+            type="rpggenre"
+            value="Crime (Mystery / Detective / Noir)" />
+
+
+        <seriescode value="" />
+
+
+        <link
+            id="2083"
+            type="rpgcategory"
+            value="Core Rules (min needed to play)" />
+
+
+        <link
+            id="3057"
+            type="rpgmechanic"
+            value="Cards (Specialized)" />
+
+
+        <link
+            id="2099"
+            type="rpgmechanic"
+            value="Description Based (Narrative more so than Dice)" />
+
+
+        <link
+            id="46732"
+            type="rpgpublisher"
+            value="Alis Games" />
+
+
+        <link
+            id="2366"
+            type="rpgpublisher"
+            value="Devir" />
+
+
+        <link
+            id="41585"
+            type="rpgpublisher"
+            value="Hunters Entertainment" />
+
+
+        <link
+            id="22651"
+            type="rpgpublisher"
+            value="Origames" />
+
+
+        <link
+            id="3242"
+            type="rpgpublisher"
+            value="Raven Distribution" />
+
+
+        <link
+            id="28072"
+            type="rpgpublisher"
+            value="Renegade Game Studios" />
+
+
+        <link
+            id="118091"
+            type="rpgdesigner"
+            value="Spenser Starke" />
+
+
+        <link
+            id="14426"
+            type="rpgartist"
+            value="Caleb Cleveland" />
+
+
+        <link
+            id="50805"
+            type="rpgartist"
+            value="Christopher De La Rosa" />
+
+
+        <link
+            id="127598"
+            type="rpgartist"
+            value="Julianne Griepp" />
+
+
+        <link
+            id="47313"
+            type="rpgproducer"
+            value="Tomasz &quot;Sting&quot; Chmielik" />
+
+
+        <videos total="6">
+            <video
+                category="session"
+                id="432406"
+                language="French"
+                link="http://www.youtube.com/watch?v=lgJRxsWdo5E"
+                postdate="2023-04-09T18:28:54-05:00"
+                title="Un jeu de rôle très spécial | Alice is Missing"
+                userid="3292037"
+                username="Maxildan" />
+            <video
+                category="session"
+                id="342360"
+                language="English"
+                link="http://www.youtube.com/watch?v=FJ06neD-KjY"
+                postdate="2021-09-10T12:00:42-05:00"
+                title="Twitch VOD: Crystal, Paula, Monique, Paul, and Nate play Alice is Missing"
+                userid="482978"
+                username="ambierona" />
+            <video
+                category="review"
+                id="333259"
+                language="English"
+                link="http://www.youtube.com/watch?v=ITEcoh3LnYY"
+                postdate="2021-07-09T07:53:27-05:00"
+                title="Alice is Missing Review I Silent Role Playing Game"
+                userid="185101"
+                username="jancis" />
+            <video
+                category="review"
+                id="330788"
+                language="English"
+                link="http://www.youtube.com/watch?v=hLZWkyiU01Q"
+                postdate="2021-06-23T14:27:31-05:00"
+                title="RPG OVERVIEW: ALICE IS MISSING | A SILENT TTRPG PLAYED USING WHATSAPP"
+                userid="265918"
+                username="Steve Dubya" />
+            <video
+                category="unboxing"
+                id="330441"
+                language="English"
+                link="http://www.youtube.com/watch?v=rDE0klm1Tbo"
+                postdate="2021-06-21T14:46:48-05:00"
+                title="Unboxing in the Book: Alice is Missing"
+                userid="265918"
+                username="Steve Dubya" />
+            <video
+                category="instructional"
+                id="267927"
+                language="English"
+                link="http://www.youtube.com/watch?v=-nvD49zV09M"
+                postdate="2020-06-09T14:54:20-05:00"
+                title="How to Game: Alice is Missing"
+                userid="1026552"
+                username="ctimmins" />
+        </videos>
+
+
+        <comments
+            page="1"
+            totalitems="57">
+            <comment
+                rating="10"
+                username="lawingm"
+                value="" />
+            <comment
+                rating="10"
+                username="DevilsTrill"
+                value="" />
+            <comment
+                rating="10"
+                username="jancis"
+                value="" />
+            <comment
+                rating="10"
+                username="flameo"
+                value="One play. Perhaps best for a one shot, but i want to play again. We will see." />
+            <comment
+                rating="10"
+                username="Faltarf"
+                value="" />
+            <comment
+                rating="10"
+                username="bulgarilla"
+                value="" />
+            <comment
+                rating="10"
+                username="CadejoNegro"
+                value="" />
+            <comment
+                rating="10"
+                username="EmptyPockets"
+                value="" />
+            <comment
+                rating="10"
+                username="csangell"
+                value="" />
+            <comment
+                rating="10"
+                username="Rextorian"
+                value="" />
+            <comment
+                rating="10"
+                username="Dodya"
+                value="" />
+            <comment
+                rating="9.25"
+                username="Cheesedud6"
+                value="" />
+            <comment
+                rating="9"
+                username="DJSterlingSilva"
+                value="" />
+            <comment
+                rating="9"
+                username="Donogh"
+                value="" />
+            <comment
+                rating="9"
+                username="ninepointone"
+                value="" />
+            <comment
+                rating="9"
+                username="boardgamebryan"
+                value="" />
+            <comment
+                rating="9"
+                username="HawkSpeed"
+                value="" />
+            <comment
+                rating="9"
+                username="Dorst"
+                value="" />
+            <comment
+                rating="9"
+                username="TheDoctr"
+                value="" />
+            <comment
+                rating="9"
+                username="donmakaron"
+                value="" />
+            <comment
+                rating="9"
+                username="art star"
+                value="" />
+            <comment
+                rating="9"
+                username="Antemonda"
+                value="" />
+            <comment
+                rating="9"
+                username="Keebler"
+                value="" />
+            <comment
+                rating="9"
+                username="Maeglin16"
+                value="" />
+            <comment
+                rating="9"
+                username="Amaethys"
+                value="" />
+            <comment
+                rating="9"
+                username="jreast"
+                value="" />
+            <comment
+                rating="9"
+                username="mainyuu"
+                value="" />
+            <comment
+                rating="9"
+                username="MadeByTinu"
+                value="" />
+            <comment
+                rating="9"
+                username="Issoleie"
+                value="" />
+            <comment
+                rating="8.5"
+                username="sirmmo"
+                value="" />
+            <comment
+                rating="8.5"
+                username="mapeya"
+                value="Una experiencia muy divertida e emotiva. Totalmente recomendado. (Si quieres que te organice una sesión, habla conmigo)" />
+            <comment
+                rating="8.5"
+                username="hidden_traitor"
+                value="" />
+            <comment
+                rating="8"
+                username="busdjur"
+                value="Supported the kickstarter. Own the pdf and the roll20-version but want the print-version too." />
+            <comment
+                rating="8"
+                username="dbarbaglia"
+                value="" />
+            <comment
+                rating="8"
+                username="Boards of Games"
+                value="Played one session with my wife and kids. It was nice but a bit dark for my wife. My daughter loved it. " />
+            <comment
+                rating="8"
+                username="YorkistJ"
+                value="" />
+            <comment
+                rating="8"
+                username="latindog"
+                value="Brilliant one shot RPG that does exactly what it sets out to do - facilitate a mystery story about the disappearance of a young woman in a small town that will be told from the perspective of her friends through a series of text exchanges.  It does not have a great deal of replay value but it can be replayed with different groups." />
+            <comment
+                rating="8"
+                username="ColtsFan76"
+                value="I was intrigued with this game as soon as I heard about a &quot;silent&quot; RPG, done all through texting. It delivered on the immersive narrative I was hoping for. My only reluctance on scoring this higher is replayability. There story driving cards branch to give different outcomes. But I am afraid there aren&apos;t enough different prompts to give a completely unique story each time, especially with the same group." />
+            <comment
+                rating="8"
+                username="Dolphinandrew"
+                value="Unique experience. Does exactly what it claims to. Character and events are fixed more than in a usual rpg, but still with plenty to flesh out." />
+            <comment
+                rating="8"
+                username="joebelanger"
+                value="" />
+            <comment
+                rating="8"
+                username="Luisjoey"
+                value="Very inmersive game that makes you thrill about this things happen.
+
+sad it has low replayability chance" />
+            <comment
+                rating="8"
+                username="jodokast"
+                value="excellent 3 hour game. very serious in tone" />
+            <comment
+                rating="8"
+                username="forty_below"
+                value="" />
+            <comment
+                rating="8"
+                username="forty_below"
+                value="" />
+            <comment
+                rating="8"
+                username="Chotacabras"
+                value="" />
+            <comment
+                rating="8"
+                username="IzaroRPG"
+                value="" />
+            <comment
+                rating="8"
+                username="SonyDeckard"
+                value="" />
+            <comment
+                rating="8"
+                username="sbszine"
+                value="Excellent rules light game, best played online via Discord. One of the few RPGs that ends up being moving rather than gonzo when my lot play." />
+            <comment
+                rating="8"
+                username="strangecolours"
+                value="" />
+            <comment
+                rating="8"
+                username="DataNalle"
+                value="" />
+            <comment
+                rating="8"
+                username="MarvinMS"
+                value="" />
+            <comment
+                rating="7"
+                username="shawnmccarthy"
+                value="" />
+            <comment
+                rating="7"
+                username="realityfoible"
+                value="" />
+            <comment
+                rating="7"
+                username="monart"
+                value="" />
+            <comment
+                rating="6"
+                username="Viridjan"
+                value="" />
+            <comment
+                rating="5"
+                username="ponika"
+                value="" />
+            <comment
+                rating="3"
+                username="EvaUnit02"
+                value="A strange &quot;RPG&quot;. It spends an inordinate number of pages warning the player of a potentially traumatic experience but there is no substance to back up those warnings.
+
+The feelies are bizarre, too. There are print-out posters that serve very little purpose. There&apos;s a timer video that is simply a soundtrack. Its entire mechanical purpose is to ensure the players are aware of when certain key time intervals have passed and it doesn&apos;t even audibly alert you to that. It&apos;s just music and a timer. In fact, the only thing it does alert you to is a handful of jarring music transitions that don&apos;t even match up to the game&apos;s key time intervals.
+
+This isn&apos;t even a game where you are invited to be the coauthor of a story, like more traditional RPGs. Instead, you are simply an actor acting out what you are told to do by a series of cards.
+
+I found this game to offer a mundane story about mundane people which the game insists you go through a rigmarole to help make the experience more immersive. It does not do this. Instead, all it does is annoy everyone at the table as they have to rename their contacts in their phone, rename them back at the end of the game, listen to a bewilderingly dramatic soundtrack for ninety minutes, stay silent the whole time, and go through a ton of rules explanation when the whole game amounts to flipping cards when you&apos;re told to do so. The game even demands everyone debrief about their experience after the game as if they had just been to a group counseling session. It&apos;s so bizarre.
+
+The characters you portray are not yours. You are simply the actor conveying who they&apos;ve already been decided to be via a deck of cards. And, at least for me, who they are is not compelling enough to want to play this game again." />
+        </comments>
+
+
+        <statistics page="1">
+            <ratings>
+                <usersrated value="56" />
+                <average value="8.51339" />
+                <bayesaverage value="6.9605" />
+
+                <ranks>
+                    <rank
+                        name="rpgitem"
+                        bayesaverage="6.9605"
+                        friendlyname="RPG Item Rank"
+                        id="16"
+                        type="subtype"
+                        value="317" />
+                </ranks>
+
+                <stddev value="1.26458" />
+                <median value="0" />
+                <owned value="459" />
+                <trading value="8" />
+                <wanting value="8" />
+                <wishing value="119" />
+                <numcomments value="22" />
+                <numweights value="23" />
+                <averageweight value="1.9565" />
+            </ratings>
+        </statistics>
+
+
+        <marketplacelistings>
+            <listing>
+                <listdate value="Tue, 21 Mar 2023 17:09:59 +0000" />
+                <price
+                    currency="USD"
+                    value="25.00" />
+                <condition value="likenew" />
+                <notes value="Opened but never played, If you are in Vermont Pick up available." />
+                <link
+                    href="https://boardgamegeek.com/market/product/3124184"
+                    title="marketlisting" />
+            </listing>
+            <listing>
+                <listdate value="Fri, 20 Oct 2023 00:49:14 +0000" />
+                <price
+                    currency="USD"
+                    value="15.99" />
+                <condition value="new" />
+                <notes value="Never played, although removed from shrink (one of the two decks of cards still in original shrink wrap).&amp;#10;&amp;#10;Shipping from GA. Send zip code when inquiring on availability so as to receive a shipping quote as well. Quoted prices will be guaranteed for 72 hrs, although the game will not be held unless paid for.&amp;#10;&amp;#10;Check out Seller Notes below for more details and feel free to ask if you have any questions. Thanks for stopping by!" />
+                <link
+                    href="https://boardgamegeek.com/market/product/3286661"
+                    title="marketlisting" />
+            </listing>
+            <listing>
+                <listdate value="Sun, 22 Oct 2023 17:04:39 +0000" />
+                <price
+                    currency="USD"
+                    value="10.00" />
+                <condition value="likenew" />
+                <notes value="Used once. Sleeved." />
+                <link
+                    href="https://boardgamegeek.com/market/product/3288412"
+                    title="marketlisting" />
+            </listing>
+        </marketplacelistings>
+
+    </item>
+</items>

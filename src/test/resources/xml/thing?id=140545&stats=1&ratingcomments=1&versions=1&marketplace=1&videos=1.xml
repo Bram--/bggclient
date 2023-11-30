@@ -1,0 +1,1403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+    <item
+        id="140545"
+        type="videogame">
+        <thumbnail>
+            https://cf.geekdo-images.com/I5s5KUPvn7svHt6hpeuc2Q__thumb/img/ppeDi-cEnHYG96vYa7T8gwnn7OI=/fit-in/200x150/filters:strip_icc()/pic1968494.png
+        </thumbnail>
+        <image>
+            https://cf.geekdo-images.com/I5s5KUPvn7svHt6hpeuc2Q__original/img/ft5vToSnwsCajOxHMaSuKgl_IL4=/0x0/filters:format(png)/pic1968494.png
+        </image>
+
+        <name
+            sortindex="1"
+            type="primary"
+            value="Hearthstone: Heroes of Warcraft" />
+
+
+        <name
+            sortindex="1"
+            type="alternate"
+            value="Hearthstone" />
+
+        <description>Sheathe your sword, draw your deck, and get ready for Hearthstone - the fast
+            paced strategy card game that's easy to learn and massively fun. Start a free game on
+            Battle.net and play your cards to sling spells, summon creatures, and command the heroes
+            of Warcraft in duels of epic strategy.&amp;#10;&amp;#10;Source: The Game Website.&amp;#10;&amp;#10;&amp;#10;Microbadges:
+            &amp;#10;&amp;#10;
+        </description>
+
+
+        <link
+            id="6063"
+            type="videogameplatform"
+            value="Android" />
+
+
+        <link
+            id="6826"
+            type="videogameplatform"
+            value="iPad" />
+
+
+        <link
+            id="4443"
+            type="videogameplatform"
+            value="iPhone" />
+
+
+        <link
+            id="4729"
+            type="videogameplatform"
+            value="Macintosh" />
+
+
+        <link
+            id="4977"
+            type="videogameplatform"
+            value="Windows" />
+
+
+        <link
+            id="3108"
+            type="videogamegenre"
+            value="Deckbuilder" />
+
+
+        <link
+            id="2158"
+            type="videogamegenre"
+            value="Strategy" />
+
+
+        <link
+            id="2404"
+            type="videogametheme"
+            value="Card / Casino Games" />
+
+
+        <link
+            id="2148"
+            type="videogametheme"
+            value="Fantasy" />
+
+
+        <link
+            id="27676"
+            type="videogamefranchise"
+            value="Better Description Needed" />
+
+
+        <link
+            id="5280"
+            type="videogamefranchise"
+            value="Warcraft" />
+
+
+        <link
+            id="39605"
+            type="videogameseries"
+            value="Hearthstone" />
+
+
+        <link
+            id="2310"
+            type="videogamemode"
+            value="Network Multiplayer" />
+
+
+        <link
+            id="2149"
+            type="videogamemode"
+            value="Single-Player" />
+
+
+        <minplayers value="1" />
+        <maxplayers value="2" />
+        <releasedate value="2014-01-21" />
+
+
+        <link
+            id="11812"
+            type="videogamedeveloper"
+            value="Blizzard Entertainment" />
+
+
+        <link
+            id="11812"
+            type="videogamepublisher"
+            value="Blizzard Entertainment" />
+
+
+        <link
+            id="345058"
+            type="videogameexpansion"
+            value="Hearthstone - Ashes of Outland" />
+
+
+        <link
+            id="332166"
+            type="videogameexpansion"
+            value="Hearthstone - Forged in the Barrens" />
+
+
+        <link
+            id="345059"
+            type="videogameexpansion"
+            value="Hearthstone - Madness at the Darkmoon Faire" />
+
+
+        <link
+            id="345060"
+            type="videogameexpansion"
+            value="Hearthstone - Scholomance Academy" />
+
+
+        <link
+            id="345037"
+            type="videogameexpansion"
+            value="Hearthstone - United in Stormwind" />
+
+
+        <link
+            id="247245"
+            type="videogameexpansion"
+            value="Hearthstone: Blackrock Mountain" />
+
+
+        <link
+            id="247244"
+            type="videogameexpansion"
+            value="Hearthstone: Curse of Naxxramas" />
+
+
+        <link
+            id="293386"
+            type="videogameexpansion"
+            value="Hearthstone: Descent of Dragons" />
+
+
+        <link
+            id="217658"
+            type="videogameexpansion"
+            value="Hearthstone: Goblins vs Gnomes" />
+
+
+        <link
+            id="246506"
+            type="videogameexpansion"
+            value="Hearthstone: Journey to Un'Goro" />
+
+
+        <link
+            id="246505"
+            type="videogameexpansion"
+            value="Hearthstone: Knights of the Frozen Throne" />
+
+
+        <link
+            id="243095"
+            type="videogameexpansion"
+            value="Hearthstone: Kobolds and Catacombs" />
+
+
+        <link
+            id="217661"
+            type="videogameexpansion"
+            value="Hearthstone: Mean Streets of Gadgetzan" />
+
+
+        <link
+            id="247248"
+            type="videogameexpansion"
+            value="Hearthstone: One Night in Karazhan" />
+
+
+        <link
+            id="267904"
+            type="videogameexpansion"
+            value="Hearthstone: Rastakhan's Rumble" />
+
+
+        <link
+            id="301063"
+            type="videogameexpansion"
+            value="Hearthstone: Rise of Shadows" />
+
+
+        <link
+            id="301064"
+            type="videogameexpansion"
+            value="Hearthstone: Saviors of Uldum" />
+
+
+        <link
+            id="267824"
+            type="videogameexpansion"
+            value="Hearthstone: The Boomsday Project" />
+
+
+        <link
+            id="217659"
+            type="videogameexpansion"
+            value="Hearthstone: The Grand Tournament" />
+
+
+        <link
+            id="247246"
+            type="videogameexpansion"
+            value="Hearthstone: The League of Explorers" />
+
+
+        <link
+            id="252601"
+            type="videogameexpansion"
+            value="Hearthstone: The Witchwood" />
+
+
+        <link
+            id="217660"
+            type="videogameexpansion"
+            value="Hearthstone: Whispers of the Old Gods" />
+
+
+        <videos total="10">
+            <video
+                category="session"
+                id="366170"
+                language="English"
+                link="http://www.youtube.com/watch?v=qA4-q4gk_yY"
+                postdate="2022-02-13T10:01:13-06:00"
+                title="Hearthstone: Heroes of Warcraft - Critical Role: One-Shot"
+                userid="382005"
+                username="Forbidding" />
+            <video
+                category="session"
+                id="235895"
+                language="English"
+                link="http://www.youtube.com/watch?v=Osko6JZqOnk"
+                postdate="2019-10-08T23:31:11-05:00"
+                title="Hearthstone: Heroes of Warcraft - AngryJoe: Blizzard Banned Player For Hong Kong Protest Support"
+                userid="382005"
+                username="Forbidding" />
+            <video
+                category="session"
+                id="226436"
+                language="English"
+                link="http://www.youtube.com/watch?v=44U5d1lPxY4"
+                postdate="2019-07-23T10:09:28-05:00"
+                title="Practice Round - Rogue vs Druid"
+                userid="2100960"
+                username="Killercod" />
+            <video
+                category="session"
+                id="147113"
+                language="English"
+                link="http://www.youtube.com/watch?v=vPguoeYTvMI"
+                postdate="2017-08-23T14:09:49-05:00"
+                title="Animated Short: Hearth and Home"
+                userid="1054290"
+                username="Cricky" />
+            <video
+                category="session"
+                id="80268"
+                language="English"
+                link="http://www.youtube.com/watch?v=1ZnjwdStzUc"
+                postdate="2015-10-07T13:03:29-05:00"
+                title="Hearthstone: Heroes of Warcraft - Extra Credits: Future Proofing Your Design and Planning Ahead"
+                userid="382005"
+                username="Forbidding" />
+            <video
+                category="session"
+                id="79536"
+                language="English"
+                link="http://www.youtube.com/watch?v=M3b3hDvRjJA"
+                postdate="2015-09-30T12:09:42-05:00"
+                title="Hearthstone: Heroes of Warcraft - Extra Credits: Power Creep and What It Teaches Us"
+                userid="382005"
+                username="Forbidding" />
+            <video
+                category="instructional"
+                id="76685"
+                language="English"
+                link="http://www.youtube.com/watch?v=L5OZemcG8No"
+                postdate="2015-08-23T11:32:30-05:00"
+                title="Hearthstone | Zero Budget Druid Deck | Beginner Deck "
+                userid="365559"
+                username="edgd00" />
+            <video
+                category="other"
+                id="70615"
+                language="English"
+                link="http://www.youtube.com/watch?v=Te6VQzFoFeU"
+                postdate="2015-05-28T10:33:50-05:00"
+                title="Rockarchy and cahlypso adventures of the hearthstone ep.2"
+                userid="748450"
+                username="geekedupgaming" />
+            <video
+                category="other"
+                id="70614"
+                language="English"
+                link="http://www.youtube.com/watch?v=ODN04H7dYR0"
+                postdate="2015-05-28T10:33:12-05:00"
+                title="Rockarchy and cahlypso adventures of the hearthstone"
+                userid="748450"
+                username="geekedupgaming" />
+            <video
+                category="review"
+                id="51443"
+                language="English"
+                link="http://www.youtube.com/watch?v=vAJV-qLP6ro"
+                postdate="2014-08-12T17:17:00-05:00"
+                title="Nerubian Egg - Card Review - Hearthstone - Jobs Done!"
+                userid="241093"
+                username="resCube" />
+        </videos>
+
+        <versions>
+            <item
+                id="339527"
+                type="vgcharacterversion">
+
+
+            </item>
+            <item
+                id="261936"
+                type="videogameversion">
+                <thumbnail>
+                    https://cf.geekdo-images.com/I5s5KUPvn7svHt6hpeuc2Q__thumb/img/ppeDi-cEnHYG96vYa7T8gwnn7OI=/fit-in/200x150/filters:strip_icc()/pic1968494.png
+                </thumbnail>
+                <image>
+                    https://cf.geekdo-images.com/I5s5KUPvn7svHt6hpeuc2Q__original/img/ft5vToSnwsCajOxHMaSuKgl_IL4=/0x0/filters:format(png)/pic1968494.png
+                </image>
+
+
+                <link
+                    id="140545"
+                    inbound="true"
+                    type="videogameversion"
+                    value="Hearthstone: Heroes of Warcraft" />
+
+
+                <name
+                    sortindex="1"
+                    type="primary"
+                    value="Android edition" />
+
+
+                <releasedate value="2014-12-15" />
+
+
+                <link
+                    id="11812"
+                    type="videogamepublisher"
+                    value="Blizzard Entertainment" />
+
+
+                <link
+                    id="6063"
+                    type="videogameplatform"
+                    value="Android" />
+
+
+                <link
+                    id="11812"
+                    type="videogamedeveloper"
+                    value="Blizzard Entertainment" />
+
+
+                <link
+                    id="2258"
+                    type="videogamemedia"
+                    value="Downloadable Content" />
+
+
+                <link
+                    id="2672"
+                    type="videogamerating"
+                    value="Android: Medium maturity" />
+
+
+                <link
+                    id="2181"
+                    type="language"
+                    value="Chinese" />
+
+
+                <link
+                    id="2184"
+                    type="language"
+                    value="English" />
+
+
+                <link
+                    id="2187"
+                    type="language"
+                    value="French" />
+
+
+                <link
+                    id="2188"
+                    type="language"
+                    value="German" />
+
+
+                <link
+                    id="2193"
+                    type="language"
+                    value="Italian" />
+
+
+                <link
+                    id="2195"
+                    type="language"
+                    value="Korean" />
+
+
+                <link
+                    id="2199"
+                    type="language"
+                    value="Polish" />
+
+
+                <link
+                    id="2200"
+                    type="language"
+                    value="Portuguese" />
+
+
+                <link
+                    id="2203"
+                    type="language"
+                    value="Spanish" />
+
+
+            </item>
+            <item
+                id="236117"
+                type="vgcharacterversion">
+                <thumbnail>
+                    https://cf.geekdo-images.com/Qcmc73pkhyskeyQtgFI-hg__thumb/img/sI8TaDnPdEsdo9M94Jz_al6W70E=/fit-in/200x150/filters:strip_icc()/pic1967466.png
+                </thumbnail>
+                <image>
+                    https://cf.geekdo-images.com/Qcmc73pkhyskeyQtgFI-hg__original/img/W5S6ELF_Jk9B8FJNT59bGLHHhrw=/0x0/filters:format(png)/pic1967466.png
+                </image>
+
+
+            </item>
+            <item
+                id="236109"
+                type="vgcharacterversion">
+                <thumbnail>
+                    https://cf.geekdo-images.com/vdsmhOiYhcfQxDxmYdfYfA__thumb/img/8NXArJY3LO6sQ49VnO_KQp53MTw=/fit-in/200x150/filters:strip_icc()/pic1967467.png
+                </thumbnail>
+                <image>
+                    https://cf.geekdo-images.com/vdsmhOiYhcfQxDxmYdfYfA__original/img/kqd0qh70uuTz9YPymOzcPpNHc9U=/0x0/filters:format(png)/pic1967467.png
+                </image>
+
+
+            </item>
+            <item
+                id="236115"
+                type="vgcharacterversion">
+                <thumbnail>
+                    https://cf.geekdo-images.com/ZlINQa2HNm71OTf-TePG9g__thumb/img/og-XidZfbSEUE8-pvcqO-MPE0eM=/fit-in/200x150/filters:strip_icc()/pic1967468.png
+                </thumbnail>
+                <image>
+                    https://cf.geekdo-images.com/ZlINQa2HNm71OTf-TePG9g__original/img/quhbukveowwe4XDq8jnB_XdC4QE=/0x0/filters:format(png)/pic1967468.png
+                </image>
+
+
+            </item>
+            <item
+                id="237161"
+                type="videogameversion">
+                <thumbnail>
+                    https://cf.geekdo-images.com/I5s5KUPvn7svHt6hpeuc2Q__thumb/img/ppeDi-cEnHYG96vYa7T8gwnn7OI=/fit-in/200x150/filters:strip_icc()/pic1968494.png
+                </thumbnail>
+                <image>
+                    https://cf.geekdo-images.com/I5s5KUPvn7svHt6hpeuc2Q__original/img/ft5vToSnwsCajOxHMaSuKgl_IL4=/0x0/filters:format(png)/pic1968494.png
+                </image>
+
+
+                <link
+                    id="140545"
+                    inbound="true"
+                    type="videogameversion"
+                    value="Hearthstone: Heroes of Warcraft" />
+
+
+                <name
+                    sortindex="1"
+                    type="primary"
+                    value="iOS edition" />
+
+
+                <releasedate value="2014-04-02" />
+
+
+                <link
+                    id="11812"
+                    type="videogamepublisher"
+                    value="Blizzard Entertainment" />
+
+
+                <link
+                    id="6826"
+                    type="videogameplatform"
+                    value="iPad" />
+
+
+                <link
+                    id="4443"
+                    type="videogameplatform"
+                    value="iPhone" />
+
+
+                <link
+                    id="11812"
+                    type="videogamedeveloper"
+                    value="Blizzard Entertainment" />
+
+
+                <link
+                    id="2258"
+                    type="videogamemedia"
+                    value="Downloadable Content" />
+
+
+                <link
+                    id="2249"
+                    type="videogamerating"
+                    value="Apple / Rated: 12+" />
+
+
+                <link
+                    id="2181"
+                    type="language"
+                    value="Chinese" />
+
+
+                <link
+                    id="2184"
+                    type="language"
+                    value="English" />
+
+
+                <link
+                    id="2187"
+                    type="language"
+                    value="French" />
+
+
+                <link
+                    id="2188"
+                    type="language"
+                    value="German" />
+
+
+                <link
+                    id="2193"
+                    type="language"
+                    value="Italian" />
+
+
+                <link
+                    id="2195"
+                    type="language"
+                    value="Korean" />
+
+
+                <link
+                    id="2199"
+                    type="language"
+                    value="Polish" />
+
+
+                <link
+                    id="2200"
+                    type="language"
+                    value="Portuguese" />
+
+
+                <link
+                    id="2202"
+                    type="language"
+                    value="Russian" />
+
+
+                <link
+                    id="2203"
+                    type="language"
+                    value="Spanish" />
+
+
+            </item>
+            <item
+                id="236106"
+                type="vgcharacterversion">
+                <thumbnail>
+                    https://cf.geekdo-images.com/xSBowqdIYf21oG9AJx2W7g__thumb/img/drNxd0cp0Ej7tQultzpjLoM5tfY=/fit-in/200x150/filters:strip_icc()/pic1967469.png
+                </thumbnail>
+                <image>
+                    https://cf.geekdo-images.com/xSBowqdIYf21oG9AJx2W7g__original/img/rfPmPYcnqwW2x4V7LhWVVBPMj4I=/0x0/filters:format(png)/pic1967469.png
+                </image>
+
+
+            </item>
+            <item
+                id="339896"
+                type="vgcharacterversion">
+
+
+            </item>
+            <item
+                id="645153"
+                type="vgcharacterversion">
+
+
+            </item>
+            <item
+                id="339893"
+                type="vgcharacterversion">
+
+
+            </item>
+            <item
+                id="205015"
+                type="videogameversion">
+                <thumbnail>
+                    https://cf.geekdo-images.com/I5s5KUPvn7svHt6hpeuc2Q__thumb/img/ppeDi-cEnHYG96vYa7T8gwnn7OI=/fit-in/200x150/filters:strip_icc()/pic1968494.png
+                </thumbnail>
+                <image>
+                    https://cf.geekdo-images.com/I5s5KUPvn7svHt6hpeuc2Q__original/img/ft5vToSnwsCajOxHMaSuKgl_IL4=/0x0/filters:format(png)/pic1968494.png
+                </image>
+
+
+                <link
+                    id="140545"
+                    inbound="true"
+                    type="videogameversion"
+                    value="Hearthstone: Heroes of Warcraft" />
+
+
+                <name
+                    sortindex="1"
+                    type="primary"
+                    value="Macintosh Downloadable edition" />
+
+
+                <releasedate value="2014-01-21" />
+
+
+                <link
+                    id="11812"
+                    type="videogamepublisher"
+                    value="Blizzard Entertainment" />
+
+
+                <link
+                    id="4729"
+                    type="videogameplatform"
+                    value="Macintosh" />
+
+
+                <link
+                    id="11812"
+                    type="videogamedeveloper"
+                    value="Blizzard Entertainment" />
+
+
+                <link
+                    id="2258"
+                    type="videogamemedia"
+                    value="Downloadable Content" />
+
+
+                <link
+                    id="2217"
+                    type="videogamerating"
+                    value="ESRB: T" />
+
+
+                <link
+                    id="2184"
+                    type="language"
+                    value="English" />
+
+
+            </item>
+            <item
+                id="339892"
+                type="vgcharacterversion">
+
+
+            </item>
+            <item
+                id="236114"
+                type="vgcharacterversion">
+                <thumbnail>
+                    https://cf.geekdo-images.com/4YIrt2Q4EbS024WA7iLCMQ__thumb/img/gQ7IVFOJnQhxPSEmRE1IVb2VTfw=/fit-in/200x150/filters:strip_icc()/pic1967470.png
+                </thumbnail>
+                <image>
+                    https://cf.geekdo-images.com/4YIrt2Q4EbS024WA7iLCMQ__original/img/Olw6fmXFehGQx0DFe4ohgK6eJGM=/0x0/filters:format(png)/pic1967470.png
+                </image>
+
+
+            </item>
+            <item
+                id="339891"
+                type="vgcharacterversion">
+
+
+            </item>
+            <item
+                id="442757"
+                type="vgcharacterversion">
+
+
+            </item>
+            <item
+                id="339895"
+                type="vgcharacterversion">
+
+
+            </item>
+            <item
+                id="236107"
+                type="vgcharacterversion">
+                <thumbnail>
+                    https://cf.geekdo-images.com/R6w17CqyqIVbzJkx6WSkSA__thumb/img/sRrlHTZIbxUeIEFY8J-XwuUrcG8=/fit-in/200x150/filters:strip_icc()/pic1967471.png
+                </thumbnail>
+                <image>
+                    https://cf.geekdo-images.com/R6w17CqyqIVbzJkx6WSkSA__original/img/AqP-vxZ1c13f5-gGrYCchykBUfU=/0x0/filters:format(png)/pic1967471.png
+                </image>
+
+
+            </item>
+            <item
+                id="236116"
+                type="vgcharacterversion">
+                <thumbnail>
+                    https://cf.geekdo-images.com/M5axNdEqM4j4UGTlH4vfyA__thumb/img/-D-RNjIcqWdnUScQU-0qqHOzX9w=/fit-in/200x150/filters:strip_icc()/pic1967472.png
+                </thumbnail>
+                <image>
+                    https://cf.geekdo-images.com/M5axNdEqM4j4UGTlH4vfyA__original/img/uU9hY6SEo78ou9NuZ_JrM4iEjPQ=/0x0/filters:format(png)/pic1967472.png
+                </image>
+
+
+            </item>
+            <item
+                id="236108"
+                type="vgcharacterversion">
+                <thumbnail>
+                    https://cf.geekdo-images.com/MgD5iNSP2lL8DrtIeS4DMA__thumb/img/uH6oLKleX-h0zwUQfMXX0eL-waQ=/fit-in/200x150/filters:strip_icc()/pic1967473.png
+                </thumbnail>
+                <image>
+                    https://cf.geekdo-images.com/MgD5iNSP2lL8DrtIeS4DMA__original/img/fZhLhDUsNBajGsy-jg9pE2C7xX8=/0x0/filters:format(png)/pic1967473.png
+                </image>
+
+
+            </item>
+            <item
+                id="236118"
+                type="vgcharacterversion">
+                <thumbnail>
+                    https://cf.geekdo-images.com/WrH2r2xjZaYefTlEym6WEw__thumb/img/eV3QWVm6ri-xgCPV7zQwApJr_gI=/fit-in/200x150/filters:strip_icc()/pic1967474.png
+                </thumbnail>
+                <image>
+                    https://cf.geekdo-images.com/WrH2r2xjZaYefTlEym6WEw__original/img/hb5IBYpy42XbHNeVzahQb4R83eI=/0x0/filters:format(png)/pic1967474.png
+                </image>
+
+
+            </item>
+            <item
+                id="205014"
+                type="videogameversion">
+                <thumbnail>
+                    https://cf.geekdo-images.com/I5s5KUPvn7svHt6hpeuc2Q__thumb/img/ppeDi-cEnHYG96vYa7T8gwnn7OI=/fit-in/200x150/filters:strip_icc()/pic1968494.png
+                </thumbnail>
+                <image>
+                    https://cf.geekdo-images.com/I5s5KUPvn7svHt6hpeuc2Q__original/img/ft5vToSnwsCajOxHMaSuKgl_IL4=/0x0/filters:format(png)/pic1968494.png
+                </image>
+
+
+                <link
+                    id="140545"
+                    inbound="true"
+                    type="videogameversion"
+                    value="Hearthstone: Heroes of Warcraft" />
+
+
+                <name
+                    sortindex="1"
+                    type="primary"
+                    value="Windows Downloadable edition" />
+
+
+                <releasedate value="2014-01-21" />
+
+
+                <link
+                    id="11812"
+                    type="videogamepublisher"
+                    value="Blizzard Entertainment" />
+
+
+                <link
+                    id="4977"
+                    type="videogameplatform"
+                    value="Windows" />
+
+
+                <link
+                    id="11812"
+                    type="videogamedeveloper"
+                    value="Blizzard Entertainment" />
+
+
+                <link
+                    id="2258"
+                    type="videogamemedia"
+                    value="Downloadable Content" />
+
+
+                <link
+                    id="2217"
+                    type="videogamerating"
+                    value="ESRB: T" />
+
+
+                <link
+                    id="2184"
+                    type="language"
+                    value="English" />
+
+
+            </item>
+        </versions>
+
+
+        <comments
+            page="1"
+            totalitems="319">
+            <comment
+                rating="10"
+                username="seneca29"
+                value="GREAT game, easy to learn, fun, deep enough, addictive, awesome! :D
+This is probably my favourite game of all time" />
+            <comment
+                rating="10"
+                username="Urza47"
+                value="This game is amazing.  The way they&apos;re handling the beta keys is not amazing, however." />
+            <comment
+                rating="10"
+                username="MarioPuzo"
+                value="" />
+            <comment
+                rating="10"
+                username="StalkingButler"
+                value="" />
+            <comment
+                rating="10"
+                username="mickery"
+                value="" />
+            <comment
+                rating="10"
+                username="-Johnny-"
+                value="" />
+            <comment
+                rating="10"
+                username="iRoberts3"
+                value="" />
+            <comment
+                rating="10"
+                username="Futza"
+                value="" />
+            <comment
+                rating="10"
+                username="Loodlelee"
+                value="" />
+            <comment
+                rating="10"
+                username="Burnham"
+                value="All the classes feel different.
+Plays quickly.
+All around, a pretty great game.
+
+I have absolutely no complaints about this game!" />
+            <comment
+                rating="10"
+                username="wispwalker"
+                value="" />
+            <comment
+                rating="10"
+                username="Jormi_Boced"
+                value="" />
+            <comment
+                rating="10"
+                username="Slimd613"
+                value="" />
+            <comment
+                rating="10"
+                username="LookAtTheBacon"
+                value="" />
+            <comment
+                rating="10"
+                username="sprocketeye"
+                value="" />
+            <comment
+                rating="10"
+                username="magmaxtic"
+                value="" />
+            <comment
+                rating="10"
+                username="SiddGames"
+                value="" />
+            <comment
+                rating="10"
+                username="StatSig"
+                value="" />
+            <comment
+                rating="10"
+                username="Girts"
+                value="Excellent digital collectible card game. Great effects and tactical decisions. Very smooth gameplay with very little maintenance time and downtime during turns. I prefer this over MtG." />
+            <comment
+                rating="10"
+                username="ronniesong0809"
+                value="" />
+            <comment
+                rating="10"
+                username="ST1CKS"
+                value="" />
+            <comment
+                rating="10"
+                username="drmark64"
+                value="" />
+            <comment
+                rating="10"
+                username="Modjo231"
+                value="" />
+            <comment
+                rating="10"
+                username="Rumplesink"
+                value="" />
+            <comment
+                rating="10"
+                username="Rubric"
+                value="10 rating based on playing this only for a few days so far.  It&apos;s really well done, and kind of addictive.  I like the very limited chat options, since asinine trash talk is one of the things that put me off of MtGO and other online games.
+
+I&apos;m mainly playing the Kindle version, but since it&apos;s free we also have the PC and Ipod versions as well.
+
+Update 9/5/15: Played close to 30 days now, many hours spent (but no money spent).  It&apos;s really fun and addictive.  Definitely a 10 rating.
+
+Update January 2016:  Still playing this almost every day for nearly six months now.  Wow... just a great game.
+
+Update 8/19/2016:  Took a 3 month break, but I&apos;m back to playing every day now, one year after I started.  Just got the award for 1000 total wins.
+
+Update Sept 2017: starting to get interested in this again.
+
+Update Nov 2017:  playing all the time now.  Made Rank 10 for the first time,  Also playing a lot of arena.  Most wins so far is 8." />
+            <comment
+                rating="10"
+                username="garypgary"
+                value="As a long term MtG player I find Hearthstone a great and very accessible alternative. The game play is quick and very fun and the meta is just as good as Magic.
+
+The on-screen implementation is very good with big clear graphics and intuitive controls. This is one of the best implementations of a game - it works. The computer keeps score and manages your collection brilliantly (no more card boxes and endless filing and sorting!). And they actually keep abreast of trends and nerf cards that are overpowered or broken - Magic did that but much less efficiently - so easy just to alter the program and bingo - everyone&apos;s cards are corrected.
+
+Cost wise you can play and expand this game for free if you are prepared to grind it out over time - or spend a little and get some packs and grow your collection a bit faster.
+
+Overall - great!
+ " />
+            <comment
+                rating="10"
+                username="Timo1977"
+                value="" />
+            <comment
+                rating="10"
+                username="Jimwise"
+                value="" />
+            <comment
+                rating="10"
+                username="xanwan"
+                value="" />
+            <comment
+                rating="10"
+                username="corbettcj"
+                value="" />
+            <comment
+                rating="10"
+                username="rymdtomten"
+                value="" />
+            <comment
+                rating="10"
+                username="ToadPirate"
+                value="" />
+            <comment
+                rating="10"
+                username="Ronaldo"
+                value="" />
+            <comment
+                rating="10"
+                username="Autist"
+                value="" />
+            <comment
+                rating="10"
+                username="tuibing"
+                value="" />
+            <comment
+                rating="10"
+                username="auditbadger"
+                value="" />
+            <comment
+                rating="10"
+                username="Tanhauser69"
+                value="" />
+            <comment
+                rating="10"
+                username="Boardgamepasci"
+                value="" />
+            <comment
+                rating="10"
+                username="Routhforth"
+                value="" />
+            <comment
+                rating="9.5"
+                username="ObzidiaN"
+                value="" />
+            <comment
+                rating="9"
+                username="Hayzuss"
+                value="" />
+            <comment
+                rating="9"
+                username="BrightonFoxDave"
+                value="" />
+            <comment
+                rating="9"
+                username="Thrift Thopter"
+                value="" />
+            <comment
+                rating="9"
+                username="Bungo_Underhill"
+                value="" />
+            <comment
+                rating="9"
+                username="aforandy"
+                value="Very good, free, particularly addictive, a small luck element that sometimes determines games, perhaps less decision-making than you might think, as those you are tested by can be quite tricky. The deck-building aspect actually works here, so most thinking goes on either side of play." />
+            <comment
+                rating="9"
+                username="ejmowrer"
+                value="" />
+            <comment
+                rating="9"
+                username="PoVisko"
+                value="When I first heard about it I was sceptical about it. Magic: the gathering is the best TCG ever (it&apos;s a fact, not an opinion), so I didn&apos;t give high hopes for Hearthstone. But it did something that magic can&apos;t do, ever. It brought the element of randomness as a computer-generated game mechanic, that felt new and fresh. Also, solo adventures, casual tavern brawls, and summoning awesome inventions. For that and a good game overall, my scepticism is no more." />
+            <comment
+                rating="9"
+                username="panotxa"
+                value="" />
+            <comment
+                rating="9"
+                username="Colonel FUBAR"
+                value="" />
+            <comment
+                rating="9"
+                username="Osirus"
+                value="Magic: the Gathering lite, optimized for online play. Very high production values." />
+            <comment
+                rating="9"
+                username="Terwox"
+                value="" />
+            <comment
+                rating="9"
+                username="Danno77"
+                value="" />
+            <comment
+                rating="9"
+                username="matthewjhoskins"
+                value="" />
+            <comment
+                rating="9"
+                username="purplewurple"
+                value="" />
+            <comment
+                rating="9"
+                username="il1ch"
+                value="" />
+            <comment
+                rating="9"
+                username="Imoshen"
+                value="" />
+            <comment
+                rating="9"
+                username="Linnaeus"
+                value="" />
+            <comment
+                rating="9"
+                username="Linnaeus"
+                value="" />
+            <comment
+                rating="9"
+                username="negroscuro"
+                value="" />
+            <comment
+                rating="9"
+                username="Darazel"
+                value="" />
+            <comment
+                rating="9"
+                username="mebririth"
+                value="Nice implementation, nice variation of cards. A good card game not based on a real card game." />
+            <comment
+                rating="9"
+                username="SnakePlissken"
+                value="" />
+            <comment
+                rating="9"
+                username="pgimmo"
+                value="" />
+            <comment
+                rating="9"
+                username="Denchel"
+                value="" />
+            <comment
+                rating="9"
+                username="LGMHorus"
+                value="" />
+            <comment
+                rating="9"
+                username="Eskizer"
+                value="" />
+            <comment
+                rating="9"
+                username="akaisamurai001"
+                value="" />
+            <comment
+                rating="9"
+                username="Hertzog"
+                value="" />
+            <comment
+                rating="9"
+                username="schlessier"
+                value="" />
+            <comment
+                rating="9"
+                username="Rye0077r"
+                value="" />
+            <comment
+                rating="9"
+                username="Rye0077r"
+                value="" />
+            <comment
+                rating="9"
+                username="Rye0077r"
+                value="" />
+            <comment
+                rating="9"
+                username="RiffRaff14"
+                value="" />
+            <comment
+                rating="9"
+                username="pltinum"
+                value="Arguably a better design than mtg. It just needs more quantity and a greater diversity. I think they&apos;re pushing it in the right direction. So time will make it better." />
+            <comment
+                rating="9"
+                username="kririon"
+                value="" />
+            <comment
+                rating="9"
+                username="ChrisSmith4773"
+                value="" />
+            <comment
+                rating="9"
+                username="Vampiyno"
+                value="" />
+            <comment
+                rating="9"
+                username="FoggyPlanet"
+                value="" />
+            <comment
+                rating="9"
+                username="Cangio"
+                value="" />
+            <comment
+                rating="9"
+                username="ErkaDevil"
+                value="" />
+            <comment
+                rating="9"
+                username="Dairk"
+                value="" />
+            <comment
+                rating="9"
+                username="LordBoard"
+                value="" />
+            <comment
+                rating="9"
+                username="Celtman"
+                value="" />
+            <comment
+                rating="9"
+                username="Hooligan06"
+                value="" />
+            <comment
+                rating="9"
+                username="juansolo1000"
+                value="" />
+            <comment
+                rating="9"
+                username="Xiao_Yu"
+                value="" />
+            <comment
+                rating="8.5"
+                username="guicouto"
+                value="" />
+            <comment
+                rating="8.5"
+                username="evereasy"
+                value="Almost every single emote I get is abusive &amp; intended to fuck up my game. There should be a way to disable the emotes instead of having to squelch EVERY game. I&apos;m sick of doing something each &amp; every match that I should be able to JUST turn off.
+
+Well played
+Well played
+Well played
+Well played
+Well played
+Well played
+" />
+            <comment
+                rating="8.5"
+                username="cwb1014"
+                value="" />
+            <comment
+                rating="8.5"
+                username="scih"
+                value="" />
+            <comment
+                rating="8.5"
+                username="fiyero_"
+                value="" />
+            <comment
+                rating="8.25"
+                username="Sandbagging"
+                value="" />
+            <comment
+                rating="8"
+                username="Zilfalon"
+                value="" />
+            <comment
+                rating="8"
+                username="Ben_Bos"
+                value="Downgraded it from 10 to 8.
+
+A digital CCG that is perfect to play on the loo with the iPad.
+
+But a money grab now. A pity." />
+            <comment
+                rating="8"
+                username="drbeaker13"
+                value="" />
+            <comment
+                rating="8"
+                username="Drenus"
+                value="" />
+            <comment
+                rating="8"
+                username="eagle98mn"
+                value="" />
+            <comment
+                rating="8"
+                username="Jonny_Lenny"
+                value="" />
+            <comment
+                rating="8"
+                username="fps_bgg"
+                value="Beta version" />
+            <comment
+                rating="8"
+                username="wizcreations"
+                value="This is easily the best CCG I&apos;ve played. There is a high learning curve that may be prohibitive for new players, but the volume of information online readily helps players overcome the curve." />
+        </comments>
+
+
+        <statistics page="1">
+            <ratings>
+                <usersrated value="307" />
+                <average value="7.31203" />
+                <bayesaverage value="6.99297" />
+
+                <ranks>
+                    <rank
+                        name="videogame"
+                        bayesaverage="6.99297"
+                        friendlyname="Video Game Rank"
+                        id="32"
+                        type="subtype"
+                        value="510" />
+                    <rank
+                        name="iphone"
+                        bayesaverage="7.01929"
+                        friendlyname="iPhone Rank"
+                        id="4443"
+                        type="family"
+                        value="80" />
+                    <rank
+                        name="macintosh"
+                        bayesaverage="7.03164"
+                        friendlyname="Macintosh Rank"
+                        id="4729"
+                        type="family"
+                        value="192" />
+                    <rank
+                        name="pc"
+                        bayesaverage="7.01427"
+                        friendlyname="Windows Rank"
+                        id="4977"
+                        type="family"
+                        value="385" />
+                    <rank
+                        name="android"
+                        bayesaverage="7.01718"
+                        friendlyname="Android Rank"
+                        id="6063"
+                        type="family"
+                        value="67" />
+                    <rank
+                        name="ipad"
+                        bayesaverage="7.01816"
+                        friendlyname="iPad Rank"
+                        id="6826"
+                        type="family"
+                        value="84" />
+                </ranks>
+
+                <stddev value="1.86088" />
+                <median value="0" />
+                <owned value="514" />
+                <trading value="1" />
+                <wanting value="2" />
+                <wishing value="8" />
+                <numcomments value="49" />
+                <numweights value="26" />
+                <averageweight value="2.4615" />
+            </ratings>
+        </statistics>
+
+
+        <marketplacelistings>
+            <listing>
+                <listdate value="Tue, 09 May 2017 12:07:09 +0000" />
+                <price
+                    currency="EUR"
+                    value="7.00" />
+                <condition value="verygood" />
+                <notes value="I want to quit playing hearthstone and sell my account&amp;#10;&amp;#10;I have a large set for ranked play in standard. &amp;#10;I have the following legendaries:&amp;#10; jungle giants (quest), cenarius, pyros, archmage, ragnaros lightlord, tirion fordring, awaken the makers (quest), cavern below (quest), sherazin, unite the murlocs (quest), lord jarraxus, fire plume&amp;#39;s heart (quest), grommash hellscream, and 13 neutral legendaries ao cairne bloodhoof, alexstraza, ysera, malygos, nzoth, twin emporor. &amp;#10;&amp;#10;I have  6455 dust and 135 heartsstone money 3 open quests&amp;#10;Rank at the moment is 20, I usually end up rank 10-15 every month.&amp;#10;I don't have cards for wild sets anymore. &amp;#10;&amp;#10;I bought the adventures naxxramos, blackrock mountain en league of explorers.&amp;#10;You can play those adventures but you probably won't get any rewards.  &amp;#10;&amp;#10;You can transfer this account easyly to your own email adres and change password so it will be come your own account." />
+                <link
+                    href="https://boardgamegeek.com/market/product/1196694"
+                    title="marketlisting" />
+            </listing>
+        </marketplacelistings>
+
+    </item>
+</items>

@@ -1,13 +1,25 @@
+/**
+ * Copyright 2023 Bram Wijnands
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
 package org.audux.bgg.data.response
 
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
-import java.io.InputStream
-import java.net.URI
-import java.time.LocalDateTime
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
+import org.audux.bgg.util.extension.WrappedValueSubject.Companion.assertThat
+import org.audux.bgg.util.extension.WrappedLocalDateTimeSubject.Companion.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.RegisterExtension
@@ -15,6 +27,10 @@ import org.koin.core.component.inject
 import org.koin.core.qualifier.named
 import org.koin.test.KoinTest
 import org.koin.test.junit5.KoinTestExtension
+import java.io.InputStream
+import java.net.URI
+import java.time.LocalDate
+import java.time.LocalDateTime
 
 /** Test class for [Things] and nested response classes. */
 class ThingsResponseTest : KoinTest {
@@ -24,6 +40,13 @@ class ThingsResponseTest : KoinTest {
   val koinTestExtension = KoinTestExtension.create { modules(appModule) }
 
   private val mapper: ObjectMapper by inject(named<BggXmlObjectMapper>())
+
+  @Test
+  fun `parses an empty response`() {
+    val things = mapper.readValue(xml("thing?id=-1"), Things::class.java)
+
+    assertThat(things.things).hasSize(0)
+  }
 
   @Nested
   inner class BoardGame {
@@ -37,13 +60,13 @@ class ThingsResponseTest : KoinTest {
       assertThat(thing.type).isEqualTo("boardgame")
       assertThat(thing.names).hasSize(3)
       assertThat(thing.description).hasLength(1270)
-      assertThat(thing.yearPublished?.value).isEqualTo(1986)
-      assertThat(thing.minPlayers?.value).isEqualTo(3)
-      assertThat(thing.maxPlayers?.value).isEqualTo(5)
-      assertThat(thing.playingTimeInMinutes?.value).isEqualTo(240)
-      assertThat(thing.minPlayingTimeInMinutes?.value).isEqualTo(240)
-      assertThat(thing.maxPlayingTimeInMinutes?.value).isEqualTo(240)
-      assertThat(thing.minAge?.value).isEqualTo(14)
+      assertThat(thing.yearPublished).hasValue(1986)
+      assertThat(thing.minPlayers).hasValue(3)
+      assertThat(thing.maxPlayers).hasValue(5)
+      assertThat(thing.playingTimeInMinutes).hasValue(240)
+      assertThat(thing.minPlayingTimeInMinutes).hasValue(240)
+      assertThat(thing.maxPlayingTimeInMinutes).hasValue(240)
+      assertThat(thing.minAge).hasValue(14)
     }
 
     @Test
@@ -242,12 +265,12 @@ class ThingsResponseTest : KoinTest {
       assertThat(versions).hasSize(8)
       assertThat(versions[0].id).isEqualTo(685632)
       assertThat(versions[0].type).isEqualTo("boardgameversion")
-      assertThat(versions[0].yearPublished?.value).isEqualTo(2024)
-      assertThat(versions[0].productCode?.value).isEqualTo("8593085104517")
-      assertThat(versions[0].width?.value).isEqualTo(11.7)
-      assertThat(versions[0].length?.value).isEqualTo(11.7)
-      assertThat(versions[0].depth?.value).isEqualTo(2.8)
-      assertThat(versions[0].weight?.value).isEqualTo(0)
+      assertThat(versions[0].yearPublished).hasValue(2024)
+      assertThat(versions[0].productCode).hasValue("8593085104517")
+      assertThat(versions[0].width).hasValue(11.7)
+      assertThat(versions[0].length).hasValue(11.7)
+      assertThat(versions[0].depth).hasValue(2.8)
+      assertThat(versions[0].weight).hasValue(0)
       assertThat(versions[0].thumbnail)
           .isEqualTo(
               "https://cf.geekdo-images.com/D3TEgieEudyIiY70hkQiKw__thumb/img/DhEkGYrwkfDTAUWK7EFjwiVdBMU=/fit-in/200x150/filters:strip_icc()/pic7800352.png")
@@ -272,9 +295,9 @@ class ThingsResponseTest : KoinTest {
       val stats = things.things[0].statistics!!
       val ratings = stats.ratings
       assertThat(stats.page).isEqualTo(1)
-      assertThat(ratings.usersRated?.value).isEqualTo(1373)
-      assertThat(ratings.average?.value).isEqualTo(8.27146)
-      assertThat(ratings.bayesAverage?.value).isEqualTo(6.57535)
+      assertThat(ratings.usersRated).hasValue(1373)
+      assertThat(ratings.average).hasValue(8.27146)
+      assertThat(ratings.bayesAverage).hasValue(6.57535)
       assertThat(ratings.ranks).hasSize(2)
       assertThat(ratings.ranks[0].type).isEqualTo("subtype")
       assertThat(ratings.ranks[0].id).isEqualTo(1)
@@ -282,15 +305,15 @@ class ThingsResponseTest : KoinTest {
       assertThat(ratings.ranks[0].friendlyName).isEqualTo("Board Game Rank")
       assertThat(ratings.ranks[0].value).isEqualTo("1045")
       assertThat(ratings.ranks[0].bayesAverage).isEqualTo(6.57535)
-      assertThat(ratings.stdDev?.value).isEqualTo(1.25647)
-      assertThat(ratings.median?.value).isEqualTo(0)
-      assertThat(ratings.owned?.value).isEqualTo(2911)
-      assertThat(ratings.trading?.value).isEqualTo(9)
-      assertThat(ratings.wanting?.value).isEqualTo(381)
-      assertThat(ratings.wishing?.value).isEqualTo(3076)
-      assertThat(ratings.numComments?.value).isEqualTo(324)
-      assertThat(ratings.numWeights?.value).isEqualTo(173)
-      assertThat(ratings.averageWeight?.value).isEqualTo(4.0578)
+      assertThat(ratings.stdDev).hasValue(1.25647)
+      assertThat(ratings.median).hasValue(0)
+      assertThat(ratings.owned).hasValue(2911)
+      assertThat(ratings.trading).hasValue(9)
+      assertThat(ratings.wanting).hasValue(381)
+      assertThat(ratings.wishing).hasValue(3076)
+      assertThat(ratings.numComments).hasValue(324)
+      assertThat(ratings.numWeights).hasValue(173)
+      assertThat(ratings.averageWeight).hasValue(4.0578)
     }
 
     @Test
@@ -303,10 +326,10 @@ class ThingsResponseTest : KoinTest {
       assertThat(things.things).hasSize(1)
       val listings = things.things[0].listings
       assertThat(listings).hasSize(11)
-      assertThat(listings[0].listDate.value).isEqualTo(LocalDateTime.of(2023, 10, 6, 19, 41, 25))
+      assertThat(listings[0].listDate).hasValue(LocalDateTime.of(2023, 10, 6, 19, 41, 25))
       assertThat(listings[0].price.value).isEqualTo(80.00)
       assertThat(listings[0].price.currency).isEqualTo("USD")
-      assertThat(listings[0].condition?.value).isEqualTo("new")
+      assertThat(listings[0].condition).hasValue("new")
       assertThat(listings[0].notes?.value).startsWith("Game is NIS")
       assertThat(listings[0].webLink.title).isEqualTo("marketlisting")
       assertThat(listings[0].webLink.href)
@@ -319,24 +342,23 @@ class ThingsResponseTest : KoinTest {
     @Test
     fun `Parses all available data`() {
       val things =
-        mapper.readValue(
-          xml("thing?id=307683&stats=1&ratingcomments=1&versions=1&marketplace=1&videos=1"),
-          Things::class.java)
+          mapper.readValue(
+              xml("thing?id=307683&stats=1&ratingcomments=1&versions=1&marketplace=1&videos=1"),
+              Things::class.java)
 
       assertThat(things.things).hasSize(1)
       val thing = things.things[0]
       assertThat(thing.name).isEqualTo("Final Girl: The Happy Trails Horror")
       assertThat(thing.type).isEqualTo("boardgameexpansion")
       assertThat(thing.names).hasSize(5)
-      assertThat(thing.description)
-        .startsWith("Final Girl Feature Film Box&#10;&#10;Summer camp ")
-      assertThat(thing.yearPublished?.value).isEqualTo(2021)
-      assertThat(thing.minPlayers?.value).isEqualTo(1)
-      assertThat(thing.maxPlayers?.value).isEqualTo(1)
-      assertThat(thing.playingTimeInMinutes?.value).isEqualTo(60)
-      assertThat(thing.minPlayingTimeInMinutes?.value).isEqualTo(20)
-      assertThat(thing.maxPlayingTimeInMinutes?.value).isEqualTo(60)
-      assertThat(thing.minAge?.value).isEqualTo(14)
+      assertThat(thing.description).startsWith("Final Girl Feature Film Box&#10;&#10;Summer camp ")
+      assertThat(thing.yearPublished).hasValue(2021)
+      assertThat(thing.minPlayers).hasValue(1)
+      assertThat(thing.maxPlayers).hasValue(1)
+      assertThat(thing.playingTimeInMinutes).hasValue(60)
+      assertThat(thing.minPlayingTimeInMinutes).hasValue(20)
+      assertThat(thing.maxPlayingTimeInMinutes).hasValue(60)
+      assertThat(thing.minAge).hasValue(14)
       assertThat(thing.thumbnail).contains("T6zgfc99T9uq0RVqsqxdmFDuhEo")
       assertThat(thing.image).contains("Duq3Zkvlajxqsy7Vh1scYKru70M")
       assertThat(thing.links).hasSize(30)
@@ -344,7 +366,7 @@ class ThingsResponseTest : KoinTest {
       assertThat(thing.versions).hasSize(5)
       assertThat(thing.comments?.totalItems).isEqualTo(1238)
       assertThat(thing.comments?.comments).hasSize(100)
-      assertThat(thing.statistics?.ratings?.usersRated?.value).isEqualTo(1236) // Bug in BGG?
+      assertThat(thing.statistics?.ratings?.usersRated).hasValue(1236) // Bug in BGG?
       assertThat(thing.listings).hasSize(3)
     }
   }
@@ -378,11 +400,93 @@ class ThingsResponseTest : KoinTest {
     }
   }
 
-  @Nested inner class VideoGame
+  @Nested
+  inner class VideoGame {
+    @Test
+    fun `Parses all available data`() {
+      val things =
+          mapper.readValue(
+              xml("thing?id=140545&stats=1&ratingcomments=1&versions=1&marketplace=1&videos=1"),
+              Things::class.java)
 
-  @Nested inner class RpgItem
+      assertThat(things.things).hasSize(1)
+      val thing = things.things[0]
+      assertThat(thing.name).isEqualTo("Hearthstone: Heroes of Warcraft")
+      assertThat(thing.type).isEqualTo("videogame")
+      assertThat(thing.names).hasSize(2)
+      assertThat(thing.description)
+          .startsWith("Sheathe your sword, draw your deck, and get ready for Hearthstone")
+      assertThat(thing.yearPublished).isNull()
+      assertThat(thing.releaseDate).hasValue(LocalDate.of(2014, 1, 21))
+      assertThat(thing.thumbnail).contains("ppeDi-cEnHYG96vYa7T8gwnn7OI")
+      assertThat(thing.image).contains("ft5vToSnwsCajOxHMaSuKgl_IL4")
+      assertThat(thing.links).hasSize(38)
+      assertThat(thing.videos).hasSize(10)
+      assertThat(thing.versions).hasSize(21)
+      assertThat(thing.comments?.totalItems).isEqualTo(319)
+      assertThat(thing.comments?.comments).hasSize(100)
+      assertThat(thing.statistics?.ratings?.usersRated).hasValue(307)
+      assertThat(thing.listings).hasSize(1)
+    }
+  }
 
-  @Nested inner class RpgIssue
+  @Nested
+  inner class RpgItem {
+    @Test
+    fun `Parses all available data`() {
+      val things =
+          mapper.readValue(
+              xml("thing?id=311654&stats=1&ratingcomments=1&versions=1&marketplace=1&videos=1"),
+              Things::class.java)
+
+      assertThat(things.things).hasSize(1)
+      val thing = things.things[0]
+      assertThat(thing.name).isEqualTo("Alice is Missing")
+      assertThat(thing.type).isEqualTo("rpgitem")
+      assertThat(thing.names).hasSize(2)
+      assertThat(thing.seriesCode).hasValue("")
+      assertThat(thing.description).startsWith("From the kickstarter:&#10;&#10;Alice is Missing")
+      assertThat(thing.yearPublished).hasValue(2020)
+      assertThat(thing.thumbnail).contains("g9QMstNAY2uOVSR1rH5Hx7Gxquk")
+      assertThat(thing.image).contains("nGOu9LrFF5udRimbJrei6HExde8")
+      assertThat(thing.links).hasSize(16)
+      assertThat(thing.videos).hasSize(6)
+      assertThat(thing.versions).hasSize(0)
+      assertThat(thing.comments?.totalItems).isEqualTo(57)
+      assertThat(thing.comments?.comments).hasSize(57)
+      assertThat(thing.statistics?.ratings?.usersRated).hasValue(56)
+      assertThat(thing.listings).hasSize(3)
+    }
+  }
+
+  @Nested inner class RpgIssue {
+    @Test
+    fun `Parses all available data`() {
+      val things =
+        mapper.readValue(
+          xml("thing?id=51651&stats=1&ratingcomments=1&videos=1&marketplace=1"),
+          Things::class.java)
+
+      assertThat(things.things).hasSize(1)
+      val thing = things.things[0]
+      assertThat(thing.name).isEqualTo("Dragon Magazine Archive")
+      assertThat(thing.type).isEqualTo("rpgissue")
+      assertThat(thing.names).hasSize(1)
+      assertThat(thing.description).startsWith("A boxed set of 5 Data CD's that includes up to")
+      assertThat(thing.yearPublished).isNull()
+      assertThat(thing.datePublished).hasValue("1999-00-00")
+      assertThat(thing.issueIndex).hasValue(5000)
+      assertThat(thing.thumbnail).contains("DueVd0hHrr37r4WDXcQZnZks19E")
+      assertThat(thing.image).contains("H4w1nkrD9nSW4lkWGaYH3kFPOY0")
+      assertThat(thing.links).hasSize(17)
+      assertThat(thing.videos).hasSize(0)
+      assertThat(thing.versions).hasSize(0)
+      assertThat(thing.comments?.totalItems).isEqualTo(27)
+      assertThat(thing.comments?.comments).hasSize(27)
+      assertThat(thing.statistics?.ratings?.usersRated).hasValue(26)
+      assertThat(thing.listings).hasSize(0)
+    }
+  }
 
   @Test
   fun `WrappedValue Parses self closing elements - Int`() {

@@ -15,7 +15,6 @@ package org.audux.bgg.data.response
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.annotation.JsonMerge
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.annotation.JsonSetter
@@ -25,6 +24,7 @@ import com.fasterxml.jackson.annotation.Nulls
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import java.net.URI
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 /** Response wrapper for the things to be returned. */
@@ -73,6 +73,15 @@ data class Thing(
     /** The year it was published in e.g. `2019`. */
     val yearPublished: WrappedValue<Int>?,
 
+    /** The date it was published (For RPG-issues).
+     *
+     * Note: Most publish dates only contain years and have an invalid date format, i.e. '1999-0-0'
+     */
+    val datePublished: WrappedValue<String>?,
+
+    /** The year it was released in e.g. `2019`. (For video games) */
+    val releaseDate: WrappedValue<LocalDate>?,
+
     /** Minimum number of players required. */
     val minPlayers: WrappedValue<Int>?,
 
@@ -90,13 +99,6 @@ data class Thing(
 
     /** Minimum age to play/participate in thhe thing. */
     val minAge: WrappedValue<Int>?,
-
-    /**
-     * Depending on the [type] this list may contain different links e.g. for boardgames links such
-     * as: `boardgamecategory`, `boardgamefamily`, `boardgamemechanic` etc. may be included. For
-     * `rpgitem` similar but different links are returned e.g. `rpgitemcategory` etc.
-     */
-    @JsonMerge @JacksonXmlProperty(localName = "link") val links: List<Link> = listOf(),
 
     /** A list of videos associated with the thing, could be reviews, how to plays, unboxing etc. */
     @JacksonXmlElementWrapper(localName = "videos") val videos: List<Video> = listOf(),
@@ -119,9 +121,27 @@ data class Thing(
     @JacksonXmlElementWrapper(useWrapping = true)
     @JacksonXmlProperty(localName = "versions")
     val versions: List<Version> = listOf(),
+
+    /** Series codes for RPG items. */
+    val seriesCode: WrappedValue<String>?,
+
+    /** The issue index for the RPG issue. */
+    val issueIndex: WrappedValue<Int>?,
 ) {
+    /** Contains a list of polls such as the [PlayerAgePoll]. */
     @JsonProperty("poll")
     var polls: List<Poll> = listOf()
+        set(value) {
+            field = field + value
+        }
+
+    /**
+     * Depending on the [type] this list may contain different links e.g. for boardgames links such
+     * as: `boardgamecategory`, `boardgamefamily`, `boardgamemechanic` etc. may be included. For
+     * `rpgitem` similar but different links are returned e.g. `rpgitemcategory` etc.
+     */
+    @JacksonXmlProperty(localName = "link")
+    var links: List<Link> = listOf()
         set(value) {
             field = field + value
         }
@@ -157,6 +177,9 @@ data class Version(
 
     /** When the product was published. */
     val yearPublished: WrappedValue<Number>?,
+
+    /** The year it was released in e.g. `2019`. (For video games) */
+    val releaseDate: WrappedValue<LocalDate>?,
 
     /** Product code of the product. */
     val productCode: WrappedValue<String>?,

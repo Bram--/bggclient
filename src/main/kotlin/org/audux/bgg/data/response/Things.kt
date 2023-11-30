@@ -38,9 +38,9 @@ data class Things(
 )
 
 /**
- * An item or thing which could be either of the [org.audux.bgg.data.request.ThingType] objects. As
+ * An item or thing which could be either of the [org.audux.bgg.data.common.ThingType] objects. As
  * a result of the loose overlap of the types most values are Nullable, however type specific data
- * is supplied via the [link] property.
+ * is supplied via the [Link] property.
  *
  * Furthermore, the settings/filling of the properties is highly dependent on the request. This is
  * because additional parameters need to be set in order for the data to be retrieved. For example
@@ -56,7 +56,7 @@ data class Thing(
     /**
      * The type of thing e.g. boardgame, expansion etc.
      *
-     * @see org.audux.bgg.data.request.ThingType
+     * @see org.audux.bgg.data.common.ThingType
      */
     val type: String,
 
@@ -571,17 +571,3 @@ data class LeveledPollResult(
     @JacksonXmlProperty(isAttribute = true) val level: Int,
 )
 // endregion Polls
-
-// region Value wrapper classes for empty element tags only containing attributes.
-/** 'Hack' as many BGG API values are stored in an attribute e.g. '<element value='2.123 />'' */
-data class WrappedValue<T>(
-    @JacksonXmlProperty(isAttribute = true) val value: T,
-)
-
-/** 'Hack' as many BGG API values are stored in an attribute e.g. '<element value='2.123 />'' */
-data class WrappedLocalDateTime(
-    @JacksonXmlProperty(isAttribute = true)
-    @JsonFormat(pattern = "E, dd MMM yyyy HH:mm:ss Z")
-    val value: LocalDateTime,
-)
-// endregion

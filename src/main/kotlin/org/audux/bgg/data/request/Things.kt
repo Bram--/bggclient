@@ -19,20 +19,8 @@ import io.ktor.http.appendPathSegments
 import io.ktor.util.StringValues
 import org.audux.bgg.BggClient
 import org.audux.bgg.BggRequestException
+import org.audux.bgg.data.common.ThingType
 import org.audux.bgg.data.response.Things
-
-/**
- * The different kind/type of things the API may return such as a board game or expansion etc.
- * [See docs for more info](https://boardgamegeek.com/wiki/page/BGG_XML_API2#Thing_Items).
- */
-enum class ThingType(val param: String) {
-    BOARD_GAME("boardgame"),
-    BOARD_GAME_EXPANSION("boardgameexpansion"),
-    BOARD_GAME_ACCESSORY("boardgameaccessory"),
-    VIDEO_GAME("videogame"),
-    RPG_ITEM("rpgitem"),
-    RPG_ISSUE("rpgissue")
-}
 
 /**
  * Request a Thing or list of things. Multiple things can be requested by passing in several IDs.

@@ -1,6 +1,13 @@
 plugins {
   `java-library`
   alias(libs.plugins.org.jetbrains.kotlin.jvm)
+  alias(libs.plugins.ktfmt.gradle)
+}
+
+ktfmt {
+  kotlinLangStyle()
+
+  removeUnusedImports.set(true)
 }
 
 tasks.test {

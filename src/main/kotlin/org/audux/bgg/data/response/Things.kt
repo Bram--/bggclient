@@ -24,10 +24,10 @@ import com.fasterxml.jackson.annotation.Nulls
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import org.audux.bgg.data.common.Name
 import java.net.URI
 import java.time.LocalDate
 import java.time.LocalDateTime
+import org.audux.bgg.data.common.Name
 import org.audux.bgg.data.common.ThingType
 
 /** Response wrapper for the things to be returned. */

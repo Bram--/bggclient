@@ -14,8 +14,6 @@
 package org.audux.bgg.data.response
 
 import com.fasterxml.jackson.annotation.JsonRootName
-import com.fasterxml.jackson.annotation.JsonSetter
-import com.fasterxml.jackson.annotation.Nulls
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import org.audux.bgg.data.common.Name
@@ -31,8 +29,7 @@ data class SearchResults(
     @JacksonXmlProperty(isAttribute = true) val total: Int,
 
     /** List of the actual things. */
-    @JacksonXmlProperty(localName = "item")
-    val results: List<SearchResult>
+    @JacksonXmlProperty(localName = "item") val results: List<SearchResult>
 )
 
 /** Encapsulates a single search result. */
@@ -44,8 +41,7 @@ data class SearchResult(
     @JacksonXmlProperty(isAttribute = true) val id: Int,
 
     /** Type of thing e.g. board game, video game etc. */
-    @JsonDeserialize(using = ThingTypeDeserializer::class)
-    val type: ThingType,
+    @JsonDeserialize(using = ThingTypeDeserializer::class) val type: ThingType,
 
     /** Optional year of publishing. */
     val yearPublished: WrappedValue<Int>?,

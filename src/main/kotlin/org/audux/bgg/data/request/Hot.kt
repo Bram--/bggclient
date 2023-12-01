@@ -19,7 +19,6 @@ import io.ktor.http.appendPathSegments
 import org.audux.bgg.BggClient
 import org.audux.bgg.data.common.HotListType
 import org.audux.bgg.data.response.HotList
-import org.audux.bgg.data.response.SearchResults
 
 /** Hotness endpoint that retrieve the list of most 50 active items on the site filtered by type. */
 suspend fun BggClient.hot(

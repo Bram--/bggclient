@@ -18,10 +18,7 @@ import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.data.common.ThingType
 import org.audux.bgg.data.request.hot
-import org.audux.bgg.data.request.search
-import org.audux.bgg.data.request.things
 import org.audux.bgg.module.BggKtorClient
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
@@ -69,15 +66,15 @@ class BggClient : KoinComponent {
             val client = BggClient()
             runBlocking {
                 val response = client.hot()
-//                    client.things(
-//                        ids = arrayOf(224517),
-//                        types = arrayOf(ThingType.BOARD_GAME),
-//                        marketplace = true,
-//                        ratingComments = true,
-//                        videos = true,
-//                        versions = true,
-//                        stats = true,
-//                    )
+                //                    client.things(
+                //                        ids = arrayOf(224517),
+                //                        types = arrayOf(ThingType.BOARD_GAME),
+                //                        marketplace = true,
+                //                        ratingComments = true,
+                //                        videos = true,
+                //                        versions = true,
+                //                        stats = true,
+                //                    )
 
                 Napier.i(
                     """

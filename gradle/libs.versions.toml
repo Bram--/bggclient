@@ -5,6 +5,7 @@ jackson = "2.16.+"
 junit5 = "5.8.1"
 koin = "3.5.0"
 kotlin = "1.9.21"
+ktfmt-gradle = "0.15.1"
 ktor = "2.3.6"
 napier = "2.6.1"
 org-jetbrains-kotlin-jvm = "1.9.21"
@@ -32,5 +33,6 @@ slf4j = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
 truth = { module =  "com.google.truth:truth", version.ref = "truth" }
 
 [plugins]
-kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
+ktfmt-gradle = { id = "com.ncorti.ktfmt.gradle", version.ref = "ktfmt-gradle" }

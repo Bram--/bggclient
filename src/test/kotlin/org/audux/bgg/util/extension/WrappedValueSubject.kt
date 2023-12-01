@@ -16,28 +16,28 @@ package org.audux.bgg.util.extension
 import com.google.common.truth.FailureMetadata
 import com.google.common.truth.Subject
 import com.google.common.truth.Truth
+import java.time.LocalDateTime
 import org.audux.bgg.data.response.WrappedLocalDateTime
 import org.audux.bgg.data.response.WrappedValue
-import java.time.LocalDateTime
 
 /** Truth [Subject] that adds `hasValue()` for [WrappedValue] objects. */
 class WrappedValueSubject(failureMetadata: FailureMetadata, private val actual: WrappedValue<*>?) :
     Subject(failureMetadata, actual) {
 
-  fun hasValue(value: Any?) {
-    check("value()").that(actual?.value).isEqualTo(value)
-  }
-
-  companion object {
-    @JvmStatic
-    fun assertThat(wrappedValue: WrappedValue<*>?): WrappedValueSubject {
-      return Truth.assertAbout(wrappedValues()).that(wrappedValue)
+    fun hasValue(value: Any?) {
+        check("value()").that(actual?.value).isEqualTo(value)
     }
 
-    private fun wrappedValues(): Factory<WrappedValueSubject, WrappedValue<*>> {
-      return Factory { a, b -> WrappedValueSubject(a, b) }
+    companion object {
+        @JvmStatic
+        fun assertThat(wrappedValue: WrappedValue<*>?): WrappedValueSubject {
+            return Truth.assertAbout(wrappedValues()).that(wrappedValue)
+        }
+
+        private fun wrappedValues(): Factory<WrappedValueSubject, WrappedValue<*>> {
+            return Factory { a, b -> WrappedValueSubject(a, b) }
+        }
     }
-  }
 }
 
 /** Truth [Subject] that adds `hasValue` for [WrappedLocalDateTime] objects. */
@@ -46,19 +46,19 @@ class WrappedLocalDateTimeSubject(
     private val actual: WrappedLocalDateTime?
 ) : Subject(failureMetadata, actual) {
 
-  fun hasValue(value: LocalDateTime?) {
-    check("value()").that(actual?.value).isEqualTo(value)
-  }
-
-  companion object {
-    @JvmStatic
-    fun assertThat(wrappedValue: WrappedLocalDateTime): WrappedLocalDateTimeSubject {
-      return Truth.assertAbout(wrappedLocalDateTimes()).that(wrappedValue)
+    fun hasValue(value: LocalDateTime?) {
+        check("value()").that(actual?.value).isEqualTo(value)
     }
 
-    private fun wrappedLocalDateTimes():
-        Factory<WrappedLocalDateTimeSubject, WrappedLocalDateTime> {
-      return Factory { a, b -> WrappedLocalDateTimeSubject(a, b) }
+    companion object {
+        @JvmStatic
+        fun assertThat(wrappedValue: WrappedLocalDateTime): WrappedLocalDateTimeSubject {
+            return Truth.assertAbout(wrappedLocalDateTimes()).that(wrappedValue)
+        }
+
+        private fun wrappedLocalDateTimes():
+            Factory<WrappedLocalDateTimeSubject, WrappedLocalDateTime> {
+            return Factory { a, b -> WrappedLocalDateTimeSubject(a, b) }
+        }
     }
-  }
 }

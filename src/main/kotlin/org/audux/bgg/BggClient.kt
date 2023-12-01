@@ -19,6 +19,7 @@ import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
 import kotlinx.coroutines.runBlocking
 import org.audux.bgg.data.common.ThingType
+import org.audux.bgg.data.request.hot
 import org.audux.bgg.data.request.search
 import org.audux.bgg.data.request.things
 import org.audux.bgg.module.BggKtorClient
@@ -44,6 +45,7 @@ class BggClient : KoinComponent {
     internal companion object {
         const val BASE_URL = "https://boardgamegeek.com/xmlapi2"
 
+        const val PATH_HOT = "hot"
         const val PATH_SEARCH = "search"
         const val PATH_THING = "thing"
 
@@ -66,7 +68,7 @@ class BggClient : KoinComponent {
 
             val client = BggClient()
             runBlocking {
-                val response = client.search(query = "test")
+                val response = client.hot()
 //                    client.things(
 //                        ids = arrayOf(224517),
 //                        types = arrayOf(ThingType.BOARD_GAME),
@@ -79,8 +81,7 @@ class BggClient : KoinComponent {
 
                 Napier.i(
                     """
-                    Got board game: ${response.total}
-                    ${response.results[0]}
+                    ${response.results}
                     
                     """
                         .trimIndent()

@@ -15,8 +15,6 @@ package org.audux.bgg.data.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
-import org.audux.bgg.data.common.Name
-import org.audux.bgg.data.common.ThingType
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
 import org.audux.bgg.util.TestUtils.xml
@@ -27,7 +25,7 @@ import org.koin.core.qualifier.named
 import org.koin.test.KoinTest
 import org.koin.test.junit5.KoinTestExtension
 
-class SearchResponseTest : KoinTest {
+class HotResponseTest : KoinTest {
     @JvmField
     @RegisterExtension
     @Suppress("unused")
@@ -37,26 +35,27 @@ class SearchResponseTest : KoinTest {
 
     @Test
     fun `Parses empty response`() {
-        val results = mapper.readValue(xml("search?query=no+results"), SearchResults::class.java)
+        val results = mapper.readValue(xml("hot?type=rpgperson"), HotList::class.java)
 
-        assertThat(results.total).isEqualTo(0)
         assertThat(results.results).hasSize(0)
     }
 
     @Test
-    fun `Parses search results`() {
-        val results = mapper.readValue(xml("search?query=my+little"), SearchResults::class.java)
+    fun `Parses a hot list`() {
+        val results = mapper.readValue(xml("hot"), HotList::class.java)
 
-        assertThat(results.total).isEqualTo(144)
-        assertThat(results.results).hasSize(144)
-
+        assertThat(results.results).hasSize(50)
         assertThat(results.results[0])
             .isEqualTo(
-                SearchResult(
-                    id = 167159,
-                    name = Name("Connect 4: My Little Pony", "primary"),
-                    type = ThingType.BOARD_GAME,
-                    yearPublished = WrappedValue(2014)
+                HotListItem(
+                    id = 332686,
+                    rank = 1,
+                    name = WrappedValue("John Company: Second Edition"),
+                    yearPublished = WrappedValue(2022),
+                    thumbnail =
+                        WrappedValue(
+                            "https://cf.geekdo-images.com/TAdE4z_bwAAjJlmPrkmKhA__thumb/img/pwgtQn8ArKjwBxk3bnDuIVAPWgU=/fit-in/200x150/filters:strip_icc()/pic6601629.jpg"
+                        ),
                 )
             )
     }

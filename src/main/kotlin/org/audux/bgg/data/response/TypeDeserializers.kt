@@ -16,6 +16,7 @@ package org.audux.bgg.data.response
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JsonDeserializer
+import org.audux.bgg.data.common.HotListType
 import org.audux.bgg.data.common.ThingType
 
 /** Deserializes thing types to the associated [ThingType] enum value. */

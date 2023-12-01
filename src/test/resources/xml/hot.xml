@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+    <item
+        id="332686"
+        rank="1">
+        <thumbnail value="https://cf.geekdo-images.com/TAdE4z_bwAAjJlmPrkmKhA__thumb/img/pwgtQn8ArKjwBxk3bnDuIVAPWgU=/fit-in/200x150/filters:strip_icc()/pic6601629.jpg" />
+        <name value="John Company: Second Edition" />
+        <yearpublished value="2022" />
+    </item>
+    <item
+        id="384150"
+        rank="2">
+        <thumbnail value="https://cf.geekdo-images.com/9LnXSuY7a-GIWkFmcgcz7Q__thumb/img/HPNEq0SUufh56_ApqSsmQHl0CgQ=/fit-in/200x150/filters:strip_icc()/pic7734815.jpg" />
+        <name value="Djinn" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="401361"
+        rank="3">
+        <thumbnail value="https://cf.geekdo-images.com/YCWBjskfoubFFbBt8gxm2A__thumb/img/7jL8pelRSje8J6zHKQYRpAnc0jc=/fit-in/200x150/filters:strip_icc()/pic7772943.png" />
+        <name value="Doubt Is Our Product" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="381435"
+        rank="4">
+        <thumbnail value="https://cf.geekdo-images.com/xs9CWyvypbyi4gDmOp4-Ag__thumb/img/H7OYGmsLUCQRJ3EZm-AT78auRyQ=/fit-in/200x150/filters:strip_icc()/pic7377352.jpg" />
+        <name value="General Orders: World War II" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="366013"
+        rank="5">
+        <thumbnail value="https://cf.geekdo-images.com/-vOrd4bOspibyohYExLqWg__thumb/img/2GbaKvYOzWIxfgbYTk2R9puiyzo=/fit-in/200x150/filters:strip_icc()/pic6940449.png" />
+        <name value="Heat: Pedal to the Metal" />
+        <yearpublished value="2022" />
+    </item>
+    <item
+        id="381248"
+        rank="6">
+        <thumbnail value="https://cf.geekdo-images.com/bt-s6gbhhI46VSIgsxyOIw__thumb/img/TKmW4GDTIqDq242s222Viq_R4po=/fit-in/200x150/filters:strip_icc()/pic7375234.jpg" />
+        <name value="Nemesis: Retaliation" />
+        <yearpublished value="2025" />
+    </item>
+    <item
+        id="315727"
+        rank="7">
+        <thumbnail value="https://cf.geekdo-images.com/zw7xI7gJD6r7zNDR-AbVAQ__thumb/img/zdtFJ5tcE_59VRiqO9cgjxWP6Zw=/fit-in/200x150/filters:strip_icc()/pic6338617.jpg" />
+        <name value="Last Light" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="337627"
+        rank="8">
+        <thumbnail value="https://cf.geekdo-images.com/hItZjdDTNuaCZ7fEztwcUQ__thumb/img/Ov6eWR87PZ2O1XYQtXMO6KvfzOg=/fit-in/200x150/filters:strip_icc()/pic6153324.jpg" />
+        <name value="Voidfall" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="342942"
+        rank="9">
+        <thumbnail value="https://cf.geekdo-images.com/SoU8p28Sk1s8MSvoM4N8pQ__thumb/img/4KuHNTWSMPf8vTNDKSRMMI3oOv8=/fit-in/200x150/filters:strip_icc()/pic6293412.jpg" />
+        <name value="Ark Nova" />
+        <yearpublished value="2021" />
+    </item>
+    <item
+        id="400314"
+        rank="10">
+        <thumbnail value="https://cf.geekdo-images.com/dT1vJbUizZFmJAphKg-byA__thumb/img/X3_vUM9wGDabo0Goc3iCZE7IfWM=/fit-in/200x150/filters:strip_icc()/pic7720813.png" />
+        <name value="Apiary" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="371942"
+        rank="11">
+        <thumbnail value="https://cf.geekdo-images.com/qXT1U-nFh9PE8ujfdmI7dA__thumb/img/ru1l95gdKNXSsByDglE9Xxgu0kE=/fit-in/200x150/filters:strip_icc()/pic7754663.jpg" />
+        <name value="The White Castle" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="397598"
+        rank="12">
+        <thumbnail value="https://cf.geekdo-images.com/UVUkjMV_Q2paVUIUP30Vvw__thumb/img/H6qmxJrRFjtOAPZOfDoZ480-46I=/fit-in/200x150/filters:strip_icc()/pic7664424.jpg" />
+        <name value="Dune: Imperium – Uprising" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="396790"
+        rank="13">
+        <thumbnail value="https://cf.geekdo-images.com/fIVUaMvbfy6GCOgfxt7xaw__thumb/img/jKsO4nKmtNjX5bfH7aCPeK7hsqU=/fit-in/200x150/filters:strip_icc()/pic7647168.jpg" />
+        <name value="Nucleum" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="175914"
+        rank="14">
+        <thumbnail value="https://cf.geekdo-images.com/Wtxml94LAXsIWQCxGPS63Q__thumb/img/LKU2KoMev222qUIKyNqaCF_ZLPY=/fit-in/200x150/filters:strip_icc()/pic2649434.png" />
+        <name value="Food Chain Magnate" />
+        <yearpublished value="2015" />
+    </item>
+    <item
+        id="316554"
+        rank="15">
+        <thumbnail value="https://cf.geekdo-images.com/PhjygpWSo-0labGrPBMyyg__thumb/img/JGgY-nBmkyB8WRp8vcoBLlNMQ5U=/fit-in/200x150/filters:strip_icc()/pic5666597.jpg" />
+        <name value="Dune: Imperium" />
+        <yearpublished value="2020" />
+    </item>
+    <item
+        id="224517"
+        rank="16">
+        <thumbnail value="https://cf.geekdo-images.com/x3zxjr-Vw5iU4yDPg70Jgw__thumb/img/o18rjEemoWaVru9Y2TyPwuIaRfE=/fit-in/200x150/filters:strip_icc()/pic3490053.jpg" />
+        <name value="Brass: Birmingham" />
+        <yearpublished value="2018" />
+    </item>
+    <item
+        id="162886"
+        rank="17">
+        <thumbnail value="https://cf.geekdo-images.com/kjCm4ZvPjIZxS-mYgSPy1g__thumb/img/aUlIih2_R7P8IYKeyNl2heLQbu8=/fit-in/200x150/filters:strip_icc()/pic7013651.jpg" />
+        <name value="Spirit Island" />
+        <yearpublished value="2017" />
+    </item>
+    <item
+        id="383179"
+        rank="18">
+        <thumbnail value="https://cf.geekdo-images.com/D1vrcFEptCEoD8Z6s_iRfw__thumb/img/0yBK_DMaSgRVrp2fGuNPgb0Jo7w=/fit-in/200x150/filters:strip_icc()/pic7430993.jpg" />
+        <name value="Age of Innovation" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="167791"
+        rank="19">
+        <thumbnail value="https://cf.geekdo-images.com/wg9oOLcsKvDesSUdZQ4rxw__thumb/img/BTxqxgYay5tHJfVoJ2NF5g43_gA=/fit-in/200x150/filters:strip_icc()/pic3536616.jpg" />
+        <name value="Terraforming Mars" />
+        <yearpublished value="2016" />
+    </item>
+    <item
+        id="407343"
+        rank="20">
+        <thumbnail value="https://cf.geekdo-images.com/bHjyk23An87Hl0ZuA91sTg__thumb/img/APzgIOZ7YNukCeoR0lERexoNR5Y=/fit-in/200x150/filters:strip_icc()/pic7885912.jpg" />
+        <name value="Ironwood" />
+        <yearpublished value="2024" />
+    </item>
+    <item
+        id="167355"
+        rank="21">
+        <thumbnail value="https://cf.geekdo-images.com/tAqLpWxQ0Oo3GaPP3MER1g__thumb/img/sMIg7_b5ekS1xm6cBIoMFpH0MZs=/fit-in/200x150/filters:strip_icc()/pic5073276.jpg" />
+        <name value="Nemesis" />
+        <yearpublished value="2018" />
+    </item>
+    <item
+        id="231733"
+        rank="22">
+        <thumbnail value="https://cf.geekdo-images.com/sy89BiuZXfbSnG7Cag9tBQ__thumb/img/eTnMwfCC2jCGDPXC08SIaMXNOTM=/fit-in/200x150/filters:strip_icc()/pic5902073.png" />
+        <name value="Obsession" />
+        <yearpublished value="2018" />
+    </item>
+    <item
+        id="364186"
+        rank="23">
+        <thumbnail value="https://cf.geekdo-images.com/vtUlmpCE_ij4Us9hOPPcZw__thumb/img/N1F2Aeld8k0SuCgpgWlOaruXD4A=/fit-in/200x150/filters:strip_icc()/pic6896566.png" />
+        <name value="Terra Nova" />
+        <yearpublished value="2022" />
+    </item>
+    <item
+        id="373106"
+        rank="24">
+        <thumbnail value="https://cf.geekdo-images.com/uXMeQzNenHb3zK7Hoa6b2w__thumb/img/WyPClajMWU9lV5BdCXiZnqdZgmU=/fit-in/200x150/filters:strip_icc()/pic7398904.jpg" />
+        <name value="Sky Team" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="377480"
+        rank="25">
+        <thumbnail value="https://cf.geekdo-images.com/TGgGJPAqUSZSPaeBZU4O-Q__thumb/img/sljwRNnTFGxsvGdloYU0otKhqNU=/fit-in/200x150/filters:strip_icc()/pic7257561.png" />
+        <name value="Hooky" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="312484"
+        rank="26">
+        <thumbnail value="https://cf.geekdo-images.com/6GqH14TJJhza86BX5HCLEQ__thumb/img/J8SVmGOJXZGxNjkT3xYNQU7Haxg=/fit-in/200x150/filters:strip_icc()/pic5674958.jpg" />
+        <name value="Lost Ruins of Arnak" />
+        <yearpublished value="2020" />
+    </item>
+    <item
+        id="295947"
+        rank="27">
+        <thumbnail value="https://cf.geekdo-images.com/MjeJZfulbsM1DSV3DrGJYA__thumb/img/tVSFjSxYEcw7sKj3unIIQV8kxoc=/fit-in/200x150/filters:strip_icc()/pic5100691.jpg" />
+        <name value="Cascadia" />
+        <yearpublished value="2021" />
+    </item>
+    <item
+        id="205637"
+        rank="28">
+        <thumbnail value="https://cf.geekdo-images.com/B5F5ulz0UivNgrI9Ky0euA__thumb/img/L8ouPl5jv2Ye9MC4R_Os2zSGigE=/fit-in/200x150/filters:strip_icc()/pic3122349.jpg" />
+        <name value="Arkham Horror: The Card Game" />
+        <yearpublished value="2016" />
+    </item>
+    <item
+        id="237182"
+        rank="29">
+        <thumbnail value="https://cf.geekdo-images.com/JUAUWaVUzeBgzirhZNmHHw__thumb/img/ACovMZzGGIsBRyEQXFnsT8282NM=/fit-in/200x150/filters:strip_icc()/pic4254509.jpg" />
+        <name value="Root" />
+        <yearpublished value="2018" />
+    </item>
+    <item
+        id="321608"
+        rank="30">
+        <thumbnail value="https://cf.geekdo-images.com/DCLgJlrvB-EqL6A3WgQLMQ__thumb/img/9yp6ANJx6cqdQqQ6hkNr3zA88vw=/fit-in/200x150/filters:strip_icc()/pic5715770.jpg" />
+        <name value="Hegemony: Lead Your Class to Victory" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="266192"
+        rank="31">
+        <thumbnail value="https://cf.geekdo-images.com/yLZJCVLlIx4c7eJEWUNJ7w__thumb/img/VNToqgS2-pOGU6MuvIkMPKn_y-s=/fit-in/200x150/filters:strip_icc()/pic4458123.jpg" />
+        <name value="Wingspan" />
+        <yearpublished value="2019" />
+    </item>
+    <item
+        id="356952"
+        rank="32">
+        <thumbnail value="https://cf.geekdo-images.com/GnNmkYzVofrHPlKdcqrgUA__thumb/img/vmyqBjaKMiEA2U8DZns3OexchPs=/fit-in/200x150/filters:strip_icc()/pic7090909.jpg" />
+        <name value="Empire&#039;s End" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="256960"
+        rank="33">
+        <thumbnail value="https://cf.geekdo-images.com/oSM_AuKYfGIwOtKbVEsoVg__thumb/img/NyoufH5YBFCh1rKy4uy76bR4ITk=/fit-in/200x150/filters:strip_icc()/pic4503733.png" />
+        <name value="Pax Pamir: Second Edition" />
+        <yearpublished value="2019" />
+    </item>
+    <item
+        id="295770"
+        rank="34">
+        <thumbnail value="https://cf.geekdo-images.com/iEBr5o8AbJi9V9cgQcYROQ__thumb/img/a_VDlLgE8s8bfaQKwHlHu2KoQwo=/fit-in/200x150/filters:strip_icc()/pic6177719.jpg" />
+        <name value="Frosthaven" />
+        <yearpublished value="2022" />
+    </item>
+    <item
+        id="251661"
+        rank="35">
+        <thumbnail value="https://cf.geekdo-images.com/dezQ4YjF03lZVxTdI-UJYw__thumb/img/ddtxNyNC1fPEi5M-uc-dQyNovws=/fit-in/200x150/filters:strip_icc()/pic6863204.jpg" />
+        <name value="Oathsworn: Into the Deepwood" />
+        <yearpublished value="2022" />
+    </item>
+    <item
+        id="199383"
+        rank="36">
+        <thumbnail value="https://cf.geekdo-images.com/6-Pj_AxP0mjjFXYs2ukMWw__thumb/img/XhyVFdk2GZEaU6AXLiOZQAIEr2o=/fit-in/200x150/filters:strip_icc()/pic7611495.jpg" />
+        <name value="Calimala" />
+        <yearpublished value="2017" />
+    </item>
+    <item
+        id="199792"
+        rank="37">
+        <thumbnail value="https://cf.geekdo-images.com/fjE7V5LNq31yVEW_yuqI-Q__thumb/img/Cf_mYxR_VvdjTEPXseSurni2JNI=/fit-in/200x150/filters:strip_icc()/pic3918905.png" />
+        <name value="Everdell" />
+        <yearpublished value="2018" />
+    </item>
+    <item
+        id="332772"
+        rank="38">
+        <thumbnail value="https://cf.geekdo-images.com/V0OZ9QR0pC9G5t5i9MoZTQ__thumb/img/NPtXuKlsnfPORSn6kpTcf-ZdEF0=/fit-in/200x150/filters:strip_icc()/pic6950224.jpg" />
+        <name value="Revive" />
+        <yearpublished value="2022" />
+    </item>
+    <item
+        id="390092"
+        rank="39">
+        <thumbnail value="https://cf.geekdo-images.com/2H0pJddVJA3r6btqRNLG1g__thumb/img/scMQ04r1admTpyvH91g9DbZEncg=/fit-in/200x150/filters:strip_icc()/pic7541330.png" />
+        <name value="Ticket to Ride Legacy: Legends of the West" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="385610"
+        rank="40">
+        <thumbnail value="https://cf.geekdo-images.com/ar_YhktX6VcXBLcEfnu_dw__thumb/img/XlZo63iHoNfh7yKZdJiJj2Wfglo=/fit-in/200x150/filters:strip_icc()/pic7464921.png" />
+        <name value="Kutná Hora: The City of Silver" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="367220"
+        rank="41">
+        <thumbnail value="https://cf.geekdo-images.com/CIh_rXKoRw9z8K0PJxT8nQ__thumb/img/Jh6NjibuHeYrZtSsAUXq82B1fTQ=/fit-in/200x150/filters:strip_icc()/pic6973911.jpg" />
+        <name value="Sea Salt &amp; Paper" />
+        <yearpublished value="2022" />
+    </item>
+    <item
+        id="285774"
+        rank="42">
+        <thumbnail value="https://cf.geekdo-images.com/kRvUgYiaOq07kC67ZK5UoQ__thumb/img/SDNWntiB06KhAINl06CDPkoipDc=/fit-in/200x150/filters:strip_icc()/pic4900321.jpg" />
+        <name value="Marvel Champions: The Card Game" />
+        <yearpublished value="2019" />
+    </item>
+    <item
+        id="391163"
+        rank="43">
+        <thumbnail value="https://cf.geekdo-images.com/08bC8NviSTNc4Zvur4pueA__thumb/img/Xq8TNBmMl3Z7DoynvbUXchFAztc=/fit-in/200x150/filters:strip_icc()/pic7578350.jpg" />
+        <name value="Forest Shuffle" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="115746"
+        rank="44">
+        <thumbnail value="https://cf.geekdo-images.com/ImPgGag98W6gpV1KV812aA__thumb/img/X-lBBdG4uO6LT0y1vXxCN4jdR4M=/fit-in/200x150/filters:strip_icc()/pic1215633.jpg" />
+        <name value="War of the Ring: Second Edition" />
+        <yearpublished value="2011" />
+    </item>
+    <item
+        id="350184"
+        rank="45">
+        <thumbnail value="https://cf.geekdo-images.com/0xqF_KyOb7V26Lu5YT3fxw__thumb/img/ABTwzzMGekkz2jVl01LC4789TcQ=/fit-in/200x150/filters:strip_icc()/pic6699821.jpg" />
+        <name value="Earth" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="55690"
+        rank="46">
+        <thumbnail value="https://cf.geekdo-images.com/LenzJBOHboAGU0cUIqAZPQ__thumb/img/Z3yFJIp9rmSmcGoTiqGeTkKCnQU=/fit-in/200x150/filters:strip_icc()/pic2931007.jpg" />
+        <name value="Kingdom Death: Monster" />
+        <yearpublished value="2015" />
+    </item>
+    <item
+        id="396989"
+        rank="47">
+        <thumbnail value="https://cf.geekdo-images.com/hEbikkJceop4K5OIVPOmSQ__thumb/img/dwb_evoSkkc6WBGYzaLYsaGLarU=/fit-in/200x150/filters:strip_icc()/pic7657810.jpg" />
+        <name value="Evenfall" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="255984"
+        rank="48">
+        <thumbnail value="https://cf.geekdo-images.com/Zdt8l4oTBpFICsMyNof7Jg__thumb/img/71w4Tt3xOnuDEDTCG8ni63QUhVE=/fit-in/200x150/filters:strip_icc()/pic5975244.png" />
+        <name value="Sleeping Gods" />
+        <yearpublished value="2021" />
+    </item>
+    <item
+        id="169786"
+        rank="49">
+        <thumbnail value="https://cf.geekdo-images.com/7k_nOxpO9OGIjhLq2BUZdA__thumb/img/eQ69OEDdjYjfKg6q5Navee87skU=/fit-in/200x150/filters:strip_icc()/pic3163924.jpg" />
+        <name value="Scythe" />
+        <yearpublished value="2016" />
+    </item>
+    <item
+        id="401596"
+        rank="50">
+        <thumbnail value="https://cf.geekdo-images.com/tFZI-lyp2B54d6AWBaI0jw__thumb/img/1V0zUCfYR-c6ClHSC_81vVAg_9c=/fit-in/200x150/filters:strip_icc()/pic7839687.jpg" />
+        <name value="DCeased: A Zombicide Game" />
+        <yearpublished value="2024" />
+    </item>
+</items>

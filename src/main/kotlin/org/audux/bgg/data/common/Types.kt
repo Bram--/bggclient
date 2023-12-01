@@ -47,3 +47,20 @@ data class Name(
      */
     @JacksonXmlProperty(isAttribute = true) val sortIndex: Int? = null,
 )
+
+/**
+ * Different type of hot lists that can be requested using the hot request.
+ *
+ * Note: About half of these types actually do _not_ return any list.
+ */
+enum class HotListType(val param: String) {
+    UNKNOWN(""), // Used whenever the type is empty or not recognized.
+    BOARD_GAME("boardgame"),
+    BOARD_GAME_COMPANY("boardgamecompany"), // Does not actually work?
+    BOARD_GAME_PERSON("boardgameperson"),
+    RPG("rpg"),
+    RPG_COMPANY("rpgcompany"), // Does not actually work?
+    RPG_PERSON("rpgperson"), // Does not actually work?
+    VIDEO_GAME("videogame"), // Does not actually work?
+    VIDEO_GAME_COMPANY("videogamecompany"); // Does not actually work?
+}

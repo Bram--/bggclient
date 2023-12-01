@@ -16,13 +16,13 @@ package org.audux.bgg.data.response
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
-import java.io.InputStream
 import java.net.URI
 import java.time.LocalDate
 import java.time.LocalDateTime
 import org.audux.bgg.data.common.ThingType
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
+import org.audux.bgg.util.TestUtils.xml
 import org.audux.bgg.util.extension.WrappedLocalDateTimeSubject.Companion.assertThat
 import org.audux.bgg.util.extension.WrappedValueSubject.Companion.assertThat
 import org.junit.jupiter.api.Nested
@@ -553,11 +553,5 @@ class ThingsResponseTest : KoinTest {
         val localDateTime = mapper.readValue(localDateXml, WrappedLocalDateTime::class.java)
 
         assertThat(localDateTime).hasValue(LocalDateTime.of(2020, 9, 13, 10, 43, 49))
-    }
-
-    companion object {
-        fun xml(fileName: String): InputStream {
-            return Companion::class.java.classLoader.getResourceAsStream("xml/$fileName.xml")!!
-        }
     }
 }

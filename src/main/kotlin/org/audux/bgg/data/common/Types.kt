@@ -13,6 +13,8 @@
  */
 package org.audux.bgg.data.common
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
+
 /**
  * The different kind/type of things the API may return such as a board game or expansion etc.
  * [See docs for more info](https://boardgamegeek.com/wiki/page/BGG_XML_API2#Thing_Items).
@@ -30,3 +32,18 @@ enum class ThingType(val param: String) {
         fun fromParam(param: String?) = values().find { it.param == param } ?: UNKNOWN
     }
 }
+
+/** Encapsulates the name of a Thing either primary or alternate name. */
+data class Name(
+    /** The actual name. */
+    @JacksonXmlProperty(isAttribute = true) val value: String,
+
+    /** The type either: `primary` or `alternate`. */
+    @JacksonXmlProperty(isAttribute = true) val type: String,
+
+    /**
+     * The order the names are displayed on the website. NOTE that primary and alternate might have
+     * overlapping indexes.
+     */
+    @JacksonXmlProperty(isAttribute = true) val sortIndex: Int? = null,
+)

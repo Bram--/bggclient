@@ -1,0 +1,1123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items
+    termsofuse="https://boardgamegeek.com/xmlapi/termsofuse"
+    total="144">
+    <item
+        id="167159"
+        type="boardgame">
+        <name
+            type="primary"
+            value="Connect 4: My Little Pony" />
+        <yearpublished value="2014" />
+    </item>
+    <item
+        id="169714"
+        type="boardgame">
+        <name
+            type="primary"
+            value="The Game of Life: My Little Pony" />
+        <yearpublished value="2014" />
+    </item>
+    <item
+        id="394065"
+        type="boardgame">
+        <name
+            type="primary"
+            value="Gdzie ktyje się magia? Bitwa, gra karciana: My Little Pony" />
+        <yearpublished value="2017" />
+    </item>
+    <item
+        id="162653"
+        type="boardgame">
+        <name
+            type="primary"
+            value="小さな魔女とふしぎなお家 (The Little Witches and the Mysterious House)" />
+        <yearpublished value="2014" />
+    </item>
+    <item
+        id="147112"
+        type="boardgame">
+        <name
+            type="primary"
+            value="Monopoly: My Little Pony" />
+        <yearpublished value="2013" />
+    </item>
+    <item
+        id="29356"
+        type="boardgame">
+        <name
+            type="alternate"
+            value="Mr. Men Little Miss My First Scrabble" />
+        <yearpublished value="1999" />
+    </item>
+    <item
+        id="41034"
+        type="boardgame">
+        <name
+            type="alternate"
+            value="Munchkin Cthulhu: My Little Cthulhu Promo Card" />
+    </item>
+    <item
+        id="9090"
+        type="boardgame">
+        <name
+            type="alternate"
+            value="My First UNO: Little People" />
+        <yearpublished value="1991" />
+    </item>
+    <item
+        id="258626"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Castle" />
+        <yearpublished value="2018" />
+    </item>
+    <item
+        id="15316"
+        type="boardgame">
+        <name
+            type="alternate"
+            value="My Little Farm" />
+        <yearpublished value="2005" />
+    </item>
+    <item
+        id="404163"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little First Sale" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="40080"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Ladybug" />
+        <yearpublished value="1997" />
+    </item>
+    <item
+        id="96050"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Panzer" />
+        <yearpublished value="2002" />
+    </item>
+    <item
+        id="8549"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony Game" />
+        <yearpublished value="1988" />
+    </item>
+    <item
+        id="57745"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony Game" />
+        <yearpublished value="1986" />
+    </item>
+    <item
+        id="32124"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony Hide &amp; Seek" />
+        <yearpublished value="2005" />
+    </item>
+    <item
+        id="7688"
+        type="boardgame">
+        <name
+            type="alternate"
+            value="My Little Pony Memory" />
+        <yearpublished value="1959" />
+    </item>
+    <item
+        id="107983"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony Merry-Go-Round Game" />
+        <yearpublished value="1985" />
+    </item>
+    <item
+        id="10286"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony Pony Round Up 3-D Stand Up Game" />
+        <yearpublished value="1983" />
+    </item>
+    <item
+        id="216891"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony Poppin&#039; Pinkie Pie Game" />
+        <yearpublished value="2014" />
+    </item>
+    <item
+        id="168236"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony Rainbow Magic Game" />
+        <yearpublished value="2014" />
+    </item>
+    <item
+        id="358558"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Adventures in Equestria Deck-Building Game" />
+        <yearpublished value="2022" />
+    </item>
+    <item
+        id="394803"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Adventures in Equestria Deck-Building Game – Collision Course Expansion" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="358763"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Adventures in Equestria Deck-Building Game – Familiar Faces Expansion" />
+        <yearpublished value="2022" />
+    </item>
+    <item
+        id="379764"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Adventures in Equestria Deck-Building Game – Princess Pageantry Expansion" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="373042"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Adventures in Equestria Deck-Building Game – True Talents Expansion" />
+        <yearpublished value="2022" />
+    </item>
+    <item
+        id="149746"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game" />
+        <yearpublished value="2013" />
+    </item>
+    <item
+        id="257568"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – Absolute Discord" />
+        <yearpublished value="2015" />
+    </item>
+    <item
+        id="257561"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – Canterlot Nights" />
+        <yearpublished value="2014" />
+    </item>
+    <item
+        id="257563"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – Celestial Solstice" />
+        <yearpublished value="2014" />
+    </item>
+    <item
+        id="257573"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – Defenders of Equestria" />
+        <yearpublished value="2017" />
+    </item>
+    <item
+        id="257569"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – Equestrian Odysseys" />
+        <yearpublished value="2015" />
+    </item>
+    <item
+        id="257548"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – Gen Con" />
+        <yearpublished value="2013" />
+    </item>
+    <item
+        id="257571"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – High Magic" />
+        <yearpublished value="2015" />
+    </item>
+    <item
+        id="257572"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – Marks in Time" />
+        <yearpublished value="2016" />
+    </item>
+    <item
+        id="257554"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – Premiere" />
+        <yearpublished value="2013" />
+    </item>
+    <item
+        id="257562"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – Rock N Rave" />
+        <yearpublished value="2014" />
+    </item>
+    <item
+        id="257574"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – Seaquestria and Beyond" />
+        <yearpublished value="2017" />
+    </item>
+    <item
+        id="257567"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – The Crystal Games" />
+        <yearpublished value="2014" />
+    </item>
+    <item
+        id="16136"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Dream Castle" />
+        <yearpublished value="2003" />
+    </item>
+    <item
+        id="98130"
+        type="boardgame">
+        <name
+            type="alternate"
+            value="My Little Pony: Dream Castle Game" />
+        <yearpublished value="1986" />
+    </item>
+    <item
+        id="228805"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Friendship is Magic – The Cooperative Adventure Game" />
+        <yearpublished value="2017" />
+    </item>
+    <item
+        id="149550"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Pony: Regnbågsspelet" />
+        <yearpublished value="2012" />
+    </item>
+    <item
+        id="226320"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Scythe" />
+        <yearpublished value="2017" />
+    </item>
+    <item
+        id="305420"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Scythe: Pie in the Sky" />
+        <yearpublished value="2020" />
+    </item>
+    <item
+        id="83707"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Little Vineyard" />
+        <yearpublished value="2010" />
+    </item>
+    <item
+        id="131497"
+        type="boardgame">
+        <name
+            type="alternate"
+            value="My Very First Games: Little Builders" />
+        <yearpublished value="2012" />
+    </item>
+    <item
+        id="242554"
+        type="boardgame">
+        <name
+            type="alternate"
+            value="My Very First Games: Little Creepers" />
+        <yearpublished value="2018" />
+    </item>
+    <item
+        id="183346"
+        type="boardgame">
+        <name
+            type="primary"
+            value="My Very First Games: Little Garden" />
+        <yearpublished value="2015" />
+    </item>
+    <item
+        id="12976"
+        type="boardgame">
+        <name
+            type="alternate"
+            value="Mytteriet på Little Blue" />
+        <yearpublished value="2004" />
+    </item>
+    <item
+        id="171385"
+        type="boardgame">
+        <name
+            type="primary"
+            value="Shuffle My Little Pony" />
+        <yearpublished value="2014" />
+    </item>
+    <item
+        id="41034"
+        type="boardgameexpansion">
+        <name
+            type="alternate"
+            value="Munchkin Cthulhu: My Little Cthulhu Promo Card" />
+    </item>
+    <item
+        id="394803"
+        type="boardgameexpansion">
+        <name
+            type="primary"
+            value="My Little Pony: Adventures in Equestria Deck-Building Game – Collision Course Expansion" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="358763"
+        type="boardgameexpansion">
+        <name
+            type="primary"
+            value="My Little Pony: Adventures in Equestria Deck-Building Game – Familiar Faces Expansion" />
+        <yearpublished value="2022" />
+    </item>
+    <item
+        id="379764"
+        type="boardgameexpansion">
+        <name
+            type="primary"
+            value="My Little Pony: Adventures in Equestria Deck-Building Game – Princess Pageantry Expansion" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="373042"
+        type="boardgameexpansion">
+        <name
+            type="primary"
+            value="My Little Pony: Adventures in Equestria Deck-Building Game – True Talents Expansion" />
+        <yearpublished value="2022" />
+    </item>
+    <item
+        id="257568"
+        type="boardgameexpansion">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – Absolute Discord" />
+        <yearpublished value="2015" />
+    </item>
+    <item
+        id="257561"
+        type="boardgameexpansion">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – Canterlot Nights" />
+        <yearpublished value="2014" />
+    </item>
+    <item
+        id="257563"
+        type="boardgameexpansion">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – Celestial Solstice" />
+        <yearpublished value="2014" />
+    </item>
+    <item
+        id="257573"
+        type="boardgameexpansion">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – Defenders of Equestria" />
+        <yearpublished value="2017" />
+    </item>
+    <item
+        id="257569"
+        type="boardgameexpansion">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – Equestrian Odysseys" />
+        <yearpublished value="2015" />
+    </item>
+    <item
+        id="257548"
+        type="boardgameexpansion">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – Gen Con" />
+        <yearpublished value="2013" />
+    </item>
+    <item
+        id="257571"
+        type="boardgameexpansion">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – High Magic" />
+        <yearpublished value="2015" />
+    </item>
+    <item
+        id="257572"
+        type="boardgameexpansion">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – Marks in Time" />
+        <yearpublished value="2016" />
+    </item>
+    <item
+        id="257554"
+        type="boardgameexpansion">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – Premiere" />
+        <yearpublished value="2013" />
+    </item>
+    <item
+        id="257562"
+        type="boardgameexpansion">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – Rock N Rave" />
+        <yearpublished value="2014" />
+    </item>
+    <item
+        id="257574"
+        type="boardgameexpansion">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – Seaquestria and Beyond" />
+        <yearpublished value="2017" />
+    </item>
+    <item
+        id="257567"
+        type="boardgameexpansion">
+        <name
+            type="primary"
+            value="My Little Pony: Collectible Card Game – The Crystal Games" />
+        <yearpublished value="2014" />
+    </item>
+    <item
+        id="305420"
+        type="boardgameexpansion">
+        <name
+            type="primary"
+            value="My Little Scythe: Pie in the Sky" />
+        <yearpublished value="2020" />
+    </item>
+    <item
+        id="48563"
+        type="rpg">
+        <name
+            type="primary"
+            value="My Little Eye: An I Spy Melodrama" />
+    </item>
+    <item
+        id="75556"
+        type="rpg">
+        <name
+            type="primary"
+            value="My Little Pony Roleplaying Game" />
+    </item>
+    <item
+        id="75393"
+        type="rpg">
+        <name
+            type="primary"
+            value="My Little Pony Rollspelet" />
+    </item>
+    <item
+        id="19162"
+        type="rpg">
+        <name
+            type="alternate"
+            value="My Little Pony: Roleplaying is Magic" />
+    </item>
+    <item
+        id="39759"
+        type="rpg">
+        <name
+            type="primary"
+            value="My Little Pony: Tails of Equestria" />
+    </item>
+    <item
+        id="264745"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="The 200 Word RPG Contest 2018 Edition Omnibus Volume" />
+        <yearpublished value="2018" />
+    </item>
+    <item
+        id="236924"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="The Bestiary of Equestria" />
+        <yearpublished value="2017" />
+    </item>
+    <item
+        id="139348"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="The Big Book of Little Games" />
+        <yearpublished value="2012" />
+    </item>
+    <item
+        id="332593"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="The Compendium of Equestria" />
+        <yearpublished value="2021" />
+    </item>
+    <item
+        id="311973"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="The Curious Case of the Malfunctioning P.R.A.N.C.E.R. and Other Tails" />
+        <yearpublished value="2020" />
+    </item>
+    <item
+        id="229310"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="The Curse of the Statuettes" />
+        <yearpublished value="2017" />
+    </item>
+    <item
+        id="236926"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="The Festival of Lights" />
+        <yearpublished value="2017" />
+    </item>
+    <item
+        id="281719"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="Filly Sized Follies" />
+        <yearpublished value="2019" />
+    </item>
+    <item
+        id="227836"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="The Gift Horse" />
+        <yearpublished value="2017" />
+    </item>
+    <item
+        id="400461"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="Great Cake Mistake" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="269484"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="The Haunting of Equestria" />
+        <yearpublished value="2019" />
+    </item>
+    <item
+        id="144877"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="A Help from My Little Friends" />
+        <yearpublished value="2011" />
+    </item>
+    <item
+        id="401953"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="How to Read a Basic Essence20 Stat Block" />
+        <yearpublished value="2022" />
+    </item>
+    <item
+        id="360674"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="In a Jam Adventure and GM&#039;s Screen" />
+        <yearpublished value="2022" />
+    </item>
+    <item
+        id="258846"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="Judge Not by the Cover" />
+        <yearpublished value="2018" />
+    </item>
+    <item
+        id="301783"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="Melody of the Waves" />
+        <yearpublished value="2020" />
+    </item>
+    <item
+        id="254033"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="My Little Eye: An I Spy Melodrama" />
+        <yearpublished value="2018" />
+    </item>
+    <item
+        id="338383"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="My Little Pony - Friendship is Magic" />
+        <yearpublished value="2016" />
+    </item>
+    <item
+        id="360672"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="My Little Pony Roleplaying Game Core Rulebook" />
+        <yearpublished value="2022" />
+    </item>
+    <item
+        id="360673"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="My Little Pony Roleplaying Game Dice Set" />
+        <yearpublished value="2022" />
+    </item>
+    <item
+        id="372318"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="My Little Pony Roleplaying Game Expanded Character Sheet Journal" />
+        <yearpublished value="2022" />
+    </item>
+    <item
+        id="128375"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="My Little Pony:  Roleplaying is Magic (Season Two Edition)" />
+        <yearpublished value="2012" />
+    </item>
+    <item
+        id="128439"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="My Little Pony: Roleplaying is Magic (Season One Ruleset)" />
+        <yearpublished value="2012" />
+    </item>
+    <item
+        id="155092"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="My Little Pony: Roleplaying is Magic (Season Three Edition)" />
+        <yearpublished value="2013" />
+    </item>
+    <item
+        id="155093"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="My Little Pony: Roleplaying is Magic GM Screen" />
+        <yearpublished value="2013" />
+    </item>
+    <item
+        id="263752"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="My Little Pony: Tails of Equestria Starter Set" />
+        <yearpublished value="2018" />
+    </item>
+    <item
+        id="218704"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="My Little Pony: Tails of Equestria, The Storytelling Game" />
+        <yearpublished value="2016" />
+    </item>
+    <item
+        id="381707"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="My Little Sister" />
+        <yearpublished value="2022" />
+    </item>
+    <item
+        id="225076"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="My Little Yeti Ranch" />
+        <yearpublished value="2017" />
+    </item>
+    <item
+        id="237988"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="The Official Movie Sourcebook" />
+        <yearpublished value="2017" />
+    </item>
+    <item
+        id="286844"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="Ogres &amp; Oubliettes" />
+        <yearpublished value="2019" />
+    </item>
+    <item
+        id="178807"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="Roleplaying is Magic (Season Four Edition)" />
+        <yearpublished value="2014" />
+    </item>
+    <item
+        id="126936"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="The Savage World of My Little Pony (3rd Edition)" />
+        <yearpublished value="2012" />
+    </item>
+    <item
+        id="138065"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="The Savage World of My Little Pony (4th Edition)" />
+        <yearpublished value="2013" />
+    </item>
+    <item
+        id="126934"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="The Savage World of My Little Pony (Provisional Editions)" />
+        <yearpublished value="2011" />
+    </item>
+    <item
+        id="155087"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="The Savage World of My Little Pony Playtest Kit #1: Expanded Magic Rules" />
+        <yearpublished value="2013" />
+    </item>
+    <item
+        id="155088"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="The Savage World of My Little Pony Playtest Kit #2: Feats of Daring" />
+        <yearpublished value="2013" />
+    </item>
+    <item
+        id="401463"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="Sundae Mystery" />
+        <yearpublished value="2023" />
+    </item>
+    <item
+        id="302659"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="Tails of Equestria: Alchemy Talent" />
+        <yearpublished value="2019" />
+    </item>
+    <item
+        id="285252"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="Tails of Equestria: Dice Set" />
+        <yearpublished value="2017" />
+    </item>
+    <item
+        id="285251"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="Tails of Equestria: Tokens of Friendship" />
+        <yearpublished value="2017" />
+    </item>
+    <item
+        id="338019"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="Tails of Fallout: Equestria" />
+        <yearpublished value="2020" />
+    </item>
+    <item
+        id="208211"
+        type="rpgitem">
+        <name
+            type="primary"
+            value="With a Little Help from my Friends" />
+        <yearpublished value="2007" />
+    </item>
+    <item
+        id="242774"
+        type="rpgissue">
+        <name
+            type="primary"
+            value="Alarums &amp; Excursions (Issue 433 - Oct 2011)" />
+    </item>
+    <item
+        id="232192"
+        type="rpgissue">
+        <name
+            type="primary"
+            value="Alarums &amp; Excursions (Issue 502 - Aug 2017)" />
+    </item>
+    <item
+        id="359154"
+        type="rpgissue">
+        <name
+            type="primary"
+            value="The Beholder (Nr 3 - 1989)" />
+    </item>
+    <item
+        id="305459"
+        type="rpgissue">
+        <name
+            type="primary"
+            value="Casus Belli (v4, Issue 27 - Sep/Oct 2018)" />
+    </item>
+    <item
+        id="305824"
+        type="rpgissue">
+        <name
+            type="primary"
+            value="Casus Belli (v4, Issue 31 - Oct/Nov 2019)" />
+    </item>
+    <item
+        id="235846"
+        type="rpgissue">
+        <name
+            type="primary"
+            value="Game Trade Magazine (Issue 211 - Sep 2017)" />
+    </item>
+    <item
+        id="283043"
+        type="rpgissue">
+        <name
+            type="primary"
+            value="Game Trade Magazine (Issue 232 - Jun 2019)" />
+    </item>
+    <item
+        id="331283"
+        type="rpgissue">
+        <name
+            type="primary"
+            value="Tabletop Gaming (Issue 17 - Apr 2018)" />
+    </item>
+    <item
+        id="331242"
+        type="rpgissue">
+        <name
+            type="primary"
+            value="Tabletop Gaming (Issue 8 - Feb/Mar 2017)" />
+    </item>
+    <item
+        id="331243"
+        type="rpgissue">
+        <name
+            type="primary"
+            value="Tabletop Gaming (Issue 9 - Apr/May 2017)" />
+    </item>
+    <item
+        id="319001"
+        type="rpgissue">
+        <name
+            type="primary"
+            value="Tabletop Gaming - Dungeon Master&#039;s Guide to Roleplaying, Volume Two" />
+    </item>
+    <item
+        id="164961"
+        type="videogame">
+        <name
+            type="primary"
+            value="Harvest Moon: My Little Shop" />
+    </item>
+    <item
+        id="250286"
+        type="videogame">
+        <name
+            type="alternate"
+            value="Little Dragon&#039;s Cafe – The Secret Dragon and the Mysterious Island-" />
+    </item>
+    <item
+        id="313583"
+        type="videogame">
+        <name
+            type="primary"
+            value="My Little Baby" />
+    </item>
+    <item
+        id="222362"
+        type="videogame">
+        <name
+            type="primary"
+            value="My Little Blacksmith Shop" />
+    </item>
+    <item
+        id="230637"
+        type="videogame">
+        <name
+            type="primary"
+            value="My Little Kitties" />
+    </item>
+    <item
+        id="119380"
+        type="videogame">
+        <name
+            type="primary"
+            value="My Little Monster" />
+    </item>
+    <item
+        id="147061"
+        type="videogame">
+        <name
+            type="primary"
+            value="My Little Pony Online Card Game" />
+    </item>
+    <item
+        id="141497"
+        type="videogame">
+        <name
+            type="primary"
+            value="My Little Pony: Crystal Princess – The Runaway Rainbow" />
+    </item>
+    <item
+        id="141813"
+        type="videogame">
+        <name
+            type="primary"
+            value="My Little Pony: Friendship is Magic" />
+    </item>
+    <item
+        id="405933"
+        type="videogame">
+        <name
+            type="primary"
+            value="My Little Pony: Mane Merge" />
+    </item>
+    <item
+        id="141500"
+        type="videogame">
+        <name
+            type="primary"
+            value="My Little Pony: Pinkie Pie&#039;s Party Parade" />
+    </item>
+    <item
+        id="141498"
+        type="videogame">
+        <name
+            type="primary"
+            value="My Little Pony: Pinky Pie&#039;s Party" />
+    </item>
+    <item
+        id="341469"
+        type="videogame">
+        <name
+            type="primary"
+            value="My Little Prince - a jigsaw puzzle tale" />
+    </item>
+    <item
+        id="88611"
+        type="videogame">
+        <name
+            type="primary"
+            value="My Little Restaurant" />
+    </item>
+    <item
+        id="88612"
+        type="videogame">
+        <name
+            type="primary"
+            value="My Little Restaurant: Christmas Edition" />
+    </item>
+    <item
+        id="290027"
+        type="videogame">
+        <name
+            type="primary"
+            value="My Little Riding Champion" />
+    </item>
+</items>

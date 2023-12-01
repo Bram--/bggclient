@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.Nulls
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
+import org.audux.bgg.data.common.Name
 import java.net.URI
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -130,6 +131,9 @@ data class Thing(
 
     /** The issue index for the RPG issue. */
     val issueIndex: WrappedValue<Int>?,
+
+    /** Primary name. */
+    @JsonIgnore var name: String = ""
 ) {
     /** Contains a list of polls such as the [PlayerAgePoll]. */
     @JsonProperty("poll")
@@ -156,9 +160,6 @@ data class Thing(
             field = field + value
             field.forEach { if (it.type == "primary") name = it.value }
         }
-
-    /** Primary name. */
-    @JsonIgnore var name: String = ""
 }
 
 /** Available versions of the thing e.g. Different prints of a boardgame. */
@@ -214,21 +215,6 @@ data class Version(
             field = field + value
         }
 }
-
-/** Encapsulates the name of a Thing either primary or alternate name. */
-data class Name(
-    /** The actual name. */
-    @JacksonXmlProperty(isAttribute = true) val value: String,
-
-    /** The type either: `primary` or `alternate`. */
-    @JacksonXmlProperty(isAttribute = true) val type: String,
-
-    /**
-     * The order the names are displayed on the website. NOTE that primary and alternate might have
-     * overlapping indexes.
-     */
-    @JacksonXmlProperty(isAttribute = true) val sortIndex: Int
-)
 
 /**
  * Describes a link or relationship to another class of object. For example a board game thing may

@@ -1,4 +1,5 @@
 plugins {
+  jacoco
   `java-library`
   alias(libs.plugins.org.jetbrains.kotlin.jvm)
   alias(libs.plugins.ktfmt.gradle)
@@ -8,10 +9,6 @@ ktfmt {
   kotlinLangStyle()
 
   removeUnusedImports.set(true)
-}
-
-tasks.test {
-  useJUnitPlatform()
 }
 
 repositories {
@@ -37,4 +34,14 @@ dependencies {
   testImplementation(libs.truth)
 
   testRuntimeOnly(libs.junit5.engine)
+}
+
+tasks.test {
+  useJUnitPlatform()
+  finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+}
+
+jacoco {
+  toolVersion = "0.8.9"
+  reportsDirectory =  file("${layout.buildDirectory}/jacoco")
 }

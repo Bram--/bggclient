@@ -28,6 +28,7 @@ import java.net.URI
 import java.time.LocalDate
 import java.time.LocalDateTime
 import org.audux.bgg.data.common.Name
+import org.audux.bgg.data.common.Statistics
 import org.audux.bgg.data.common.ThingType
 
 /** Response wrapper for the things to be returned. */
@@ -64,9 +65,11 @@ data class Thing(
     @JsonDeserialize(using = ThingTypeDeserializer::class) val type: ThingType,
 
     /** URL to 200 by 150 thumbnail image. */
+    @JsonDeserialize(using = TrimmedStringDeserializer::class)
     val thumbnail: String?,
 
     /** URL to full sized image. */
+    @JsonDeserialize(using = TrimmedStringDeserializer::class)
     val image: String?,
 
     /** Long form description of the thing. */
@@ -334,86 +337,6 @@ data class Comment(
 
     /** The comment the user posted. */
     @JacksonXmlProperty(isAttribute = true) val value: String?,
-)
-// endregion
-
-// region Statistics and ratings.
-/** Wrapper for [Ratings]. */
-data class Statistics(
-    /** Unused attribute? */
-    @JacksonXmlProperty(isAttribute = true) val page: Int?,
-
-    /** The set of ratings */
-    val ratings: Ratings,
-)
-
-/**
- * Contains rating aggregated and other statistics like average rating, standard deviation, number
- * of comments.
- */
-data class Ratings(
-    /** Number of user ratings. */
-    val usersRated: WrappedValue<Number>?,
-
-    /** The average rating. */
-    val average: WrappedValue<Number>?,
-
-    /** Standard deviation. */
-    val stdDev: WrappedValue<Number>?,
-
-    /** Bayesian average rating. */
-    val bayesAverage: WrappedValue<Number>?,
-
-    /** The median rating. */
-    val median: WrappedValue<Number>?,
-
-    /** Total number of users owning this thing. */
-    val owned: WrappedValue<Number>?,
-
-    /** Total number of users looking to trade away this thing. */
-    val trading: WrappedValue<Number>?,
-
-    /** Total number of users wanting this thing. */
-    val wanting: WrappedValue<Number>?,
-
-    /** Total number of users wishing for this thing. */
-    val wishing: WrappedValue<Number>?,
-
-    /** Total number of comments left on the thing. */
-    val numComments: WrappedValue<Number>?,
-
-    /** Number of weight ratings. */
-    val numWeights: WrappedValue<Number>?,
-
-    /** Average weight rating. */
-    val averageWeight: WrappedValue<Number>?,
-
-    /**
-     * A thing can be listed on different rankings. For example a board game could both be ranked as
-     * a board game and a strategy game.
-     */
-    @JacksonXmlElementWrapper(localName = "ranks") val ranks: List<Rank> = listOf(),
-)
-
-/** Represents a rank in a single ranking (Consisting of type & name). */
-data class Rank(
-    /** Unique of the ranking type - ID and type+name should always be a coupled. */
-    @JacksonXmlProperty(isAttribute = true) val id: Int,
-
-    /** Type of ranking e.g. the thing's main type or sub type */
-    @JacksonXmlProperty(isAttribute = true) val type: String?,
-
-    /** The name of the ranking e.g. "boardgame", "strategygame" etc. */
-    @JacksonXmlProperty(isAttribute = true) val name: String,
-
-    /** Friendly/Natural language name of the ranking. */
-    @JacksonXmlProperty(isAttribute = true) val friendlyName: String,
-
-    /** The actual rank of the thing in this ranking. Either a number or 'Not Ranked'. */
-    @JacksonXmlProperty(isAttribute = true) val value: String?,
-
-    /** It's bayesian average in this ranking. */
-    @JacksonXmlProperty(isAttribute = true) val bayesAverage: Number?,
 )
 // endregion
 

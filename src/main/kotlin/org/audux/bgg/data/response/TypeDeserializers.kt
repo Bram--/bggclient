@@ -23,3 +23,15 @@ internal class ThingTypeDeserializer : JsonDeserializer<ThingType>() {
     override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
         ThingType.fromParam(parser?.valueAsString)
 }
+
+/** Deserializes '0' sa False and '1' as True. */
+internal class NumberToBooleanDeserializer : JsonDeserializer<Boolean>() {
+    override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
+        parser?.valueAsString == "1"
+}
+
+/** Deserializes and trims strings. */
+internal class TrimmedStringDeserializer : JsonDeserializer<String?>() {
+    override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
+        parser?.valueAsString?.trim()
+}

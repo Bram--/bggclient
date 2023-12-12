@@ -33,9 +33,6 @@ jobs:
       - name: Run build
         run: |
           ./gradlew clean build
-      - name: Run test
-        run: |
-          ./gradlew test
 
       - name: Archive test report
         uses: actions/upload-artifact@v3

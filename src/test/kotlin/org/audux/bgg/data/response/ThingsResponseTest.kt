@@ -327,7 +327,7 @@ class ThingsResponseTest : KoinTest {
             assertThat(ratings.ranks[0].name).isEqualTo("boardgame")
             assertThat(ratings.ranks[0].friendlyName).isEqualTo("Board Game Rank")
             assertThat(ratings.ranks[0].value).isEqualTo("1045")
-            assertThat(ratings.ranks[0].bayesAverage).isEqualTo(6.57535)
+            assertThat(ratings.ranks[0].bayesAverage).isEqualTo("6.57535")
             assertThat(ratings.stdDev).hasValue(1.25647)
             assertThat(ratings.median).hasValue(0)
             assertThat(ratings.owned).hasValue(2911)

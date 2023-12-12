@@ -43,5 +43,5 @@ tasks.test {
 
 jacoco {
   toolVersion = "0.8.9"
-  reportsDirectory =  file("${layout.buildDirectory}/jacoco")
+  reportsDirectory =  layout.buildDirectory.dir("jacoco")
 }

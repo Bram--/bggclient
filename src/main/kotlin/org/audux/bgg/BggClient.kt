@@ -23,6 +23,7 @@ import org.audux.bgg.request.collection
 import org.audux.bgg.module.BggKtorClient
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
+import org.audux.bgg.request.Request
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.context.startKoin
@@ -38,6 +39,10 @@ class BggClient : KoinComponent {
 
     fun close() {
         client.close()
+    }
+
+    suspend fun <R> call(request: suspend () -> R): R where R: Request {
+        return request()
     }
 
     internal companion object {

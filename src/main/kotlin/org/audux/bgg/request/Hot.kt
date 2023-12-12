@@ -11,14 +11,14 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.audux.bgg.data.request
+package org.audux.bgg.request
 
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import org.audux.bgg.BggClient
-import org.audux.bgg.data.common.HotListType
-import org.audux.bgg.data.response.HotList
+import org.audux.bgg.common.HotListType
+import org.audux.bgg.response.HotList
 
 /** Hotness endpoint that retrieve the list of most 50 active items on the site filtered by type. */
 suspend fun BggClient.hot(

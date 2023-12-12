@@ -18,8 +18,8 @@ import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.data.common.ThingType
-import org.audux.bgg.data.request.collection
+import org.audux.bgg.common.ThingType
+import org.audux.bgg.request.collection
 import org.audux.bgg.module.BggKtorClient
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule

@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.audux.bgg.data.request
+package org.audux.bgg.request
 
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
@@ -19,8 +19,8 @@ import io.ktor.http.appendPathSegments
 import io.ktor.util.StringValues
 import org.audux.bgg.BggClient
 import org.audux.bgg.BggRequestException
-import org.audux.bgg.data.common.ThingType
-import org.audux.bgg.data.response.Things
+import org.audux.bgg.common.ThingType
+import org.audux.bgg.response.Things
 
 /**
  * Request a Thing or list of things. Multiple things can be requested by passing in several IDs. At

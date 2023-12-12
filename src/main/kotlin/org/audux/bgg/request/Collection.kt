@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.audux.bgg.data.request
+package org.audux.bgg.request
 
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
@@ -20,9 +20,9 @@ import io.ktor.util.StringValues
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import org.audux.bgg.BggClient
-import org.audux.bgg.data.common.Inclusion
-import org.audux.bgg.data.common.ThingType
-import org.audux.bgg.data.response.Collection
+import org.audux.bgg.common.Inclusion
+import org.audux.bgg.common.ThingType
+import org.audux.bgg.response.Collection
 
 suspend fun BggClient.collection(
     /** Name of the user to request the collection for. */

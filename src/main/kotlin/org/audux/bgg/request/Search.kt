@@ -11,15 +11,15 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.audux.bgg.data.request
+package org.audux.bgg.request
 
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import io.ktor.util.StringValues
 import org.audux.bgg.BggClient
-import org.audux.bgg.data.common.ThingType
-import org.audux.bgg.data.response.SearchResults
+import org.audux.bgg.common.ThingType
+import org.audux.bgg.response.SearchResults
 
 /** Search endpoint that allows searching by name for things on BGG. */
 suspend fun BggClient.search(

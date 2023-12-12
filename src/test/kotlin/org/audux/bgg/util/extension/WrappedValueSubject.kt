@@ -17,8 +17,8 @@ import com.google.common.truth.FailureMetadata
 import com.google.common.truth.Subject
 import com.google.common.truth.Truth
 import java.time.LocalDateTime
-import org.audux.bgg.data.response.WrappedLocalDateTime
-import org.audux.bgg.data.response.WrappedValue
+import org.audux.bgg.response.WrappedLocalDateTime
+import org.audux.bgg.response.WrappedValue
 
 /** Truth [Subject] that adds `hasValue()` for [WrappedValue] objects. */
 class WrappedValueSubject(failureMetadata: FailureMetadata, private val actual: WrappedValue<*>?) :

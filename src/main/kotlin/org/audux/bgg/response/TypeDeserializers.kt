@@ -11,12 +11,12 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.audux.bgg.data.response
+package org.audux.bgg.response
 
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JsonDeserializer
-import org.audux.bgg.data.common.ThingType
+import org.audux.bgg.common.ThingType
 
 /** Deserializes thing types to the associated [ThingType] enum value. */
 internal class ThingTypeDeserializer : JsonDeserializer<ThingType>() {

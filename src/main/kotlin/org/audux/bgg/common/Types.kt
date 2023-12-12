@@ -11,11 +11,11 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.audux.bgg.data.common
+package org.audux.bgg.common
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import org.audux.bgg.data.response.WrappedValue
+import org.audux.bgg.response.WrappedValue
 
 /**
  * The different kind/type of things the API may return such as a board game or expansion etc.

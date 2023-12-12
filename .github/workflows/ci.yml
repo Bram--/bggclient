@@ -1,4 +1,4 @@
-name: ci
+name: build
 
 on:
   # Trigger the workflow on push or pull request,
@@ -33,12 +33,9 @@ jobs:
       - name: Run build
         run: |
           ./gradlew clean build
-
-      - uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-          directory: ./build/jacoco
-          verbose: true # optional (default = false)
+      - name: Run test
+        run: |
+          ./gradlew test
 
       - name: Archive test report
         uses: actions/upload-artifact@v3

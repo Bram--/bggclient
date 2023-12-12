@@ -120,7 +120,7 @@ class CollectionResponseTest : KoinTest {
                         )
                 )
             )
-        }
+    }
 
     @Test
     fun `Parses rpg collection items`() {

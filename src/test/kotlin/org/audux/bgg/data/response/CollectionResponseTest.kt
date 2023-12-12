@@ -15,6 +15,7 @@ package org.audux.bgg.data.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
+import java.time.LocalDateTime
 import org.audux.bgg.data.common.Rank
 import org.audux.bgg.data.common.Ratings
 import org.audux.bgg.data.common.ThingType
@@ -27,7 +28,6 @@ import org.koin.core.component.inject
 import org.koin.core.qualifier.named
 import org.koin.test.KoinTest
 import org.koin.test.junit5.KoinTestExtension
-import java.time.LocalDateTime
 
 class CollectionResponseTest : KoinTest {
     @JvmField
@@ -120,5 +120,17 @@ class CollectionResponseTest : KoinTest {
                         )
                 )
             )
+        }
+
+    @Test
+    fun `Parses rpg collection items`() {
+        val results =
+            mapper.readValue(
+                xml("collection?username=novaeux&stats=1&subtype=rpgitem"),
+                Collection::class.java
+            )
+
+        assertThat(results.items).hasSize(1)
+        assertThat(results.items[0].name).isEqualTo("Alice is Missing")
     }
 }

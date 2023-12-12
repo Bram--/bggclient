@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<items
+    pubdate="Tue, 12 Dec 2023 11:43:03 +0000"
+    termsofuse="https://boardgamegeek.com/xmlapi/termsofuse"
+    totalitems="1">
+    <item
+        collid="113239027"
+        objectid="311654"
+        objecttype="thing"
+        subtype="rpgitem">
+        <name sortindex="1">Alice is Missing</name>
+        <yearpublished>2020</yearpublished>
+        <image>
+            https://cf.geekdo-images.com/211476emISgQLsa2h3BAYw__original/img/nGOu9LrFF5udRimbJrei6HExde8=/0x0/filters:format(png)/pic5625807.png
+        </image>
+        <thumbnail>
+            https://cf.geekdo-images.com/211476emISgQLsa2h3BAYw__thumb/img/g9QMstNAY2uOVSR1rH5Hx7Gxquk=/fit-in/200x150/filters:strip_icc()/pic5625807.png
+        </thumbnail>
+        <stats numowned="466">
+            <rating value="N/A">
+                <usersrated value="59" />
+                <average value="8.48729" />
+                <bayesaverage value="6.9585" />
+                <stddev value="1.2776" />
+                <median value="0" />
+                <ranks>
+                    <rank
+                        name="rpgitem"
+                        bayesaverage="6.9585"
+                        friendlyname="RPG Item Rank"
+                        id="16"
+                        type="subtype"
+                        value="317" />
+                </ranks>
+            </rating>
+        </stats>
+        <status
+            fortrade="0"
+            lastmodified="2023-12-06 04:18:11"
+            own="0"
+            preordered="0"
+            prevowned="0"
+            want="0"
+            wanttobuy="0"
+            wanttoplay="1"
+            wishlist="0" />
+        <numplays>0</numplays>
+    </item>
+
+</items>

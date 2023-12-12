@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Things.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BggClient</a> &gt; <a href="index.source.html" class="el_package">org.audux.bgg.data.response</a> &gt; <span class="el_source">Things.kt</span></div><h1>Things.kt</h1><pre class="source lang-java linenums">/**
+ * Copyright 2023 Bram Wijnands
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
+package org.audux.bgg.data.response
+
+import com.fasterxml.jackson.annotation.JsonFormat
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonRootName
+import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.JsonSubTypes
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import com.fasterxml.jackson.annotation.Nulls
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
+import java.net.URI
+import java.time.LocalDate
+import java.time.LocalDateTime
+import org.audux.bgg.data.common.Name
+import org.audux.bgg.data.common.Statistics
+import org.audux.bgg.data.common.ThingType
+
+/** Response wrapper for the things to be returned. */
+<span class="nc" id="L35">@JsonRootName(&quot;items&quot;)</span>
+<span class="nc" id="L36">data class Things(</span>
+    /** Terms of use of the BGG API. */
+<span class="nc" id="L38">    @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,</span>
+
+    /** List of the actual things. */
+<span class="nc" id="L41">    @JsonSetter(nulls = Nulls.SKIP) @JacksonXmlProperty(localName = &quot;item&quot;) val things: List&lt;Thing&gt;</span>
+)
+
+/**
+ * An item or thing which could be either of the [org.audux.bgg.data.common.ThingType] objects. As a
+ * result of the loose overlap of the types most values are Nullable, however type specific data is
+ * supplied via the [Link] property.
+ *
+ * Furthermore, the settings/filling of the properties is highly dependent on the request. This is
+ * because additional parameters need to be set in order for the data to be retrieved. For example
+ * making a things request with simply an `id` parameter will not return any videos, comments,
+ * marketplace data, statistics or version information.
+ *
+ * @see org.audux.bgg.data.request.things
+ */
+<span class="nc" id="L56">data class Thing(</span>
+    /** Unique BGG identifier. */
+<span class="nc" id="L58">    val id: Int,</span>
+
+    /**
+     * The type of thing e.g. boardgame, expansion etc.
+     *
+     * @see org.audux.bgg.data.common.ThingType
+     */
+<span class="nc" id="L65">    @JsonDeserialize(using = ThingTypeDeserializer::class) val type: ThingType,</span>
+
+    /** URL to 200 by 150 thumbnail image. */
+<span class="nc" id="L68">    @JsonDeserialize(using = TrimmedStringDeserializer::class) val thumbnail: String?,</span>
+
+    /** URL to full sized image. */
+<span class="nc" id="L71">    @JsonDeserialize(using = TrimmedStringDeserializer::class) val image: String?,</span>
+
+    /** Long form description of the thing. */
+    // TODO: Unescape HTML.
+<span class="nc" id="L75">    val description: String?,</span>
+
+    /** The year it was published in e.g. `2019`. */
+<span class="nc" id="L78">    val yearPublished: WrappedValue&lt;Int&gt;?,</span>
+
+    /**
+     * The date it was published (For RPG-issues).
+     *
+     * Note: Most publish dates only contain years and have an invalid date format, i.e. '1999-0-0'
+     */
+<span class="nc" id="L85">    val datePublished: WrappedValue&lt;String&gt;?,</span>
+
+    /** The year it was released in e.g. `2019`. (For video games) */
+<span class="nc" id="L88">    val releaseDate: WrappedValue&lt;LocalDate&gt;?,</span>
+
+    /** Minimum number of players required. */
+<span class="nc" id="L91">    val minPlayers: WrappedValue&lt;Int&gt;?,</span>
+
+    /** Maximum number of players. */
+<span class="nc" id="L94">    val maxPlayers: WrappedValue&lt;Int&gt;?,</span>
+
+    /** How many minutes on average it takes to complete the thing/game. */
+<span class="nc" id="L97">    @JacksonXmlProperty(localName = &quot;playingtime&quot;) val playingTimeInMinutes: WrappedValue&lt;Int&gt;?,</span>
+
+    /** How many minutes on the lower end it takes to complete the thing/game. */
+<span class="nc" id="L100">    @JacksonXmlProperty(localName = &quot;minplaytime&quot;) val minPlayingTimeInMinutes: WrappedValue&lt;Int&gt;?,</span>
+
+    /** How many minutes on the high end it takes to complete the thing/game. */
+<span class="nc" id="L103">    @JacksonXmlProperty(localName = &quot;maxplaytime&quot;) val maxPlayingTimeInMinutes: WrappedValue&lt;Int&gt;?,</span>
+
+    /** Minimum age to play/participate in thhe thing. */
+<span class="nc" id="L106">    val minAge: WrappedValue&lt;Int&gt;?,</span>
+
+    /** A list of videos associated with the thing, could be reviews, how to plays, unboxing etc. */
+<span class="nc" id="L109">    @JacksonXmlElementWrapper(localName = &quot;videos&quot;) val videos: List&lt;Video&gt; = listOf(),</span>
+
+    /**
+     * Comments associated with the thing, these could be either ratings (including a comment) or a
+     * comment without a rating value.
+     */
+<span class="nc" id="L115">    val comments: Comments?,</span>
+
+    /** Ratings/Statistics for the thing. */
+<span class="nc" id="L118">    val statistics: Statistics?,</span>
+
+    /** Marketplace data. */
+<span class="nc" id="L121">    @JacksonXmlElementWrapper(useWrapping = true)</span>
+    @JacksonXmlProperty(localName = &quot;marketplacelistings&quot;)
+<span class="nc" id="L123">    val listings: List&lt;MarketplaceListing&gt; = listOf(),</span>
+
+    /** Collection of different versions e.g. prints. */
+<span class="nc" id="L126">    @JacksonXmlElementWrapper(useWrapping = true)</span>
+    @JacksonXmlProperty(localName = &quot;versions&quot;)
+<span class="nc" id="L128">    val versions: List&lt;Version&gt; = listOf(),</span>
+
+    /** Series codes for RPG items. */
+<span class="nc" id="L131">    val seriesCode: WrappedValue&lt;String&gt;?,</span>
+
+    /** The issue index for the RPG issue. */
+<span class="nc" id="L134">    val issueIndex: WrappedValue&lt;Int&gt;?,</span>
+
+    /** Primary name. */
+<span class="nc" id="L137">    @JsonIgnore var name: String = &quot;&quot;</span>
+) {
+    /** Contains a list of polls such as the [PlayerAgePoll]. */
+    @JsonProperty(&quot;poll&quot;)
+<span class="nc" id="L141">    var polls: List&lt;Poll&gt; = listOf()</span>
+        set(value) {
+<span class="nc" id="L143">            field = field + value</span>
+<span class="nc" id="L144">        }</span>
+
+    /**
+     * Depending on the [type] this list may contain different links e.g. for boardgames links such
+     * as: `boardgamecategory`, `boardgamefamily`, `boardgamemechanic` etc. may be included. For
+     * `rpgitem` similar but different links are returned e.g. `rpgitemcategory` etc.
+     */
+    @JacksonXmlProperty(localName = &quot;link&quot;)
+<span class="nc" id="L152">    var links: List&lt;Link&gt; = listOf()</span>
+        set(value) {
+<span class="nc" id="L154">            field = field + value</span>
+<span class="nc" id="L155">        }</span>
+
+    /** Names of the thing, consisting of a primary and optionally alternatives. */
+    @JsonProperty(&quot;name&quot;)
+<span class="nc" id="L159">    var names: List&lt;Name&gt; = listOf()</span>
+        set(value) {
+<span class="nc" id="L161">            field = field + value</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            field.forEach { if (it.type == &quot;primary&quot;) name = it.value }</span>
+<span class="nc" id="L163">        }</span>
+<span class="nc" id="L164">}</span>
+
+/** Available versions of the thing e.g. Different prints of a boardgame. */
+<span class="nc" id="L167">data class Version(</span>
+    /** Type of version e.g. 'boardgameversion'. */
+<span class="nc" id="L169">    @JacksonXmlProperty(isAttribute = true) val type: String,</span>
+
+    /** Unique ID of this product. */
+<span class="nc" id="L172">    @JacksonXmlProperty(isAttribute = true) val id: Number,</span>
+
+    /** Thumbnail image of the product - 200x150. */
+<span class="nc" id="L175">    val thumbnail: String?,</span>
+
+    /** Full suze image of the product. */
+<span class="nc" id="L178">    val image: String?,</span>
+
+    /** When the product was published. */
+<span class="nc" id="L181">    val yearPublished: WrappedValue&lt;Number&gt;?,</span>
+
+    /** The year it was released in e.g. `2019`. (For video games) */
+<span class="nc" id="L184">    val releaseDate: WrappedValue&lt;LocalDate&gt;?,</span>
+
+    /** Product code of the product. */
+<span class="nc" id="L187">    val productCode: WrappedValue&lt;String&gt;?,</span>
+
+    /** Width in inches. */
+<span class="nc" id="L190">    val width: WrappedValue&lt;Number&gt;?,</span>
+
+    /** Length in inches. */
+<span class="nc" id="L193">    val length: WrappedValue&lt;Number&gt;?,</span>
+
+    /** Depth in inches. */
+<span class="nc" id="L196">    val depth: WrappedValue&lt;Number&gt;?,</span>
+
+    /** Weight in lbs (pounds). */
+<span class="nc" id="L199">    val weight: WrappedValue&lt;Number&gt;?,</span>
+) {
+    /** Names of the product, consisting of a primary and optionally alternatives. */
+    @JsonProperty(&quot;name&quot;)
+<span class="nc" id="L203">    var names: List&lt;Name&gt; = listOf()</span>
+        set(value) {
+<span class="nc" id="L205">            field = field + value</span>
+<span class="nc bnc" id="L206" title="All 2 branches missed.">            field.forEach { if (it.type == &quot;primary&quot;) name = it.value }</span>
+<span class="nc" id="L207">        }</span>
+
+    /** Primary name. */
+<span class="nc" id="L210">    @JsonIgnore var name = &quot;&quot;</span>
+
+    /** Additional information about this product e.g. Language, artist(s) etc. */
+    @JsonProperty(&quot;link&quot;)
+<span class="nc" id="L214">    var links: List&lt;Link&gt; = listOf()</span>
+        set(value) {
+<span class="nc" id="L216">            field = field + value</span>
+<span class="nc" id="L217">        }</span>
+}
+
+/**
+ * Describes a link or relationship to another class of object. For example a board game thing may
+ * contain a list of links to a `boardgamemechanic` like `Income`, `Hand management`. Common types
+ * are:
+ * * boardgameartist
+ * * boardgamecategory
+ * * boardgamedesigner
+ * * boardgameexpansion
+ * * boardgamemechanic
+ * * rpgitemartist
+ * * rpgitemcategory
+ * * rpgitemdesigner
+ * * rpgitemexpansion
+ * * rpgitemmechanic
+ *
+ *   And so on.
+ */
+<span class="nc" id="L237">data class Link(</span>
+    /**
+     * The id for the link, most of these cannot be retrieved via the API although a 'family'-API
+     * exists.
+     */
+<span class="nc" id="L242">    @JacksonXmlProperty(isAttribute = true) val id: Int,</span>
+
+    /** The unique name of the Link i.e. links with the same ID will always carry the same name. */
+<span class="nc" id="L245">    @JacksonXmlProperty(isAttribute = true) val value: String,</span>
+
+    /** The type of the link as outlined in the class description. */
+<span class="nc" id="L248">    @JacksonXmlProperty(isAttribute = true) val type: String,</span>
+
+    /** Direction of the Link. */
+<span class="nc" id="L251">    @JacksonXmlProperty(isAttribute = true) val inbound: Boolean?,</span>
+)
+
+/**
+ * Describes an associated video on the thing. In addition to a title and link the videos are also
+ * categorized: `instructional`, `review` etc. and contain poster(user) information.
+ */
+<span class="nc" id="L258">data class Video(</span>
+    /** The unique ID to retrieve the video on BGG. */
+<span class="nc" id="L260">    @JacksonXmlProperty(isAttribute = true) val id: Int,</span>
+
+    /** Title of the video */
+<span class="nc" id="L263">    @JacksonXmlProperty(isAttribute = true) val title: String,</span>
+
+    /**
+     * Category explaining roughly its contents, category should be on of the following:
+     * * Review
+     * * Session
+     * * Instructional
+     * * Interview
+     * * Unboxing
+     * * Humor
+     * * Other
+     */
+<span class="nc" id="L275">    @JacksonXmlProperty(isAttribute = true) val category: String,</span>
+
+    /** English name of language that the video is presented it e.g. `English`, `Spanish` etc. */
+<span class="nc" id="L278">    @JacksonXmlProperty(isAttribute = true) val language: String,</span>
+
+    /** A URL to either a Youtube or Vimeo video. */
+<span class="nc" id="L281">    @JacksonXmlProperty(isAttribute = true) val link: String,</span>
+
+    /** The username of the user that posted the video - not necessarily the video's author. */
+<span class="nc" id="L284">    @JacksonXmlProperty(isAttribute = true) val username: String,</span>
+
+    /** The id of the user that posted the video - not necessarily the video's author. */
+<span class="nc" id="L287">    @JacksonXmlProperty(isAttribute = true) val userid: Int,</span>
+
+    /** When the video was posted. */
+<span class="nc" id="L290">    @JacksonXmlProperty(isAttribute = true)</span>
+    @JsonFormat(pattern = &quot;yyyy-MM-dd'T'HH:mm:ssz&quot;)
+<span class="nc" id="L292">    val postDate: LocalDateTime</span>
+)
+
+// region Comments
+/**
+ * A collection of [Comment] objects including pagination date. NOTE that this object is reused for
+ * both `comments` and `ratingcomments`
+ *
+ * @see org.audux.bgg.data.request.things
+ */
+<span class="nc" id="L302">data class Comments(</span>
+    /**
+     * The current page of comments.
+     *
+     * @see org.audux.bgg.data.request.things
+     */
+<span class="nc" id="L308">    @JacksonXmlProperty(isAttribute = true) val page: Int,</span>
+
+    /**
+     * Total number of comments for the specified type of comments, current items in this collection
+     * are specified by the request: [org.audux.bgg.BggClient.PARAM_PAGE] and
+     * [org.audux.bgg.BggClient.PARAM_PAGE_SIZE] which are passed in via the `page` and `pageSize`
+     * parameters in [org.audux.bgg.data.request.things].
+     */
+<span class="nc" id="L316">    @JacksonXmlProperty(isAttribute = true) val totalItems: Int,</span>
+
+    /**
+     * List of comments which will either always have `rating` set or value set depending on the
+     * request.
+     */
+<span class="nc" id="L322">    @JacksonXmlProperty(localName = &quot;comment&quot;) val comments: List&lt;Comment&gt; = listOf(),</span>
+<span class="nc" id="L323">)</span>
+
+/**
+ * Encapsulated both ratings and comments. Comments can have both [rating] and [value] set but which
+ * one will always be set in the collection is specified in the request instead.
+ */
+<span class="nc" id="L329">data class Comment(</span>
+    /** Username of the user that posted the rating/comment. */
+<span class="nc" id="L331">    @JacksonXmlProperty(isAttribute = true) val username: String,</span>
+
+    /** A rating expressed in a number ranging from 1-10. May be expressed as a decimal number. */
+<span class="nc" id="L334">    @JacksonXmlProperty(isAttribute = true) val rating: Number?,</span>
+
+    /** The comment the user posted. */
+<span class="nc" id="L337">    @JacksonXmlProperty(isAttribute = true) val value: String?,</span>
+)
+// endregion
+
+// region Marketplace
+/** A single listing for the thing i.e. a 'for sale'-listing. */
+<span class="nc" id="L343">data class MarketplaceListing(</span>
+    /** When the listing was created. */
+<span class="nc" id="L345">    val listDate: WrappedLocalDateTime,</span>
+
+    /** The requested price for the listing. */
+<span class="nc" id="L348">    val price: Price,</span>
+
+    /** The condition of the item e.g. 'new' etc. */
+<span class="nc" id="L351">    val condition: WrappedValue&lt;String&gt;?,</span>
+
+    /** Description of the listing. */
+<span class="nc" id="L354">    val notes: WrappedValue&lt;String&gt;?,</span>
+
+    /** Link to the listing. */
+<span class="nc" id="L357">    @JsonProperty(&quot;link&quot;) val webLink: Weblink,</span>
+)
+
+/** Encapsulates a price for a given [MarketplaceListing] */
+<span class="nc" id="L361">data class Price(</span>
+    /** The actual price. */
+<span class="nc" id="L363">    val value: Number,</span>
+
+    /** The currency for the listing - ISO 4217. */
+<span class="nc" id="L366">    val currency: String,</span>
+)
+
+/** Link to a web resource including a title/description. */
+<span class="nc" id="L370">data class Weblink(</span>
+    /** Link to web resource. */
+<span class="nc" id="L372">    val href: URI,</span>
+
+    /** The title of the resource. */
+<span class="nc" id="L375">    val title: String,</span>
+)
+// endregion
+
+// region All Poll classes
+/**
+ * Base type for creating the different polls in the response e.g. player poll/votes for the best
+ * number of players to play a particular game with.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.EXISTING_PROPERTY,
+    property = &quot;name&quot;
+)
+@JsonSubTypes(
+    JsonSubTypes.Type(value = LanguageDependencePoll::class, name = &quot;language_dependence&quot;),
+    JsonSubTypes.Type(value = PlayerAgePoll::class, name = &quot;suggested_playerage&quot;),
+    JsonSubTypes.Type(value = NumberOfPlayersPoll::class, name = &quot;suggested_numplayers&quot;),
+)
+interface Poll
+
+/** Poll that contains the votes for the preferred number of players to engage with the thing. */
+<span class="nc" id="L397">data class NumberOfPlayersPoll(</span>
+    /** English name/title of the poll e.g. &quot;User Suggested Number of Players&quot;. */
+<span class="nc" id="L399">    @JacksonXmlProperty(isAttribute = true) val title: String,</span>
+
+    /** Total number of votes cast. */
+<span class="nc" id="L402">    @JacksonXmlProperty(isAttribute = true) val totalVotes: Int,</span>
+
+    /** Result set for the poll. */
+<span class="nc" id="L405">    val results: List&lt;NumberOfPlayersResults&gt;,</span>
+) : Poll
+
+/**
+ * Suggested number of players for associated thing. These results are 2-dimensional meaning each
+ * 'results' contains three singular results.
+ *
+ * The XML looks as follows (Repeated for each `numplayer` possibility):
+ * ```
+ *  &lt;results numplayers=&quot;1&quot;&gt;
+ *      &lt;result value=&quot;Best&quot; numvotes=&quot;0&quot;/&gt;
+ *      &lt;result value=&quot;Recommended&quot; numvotes=&quot;0&quot;/&gt;
+ *      &lt;result value=&quot;Not Recommended&quot; numvotes=&quot;2&quot;/&gt;
+ *  &lt;/results&gt;
+ * ```
+ */
+<span class="nc" id="L421">data class NumberOfPlayersResults(</span>
+    /** The number of players these votes were cast for. */
+<span class="nc" id="L423">    @JacksonXmlProperty(localName = &quot;numplayers&quot;) val numberOfPlayers: String,</span>
+
+    /** The list of results/votes. */
+<span class="nc" id="L426">    @JacksonXmlProperty(localName = &quot;result&quot;) val results: List&lt;PollResult&gt;,</span>
+)
+
+/** Poll that contains the votes for the minimum age to engage with the thing. */
+<span class="nc" id="L430">data class PlayerAgePoll(</span>
+    /** English name/title of the poll e.g. &quot;User Suggested Player Age&quot;. */
+<span class="nc" id="L432">    @JacksonXmlProperty(isAttribute = true) val title: String,</span>
+
+    /** Total number of votes cast. */
+<span class="nc" id="L435">    @JacksonXmlProperty(isAttribute = true) val totalVotes: Int,</span>
+
+    /** Result set for the poll. */
+<span class="nc" id="L438">    @JacksonXmlElementWrapper(useWrapping = true)</span>
+    @JacksonXmlProperty(localName = &quot;results&quot;)
+<span class="nc" id="L440">    val results: List&lt;PollResult&gt;,</span>
+) : Poll
+
+/** Poll that contains the votes for the minimum age to engage with the thing. */
+<span class="nc" id="L444">data class LanguageDependencePoll(</span>
+    /** English name/title of the poll e.g. &quot;Language Dependence&quot;. */
+<span class="nc" id="L446">    @JacksonXmlProperty(isAttribute = true) val title: String,</span>
+
+    /** Total number of votes cast. */
+<span class="nc" id="L449">    @JacksonXmlProperty(isAttribute = true) val totalVotes: Int,</span>
+
+    /** Result set for the poll. */
+<span class="nc" id="L452">    @JacksonXmlElementWrapper(useWrapping = true)</span>
+    @JacksonXmlProperty(localName = &quot;results&quot;)
+<span class="nc" id="L454">    val results: List&lt;LeveledPollResult&gt;,</span>
+) : Poll
+
+/** A single aggregate result i.e. votes for a single poll option. */
+<span class="nc" id="L458">data class PollResult(</span>
+    /** The name/value of the poll option. */
+<span class="nc" id="L460">    @JacksonXmlProperty(isAttribute = true) val value: String,</span>
+
+    /** The number of votes cast on this option. */
+<span class="nc" id="L463">    @JacksonXmlProperty(localName = &quot;numvotes&quot;, isAttribute = true) val numberOfVotes: Int,</span>
+)
+
+/** A single aggregate result i.e. votes for a single poll option. */
+<span class="nc" id="L467">data class LeveledPollResult(</span>
+    /** The name/value of the poll option. */
+<span class="nc" id="L469">    @JacksonXmlProperty(isAttribute = true) val value: String,</span>
+
+    /** The number of votes cast on this option. */
+<span class="nc" id="L472">    @JacksonXmlProperty(localName = &quot;numvotes&quot;, isAttribute = true) val numberOfVotes: Int,</span>
+
+    /** The number of votes cast on this option. */
+<span class="nc" id="L475">    @JacksonXmlProperty(isAttribute = true) val level: Int,</span>
+)
+// endregion Polls
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

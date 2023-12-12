@@ -39,8 +39,7 @@ data class HotListItem(
     val name: WrappedValue<String>,
 
     /** Thumbnail image URL of the item. */
-    @JsonDeserialize(using = TrimmedStringDeserializer::class)
-    val thumbnail: WrappedValue<String>?,
+    @JsonDeserialize(using = TrimmedStringDeserializer::class) val thumbnail: WrappedValue<String>?,
 
     /** Optional year of publishing. */
     val yearPublished: WrappedValue<Int>?,

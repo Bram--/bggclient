@@ -55,12 +55,10 @@ data class CollectionItem(
     val yearPublished: Number? = null,
 
     /** Web URL to the thumbnail image. */
-    @JsonDeserialize(using = TrimmedStringDeserializer::class)
-    val thumbnail: String? = null,
+    @JsonDeserialize(using = TrimmedStringDeserializer::class) val thumbnail: String? = null,
 
     /** URL to the image. */
-    @JsonDeserialize(using = TrimmedStringDeserializer::class)
-    val image: String? = null,
+    @JsonDeserialize(using = TrimmedStringDeserializer::class) val image: String? = null,
 
     /** Status of the collection item e.g. whether the user owns it, previously owns it etc. */
     val status: Status? = null,

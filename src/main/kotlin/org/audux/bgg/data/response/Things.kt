@@ -65,12 +65,10 @@ data class Thing(
     @JsonDeserialize(using = ThingTypeDeserializer::class) val type: ThingType,
 
     /** URL to 200 by 150 thumbnail image. */
-    @JsonDeserialize(using = TrimmedStringDeserializer::class)
-    val thumbnail: String?,
+    @JsonDeserialize(using = TrimmedStringDeserializer::class) val thumbnail: String?,
 
     /** URL to full sized image. */
-    @JsonDeserialize(using = TrimmedStringDeserializer::class)
-    val image: String?,
+    @JsonDeserialize(using = TrimmedStringDeserializer::class) val image: String?,
 
     /** Long form description of the thing. */
     // TODO: Unescape HTML.

@@ -17,12 +17,12 @@ import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import io.ktor.util.StringValues
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import org.audux.bgg.BggClient
 import org.audux.bgg.data.common.Inclusion
 import org.audux.bgg.data.common.ThingType
 import org.audux.bgg.data.response.Collection
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 suspend fun BggClient.collection(
     /** Name of the user to request the collection for. */
@@ -32,8 +32,8 @@ suspend fun BggClient.collection(
      * Specifies which collection you want to retrieve - only one type at the time.
      *
      * NOTE: When using [ThingType.BOARD_GAME] expansions are also returned but wrongly have the
-     * type set to [ThingType.BOARD_GAME], to only retrieve boardgames set [excludeSubType]
-     * to [ThingType.BOARD_GAME_EXPANSION].
+     * type set to [ThingType.BOARD_GAME], to only retrieve boardgames set [excludeSubType] to
+     * [ThingType.BOARD_GAME_EXPANSION].
      */
     subType: ThingType,
 
@@ -49,13 +49,13 @@ suspend fun BggClient.collection(
     /** Returns more abbreviated results. */
     brief: Boolean = false,
 
-    /**	Returns expanded rating/ranking info for the collection. */
+    /** Returns expanded rating/ranking info for the collection. */
     stats: Boolean = false,
 
     /**
-     * Filter for owned games. Set to [Inclusion.EXCLUDE] to exclude these items so marked.
-     * Set to [Inclusion.INCLUDE] for returning owned games and 0 for non-owned games.
-    */
+     * Filter for owned games. Set to [Inclusion.EXCLUDE] to exclude these items so marked. Set to
+     * [Inclusion.INCLUDE] for returning owned games and 0 for non-owned games.
+     */
     own: Inclusion? = null,
 
     /**
@@ -110,8 +110,8 @@ suspend fun BggClient.collection(
     wantToPlay: Inclusion? = null,
 
     /**
-     * Filter for ownership flag. Set to [Inclusion.EXCLUDE] to exclude these items so marked.
-     * Set to [Inclusion.INCLUDE] to include only these items so marked.
+     * Filter for ownership flag. Set to [Inclusion.EXCLUDE] to exclude these items so marked. Set
+     * to [Inclusion.INCLUDE] to include only these items so marked.
      */
     wantToBuy: Inclusion? = null,
 
@@ -121,16 +121,17 @@ suspend fun BggClient.collection(
      */
     previouslyOwned: Inclusion? = null,
 
-    /** Filter on whether there is a comment in the Has Parts field of the item.
-     * Set to [Inclusion.EXCLUDE] to exclude these items so marked. Set to [Inclusion.INCLUDE] to
-     * include only these items so marked.
+    /**
+     * Filter on whether there is a comment in the Has Parts field of the item. Set to
+     * [Inclusion.EXCLUDE] to exclude these items so marked. Set to [Inclusion.INCLUDE] to include
+     * only these items so marked.
      */
     hasParts: Inclusion? = null,
 
     /**
-     * Filter on whether there is a comment in the Wants Parts field of the item.
-     * Set to [Inclusion.EXCLUDE] to exclude these items so marked. Set to [Inclusion.INCLUDE] to
-     * include only these items so marked.
+     * Filter on whether there is a comment in the Wants Parts field of the item. Set to
+     * [Inclusion.EXCLUDE] to exclude these items so marked. Set to [Inclusion.INCLUDE] to include
+     * only these items so marked.
      */
     wantParts: Inclusion? = null,
 
@@ -150,10 +151,10 @@ suspend fun BggClient.collection(
     /** Filter on maximum BGG rating for that item in the collection. Range 1-10. */
     bggRating: Int? = null,
 
-    /**	Filter by minimum number of recorded plays. */
+    /** Filter by minimum number of recorded plays. */
     minimumPlays: Int? = null,
 
-    /**	Filter by maximum number of recorded plays. */
+    /** Filter by maximum number of recorded plays. */
     maxPlays: Int? = null,
 
     /**
@@ -164,11 +165,10 @@ suspend fun BggClient.collection(
 
     /**
      * Restricts the collection results to only those whose status (own, want, fortrade, etc.) has
-     * changed or been added since the date specified (does not return results for deletions).
-     * Time may be added as well: modifiedsince=YY-MM-DD%20HH:MM:SS
+     * changed or been added since the date specified (does not return results for deletions). Time
+     * may be added as well: modifiedsince=YY-MM-DD%20HH:MM:SS
      */
     modifiedSince: LocalDateTime? = null,
-
 ): Collection {
     val response =
         client.get(BggClient.BASE_URL) {
@@ -184,37 +184,37 @@ suspend fun BggClient.collection(
                         if (version) append(BggClient.PARAM_VERSION, "1")
                         if (brief) append(BggClient.PARAM_BRIEF, "1")
                         if (stats) append(BggClient.PARAM_STATS, "1")
-                        own?.let { append(BggClient.PARAM_OWN, it.toParam())  }
-                        rated?.let { append(BggClient.PARAM_RATED, it.toParam())  }
-                        played?.let { append(BggClient.PARAM_PLAYED, it.toParam())  }
-                        comment?.let { append(BggClient.PARAM_COMMENT, it.toParam())  }
-                        trade?.let { append(BggClient.PARAM_TRADE, it.toParam())  }
-                        want?.let { append(BggClient.PARAM_WANT, it.toParam())  }
-                        wishlist?.let { append(BggClient.PARAM_WISHLIST, it.toParam())  }
+                        own?.let { append(BggClient.PARAM_OWN, it.toParam()) }
+                        rated?.let { append(BggClient.PARAM_RATED, it.toParam()) }
+                        played?.let { append(BggClient.PARAM_PLAYED, it.toParam()) }
+                        comment?.let { append(BggClient.PARAM_COMMENT, it.toParam()) }
+                        trade?.let { append(BggClient.PARAM_TRADE, it.toParam()) }
+                        want?.let { append(BggClient.PARAM_WANT, it.toParam()) }
+                        wishlist?.let { append(BggClient.PARAM_WISHLIST, it.toParam()) }
                         wishlistPriority?.let {
                             append(BggClient.PARAM_WISHLIST_PRIORITY, it.toString())
                         }
-                        preOrdered?.let { append(BggClient.PARAM_PRE_ORDERED, it.toParam())  }
-                        wantToPlay?.let { append(BggClient.PARAM_WANT_TO_PLAY, it.toParam())  }
-                        wantToBuy?.let { append(BggClient.PARAM_WANT_TO_BUY, it.toParam())  }
+                        preOrdered?.let { append(BggClient.PARAM_PRE_ORDERED, it.toParam()) }
+                        wantToPlay?.let { append(BggClient.PARAM_WANT_TO_PLAY, it.toParam()) }
+                        wantToBuy?.let { append(BggClient.PARAM_WANT_TO_BUY, it.toParam()) }
                         previouslyOwned?.let {
                             append(BggClient.PARAM_PREVIOUSLY_OWNED, it.toParam())
                         }
-                        hasParts?.let { append(BggClient.PARAM_HAS_PARTS, it.toParam())  }
-                        wantParts?.let { append(BggClient.PARAM_WANT_PARTS, it.toParam())  }
-                        minRating?.let { append(BggClient.PARAM_MINIMUM_RATING, it.toString())  }
-                        rating?.let { append(BggClient.PARAM_RATING, it.toString())  }
-                        minBggRating?.let { append(BggClient.PARAM_MINIMUM_BGG_RATING, it.toString())  }
-                        bggRating?.let { append(BggClient.PARAM_BGG_RATING, it.toString())  }
-                        minimumPlays?.let { append(BggClient.PARAM_MINIMUM_PLAYS, it.toString())  }
-                        maxPlays?.let { append(BggClient.PARAM_MAX_PLAYS, it.toString())  }
-                        collectionId?.let { append(BggClient.PARAM_COLLECTION_ID, it.toString())  }
+                        hasParts?.let { append(BggClient.PARAM_HAS_PARTS, it.toParam()) }
+                        wantParts?.let { append(BggClient.PARAM_WANT_PARTS, it.toParam()) }
+                        minRating?.let { append(BggClient.PARAM_MINIMUM_RATING, it.toString()) }
+                        rating?.let { append(BggClient.PARAM_RATING, it.toString()) }
+                        minBggRating?.let {
+                            append(BggClient.PARAM_MINIMUM_BGG_RATING, it.toString())
+                        }
+                        bggRating?.let { append(BggClient.PARAM_BGG_RATING, it.toString()) }
+                        minimumPlays?.let { append(BggClient.PARAM_MINIMUM_PLAYS, it.toString()) }
+                        maxPlays?.let { append(BggClient.PARAM_MAX_PLAYS, it.toString()) }
+                        collectionId?.let { append(BggClient.PARAM_COLLECTION_ID, it.toString()) }
                         modifiedSince?.let {
                             val formatter = DateTimeFormatter.ofPattern("yy-MM-dd HH:mm:ss")
                             append(BggClient.PARAM_COLLECTION_ID, formatter.format(modifiedSince))
                         }
-
-
                     }
                 )
             }

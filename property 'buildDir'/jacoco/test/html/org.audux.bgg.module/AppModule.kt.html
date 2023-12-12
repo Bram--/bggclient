@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AppModule.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BggClient</a> &gt; <a href="index.source.html" class="el_package">org.audux.bgg.module</a> &gt; <span class="el_source">AppModule.kt</span></div><h1>AppModule.kt</h1><pre class="source lang-java linenums">/**
+ * Copyright 2023 Bram Wijnands
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
+package org.audux.bgg.module
+
+import com.fasterxml.jackson.databind.DeserializationFeature
+import com.fasterxml.jackson.databind.MapperFeature
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule
+import com.fasterxml.jackson.dataformat.xml.XmlMapper
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import com.fasterxml.jackson.module.kotlin.KotlinFeature
+import com.fasterxml.jackson.module.kotlin.KotlinModule
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.plugins.HttpRequestRetry
+import java.util.Locale
+import org.koin.core.module.dsl.named
+import org.koin.core.module.dsl.withOptions
+import org.koin.dsl.module
+
+/** Used to ensure usage of correct Jackson [com.fasterxml.jackson.databind.ObjectMapper]. */
+annotation class BggXmlObjectMapper()
+
+/** Used to ensure usage of correct Ktor [com.fasterxml.jackson.databind.ObjectMapper]. */
+annotation class BggKtorClient()
+
+/** Main Koin module for BggClient. */
+<span class="fc" id="L39">val appModule = module {</span>
+<span class="fc" id="L40">    single {</span>
+<span class="fc" id="L41">        XmlMapper.builder()</span>
+<span class="fc" id="L42">            .apply {</span>
+<span class="fc" id="L43">                configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)</span>
+<span class="fc" id="L44">                configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true)</span>
+
+<span class="fc" id="L46">                addModule(JacksonXmlModule())</span>
+<span class="fc" id="L47">                addModule(JavaTimeModule())</span>
+<span class="fc" id="L48">                addModule(</span>
+<span class="fc" id="L49">                    KotlinModule.Builder()</span>
+<span class="fc" id="L50">                        .enable(KotlinFeature.NullToEmptyCollection)</span>
+<span class="fc" id="L51">                        .enable(KotlinFeature.StrictNullChecks)</span>
+<span class="fc" id="L52">                        .build()</span>
+                )
+
+                // Keep hardcoded to US: https://bugs.openjdk.org/browse/JDK-8251317
+                // en_GB Locale uses 'Sept' as a shortname when formatting dates (e.g. 'MMM'). The
+                // locale en_US remains 'Sep'.
+<span class="fc" id="L58">                defaultLocale(Locale.US)</span>
+<span class="fc" id="L59">                defaultMergeable(true)</span>
+<span class="fc" id="L60">                defaultUseWrapper(false)</span>
+<span class="fc" id="L61">            }</span>
+<span class="fc" id="L62">            .build() as ObjectMapper</span>
+<span class="fc" id="L63">    } withOptions { named&lt;BggXmlObjectMapper&gt;() }</span>
+
+<span class="fc" id="L65">    single {</span>
+<span class="nc" id="L66">        HttpClient(OkHttp) {</span>
+<span class="nc" id="L67">            install(HttpRequestRetry) {</span>
+<span class="nc" id="L68">                retryOnServerErrors(maxRetries = 5)</span>
+<span class="nc" id="L69">                exponentialDelay()</span>
+<span class="nc" id="L70">            }</span>
+<span class="nc" id="L71">            expectSuccess = true</span>
+<span class="nc" id="L72">        }</span>
+<span class="fc" id="L73">    } withOptions { named&lt;BggKtorClient&gt;() }</span>
+<span class="fc" id="L74">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

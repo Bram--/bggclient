@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Search.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BggClient</a> &gt; <a href="index.source.html" class="el_package">org.audux.bgg.data.request</a> &gt; <span class="el_source">Search.kt</span></div><h1>Search.kt</h1><pre class="source lang-java linenums">/**
+ * Copyright 2023 Bram Wijnands
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
+package org.audux.bgg.data.request
+
+import io.ktor.client.request.get
+import io.ktor.client.statement.bodyAsText
+import io.ktor.http.appendPathSegments
+import io.ktor.util.StringValues
+import org.audux.bgg.BggClient
+import org.audux.bgg.data.common.ThingType
+import org.audux.bgg.data.response.SearchResults
+
+/** Search endpoint that allows searching by name for things on BGG. */
+<span class="nc" id="L25">suspend fun BggClient.search(</span>
+    /**
+     * Returns all types of items that match [query]. Spaces in the SEARCH_QUERY are replaced by a +
+     */
+    query: String,
+
+    /**
+     * Return all items that match SEARCH_QUERY of type [ThingType]. You can return multiple types
+     * by using more.
+     */
+    types: Array&lt;ThingType&gt; = arrayOf(),
+
+    /** Limit results to items that match the [query] exactly */
+<span class="nc" id="L38">    exactMatch: Boolean = false,</span>
+): SearchResults {
+<span class="nc" id="L40">    val response =</span>
+<span class="nc" id="L41">        client.get(BggClient.BASE_URL) {</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            url {</span>
+<span class="nc" id="L43">                appendPathSegments(BggClient.PATH_SEARCH)</span>
+<span class="nc" id="L44">                parameters.appendAll(</span>
+<span class="nc" id="L45">                    StringValues.build {</span>
+<span class="nc" id="L46">                        append(BggClient.PARAM_QUERY, query.replace(&quot; &quot;, &quot;+&quot;))</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">                        if (exactMatch) append(BggClient.PARAM_EXACT, &quot;1&quot;)</span>
+
+<span class="nc bnc" id="L49" title="All 6 branches missed.">                        if (types.isNotEmpty()) {</span>
+<span class="nc" id="L50">                            append(BggClient.PARAM_TYPE, types.joinToString { &quot;${it.param},&quot; })</span>
+                        }
+<span class="nc" id="L52">                    }</span>
+                )
+<span class="nc" id="L54">            }</span>
+<span class="nc" id="L55">        }</span>
+
+<span class="nc" id="L57">    return mapper.readValue(response.bodyAsText(), SearchResults::class.java)</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Collection.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">BggClient</a> &gt; <a href="index.source.html" class="el_package">org.audux.bgg.data.response</a> &gt; <span class="el_source">Collection.kt</span></div><h1>Collection.kt</h1><pre class="source lang-java linenums">/**
+ * Copyright 2023 Bram Wijnands
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
+package org.audux.bgg.data.response
+
+import com.fasterxml.jackson.annotation.JsonFormat
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonRootName
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
+import java.time.LocalDateTime
+import org.audux.bgg.data.common.Ratings
+import org.audux.bgg.data.common.ThingType
+
+/** Response wrapper for Hot lists to be returned. */
+<span class="fc" id="L26">@JsonRootName(&quot;items&quot;)</span>
+<span class="fc" id="L27">data class Collection(</span>
+    /** Terms of use of the BGG API. */
+<span class="pc" id="L29">    @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,</span>
+
+    /** Total number of items in the resulting collection. */
+<span class="pc" id="L32">    @JacksonXmlProperty(isAttribute = true) val totalItems: Number,</span>
+
+    /** Date and time when the collection was 'published' i.e. created by the BGG API. */
+<span class="pc" id="L35">    @JacksonXmlProperty(isAttribute = true, localName = &quot;pubdate&quot;) val publishDate: String,</span>
+
+    /** List of the actual things. */
+<span class="fc" id="L38">    @JacksonXmlProperty(localName = &quot;item&quot;) val items: List&lt;CollectionItem&gt;</span>
+)
+
+<span class="fc" id="L41">@JsonIgnoreProperties(&quot;objecttype&quot;)</span>
+<span class="fc" id="L42">data class CollectionItem(</span>
+<span class="pc" id="L43">    @JacksonXmlProperty(isAttribute = true, localName = &quot;collid&quot;) val collectionId: Number,</span>
+<span class="pc" id="L44">    @JacksonXmlProperty(isAttribute = true) val objectId: Number,</span>
+
+    /** Rank in the returned list. */
+<span class="fc" id="L47">    @JacksonXmlProperty(isAttribute = true, localName = &quot;subtype&quot;)</span>
+    @JsonDeserialize(using = ThingTypeDeserializer::class)
+<span class="nc" id="L49">    val type: ThingType,</span>
+
+    /** Name the user has given the thing or primary name of the thing by default. */
+<span class="fc" id="L52">    val name: String,</span>
+
+    /** Optional year of publishing. */
+<span class="pc" id="L55">    val yearPublished: Number? = null,</span>
+
+    /** Web URL to the thumbnail image. */
+<span class="pc" id="L58">    @JsonDeserialize(using = TrimmedStringDeserializer::class) val thumbnail: String? = null,</span>
+
+    /** URL to the image. */
+<span class="pc" id="L61">    @JsonDeserialize(using = TrimmedStringDeserializer::class) val image: String? = null,</span>
+
+    /** Status of the collection item e.g. whether the user owns it, previously owns it etc. */
+<span class="pc" id="L64">    val status: Status? = null,</span>
+
+    /** Number of plays the user had with this item. */
+<span class="pc" id="L67">    val numPlays: Number? = null,</span>
+
+    /** Comment owner/user left on the collection item. */
+<span class="pc" id="L70">    val comment: String? = null,</span>
+
+    /** Text user left on the condition of the item. */
+<span class="pc" id="L73">    val conditionText: String? = null,</span>
+
+    /** Aggregate statistics for this collection item. */
+<span class="pc" id="L76">    val stats: CollectionStatistics?,</span>
+<span class="fc" id="L77">)</span>
+
+/** The status of collection item e.g. whether the user owns it, wants it etc. */
+<span class="fc" id="L80">data class Status(</span>
+    /** Whether item is currently owned. */
+<span class="fc" id="L82">    @JsonDeserialize(using = NumberToBooleanDeserializer::class)</span>
+    @JacksonXmlProperty(isAttribute = true)
+<span class="pc" id="L84">    val own: Boolean = false,</span>
+
+    /** Whether item is currently owned. */
+<span class="fc" id="L87">    @JsonDeserialize(using = NumberToBooleanDeserializer::class)</span>
+    @JacksonXmlProperty(isAttribute = true, localName = &quot;prevowned&quot;)
+<span class="nc" id="L89">    val previouslyOwned: Boolean = false,</span>
+
+    /** Whether item is currently owned. */
+<span class="fc" id="L92">    @JsonDeserialize(using = NumberToBooleanDeserializer::class)</span>
+    @JacksonXmlProperty(isAttribute = true)
+<span class="pc" id="L94">    val forTrade: Boolean = false,</span>
+
+    /** Whether item is currently owned. */
+<span class="fc" id="L97">    @JsonDeserialize(using = NumberToBooleanDeserializer::class)</span>
+    @JacksonXmlProperty(isAttribute = true)
+<span class="pc" id="L99">    val want: Boolean = false,</span>
+
+    /** Whether item is currently owned. */
+<span class="fc" id="L102">    @JsonDeserialize(using = NumberToBooleanDeserializer::class)</span>
+    @JacksonXmlProperty(isAttribute = true)
+<span class="pc" id="L104">    val wantToPlay: Boolean = false,</span>
+
+    /** Whether item is currently owned. */
+<span class="fc" id="L107">    @JsonDeserialize(using = NumberToBooleanDeserializer::class)</span>
+    @JacksonXmlProperty(isAttribute = true)
+<span class="pc" id="L109">    val wantToBuy: Boolean = false,</span>
+
+    /** Whether item is currently owned. */
+<span class="fc" id="L112">    @JsonDeserialize(using = NumberToBooleanDeserializer::class)</span>
+    @JacksonXmlProperty(isAttribute = true)
+<span class="pc" id="L114">    val wishlist: Boolean = false,</span>
+
+    /** Whether item is currently owned. */
+<span class="pc" id="L117">    @JacksonXmlProperty(isAttribute = true) val wishlistPriority: Number? = null,</span>
+
+    /** Whether item is currently owned. */
+<span class="fc" id="L120">    @JsonDeserialize(using = NumberToBooleanDeserializer::class)</span>
+    @JacksonXmlProperty(isAttribute = true)
+<span class="pc" id="L122">    val preOrdered: Boolean = false,</span>
+
+    /** Whether item is currently owned. */
+<span class="fc" id="L125">    @JacksonXmlProperty(isAttribute = true)</span>
+    @JsonFormat(pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;)
+<span class="nc" id="L127">    val lastModified: LocalDateTime? = null,</span>
+<span class="fc" id="L128">)</span>
+
+/** Statistics for a collection item. */
+<span class="fc" id="L131">data class CollectionStatistics(</span>
+    /** Minimum number of players. */
+<span class="pc" id="L133">    @JacksonXmlProperty(localName = &quot;minplayers&quot;) val minimumPlayers: Number?,</span>
+
+    /** Maximum number of players. */
+<span class="pc" id="L136">    @JacksonXmlProperty(localName = &quot;maxplayers&quot;) val maximumPlayers: Number?,</span>
+
+    /** Minimum play time in minutes. */
+<span class="pc" id="L139">    @JacksonXmlProperty(localName = &quot;minplaytime&quot;) val minimumPlayTime: Number?,</span>
+
+    /** Maximum play time in minutes. */
+<span class="pc" id="L142">    @JacksonXmlProperty(localName = &quot;maxplaytime&quot;) val maximumPlayTime: Number?,</span>
+
+    /** Average playing time. */
+<span class="pc" id="L145">    @JacksonXmlProperty(localName = &quot;playingtime&quot;) val playingTime: Number?,</span>
+
+    /** How often this item is seen in collections. */
+<span class="pc" id="L148">    val numOwned: Number?,</span>
+
+    /** The set of ratings */
+<span class="pc" id="L151">    @JacksonXmlProperty(localName = &quot;rating&quot;) val ratings: Ratings,</span>
+)
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

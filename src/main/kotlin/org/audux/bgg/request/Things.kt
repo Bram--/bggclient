@@ -79,39 +79,41 @@ suspend fun BggClient.things(
      * Set the number of records to return in paging. Minimum is 10, maximum is 100. Defaults to 100
      */
     pageSize: Int = 0,
-): Things {
-    if (page != 0 && !(10..100).contains(pageSize)) {
-        throw BggRequestException("pageSize must be between 10 and 100")
-    }
-    if (comments && ratingComments) {
-        throw BggRequestException("comments and ratingsComments can't both be true.")
-    }
-
-    val response =
-        client.get(BggClient.BASE_URL) {
-            url {
-                appendPathSegments(BggClient.PATH_THING)
-
-                parameters.appendAll(
-                    StringValues.build {
-                        append(BggClient.PARAM_ID, ids.joinToString(","))
-
-                        if (types.isNotEmpty()) {
-                            append(BggClient.PARAM_TYPE, types.joinToString { "${it.param}," })
-                        }
-
-                        if (stats) append(BggClient.PARAM_STATS, "1")
-                        if (versions) append(BggClient.PARAM_VERSIONS, "1")
-                        if (videos) append(BggClient.PARAM_VIDEOS, "1")
-                        if (marketplace) append(BggClient.PARAM_MARKETPLACE, "1")
-                        if (comments) append(BggClient.PARAM_COMMENTS, "1")
-                        if (ratingComments) append(BggClient.PARAM_RATING_COMMENTS, "1")
-                        if (page > 0) append(BggClient.PARAM_PAGE, page.toString())
-                        if (pageSize > 0) append(BggClient.PARAM_PAGE_SIZE, pageSize.toString())
-                    }
-                )
-            }
+): Request<Things> {
+    return request {
+        if (page != 0 && !(10..100).contains(pageSize)) {
+            throw BggRequestException("pageSize must be between 10 and 100")
+        }
+        if (comments && ratingComments) {
+            throw BggRequestException("comments and ratingsComments can't both be true.")
         }
 
-    return mapper.readValue(response.bodyAsText(), Things::class.java)
+        val response =
+            client.get(BggClient.BASE_URL) {
+                url {
+                    appendPathSegments(BggClient.PATH_THING)
+
+                    parameters.appendAll(
+                        StringValues.build {
+                            append(BggClient.PARAM_ID, ids.joinToString(","))
+
+                            if (types.isNotEmpty()) {
+                                append(BggClient.PARAM_TYPE, types.joinToString { "${it.param}," })
+                            }
+
+                            if (stats) append(BggClient.PARAM_STATS, "1")
+                            if (versions) append(BggClient.PARAM_VERSIONS, "1")
+                            if (videos) append(BggClient.PARAM_VIDEOS, "1")
+                            if (marketplace) append(BggClient.PARAM_MARKETPLACE, "1")
+                            if (comments) append(BggClient.PARAM_COMMENTS, "1")
+                            if (ratingComments) append(BggClient.PARAM_RATING_COMMENTS, "1")
+                            if (page > 0) append(BggClient.PARAM_PAGE, page.toString())
+                            if (pageSize > 0) append(BggClient.PARAM_PAGE_SIZE, pageSize.toString())
+                        }
+                    )
+                }
+            }
+
+        mapper.readValue(response.bodyAsText(), Things::class.java)
+    }
 }

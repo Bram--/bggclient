@@ -40,9 +40,9 @@ class HotResponseTest : KoinTest {
                     name = WrappedValue("John Company: Second Edition"),
                     yearPublished = WrappedValue(2022),
                     thumbnail =
-                    WrappedValue(
-                        "https://cf.geekdo-images.com/TAdE4z_bwAAjJlmPrkmKhA__thumb/img/pwgtQn8ArKjwBxk3bnDuIVAPWgU=/fit-in/200x150/filters:strip_icc()/pic6601629.jpg"
-                    ),
+                        WrappedValue(
+                            "https://cf.geekdo-images.com/TAdE4z_bwAAjJlmPrkmKhA__thumb/img/pwgtQn8ArKjwBxk3bnDuIVAPWgU=/fit-in/200x150/filters:strip_icc()/pic6601629.jpg"
+                        ),
                 )
             )
     }

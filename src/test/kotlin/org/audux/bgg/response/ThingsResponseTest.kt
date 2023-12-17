@@ -3,6 +3,9 @@ package org.audux.bgg.response
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth
+import java.net.URI
+import java.time.LocalDate
+import java.time.LocalDateTime
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
@@ -16,9 +19,6 @@ import org.koin.core.component.inject
 import org.koin.core.qualifier.named
 import org.koin.test.KoinTest
 import org.koin.test.junit5.KoinTestExtension
-import java.net.URI
-import java.time.LocalDate
-import java.time.LocalDateTime
 
 /** Test class for [Things] and nested response classes. */
 class ThingsResponseTest : KoinTest {
@@ -152,7 +152,8 @@ class ThingsResponseTest : KoinTest {
             val thing = things.things[0]
             val numberOfPlayersPoll =
                 thing.polls.findLast { it is NumberOfPlayersPoll }!! as NumberOfPlayersPoll
-            Truth.assertThat(numberOfPlayersPoll.title).isEqualTo("User Suggested Number of Players")
+            Truth.assertThat(numberOfPlayersPoll.title)
+                .isEqualTo("User Suggested Number of Players")
             Truth.assertThat(numberOfPlayersPoll.totalVotes).isEqualTo(136)
 
             val groupedVotes = numberOfPlayersPoll.results
@@ -221,7 +222,8 @@ class ThingsResponseTest : KoinTest {
             Truth.assertThat(thing.comments?.totalItems).isEqualTo(1402)
             Truth.assertThat(thing.comments?.comments).hasSize(100)
             Truth.assertThat(thing.comments?.comments?.get(0)?.rating).isEqualTo(10)
-            Truth.assertThat(thing.comments?.comments?.get(0)?.value).contains("This game is amazing")
+            Truth.assertThat(thing.comments?.comments?.get(0)?.value)
+                .contains("This game is amazing")
             Truth.assertThat(thing.comments?.comments?.get(0)?.username).contains("actiondan87")
 
             val ratings = thing.comments?.comments?.map { it.rating }
@@ -384,7 +386,8 @@ class ThingsResponseTest : KoinTest {
             Truth.assertThat(thing.versions).hasSize(5)
             Truth.assertThat(thing.comments?.totalItems).isEqualTo(1238)
             Truth.assertThat(thing.comments?.comments).hasSize(100)
-            WrappedValueSubject.assertThat(thing.statistics?.ratings?.usersRated).hasValue(1236) // Bug in BGG?
+            WrappedValueSubject.assertThat(thing.statistics?.ratings?.usersRated)
+                .hasValue(1236) // Bug in BGG?
             Truth.assertThat(thing.listings).hasSize(3)
         }
     }

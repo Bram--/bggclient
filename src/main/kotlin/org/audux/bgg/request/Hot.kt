@@ -21,20 +21,22 @@ import org.audux.bgg.common.HotListType
 import org.audux.bgg.response.HotList
 
 /** Hotness endpoint that retrieve the list of most 50 active items on the site filtered by type. */
-suspend fun BggClient.hot(
+fun BggClient.hot(
     /**
      * Single [HotListType] returning only items of the specified type, defaults to
      * [HotListType.BOARD_GAME].
      */
     type: HotListType? = null,
-): HotList {
-    val response =
-        client.get(BggClient.BASE_URL) {
-            url {
-                appendPathSegments(BggClient.PATH_HOT)
-                type?.let { parameters.append(BggClient.PARAM_TYPE, it.param) }
+): Request<HotList> {
+    return request {
+        val response =
+            client.get(BggClient.BASE_URL) {
+                url {
+                    appendPathSegments(BggClient.PATH_HOT)
+                    type?.let { parameters.append(BggClient.PARAM_TYPE, it.param) }
+                }
             }
-        }
 
-    return mapper.readValue(response.bodyAsText(), HotList::class.java)
+        mapper.readValue(response.bodyAsText(), HotList::class.java)
+    }
 }

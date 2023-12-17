@@ -17,13 +17,19 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
+import kotlin.system.exitProcess
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.audux.bgg.common.ThingType
-import org.audux.bgg.request.collection
 import org.audux.bgg.module.BggKtorClient
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
 import org.audux.bgg.request.Request
+import org.audux.bgg.request.collection
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.context.startKoin
@@ -32,6 +38,7 @@ import org.koin.core.qualifier.named
 class BggClient : KoinComponent {
     internal val client: HttpClient by inject(named<BggKtorClient>())
     internal val mapper: ObjectMapper by inject(named<BggXmlObjectMapper>())
+    private val clientScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
     init {
         startKoin { modules(appModule) }
@@ -41,9 +48,11 @@ class BggClient : KoinComponent {
         client.close()
     }
 
-    suspend fun <R> call(request: suspend () -> R): R where R: Request {
-        return request()
+    internal fun <R> call(request: suspend () -> R, response: (R) -> Unit) {
+        clientScope.launch { response(request()) }
     }
+
+    internal fun <R> request(request: suspend () -> R) = Request(this, request)
 
     internal companion object {
         const val BASE_URL = "https://boardgamegeek.com/xmlapi2"
@@ -78,7 +87,6 @@ class BggClient : KoinComponent {
         const val PARAM_RATED = "rated"
         const val PARAM_RATING = "rating"
         const val PARAM_RATING_COMMENTS = "ratingcomments"
-        const val PARAM_SHOW_PRIVATE = "showprivate"
         const val PARAM_STATS = "stats"
         const val PARAM_SUBTYPE = "subtype"
         const val PARAM_TRADE = "trade"
@@ -97,35 +105,24 @@ class BggClient : KoinComponent {
         @JvmStatic
         fun main(args: Array<String>) {
             Napier.base(DebugAntilog())
-
             val client = BggClient()
-            runBlocking {
-                val response =
-                    client.collection(
+
+            repeat(10) {
+                client
+                    .collection(
                         "Novaeux",
                         ThingType.BOARD_GAME,
-                        stats = true,
+                        excludeSubType = ThingType.BOARD_GAME_EXPANSION
                     )
-                //                    client.things(
-                //                        ids = arrayOf(224517),
-                //                        types = arrayOf(ThingType.BOARD_GAME),
-                //                        marketplace = true,
-                //                        ratingComments = true,
-                //                        videos = true,
-                //                        versions = true,
-                //                        stats = true,
-                //                    )
-
-                Napier.i(
-                    """
-                    ${response}
-                    
-                    """
-                        .trimIndent()
-                )
+                    .call {
+                        // Napier.e("TEST: ${it.totalItems}") }
+                    }
             }
 
-            client.close()
+            runBlocking {
+                delay(30_000)
+                exitProcess(0)
+            }
         }
     }
 }

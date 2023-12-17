@@ -36,23 +36,25 @@ suspend fun BggClient.search(
 
     /** Limit results to items that match the [query] exactly */
     exactMatch: Boolean = false,
-): SearchResults {
-    val response =
-        client.get(BggClient.BASE_URL) {
-            url {
-                appendPathSegments(BggClient.PATH_SEARCH)
-                parameters.appendAll(
-                    StringValues.build {
-                        append(BggClient.PARAM_QUERY, query.replace(" ", "+"))
-                        if (exactMatch) append(BggClient.PARAM_EXACT, "1")
+): Request<SearchResults> {
+    return request {
+        val response =
+            client.get(BggClient.BASE_URL) {
+                url {
+                    appendPathSegments(BggClient.PATH_SEARCH)
+                    parameters.appendAll(
+                        StringValues.build {
+                            append(BggClient.PARAM_QUERY, query.replace(" ", "+"))
+                            if (exactMatch) append(BggClient.PARAM_EXACT, "1")
 
-                        if (types.isNotEmpty()) {
-                            append(BggClient.PARAM_TYPE, types.joinToString { "${it.param}," })
+                            if (types.isNotEmpty()) {
+                                append(BggClient.PARAM_TYPE, types.joinToString { "${it.param}," })
+                            }
                         }
-                    }
-                )
+                    )
+                }
             }
-        }
 
-    return mapper.readValue(response.bodyAsText(), SearchResults::class.java)
+        mapper.readValue(response.bodyAsText(), SearchResults::class.java)
+    }
 }

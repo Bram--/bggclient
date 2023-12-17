@@ -2,6 +2,7 @@ package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth
+import java.time.LocalDateTime
 import org.audux.bgg.common.Rank
 import org.audux.bgg.common.Ratings
 import org.audux.bgg.common.ThingType
@@ -14,7 +15,6 @@ import org.koin.core.component.inject
 import org.koin.core.qualifier.named
 import org.koin.test.KoinTest
 import org.koin.test.junit5.KoinTestExtension
-import java.time.LocalDateTime
 
 class CollectionResponseTest : KoinTest {
     @JvmField
@@ -26,7 +26,8 @@ class CollectionResponseTest : KoinTest {
 
     @Test
     fun `Parses empty response`() {
-        val results = mapper.readValue(TestUtils.xml("collection?username=empty"), Collection::class.java)
+        val results =
+            mapper.readValue(TestUtils.xml("collection?username=empty"), Collection::class.java)
 
         Truth.assertThat(results.items).hasSize(0)
     }
@@ -51,60 +52,60 @@ class CollectionResponseTest : KoinTest {
                     name = "7 Wonders",
                     yearPublished = 2010,
                     image =
-                    "https://cf.geekdo-images.com/35h9Za_JvMMMtx_92kT0Jg__original/img/jt70jJDZ1y1FWJs4ZQf5FI8APVY=/0x0/filters:format(jpeg)/pic7149798.jpg",
+                        "https://cf.geekdo-images.com/35h9Za_JvMMMtx_92kT0Jg__original/img/jt70jJDZ1y1FWJs4ZQf5FI8APVY=/0x0/filters:format(jpeg)/pic7149798.jpg",
                     thumbnail =
-                    "https://cf.geekdo-images.com/35h9Za_JvMMMtx_92kT0Jg__thumb/img/BUOso8b0M1aUOkU80FWlhE8uuxc=/fit-in/200x150/filters:strip_icc()/pic7149798.jpg",
+                        "https://cf.geekdo-images.com/35h9Za_JvMMMtx_92kT0Jg__thumb/img/BUOso8b0M1aUOkU80FWlhE8uuxc=/fit-in/200x150/filters:strip_icc()/pic7149798.jpg",
                     numPlays = 1,
                     status =
-                    Status(
-                        previouslyOwned = true,
-                        lastModified = LocalDateTime.of(2023, 3, 20, 4, 58, 43),
-                    ),
-                    stats =
-                    CollectionStatistics(
-                        minimumPlayers = 2,
-                        maximumPlayers = 7,
-                        minimumPlayTime = 30,
-                        maximumPlayTime = 30,
-                        playingTime = 30,
-                        numOwned = 137568,
-                        ratings =
-                        Ratings(
-                            value = "7",
-                            usersRated = WrappedValue(101690),
-                            average = WrappedValue(7.69089),
-                            bayesAverage = WrappedValue(7.58314),
-                            stdDev = WrappedValue(1.277),
-                            median = WrappedValue(0),
-                            ranks =
-                            listOf(
-                                Rank(
-                                    id = 1,
-                                    name = "boardgame",
-                                    friendlyName = "Board Game Rank",
-                                    type = "subtype",
-                                    value = "89",
-                                    bayesAverage = "7.58314"
-                                ),
-                                Rank(
-                                    id = 5497,
-                                    name = "strategygames",
-                                    friendlyName = "Strategy Game Rank",
-                                    type = "family",
-                                    value = "90",
-                                    bayesAverage = "7.5477"
-                                ),
-                                Rank(
-                                    id = 5499,
-                                    name = "familygames",
-                                    friendlyName = "Family Game Rank",
-                                    type = "family",
-                                    value = "12",
-                                    bayesAverage = "7.57952"
-                                ),
-                            ),
+                        Status(
+                            previouslyOwned = true,
+                            lastModified = LocalDateTime.of(2023, 3, 20, 4, 58, 43),
                         ),
-                    )
+                    stats =
+                        CollectionStatistics(
+                            minimumPlayers = 2,
+                            maximumPlayers = 7,
+                            minimumPlayTime = 30,
+                            maximumPlayTime = 30,
+                            playingTime = 30,
+                            numOwned = 137568,
+                            ratings =
+                                Ratings(
+                                    value = "7",
+                                    usersRated = WrappedValue(101690),
+                                    average = WrappedValue(7.69089),
+                                    bayesAverage = WrappedValue(7.58314),
+                                    stdDev = WrappedValue(1.277),
+                                    median = WrappedValue(0),
+                                    ranks =
+                                        listOf(
+                                            Rank(
+                                                id = 1,
+                                                name = "boardgame",
+                                                friendlyName = "Board Game Rank",
+                                                type = "subtype",
+                                                value = "89",
+                                                bayesAverage = "7.58314"
+                                            ),
+                                            Rank(
+                                                id = 5497,
+                                                name = "strategygames",
+                                                friendlyName = "Strategy Game Rank",
+                                                type = "family",
+                                                value = "90",
+                                                bayesAverage = "7.5477"
+                                            ),
+                                            Rank(
+                                                id = 5499,
+                                                name = "familygames",
+                                                friendlyName = "Family Game Rank",
+                                                type = "family",
+                                                value = "12",
+                                                bayesAverage = "7.57952"
+                                            ),
+                                        ),
+                                ),
+                        )
                 )
             )
     }

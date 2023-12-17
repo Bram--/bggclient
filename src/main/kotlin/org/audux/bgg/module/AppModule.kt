@@ -25,14 +25,15 @@ import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.HttpRequestRetry
 import java.util.Locale
+import org.audux.bgg.schedule.ClientRateLimitPlugin
 import org.koin.core.module.dsl.named
 import org.koin.core.module.dsl.withOptions
 import org.koin.dsl.module
 
-/** Used to ensure usage of correct Jackson [com.fasterxml.jackson.databind.ObjectMapper]. */
+/** Used to ensure usage of correct Jackson [ObjectMapper]. */
 annotation class BggXmlObjectMapper()
 
-/** Used to ensure usage of correct Ktor [com.fasterxml.jackson.databind.ObjectMapper]. */
+/** Used to ensure usage of correct Ktor [HttpClient]. */
 annotation class BggKtorClient()
 
 /** Main Koin module for BggClient. */
@@ -65,9 +66,17 @@ val appModule = module {
     single {
         HttpClient(OkHttp) {
             install(HttpRequestRetry) {
-                retryOnServerErrors(maxRetries = 5)
                 exponentialDelay()
+                retryIf(maxRetries = 5) { _, response ->
+                    response.status.value.let {
+                        // Add 202 (Accepted) for retries, see:
+                        // https://boardgamegeek.com/thread/1188687/export-collections-has-been-updated-xmlapi-develop
+                        it in (500..599) + 202
+                    }
+                }
             }
+            install(ClientRateLimitPlugin) { requestLimit = 2 }
+
             expectSuccess = true
         }
     } withOptions { named<BggKtorClient>() }

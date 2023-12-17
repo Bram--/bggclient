@@ -24,7 +24,8 @@ class SearchResponseTest : KoinTest {
 
     @Test
     fun `Parses empty response`() {
-        val results = mapper.readValue(TestUtils.xml("search?query=no+results"), SearchResults::class.java)
+        val results =
+            mapper.readValue(TestUtils.xml("search?query=no+results"), SearchResults::class.java)
 
         Truth.assertThat(results.total).isEqualTo(0)
         Truth.assertThat(results.results).hasSize(0)
@@ -32,7 +33,8 @@ class SearchResponseTest : KoinTest {
 
     @Test
     fun `Parses search results`() {
-        val results = mapper.readValue(TestUtils.xml("search?query=my+little"), SearchResults::class.java)
+        val results =
+            mapper.readValue(TestUtils.xml("search?query=my+little"), SearchResults::class.java)
 
         Truth.assertThat(results.total).isEqualTo(144)
         Truth.assertThat(results.results).hasSize(144)

@@ -24,7 +24,7 @@ import org.audux.bgg.common.Inclusion
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.response.Collection
 
-suspend fun BggClient.collection(
+fun BggClient.collection(
     /** Name of the user to request the collection for. */
     userName: String,
 
@@ -169,56 +169,67 @@ suspend fun BggClient.collection(
      * may be added as well: modifiedsince=YY-MM-DD%20HH:MM:SS
      */
     modifiedSince: LocalDateTime? = null,
-): Collection {
-    val response =
-        client.get(BggClient.BASE_URL) {
-            url {
-                appendPathSegments(BggClient.PATH_COLLECTION)
-                parameters.appendAll(
-                    StringValues.build {
-                        append(BggClient.PARAM_USERNAME, userName)
-                        append(BggClient.PARAM_SUBTYPE, subType.param)
+): Request<Collection> {
+    return request {
+        val response =
+            client.get(BggClient.BASE_URL) {
+                url {
+                    appendPathSegments(BggClient.PATH_COLLECTION)
+                    parameters.appendAll(
+                        StringValues.build {
+                            append(BggClient.PARAM_USERNAME, userName)
+                            append(BggClient.PARAM_SUBTYPE, subType.param)
 
-                        excludeSubType?.let { append(BggClient.PARAM_EXCLUDE_SUBTYPE, it.param) }
-                        ids?.let { append(BggClient.PARAM_ID, it.joinToString(",")) }
-                        if (version) append(BggClient.PARAM_VERSION, "1")
-                        if (brief) append(BggClient.PARAM_BRIEF, "1")
-                        if (stats) append(BggClient.PARAM_STATS, "1")
-                        own?.let { append(BggClient.PARAM_OWN, it.toParam()) }
-                        rated?.let { append(BggClient.PARAM_RATED, it.toParam()) }
-                        played?.let { append(BggClient.PARAM_PLAYED, it.toParam()) }
-                        comment?.let { append(BggClient.PARAM_COMMENT, it.toParam()) }
-                        trade?.let { append(BggClient.PARAM_TRADE, it.toParam()) }
-                        want?.let { append(BggClient.PARAM_WANT, it.toParam()) }
-                        wishlist?.let { append(BggClient.PARAM_WISHLIST, it.toParam()) }
-                        wishlistPriority?.let {
-                            append(BggClient.PARAM_WISHLIST_PRIORITY, it.toString())
+                            excludeSubType?.let {
+                                append(BggClient.PARAM_EXCLUDE_SUBTYPE, it.param)
+                            }
+                            ids?.let { append(BggClient.PARAM_ID, it.joinToString(",")) }
+                            if (version) append(BggClient.PARAM_VERSION, "1")
+                            if (brief) append(BggClient.PARAM_BRIEF, "1")
+                            if (stats) append(BggClient.PARAM_STATS, "1")
+                            own?.let { append(BggClient.PARAM_OWN, it.toParam()) }
+                            rated?.let { append(BggClient.PARAM_RATED, it.toParam()) }
+                            played?.let { append(BggClient.PARAM_PLAYED, it.toParam()) }
+                            comment?.let { append(BggClient.PARAM_COMMENT, it.toParam()) }
+                            trade?.let { append(BggClient.PARAM_TRADE, it.toParam()) }
+                            want?.let { append(BggClient.PARAM_WANT, it.toParam()) }
+                            wishlist?.let { append(BggClient.PARAM_WISHLIST, it.toParam()) }
+                            wishlistPriority?.let {
+                                append(BggClient.PARAM_WISHLIST_PRIORITY, it.toString())
+                            }
+                            preOrdered?.let { append(BggClient.PARAM_PRE_ORDERED, it.toParam()) }
+                            wantToPlay?.let { append(BggClient.PARAM_WANT_TO_PLAY, it.toParam()) }
+                            wantToBuy?.let { append(BggClient.PARAM_WANT_TO_BUY, it.toParam()) }
+                            previouslyOwned?.let {
+                                append(BggClient.PARAM_PREVIOUSLY_OWNED, it.toParam())
+                            }
+                            hasParts?.let { append(BggClient.PARAM_HAS_PARTS, it.toParam()) }
+                            wantParts?.let { append(BggClient.PARAM_WANT_PARTS, it.toParam()) }
+                            minRating?.let { append(BggClient.PARAM_MINIMUM_RATING, it.toString()) }
+                            rating?.let { append(BggClient.PARAM_RATING, it.toString()) }
+                            minBggRating?.let {
+                                append(BggClient.PARAM_MINIMUM_BGG_RATING, it.toString())
+                            }
+                            bggRating?.let { append(BggClient.PARAM_BGG_RATING, it.toString()) }
+                            minimumPlays?.let {
+                                append(BggClient.PARAM_MINIMUM_PLAYS, it.toString())
+                            }
+                            maxPlays?.let { append(BggClient.PARAM_MAX_PLAYS, it.toString()) }
+                            collectionId?.let {
+                                append(BggClient.PARAM_COLLECTION_ID, it.toString())
+                            }
+                            modifiedSince?.let {
+                                val formatter = DateTimeFormatter.ofPattern("yy-MM-dd HH:mm:ss")
+                                append(
+                                    BggClient.PARAM_MODIFIED_SINCE,
+                                    formatter.format(modifiedSince)
+                                )
+                            }
                         }
-                        preOrdered?.let { append(BggClient.PARAM_PRE_ORDERED, it.toParam()) }
-                        wantToPlay?.let { append(BggClient.PARAM_WANT_TO_PLAY, it.toParam()) }
-                        wantToBuy?.let { append(BggClient.PARAM_WANT_TO_BUY, it.toParam()) }
-                        previouslyOwned?.let {
-                            append(BggClient.PARAM_PREVIOUSLY_OWNED, it.toParam())
-                        }
-                        hasParts?.let { append(BggClient.PARAM_HAS_PARTS, it.toParam()) }
-                        wantParts?.let { append(BggClient.PARAM_WANT_PARTS, it.toParam()) }
-                        minRating?.let { append(BggClient.PARAM_MINIMUM_RATING, it.toString()) }
-                        rating?.let { append(BggClient.PARAM_RATING, it.toString()) }
-                        minBggRating?.let {
-                            append(BggClient.PARAM_MINIMUM_BGG_RATING, it.toString())
-                        }
-                        bggRating?.let { append(BggClient.PARAM_BGG_RATING, it.toString()) }
-                        minimumPlays?.let { append(BggClient.PARAM_MINIMUM_PLAYS, it.toString()) }
-                        maxPlays?.let { append(BggClient.PARAM_MAX_PLAYS, it.toString()) }
-                        collectionId?.let { append(BggClient.PARAM_COLLECTION_ID, it.toString()) }
-                        modifiedSince?.let {
-                            val formatter = DateTimeFormatter.ofPattern("yy-MM-dd HH:mm:ss")
-                            append(BggClient.PARAM_COLLECTION_ID, formatter.format(modifiedSince))
-                        }
-                    }
-                )
+                    )
+                }
             }
-        }
 
-    return mapper.readValue(response.bodyAsText(), Collection::class.java)
+        mapper.readValue(response.bodyAsText(), Collection::class.java)
+    }
 }

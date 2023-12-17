@@ -49,8 +49,7 @@ enum class HotListType(val param: String) {
     RPG_COMPANY("rpgcompany"), // Does not actually work?
     RPG_PERSON("rpgperson"), // Does not actually work?
     VIDEO_GAME("videogame"), // Does not actually work?
-    VIDEO_GAME_COMPANY("videogamecompany")
-    // Does not actually work?
+    VIDEO_GAME_COMPANY("videogamecompany") // Does not actually work?
 }
 
 /**

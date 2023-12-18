@@ -1,6 +1,6 @@
 package org.audux.bgg.schedule
 
-import io.github.aakira.napier.Napier
+import co.touchlab.kermit.Logger
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.api.createClientPlugin
 import io.ktor.client.request.HttpRequestBuilder
@@ -38,9 +38,9 @@ class ConcurrentRequestLimiter(private val client: HttpClient, private val reque
      * <p>Called on [io.ktor.client.plugins.api.ClientPluginBuilder.onRequest].
      */
     fun onNewRequest(request: HttpRequestBuilder) {
-        Napier.v("ConcurrentRequestLimiter#OnNewRequest()")
+        logger.v("ConcurrentRequestLimiter#OnNewRequest()")
         if (inFlightRequests.get() >= requestLimit) {
-            Napier.d("Request limit met[limit=$requestLimit]: queueing request")
+            logger.d("Request limit met[limit=$requestLimit]: queueing request")
             request.executionContext.cancel()
 
             if (!requestQueue.add(HttpRequestBuilder().takeFrom(request))) {
@@ -60,11 +60,15 @@ class ConcurrentRequestLimiter(private val client: HttpClient, private val reque
      * <p>Called on [io.ktor.client.plugins.api.ClientPluginBuilder.onResponse].
      */
     suspend fun onNewResponse() {
-        Napier.v("ConcurrentRequestLimiter#OnNewResponse()")
+        logger.v("ConcurrentRequestLimiter#OnNewResponse()")
         if (inFlightRequests.decrementAndGet() < requestLimit && requestQueue.isNotEmpty()) {
             client.request(requestQueue.remove())
-            Napier.d("Sent request from RequestQueue[empty=${requestQueue.isNotEmpty()}}]")
+            logger.d("Sent request from RequestQueue[empty=${requestQueue.isNotEmpty()}}]")
         }
+    }
+
+    companion object {
+        private val logger = Logger.withTag("ClientRateLimitPlugin")
     }
 }
 

@@ -13,9 +13,9 @@
  */
 package org.audux.bgg
 
+import co.touchlab.kermit.Logger
+import co.touchlab.kermit.koin.KermitKoinLogger
 import com.fasterxml.jackson.databind.ObjectMapper
-import io.github.aakira.napier.DebugAntilog
-import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
 import kotlin.system.exitProcess
 import kotlinx.coroutines.CoroutineScope
@@ -30,31 +30,43 @@ import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
 import org.audux.bgg.request.Request
 import org.audux.bgg.request.collection
+import org.koin.core.Koin
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.context.startKoin
 import org.koin.core.qualifier.named
+import org.koin.dsl.koinApplication
 
-class BggClient : KoinComponent {
+class BggClient : KoinComponent, AutoCloseable {
     internal val client: HttpClient by inject(named<BggKtorClient>())
     internal val mapper: ObjectMapper by inject(named<BggXmlObjectMapper>())
     private val clientScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
     init {
-        startKoin { modules(appModule) }
+        startKoin {
+            logger(KermitKoinLogger(Logger.withTag("koin")))
+
+            modules(appModule)
+        }
     }
 
-    fun close() {
+    /** Override Koin to get an isolated Koin context, see: [BggClientKoinContext]. */
+    override fun getKoin(): Koin = BggClientKoinContext.koin
+
+    /** Closes the [HttpClient] client after use. */
+    override fun close() {
         client.close()
     }
 
+    /** Calls/Launches a request async, once a response is available it will call [response]. */
     internal fun <R> call(request: suspend () -> R, response: (R) -> Unit) {
         clientScope.launch { response(request()) }
     }
 
+    /** Returns a wrapped request for later execution. */
     internal fun <R> request(request: suspend () -> R) = Request(this, request)
 
-    internal companion object {
+    companion object {
         const val BASE_URL = "https://boardgamegeek.com/xmlapi2"
 
         const val PATH_COLLECTION = "collection"
@@ -104,27 +116,32 @@ class BggClient : KoinComponent {
 
         @JvmStatic
         fun main(args: Array<String>) {
-            Napier.base(DebugAntilog())
-            val client = BggClient()
+            BggClient().use { client ->
+                repeat(10) {
+                    client
+                        .collection(
+                            "Novaeux",
+                            ThingType.BOARD_GAME,
+                            excludeSubType = ThingType.BOARD_GAME_EXPANSION
+                        )
+                        .call {}
+                }
 
-            repeat(10) {
-                client
-                    .collection(
-                        "Novaeux",
-                        ThingType.BOARD_GAME,
-                        excludeSubType = ThingType.BOARD_GAME_EXPANSION
-                    )
-                    .call {
-                        // Napier.e("TEST: ${it.totalItems}") }
-                    }
-            }
-
-            runBlocking {
-                delay(30_000)
-                exitProcess(0)
+                runBlocking {
+                    delay(20_000)
+                    exitProcess(0)
+                }
             }
         }
     }
 }
 
+/** Isolated Koin Context for BGG Client. */
+object BggClientKoinContext {
+    private val koinApp = koinApplication { modules(appModule) }
+
+    val koin = koinApp.koin
+}
+
+/** Thrown whenever any exception is thrown during a request to BGG. */
 class BggRequestException(message: String) : Exception(message)

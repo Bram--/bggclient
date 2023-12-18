@@ -17,6 +17,7 @@ import co.touchlab.kermit.Logger
 import co.touchlab.kermit.koin.KermitKoinLogger
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.ktor.client.HttpClient
+import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.system.exitProcess
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,6 +35,8 @@ import org.audux.bgg.request.search
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
+import org.koin.core.error.KoinAppAlreadyStartedException
 import org.koin.core.qualifier.named
 import org.koin.dsl.koinApplication
 
@@ -56,12 +59,20 @@ class BggClient : KoinComponent, AutoCloseable {
     internal val client: HttpClient by inject(named<BggKtorClient>())
     internal val mapper: ObjectMapper by inject(named<BggXmlObjectMapper>())
     private val clientScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+    private var clientClosed = AtomicBoolean(false)
 
     init {
-        startKoin {
-            logger(KermitKoinLogger(Logger.withTag("koin")))
+        try {
+            startKoin {
+                logger(KermitKoinLogger(Logger.withTag("koin")))
 
-            modules(appModule)
+                modules(appModule)
+            }
+        } catch (e: KoinAppAlreadyStartedException) {
+            throw BggClientException(
+                "BggClient already started, either re-use the instance or call BggClient#close",
+                e
+            )
         }
     }
 
@@ -70,11 +81,16 @@ class BggClient : KoinComponent, AutoCloseable {
 
     /** Closes the [HttpClient] client after use. */
     override fun close() {
+        clientClosed.set(true)
+        stopKoin()
         client.close()
     }
 
     /** Calls/Launches a request async, once a response is available it will call [response]. */
     internal fun <R> call(request: suspend () -> R, response: (R) -> Unit) {
+        if (clientClosed.get()) {
+            throw BggClientException("Client closed, create new client to make requests.")
+        }
         clientScope.launch { response(request()) }
     }
 
@@ -88,22 +104,22 @@ class BggClient : KoinComponent, AutoCloseable {
                 client
                     .search("Scythe", arrayOf(ThingType.BOARD_GAME, ThingType.BOARD_GAME_EXPANSION))
                     .call { response -> println(response) }
+            }
 
-                BggClient().use { client ->
-                    repeat(10) {
-                        client
-                            .collection(
-                                "Novaeux",
-                                ThingType.BOARD_GAME,
-                                excludeSubType = ThingType.BOARD_GAME_EXPANSION
-                            )
-                            .call {}
-                    }
+            BggClient().use { client ->
+                repeat(10) {
+                    client
+                        .collection(
+                            "Novaeux",
+                            ThingType.BOARD_GAME,
+                            excludeSubType = ThingType.BOARD_GAME_EXPANSION
+                        )
+                        .call {}
+                }
 
-                    runBlocking {
-                        delay(20_000)
-                        exitProcess(0)
-                    }
+                runBlocking {
+                    delay(20_000)
+                    exitProcess(0)
                 }
             }
         }
@@ -115,6 +131,13 @@ object BggClientKoinContext {
     private val koinApp = koinApplication { modules(appModule) }
 
     val koin = koinApp.koin
+}
+
+/** Thrown whenever an exception happens in the BGGClient outside of a request. */
+class BggClientException : Exception {
+    constructor(message: String) : super(message)
+
+    constructor(message: String, throwable: Throwable) : super(message, throwable)
 }
 
 /** Thrown whenever any exception is thrown during a request to BGG. */

@@ -25,7 +25,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.HttpRequestRetry
 import java.util.Locale
-import org.audux.bgg.schedule.ClientRateLimitPlugin
+import org.audux.bgg.plugin.ClientRateLimitPlugin
 import org.koin.core.module.dsl.named
 import org.koin.core.module.dsl.withOptions
 import org.koin.dsl.module

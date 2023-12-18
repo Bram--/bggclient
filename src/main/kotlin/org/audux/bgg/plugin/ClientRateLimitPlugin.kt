@@ -1,4 +1,4 @@
-package org.audux.bgg.schedule
+package org.audux.bgg.plugin
 
 import co.touchlab.kermit.Logger
 import io.ktor.client.HttpClient
@@ -10,8 +10,9 @@ import java.util.concurrent.atomic.AtomicInteger
 import org.audux.bgg.BggRequestException
 
 /**
- * Configure the client to limit the number of concurrent requests it can make. Additional requests
- * will be canceled and re-queued to be send whenever another request has been completed.
+ * Ktor plugin to configure the client to limit the number of concurrent requests it can make.
+ * Additional requests will be canceled and re-queued to be send whenever another request has been
+ * completed.
  */
 val ClientRateLimitPlugin =
     createClientPlugin(

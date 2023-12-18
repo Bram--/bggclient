@@ -48,5 +48,4 @@ internal object Constants {
     const val PARAM_WANT_TO_PLAY = "wanttoplay"
     const val PARAM_WISHLIST = "wishlist"
     const val PARAM_WISHLIST_PRIORITY = "wishlistpriority"
-
 }

@@ -39,7 +39,7 @@ import org.audux.bgg.response.Things
  * least one ID is required to make this request. Sending along [types] might result in an empty as
  * the API filters based on the [ThingType].
  */
-suspend fun BggClient.things(
+fun BggClient.things(
     /**
      * Specifies the id of the thing(s) to retrieve. To request multiple things with a single query,
      * can specify a comma-delimited list of ids.

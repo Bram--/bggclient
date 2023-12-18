@@ -27,7 +27,7 @@ import org.audux.bgg.request.Constants.PATH_SEARCH
 import org.audux.bgg.response.SearchResults
 
 /** Search endpoint that allows searching by name for things on BGG. */
-suspend fun BggClient.search(
+fun BggClient.search(
     /**
      * Returns all types of items that match [query]. Spaces in the SEARCH_QUERY are replaced by a +
      */

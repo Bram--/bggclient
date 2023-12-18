@@ -30,13 +30,28 @@ import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
 import org.audux.bgg.request.Request
 import org.audux.bgg.request.collection
-import org.koin.core.Koin
+import org.audux.bgg.request.search
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.context.startKoin
 import org.koin.core.qualifier.named
 import org.koin.dsl.koinApplication
 
+/**
+ * Board Game Geek API Client for the
+ * [BGG XML2 API2](https://boardgamegeek.com/wiki/page/BGG_XML_API2).
+ *
+ * <p>The actual BGG API can be interacted with, with the use of the extension functions in
+ * [org.audux.bgg.request]. For example to do a search import [org.audux.bgg.request.search].
+ *
+ * Search example usage:
+ * ```
+ * BggClient().use { client ->
+ *          client
+ *              .search("Scythe", arrayOf(ThingType.BOARD_GAME, ThingType.BOARD_GAME_EXPANSION))
+ *              .call { response -> println(response) }
+ * ```
+ */
 class BggClient : KoinComponent, AutoCloseable {
     internal val client: HttpClient by inject(named<BggKtorClient>())
     internal val mapper: ObjectMapper by inject(named<BggXmlObjectMapper>())
@@ -51,7 +66,7 @@ class BggClient : KoinComponent, AutoCloseable {
     }
 
     /** Override Koin to get an isolated Koin context, see: [BggClientKoinContext]. */
-    override fun getKoin(): Koin = BggClientKoinContext.koin
+    override fun getKoin() = BggClientKoinContext.koin
 
     /** Closes the [HttpClient] client after use. */
     override fun close() {
@@ -70,19 +85,25 @@ class BggClient : KoinComponent, AutoCloseable {
         @JvmStatic
         fun main(args: Array<String>) {
             BggClient().use { client ->
-                repeat(10) {
-                    client
-                        .collection(
-                            "Novaeux",
-                            ThingType.BOARD_GAME,
-                            excludeSubType = ThingType.BOARD_GAME_EXPANSION
-                        )
-                        .call {}
-                }
+                client
+                    .search("Scythe", arrayOf(ThingType.BOARD_GAME, ThingType.BOARD_GAME_EXPANSION))
+                    .call { response -> println(response) }
 
-                runBlocking {
-                    delay(20_000)
-                    exitProcess(0)
+                BggClient().use { client ->
+                    repeat(10) {
+                        client
+                            .collection(
+                                "Novaeux",
+                                ThingType.BOARD_GAME,
+                                excludeSubType = ThingType.BOARD_GAME_EXPANSION
+                            )
+                            .call {}
+                    }
+
+                    runBlocking {
+                        delay(20_000)
+                        exitProcess(0)
+                    }
                 }
             }
         }

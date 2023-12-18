@@ -20,6 +20,18 @@ import io.ktor.util.StringValues
 import org.audux.bgg.BggClient
 import org.audux.bgg.BggRequestException
 import org.audux.bgg.common.ThingType
+import org.audux.bgg.request.Constants.BASE_URL
+import org.audux.bgg.request.Constants.PARAM_COMMENTS
+import org.audux.bgg.request.Constants.PARAM_ID
+import org.audux.bgg.request.Constants.PARAM_MARKETPLACE
+import org.audux.bgg.request.Constants.PARAM_PAGE
+import org.audux.bgg.request.Constants.PARAM_PAGE_SIZE
+import org.audux.bgg.request.Constants.PARAM_RATING_COMMENTS
+import org.audux.bgg.request.Constants.PARAM_STATS
+import org.audux.bgg.request.Constants.PARAM_TYPE
+import org.audux.bgg.request.Constants.PARAM_VERSIONS
+import org.audux.bgg.request.Constants.PARAM_VIDEOS
+import org.audux.bgg.request.Constants.PATH_THING
 import org.audux.bgg.response.Things
 
 /**
@@ -89,26 +101,26 @@ suspend fun BggClient.things(
         }
 
         val response =
-            client.get(BggClient.BASE_URL) {
+            client.get(BASE_URL) {
                 url {
-                    appendPathSegments(BggClient.PATH_THING)
+                    appendPathSegments(PATH_THING)
 
                     parameters.appendAll(
                         StringValues.build {
-                            append(BggClient.PARAM_ID, ids.joinToString(","))
+                            append(PARAM_ID, ids.joinToString(","))
 
                             if (types.isNotEmpty()) {
-                                append(BggClient.PARAM_TYPE, types.joinToString { "${it.param}," })
+                                append(PARAM_TYPE, types.joinToString { "${it.param}," })
                             }
 
-                            if (stats) append(BggClient.PARAM_STATS, "1")
-                            if (versions) append(BggClient.PARAM_VERSIONS, "1")
-                            if (videos) append(BggClient.PARAM_VIDEOS, "1")
-                            if (marketplace) append(BggClient.PARAM_MARKETPLACE, "1")
-                            if (comments) append(BggClient.PARAM_COMMENTS, "1")
-                            if (ratingComments) append(BggClient.PARAM_RATING_COMMENTS, "1")
-                            if (page > 0) append(BggClient.PARAM_PAGE, page.toString())
-                            if (pageSize > 0) append(BggClient.PARAM_PAGE_SIZE, pageSize.toString())
+                            if (stats) append(PARAM_STATS, "1")
+                            if (versions) append(PARAM_VERSIONS, "1")
+                            if (videos) append(PARAM_VIDEOS, "1")
+                            if (marketplace) append(PARAM_MARKETPLACE, "1")
+                            if (comments) append(PARAM_COMMENTS, "1")
+                            if (ratingComments) append(PARAM_RATING_COMMENTS, "1")
+                            if (page > 0) append(PARAM_PAGE, page.toString())
+                            if (pageSize > 0) append(PARAM_PAGE_SIZE, pageSize.toString())
                         }
                     )
                 }

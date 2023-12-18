@@ -19,6 +19,11 @@ import io.ktor.http.appendPathSegments
 import io.ktor.util.StringValues
 import org.audux.bgg.BggClient
 import org.audux.bgg.common.ThingType
+import org.audux.bgg.request.Constants.BASE_URL
+import org.audux.bgg.request.Constants.PARAM_EXACT
+import org.audux.bgg.request.Constants.PARAM_QUERY
+import org.audux.bgg.request.Constants.PARAM_TYPE
+import org.audux.bgg.request.Constants.PATH_SEARCH
 import org.audux.bgg.response.SearchResults
 
 /** Search endpoint that allows searching by name for things on BGG. */
@@ -39,16 +44,16 @@ suspend fun BggClient.search(
 ): Request<SearchResults> {
     return request {
         val response =
-            client.get(BggClient.BASE_URL) {
+            client.get(BASE_URL) {
                 url {
-                    appendPathSegments(BggClient.PATH_SEARCH)
+                    appendPathSegments(PATH_SEARCH)
                     parameters.appendAll(
                         StringValues.build {
-                            append(BggClient.PARAM_QUERY, query.replace(" ", "+"))
-                            if (exactMatch) append(BggClient.PARAM_EXACT, "1")
+                            append(PARAM_QUERY, query.replace(" ", "+"))
+                            if (exactMatch) append(PARAM_EXACT, "1")
 
                             if (types.isNotEmpty()) {
-                                append(BggClient.PARAM_TYPE, types.joinToString { "${it.param}," })
+                                append(PARAM_TYPE, types.joinToString { "${it.param}," })
                             }
                         }
                     )

@@ -18,6 +18,9 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import org.audux.bgg.BggClient
 import org.audux.bgg.common.HotListType
+import org.audux.bgg.request.Constants.BASE_URL
+import org.audux.bgg.request.Constants.PARAM_TYPE
+import org.audux.bgg.request.Constants.PATH_HOT
 import org.audux.bgg.response.HotList
 
 /** Hotness endpoint that retrieve the list of most 50 active items on the site filtered by type. */
@@ -30,10 +33,10 @@ fun BggClient.hot(
 ): Request<HotList> {
     return request {
         val response =
-            client.get(BggClient.BASE_URL) {
+            client.get(BASE_URL) {
                 url {
-                    appendPathSegments(BggClient.PATH_HOT)
-                    type?.let { parameters.append(BggClient.PARAM_TYPE, it.param) }
+                    appendPathSegments(PATH_HOT)
+                    type?.let { parameters.append(PARAM_TYPE, it.param) }
                 }
             }
 

@@ -22,7 +22,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.KotlinFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.HttpRequestRetry
 import java.util.Locale
 import org.audux.bgg.plugin.ClientRateLimitPlugin
@@ -35,6 +35,9 @@ annotation class BggXmlObjectMapper()
 
 /** Used to ensure usage of correct Ktor [HttpClient]. */
 annotation class BggKtorClient()
+
+/** Used to ensure usage of correct Ktor [HttpClient]. */
+annotation class BggHttpEngine()
 
 /** Main Koin module for BggClient. */
 val appModule = module {
@@ -63,8 +66,10 @@ val appModule = module {
             .build() as ObjectMapper
     } withOptions { named<BggXmlObjectMapper>() }
 
+    single { CIO.create() } withOptions { named<BggHttpEngine>() }
+
     single {
-        HttpClient(OkHttp) {
+        HttpClient(this.get(HttpClient::class)) {
             install(HttpRequestRetry) {
                 exponentialDelay()
                 retryIf(maxRetries = 5) { _, response ->

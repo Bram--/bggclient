@@ -32,6 +32,7 @@ dependencies {
   testImplementation(libs.junit5.api)
   testImplementation(libs.koin.test)
   testImplementation(libs.koin.test.junit)
+  testImplementation(libs.ktor.client.mock)
   testImplementation(libs.truth)
 
   testRuntimeOnly(libs.junit5.engine)

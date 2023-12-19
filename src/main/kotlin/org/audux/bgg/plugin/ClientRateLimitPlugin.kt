@@ -19,9 +19,9 @@ val ClientRateLimitPlugin =
         "ClientRateLimitPlugin",
         createConfiguration = ::ConcurrentRequestLimiterConfiguration
     ) {
-        val rateLimiter = ConcurrentRequestLimiter(client, pluginConfig.requestLimit)
-        onRequest { request, _ -> rateLimiter.onNewRequest(request) }
-        onResponse { rateLimiter.onNewResponse() }
+        val requestLimiter = ConcurrentRequestLimiter(client, pluginConfig.requestLimit)
+        onRequest { request, _ -> requestLimiter.onNewRequest(request) }
+        onResponse { requestLimiter.onNewResponse() }
     }
 
 /**
@@ -29,8 +29,8 @@ val ClientRateLimitPlugin =
  * [ConcurrentRequestLimiterConfiguration.requestLimit] are being made concurrently.
  */
 class ConcurrentRequestLimiter(private val client: HttpClient, private val requestLimit: Int) {
-    private val inFlightRequests = AtomicInteger(0)
-    private val requestQueue = ConcurrentLinkedQueue<HttpRequestBuilder>()
+    internal val inFlightRequests = AtomicInteger(0)
+    internal val requestQueue = ConcurrentLinkedQueue<HttpRequestBuilder>()
 
     /**
      * Cancels the request and adds it to the [requestQueue] to be re-requested when a response
@@ -73,8 +73,11 @@ class ConcurrentRequestLimiter(private val client: HttpClient, private val reque
     }
 }
 
-/** Configuration for [ConcurrentRequestLimiter]. */
+/**
+ * Configuration for the concurrent request limiter.
+ *
+ * @property requestLimit The maximum number of concurrent requests that can be made.
+ */
 class ConcurrentRequestLimiterConfiguration {
-    /** The limit to the number of requests that should be made concurrently, defaults to 10. */
     var requestLimit: Int = 10
 }

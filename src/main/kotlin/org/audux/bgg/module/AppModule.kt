@@ -22,6 +22,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.KotlinFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.ktor.client.HttpClient
+import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.HttpRequestRetry
 import java.util.Locale
@@ -69,7 +70,7 @@ val appModule = module {
     single { CIO.create() } withOptions { named<BggHttpEngine>() }
 
     single {
-        HttpClient(this.get(HttpClient::class)) {
+        HttpClient(this.get(HttpClientEngine::class)) {
             install(HttpRequestRetry) {
                 exponentialDelay()
                 retryIf(maxRetries = 5) { _, response ->

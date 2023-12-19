@@ -14,6 +14,7 @@
 package org.audux.bgg
 
 import co.touchlab.kermit.Logger
+import co.touchlab.kermit.Severity
 import co.touchlab.kermit.koin.KermitKoinLogger
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.ktor.client.HttpClient
@@ -25,6 +26,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.module.BggKtorClient
 import org.audux.bgg.module.BggXmlObjectMapper
@@ -36,12 +38,12 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
-import org.koin.core.error.KoinAppAlreadyStartedException
+import org.koin.core.error.ApplicationAlreadyStartedException
 import org.koin.core.qualifier.named
 import org.koin.dsl.koinApplication
 
 /**
- * Board Game Geek API Client for the
+ * Unofficial Board Game Geek API Client for the
  * [BGG XML2 API2](https://boardgamegeek.com/wiki/page/BGG_XML_API2).
  *
  * <p>The actual BGG API can be interacted with, with the use of the extension functions in
@@ -62,13 +64,14 @@ class BggClient : KoinComponent, AutoCloseable {
     private var clientClosed = AtomicBoolean(false)
 
     init {
+        Logger.setMinSeverity(severity)
         try {
             startKoin {
                 logger(KermitKoinLogger(Logger.withTag("koin")))
 
                 modules(appModule)
             }
-        } catch (e: KoinAppAlreadyStartedException) {
+        } catch (e: ApplicationAlreadyStartedException) {
             throw BggClientException(
                 "BggClient already started, either re-use the instance or call BggClient#close",
                 e
@@ -87,23 +90,44 @@ class BggClient : KoinComponent, AutoCloseable {
     }
 
     /** Calls/Launches a request async, once a response is available it will call [response]. */
-    internal fun <R> call(request: suspend () -> R, response: (R) -> Unit) {
+    internal fun <T> callAsync(request: suspend () -> T, responseCallback: (T) -> Unit) {
         if (clientClosed.get()) {
             throw BggClientException("Client closed, create new client to make requests.")
         }
-        clientScope.launch { response(request()) }
+        clientScope.launch {
+            val response = request()
+            withContext(Dispatchers.Main) { responseCallback(response) }
+        }
+    }
+
+    /** Calls/Launches a request and returns it's response. */
+    internal suspend fun <T> call(request: suspend () -> T): T {
+        if (clientClosed.get()) {
+            throw BggClientException("Client closed, create new client to make requests.")
+        }
+
+        return request()
     }
 
     /** Returns a wrapped request for later execution. */
-    internal fun <R> request(request: suspend () -> R) = Request(this, request)
+    internal fun <T> request(request: suspend () -> T) = Request(this, request)
 
     companion object {
+        private var severity = Severity.Error
+
+        /** Sets the Logger severity defaults to [Severity.Error] */
+        fun setLoggerSeverity(severity: Severity) {
+            this.severity = severity
+        }
+
         @JvmStatic
         fun main(args: Array<String>) {
+            setLoggerSeverity(Severity.Debug)
+
             BggClient().use { client ->
                 client
                     .search("Scythe", arrayOf(ThingType.BOARD_GAME, ThingType.BOARD_GAME_EXPANSION))
-                    .call { response -> println(response) }
+                    .callAsync { response -> println(response) }
             }
 
             BggClient().use { client ->
@@ -114,7 +138,7 @@ class BggClient : KoinComponent, AutoCloseable {
                             ThingType.BOARD_GAME,
                             excludeSubType = ThingType.BOARD_GAME_EXPANSION
                         )
-                        .call {}
+                        .callAsync {}
                 }
 
                 runBlocking {

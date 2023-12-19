@@ -23,12 +23,13 @@ import org.audux.bgg.request.Constants.PARAM_TYPE
 import org.audux.bgg.request.Constants.PATH_HOT
 import org.audux.bgg.response.HotList
 
-/** Hotness endpoint that retrieve the list of most 50 active items on the site filtered by type. */
+/**
+ * Hotness endpoint that retrieve the list of most 50 active items on the site filtered by type.
+ *
+ * @param type Single [HotListType] returning only items of the specified type, defaults to
+ *   [HotListType.BOARD_GAME].
+ */
 fun BggClient.hot(
-    /**
-     * Single [HotListType] returning only items of the specified type, defaults to
-     * [HotListType.BOARD_GAME].
-     */
     type: HotListType? = null,
 ): Request<HotList> {
     return request {

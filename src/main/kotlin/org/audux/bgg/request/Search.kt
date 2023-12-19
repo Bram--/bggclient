@@ -26,20 +26,18 @@ import org.audux.bgg.request.Constants.PARAM_TYPE
 import org.audux.bgg.request.Constants.PATH_SEARCH
 import org.audux.bgg.response.SearchResults
 
-/** Search endpoint that allows searching by name for things on BGG. */
+/**
+ * Search endpoint that allows searching by name for things on BGG.
+ *
+ * @param query Returns all types of items that match [query]. Spaces in the SEARCH_QUERY are
+ *   replaced by a
+ * @param types Returns all items that match SEARCH_QUERY of type [ThingType]. You can return
+ *   multiple types by using more.
+ * @param exactMatch Limit results to items that match the [query] exactly
+ */
 fun BggClient.search(
-    /**
-     * Returns all types of items that match [query]. Spaces in the SEARCH_QUERY are replaced by a +
-     */
     query: String,
-
-    /**
-     * Return all items that match SEARCH_QUERY of type [ThingType]. You can return multiple types
-     * by using more.
-     */
     types: Array<ThingType> = arrayOf(),
-
-    /** Limit results to items that match the [query] exactly */
     exactMatch: Boolean = false,
 ): Request<SearchResults> {
     return request {

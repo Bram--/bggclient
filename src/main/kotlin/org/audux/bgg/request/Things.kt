@@ -49,11 +49,11 @@ import org.audux.bgg.response.Things
  * @param marketplace Returns marketplace data.
  * @param comments Returns all comments about the thing. Also includes ratings when commented. See
  *   page parameter.
- * @param Returns all ratings for the thing. Also includes comments when rated. See page parameter.
- *   The [ratingComments] and [comments] parameters cannot be used together, as the output always
- *   appears in the <comments> node of the XML; comments parameter takes precedence if both are
- *   specified. Ratings are sorted in descending rating value, based on the highest rating they have
- *   assigned to that thing (each thing in the collection can have a different rating).
+ * @param ratingComments Returns all ratings for the thing. Also includes comments when rated. See
+ *   page parameter. The [ratingComments] and [comments] parameters cannot be used together, as the
+ *   output always appears in the <comments> node of the XML; comments parameter takes precedence if
+ *   both are specified. Ratings are sorted in descending rating value, based on the highest rating
+ *   they have assigned to that thing (each thing in the collection can have a different rating).
  * @param page Defaults to 1, controls the page of data to see for comments, and ratings data.
  * @param pageSize Set the number of records to return in paging. Minimum is 10, maximum is 100.
  *   Defaults to 100.

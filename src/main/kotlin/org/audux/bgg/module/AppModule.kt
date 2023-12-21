@@ -13,6 +13,7 @@
  */
 package org.audux.bgg.module
 
+import co.touchlab.kermit.Logger
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.MapperFeature
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -28,7 +29,7 @@ import io.ktor.client.plugins.HttpRequestRetry
 import java.util.Locale
 import org.audux.bgg.plugin.ClientRateLimitPlugin
 import org.koin.core.module.dsl.named
-import org.koin.core.module.dsl.withOptions
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 /** Used to ensure usage of correct Jackson [ObjectMapper]. */
@@ -42,7 +43,7 @@ annotation class BggHttpEngine()
 
 /** Main Koin module for BggClient. */
 val appModule = module {
-    single {
+    single(named<BggXmlObjectMapper>()) {
         XmlMapper.builder()
             .apply {
                 configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
@@ -65,12 +66,12 @@ val appModule = module {
                 defaultUseWrapper(false)
             }
             .build() as ObjectMapper
-    } withOptions { named<BggXmlObjectMapper>() }
+    }
 
-    single { CIO.create() } withOptions { named<BggHttpEngine>() }
+    single(named<BggHttpEngine>()) { CIO.create()  }
 
-    single {
-        HttpClient(this.get(HttpClientEngine::class)) {
+    single(named<BggKtorClient>()) {
+        HttpClient(get(HttpClientEngine::class, named<BggHttpEngine>())) {
             install(HttpRequestRetry) {
                 exponentialDelay()
                 retryIf(maxRetries = 5) { _, response ->
@@ -85,5 +86,5 @@ val appModule = module {
 
             expectSuccess = true
         }
-    } withOptions { named<BggKtorClient>() }
+    }
 }

@@ -61,16 +61,16 @@ class BggClient : KoinComponent, AutoCloseable {
     internal val client: HttpClient by inject(named<BggKtorClient>())
     internal val mapper: ObjectMapper by inject(named<BggXmlObjectMapper>())
     private val clientScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
-    private var clientClosed = AtomicBoolean(false)
 
     init {
         Logger.setMinSeverity(severity)
         try {
-            startKoin {
+            koinApplication {
                 logger(KermitKoinLogger(Logger.withTag("koin")))
 
                 modules(appModule)
             }
+
         } catch (e: ApplicationAlreadyStartedException) {
             throw BggClientException(
                 "BggClient already started, either re-use the instance or call BggClient#close",
@@ -84,30 +84,19 @@ class BggClient : KoinComponent, AutoCloseable {
 
     /** Closes the [HttpClient] client after use. */
     override fun close() {
-        clientClosed.set(true)
-        stopKoin()
         client.close()
     }
 
     /** Calls/Launches a request async, once a response is available it will call [response]. */
     internal fun <T> callAsync(request: suspend () -> T, responseCallback: (T) -> Unit) {
-        if (clientClosed.get()) {
-            throw BggClientException("Client closed, create new client to make requests.")
-        }
         clientScope.launch {
             val response = request()
-            withContext(Dispatchers.Main) { responseCallback(response) }
+            withContext(Dispatchers.Default) { responseCallback(response) }
         }
     }
 
     /** Calls/Launches a request and returns it's response. */
-    internal suspend fun <T> call(request: suspend () -> T): T {
-        if (clientClosed.get()) {
-            throw BggClientException("Client closed, create new client to make requests.")
-        }
-
-        return request()
-    }
+    internal suspend fun <T> call(request: suspend () -> T) = request()
 
     /** Returns a wrapped request for later execution. */
     internal fun <T> request(request: suspend () -> T) = Request(this, request)
@@ -116,6 +105,7 @@ class BggClient : KoinComponent, AutoCloseable {
         private var severity = Severity.Error
 
         /** Sets the Logger severity defaults to [Severity.Error] */
+        @JvmStatic
         fun setLoggerSeverity(severity: Severity) {
             this.severity = severity
         }
@@ -124,11 +114,11 @@ class BggClient : KoinComponent, AutoCloseable {
         fun main(args: Array<String>) {
             setLoggerSeverity(Severity.Debug)
 
-            BggClient().use { client ->
+
+            val client = BggClient()
                 client
                     .search("Scythe", arrayOf(ThingType.BOARD_GAME, ThingType.BOARD_GAME_EXPANSION))
                     .callAsync { response -> println(response) }
-            }
 
             BggClient().use { client ->
                 repeat(10) {
@@ -141,11 +131,14 @@ class BggClient : KoinComponent, AutoCloseable {
                         .callAsync {}
                 }
 
-                runBlocking {
-                    delay(20_000)
-                    exitProcess(0)
-                }
             }
+
+            client.close()
+            runBlocking {
+                delay(20_000)
+                exitProcess(0)
+            }
+
         }
     }
 }

@@ -1,9 +1,7 @@
 package org.audux.bgg.request
 
 import com.google.common.truth.Truth.assertThat
-import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.mock.MockEngine
-import io.ktor.client.engine.mock.respondOk
 import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Parameters
@@ -11,45 +9,21 @@ import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
 import java.time.LocalDateTime
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.BggClient
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.common.ThingType
-import org.audux.bgg.module.BggHttpEngine
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
-import org.koin.core.qualifier.named
-import org.koin.dsl.module
 import org.koin.test.KoinTest
 
 class CollectionRequestTest : KoinTest {
     @Test
     fun `Makes a request with parameters`() {
         runBlocking {
-            val mockEngine = MockEngine {
-                respondOk(
-                    String(
-                        TestUtils.xml(
-                                "collection?username=novaeux&stats=1&subtype=boardgame&excludesubtype=boardgameexpansion"
-                            )
-                            .readAllBytes()
-                    )
+            val client =
+                TestUtils.setupEngineAndRequest(
+                    "collection?username=novaeux&stats=1&subtype=boardgame&excludesubtype=boardgameexpansion"
                 )
-            }
-            val client = BggClient()
-            client
-                .getKoin()
-                .loadModules(
-                    listOf(
-                        module {
-                            single(named<BggHttpEngine>()) {
-                                // Not useless as mockEngine needs to be bound to HttpClientEngine
-                                // and not set up a new binding for HttpClientEngine
-                                @Suppress("USELESS_CAST")
-                                mockEngine as HttpClientEngine
-                            }
-                        }
-                    )
-                )
+
             val response =
                 client
                     .collection(
@@ -84,8 +58,9 @@ class CollectionRequestTest : KoinTest {
                     )
                     .call()
 
-            val request = mockEngine.requestHistory[0]
-            assertThat(mockEngine.requestHistory).hasSize(1)
+            val engine = client.engine() as MockEngine
+            val request = engine.requestHistory[0]
+            assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
             assertThat(request.headers)
                 .isEqualTo(

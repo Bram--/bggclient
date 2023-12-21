@@ -16,7 +16,6 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import io.ktor.util.StringValues
 import org.audux.bgg.BggClient
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.request.Constants.BASE_URL
@@ -45,16 +44,13 @@ fun BggClient.search(
             client.get(BASE_URL) {
                 url {
                     appendPathSegments(PATH_SEARCH)
-                    parameters.appendAll(
-                        StringValues.build {
-                            append(PARAM_QUERY, query.replace(" ", "+"))
-                            if (exactMatch) append(PARAM_EXACT, "1")
-
-                            if (types.isNotEmpty()) {
-                                append(PARAM_TYPE, types.joinToString { "${it.param}," })
-                            }
+                    parameters.apply {
+                        append(PARAM_QUERY, query)
+                        if (types.isNotEmpty()) {
+                            append(PARAM_TYPE, types.joinToString(",") { it.param })
                         }
-                    )
+                        if (exactMatch) append(PARAM_EXACT, "1")
+                    }
                 }
             }
 

@@ -6,18 +6,24 @@ import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.common.HotListType
+import org.audux.bgg.common.ThingType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 import org.koin.test.KoinTest
 
-class HotRequestTest : KoinTest {
+class SearchRequestTest : KoinTest {
     @Test
     fun `Makes a request with parameters`() {
         runBlocking {
-            val client = TestUtils.setupEngineAndRequest("hot")
-
-            val response = client.hot(HotListType.BOARD_GAME).call()
+            val client = TestUtils.setupEngineAndRequest("search?query=my+little")
+            val response =
+                client
+                    .search(
+                        query = "my little",
+                        types = arrayOf(ThingType.BOARD_GAME, ThingType.RPG_ITEM),
+                        exactMatch = true
+                    )
+                    .call()
 
             val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
@@ -31,8 +37,12 @@ class HotRequestTest : KoinTest {
                     }
                 )
             assertThat(request.url)
-                .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/hot?type=boardgame"))
-            assertThat(response.results).hasSize(50)
+                .isEqualTo(
+                    Url(
+                        "https://boardgamegeek.com/xmlapi2/search?query=my+little&type=boardgame%2Crpgitem&exact=1"
+                    ),
+                )
+            assertThat(response.results).hasSize(144)
             client.close()
         }
     }

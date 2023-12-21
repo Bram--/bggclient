@@ -33,6 +33,7 @@ import org.audux.bgg.module.appModule
 import org.audux.bgg.request.Request
 import org.audux.bgg.request.collection
 import org.audux.bgg.request.search
+import org.jetbrains.annotations.VisibleForTesting
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.error.ApplicationAlreadyStartedException
@@ -96,6 +97,12 @@ class BggClient : KoinComponent, AutoCloseable {
 
     /** Returns a wrapped request for later execution. */
     internal fun <T> request(request: suspend () -> T) = Request(this, request)
+
+    /**
+     * Returns the current [io.ktor.client.engine.HttpClientEngine] used by this client. Used for
+     * testing only.
+     */
+    @VisibleForTesting internal fun engine() = client.engine
 
     companion object {
         private var severity = Severity.Error

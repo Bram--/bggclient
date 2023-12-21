@@ -3,13 +3,13 @@ dateTime = "0.4.1"
 jackson = "2.16.+"
 junit5 = "5.8.1"
 kermit = "2.0.2"
-koin = "3.5.0"
+koin = "3.5.+"
 ktfmt-gradle = "0.15.1"
-ktor = "2.3.6"
+ktor = "2.3.+"
 org-jetbrains-kotlin-jvm = "1.9.21"
 serialization = "1.6.1"
 slf4j = "1.7.36"
-truth = "1.1.4"
+truth = "1.2.+"
 
 [libraries]
 jackson-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }

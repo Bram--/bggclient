@@ -13,7 +13,6 @@
  */
 package org.audux.bgg.module
 
-import co.touchlab.kermit.Logger
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.MapperFeature
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -68,7 +67,7 @@ val appModule = module {
             .build() as ObjectMapper
     }
 
-    single(named<BggHttpEngine>()) { CIO.create()  }
+    single(named<BggHttpEngine>()) { CIO.create() }
 
     single(named<BggKtorClient>()) {
         HttpClient(get(HttpClientEngine::class, named<BggHttpEngine>())) {

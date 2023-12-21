@@ -18,7 +18,6 @@ import co.touchlab.kermit.Severity
 import co.touchlab.kermit.koin.KermitKoinLogger
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.ktor.client.HttpClient
-import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.system.exitProcess
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -36,8 +35,6 @@ import org.audux.bgg.request.collection
 import org.audux.bgg.request.search
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import org.koin.core.context.startKoin
-import org.koin.core.context.stopKoin
 import org.koin.core.error.ApplicationAlreadyStartedException
 import org.koin.core.qualifier.named
 import org.koin.dsl.koinApplication
@@ -70,7 +67,6 @@ class BggClient : KoinComponent, AutoCloseable {
 
                 modules(appModule)
             }
-
         } catch (e: ApplicationAlreadyStartedException) {
             throw BggClientException(
                 "BggClient already started, either re-use the instance or call BggClient#close",
@@ -114,11 +110,11 @@ class BggClient : KoinComponent, AutoCloseable {
         fun main(args: Array<String>) {
             setLoggerSeverity(Severity.Debug)
 
-
-            val client = BggClient()
+            BggClient().use { client ->
                 client
                     .search("Scythe", arrayOf(ThingType.BOARD_GAME, ThingType.BOARD_GAME_EXPANSION))
                     .callAsync { response -> println(response) }
+            }
 
             BggClient().use { client ->
                 repeat(10) {
@@ -130,15 +126,12 @@ class BggClient : KoinComponent, AutoCloseable {
                         )
                         .callAsync {}
                 }
-
             }
 
-            client.close()
             runBlocking {
                 delay(20_000)
                 exitProcess(0)
             }
-
         }
     }
 }

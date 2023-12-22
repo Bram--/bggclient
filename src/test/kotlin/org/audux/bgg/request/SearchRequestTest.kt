@@ -29,7 +29,7 @@ class SearchRequestTest : KoinTest {
     @Test
     fun `Makes a request with minimal parameters`() {
         runBlocking {
-            val client = TestUtils().setupEngineAndRequest("search?query=my+little")
+            val client = TestUtils.setupEngineAndRequest("search?query=my+little")
             val response = client.search(query = "my little").call()
 
             val engine = client.engine() as MockEngine
@@ -54,7 +54,7 @@ class SearchRequestTest : KoinTest {
     @Test
     fun `Makes a request with all parameters`() {
         runBlocking {
-            val client = TestUtils().setupEngineAndRequest("search?query=my+little")
+            val client = TestUtils.setupEngineAndRequest("search?query=my+little")
             val response =
                 client
                     .search(

@@ -22,7 +22,7 @@ import org.audux.bgg.module.BggHttpEngine
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
-class TestUtils {
+object TestUtils {
     fun setupEngineAndRequest(xmlFileName: String): BggClient {
         return BggClient().apply {
             getKoin()
@@ -43,9 +43,7 @@ class TestUtils {
     }
 
     /** Returns input stream of `resources/xml/{fileName}.xml` to use in testing. */
-    companion object {
-        fun xml(fileName: String): InputStream {
-            return TestUtils::class.java.classLoader.getResourceAsStream("xml/$fileName.xml")!!
-        }
+    fun xml(fileName: String): InputStream {
+        return TestUtils::class.java.classLoader.getResourceAsStream("xml/$fileName.xml")!!
     }
 }

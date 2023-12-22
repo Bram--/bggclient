@@ -35,8 +35,9 @@ class CollectionRequestTest : KoinTest {
     fun `Makes a request with minimal parameters`() {
         runBlocking {
             val client =
-                TestUtils()
-                    .setupEngineAndRequest("collection?username=novaeux&stats=1&subtype=rpgitem")
+                TestUtils.setupEngineAndRequest(
+                    "collection?username=novaeux&stats=1&subtype=rpgitem"
+                )
 
             val response =
                 client.collection(userName = "Noveaux", subType = ThingType.RPG_ITEM).call()
@@ -66,10 +67,9 @@ class CollectionRequestTest : KoinTest {
     fun `Makes a request with all parameters`() {
         runBlocking {
             val client =
-                TestUtils()
-                    .setupEngineAndRequest(
-                        "collection?username=novaeux&stats=1&subtype=boardgame&excludesubtype=boardgameexpansion"
-                    )
+                TestUtils.setupEngineAndRequest(
+                    "collection?username=novaeux&stats=1&subtype=boardgame&excludesubtype=boardgameexpansion"
+                )
 
             val response =
                 client

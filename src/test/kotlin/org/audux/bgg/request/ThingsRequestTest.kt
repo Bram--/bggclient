@@ -36,7 +36,7 @@ class ThingsRequestTest : KoinTest {
 
     @BeforeEach
     fun beforeEach() {
-        client = TestUtils().setupEngineAndRequest("thing?id=1,2,3")
+        client = TestUtils.setupEngineAndRequest("thing?id=1,2,3")
     }
 
     @Test

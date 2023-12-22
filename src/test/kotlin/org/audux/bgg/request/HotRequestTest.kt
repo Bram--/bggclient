@@ -29,7 +29,7 @@ class HotRequestTest : KoinTest {
     @Test
     fun `Makes a request with all parameters`() {
         runBlocking {
-            val client = TestUtils().setupEngineAndRequest("hot")
+            val client = TestUtils.setupEngineAndRequest("hot")
 
             val response = client.hot(HotListType.BOARD_GAME).call()
 

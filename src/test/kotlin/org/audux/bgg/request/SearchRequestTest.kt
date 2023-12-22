@@ -11,19 +11,13 @@ import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 import org.koin.test.KoinTest
 
+/** Unit tests for [search] extension function. */
 class SearchRequestTest : KoinTest {
     @Test
-    fun `Makes a request with parameters`() {
+    fun `Makes a request with minimal parameters`() {
         runBlocking {
-            val client = TestUtils.setupEngineAndRequest("search?query=my+little")
-            val response =
-                client
-                    .search(
-                        query = "my little",
-                        types = arrayOf(ThingType.BOARD_GAME, ThingType.RPG_ITEM),
-                        exactMatch = true
-                    )
-                    .call()
+            val client = TestUtils().setupEngineAndRequest("search?query=my+little")
+            val response = client.search(query = "my little").call()
 
             val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
@@ -38,12 +32,34 @@ class SearchRequestTest : KoinTest {
                 )
             assertThat(request.url)
                 .isEqualTo(
+                    Url("https://boardgamegeek.com/xmlapi2/search?query=my+little"),
+                )
+            assertThat(response.results).hasSize(144)
+        }
+    }
+
+    @Test
+    fun `Makes a request with all parameters`() {
+        runBlocking {
+            val client = TestUtils().setupEngineAndRequest("search?query=my+little")
+            val response =
+                client
+                    .search(
+                        query = "my little",
+                        types = arrayOf(ThingType.BOARD_GAME, ThingType.RPG_ITEM),
+                        exactMatch = true
+                    )
+                    .call()
+
+            val engine = client.engine() as MockEngine
+            val request = engine.requestHistory[0]
+            assertThat(request.url)
+                .isEqualTo(
                     Url(
                         "https://boardgamegeek.com/xmlapi2/search?query=my+little&type=boardgame%2Crpgitem&exact=1"
                     ),
                 )
             assertThat(response.results).hasSize(144)
-            client.close()
         }
     }
 }

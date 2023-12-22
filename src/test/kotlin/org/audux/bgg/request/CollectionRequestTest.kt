@@ -7,6 +7,7 @@ import io.ktor.http.HttpMethod
 import io.ktor.http.Parameters
 import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
+import io.ktor.http.Url
 import java.time.LocalDateTime
 import kotlinx.coroutines.runBlocking
 import org.audux.bgg.common.Inclusion
@@ -15,14 +16,47 @@ import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 import org.koin.test.KoinTest
 
+/** Unit tests for [collection] extension function. */
 class CollectionRequestTest : KoinTest {
     @Test
-    fun `Makes a request with parameters`() {
+    fun `Makes a request with minimal parameters`() {
         runBlocking {
             val client =
-                TestUtils.setupEngineAndRequest(
-                    "collection?username=novaeux&stats=1&subtype=boardgame&excludesubtype=boardgameexpansion"
+                TestUtils()
+                    .setupEngineAndRequest("collection?username=novaeux&stats=1&subtype=rpgitem")
+
+            val response =
+                client.collection(userName = "Noveaux", subType = ThingType.RPG_ITEM).call()
+
+            val engine = client.engine() as MockEngine
+            val request = engine.requestHistory[0]
+            assertThat(engine.requestHistory).hasSize(1)
+            assertThat(request.method).isEqualTo(HttpMethod.Get)
+            assertThat(request.headers)
+                .isEqualTo(
+                    Headers.build {
+                        appendAll("Accept", listOf("*/*"))
+                        appendAll("Accept-Charset", listOf("UTF-8"))
+                    }
                 )
+            assertThat(request.url)
+                .isEqualTo(
+                    Url(
+                        "https://boardgamegeek.com/xmlapi2/collection?username=Noveaux&subtype=rpgitem"
+                    )
+                )
+            assertThat(response.items).hasSize(1)
+        }
+    }
+
+    @Test
+    fun `Makes a request with all parameters`() {
+        runBlocking {
+            val client =
+                TestUtils()
+                    .setupEngineAndRequest(
+                        "collection?username=novaeux&stats=1&subtype=boardgame&excludesubtype=boardgameexpansion"
+                    )
 
             val response =
                 client
@@ -61,14 +95,6 @@ class CollectionRequestTest : KoinTest {
             val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
-            assertThat(request.method).isEqualTo(HttpMethod.Get)
-            assertThat(request.headers)
-                .isEqualTo(
-                    Headers.build {
-                        appendAll("Accept", listOf("*/*"))
-                        appendAll("Accept-Charset", listOf("UTF-8"))
-                    }
-                )
             val expectedUrl =
                 URLBuilder(
                         protocol = URLProtocol.HTTPS,
@@ -109,7 +135,6 @@ class CollectionRequestTest : KoinTest {
                     .build()
             assertThat(request.url).isEqualTo(expectedUrl)
             assertThat(response.items).hasSize(105)
-            client.close()
         }
     }
 }

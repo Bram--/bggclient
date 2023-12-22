@@ -71,11 +71,11 @@ fun BggClient.things(
     pageSize: Int = 0,
 ): Request<Things> {
     return request {
-        if (page != 0 && !(10..100).contains(pageSize)) {
+        if (pageSize != 0 && !(10..100).contains(pageSize)) {
             throw BggRequestException("pageSize must be between 10 and 100")
         }
         if (comments && ratingComments) {
-            throw BggRequestException("comments and ratingsComments can't both be true.")
+            throw BggRequestException("comments and ratingsComments can't both be true")
         }
 
         val response =
@@ -88,7 +88,7 @@ fun BggClient.things(
                             append(PARAM_ID, ids.joinToString(","))
 
                             if (types.isNotEmpty()) {
-                                append(PARAM_TYPE, types.joinToString { "${it.param}," })
+                                append(PARAM_TYPE, types.joinToString(",") { it.param })
                             }
 
                             if (stats) append(PARAM_STATS, "1")

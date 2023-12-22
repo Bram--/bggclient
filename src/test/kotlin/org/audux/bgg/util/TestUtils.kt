@@ -22,30 +22,31 @@ import org.audux.bgg.module.BggHttpEngine
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
-object TestUtils {
-    /** Returns input stream of `resources/xml/{fileName}.xml` to use in testing. */
-    fun xml(fileName: String): InputStream {
-        return TestUtils::class.java.classLoader.getResourceAsStream("xml/$fileName.xml")!!
-    }
-
+class TestUtils {
     fun setupEngineAndRequest(xmlFileName: String): BggClient {
         return BggClient().apply {
-            val mockEngine = MockEngine { respondOk(String(xml(xmlFileName).readAllBytes())) }
-
             getKoin()
                 .loadModules(
                     listOf(
                         module {
-                            single(named<BggHttpEngine>()) {
+                            factory(named<BggHttpEngine>()) {
                                 // Not useless as mockEngine needs to be bound to
                                 // HttpClientEngine
                                 // and not set up a new binding for HttpClientEngine
                                 @Suppress("USELESS_CAST")
-                                mockEngine as HttpClientEngine
+                                MockEngine { respondOk(String(xml(xmlFileName).readAllBytes())) }
+                                    as HttpClientEngine
                             }
                         }
                     )
                 )
+        }
+    }
+
+    /** Returns input stream of `resources/xml/{fileName}.xml` to use in testing. */
+    companion object {
+        fun xml(fileName: String): InputStream {
+            return TestUtils::class.java.classLoader.getResourceAsStream("xml/$fileName.xml")!!
         }
     }
 }

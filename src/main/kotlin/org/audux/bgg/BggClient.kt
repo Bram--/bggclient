@@ -36,7 +36,6 @@ import org.audux.bgg.request.search
 import org.jetbrains.annotations.VisibleForTesting
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import org.koin.core.error.ApplicationAlreadyStartedException
 import org.koin.core.qualifier.named
 import org.koin.dsl.koinApplication
 
@@ -47,37 +46,26 @@ import org.koin.dsl.koinApplication
  * <p>The actual BGG API can be interacted with, with the use of the extension functions in
  * [org.audux.bgg.request]. For example to do a search import [org.audux.bgg.request.search].
  *
- * Search example usage:
+ * <p>Search example usage:
  * ```
  * BggClient().use { client ->
  *          client
  *              .search("Scythe", arrayOf(ThingType.BOARD_GAME, ThingType.BOARD_GAME_EXPANSION))
  *              .call { response -> println(response) }
  * ```
+ *
+ * <p>Available API Calls:
+ * <ul>
+ * </ul>
  */
 class BggClient : KoinComponent, AutoCloseable {
     internal val client: HttpClient by inject(named<BggKtorClient>())
     internal val mapper: ObjectMapper by inject(named<BggXmlObjectMapper>())
     private val clientScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
-
-    init {
-        Logger.setMinSeverity(severity)
-        try {
-            koinApplication {
-                logger(KermitKoinLogger(Logger.withTag("koin")))
-
-                modules(appModule)
-            }
-        } catch (e: ApplicationAlreadyStartedException) {
-            throw BggClientException(
-                "BggClient already started, either re-use the instance or call BggClient#close",
-                e
-            )
-        }
-    }
+    private val koinContext = BggClientKoinContext()
 
     /** Override Koin to get an isolated Koin context, see: [BggClientKoinContext]. */
-    override fun getKoin() = BggClientKoinContext.koin
+    override fun getKoin() = koinContext.koin
 
     /** Closes the [HttpClient] client after use. */
     override fun close() {
@@ -120,7 +108,7 @@ class BggClient : KoinComponent, AutoCloseable {
             BggClient().use { client ->
                 client
                     .search("Scythe", arrayOf(ThingType.BOARD_GAME, ThingType.BOARD_GAME_EXPANSION))
-                    .callAsync { response -> println(response) }
+                    .callAsync { response -> println(response.toString()) }
             }
 
             BggClient().use { client ->
@@ -144,8 +132,11 @@ class BggClient : KoinComponent, AutoCloseable {
 }
 
 /** Isolated Koin Context for BGG Client. */
-object BggClientKoinContext {
-    private val koinApp = koinApplication { modules(appModule) }
+class BggClientKoinContext {
+    private val koinApp = koinApplication {
+        logger(KermitKoinLogger(Logger.withTag("koin")))
+        modules(appModule)
+    }
 
     val koin = koinApp.koin
 }

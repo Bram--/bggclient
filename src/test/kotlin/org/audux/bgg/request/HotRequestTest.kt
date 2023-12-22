@@ -11,11 +11,12 @@ import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 import org.koin.test.KoinTest
 
+/** Unit tests for [hot] extension function. */
 class HotRequestTest : KoinTest {
     @Test
-    fun `Makes a request with parameters`() {
+    fun `Makes a request with all parameters`() {
         runBlocking {
-            val client = TestUtils.setupEngineAndRequest("hot")
+            val client = TestUtils().setupEngineAndRequest("hot")
 
             val response = client.hot(HotListType.BOARD_GAME).call()
 
@@ -33,7 +34,6 @@ class HotRequestTest : KoinTest {
             assertThat(request.url)
                 .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/hot?type=boardgame"))
             assertThat(response.results).hasSize(50)
-            client.close()
         }
     }
 }

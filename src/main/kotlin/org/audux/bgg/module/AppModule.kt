@@ -27,7 +27,6 @@ import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.HttpRequestRetry
 import java.util.Locale
 import org.audux.bgg.plugin.ClientRateLimitPlugin
-import org.koin.core.module.dsl.named
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -67,9 +66,9 @@ val appModule = module {
             .build() as ObjectMapper
     }
 
-    single(named<BggHttpEngine>()) { CIO.create() }
+    factory(named<BggHttpEngine>()) { CIO.create() }
 
-    single(named<BggKtorClient>()) {
+    factory(named<BggKtorClient>()) {
         HttpClient(get(HttpClientEngine::class, named<BggHttpEngine>())) {
             install(HttpRequestRetry) {
                 exponentialDelay()
@@ -81,7 +80,7 @@ val appModule = module {
                     }
                 }
             }
-            install(ClientRateLimitPlugin) { requestLimit = 2 }
+            install(ClientRateLimitPlugin) { requestLimit = 10 }
 
             expectSuccess = true
         }

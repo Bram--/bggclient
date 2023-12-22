@@ -11,14 +11,12 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.audux.bgg.util.extension
+package org.audux.bgg.response
 
 import com.google.common.truth.FailureMetadata
 import com.google.common.truth.Subject
 import com.google.common.truth.Truth
 import java.time.LocalDateTime
-import org.audux.bgg.response.WrappedLocalDateTime
-import org.audux.bgg.response.WrappedValue
 
 /** Truth [Subject] that adds `hasValue()` for [WrappedValue] objects. */
 class WrappedValueSubject(failureMetadata: FailureMetadata, private val actual: WrappedValue<*>?) :

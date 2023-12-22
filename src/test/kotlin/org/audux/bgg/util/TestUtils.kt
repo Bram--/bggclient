@@ -31,8 +31,7 @@ class TestUtils {
                         module {
                             factory(named<BggHttpEngine>()) {
                                 // Not useless as mockEngine needs to be bound to
-                                // HttpClientEngine
-                                // and not set up a new binding for HttpClientEngine
+                                // HttpClientEngine and not set up a new binding for MockEngine.
                                 @Suppress("USELESS_CAST")
                                 MockEngine { respondOk(String(xml(xmlFileName).readAllBytes())) }
                                     as HttpClientEngine

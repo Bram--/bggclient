@@ -15,11 +15,12 @@ package org.audux.bgg.request
 
 import org.audux.bgg.BggClient
 
-/**
- * Encapsulates a request to Board Game Geek so it can be scheduled or queued for later execution.
- */
+/** Encapsulates a request to BGG so it can be scheduled or queued for later execution. */
 class Request<T>(private val client: BggClient, private val request: suspend () -> T) {
-    /** Execute the encapsulated [T] request asynchronously and invokes [response] if successful. */
+    /**
+     * Execute the encapsulated [T] request asynchronously and returns the `response` in the
+     * provided block if successful.
+     */
     fun callAsync(response: (T) -> Unit) {
         client.callAsync(request, response)
     }

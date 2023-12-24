@@ -11,37 +11,34 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.audux.bgg.data.response
+package org.audux.bgg.response
 
 import com.fasterxml.jackson.annotation.JsonRootName
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import org.audux.bgg.data.common.Name
-import org.audux.bgg.data.common.ThingType
 
-/** Response wrapper for the search results/items to be returned. */
+/** Response wrapper for Hot lists to be returned. */
 @JsonRootName("items")
-data class SearchResults(
+data class HotList(
     /** Terms of use of the BGG API. */
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
 
-    /** Total number of search results. */
-    @JacksonXmlProperty(isAttribute = true) val total: Int,
-
     /** List of the actual things. */
-    @JacksonXmlProperty(localName = "item") val results: List<SearchResult>
+    @JacksonXmlProperty(localName = "item") val results: List<HotListItem>
 )
 
-/** Encapsulates a single search result. */
-data class SearchResult(
-    /** Primary or alternative name. */
-    val name: Name,
-
+/** Encapsulates a ranked item in the hot list. */
+data class HotListItem(
     /** Unique ID that can be used to look up more information using the thing endpoint. */
     @JacksonXmlProperty(isAttribute = true) val id: Int,
 
-    /** Type of thing e.g. board game, video game etc. */
-    @JsonDeserialize(using = ThingTypeDeserializer::class) val type: ThingType,
+    /** Rank in the returned list. */
+    @JacksonXmlProperty(isAttribute = true) val rank: Int,
+
+    /** Primary name represented as [WrappedValue]. */
+    val name: WrappedValue<String>,
+
+    /** Thumbnail image URL of the item. */
+    val thumbnail: WrappedValue<String>?,
 
     /** Optional year of publishing. */
     val yearPublished: WrappedValue<Int>?,

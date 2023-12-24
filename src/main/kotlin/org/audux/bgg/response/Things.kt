@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.audux.bgg.data.response
+package org.audux.bgg.response
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnore
@@ -27,9 +27,9 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import java.net.URI
 import java.time.LocalDate
 import java.time.LocalDateTime
-import org.audux.bgg.data.common.Name
-import org.audux.bgg.data.common.Statistics
-import org.audux.bgg.data.common.ThingType
+import org.audux.bgg.common.Name
+import org.audux.bgg.common.Statistics
+import org.audux.bgg.common.ThingType
 
 /** Response wrapper for the things to be returned. */
 @JsonRootName("items")

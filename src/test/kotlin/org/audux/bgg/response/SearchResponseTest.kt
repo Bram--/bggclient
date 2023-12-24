@@ -11,15 +11,15 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.audux.bgg.data.response
+package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.google.common.truth.Truth.assertThat
-import org.audux.bgg.data.common.Name
-import org.audux.bgg.data.common.ThingType
+import com.google.common.truth.Truth
+import org.audux.bgg.common.Name
+import org.audux.bgg.common.ThingType
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
-import org.audux.bgg.util.TestUtils.xml
+import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.RegisterExtension
 import org.koin.core.component.inject
@@ -37,20 +37,22 @@ class SearchResponseTest : KoinTest {
 
     @Test
     fun `Parses empty response`() {
-        val results = mapper.readValue(xml("search?query=no+results"), SearchResults::class.java)
+        val results =
+            mapper.readValue(TestUtils.xml("search?query=no+results"), SearchResults::class.java)
 
-        assertThat(results.total).isEqualTo(0)
-        assertThat(results.results).hasSize(0)
+        Truth.assertThat(results.total).isEqualTo(0)
+        Truth.assertThat(results.results).hasSize(0)
     }
 
     @Test
     fun `Parses search results`() {
-        val results = mapper.readValue(xml("search?query=my+little"), SearchResults::class.java)
+        val results =
+            mapper.readValue(TestUtils.xml("search?query=my+little"), SearchResults::class.java)
 
-        assertThat(results.total).isEqualTo(144)
-        assertThat(results.results).hasSize(144)
+        Truth.assertThat(results.total).isEqualTo(144)
+        Truth.assertThat(results.results).hasSize(144)
 
-        assertThat(results.results[0])
+        Truth.assertThat(results.results[0])
             .isEqualTo(
                 SearchResult(
                     id = 167159,

@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.audux.bgg.data.response
+package org.audux.bgg.response
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty

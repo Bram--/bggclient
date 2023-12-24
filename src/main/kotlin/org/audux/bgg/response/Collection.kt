@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.audux.bgg.data.response
+package org.audux.bgg.response
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
@@ -19,8 +19,8 @@ import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import java.time.LocalDateTime
-import org.audux.bgg.data.common.Ratings
-import org.audux.bgg.data.common.ThingType
+import org.audux.bgg.common.Ratings
+import org.audux.bgg.common.ThingType
 
 /** Response wrapper for Hot lists to be returned. */
 @JsonRootName("items")

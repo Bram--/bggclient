@@ -11,13 +11,13 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.audux.bgg.data.response
+package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.google.common.truth.Truth.assertThat
+import com.google.common.truth.Truth
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
-import org.audux.bgg.util.TestUtils.xml
+import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.RegisterExtension
 import org.koin.core.component.inject
@@ -35,17 +35,17 @@ class HotResponseTest : KoinTest {
 
     @Test
     fun `Parses empty response`() {
-        val results = mapper.readValue(xml("hot?type=rpgperson"), HotList::class.java)
+        val results = mapper.readValue(TestUtils.xml("hot?type=rpgperson"), HotList::class.java)
 
-        assertThat(results.results).hasSize(0)
+        Truth.assertThat(results.results).hasSize(0)
     }
 
     @Test
     fun `Parses a hot list`() {
-        val results = mapper.readValue(xml("hot"), HotList::class.java)
+        val results = mapper.readValue(TestUtils.xml("hot"), HotList::class.java)
 
-        assertThat(results.results).hasSize(50)
-        assertThat(results.results[0])
+        Truth.assertThat(results.results).hasSize(50)
+        Truth.assertThat(results.results[0])
             .isEqualTo(
                 HotListItem(
                     id = 332686,

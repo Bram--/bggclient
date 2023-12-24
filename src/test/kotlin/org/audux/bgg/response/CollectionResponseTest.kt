@@ -11,17 +11,17 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.audux.bgg.data.response
+package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.google.common.truth.Truth.assertThat
+import com.google.common.truth.Truth
 import java.time.LocalDateTime
-import org.audux.bgg.data.common.Rank
-import org.audux.bgg.data.common.Ratings
-import org.audux.bgg.data.common.ThingType
+import org.audux.bgg.common.Rank
+import org.audux.bgg.common.Ratings
+import org.audux.bgg.common.ThingType
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
-import org.audux.bgg.util.TestUtils.xml
+import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.RegisterExtension
 import org.koin.core.component.inject
@@ -39,23 +39,24 @@ class CollectionResponseTest : KoinTest {
 
     @Test
     fun `Parses empty response`() {
-        val results = mapper.readValue(xml("collection?username=empty"), Collection::class.java)
+        val results =
+            mapper.readValue(TestUtils.xml("collection?username=empty"), Collection::class.java)
 
-        assertThat(results.items).hasSize(0)
+        Truth.assertThat(results.items).hasSize(0)
     }
 
     @Test
     fun `Parses collection items`() {
         val results =
             mapper.readValue(
-                xml(
+                TestUtils.xml(
                     "collection?username=novaeux&stats=1&subtype=boardgame&excludesubtype=boardgameexpansion"
                 ),
                 Collection::class.java
             )
 
-        assertThat(results.items).hasSize(105)
-        assertThat(results.items[0])
+        Truth.assertThat(results.items).hasSize(105)
+        Truth.assertThat(results.items[0])
             .isEqualTo(
                 CollectionItem(
                     collectionId = 90725673,
@@ -126,11 +127,11 @@ class CollectionResponseTest : KoinTest {
     fun `Parses rpg collection items`() {
         val results =
             mapper.readValue(
-                xml("collection?username=novaeux&stats=1&subtype=rpgitem"),
+                TestUtils.xml("collection?username=novaeux&stats=1&subtype=rpgitem"),
                 Collection::class.java
             )
 
-        assertThat(results.items).hasSize(1)
-        assertThat(results.items[0].name).isEqualTo("Alice is Missing")
+        Truth.assertThat(results.items).hasSize(1)
+        Truth.assertThat(results.items[0].name).isEqualTo("Alice is Missing")
     }
 }

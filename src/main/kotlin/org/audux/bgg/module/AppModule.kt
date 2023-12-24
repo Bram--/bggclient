@@ -22,22 +22,26 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.KotlinFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.engine.HttpClientEngine
+import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.HttpRequestRetry
 import java.util.Locale
-import org.koin.core.module.dsl.named
-import org.koin.core.module.dsl.withOptions
+import org.audux.bgg.plugin.ClientRateLimitPlugin
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
-/** Used to ensure usage of correct Jackson [com.fasterxml.jackson.databind.ObjectMapper]. */
+/** Used to ensure usage of correct Jackson [ObjectMapper]. */
 annotation class BggXmlObjectMapper()
 
-/** Used to ensure usage of correct Ktor [com.fasterxml.jackson.databind.ObjectMapper]. */
+/** Used to ensure usage of correct Ktor [HttpClient]. */
 annotation class BggKtorClient()
+
+/** Used to ensure usage of correct Ktor [HttpClient]. */
+annotation class BggHttpEngine()
 
 /** Main Koin module for BggClient. */
 val appModule = module {
-    single {
+    single(named<BggXmlObjectMapper>()) {
         XmlMapper.builder()
             .apply {
                 configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
@@ -60,15 +64,25 @@ val appModule = module {
                 defaultUseWrapper(false)
             }
             .build() as ObjectMapper
-    } withOptions { named<BggXmlObjectMapper>() }
+    }
 
-    single {
-        HttpClient(OkHttp) {
+    factory(named<BggHttpEngine>()) { CIO.create() }
+
+    factory(named<BggKtorClient>()) {
+        HttpClient(get(HttpClientEngine::class, named<BggHttpEngine>())) {
             install(HttpRequestRetry) {
-                retryOnServerErrors(maxRetries = 5)
                 exponentialDelay()
+                retryIf(maxRetries = 5) { _, response ->
+                    response.status.value.let {
+                        // Add 202 (Accepted) for retries, see:
+                        // https://boardgamegeek.com/thread/1188687/export-collections-has-been-updated-xmlapi-develop
+                        it in (500..599) + 202
+                    }
+                }
             }
+            install(ClientRateLimitPlugin) { requestLimit = 10 }
+
             expectSuccess = true
         }
-    } withOptions { named<BggKtorClient>() }
+    }
 }

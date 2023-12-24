@@ -13,116 +13,140 @@
  */
 package org.audux.bgg
 
+import co.touchlab.kermit.Logger
+import co.touchlab.kermit.Severity
+import co.touchlab.kermit.koin.KermitKoinLogger
 import com.fasterxml.jackson.databind.ObjectMapper
-import io.github.aakira.napier.DebugAntilog
-import io.github.aakira.napier.Napier
 import io.ktor.client.HttpClient
+import kotlin.system.exitProcess
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.data.common.ThingType
-import org.audux.bgg.data.request.collection
+import kotlinx.coroutines.withContext
+import org.audux.bgg.common.ThingType
 import org.audux.bgg.module.BggKtorClient
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
+import org.audux.bgg.request.Request
+import org.audux.bgg.request.collection
+import org.audux.bgg.request.search
+import org.jetbrains.annotations.VisibleForTesting
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import org.koin.core.context.startKoin
 import org.koin.core.qualifier.named
+import org.koin.dsl.koinApplication
 
-class BggClient : KoinComponent {
+/**
+ * Unofficial Board Game Geek API Client for the
+ * [BGG XML2 API2](https://boardgamegeek.com/wiki/page/BGG_XML_API2).
+ *
+ * <p>The actual BGG API can be interacted with, with the use of the extension functions in
+ * [org.audux.bgg.request]. For example to do a search import [org.audux.bgg.request.search].
+ *
+ * <p>Search example usage:
+ * ```
+ * BggClient().use { client ->
+ *          client
+ *              .search("Scythe", arrayOf(ThingType.BOARD_GAME, ThingType.BOARD_GAME_EXPANSION))
+ *              .call { response -> println(response) }
+ * ```
+ *
+ * <p>Available API Calls:
+ * <ul>
+ * </ul>
+ */
+class BggClient : KoinComponent, AutoCloseable {
     internal val client: HttpClient by inject(named<BggKtorClient>())
     internal val mapper: ObjectMapper by inject(named<BggXmlObjectMapper>())
+    private val clientScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+    private val koinContext = BggClientKoinContext()
 
-    init {
-        startKoin { modules(appModule) }
-    }
+    /** Override Koin to get an isolated Koin context, see: [BggClientKoinContext]. */
+    override fun getKoin() = koinContext.koin
 
-    fun close() {
+    /** Closes the [HttpClient] client after use. */
+    override fun close() {
         client.close()
     }
 
-    internal companion object {
-        const val BASE_URL = "https://boardgamegeek.com/xmlapi2"
+    /** Calls/Launches a request async, once a response is available it will call [response]. */
+    internal fun <T> callAsync(request: suspend () -> T, responseCallback: (T) -> Unit) {
+        clientScope.launch {
+            val response = request()
+            withContext(Dispatchers.Default) { responseCallback(response) }
+        }
+    }
 
-        const val PATH_COLLECTION = "collection"
-        const val PATH_HOT = "hot"
-        const val PATH_SEARCH = "search"
-        const val PATH_THING = "thing"
+    /** Calls/Launches a request and returns it's response. */
+    internal suspend fun <T> call(request: suspend () -> T) = request()
 
-        const val PARAM_BGG_RATING = "bggrating"
-        const val PARAM_BRIEF = "brief"
-        const val PARAM_COLLECTION_ID = "collid"
-        const val PARAM_COMMENT = "comment"
-        const val PARAM_COMMENTS = "comments"
-        const val PARAM_EXACT = "exact"
-        const val PARAM_EXCLUDE_SUBTYPE = "excludesubtype"
-        const val PARAM_ID = "id"
-        const val PARAM_HAS_PARTS = "hasparts"
-        const val PARAM_MARKETPLACE = "marketplace"
-        const val PARAM_MAX_PLAYS = "maxplays"
-        const val PARAM_MINIMUM_PLAYS = "minplays"
-        const val PARAM_MINIMUM_RATING = "minrating"
-        const val PARAM_MINIMUM_BGG_RATING = "minbggrating"
-        const val PARAM_MODIFIED_SINCE = "modifiedsince"
-        const val PARAM_OWN = "own"
-        const val PARAM_PAGE = "page"
-        const val PARAM_PAGE_SIZE = "pagesize"
-        const val PARAM_PLAYED = "played"
-        const val PARAM_PRE_ORDERED = "preordered"
-        const val PARAM_PREVIOUSLY_OWNED = "prevowned"
-        const val PARAM_QUERY = "query"
-        const val PARAM_RATED = "rated"
-        const val PARAM_RATING = "rating"
-        const val PARAM_RATING_COMMENTS = "ratingcomments"
-        const val PARAM_SHOW_PRIVATE = "showprivate"
-        const val PARAM_STATS = "stats"
-        const val PARAM_SUBTYPE = "subtype"
-        const val PARAM_TRADE = "trade"
-        const val PARAM_TYPE = "type"
-        const val PARAM_USERNAME = "username"
-        const val PARAM_VERSION = "version"
-        const val PARAM_VERSIONS = "versions"
-        const val PARAM_VIDEOS = "videos"
-        const val PARAM_WANT = "want"
-        const val PARAM_WANT_PARTS = "wantparts"
-        const val PARAM_WANT_TO_BUY = "wanttobuy"
-        const val PARAM_WANT_TO_PLAY = "wanttoplay"
-        const val PARAM_WISHLIST = "wishlist"
-        const val PARAM_WISHLIST_PRIORITY = "wishlistpriority"
+    /** Returns a wrapped request for later execution. */
+    internal fun <T> request(request: suspend () -> T) = Request(this, request)
+
+    /**
+     * Returns the current [io.ktor.client.engine.HttpClientEngine] used by this client. Used for
+     * testing only.
+     */
+    @VisibleForTesting internal fun engine() = client.engine
+
+    companion object {
+        private var severity = Severity.Error
+
+        /** Sets the Logger severity defaults to [Severity.Error] */
+        @JvmStatic
+        fun setLoggerSeverity(severity: Severity) {
+            this.severity = severity
+        }
 
         @JvmStatic
         fun main(args: Array<String>) {
-            Napier.base(DebugAntilog())
+            setLoggerSeverity(Severity.Debug)
 
-            val client = BggClient()
-            runBlocking {
-                val response =
-                    client.collection(
-                        "Novaeux",
-                        ThingType.BOARD_GAME,
-                        stats = true,
-                    )
-                //                    client.things(
-                //                        ids = arrayOf(224517),
-                //                        types = arrayOf(ThingType.BOARD_GAME),
-                //                        marketplace = true,
-                //                        ratingComments = true,
-                //                        videos = true,
-                //                        versions = true,
-                //                        stats = true,
-                //                    )
-
-                Napier.i(
-                    """
-                    ${response}
-                    
-                    """
-                        .trimIndent()
-                )
+            BggClient().use { client ->
+                client
+                    .search("Scythe", arrayOf(ThingType.BOARD_GAME, ThingType.BOARD_GAME_EXPANSION))
+                    .callAsync { response -> println(response.toString()) }
             }
 
-            client.close()
+            BggClient().use { client ->
+                repeat(10) {
+                    client
+                        .collection(
+                            "Novaeux",
+                            ThingType.BOARD_GAME,
+                            excludeSubType = ThingType.BOARD_GAME_EXPANSION
+                        )
+                        .callAsync {}
+                }
+            }
+
+            runBlocking {
+                delay(20_000)
+                exitProcess(0)
+            }
         }
     }
 }
 
+/** Isolated Koin Context for BGG Client. */
+class BggClientKoinContext {
+    private val koinApp = koinApplication {
+        logger(KermitKoinLogger(Logger.withTag("koin")))
+        modules(appModule)
+    }
+
+    val koin = koinApp.koin
+}
+
+/** Thrown whenever an exception happens in the BGGClient outside of a request. */
+class BggClientException : Exception {
+    constructor(message: String) : super(message)
+
+    constructor(message: String, throwable: Throwable) : super(message, throwable)
+}
+
+/** Thrown whenever any exception is thrown during a request to BGG. */
 class BggRequestException(message: String) : Exception(message)

@@ -1,38 +1,35 @@
 [versions]
-coroutines = "1.7.3"
 dateTime = "0.4.1"
 jackson = "2.16.+"
 junit5 = "5.8.1"
-koin = "3.5.0"
-kotlin = "1.9.21"
+kermit = "2.0.2"
+koin = "3.5.+"
 ktfmt-gradle = "0.15.1"
-ktor = "2.3.6"
-napier = "2.6.1"
-org-jetbrains-kotlin-jvm = "1.9.21"
+ktor = "2.3.+"
+org-jetbrains-kotlin-jvm = "1.9.10"
 serialization = "1.6.1"
 slf4j = "1.7.36"
-truth = "1.1.4"
+truth = "1.2.+"
 
 [libraries]
 jackson-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
 jackson-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
 jackson-xml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-xml", version.ref = "jackson" }
-junit5-api = { module =  "org.junit.jupiter:junit-jupiter-api" , version.ref = "junit5" }
-junit5-engine = { module =  "org.junit.jupiter:junit-jupiter-engine" , version.ref = "junit5" }
+junit5-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit5" }
+junit5-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit5" }
+kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
+kermit-koin = { module = "co.touchlab:kermit-koin", version.ref = "kermit" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 koin-test-junit = { module = "io.insert-koin:koin-test-junit5", version.ref = "koin" }
-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
-kotlin-datetime = { module =  "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "dateTime" }
-kotlin-serialization = { module =  "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "serialization" }
-kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "dateTime" }
+kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "serialization" }
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
-ktor-client = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
-napier = { module = "io.github.aakira:napier", version.ref = "napier" }
+ktor-client = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
+ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 slf4j = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }
-truth = { module =  "com.google.truth:truth", version.ref = "truth" }
+truth = { module = "com.google.truth:truth", version.ref = "truth" }
 
 [plugins]
-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
 ktfmt-gradle = { id = "com.ncorti.ktfmt.gradle", version.ref = "ktfmt-gradle" }

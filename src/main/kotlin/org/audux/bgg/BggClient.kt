@@ -18,25 +18,17 @@ import co.touchlab.kermit.Severity
 import co.touchlab.kermit.koin.KermitKoinLogger
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.ktor.client.HttpClient
-import kotlin.system.exitProcess
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import org.audux.bgg.common.ForumListType
-import org.audux.bgg.common.ThingType
 import org.audux.bgg.module.BggKtorClient
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
 import org.audux.bgg.request.Request
-import org.audux.bgg.request.collection
-import org.audux.bgg.request.family
 import org.audux.bgg.request.forum
-import org.audux.bgg.request.forumList
-import org.audux.bgg.request.search
 import org.jetbrains.annotations.VisibleForTesting
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -115,28 +107,29 @@ class BggClient : KoinComponent, AutoCloseable {
                     println(response.toString())
                 }
             }
-//            BggClient().use { client ->
-//                client
-//                    .search("Scythe", arrayOf(ThingType.BOARD_GAME, ThingType.BOARD_GAME_EXPANSION))
-//                    .callAsync { response -> println(response.toString()) }
-//            }
-//
-//            BggClient().use { client ->
-//                repeat(10) {
-//                    client
-//                        .collection(
-//                            "Novaeux",
-//                            ThingType.BOARD_GAME,
-//                            excludeSubType = ThingType.BOARD_GAME_EXPANSION
-//                        )
-//                        .callAsync {}
-//                }
-//            }
-//
-//            runBlocking {
-//                delay(20_000)
-//                exitProcess(0)
-//            }
+            //            BggClient().use { client ->
+            //                client
+            //                    .search("Scythe", arrayOf(ThingType.BOARD_GAME,
+            // ThingType.BOARD_GAME_EXPANSION))
+            //                    .callAsync { response -> println(response.toString()) }
+            //            }
+            //
+            //            BggClient().use { client ->
+            //                repeat(10) {
+            //                    client
+            //                        .collection(
+            //                            "Novaeux",
+            //                            ThingType.BOARD_GAME,
+            //                            excludeSubType = ThingType.BOARD_GAME_EXPANSION
+            //                        )
+            //                        .callAsync {}
+            //                }
+            //            }
+            //
+            //            runBlocking {
+            //                delay(20_000)
+            //                exitProcess(0)
+            //            }
         }
     }
 }

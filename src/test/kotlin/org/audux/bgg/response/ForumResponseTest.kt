@@ -13,7 +13,6 @@
  */
 package org.audux.bgg.response
 
-import com.ctc.wstx.exc.WstxUnexpectedCharException
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth
 import java.time.LocalDateTime
@@ -40,11 +39,11 @@ class ForumResponseTest : KoinTest {
     @Test
     fun `Parses empty response`() {
         // API wrongfully returns HTML when an invalid forum id is requested.
-        val exception = assertThrows {
-            mapper.readValue(TestUtils.xml("forum?id=-1"), Forum::class.java)
-        } as Exception
+        val exception =
+            assertThrows { mapper.readValue(TestUtils.xml("forum?id=-1"), Forum::class.java) }
+                as Exception
 
-        Truth.assertThat(exception).hasMessageThat().contains("Unexpected character");
+        Truth.assertThat(exception).hasMessageThat().contains("Unexpected character")
     }
 
     @Test

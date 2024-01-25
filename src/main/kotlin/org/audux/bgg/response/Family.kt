@@ -44,8 +44,7 @@ data class FamilyItem(
     val name: Name,
 
     /** Description of this family i.e. what relates the list of items. */
-    @JsonDeserialize(using = TrimmedStringDeserializer::class)
-    val description: String,
+    @JsonDeserialize(using = TrimmedStringDeserializer::class) val description: String,
 
     /**
      * List of the items that are part of this family, e.g. board games that have a certain theme or

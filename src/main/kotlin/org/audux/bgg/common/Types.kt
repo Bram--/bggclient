@@ -13,14 +13,9 @@
  */
 package org.audux.bgg.common
 
-import com.fasterxml.jackson.annotation.JsonFormat
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import org.audux.bgg.response.NumberToBooleanDeserializer
-import org.audux.bgg.response.TrimmedStringDeserializer
 import org.audux.bgg.response.WrappedValue
-import java.time.LocalDateTime
 
 /**
  * The different kind/type of things the API may return such as a board game or expansion etc.

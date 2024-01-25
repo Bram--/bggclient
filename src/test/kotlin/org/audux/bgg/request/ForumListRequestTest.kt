@@ -19,7 +19,6 @@ import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.common.FamilyType
 import org.audux.bgg.common.ForumListType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
@@ -52,11 +51,7 @@ class ForumListRequestTest : KoinTest {
                     }
                 )
             assertThat(request.url)
-                .isEqualTo(
-                    Url(
-                        "https://boardgamegeek.com/xmlapi2/forumlist?id=342942&type=thing"
-                    )
-                )
+                .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/forumlist?id=342942&type=thing"))
             assertThat(response.forums).hasSize(10)
         }
     }

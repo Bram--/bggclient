@@ -17,8 +17,8 @@ import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import org.audux.bgg.common.ForumListType
 import java.time.LocalDateTime
+import org.audux.bgg.common.ForumListType
 
 /** Response wrapper for a list of forums for the given id/thing pair. */
 @JsonRootName("forums")

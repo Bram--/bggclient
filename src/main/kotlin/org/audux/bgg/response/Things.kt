@@ -24,10 +24,10 @@ import com.fasterxml.jackson.annotation.Nulls
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import org.audux.bgg.common.Link
 import java.net.URI
 import java.time.LocalDate
 import java.time.LocalDateTime
+import org.audux.bgg.common.Link
 import org.audux.bgg.common.Name
 import org.audux.bgg.common.Statistics
 import org.audux.bgg.common.ThingType
@@ -277,8 +277,8 @@ data class Comments(
     /**
      * Total number of comments for the specified type of comments, current items in this collection
      * are specified by the request: [org.audux.bgg.request.Constants.PARAM_PAGE] and
-     * [org.audux.bgg.request.Constants.PARAM_PAGE_SIZE] which are passed in via the `page` and `pageSize`
-     * parameters in [org.audux.bgg.request.things].
+     * [org.audux.bgg.request.Constants.PARAM_PAGE_SIZE] which are passed in via the `page` and
+     * `pageSize` parameters in [org.audux.bgg.request.things].
      */
     @JacksonXmlProperty(isAttribute = true) val totalItems: Int,
 

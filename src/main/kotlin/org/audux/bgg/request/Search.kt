@@ -38,22 +38,20 @@ fun BggClient.search(
     query: String,
     types: Array<ThingType> = arrayOf(),
     exactMatch: Boolean = false,
-): Request<SearchResults> {
-    return request {
-        val response =
-            client.get(BASE_URL) {
-                url {
-                    appendPathSegments(PATH_SEARCH)
-                    parameters.apply {
-                        append(PARAM_QUERY, query)
-                        if (types.isNotEmpty()) {
-                            append(PARAM_TYPE, types.joinToString(",") { it.param })
-                        }
-                        if (exactMatch) append(PARAM_EXACT, "1")
+) = request {
+    val response =
+        client.get(BASE_URL) {
+            url {
+                appendPathSegments(PATH_SEARCH)
+                parameters.apply {
+                    append(PARAM_QUERY, query)
+                    if (types.isNotEmpty()) {
+                        append(PARAM_TYPE, types.joinToString(",") { it.param })
                     }
+                    if (exactMatch) append(PARAM_EXACT, "1")
                 }
             }
+        }
 
-        mapper.readValue(response.bodyAsText(), SearchResults::class.java)
-    }
+    mapper.readValue(response.bodyAsText(), SearchResults::class.java)
 }

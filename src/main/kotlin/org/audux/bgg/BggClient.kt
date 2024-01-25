@@ -26,6 +26,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+import org.audux.bgg.common.ForumListType
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.module.BggKtorClient
 import org.audux.bgg.module.BggXmlObjectMapper
@@ -33,6 +34,7 @@ import org.audux.bgg.module.appModule
 import org.audux.bgg.request.Request
 import org.audux.bgg.request.collection
 import org.audux.bgg.request.family
+import org.audux.bgg.request.forumList
 import org.audux.bgg.request.search
 import org.jetbrains.annotations.VisibleForTesting
 import org.koin.core.component.KoinComponent
@@ -107,7 +109,8 @@ class BggClient : KoinComponent, AutoCloseable {
             setLoggerSeverity(Severity.Debug)
             runBlocking {
                 BggClient().use { client ->
-                    val response = client.family(ids = arrayOf(50152)).call()
+                    // 342942&type=thing
+                    val response = client.forumList(342942, ForumListType.THING).call()
                     println(response.toString())
                 }
             }

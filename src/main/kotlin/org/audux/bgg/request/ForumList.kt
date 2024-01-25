@@ -17,30 +17,28 @@ import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import org.audux.bgg.BggClient
-import org.audux.bgg.common.FamilyType
-import org.audux.bgg.common.HotListType
+import org.audux.bgg.common.ForumListType
 import org.audux.bgg.response.Family
+import org.audux.bgg.response.ForumList
+import org.audux.bgg.response.Thing
 
 /**
- * Family thing endpoint that retrieve details about the given family ID and associated `Link`
- * objects.
+ * Retrieves the list of available forums for the given id / type combination. e.g. Retrieve all the
+ * available forums for `[id=342942, type=thing]` i.e. Ark nova.
  *
- * @param ids array of IDs returning only families of the specified id.
- * @param types Single [HotListType] returning only items of the specified type, defaults to
- *   [HotListType.BOARD_GAME].
+ * @param id The id of either the Family or Thing to retrieve
+ * @param type Single [ForumListType] to retrieve, either a [Thing] or [Family]
  */
-fun BggClient.family(ids: Array<Int>, types: Array<FamilyType> = arrayOf()) = request {
+fun BggClient.forumList(id: Int, type: ForumListType) = request {
     client
         .get(Constants.BASE_URL) {
             url {
-                appendPathSegments(Constants.PATH_FAMILY)
+                appendPathSegments(Constants.PATH_FORUM_LIST)
                 parameters.apply {
-                    append(Constants.PARAM_ID, ids.joinToString(","))
-                    if (types.isNotEmpty()) {
-                        append(Constants.PARAM_TYPE, types.joinToString(",") { it.param })
-                    }
+                    append(Constants.PARAM_ID, id.toString())
+                    append(Constants.PARAM_TYPE, type.param)
                 }
             }
         }
-        .let { mapper.readValue(it.bodyAsText(), Family::class.java) }
+        .let { mapper.readValue(it.bodyAsText(), ForumList::class.java) }
 }

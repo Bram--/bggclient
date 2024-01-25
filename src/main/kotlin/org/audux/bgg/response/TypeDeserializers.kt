@@ -17,6 +17,7 @@ import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JsonDeserializer
 import org.audux.bgg.common.FamilyType
+import org.audux.bgg.common.ForumListType
 import org.audux.bgg.common.ThingType
 
 /** Deserializes thing types to the associated [ThingType] enum value. */
@@ -41,4 +42,10 @@ internal class TrimmedStringDeserializer : JsonDeserializer<String?>() {
 internal class FamilyTypeDeserializer : JsonDeserializer<FamilyType>() {
     override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
         FamilyType.fromParam(parser?.valueAsString)
+}
+
+/** Deserializes type in ForumList response to ForumListType. */
+internal class ForumListTypeDeserializer : JsonDeserializer<ForumListType>() {
+    override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
+        ForumListType.fromParam(parser?.valueAsString)
 }

@@ -29,18 +29,14 @@ import org.audux.bgg.response.HotList
  * @param type Single [HotListType] returning only items of the specified type, defaults to
  *   [HotListType.BOARD_GAME].
  */
-fun BggClient.hot(
-    type: HotListType? = null,
-): Request<HotList> {
-    return request {
-        val response =
-            client.get(BASE_URL) {
-                url {
-                    appendPathSegments(PATH_HOT)
-                    type?.let { parameters.append(PARAM_TYPE, it.param) }
-                }
+fun BggClient.hot(type: HotListType? = null) = request {
+    val response =
+        client.get(BASE_URL) {
+            url {
+                appendPathSegments(PATH_HOT)
+                type?.let { parameters.append(PARAM_TYPE, it.param) }
             }
+        }
 
-        mapper.readValue(response.bodyAsText(), HotList::class.java)
-    }
+    mapper.readValue(response.bodyAsText(), HotList::class.java)
 }

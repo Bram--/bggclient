@@ -69,41 +69,39 @@ fun BggClient.things(
     ratingComments: Boolean = false,
     page: Int = 0,
     pageSize: Int = 0,
-): Request<Things> {
-    return request {
-        if (pageSize != 0 && !(10..100).contains(pageSize)) {
-            throw BggRequestException("pageSize must be between 10 and 100")
-        }
-        if (comments && ratingComments) {
-            throw BggRequestException("comments and ratingsComments can't both be true")
-        }
-
-        val response =
-            client.get(BASE_URL) {
-                url {
-                    appendPathSegments(PATH_THING)
-
-                    parameters.appendAll(
-                        StringValues.build {
-                            append(PARAM_ID, ids.joinToString(","))
-
-                            if (types.isNotEmpty()) {
-                                append(PARAM_TYPE, types.joinToString(",") { it.param })
-                            }
-
-                            if (stats) append(PARAM_STATS, "1")
-                            if (versions) append(PARAM_VERSIONS, "1")
-                            if (videos) append(PARAM_VIDEOS, "1")
-                            if (marketplace) append(PARAM_MARKETPLACE, "1")
-                            if (comments) append(PARAM_COMMENTS, "1")
-                            if (ratingComments) append(PARAM_RATING_COMMENTS, "1")
-                            if (page > 0) append(PARAM_PAGE, page.toString())
-                            if (pageSize > 0) append(PARAM_PAGE_SIZE, pageSize.toString())
-                        }
-                    )
-                }
-            }
-
-        mapper.readValue(response.bodyAsText(), Things::class.java)
+) = request {
+    if (pageSize != 0 && !(10..100).contains(pageSize)) {
+        throw BggRequestException("pageSize must be between 10 and 100")
     }
+    if (comments && ratingComments) {
+        throw BggRequestException("comments and ratingsComments can't both be true")
+    }
+
+    val response =
+        client.get(BASE_URL) {
+            url {
+                appendPathSegments(PATH_THING)
+
+                parameters.appendAll(
+                    StringValues.build {
+                        append(PARAM_ID, ids.joinToString(","))
+
+                        if (types.isNotEmpty()) {
+                            append(PARAM_TYPE, types.joinToString(",") { it.param })
+                        }
+
+                        if (stats) append(PARAM_STATS, "1")
+                        if (versions) append(PARAM_VERSIONS, "1")
+                        if (videos) append(PARAM_VIDEOS, "1")
+                        if (marketplace) append(PARAM_MARKETPLACE, "1")
+                        if (comments) append(PARAM_COMMENTS, "1")
+                        if (ratingComments) append(PARAM_RATING_COMMENTS, "1")
+                        if (page > 0) append(PARAM_PAGE, page.toString())
+                        if (pageSize > 0) append(PARAM_PAGE_SIZE, pageSize.toString())
+                    }
+                )
+            }
+        }
+
+    mapper.readValue(response.bodyAsText(), Things::class.java)
 }

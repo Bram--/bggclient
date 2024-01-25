@@ -52,7 +52,6 @@ enum class HotListType(val param: String) {
     VIDEO_GAME_COMPANY("videogamecompany") // Does not actually work?
 }
 
-
 /**
  * The different kind/type of families the API may return such as a board game or rpgs.
  * [See docs for more info](https://boardgamegeek.com/wiki/page/BGG_XML_API2#Family_Items).
@@ -62,6 +61,20 @@ enum class FamilyType(val param: String) {
     RPG("rpg"),
     RPG_PERIODICAL("rpgperiodical"),
     BOARD_GAME_FAMILY("boardgamefamily");
+
+    companion object {
+        fun fromParam(param: String?) = entries.find { it.param == param } ?: UNKNOWN
+    }
+}
+
+/**
+ * Used to map the id in the forumlist request to either a family ot thing.
+ * [See docs for more info](https://boardgamegeek.com/wiki/page/BGG_XML_API2#Forum_Lists).
+ */
+enum class ForumListType(val param: String) {
+    UNKNOWN(""), // Used whenever the type is empty or not recognized.
+    THING("thing"),
+    FAMILY("family");
 
     companion object {
         fun fromParam(param: String?) = entries.find { it.param == param } ?: UNKNOWN

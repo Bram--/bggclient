@@ -32,6 +32,7 @@ import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
 import org.audux.bgg.request.Request
 import org.audux.bgg.request.collection
+import org.audux.bgg.request.family
 import org.audux.bgg.request.search
 import org.jetbrains.annotations.VisibleForTesting
 import org.koin.core.component.KoinComponent
@@ -104,29 +105,34 @@ class BggClient : KoinComponent, AutoCloseable {
         @JvmStatic
         fun main(args: Array<String>) {
             setLoggerSeverity(Severity.Debug)
-
-            BggClient().use { client ->
-                client
-                    .search("Scythe", arrayOf(ThingType.BOARD_GAME, ThingType.BOARD_GAME_EXPANSION))
-                    .callAsync { response -> println(response.toString()) }
-            }
-
-            BggClient().use { client ->
-                repeat(10) {
-                    client
-                        .collection(
-                            "Novaeux",
-                            ThingType.BOARD_GAME,
-                            excludeSubType = ThingType.BOARD_GAME_EXPANSION
-                        )
-                        .callAsync {}
+            runBlocking {
+                BggClient().use { client ->
+                    val response = client.family(ids = arrayOf(50152)).call()
+                    println(response.toString())
                 }
             }
-
-            runBlocking {
-                delay(20_000)
-                exitProcess(0)
-            }
+//            BggClient().use { client ->
+//                client
+//                    .search("Scythe", arrayOf(ThingType.BOARD_GAME, ThingType.BOARD_GAME_EXPANSION))
+//                    .callAsync { response -> println(response.toString()) }
+//            }
+//
+//            BggClient().use { client ->
+//                repeat(10) {
+//                    client
+//                        .collection(
+//                            "Novaeux",
+//                            ThingType.BOARD_GAME,
+//                            excludeSubType = ThingType.BOARD_GAME_EXPANSION
+//                        )
+//                        .callAsync {}
+//                }
+//            }
+//
+//            runBlocking {
+//                delay(20_000)
+//                exitProcess(0)
+//            }
         }
     }
 }

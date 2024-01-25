@@ -19,6 +19,7 @@ internal object Constants {
     const val BASE_URL = "https://boardgamegeek.com/xmlapi2"
 
     const val PATH_COLLECTION = "collection"
+    const val PATH_FAMILY = "family"
     const val PATH_HOT = "hot"
     const val PATH_SEARCH = "search"
     const val PATH_THING = "thing"

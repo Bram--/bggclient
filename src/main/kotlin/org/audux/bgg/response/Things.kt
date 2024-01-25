@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.Nulls
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
+import org.audux.bgg.common.Link
 import java.net.URI
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -42,7 +43,7 @@ data class Things(
 )
 
 /**
- * An item or thing which could be either of the [org.audux.bgg.data.common.ThingType] objects. As a
+ * An item or thing which could be either of the [org.audux.bgg.common.ThingType] objects. As a
  * result of the loose overlap of the types most values are Nullable, however type specific data is
  * supplied via the [Link] property.
  *
@@ -51,7 +52,7 @@ data class Things(
  * making a things request with simply an `id` parameter will not return any videos, comments,
  * marketplace data, statistics or version information.
  *
- * @see org.audux.bgg.data.request.things
+ * @see org.audux.bgg.request.things
  */
 data class Thing(
     /** Unique BGG identifier. */
@@ -60,7 +61,7 @@ data class Thing(
     /**
      * The type of thing e.g. boardgame, expansion etc.
      *
-     * @see org.audux.bgg.data.common.ThingType
+     * @see org.audux.bgg.common.ThingType
      */
     @JsonDeserialize(using = ThingTypeDeserializer::class) val type: ThingType,
 
@@ -218,40 +219,6 @@ data class Version(
 }
 
 /**
- * Describes a link or relationship to another class of object. For example a board game thing may
- * contain a list of links to a `boardgamemechanic` like `Income`, `Hand management`. Common types
- * are:
- * * boardgameartist
- * * boardgamecategory
- * * boardgamedesigner
- * * boardgameexpansion
- * * boardgamemechanic
- * * rpgitemartist
- * * rpgitemcategory
- * * rpgitemdesigner
- * * rpgitemexpansion
- * * rpgitemmechanic
- *
- *   And so on.
- */
-data class Link(
-    /**
-     * The id for the link, most of these cannot be retrieved via the API although a 'family'-API
-     * exists.
-     */
-    @JacksonXmlProperty(isAttribute = true) val id: Int,
-
-    /** The unique name of the Link i.e. links with the same ID will always carry the same name. */
-    @JacksonXmlProperty(isAttribute = true) val value: String,
-
-    /** The type of the link as outlined in the class description. */
-    @JacksonXmlProperty(isAttribute = true) val type: String,
-
-    /** Direction of the Link. */
-    @JacksonXmlProperty(isAttribute = true) val inbound: Boolean?,
-)
-
-/**
  * Describes an associated video on the thing. In addition to a title and link the videos are also
  * categorized: `instructional`, `review` etc. and contain poster(user) information.
  */
@@ -297,21 +264,21 @@ data class Video(
  * A collection of [Comment] objects including pagination date. NOTE that this object is reused for
  * both `comments` and `ratingcomments`
  *
- * @see org.audux.bgg.data.request.things
+ * @see org.audux.bgg.request.things
  */
 data class Comments(
     /**
      * The current page of comments.
      *
-     * @see org.audux.bgg.data.request.things
+     * @see org.audux.bgg.request.things
      */
     @JacksonXmlProperty(isAttribute = true) val page: Int,
 
     /**
      * Total number of comments for the specified type of comments, current items in this collection
-     * are specified by the request: [org.audux.bgg.BggClient.PARAM_PAGE] and
-     * [org.audux.bgg.BggClient.PARAM_PAGE_SIZE] which are passed in via the `page` and `pageSize`
-     * parameters in [org.audux.bgg.data.request.things].
+     * are specified by the request: [org.audux.bgg.request.Constants.PARAM_PAGE] and
+     * [org.audux.bgg.request.Constants.PARAM_PAGE_SIZE] which are passed in via the `page` and `pageSize`
+     * parameters in [org.audux.bgg.request.things].
      */
     @JacksonXmlProperty(isAttribute = true) val totalItems: Int,
 

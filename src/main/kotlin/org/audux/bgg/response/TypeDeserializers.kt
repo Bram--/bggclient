@@ -16,6 +16,7 @@ package org.audux.bgg.response
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JsonDeserializer
+import org.audux.bgg.common.FamilyType
 import org.audux.bgg.common.ThingType
 
 /** Deserializes thing types to the associated [ThingType] enum value. */
@@ -34,4 +35,10 @@ internal class NumberToBooleanDeserializer : JsonDeserializer<Boolean>() {
 internal class TrimmedStringDeserializer : JsonDeserializer<String?>() {
     override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
         parser?.valueAsString?.trim()
+}
+
+/** Deserializes family types to the associated [FamilyType] enum value. */
+internal class FamilyTypeDeserializer : JsonDeserializer<FamilyType>() {
+    override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
+        FamilyType.fromParam(parser?.valueAsString)
 }

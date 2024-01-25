@@ -17,6 +17,8 @@ import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respondOk
 import java.io.InputStream
+import java.lang.IllegalArgumentException
+import java.lang.NullPointerException
 import org.audux.bgg.BggClient
 import org.audux.bgg.module.BggHttpEngine
 import org.koin.core.qualifier.named
@@ -33,7 +35,16 @@ object TestUtils {
                                 // Not useless as mockEngine needs to be bound to
                                 // HttpClientEngine and not set up a new binding for MockEngine.
                                 @Suppress("USELESS_CAST")
-                                MockEngine { respondOk(String(xml(xmlFileName).readAllBytes())) }
+                                MockEngine {
+                                    try {
+                                        respondOk(String(xml(xmlFileName).readAllBytes()))
+                                    } catch (e: NullPointerException) {
+                                        throw IllegalArgumentException(
+                                            "Could not find $xmlFileName",
+                                            e
+                                        )
+                                    }
+                                }
                                     as HttpClientEngine
                             }
                         }

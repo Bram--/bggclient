@@ -20,23 +20,22 @@ import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import kotlinx.coroutines.runBlocking
 import org.audux.bgg.common.FamilyType
-import org.audux.bgg.common.ForumListType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 import org.koin.test.KoinTest
 
 /** Unit tests for [hot] extension function. */
-class ForumListRequestTest : KoinTest {
+class ForumRequestTest : KoinTest {
     @Test
     fun `Makes a request with all parameters`() {
         runBlocking {
-            val client = TestUtils.setupEngineAndRequest("forumlist")
+            val client = TestUtils.setupEngineAndRequest("forum?id=3696796")
 
             val response =
                 client
-                    .forumList(
-                        id = 342942,
-                        type = ForumListType.THING,
+                    .forum(
+                        id = 3696796,
+                        page = 0,
                     )
                     .call()
 
@@ -54,10 +53,10 @@ class ForumListRequestTest : KoinTest {
             assertThat(request.url)
                 .isEqualTo(
                     Url(
-                        "https://boardgamegeek.com/xmlapi2/forumlist?id=342942&type=thing"
+                        "https://boardgamegeek.com/xmlapi2/forum?id=3696796&page=0"
                     )
                 )
-            assertThat(response.forums).hasSize(10)
+            assertThat(response.threads).hasSize(50)
         }
     }
 }

@@ -16,35 +16,18 @@ package org.audux.bgg.response
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import org.audux.bgg.common.ForumListType
 import java.time.LocalDateTime
 
-/** Response wrapper for a list of forums for the given id/thing pair. */
-@JsonRootName("forums")
-data class ForumList(
+/** Encapsulates the summary of a forum. */
+@JsonRootName("forum")
+data class Forum(
     /** Terms of use of the BGG API. */
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
 
-    /** Unique ID of the thing/family, same as the request. */
-    @JacksonXmlProperty(isAttribute = true) val id: Int,
-
-    /** The type of the returned thing/family, same as the request. */
-    @JsonDeserialize(using = ForumListTypeDeserializer::class)
-    @JacksonXmlProperty(isAttribute = true)
-    val type: ForumListType,
-
-    /** List of the actual available forums. */
-    @JacksonXmlProperty(localName = "forum") val forums: List<ForumSummary>
-)
-
-/** Encapsulates the summary of a forum. */
-data class ForumSummary(
     /** Unique ID that can be used to look up more information using the forum endpoint. */
     @JacksonXmlProperty(isAttribute = true) val id: Int,
-
-    /** TODO: document. */
-    @JacksonXmlProperty(isAttribute = true) val groupId: Int,
 
     /** Whether posting is allowed or not. */
     @JsonDeserialize(using = NumberToBooleanDeserializer::class)
@@ -56,11 +39,6 @@ data class ForumSummary(
     @JacksonXmlProperty(isAttribute = true)
     val title: String,
 
-    /** A more detailed description of the forum. */
-    @JsonDeserialize(using = TrimmedStringDeserializer::class)
-    @JacksonXmlProperty(isAttribute = true)
-    val description: String,
-
     /** The number of threads that are active/created in the forum. */
     @JacksonXmlProperty(isAttribute = true) val numThreads: Number,
 
@@ -68,6 +46,38 @@ data class ForumSummary(
     @JacksonXmlProperty(isAttribute = true) val numPosts: Number,
 
     /** The date and time a post was last made. */
+    @JsonFormat(pattern = "E, dd MMM yyyy HH:mm:ss Z")
+    @JacksonXmlProperty(isAttribute = true)
+    val lastPostDate: LocalDateTime?,
+
+    /** The list of threads in this forum. */
+    @JacksonXmlElementWrapper(localName = "threads") val threads: List<ThreadSummary> = listOf(),
+)
+
+/** Encapsulates a ranked item in the hot list. */
+data class ThreadSummary(
+    /** Unique ID that can be used to look up more information using the thread endpoint. */
+    @JacksonXmlProperty(isAttribute = true) val id: Int,
+
+    /** Title/Subject of the thread. */
+    @JsonDeserialize(using = TrimmedStringDeserializer::class)
+    @JacksonXmlProperty(isAttribute = true)
+    val subject: String,
+
+    /** Username of the thread creator. */
+    @JsonDeserialize(using = TrimmedStringDeserializer::class)
+    @JacksonXmlProperty(isAttribute = true)
+    val author: String,
+
+    /** The number of posts/articles in this thread. */
+    @JacksonXmlProperty(isAttribute = true) val numArticles: Number,
+
+    /** The date and time this thread was created. */
+    @JsonFormat(pattern = "E, dd MMM yyyy HH:mm:ss Z")
+    @JacksonXmlProperty(isAttribute = true)
+    val postDate: LocalDateTime?,
+
+    /** The date and time a post was last made in this thread. */
     @JsonFormat(pattern = "E, dd MMM yyyy HH:mm:ss Z")
     @JacksonXmlProperty(isAttribute = true)
     val lastPostDate: LocalDateTime?,

@@ -34,6 +34,7 @@ import org.audux.bgg.module.appModule
 import org.audux.bgg.request.Request
 import org.audux.bgg.request.collection
 import org.audux.bgg.request.family
+import org.audux.bgg.request.forum
 import org.audux.bgg.request.forumList
 import org.audux.bgg.request.search
 import org.jetbrains.annotations.VisibleForTesting
@@ -110,7 +111,7 @@ class BggClient : KoinComponent, AutoCloseable {
             runBlocking {
                 BggClient().use { client ->
                     // 342942&type=thing
-                    val response = client.forumList(342942, ForumListType.THING).call()
+                    val response = client.forum(3696796).call()
                     println(response.toString())
                 }
             }

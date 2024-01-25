@@ -50,7 +50,7 @@ class ForumListResponseTest : KoinTest {
         Truth.assertThat(results.forums).hasSize(10)
         Truth.assertThat(results.forums)
             .containsExactly(
-                Forum(
+                ForumSummary(
                     id = 3696791,
                     groupId = 0,
                     title = "Reviews",
@@ -61,7 +61,7 @@ class ForumListResponseTest : KoinTest {
                     numPosts = 1603,
                     lastPostDate = LocalDateTime.parse("Tue, 23 Jan 2024 09:13:43 +0000", formatter)
                 ),
-                Forum(
+                ForumSummary(
                     id = 3696792,
                     groupId = 0,
                     title = "Sessions",
@@ -71,7 +71,7 @@ class ForumListResponseTest : KoinTest {
                     numPosts = 99,
                     lastPostDate = LocalDateTime.parse("Sun, 14 Jan 2024 22:56:08 +0000", formatter)
                 ),
-                Forum(
+                ForumSummary(
                     id = 3696793,
                     groupId = 0,
                     title = "General",
@@ -81,7 +81,7 @@ class ForumListResponseTest : KoinTest {
                     numPosts = 9271,
                     lastPostDate = LocalDateTime.parse("Wed, 24 Jan 2024 17:29:58 +0000", formatter)
                 ),
-                Forum(
+                ForumSummary(
                     id = 3696794,
                     groupId = 0,
                     title = "Rules",
@@ -91,7 +91,7 @@ class ForumListResponseTest : KoinTest {
                     numPosts = 8191,
                     lastPostDate = LocalDateTime.parse("Tue, 23 Jan 2024 20:53:33 +0000", formatter)
                 ),
-                Forum(
+                ForumSummary(
                     id = 3696795,
                     groupId = 0,
                     title = "Strategy",
@@ -101,7 +101,7 @@ class ForumListResponseTest : KoinTest {
                     numPosts = 1853,
                     lastPostDate = LocalDateTime.parse("Tue, 23 Jan 2024 18:50:11 +0000", formatter)
                 ),
-                Forum(
+                ForumSummary(
                     id = 3696796,
                     groupId = 0,
                     title = "Variants",
@@ -111,7 +111,7 @@ class ForumListResponseTest : KoinTest {
                     numPosts = 2335,
                     lastPostDate = LocalDateTime.parse("Tue, 23 Jan 2024 12:33:44 +0000", formatter)
                 ),
-                Forum(
+                ForumSummary(
                     id = 3696797,
                     groupId = 0,
                     title = "News",
@@ -121,7 +121,7 @@ class ForumListResponseTest : KoinTest {
                     numPosts = 726,
                     lastPostDate = LocalDateTime.parse("Fri, 19 Jan 2024 15:29:10 +0000", formatter)
                 ),
-                Forum(
+                ForumSummary(
                     id = 3696798,
                     groupId = 0,
                     title = "Crowdfunding",
@@ -131,7 +131,7 @@ class ForumListResponseTest : KoinTest {
                     numPosts = 0,
                     lastPostDate = null
                 ),
-                Forum(
+                ForumSummary(
                     id = 3696799,
                     groupId = 0,
                     title = "Play By Forum",
@@ -141,7 +141,7 @@ class ForumListResponseTest : KoinTest {
                     numPosts = 0,
                     lastPostDate = null
                 ),
-                Forum(
+                ForumSummary(
                     id = 3696800,
                     groupId = 0,
                     title = "Find Players",

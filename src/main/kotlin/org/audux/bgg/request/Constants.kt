@@ -21,6 +21,7 @@ internal object Constants {
     const val PATH_COLLECTION = "collection"
     const val PATH_FAMILY = "family"
     const val PATH_FORUM_LIST = "forumlist"
+    const val PATH_FORUM = "forum"
     const val PATH_HOT = "hot"
     const val PATH_SEARCH = "search"
     const val PATH_THING = "thing"

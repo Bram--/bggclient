@@ -22,24 +22,26 @@ import org.audux.bgg.common.HotListType
 import org.audux.bgg.response.Family
 
 /**
- * Hotness endpoint that retrieve the list of most 50 active items on the site filtered by type.
+ * Family thing endpoint that retrieve details about the given family ID and associated `Link`
+ * objects.
  *
  * @param ids array of IDs returning only families of the specified id.
  * @param types Single [HotListType] returning only items of the specified type, defaults to
  *   [HotListType.BOARD_GAME].
  */
-fun BggClient.family(ids: Array<Int>, types: Array<FamilyType> = arrayOf()): Request<Family> = request {
-    client
-        .get(Constants.BASE_URL) {
-            url {
-                appendPathSegments(Constants.PATH_FAMILY)
-                parameters.apply {
-                    append(Constants.PARAM_ID, ids.joinToString(","))
-                    if (types.isNotEmpty()) {
-                        append(Constants.PARAM_TYPE, types.joinToString(",") { it.param })
+fun BggClient.family(ids: Array<Int>, types: Array<FamilyType> = arrayOf()): Request<Family> =
+    request {
+        client
+            .get(Constants.BASE_URL) {
+                url {
+                    appendPathSegments(Constants.PATH_FAMILY)
+                    parameters.apply {
+                        append(Constants.PARAM_ID, ids.joinToString(","))
+                        if (types.isNotEmpty()) {
+                            append(Constants.PARAM_TYPE, types.joinToString(",") { it.param })
+                        }
                     }
                 }
             }
-        }
-        .let { mapper.readValue(it.bodyAsText(), Family::class.java) }
-}
+            .let { mapper.readValue(it.bodyAsText(), Family::class.java) }
+    }

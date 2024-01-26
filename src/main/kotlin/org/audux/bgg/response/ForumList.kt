@@ -38,7 +38,10 @@ data class ForumList(
     @JacksonXmlProperty(localName = "forum") val forums: List<ForumSummary>
 )
 
-/** Encapsulates the summary of a forum. */
+/**
+ * Encapsulates the summary of a forum - these can be retrieve using the
+ * [org.audux.bgg.request.forum] endpoint.
+ */
 data class ForumSummary(
     /** Unique ID that can be used to look up more information using the forum endpoint. */
     @JacksonXmlProperty(isAttribute = true) val id: Int,

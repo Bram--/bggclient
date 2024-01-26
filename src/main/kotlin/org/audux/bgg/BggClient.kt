@@ -28,12 +28,13 @@ import org.audux.bgg.module.BggKtorClient
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
 import org.audux.bgg.request.Request
-import org.audux.bgg.request.forum
+import org.audux.bgg.request.thread
 import org.jetbrains.annotations.VisibleForTesting
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.qualifier.named
 import org.koin.dsl.koinApplication
+import java.time.LocalDateTime
 
 /**
  * Unofficial Board Game Geek API Client for the
@@ -105,7 +106,7 @@ class BggClient : KoinComponent, AutoCloseable {
             runBlocking {
                 BggClient().use { client ->
                     // 342942&type=thing
-                    val response = client.forum(3696796).call()
+                    val response = client.thread(3208373, minArticleDate = LocalDateTime.MIN, count = 4).call()
                     println(response.toString())
                 }
             }

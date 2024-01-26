@@ -44,7 +44,7 @@ internal class FamilyTypeDeserializer : JsonDeserializer<FamilyType>() {
         FamilyType.fromParam(parser?.valueAsString)
 }
 
-/** Deserializes type in ForumList response to ForumListType. */
+/** Deserializes type in ForumList response to [ForumListType]. */
 internal class ForumListTypeDeserializer : JsonDeserializer<ForumListType>() {
     override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
         ForumListType.fromParam(parser?.valueAsString)

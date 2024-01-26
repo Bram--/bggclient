@@ -38,6 +38,7 @@ data class Collection(
     @JacksonXmlProperty(localName = "item") val items: List<CollectionItem>
 )
 
+/** An item in the collection e.g. a board game, rpg etc. */
 @JsonIgnoreProperties("objecttype")
 data class CollectionItem(
     @JacksonXmlProperty(isAttribute = true, localName = "collid") val collectionId: Number,

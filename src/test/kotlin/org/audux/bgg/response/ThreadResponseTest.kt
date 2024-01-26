@@ -28,7 +28,7 @@ import org.koin.core.qualifier.named
 import org.koin.test.KoinTest
 import org.koin.test.junit5.KoinTestExtension
 
-class ForumResponseTest : KoinTest {
+class ThreadResponseTest : KoinTest {
     @JvmField
     @RegisterExtension
     @Suppress("unused")
@@ -38,31 +38,30 @@ class ForumResponseTest : KoinTest {
 
     @Test
     fun `Parses empty response`() {
-        // API wrongfully returns HTML when an invalid forum id is requested.
-        val exception =
-            assertThrows { mapper.readValue(TestUtils.xml("forum?id=-1"), Forum::class.java) }
-                as Exception
-
-        Truth.assertThat(exception).hasMessageThat().contains("Unexpected character")
+        assertThrows { mapper.readValue(TestUtils.xml("thread?id=0"), Thread::class.java) }
+            as Exception
     }
 
     @Test
-    fun `Parses the forum for the given thing`() {
-        val results = mapper.readValue(TestUtils.xml("forum?id=3696796"), Forum::class.java)
+    fun `Parses the thread for the given thing`() {
+        val thread = mapper.readValue(TestUtils.xml("thread"), Thread::class.java)
 
-        val formatter = DateTimeFormatter.ofPattern("E, dd MMM yyyy HH:mm:ss Z")
-        Truth.assertThat(results.threads).hasSize(50)
-        Truth.assertThat(results.threads[0])
-            .isEqualTo(
-                ThreadSummary(
-                    id = 3202992,
-                    subject =
-                        "Solo AI Variant \"Haven\" - Competitive bot - Compact, quick, low maintenance - VIDEO TUTORIAL",
-                    author = "cell141",
-                    numArticles = 29,
-                    postDate = LocalDateTime.parse("Tue, 05 Dec 2023 17:37:32 +0000", formatter),
-                    lastPostDate = LocalDateTime.parse("Tue, 23 Jan 2024 12:33:44 +0000", formatter)
-                )
-            )
+        Truth.assertThat(thread.subject).isEqualTo("New Maps for Ark Nova + Marine World")
+        Truth.assertThat(thread.numArticles).isEqualTo(13)
+        Truth.assertThat(thread.link).isEqualTo("https://boardgamegeek.com/thread/3208373")
+        Truth.assertThat(thread.articles).hasSize(13)
+        val firstArticle = thread.articles[0]
+        Truth.assertThat(firstArticle.id).isEqualTo(43461362)
+        Truth.assertThat(firstArticle.username).isEqualTo("darkuss")
+        Truth.assertThat(firstArticle.numEdits).isEqualTo(4)
+        Truth.assertThat(firstArticle.link)
+            .isEqualTo("https://boardgamegeek.com/thread/3208373/article/43461362#43461362")
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssz")
+        Truth.assertThat(firstArticle.postDate)
+            .isEqualTo(LocalDateTime.parse("2023-12-15T13:07:50-06:00", formatter))
+        Truth.assertThat(firstArticle.editDate)
+            .isEqualTo(LocalDateTime.parse("2023-12-16T03:19:58-06:00", formatter))
+        Truth.assertThat(firstArticle.subject).isEqualTo("New Maps for Ark Nova + Marine World")
+        Truth.assertThat(firstArticle.body).hasLength(6133)
     }
 }

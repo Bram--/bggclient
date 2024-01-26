@@ -30,7 +30,7 @@ data class Family(
     @JacksonXmlProperty(localName = "item") val items: List<FamilyItem>
 )
 
-/** Encapsulates a ranked item in the hot list. */
+/** The actual Family item e.g. a `boardgamefamily`, rpg etc. */
 data class FamilyItem(
     /** Unique ID that can be used to look up more information using the thing endpoint. */
     @JacksonXmlProperty(isAttribute = true) val id: Int,

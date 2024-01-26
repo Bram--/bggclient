@@ -52,6 +52,7 @@ import org.audux.bgg.request.Constants.PARAM_WANT_TO_PLAY
 import org.audux.bgg.request.Constants.PARAM_WISHLIST
 import org.audux.bgg.request.Constants.PARAM_WISHLIST_PRIORITY
 import org.audux.bgg.request.Constants.PATH_COLLECTION
+import org.audux.bgg.request.Constants.REQUEST_DATE_TIME_FORMAT
 import org.audux.bgg.response.Collection
 
 /**
@@ -183,7 +184,7 @@ fun BggClient.collection(
                     maxPlays?.let { append(PARAM_MAX_PLAYS, it.toString()) }
                     collectionId?.let { append(PARAM_COLLECTION_ID, it.toString()) }
                     modifiedSince?.let {
-                        val formatter = DateTimeFormatter.ofPattern("yy-MM-dd HH:mm:ss")
+                        val formatter = DateTimeFormatter.ofPattern(REQUEST_DATE_TIME_FORMAT)
                         append(PARAM_MODIFIED_SINCE, formatter.format(modifiedSince))
                     }
                 }

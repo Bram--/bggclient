@@ -20,7 +20,10 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import java.time.LocalDateTime
 
-/** Encapsulates the summary of a forum. */
+/**
+ * Encapsulates a forum containing a list of thread summaries - these can be retrieve using in
+ * [org.audux.bgg.request.thread] endpoint.
+ */
 @JsonRootName("forum")
 data class Forum(
     /** Terms of use of the BGG API. */
@@ -54,7 +57,9 @@ data class Forum(
     @JacksonXmlElementWrapper(localName = "threads") val threads: List<ThreadSummary> = listOf(),
 )
 
-/** Encapsulates a ranked item in the hot list. */
+/**
+ * Summary of a thread in the forum, contains some stats and aggregated data but no articles/posts.
+ */
 data class ThreadSummary(
     /** Unique ID that can be used to look up more information using the thread endpoint. */
     @JacksonXmlProperty(isAttribute = true) val id: Int,

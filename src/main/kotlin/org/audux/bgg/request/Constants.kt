@@ -13,6 +13,8 @@
  */
 package org.audux.bgg.request
 
+import java.time.format.DateTimeFormatter
+
 /** Collection of constants used in creating an URL for the BGG API. */
 internal object Constants {
     /** Base URL for the XML API2. */
@@ -25,18 +27,22 @@ internal object Constants {
     const val PATH_HOT = "hot"
     const val PATH_SEARCH = "search"
     const val PATH_THING = "thing"
+    const val PATH_THREAD = "thread"
 
     const val PARAM_BGG_RATING = "bggrating"
     const val PARAM_BRIEF = "brief"
     const val PARAM_COLLECTION_ID = "collid"
     const val PARAM_COMMENT = "comment"
     const val PARAM_COMMENTS = "comments"
+    const val PARAM_COUNT = "count"
     const val PARAM_EXACT = "exact"
     const val PARAM_EXCLUDE_SUBTYPE = "excludesubtype"
     const val PARAM_ID = "id"
     const val PARAM_HAS_PARTS = "hasparts"
     const val PARAM_MARKETPLACE = "marketplace"
     const val PARAM_MAX_PLAYS = "maxplays"
+    const val PARAM_MINIMUM_ARTICLE_ID = "minarticleid"
+    const val PARAM_MINIMUM_ARTICLE_DATE = "minarticledate"
     const val PARAM_MINIMUM_PLAYS = "minplays"
     const val PARAM_MINIMUM_RATING = "minrating"
     const val PARAM_MINIMUM_BGG_RATING = "minbggrating"
@@ -65,4 +71,6 @@ internal object Constants {
     const val PARAM_WANT_TO_PLAY = "wanttoplay"
     const val PARAM_WISHLIST = "wishlist"
     const val PARAM_WISHLIST_PRIORITY = "wishlistpriority"
+
+    const val REQUEST_DATE_TIME_FORMAT = "yy-MM-dd HH:mm:ss"
 }

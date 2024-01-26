@@ -68,7 +68,9 @@ class BggClient : KoinComponent, AutoCloseable {
         client.close()
     }
 
-    /** Calls/Launches a request async, once a response is available it will call [response]. */
+    /**
+     * Calls/Launches a request async, once a response is available it will call [responseCallback].
+     */
     internal fun <T> callAsync(request: suspend () -> T, responseCallback: (T) -> Unit) {
         clientScope.launch {
             val response = request()
@@ -142,13 +144,6 @@ class BggClientKoinContext {
     }
 
     val koin = koinApp.koin
-}
-
-/** Thrown whenever an exception happens in the BGGClient outside of a request. */
-class BggClientException : Exception {
-    constructor(message: String) : super(message)
-
-    constructor(message: String, throwable: Throwable) : super(message, throwable)
 }
 
 /** Thrown whenever any exception is thrown during a request to BGG. */

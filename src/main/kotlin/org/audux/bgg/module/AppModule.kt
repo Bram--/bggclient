@@ -31,13 +31,13 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 /** Used to ensure usage of correct Jackson [ObjectMapper]. */
-annotation class BggXmlObjectMapper()
+annotation class BggXmlObjectMapper
 
 /** Used to ensure usage of correct Ktor [HttpClient]. */
-annotation class BggKtorClient()
+annotation class BggKtorClient
 
 /** Used to ensure usage of correct Ktor [HttpClient]. */
-annotation class BggHttpEngine()
+annotation class BggHttpEngine
 
 /** Main Koin module for BggClient. */
 val appModule = module {

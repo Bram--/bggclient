@@ -148,8 +148,8 @@ fun BggClient.collection(
     collectionId: Int? = null,
     modifiedSince: LocalDateTime? = null,
 ) = request {
-    val response =
-        client.get(BASE_URL) {
+    client
+        .get(BASE_URL) {
             url {
                 appendPathSegments(PATH_COLLECTION)
                 parameters.apply {
@@ -189,6 +189,5 @@ fun BggClient.collection(
                 }
             }
         }
-
-    mapper.readValue(response.bodyAsText(), Collection::class.java)
+        .let { mapper.readValue(it.bodyAsText(), Collection::class.java) }
 }

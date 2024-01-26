@@ -39,8 +39,8 @@ fun BggClient.search(
     types: Array<ThingType> = arrayOf(),
     exactMatch: Boolean = false,
 ) = request {
-    val response =
-        client.get(BASE_URL) {
+    client
+        .get(BASE_URL) {
             url {
                 appendPathSegments(PATH_SEARCH)
                 parameters.apply {
@@ -52,6 +52,5 @@ fun BggClient.search(
                 }
             }
         }
-
-    mapper.readValue(response.bodyAsText(), SearchResults::class.java)
+        .let { mapper.readValue(it.bodyAsText(), SearchResults::class.java) }
 }

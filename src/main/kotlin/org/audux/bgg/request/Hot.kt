@@ -30,13 +30,12 @@ import org.audux.bgg.response.HotList
  *   [HotListType.BOARD_GAME].
  */
 fun BggClient.hot(type: HotListType? = null) = request {
-    val response =
-        client.get(BASE_URL) {
+    client
+        .get(BASE_URL) {
             url {
                 appendPathSegments(PATH_HOT)
                 type?.let { parameters.append(PARAM_TYPE, it.param) }
             }
         }
-
-    mapper.readValue(response.bodyAsText(), HotList::class.java)
+        .let { mapper.readValue(it.bodyAsText(), HotList::class.java) }
 }

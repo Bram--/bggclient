@@ -103,7 +103,7 @@ data class Thing(
     /** How many minutes on the high end it takes to complete the thing/game. */
     @JacksonXmlProperty(localName = "maxplaytime") val maxPlayingTimeInMinutes: WrappedValue<Int>?,
 
-    /** Minimum age to play/participate in thhe thing. */
+    /** Minimum age to play/participate in the thing. */
     val minAge: WrappedValue<Int>?,
 
     /** A list of videos associated with the thing, could be reviews, how to plays, unboxing etc. */

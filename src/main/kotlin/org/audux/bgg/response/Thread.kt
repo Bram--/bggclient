@@ -69,10 +69,8 @@ data class Article(
     val editDate: LocalDateTime?,
 
     /** Title/Subject of the article/post. */
-    @JsonDeserialize(using = TrimmedStringDeserializer::class)
-    val subject: String,
+    @JsonDeserialize(using = TrimmedStringDeserializer::class) val subject: String,
 
     /** Body of the article/post. */
-    @JsonDeserialize(using = TrimmedStringDeserializer::class)
-    val body: String,
+    @JsonDeserialize(using = TrimmedStringDeserializer::class) val body: String,
 )

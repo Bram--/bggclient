@@ -14,7 +14,7 @@
 package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.google.common.truth.Truth
+import com.google.common.truth.Truth.assertThat
 import org.audux.bgg.common.FamilyType
 import org.audux.bgg.common.Link
 import org.audux.bgg.common.Name
@@ -40,15 +40,15 @@ class FamilyResponseTest : KoinTest {
     fun `Parses empty response`() {
         val results = mapper.readValue(TestUtils.xml("family?id=-1"), Family::class.java)
 
-        Truth.assertThat(results.items).hasSize(0)
+        assertThat(results.items).hasSize(0)
     }
 
     @Test
     fun `Parses a family with it's associated links`() {
         val results = mapper.readValue(TestUtils.xml("family"), Family::class.java)
 
-        Truth.assertThat(results.items).hasSize(1)
-        Truth.assertThat(results.items[0])
+        assertThat(results.items).hasSize(1)
+        assertThat(results.items[0])
             .isEqualTo(
                 FamilyItem(
                     id = 50152,

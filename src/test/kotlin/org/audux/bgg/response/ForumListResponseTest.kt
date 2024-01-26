@@ -14,7 +14,7 @@
 package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.google.common.truth.Truth
+import com.google.common.truth.Truth.assertThat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import org.audux.bgg.module.BggXmlObjectMapper
@@ -39,7 +39,7 @@ class ForumListResponseTest : KoinTest {
     fun `Parses empty response`() {
         val results = mapper.readValue(TestUtils.xml("forumlist?id=-1"), ForumList::class.java)
 
-        Truth.assertThat(results.forums).hasSize(0)
+        assertThat(results.forums).hasSize(0)
     }
 
     @Test
@@ -47,8 +47,8 @@ class ForumListResponseTest : KoinTest {
         val results = mapper.readValue(TestUtils.xml("forumlist"), ForumList::class.java)
 
         val formatter = DateTimeFormatter.ofPattern("E, dd MMM yyyy HH:mm:ss Z")
-        Truth.assertThat(results.forums).hasSize(10)
-        Truth.assertThat(results.forums)
+        assertThat(results.forums).hasSize(10)
+        assertThat(results.forums)
             .containsExactly(
                 ForumSummary(
                     id = 3696791,

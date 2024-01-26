@@ -14,7 +14,7 @@
 package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.google.common.truth.Truth
+import com.google.common.truth.Truth.assertThat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import org.audux.bgg.module.BggXmlObjectMapper
@@ -46,22 +46,22 @@ class ThreadResponseTest : KoinTest {
     fun `Parses the thread for the given thing`() {
         val thread = mapper.readValue(TestUtils.xml("thread"), Thread::class.java)
 
-        Truth.assertThat(thread.subject).isEqualTo("New Maps for Ark Nova + Marine World")
-        Truth.assertThat(thread.numArticles).isEqualTo(13)
-        Truth.assertThat(thread.link).isEqualTo("https://boardgamegeek.com/thread/3208373")
-        Truth.assertThat(thread.articles).hasSize(13)
+        assertThat(thread.subject).isEqualTo("New Maps for Ark Nova + Marine World")
+        assertThat(thread.numArticles).isEqualTo(13)
+        assertThat(thread.link).isEqualTo("https://boardgamegeek.com/thread/3208373")
+        assertThat(thread.articles).hasSize(13)
         val firstArticle = thread.articles[0]
-        Truth.assertThat(firstArticle.id).isEqualTo(43461362)
-        Truth.assertThat(firstArticle.username).isEqualTo("darkuss")
-        Truth.assertThat(firstArticle.numEdits).isEqualTo(4)
-        Truth.assertThat(firstArticle.link)
+        assertThat(firstArticle.id).isEqualTo(43461362)
+        assertThat(firstArticle.username).isEqualTo("darkuss")
+        assertThat(firstArticle.numEdits).isEqualTo(4)
+        assertThat(firstArticle.link)
             .isEqualTo("https://boardgamegeek.com/thread/3208373/article/43461362#43461362")
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssz")
-        Truth.assertThat(firstArticle.postDate)
+        assertThat(firstArticle.postDate)
             .isEqualTo(LocalDateTime.parse("2023-12-15T13:07:50-06:00", formatter))
-        Truth.assertThat(firstArticle.editDate)
+        assertThat(firstArticle.editDate)
             .isEqualTo(LocalDateTime.parse("2023-12-16T03:19:58-06:00", formatter))
-        Truth.assertThat(firstArticle.subject).isEqualTo("New Maps for Ark Nova + Marine World")
-        Truth.assertThat(firstArticle.body).hasLength(6133)
+        assertThat(firstArticle.subject).isEqualTo("New Maps for Ark Nova + Marine World")
+        assertThat(firstArticle.body).hasLength(6133)
     }
 }

@@ -18,6 +18,7 @@ import co.touchlab.kermit.Severity
 import co.touchlab.kermit.koin.KermitKoinLogger
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.ktor.client.HttpClient
+import java.time.LocalDateTime
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -34,7 +35,6 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.qualifier.named
 import org.koin.dsl.koinApplication
-import java.time.LocalDateTime
 
 /**
  * Unofficial Board Game Geek API Client for the
@@ -106,7 +106,8 @@ class BggClient : KoinComponent, AutoCloseable {
             runBlocking {
                 BggClient().use { client ->
                     // 342942&type=thing
-                    val response = client.thread(3208373, minArticleDate = LocalDateTime.MIN, count = 4).call()
+                    val response =
+                        client.thread(3208373, minArticleDate = LocalDateTime.MIN, count = 4).call()
                     println(response.toString())
                 }
             }

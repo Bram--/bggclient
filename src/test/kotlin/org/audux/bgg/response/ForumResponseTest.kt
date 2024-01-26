@@ -14,7 +14,7 @@
 package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.google.common.truth.Truth
+import com.google.common.truth.Truth.assertThat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import org.audux.bgg.module.BggXmlObjectMapper
@@ -43,7 +43,7 @@ class ForumResponseTest : KoinTest {
             assertThrows { mapper.readValue(TestUtils.xml("forum?id=-1"), Forum::class.java) }
                 as Exception
 
-        Truth.assertThat(exception).hasMessageThat().contains("Unexpected character")
+        assertThat(exception).hasMessageThat().contains("Unexpected character")
     }
 
     @Test
@@ -51,8 +51,8 @@ class ForumResponseTest : KoinTest {
         val results = mapper.readValue(TestUtils.xml("forum?id=3696796"), Forum::class.java)
 
         val formatter = DateTimeFormatter.ofPattern("E, dd MMM yyyy HH:mm:ss Z")
-        Truth.assertThat(results.threads).hasSize(50)
-        Truth.assertThat(results.threads[0])
+        assertThat(results.threads).hasSize(50)
+        assertThat(results.threads[0])
             .isEqualTo(
                 ThreadSummary(
                     id = 3202992,

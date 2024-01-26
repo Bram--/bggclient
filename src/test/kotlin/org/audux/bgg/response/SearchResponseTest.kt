@@ -14,7 +14,7 @@
 package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.google.common.truth.Truth
+import com.google.common.truth.Truth.assertThat
 import org.audux.bgg.common.Name
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.module.BggXmlObjectMapper
@@ -40,8 +40,8 @@ class SearchResponseTest : KoinTest {
         val results =
             mapper.readValue(TestUtils.xml("search?query=no+results"), SearchResults::class.java)
 
-        Truth.assertThat(results.total).isEqualTo(0)
-        Truth.assertThat(results.results).hasSize(0)
+        assertThat(results.total).isEqualTo(0)
+        assertThat(results.results).hasSize(0)
     }
 
     @Test
@@ -49,10 +49,10 @@ class SearchResponseTest : KoinTest {
         val results =
             mapper.readValue(TestUtils.xml("search?query=my+little"), SearchResults::class.java)
 
-        Truth.assertThat(results.total).isEqualTo(144)
-        Truth.assertThat(results.results).hasSize(144)
+        assertThat(results.total).isEqualTo(144)
+        assertThat(results.results).hasSize(144)
 
-        Truth.assertThat(results.results[0])
+        assertThat(results.results[0])
             .isEqualTo(
                 SearchResult(
                     id = 167159,

@@ -13,8 +13,6 @@
  */
 package org.audux.bgg.request
 
-import java.time.format.DateTimeFormatter
-
 /** Collection of constants used in creating an URL for the BGG API. */
 internal object Constants {
     /** Base URL for the XML API2. */

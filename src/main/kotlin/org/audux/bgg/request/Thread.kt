@@ -16,10 +16,10 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.BggClient
-import org.audux.bgg.response.Thread
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import org.audux.bgg.BggClient
+import org.audux.bgg.response.Thread
 
 /**
  * Retrieves the list of articles/posts for the given thread.

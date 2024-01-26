@@ -14,7 +14,7 @@
 package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.google.common.truth.Truth
+import com.google.common.truth.Truth.assertThat
 import java.time.LocalDateTime
 import org.audux.bgg.common.Rank
 import org.audux.bgg.common.Ratings
@@ -42,7 +42,7 @@ class CollectionResponseTest : KoinTest {
         val results =
             mapper.readValue(TestUtils.xml("collection?username=empty"), Collection::class.java)
 
-        Truth.assertThat(results.items).hasSize(0)
+        assertThat(results.items).hasSize(0)
     }
 
     @Test
@@ -55,8 +55,8 @@ class CollectionResponseTest : KoinTest {
                 Collection::class.java
             )
 
-        Truth.assertThat(results.items).hasSize(105)
-        Truth.assertThat(results.items[0])
+        assertThat(results.items).hasSize(105)
+        assertThat(results.items[0])
             .isEqualTo(
                 CollectionItem(
                     collectionId = 90725673,
@@ -131,7 +131,7 @@ class CollectionResponseTest : KoinTest {
                 Collection::class.java
             )
 
-        Truth.assertThat(results.items).hasSize(1)
-        Truth.assertThat(results.items[0].name).isEqualTo("Alice is Missing")
+        assertThat(results.items).hasSize(1)
+        assertThat(results.items[0].name).isEqualTo("Alice is Missing")
     }
 }

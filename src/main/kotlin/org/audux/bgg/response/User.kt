@@ -118,11 +118,11 @@ data class Guilds(
     val page: Number,
 
     /** The actual list of guilds */
-    @JsonProperty("guild") val guilds: List<Guild>,
+    @JsonProperty("guild") val guilds: List<GuildReference>,
 )
 
-/** A guild the user is a member of. */
-data class Guild(
+/** The id and name of a guild the user is a member of. */
+data class GuildReference(
     /** The id of the guild. */
     @JacksonXmlProperty(isAttribute = true) val id: Number,
 

@@ -24,13 +24,12 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import org.audux.bgg.common.Domains
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.module.BggKtorClient
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
 import org.audux.bgg.request.Request
-import org.audux.bgg.request.user
+import org.audux.bgg.request.guilds
 import org.jetbrains.annotations.VisibleForTesting
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -108,14 +107,11 @@ class BggClient : KoinComponent, AutoCloseable {
                 BggClient().use { client ->
                     val response =
                         client
-                            .user(
-                                "Novaeux",
-                                buddies = Inclusion.INCLUDE,
-                                hot = Inclusion.INCLUDE,
-                                domain = Domains.BOARD_GAME_GEEK,
-                                guilds = Inclusion.INCLUDE,
-                                top = Inclusion.INCLUDE,
-                                page = 1
+                            .guilds(
+                                id = 2310,
+                                members = Inclusion.INCLUDE,
+                                sort = "date",
+                                page = 1,
                             )
                             .call()
                     println(response.toString())

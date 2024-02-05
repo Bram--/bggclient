@@ -31,7 +31,7 @@ import org.audux.bgg.request.Constants.PATH_USER
 import org.audux.bgg.response.User
 
 /**
- * Hotness endpoint that retrieve the list of most 50 active items on the site filtered by type.
+ * User endpoint that retrieves a specific user by their [name].
  *
  * @param name Specifies the user name (only one user is request-able at a time).
  * @param buddies Turns on buddies reporting. Results are paged; see page parameter.

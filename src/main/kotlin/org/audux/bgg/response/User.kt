@@ -74,47 +74,94 @@ data class User(
 
     /** The user's aggregated rating for the marketplace. */
     val tradeRating: WrappedValue<Number>?,
+
+    /** The list of the User's buddies/friends. */
     val buddies: Buddies?,
+
+    /** The list of guilds the user is a member of. */
     val guilds: Guilds?,
+
+    /** The Top list made by the user on their profile. */
     val top: Top?,
+
+    /** The Hot list made by the user on their profile. */
     val hot: Hot?,
 )
 
+/** List of Buddies/Friends of the user. */
 data class Buddies(
+    /** Total number of buddies. */
     val total: Number,
+
+    /** The current page - used in pagination. */
     val page: Number,
+
+    /** The actual list of buddies.. */
     @JacksonXmlProperty(localName = "buddy") val buddies: List<Buddy>,
 )
 
+/** Buddy of the user. */
 data class Buddy(
+    /** The id of the buddy. */
     @JacksonXmlProperty(isAttribute = true) val id: Number,
+
+    /** The username of the buddy. */
     @JacksonXmlProperty(isAttribute = true) val name: String
 )
 
+/** Guilds user is a member of. */
 data class Guilds(
+    /** The total number of guilds user is a member of. */
     val total: Number,
+
+    /** The current page - used in pagination. */
     val page: Number,
+
+    /** The actual list of guilds */
     @JsonProperty("guild") val guilds: List<Guild>,
 )
 
+/** A guild the user is a member of. */
 data class Guild(
+    /** The id of the guild. */
     @JacksonXmlProperty(isAttribute = true) val id: Number,
+
+    /** The name of the guild. */
     @JacksonXmlProperty(isAttribute = true) val name: String,
 )
 
+/** The list of Hot items the user has added to their 'hot list' - as seen on their profile. */
 data class Hot(
+    /** The domain the hot list was specified on i.e. 'boardgame' - same as in the request. */
     @JacksonXmlProperty(isAttribute = true) val domain: String,
+
+    /** The list of things that are part of the hot list. */
     @JsonProperty("item") val items: List<ListItem>,
 )
 
+/** The list of Top items the user has added to their 'top list' - as seen on their profile. */
 data class Top(
+    /** The domain the top list was specified on i.e. 'boardgame' - same as in the request. */
     @JacksonXmlProperty(isAttribute = true) val domain: String,
+
+    /** The list of things that are part of the top list. */
     @JsonProperty("item") val items: List<ListItem>,
 )
 
+/**
+ * Simple view of a item in the hot or top lists of the user, describing a boardgame, rpg etc. The
+ * [org.audux.bgg.request.things] api may be used to request more information about the thing.
+ */
 data class ListItem(
+    /** The (local) rank of the thin, i.e. the rank of the item in the user's hot or top list. */
     @JacksonXmlProperty(isAttribute = true) val rank: Number,
+
+    /** The type of item/thing i.e. 'thing' */
     @JacksonXmlProperty(isAttribute = true) val type: String,
+
+    /** The id of the item/thing. */
     @JacksonXmlProperty(isAttribute = true) val id: Number,
+
+    /** The (primary) name of the item/thing. */
     @JacksonXmlProperty(isAttribute = true) val name: String,
 )

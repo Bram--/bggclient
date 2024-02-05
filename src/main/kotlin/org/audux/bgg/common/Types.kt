@@ -83,13 +83,20 @@ enum class ForumListType(val param: String) {
 
 /**
  * Used to either include or exclude certain items in a request, see
- * [org.audux.bgg.request.collection].
+ * [org.audux.bgg.request.collection] and [org.audux.bgg.request.user].
  */
 enum class Inclusion {
     INCLUDE,
     EXCLUDE;
 
     fun toParam() = if (this == INCLUDE) "1" else "0"
+}
+
+/** Different domains used for the users' hot- and top-10. */
+enum class Domains(val param: String) {
+    BOARD_GAME_GEEK("boardgame"),
+    RPG_GEEK("rpg"),
+    VIDEO_GAME_GEEK("videogame"),
 }
 
 /** Encapsulates the name of a Thing either primary or alternate name. */

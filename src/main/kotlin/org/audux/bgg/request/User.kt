@@ -17,10 +17,18 @@ import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import org.audux.bgg.BggClient
+import org.audux.bgg.common.Domains
+import org.audux.bgg.common.Inclusion
 import org.audux.bgg.request.Constants.BASE_URL
-import org.audux.bgg.request.Constants.PARAM_TYPE
-import org.audux.bgg.request.Constants.PATH_HOT
-import org.audux.bgg.response.HotList
+import org.audux.bgg.request.Constants.PARAM_BUDDIES
+import org.audux.bgg.request.Constants.PARAM_DOMAIN
+import org.audux.bgg.request.Constants.PARAM_GUILDS
+import org.audux.bgg.request.Constants.PARAM_HOT
+import org.audux.bgg.request.Constants.PARAM_NAME
+import org.audux.bgg.request.Constants.PARAM_PAGE
+import org.audux.bgg.request.Constants.PARAM_TOP
+import org.audux.bgg.request.Constants.PATH_USER
+import org.audux.bgg.response.User
 
 /**
  * Hotness endpoint that retrieve the list of most 50 active items on the site filtered by type.
@@ -39,13 +47,27 @@ import org.audux.bgg.response.HotList
  *   higher than that needed to list all the buddies/guilds or, if you're on page 1, it means that
  *   that user has no buddies and is not part of any guilds.
  */
-fun BggClient.user(name: String) = request {
+fun BggClient.user(
+    name: String,
+    buddies: Inclusion? = null,
+    guilds: Inclusion? = null,
+    top: Inclusion? = null,
+    hot: Inclusion? = null,
+    domain: Domains? = null,
+    page: Number? = null,
+) = request {
     client
         .get(BASE_URL) {
             url {
-                appendPathSegments(PATH_HOT)
-                parameters.append(PARAM_TYPE, name)
+                appendPathSegments(PATH_USER)
+                parameters.append(PARAM_NAME, name)
+                buddies?.let { parameters.append(PARAM_BUDDIES, it.toParam()) }
+                guilds?.let { parameters.append(PARAM_GUILDS, it.toParam()) }
+                top?.let { parameters.append(PARAM_TOP, it.toParam()) }
+                hot?.let { parameters.append(PARAM_HOT, it.toParam()) }
+                domain?.let { parameters.append(PARAM_DOMAIN, it.param) }
+                page?.let { parameters.append(PARAM_PAGE, it.toString()) }
             }
         }
-        .let { mapper.readValue(it.bodyAsText(), HotList::class.java) }
+        .let { mapper.readValue(it.bodyAsText(), User::class.java) }
 }

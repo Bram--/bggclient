@@ -35,16 +35,7 @@ object TestUtils {
                                 // Not useless as mockEngine needs to be bound to
                                 // HttpClientEngine and not set up a new binding for MockEngine.
                                 @Suppress("USELESS_CAST")
-                                MockEngine {
-                                    try {
-                                        respondOk(String(xml(xmlFileName).readAllBytes()))
-                                    } catch (e: NullPointerException) {
-                                        throw IllegalArgumentException(
-                                            "Could not find $xmlFileName",
-                                            e
-                                        )
-                                    }
-                                }
+                                MockEngine { respondOk(String(xml(xmlFileName).readAllBytes())) }
                                     as HttpClientEngine
                             }
                         }
@@ -55,6 +46,10 @@ object TestUtils {
 
     /** Returns input stream of `resources/xml/{fileName}.xml` to use in testing. */
     fun xml(fileName: String): InputStream {
-        return TestUtils::class.java.classLoader.getResourceAsStream("xml/$fileName.xml")!!
+        try {
+            return TestUtils::class.java.classLoader.getResourceAsStream("xml/$fileName.xml")!!
+        } catch (e: NullPointerException) {
+            throw IllegalArgumentException("Could not find xml/$fileName.xml", e)
+        }
     }
 }

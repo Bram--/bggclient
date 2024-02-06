@@ -19,23 +19,25 @@ import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.common.ForumListType
+import org.audux.bgg.common.Inclusion
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 import org.koin.test.KoinTest
 
-/** Unit tests for [forumList] extension function. */
-class ForumListRequestTest : KoinTest {
+/** Unit tests for [guilds] extension function. */
+class GuildsRequestTest : KoinTest {
     @Test
     fun `Makes a request with all parameters`() {
         runBlocking {
-            val client = TestUtils.setupEngineAndRequest("forumlist")
+            val client = TestUtils.setupEngineAndRequest("guilds?id=2310")
 
             val response =
                 client
-                    .forumList(
-                        id = 342942,
-                        type = ForumListType.THING,
+                    .guilds(
+                        id = 2310,
+                        members = Inclusion.INCLUDE,
+                        sort = "date",
+                        page = 1,
                     )
                     .call()
 
@@ -51,8 +53,12 @@ class ForumListRequestTest : KoinTest {
                     }
                 )
             assertThat(request.url)
-                .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/forumlist?id=342942&type=thing"))
-            assertThat(response.forums).hasSize(10)
+                .isEqualTo(
+                    Url(
+                        "https://boardgamegeek.com/xmlapi2/guilds?id=2310&members=1&sort=date&page=1"
+                    )
+                )
+            assertThat(response.name).isEqualTo("St Albans Board Games Club")
         }
     }
 }

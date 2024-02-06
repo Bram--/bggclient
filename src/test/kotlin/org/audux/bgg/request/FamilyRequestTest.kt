@@ -24,7 +24,7 @@ import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 import org.koin.test.KoinTest
 
-/** Unit tests for [hot] extension function. */
+/** Unit tests for [family] extension function. */
 class FamilyRequestTest : KoinTest {
     @Test
     fun `Makes a request with all parameters`() {

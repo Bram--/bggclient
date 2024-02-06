@@ -17,24 +17,25 @@ import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import java.time.LocalDate
+import java.time.LocalDateTime
 
-/** Response wrapper for Hot lists to be returned. */
+/** Response wrapper for Guilds to be returned. */
 @JsonRootName("guild")
 data class Guild(
     /** Terms of use of the BGG API. */
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
     @JacksonXmlProperty(isAttribute = true) val id: Number,
-    @JacksonXmlProperty(isAttribute = true) val name: String,
+    @JacksonXmlProperty(isAttribute = true) val name: String?,
     @JsonFormat(pattern = "E, dd MMM yyyy HH:mm:ss Z")
-    @JacksonXmlProperty(isAttribute = true)
-    val created: LocalDate,
-    val category: String,
-    val website: String,
-    val manager: String,
-    val description: String,
-    val location: Location,
+    @JacksonXmlProperty(isAttribute = true, localName = "created")
+    val createdAt: LocalDateTime?,
+    val category: String?,
+    val website: String?,
+    val manager: String?,
+    val description: String?,
+    val location: Location?,
     val members: GuildMembers?,
+    val error: String?,
 )
 
 data class Location(
@@ -56,5 +57,5 @@ data class GuildMember(
     @JacksonXmlProperty(isAttribute = true) val name: String,
     @JsonFormat(pattern = "E, dd MMM yyyy HH:mm:ss Z")
     @JacksonXmlProperty(isAttribute = true, localName = "date")
-    val joinDate: LocalDate,
+    val joinDate: LocalDateTime,
 )

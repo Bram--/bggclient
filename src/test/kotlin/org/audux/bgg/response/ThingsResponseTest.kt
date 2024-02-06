@@ -31,7 +31,7 @@ import org.koin.core.qualifier.named
 import org.koin.test.KoinTest
 import org.koin.test.junit5.KoinTestExtension
 
-/** Test class for [Things] and nested response classes. */
+/** Test class for [Things] data classes. */
 class ThingsResponseTest : KoinTest {
     @JvmField
     @RegisterExtension

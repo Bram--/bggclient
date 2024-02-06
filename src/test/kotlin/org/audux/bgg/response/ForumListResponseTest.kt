@@ -27,6 +27,7 @@ import org.koin.core.qualifier.named
 import org.koin.test.KoinTest
 import org.koin.test.junit5.KoinTestExtension
 
+/** Unit test for [ForumList] data classes. */
 class ForumListResponseTest : KoinTest {
     @JvmField
     @RegisterExtension

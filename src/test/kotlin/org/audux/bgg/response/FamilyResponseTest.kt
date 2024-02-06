@@ -28,6 +28,7 @@ import org.koin.core.qualifier.named
 import org.koin.test.KoinTest
 import org.koin.test.junit5.KoinTestExtension
 
+/** Unit test for [Family] data classes. */
 class FamilyResponseTest : KoinTest {
     @JvmField
     @RegisterExtension

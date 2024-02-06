@@ -29,6 +29,7 @@ import org.koin.core.qualifier.named
 import org.koin.test.KoinTest
 import org.koin.test.junit5.KoinTestExtension
 
+/** Unit test for [Collection] data classes. */
 class CollectionResponseTest : KoinTest {
     @JvmField
     @RegisterExtension

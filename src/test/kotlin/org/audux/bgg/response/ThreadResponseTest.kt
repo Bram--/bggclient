@@ -28,6 +28,7 @@ import org.koin.core.qualifier.named
 import org.koin.test.KoinTest
 import org.koin.test.junit5.KoinTestExtension
 
+/** Test class for [Thread] data classes. */
 class ThreadResponseTest : KoinTest {
     @JvmField
     @RegisterExtension

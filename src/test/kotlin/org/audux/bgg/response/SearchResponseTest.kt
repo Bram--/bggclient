@@ -27,6 +27,7 @@ import org.koin.core.qualifier.named
 import org.koin.test.KoinTest
 import org.koin.test.junit5.KoinTestExtension
 
+/** Unit test for [SearchResult] data classes. */
 class SearchResponseTest : KoinTest {
     @JvmField
     @RegisterExtension

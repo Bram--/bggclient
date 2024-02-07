@@ -83,6 +83,6 @@ internal object Constants {
     const val PARAM_WISHLIST = "wishlist"
     const val PARAM_WISHLIST_PRIORITY = "wishlistpriority"
 
-    const val REQUEST_DATE_TIME_FORMAT = "yy-MM-dd HH:mm:ss"
-    const val REQUEST_DATE_FORMAT = "yy-MM-dd"
+    const val REQUEST_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss"
+    const val REQUEST_DATE_FORMAT = "yyyy-MM-dd"
 }

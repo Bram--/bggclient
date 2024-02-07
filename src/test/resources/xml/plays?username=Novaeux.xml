@@ -16,7 +16,7 @@
         <comments>China, Japan, India game. I won as Gandhi with a culture victory.</comments>
         <players>
             <player username="Novaeux" userid="2639010" name="Bram Wijnands" startposition="" color="Purple" score="" new="0" rating="0" win="1" />
-            <player username="" userid="0" name="Redacted" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="Redacted" startposition="" color="Yellow" score="" new="0" rating="0" win="0" />
             <player username="" userid="0" name="Redacted" startposition="" color="" score="" new="0" rating="0" win="0" />
         </players>
     </play>

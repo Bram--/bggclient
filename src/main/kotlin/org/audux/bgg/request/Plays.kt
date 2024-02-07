@@ -19,11 +19,13 @@ import io.ktor.http.appendPathSegments
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import org.audux.bgg.BggClient
+import org.audux.bgg.common.PlayThingType
 import org.audux.bgg.common.SubType
 import org.audux.bgg.request.Constants.BASE_URL
 import org.audux.bgg.request.Constants.PARAM_ID
 import org.audux.bgg.request.Constants.PARAM_PAGE
 import org.audux.bgg.request.Constants.PARAM_SUBTYPE
+import org.audux.bgg.request.Constants.PARAM_TYPE
 import org.audux.bgg.request.Constants.PARAM_USERNAME
 import org.audux.bgg.request.Constants.PATH_PLAYS
 import org.audux.bgg.response.Plays
@@ -46,7 +48,7 @@ import org.audux.bgg.response.Plays
 fun BggClient.plays(
     username: String,
     id: Number? = null,
-    type: String? = null,
+    type: PlayThingType? = null,
     minDate: LocalDate? = null,
     maxDate: LocalDate? = null,
     subType: SubType? = null,
@@ -60,7 +62,7 @@ fun BggClient.plays(
                 appendPathSegments(PATH_PLAYS)
                 parameters.append(PARAM_USERNAME, username)
                 id?.let { parameters.append(PARAM_ID, it.toString()) }
-                type?.let { parameters.append(PARAM_ID, it) }
+                type?.let { parameters.append(PARAM_TYPE, it.param) }
                 minDate?.let {
                     parameters.append(Constants.PARAM_MINIMUM_DATE, formatter.format(it))
                 }

@@ -39,7 +39,7 @@ data class Plays(
     @JacksonXmlProperty(isAttribute = true) val page: Number,
 
     /** List of the actual plays. */
-    @JacksonXmlProperty(localName = "play") val plays: List<Play>
+    @JacksonXmlProperty(localName = "play") val plays: List<Play> = listOf()
 )
 
 /**
@@ -49,10 +49,13 @@ data class Plays(
 data class Play(
     /** Unique ID of the play - not used */
     @JacksonXmlProperty(isAttribute = true) val id: Number,
+
     /** The date the play took place. */
     @JacksonXmlProperty(isAttribute = true) val date: LocalDate,
+
     /** The number of plays, of the same game with the same players. */
     @JacksonXmlProperty(isAttribute = true) val quantity: Number,
+
     /** The duration of the play(s). */
     @JacksonXmlProperty(isAttribute = true, localName = "length") val lengthInMinutes: Number,
 
@@ -103,7 +106,7 @@ data class PlayItem(
     val subTypes: List<SubType>,
 )
 
-/** A SubType of a tihng e.g. board game. */
+/** A SubType of a thing e.g. board game. */
 data class SubType(val subtype: WrappedSubType)
 
 /**
@@ -111,17 +114,34 @@ data class SubType(val subtype: WrappedSubType)
  * etc.
  */
 data class Player(
+    /** Optional username of the player. */
     @JacksonXmlProperty(isAttribute = true) val username: String?,
+
+    /** Optional user ID of the player - only set when the username is present. */
     @JacksonXmlProperty(isAttribute = true) val userid: Number?,
+
+    /** The name of the player, could be first name, lastname or even a nickname. */
     @JacksonXmlProperty(isAttribute = true) val name: String?,
+
+    /** Optionally the starting position of the player in the game. */
     @JacksonXmlProperty(isAttribute = true) val startPosition: String?,
+
+    /** The color the player played with. */
     @JacksonXmlProperty(isAttribute = true) val color: String?,
+
+    /** Whether the player was new or now - first time play. */
     @JacksonXmlProperty(isAttribute = true)
     @JsonDeserialize(using = NumberToBooleanDeserializer::class)
-    val new: Boolean?,
-    @JacksonXmlProperty(isAttribute = true) val rating: Number?,
+    val new: Boolean,
+
+    /** Optionally the rating the player gave this game and play. */
+    @JacksonXmlProperty(isAttribute = true) val rating: Number,
+
+    /** Did this player win? */
     @JacksonXmlProperty(isAttribute = true)
     @JsonDeserialize(using = NumberToBooleanDeserializer::class)
-    val win: Boolean?,
-    @JacksonXmlProperty(isAttribute = true) val score: Number?,
+    val win: Boolean,
+
+    /** The end score of the player for this play. */
+    @JacksonXmlProperty(isAttribute = true) val score: Number? = null,
 )

@@ -65,7 +65,6 @@ enum class SubType(val param: String) {
     RPG_ITEM("rpgitem"),
     VIDEO_GAME("videogame");
 
-
     companion object {
         fun fromParam(param: String?) = entries.find { it.param == param } ?: UNKNOWN
     }

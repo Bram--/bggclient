@@ -18,18 +18,19 @@ import co.touchlab.kermit.Severity
 import co.touchlab.kermit.koin.KermitKoinLogger
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.ktor.client.HttpClient
+import java.time.LocalDate
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import org.audux.bgg.common.Inclusion
+import org.audux.bgg.common.PlayThingType
+import org.audux.bgg.common.SubType
 import org.audux.bgg.module.BggKtorClient
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
 import org.audux.bgg.request.Request
-import org.audux.bgg.request.guilds
 import org.audux.bgg.request.plays
 import org.jetbrains.annotations.VisibleForTesting
 import org.koin.core.component.KoinComponent
@@ -109,10 +110,15 @@ class BggClient : KoinComponent, AutoCloseable {
                     val response =
                         client
                             .plays(
-                                username = "Novaeux",
+                                username = "Allansmw",
+                                page = 1,
+                                subType = SubType.BOARD_GAME,
+                                type = PlayThingType.THING,
+                                minDate = LocalDate.of(2018, 2, 2),
+                                maxDate = LocalDate.of(2020, 2, 7),
                             )
                             .call()
-                    println(response.toString())
+                    println(response.plays.size)
                 }
             }
             //            BggClient().use { client ->

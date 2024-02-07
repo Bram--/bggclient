@@ -34,7 +34,12 @@ import org.audux.bgg.response.Guild
  * @param sort Specifies how to sort the members list; default is username.
  * @param page The page of the members list to return. Pagesize is 25.
  */
-fun BggClient.guilds(id: Number, members: Inclusion?, sort: String?, page: Number?) = request {
+fun BggClient.guilds(
+    id: Number,
+    members: Inclusion? = null,
+    sort: String? = null,
+    page: Number? = null
+) = request {
     client
         .get(BASE_URL) {
             url {
@@ -42,7 +47,7 @@ fun BggClient.guilds(id: Number, members: Inclusion?, sort: String?, page: Numbe
                 parameters.append(PARAM_ID, id.toString())
                 members?.let { parameters.append(PARAM_MEMBERS, it.toParam()) }
                 sort?.let { parameters.append(PARAM_SORT, it) }
-                parameters.append(PARAM_PAGE, page.toString())
+                page?.let { parameters.append(PARAM_PAGE, it.toString()) }
             }
         }
         .let { mapper.readValue(it.bodyAsText(), Guild::class.java) }

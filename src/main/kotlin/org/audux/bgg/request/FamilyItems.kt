@@ -29,7 +29,7 @@ import org.audux.bgg.response.Family
  * @param types Single [HotListType] returning only items of the specified type, defaults to
  *   [HotListType.BOARD_GAME].
  */
-fun BggClient.family(ids: Array<Int>, types: Array<FamilyType> = arrayOf()) = request {
+fun BggClient.familyItems(ids: Array<Int>, types: Array<FamilyType> = arrayOf()) = request {
     client
         .get(Constants.BASE_URL) {
             url {

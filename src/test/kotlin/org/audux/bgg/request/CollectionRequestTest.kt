@@ -32,7 +32,7 @@ import org.koin.test.KoinTest
 /** Unit tests for [collection] extension function. */
 class CollectionRequestTest : KoinTest {
     @Test
-    fun `Makes a request with minimal parameters`() {
+    fun `Makes a request with minimum parameters`() {
         runBlocking {
             val client =
                 TestUtils.setupEngineAndRequest(

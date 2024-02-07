@@ -24,14 +24,14 @@ import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 import org.koin.test.KoinTest
 
-/** Unit tests for [hot] extension function. */
+/** Unit tests for [hotItems] extension function. */
 class HotRequestTest : KoinTest {
     @Test
     fun `Makes a request with all parameters`() {
         runBlocking {
             val client = TestUtils.setupEngineAndRequest("hot")
 
-            val response = client.hot(HotListType.BOARD_GAME).call()
+            val response = client.hotItems(HotListType.BOARD_GAME).call()
 
             val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]

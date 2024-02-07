@@ -24,20 +24,14 @@ import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 import org.koin.test.KoinTest
 
-/** Unit tests for [family] extension function. */
+/** Unit tests for [familyItems] extension function. */
 class FamilyRequestTest : KoinTest {
     @Test
-    fun `Makes a request with all parameters`() {
+    fun `Makes a request with minimum parameters`() {
         runBlocking {
             val client = TestUtils.setupEngineAndRequest("family")
 
-            val response =
-                client
-                    .family(
-                        ids = arrayOf(50152),
-                        arrayOf(FamilyType.BOARD_GAME_FAMILY, FamilyType.RPG)
-                    )
-                    .call()
+            val response = client.familyItems(ids = arrayOf(50152)).call()
 
             val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
@@ -51,9 +45,31 @@ class FamilyRequestTest : KoinTest {
                     }
                 )
             assertThat(request.url)
+                .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/family?id=50152"))
+            assertThat(response.items).hasSize(1)
+            assertThat(response.items[0].links).hasSize(26)
+        }
+    }
+
+    @Test
+    fun `Makes a request with all parameters`() {
+        runBlocking {
+            val client = TestUtils.setupEngineAndRequest("family")
+
+            val response =
+                client
+                    .familyItems(
+                        ids = arrayOf(50152, 50153),
+                        arrayOf(FamilyType.BOARD_GAME_FAMILY, FamilyType.RPG)
+                    )
+                    .call()
+
+            val engine = client.engine() as MockEngine
+            val request = engine.requestHistory[0]
+            assertThat(request.url)
                 .isEqualTo(
                     Url(
-                        "https://boardgamegeek.com/xmlapi2/family?id=50152&type=boardgamefamily%2Crpg"
+                        "https://boardgamegeek.com/xmlapi2/family?id=50152%2C50153&type=boardgamefamily%2Crpg"
                     )
                 )
             assertThat(response.items).hasSize(1)

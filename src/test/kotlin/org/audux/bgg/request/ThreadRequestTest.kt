@@ -27,6 +27,30 @@ import org.koin.test.KoinTest
 /** Unit tests for [thread] extension function. */
 class ThreadRequestTest : KoinTest {
     @Test
+    fun `Makes a request with minimum parameters`() {
+        runBlocking {
+            val client = TestUtils.setupEngineAndRequest("thread")
+
+            val response = client.thread(id = 3208373).call()
+
+            val engine = client.engine() as MockEngine
+            val request = engine.requestHistory[0]
+            assertThat(engine.requestHistory).hasSize(1)
+            assertThat(request.method).isEqualTo(HttpMethod.Get)
+            assertThat(request.headers)
+                .isEqualTo(
+                    Headers.build {
+                        appendAll("Accept", listOf("*/*"))
+                        appendAll("Accept-Charset", listOf("UTF-8"))
+                    }
+                )
+            assertThat(request.url)
+                .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/thread?id=3208373"))
+            assertThat(response.articles).hasSize(13)
+        }
+    }
+
+    @Test
     fun `Makes a request with all parameters`() {
         runBlocking {
             val client = TestUtils.setupEngineAndRequest("thread")
@@ -43,15 +67,6 @@ class ThreadRequestTest : KoinTest {
 
             val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
-            assertThat(engine.requestHistory).hasSize(1)
-            assertThat(request.method).isEqualTo(HttpMethod.Get)
-            assertThat(request.headers)
-                .isEqualTo(
-                    Headers.build {
-                        appendAll("Accept", listOf("*/*"))
-                        appendAll("Accept-Charset", listOf("UTF-8"))
-                    }
-                )
             assertThat(request.url)
                 .isEqualTo(
                     Url(

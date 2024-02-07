@@ -121,29 +121,6 @@ class BggClient : KoinComponent, AutoCloseable {
                     println(response.plays.size)
                 }
             }
-            //            BggClient().use { client ->
-            //                client
-            //                    .search("Scythe", arrayOf(ThingType.BOARD_GAME,
-            // ThingType.BOARD_GAME_EXPANSION))
-            //                    .callAsync { response -> println(response.toString()) }
-            //            }
-            //
-            //            BggClient().use { client ->
-            //                repeat(10) {
-            //                    client
-            //                        .collection(
-            //                            "Novaeux",
-            //                            ThingType.BOARD_GAME,
-            //                            excludeSubType = ThingType.BOARD_GAME_EXPANSION
-            //                        )
-            //                        .callAsync {}
-            //                }
-            //            }
-            //
-            //            runBlocking {
-            //                delay(20_000)
-            //                exitProcess(0)
-            //            }
         }
     }
 }

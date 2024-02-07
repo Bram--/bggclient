@@ -28,6 +28,33 @@ import org.koin.test.KoinTest
 /** Unit tests for [user] extension function. */
 class UserRequestTest : KoinTest {
     @Test
+    fun `Makes a request with minimum parameters`() {
+        runBlocking {
+            val client =
+                TestUtils.setupEngineAndRequest(
+                    "user?name=Novaeux&buddies=1&hot=1&top=1&guilds=1&page=1&domain=boardgame"
+                )
+
+            val response = client.user(name = "Novaeux").call()
+
+            val engine = client.engine() as MockEngine
+            val request = engine.requestHistory[0]
+            assertThat(engine.requestHistory).hasSize(1)
+            assertThat(request.method).isEqualTo(HttpMethod.Get)
+            assertThat(request.headers)
+                .isEqualTo(
+                    Headers.build {
+                        appendAll("Accept", listOf("*/*"))
+                        appendAll("Accept-Charset", listOf("UTF-8"))
+                    }
+                )
+            assertThat(request.url)
+                .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/user?name=Novaeux"))
+            assertThat(response.name).isEqualTo("Novaeux")
+        }
+    }
+
+    @Test
     fun `Makes a request with all parameters`() {
         runBlocking {
             val client =
@@ -50,15 +77,6 @@ class UserRequestTest : KoinTest {
 
             val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
-            assertThat(engine.requestHistory).hasSize(1)
-            assertThat(request.method).isEqualTo(HttpMethod.Get)
-            assertThat(request.headers)
-                .isEqualTo(
-                    Headers.build {
-                        appendAll("Accept", listOf("*/*"))
-                        appendAll("Accept-Charset", listOf("UTF-8"))
-                    }
-                )
             assertThat(request.url)
                 .isEqualTo(
                     Url(

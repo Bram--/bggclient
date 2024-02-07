@@ -27,6 +27,30 @@ import org.koin.test.KoinTest
 /** Unit tests for [guilds] extension function. */
 class GuildsRequestTest : KoinTest {
     @Test
+    fun `Makes a request with minimum parameters`() {
+        runBlocking {
+            val client = TestUtils.setupEngineAndRequest("guilds?id=2310")
+
+            val response = client.guilds(id = 2310).call()
+
+            val engine = client.engine() as MockEngine
+            val request = engine.requestHistory[0]
+            assertThat(engine.requestHistory).hasSize(1)
+            assertThat(request.method).isEqualTo(HttpMethod.Get)
+            assertThat(request.headers)
+                .isEqualTo(
+                    Headers.build {
+                        appendAll("Accept", listOf("*/*"))
+                        appendAll("Accept-Charset", listOf("UTF-8"))
+                    }
+                )
+            assertThat(request.url)
+                .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/guilds?id=2310"))
+            assertThat(response.name).isEqualTo("St Albans Board Games Club")
+        }
+    }
+
+    @Test
     fun `Makes a request with all parameters`() {
         runBlocking {
             val client = TestUtils.setupEngineAndRequest("guilds?id=2310")
@@ -43,15 +67,6 @@ class GuildsRequestTest : KoinTest {
 
             val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
-            assertThat(engine.requestHistory).hasSize(1)
-            assertThat(request.method).isEqualTo(HttpMethod.Get)
-            assertThat(request.headers)
-                .isEqualTo(
-                    Headers.build {
-                        appendAll("Accept", listOf("*/*"))
-                        appendAll("Accept-Charset", listOf("UTF-8"))
-                    }
-                )
             assertThat(request.url)
                 .isEqualTo(
                     Url(

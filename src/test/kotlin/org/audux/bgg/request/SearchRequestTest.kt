@@ -27,7 +27,7 @@ import org.koin.test.KoinTest
 /** Unit tests for [search] extension function. */
 class SearchRequestTest : KoinTest {
     @Test
-    fun `Makes a request with minimal parameters`() {
+    fun `Makes a request with minimum parameters`() {
         runBlocking {
             val client = TestUtils.setupEngineAndRequest("search?query=my+little")
             val response = client.search(query = "my little").call()

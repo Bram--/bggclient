@@ -17,25 +17,26 @@ import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import org.audux.bgg.BggClient
-import org.audux.bgg.common.HotListType
-import org.audux.bgg.request.Constants.BASE_URL
-import org.audux.bgg.request.Constants.PARAM_TYPE
-import org.audux.bgg.request.Constants.PATH_HOT
-import org.audux.bgg.response.HotList
+import org.audux.bgg.response.Forum
 
 /**
- * Hotness endpoint that retrieve the list of most 50 active items on the site filtered by type.
+ * Retrieves the list of threads for the given forum id.
  *
- * @param type Single [HotListType] returning only items of the specified type, defaults to
- *   [HotListType.BOARD_GAME].
+ * Note: Pagination data is not returned in the response but can be calculated by
+ * `Math.ceil(numThreads/50)`.
+ *
+ * @param id The id of the forum.
+ * @param page Used to paginate, this is the page that is returned, only 50 threads per page are
+ *   returned. Note that page 0 and 1 are the same.
  */
-fun BggClient.hot(type: HotListType? = null) = request {
+fun BggClient.forum(id: Int, page: Int? = null) = request {
     client
-        .get(BASE_URL) {
+        .get(Constants.BASE_URL) {
             url {
-                appendPathSegments(PATH_HOT)
-                type?.let { parameters.append(PARAM_TYPE, it.param) }
+                appendPathSegments(Constants.PATH_FORUM)
+                parameters.append(Constants.PARAM_ID, id.toString())
+                page?.let { parameters.append(Constants.PARAM_PAGE, page.toString()) }
             }
         }
-        .let { mapper.readValue(it.bodyAsText(), HotList::class.java) }
+        .let { mapper.readValue(it.bodyAsText(), Forum::class.java) }
 }

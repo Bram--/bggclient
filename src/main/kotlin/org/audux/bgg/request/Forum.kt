@@ -20,7 +20,7 @@ import org.audux.bgg.BggClient
 import org.audux.bgg.response.Forum
 
 /**
- * Retrieves the list of threads for the given forum for.
+ * Retrieves the list of threads for the given forum id.
  *
  * Note: Pagination data is not returned in the response but can be calculated by
  * `Math.ceil(numThreads/50)`.

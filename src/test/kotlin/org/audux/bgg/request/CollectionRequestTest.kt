@@ -101,7 +101,7 @@ class CollectionRequestTest : KoinTest {
                         minimumPlays = 1,
                         maxPlays = 99,
                         collectionId = -1,
-                        modifiedSince = LocalDateTime.MIN,
+                        modifiedSince = LocalDateTime.of(2020, 1, 1, 0, 0),
                     )
                     .call()
 
@@ -142,7 +142,7 @@ class CollectionRequestTest : KoinTest {
                                 append("minplays", "1")
                                 append("maxplays", "99")
                                 append("collid", "-1")
-                                append("modifiedsince", "00-01-01 00:00:00")
+                                append("modifiedsince", "2020-01-01 00:00:00")
                             }
                     )
                     .build()

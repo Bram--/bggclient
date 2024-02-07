@@ -36,7 +36,7 @@ class ThreadRequestTest : KoinTest {
                     .thread(
                         id = 3208373,
                         minArticleId = 10,
-                        minArticleDate = LocalDateTime.MIN,
+                        minArticleDate = LocalDateTime.of(2020, 1, 1, 0, 0),
                         count = 100_000
                     )
                     .call()
@@ -55,7 +55,7 @@ class ThreadRequestTest : KoinTest {
             assertThat(request.url)
                 .isEqualTo(
                     Url(
-                        "https://boardgamegeek.com/xmlapi2/thread?id=3208373&minarticleid=10&minarticledate=00-01-01+00%3A00%3A00&count=100000"
+                        "https://boardgamegeek.com/xmlapi2/thread?id=3208373&minarticleid=10&minarticledate=2020-01-01+00%3A00%3A00&count=100000"
                     )
                 )
             assertThat(response.articles).hasSize(13)

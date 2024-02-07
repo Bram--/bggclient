@@ -32,7 +32,7 @@ class UserRequestTest : KoinTest {
         runBlocking {
             val client =
                 TestUtils.setupEngineAndRequest(
-                    "user?name=Novaeux.xml=novaeux&buddies=1&hot=1&top=1&guilds=1&page=1&domain=boardgame"
+                    "user?name=Novaeux&buddies=1&hot=1&top=1&guilds=1&page=1&domain=boardgame"
                 )
 
             val response =

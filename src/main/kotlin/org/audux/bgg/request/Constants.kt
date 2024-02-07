@@ -24,6 +24,7 @@ internal object Constants {
     const val PATH_FORUM = "forum"
     const val PATH_GUILDS = "guilds"
     const val PATH_HOT = "hot"
+    const val PATH_PLAYS = "plays"
     const val PATH_SEARCH = "search"
     const val PATH_THING = "thing"
     const val PATH_THREAD = "thread"
@@ -45,9 +46,11 @@ internal object Constants {
     const val PARAM_HOT = "hot"
     const val PARAM_MARKETPLACE = "marketplace"
     const val PARAM_MAX_PLAYS = "maxplays"
+    const val PARAM_MAXIMUM_DATE = "maxdate"
     const val PARAM_MEMBERS = "members"
     const val PARAM_MINIMUM_ARTICLE_ID = "minarticleid"
     const val PARAM_MINIMUM_ARTICLE_DATE = "minarticledate"
+    const val PARAM_MINIMUM_DATE = "mindate"
     const val PARAM_MINIMUM_PLAYS = "minplays"
     const val PARAM_MINIMUM_RATING = "minrating"
     const val PARAM_MINIMUM_BGG_RATING = "minbggrating"
@@ -81,4 +84,5 @@ internal object Constants {
     const val PARAM_WISHLIST_PRIORITY = "wishlistpriority"
 
     const val REQUEST_DATE_TIME_FORMAT = "yy-MM-dd HH:mm:ss"
+    const val REQUEST_DATE_FORMAT = "yy-MM-dd"
 }

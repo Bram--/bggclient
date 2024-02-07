@@ -52,6 +52,25 @@ enum class HotListType(val param: String) {
     VIDEO_GAME_COMPANY("videogamecompany") // Does not actually work?
 }
 
+/** Different sub types returned in the [org.audux.bgg.request.plays] request/ response */
+enum class SubType(val param: String) {
+    UNKNOWN(""), // Used whenever the type is empty or not recognized.
+    BOARD_GAME("boardgame"),
+    BOARD_GAME_ACCESSORY("boardgameaccessory"),
+    BOARD_GAME_COMPILATION("boardgamecompilation"),
+    BOARD_GAME_EXPANSION("boardgameexpansion"),
+    BOARD_GAME_INTEGRATION("boardgameintegration"),
+    BOARD_GAME_IMPLEMENTATION("boardgameimplementation"),
+    RPG("rpg"),
+    RPG_ITEM("rpgitem"),
+    VIDEO_GAME("videogame");
+
+
+    companion object {
+        fun fromParam(param: String?) = entries.find { it.param == param } ?: UNKNOWN
+    }
+}
+
 /**
  * The different kind/type of families the API may return such as a board game or rpgs.
  * [See docs for more info](https://boardgamegeek.com/wiki/page/BGG_XML_API2#Family_Items).
@@ -72,6 +91,17 @@ enum class FamilyType(val param: String) {
  * [See docs for more info](https://boardgamegeek.com/wiki/page/BGG_XML_API2#Forum_Lists).
  */
 enum class ForumListType(val param: String) {
+    UNKNOWN(""), // Used whenever the type is empty or not recognized.
+    THING("thing"),
+    FAMILY("family");
+
+    companion object {
+        fun fromParam(param: String?) = entries.find { it.param == param } ?: UNKNOWN
+    }
+}
+
+/** Used to show what type of thing it is when played, either a thing or a family(?) */
+enum class PlayThingType(val param: String) {
     UNKNOWN(""), // Used whenever the type is empty or not recognized.
     THING("thing"),
     FAMILY("family");

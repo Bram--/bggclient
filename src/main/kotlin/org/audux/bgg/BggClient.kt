@@ -30,6 +30,7 @@ import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
 import org.audux.bgg.request.Request
 import org.audux.bgg.request.guilds
+import org.audux.bgg.request.plays
 import org.jetbrains.annotations.VisibleForTesting
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -107,11 +108,8 @@ class BggClient : KoinComponent, AutoCloseable {
                 BggClient().use { client ->
                     val response =
                         client
-                            .guilds(
-                                id = 2310,
-                                members = Inclusion.INCLUDE,
-                                sort = "date",
-                                page = 1,
+                            .plays(
+                                username = "Novaeux",
                             )
                             .call()
                     println(response.toString())

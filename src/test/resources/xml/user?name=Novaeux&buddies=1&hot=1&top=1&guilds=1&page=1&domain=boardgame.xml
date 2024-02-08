@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<user
+    name="Novaeux"
+    id="2639010"
+    termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+    <firstname value="Bram" />
+    <lastname value="Wijnands" />
+    <avatarlink value="N/A" />
+    <yearregistered value="2020" />
+    <lastlogin value="2024-02-05" />
+    <stateorprovince value="England" />
+    <country value="United Kingdom" />
+    <webaddress value="" />
+    <xboxaccount value="" />
+    <wiiaccount value="" />
+    <psnaccount value="" />
+    <battlenetaccount value="" />
+    <steamaccount value="" />
+    <traderating value="0" />
+    <buddies
+        page="1"
+        total="1">
+        <buddy
+            name="AllanSMW"
+            id="2202051" />
+    </buddies>
+    <guilds
+        page="1"
+        total="2">
+        <guild
+            name="St Albans Board Games Club"
+            id="2310" />
+        <guild
+            name="Facebook Board Game Trading and Chat UK/EU"
+            id="2611" />
+    </guilds>
+    <top domain="boardgame">
+        <item
+            name="Western Empires"
+            id="267304"
+            rank="1"
+            type="thing" />
+        <item
+            name="Food Chain Magnate"
+            id="175914"
+            rank="2"
+            type="thing" />
+    </top>
+    <hot domain="boardgame">
+        <item
+            name="Ark Nova"
+            id="342942"
+            rank="1"
+            type="thing" />
+        <item
+            name="Mr. President: The American Presidency, 2001-2020"
+            id="183685"
+            rank="2"
+            type="thing" />
+    </hot>
+</user>

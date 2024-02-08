@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Bram Wijnands
+ * Copyright 2023-2024 Bram Wijnands
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -14,7 +14,7 @@
 package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.google.common.truth.Truth
+import com.google.common.truth.Truth.assertThat
 import java.time.LocalDateTime
 import org.audux.bgg.common.Rank
 import org.audux.bgg.common.Ratings
@@ -29,6 +29,7 @@ import org.koin.core.qualifier.named
 import org.koin.test.KoinTest
 import org.koin.test.junit5.KoinTestExtension
 
+/** Unit test for [Collection] data classes. */
 class CollectionResponseTest : KoinTest {
     @JvmField
     @RegisterExtension
@@ -42,7 +43,7 @@ class CollectionResponseTest : KoinTest {
         val results =
             mapper.readValue(TestUtils.xml("collection?username=empty"), Collection::class.java)
 
-        Truth.assertThat(results.items).hasSize(0)
+        assertThat(results.items).hasSize(0)
     }
 
     @Test
@@ -55,8 +56,8 @@ class CollectionResponseTest : KoinTest {
                 Collection::class.java
             )
 
-        Truth.assertThat(results.items).hasSize(105)
-        Truth.assertThat(results.items[0])
+        assertThat(results.items).hasSize(105)
+        assertThat(results.items[0])
             .isEqualTo(
                 CollectionItem(
                     collectionId = 90725673,
@@ -131,7 +132,7 @@ class CollectionResponseTest : KoinTest {
                 Collection::class.java
             )
 
-        Truth.assertThat(results.items).hasSize(1)
-        Truth.assertThat(results.items[0].name).isEqualTo("Alice is Missing")
+        assertThat(results.items).hasSize(1)
+        assertThat(results.items[0].name).isEqualTo("Alice is Missing")
     }
 }

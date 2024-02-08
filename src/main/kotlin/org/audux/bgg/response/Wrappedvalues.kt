@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Bram Wijnands
+ * Copyright 2023-2024 Bram Wijnands
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -14,8 +14,10 @@
 package org.audux.bgg.response
 
 import com.fasterxml.jackson.annotation.JsonFormat
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import java.time.LocalDateTime
+import org.audux.bgg.common.SubType
 
 /** 'Hack' as many BGG API values are stored in an attribute e.g. '<element value='2.123 />'' */
 data class WrappedValue<T>(
@@ -27,4 +29,9 @@ data class WrappedLocalDateTime(
     @JacksonXmlProperty(isAttribute = true)
     @JsonFormat(pattern = "E, dd MMM yyyy HH:mm:ss Z")
     val value: LocalDateTime,
+)
+
+/** 'Hack' as many BGG API values are stored in an attribute e.g. '<element value='2.123 />'' */
+data class WrappedSubType(
+    @JsonDeserialize(using = SubTypeDeserializer::class) val value: SubType,
 )

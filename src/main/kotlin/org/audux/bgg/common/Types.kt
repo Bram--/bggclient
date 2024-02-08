@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Bram Wijnands
+ * Copyright 2023-2024 Bram Wijnands
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -31,7 +31,7 @@ enum class ThingType(val param: String) {
     RPG_ISSUE("rpgissue");
 
     companion object {
-        fun fromParam(param: String?) = values().find { it.param == param } ?: UNKNOWN
+        fun fromParam(param: String?) = entries.find { it.param == param } ?: UNKNOWN
     }
 }
 
@@ -52,15 +52,80 @@ enum class HotListType(val param: String) {
     VIDEO_GAME_COMPANY("videogamecompany") // Does not actually work?
 }
 
+/** Different sub types returned in the [org.audux.bgg.request.plays] request/ response */
+enum class SubType(val param: String) {
+    UNKNOWN(""), // Used whenever the type is empty or not recognized.
+    BOARD_GAME("boardgame"),
+    BOARD_GAME_ACCESSORY("boardgameaccessory"),
+    BOARD_GAME_COMPILATION("boardgamecompilation"),
+    BOARD_GAME_EXPANSION("boardgameexpansion"),
+    BOARD_GAME_INTEGRATION("boardgameintegration"),
+    BOARD_GAME_IMPLEMENTATION("boardgameimplementation"),
+    RPG("rpg"),
+    RPG_ITEM("rpgitem"),
+    VIDEO_GAME("videogame");
+
+    companion object {
+        fun fromParam(param: String?) = entries.find { it.param == param } ?: UNKNOWN
+    }
+}
+
+/**
+ * The different kind/type of families the API may return such as a board game or rpgs.
+ * [See docs for more info](https://boardgamegeek.com/wiki/page/BGG_XML_API2#Family_Items).
+ */
+enum class FamilyType(val param: String) {
+    UNKNOWN(""), // Used whenever the type is empty or not recognized.
+    RPG("rpg"),
+    RPG_PERIODICAL("rpgperiodical"),
+    BOARD_GAME_FAMILY("boardgamefamily");
+
+    companion object {
+        fun fromParam(param: String?) = entries.find { it.param == param } ?: UNKNOWN
+    }
+}
+
+/**
+ * Used to map the id in the forumlist request to either a family ot thing.
+ * [See docs for more info](https://boardgamegeek.com/wiki/page/BGG_XML_API2#Forum_Lists).
+ */
+enum class ForumListType(val param: String) {
+    UNKNOWN(""), // Used whenever the type is empty or not recognized.
+    THING("thing"),
+    FAMILY("family");
+
+    companion object {
+        fun fromParam(param: String?) = entries.find { it.param == param } ?: UNKNOWN
+    }
+}
+
+/** Used to show what type of thing it is when played, either a thing or a family(?) */
+enum class PlayThingType(val param: String) {
+    UNKNOWN(""), // Used whenever the type is empty or not recognized.
+    THING("thing"),
+    FAMILY("family");
+
+    companion object {
+        fun fromParam(param: String?) = entries.find { it.param == param } ?: UNKNOWN
+    }
+}
+
 /**
  * Used to either include or exclude certain items in a request, see
- * [org.audux.bgg.data.request.collection].
+ * [org.audux.bgg.request.collection] and [org.audux.bgg.request.user].
  */
 enum class Inclusion {
     INCLUDE,
     EXCLUDE;
 
     fun toParam() = if (this == INCLUDE) "1" else "0"
+}
+
+/** Different domains used for the users' hot- and top-10. */
+enum class Domains(val param: String) {
+    BOARD_GAME_GEEK("boardgame"),
+    RPG_GEEK("rpg"),
+    VIDEO_GAME_GEEK("videogame"),
 }
 
 /** Encapsulates the name of a Thing either primary or alternate name. */
@@ -78,7 +143,6 @@ data class Name(
     @JacksonXmlProperty(isAttribute = true) val sortIndex: Int? = null,
 )
 
-// region Statistics and ratings.
 /** Wrapper for [Ratings]. */
 data class Statistics(
     /** Unused attribute? */
@@ -159,4 +223,37 @@ data class Rank(
     /** It's bayesian average in this ranking. */
     @JacksonXmlProperty(isAttribute = true) val bayesAverage: String? = null,
 )
-// endregion
+
+/**
+ * Describes a link or relationship to another class of object. For example a board game thing may
+ * contain a list of links to a `boardgamemechanic` like `Income`, `Hand management`. Common types
+ * are:
+ * * boardgameartist
+ * * boardgamecategory
+ * * boardgamedesigner
+ * * boardgameexpansion
+ * * boardgamemechanic
+ * * rpgitemartist
+ * * rpgitemcategory
+ * * rpgitemdesigner
+ * * rpgitemexpansion
+ * * rpgitemmechanic
+ *
+ *   And so on.
+ */
+data class Link(
+    /**
+     * The id for the link, most of these cannot be retrieved via the API although a 'family'-API
+     * exists.
+     */
+    @JacksonXmlProperty(isAttribute = true) val id: Int,
+
+    /** The unique name of the Link i.e. links with the same ID will always carry the same name. */
+    @JacksonXmlProperty(isAttribute = true) val value: String,
+
+    /** The type of the link as outlined in the class description. */
+    @JacksonXmlProperty(isAttribute = true) val type: String,
+
+    /** Direction of the Link. */
+    @JacksonXmlProperty(isAttribute = true) val inbound: Boolean?,
+)

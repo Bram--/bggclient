@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Bram Wijnands
+ * Copyright 2023-2024 Bram Wijnands
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -15,7 +15,7 @@ package org.audux.bgg.response
 
 import com.google.common.truth.FailureMetadata
 import com.google.common.truth.Subject
-import com.google.common.truth.Truth
+import com.google.common.truth.Truth.assertAbout
 import java.time.LocalDateTime
 
 /** Truth [Subject] that adds `hasValue()` for [WrappedValue] objects. */
@@ -29,7 +29,7 @@ class WrappedValueSubject(failureMetadata: FailureMetadata, private val actual: 
     companion object {
         @JvmStatic
         fun assertThat(wrappedValue: WrappedValue<*>?): WrappedValueSubject {
-            return Truth.assertAbout(wrappedValues()).that(wrappedValue)
+            return assertAbout(wrappedValues()).that(wrappedValue)
         }
 
         private fun wrappedValues(): Factory<WrappedValueSubject, WrappedValue<*>> {
@@ -51,7 +51,7 @@ class WrappedLocalDateTimeSubject(
     companion object {
         @JvmStatic
         fun assertThat(wrappedValue: WrappedLocalDateTime): WrappedLocalDateTimeSubject {
-            return Truth.assertAbout(wrappedLocalDateTimes()).that(wrappedValue)
+            return assertAbout(wrappedLocalDateTimes()).that(wrappedValue)
         }
 
         private fun wrappedLocalDateTimes():

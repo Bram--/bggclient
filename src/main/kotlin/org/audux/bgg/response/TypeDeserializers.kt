@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Bram Wijnands
+ * Copyright 2023-2024 Bram Wijnands
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -16,6 +16,9 @@ package org.audux.bgg.response
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JsonDeserializer
+import org.audux.bgg.common.FamilyType
+import org.audux.bgg.common.ForumListType
+import org.audux.bgg.common.PlayThingType
 import org.audux.bgg.common.ThingType
 
 /** Deserializes thing types to the associated [ThingType] enum value. */
@@ -34,4 +37,28 @@ internal class NumberToBooleanDeserializer : JsonDeserializer<Boolean>() {
 internal class TrimmedStringDeserializer : JsonDeserializer<String?>() {
     override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
         parser?.valueAsString?.trim()
+}
+
+/** Deserializes family types to the associated [FamilyType] enum value. */
+internal class FamilyTypeDeserializer : JsonDeserializer<FamilyType>() {
+    override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
+        FamilyType.fromParam(parser?.valueAsString)
+}
+
+/** Deserializes type in ForumList response to [ForumListType]. */
+internal class ForumListTypeDeserializer : JsonDeserializer<ForumListType>() {
+    override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
+        ForumListType.fromParam(parser?.valueAsString)
+}
+
+/** Deserializes type in Plays response to [PlayThingType]. */
+internal class PlayThingTypeDeserializer : JsonDeserializer<PlayThingType>() {
+    override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
+        PlayThingType.fromParam(parser?.valueAsString)
+}
+
+/** Deserializes type in Plays response to [PlayThingType]. */
+internal class SubTypeDeserializer : JsonDeserializer<org.audux.bgg.common.SubType>() {
+    override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
+        org.audux.bgg.common.SubType.fromParam(parser?.valueAsString)
 }

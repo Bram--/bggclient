@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Bram Wijnands
+ * Copyright 2023-2024 Bram Wijnands
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -32,7 +32,7 @@ import org.koin.test.KoinTest
 /** Unit tests for [collection] extension function. */
 class CollectionRequestTest : KoinTest {
     @Test
-    fun `Makes a request with minimal parameters`() {
+    fun `Makes a request with minimum parameters`() {
         runBlocking {
             val client =
                 TestUtils.setupEngineAndRequest(
@@ -101,7 +101,7 @@ class CollectionRequestTest : KoinTest {
                         minimumPlays = 1,
                         maxPlays = 99,
                         collectionId = -1,
-                        modifiedSince = LocalDateTime.MIN,
+                        modifiedSince = LocalDateTime.of(2020, 1, 1, 0, 0),
                     )
                     .call()
 
@@ -142,7 +142,7 @@ class CollectionRequestTest : KoinTest {
                                 append("minplays", "1")
                                 append("maxplays", "99")
                                 append("collid", "-1")
-                                append("modifiedsince", "00-01-01 00:00:00")
+                                append("modifiedsince", "2020-01-01 00:00:00")
                             }
                     )
                     .build()

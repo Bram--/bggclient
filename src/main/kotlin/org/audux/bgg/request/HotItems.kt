@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Bram Wijnands
+ * Copyright 2023-2024 Bram Wijnands
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -29,18 +29,13 @@ import org.audux.bgg.response.HotList
  * @param type Single [HotListType] returning only items of the specified type, defaults to
  *   [HotListType.BOARD_GAME].
  */
-fun BggClient.hot(
-    type: HotListType? = null,
-): Request<HotList> {
-    return request {
-        val response =
-            client.get(BASE_URL) {
-                url {
-                    appendPathSegments(PATH_HOT)
-                    type?.let { parameters.append(PARAM_TYPE, it.param) }
-                }
+fun BggClient.hotItems(type: HotListType? = null) = request {
+    client
+        .get(BASE_URL) {
+            url {
+                appendPathSegments(PATH_HOT)
+                type?.let { parameters.append(PARAM_TYPE, it.param) }
             }
-
-        mapper.readValue(response.bodyAsText(), HotList::class.java)
-    }
+        }
+        .let { mapper.readValue(it.bodyAsText(), HotList::class.java) }
 }

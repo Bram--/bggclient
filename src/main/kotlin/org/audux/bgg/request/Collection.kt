@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Bram Wijnands
+ * Copyright 2023-2024 Bram Wijnands
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -52,6 +52,7 @@ import org.audux.bgg.request.Constants.PARAM_WANT_TO_PLAY
 import org.audux.bgg.request.Constants.PARAM_WISHLIST
 import org.audux.bgg.request.Constants.PARAM_WISHLIST_PRIORITY
 import org.audux.bgg.request.Constants.PATH_COLLECTION
+import org.audux.bgg.request.Constants.REQUEST_DATE_TIME_FORMAT
 import org.audux.bgg.response.Collection
 
 /**
@@ -147,50 +148,47 @@ fun BggClient.collection(
     maxPlays: Int? = null,
     collectionId: Int? = null,
     modifiedSince: LocalDateTime? = null,
-): Request<Collection> {
-    return request {
-        val response =
-            client.get(BASE_URL) {
-                url {
-                    appendPathSegments(PATH_COLLECTION)
-                    parameters.apply {
-                        append(PARAM_USERNAME, userName)
-                        append(PARAM_SUBTYPE, subType.param)
+) = request {
+    client
+        .get(BASE_URL) {
+            url {
+                appendPathSegments(PATH_COLLECTION)
+                parameters.apply {
+                    append(PARAM_USERNAME, userName)
+                    append(PARAM_SUBTYPE, subType.param)
 
-                        excludeSubType?.let { append(PARAM_EXCLUDE_SUBTYPE, it.param) }
-                        ids?.let { append(PARAM_ID, it.joinToString(",")) }
-                        if (version) append(PARAM_VERSION, "1")
-                        if (brief) append(PARAM_BRIEF, "1")
-                        if (stats) append(PARAM_STATS, "1")
-                        own?.let { append(PARAM_OWN, it.toParam()) }
-                        rated?.let { append(PARAM_RATED, it.toParam()) }
-                        played?.let { append(PARAM_PLAYED, it.toParam()) }
-                        comment?.let { append(PARAM_COMMENT, it.toParam()) }
-                        trade?.let { append(PARAM_TRADE, it.toParam()) }
-                        want?.let { append(PARAM_WANT, it.toParam()) }
-                        wishlist?.let { append(PARAM_WISHLIST, it.toParam()) }
-                        wishlistPriority?.let { append(PARAM_WISHLIST_PRIORITY, it.toString()) }
-                        preOrdered?.let { append(PARAM_PRE_ORDERED, it.toParam()) }
-                        wantToPlay?.let { append(PARAM_WANT_TO_PLAY, it.toParam()) }
-                        wantToBuy?.let { append(PARAM_WANT_TO_BUY, it.toParam()) }
-                        previouslyOwned?.let { append(PARAM_PREVIOUSLY_OWNED, it.toParam()) }
-                        hasParts?.let { append(PARAM_HAS_PARTS, it.toParam()) }
-                        wantParts?.let { append(PARAM_WANT_PARTS, it.toParam()) }
-                        minRating?.let { append(PARAM_MINIMUM_RATING, it.toString()) }
-                        rating?.let { append(PARAM_RATING, it.toString()) }
-                        minBggRating?.let { append(PARAM_MINIMUM_BGG_RATING, it.toString()) }
-                        bggRating?.let { append(PARAM_BGG_RATING, it.toString()) }
-                        minimumPlays?.let { append(PARAM_MINIMUM_PLAYS, it.toString()) }
-                        maxPlays?.let { append(PARAM_MAX_PLAYS, it.toString()) }
-                        collectionId?.let { append(PARAM_COLLECTION_ID, it.toString()) }
-                        modifiedSince?.let {
-                            val formatter = DateTimeFormatter.ofPattern("yy-MM-dd HH:mm:ss")
-                            append(PARAM_MODIFIED_SINCE, formatter.format(modifiedSince))
-                        }
+                    excludeSubType?.let { append(PARAM_EXCLUDE_SUBTYPE, it.param) }
+                    ids?.let { append(PARAM_ID, it.joinToString(",")) }
+                    if (version) append(PARAM_VERSION, "1")
+                    if (brief) append(PARAM_BRIEF, "1")
+                    if (stats) append(PARAM_STATS, "1")
+                    own?.let { append(PARAM_OWN, it.toParam()) }
+                    rated?.let { append(PARAM_RATED, it.toParam()) }
+                    played?.let { append(PARAM_PLAYED, it.toParam()) }
+                    comment?.let { append(PARAM_COMMENT, it.toParam()) }
+                    trade?.let { append(PARAM_TRADE, it.toParam()) }
+                    want?.let { append(PARAM_WANT, it.toParam()) }
+                    wishlist?.let { append(PARAM_WISHLIST, it.toParam()) }
+                    wishlistPriority?.let { append(PARAM_WISHLIST_PRIORITY, it.toString()) }
+                    preOrdered?.let { append(PARAM_PRE_ORDERED, it.toParam()) }
+                    wantToPlay?.let { append(PARAM_WANT_TO_PLAY, it.toParam()) }
+                    wantToBuy?.let { append(PARAM_WANT_TO_BUY, it.toParam()) }
+                    previouslyOwned?.let { append(PARAM_PREVIOUSLY_OWNED, it.toParam()) }
+                    hasParts?.let { append(PARAM_HAS_PARTS, it.toParam()) }
+                    wantParts?.let { append(PARAM_WANT_PARTS, it.toParam()) }
+                    minRating?.let { append(PARAM_MINIMUM_RATING, it.toString()) }
+                    rating?.let { append(PARAM_RATING, it.toString()) }
+                    minBggRating?.let { append(PARAM_MINIMUM_BGG_RATING, it.toString()) }
+                    bggRating?.let { append(PARAM_BGG_RATING, it.toString()) }
+                    minimumPlays?.let { append(PARAM_MINIMUM_PLAYS, it.toString()) }
+                    maxPlays?.let { append(PARAM_MAX_PLAYS, it.toString()) }
+                    collectionId?.let { append(PARAM_COLLECTION_ID, it.toString()) }
+                    modifiedSince?.let {
+                        val formatter = DateTimeFormatter.ofPattern(REQUEST_DATE_TIME_FORMAT)
+                        append(PARAM_MODIFIED_SINCE, formatter.format(modifiedSince))
                     }
                 }
             }
-
-        mapper.readValue(response.bodyAsText(), Collection::class.java)
-    }
+        }
+        .let { mapper.readValue(it.bodyAsText(), Collection::class.java) }
 }

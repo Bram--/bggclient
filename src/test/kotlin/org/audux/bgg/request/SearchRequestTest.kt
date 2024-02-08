@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Bram Wijnands
+ * Copyright 2023-2024 Bram Wijnands
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -27,7 +27,7 @@ import org.koin.test.KoinTest
 /** Unit tests for [search] extension function. */
 class SearchRequestTest : KoinTest {
     @Test
-    fun `Makes a request with minimal parameters`() {
+    fun `Makes a request with minimum parameters`() {
         runBlocking {
             val client = TestUtils.setupEngineAndRequest("search?query=my+little")
             val response = client.search(query = "my little").call()

@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Bram Wijnands
+ * Copyright 2023-2024 Bram Wijnands
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -16,7 +16,6 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import io.ktor.util.StringValues
 import org.audux.bgg.BggClient
 import org.audux.bgg.BggRequestException
 import org.audux.bgg.common.ThingType
@@ -69,41 +68,36 @@ fun BggClient.things(
     ratingComments: Boolean = false,
     page: Int = 0,
     pageSize: Int = 0,
-): Request<Things> {
-    return request {
-        if (pageSize != 0 && !(10..100).contains(pageSize)) {
-            throw BggRequestException("pageSize must be between 10 and 100")
-        }
-        if (comments && ratingComments) {
-            throw BggRequestException("comments and ratingsComments can't both be true")
-        }
+) = request {
+    if (pageSize != 0 && !(10..100).contains(pageSize)) {
+        throw BggRequestException("pageSize must be between 10 and 100")
+    }
+    if (comments && ratingComments) {
+        throw BggRequestException("comments and ratingsComments can't both be true")
+    }
 
-        val response =
-            client.get(BASE_URL) {
-                url {
-                    appendPathSegments(PATH_THING)
+    client
+        .get(BASE_URL) {
+            url {
+                appendPathSegments(PATH_THING)
 
-                    parameters.appendAll(
-                        StringValues.build {
-                            append(PARAM_ID, ids.joinToString(","))
+                parameters.apply {
+                    append(PARAM_ID, ids.joinToString(","))
 
-                            if (types.isNotEmpty()) {
-                                append(PARAM_TYPE, types.joinToString(",") { it.param })
-                            }
+                    if (types.isNotEmpty()) {
+                        append(PARAM_TYPE, types.joinToString(",") { it.param })
+                    }
 
-                            if (stats) append(PARAM_STATS, "1")
-                            if (versions) append(PARAM_VERSIONS, "1")
-                            if (videos) append(PARAM_VIDEOS, "1")
-                            if (marketplace) append(PARAM_MARKETPLACE, "1")
-                            if (comments) append(PARAM_COMMENTS, "1")
-                            if (ratingComments) append(PARAM_RATING_COMMENTS, "1")
-                            if (page > 0) append(PARAM_PAGE, page.toString())
-                            if (pageSize > 0) append(PARAM_PAGE_SIZE, pageSize.toString())
-                        }
-                    )
+                    if (stats) append(PARAM_STATS, "1")
+                    if (versions) append(PARAM_VERSIONS, "1")
+                    if (videos) append(PARAM_VIDEOS, "1")
+                    if (marketplace) append(PARAM_MARKETPLACE, "1")
+                    if (comments) append(PARAM_COMMENTS, "1")
+                    if (ratingComments) append(PARAM_RATING_COMMENTS, "1")
+                    if (page > 0) append(PARAM_PAGE, page.toString())
+                    if (pageSize > 0) append(PARAM_PAGE_SIZE, pageSize.toString())
                 }
             }
-
-        mapper.readValue(response.bodyAsText(), Things::class.java)
-    }
+        }
+        .let { mapper.readValue(it.bodyAsText(), Things::class.java) }
 }

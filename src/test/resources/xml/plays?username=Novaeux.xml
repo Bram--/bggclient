@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plays username="Novaeux" userid="2639010" total="6" page="1" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+    <play id="78483995" date="2023-11-05" quantity="1" length="90" incomplete="0" nowinstats="0" location="">
+        <item name="7 Wonders" objecttype="thing" objectid="68448">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+    </play>
+    <play id="58563743" date="2022-02-19" quantity="1" length="380" incomplete="0" nowinstats="0" location="3rd St Albans Scouts">
+        <item name="Sid Meier&#039;s Civilization: The Board Game" objecttype="thing" objectid="77130">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>China, Japan, India game. I won as Gandhi with a culture victory.</comments>
+        <players>
+            <player username="Novaeux" userid="2639010" name="Bram Wijnands" startposition="" color="Purple" score="" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="Redacted" startposition="" color="Yellow" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="Redacted" startposition="" color="" score="" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="44588670" date="2020-07-25" quantity="3" length="420" incomplete="0" nowinstats="0" location="home">
+        <item name="Gloomhaven" objecttype="thing" objectid="174430">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameintegration" />
+            </subtypes>
+        </item>
+        <players>
+            <player username="" userid="0" name="Redacted" startposition="" color="" score="" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="44493905" date="2020-07-17" quantity="1" length="90" incomplete="0" nowinstats="0" location="home">
+        <item name="Gloomhaven" objecttype="thing" objectid="174430">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameintegration" />
+            </subtypes>
+        </item>
+        <players>
+            <player username="" userid="0" name="Redacted" startposition="" color="" score="" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="44365101" date="2020-07-13" quantity="1" length="210" incomplete="0" nowinstats="0" location="home">
+        <item name="Gloomhaven" objecttype="thing" objectid="174430">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameintegration" />
+            </subtypes>
+        </item>
+        <players>
+            <player username="Novaeux" userid="2639010" name="Bram Wijnands" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="Redacted" startposition="" color="" score="" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="44365095" date="2020-07-12" quantity="1" length="360" incomplete="0" nowinstats="0" location="home">
+        <item name="Gloomhaven" objecttype="thing" objectid="174430">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameintegration" />
+            </subtypes>
+        </item>
+        <players>
+            <player username="Novaeux" userid="2639010" name="Bram Wijnands" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="Redacted" startposition="" color="" score="" new="0" rating="0" win="0" />
+        </players>
+    </play>
+</plays>

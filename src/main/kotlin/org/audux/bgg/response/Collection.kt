@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Bram Wijnands
+ * Copyright 2023-2024 Bram Wijnands
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -38,6 +38,7 @@ data class Collection(
     @JacksonXmlProperty(localName = "item") val items: List<CollectionItem>
 )
 
+/** An item in the collection e.g. a board game, rpg etc. */
 @JsonIgnoreProperties("objecttype")
 data class CollectionItem(
     @JacksonXmlProperty(isAttribute = true, localName = "collid") val collectionId: Number,

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<forums
+    id="342942"
+    termsofuse="https://boardgamegeek.com/xmlapi/termsofuse"
+    type="thing">
+    <forum
+        description="Post your game reviews in this forum.  &lt;A href=&quot;/thread/59278&quot;&gt;Click here for help on writing game reviews.&lt;/A&gt;"
+        groupid="0"
+        id="3696791"
+        lastpostdate="Tue, 23 Jan 2024 09:13:43 +0000"
+        noposting="0"
+        numposts="1603"
+        numthreads="65"
+        title="Reviews" />
+    <forum
+        description="Post your session reports here."
+        groupid="0"
+        id="3696792"
+        lastpostdate="Sun, 14 Jan 2024 22:56:08 +0000"
+        noposting="0"
+        numposts="99"
+        numthreads="12"
+        title="Sessions" />
+    <forum
+        description="Post any related article to this game here."
+        groupid="0"
+        id="3696793"
+        lastpostdate="Wed, 24 Jan 2024 17:29:58 +0000"
+        noposting="0"
+        numposts="9271"
+        numthreads="633"
+        title="General" />
+    <forum
+        description="Post any rules questions you have here."
+        groupid="0"
+        id="3696794"
+        lastpostdate="Tue, 23 Jan 2024 20:53:33 +0000"
+        noposting="0"
+        numposts="8191"
+        numthreads="1096"
+        title="Rules" />
+    <forum
+        description="Post strategy and tactics articles here."
+        groupid="0"
+        id="3696795"
+        lastpostdate="Tue, 23 Jan 2024 18:50:11 +0000"
+        noposting="0"
+        numposts="1853"
+        numthreads="119"
+        title="Strategy" />
+    <forum
+        description="Post variants to the game rules here."
+        groupid="0"
+        id="3696796"
+        lastpostdate="Tue, 23 Jan 2024 12:33:44 +0000"
+        noposting="0"
+        numposts="2335"
+        numthreads="146"
+        title="Variants" />
+    <forum
+        description="Post time sensitive announcements here."
+        groupid="0"
+        id="3696797"
+        lastpostdate="Fri, 19 Jan 2024 15:29:10 +0000"
+        noposting="0"
+        numposts="726"
+        numthreads="19"
+        title="News" />
+    <forum
+        description="Post crowdfunding / preorder content here."
+        groupid="0"
+        id="3696798"
+        lastpostdate=""
+        noposting="0"
+        numposts="0"
+        numthreads="0"
+        title="Crowdfunding" />
+    <forum
+        description="Run Play By Forum (PBF) games here."
+        groupid="0"
+        id="3696799"
+        lastpostdate=""
+        noposting="0"
+        numposts="0"
+        numthreads="0"
+        title="Play By Forum" />
+    <forum
+        description="Post here to find local gamers and to promote local events."
+        groupid="0"
+        id="3696800"
+        lastpostdate="Mon, 22 Jan 2024 13:22:41 +0000"
+        noposting="0"
+        numposts="228"
+        numthreads="12"
+        title="Find Players" />
+</forums>

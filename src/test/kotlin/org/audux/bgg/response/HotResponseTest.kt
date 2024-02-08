@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Bram Wijnands
+ * Copyright 2023-2024 Bram Wijnands
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -14,7 +14,7 @@
 package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.google.common.truth.Truth
+import com.google.common.truth.Truth.assertThat
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
 import org.audux.bgg.util.TestUtils
@@ -25,6 +25,7 @@ import org.koin.core.qualifier.named
 import org.koin.test.KoinTest
 import org.koin.test.junit5.KoinTestExtension
 
+/** Unit test for [Hot] data classes. */
 class HotResponseTest : KoinTest {
     @JvmField
     @RegisterExtension
@@ -37,15 +38,15 @@ class HotResponseTest : KoinTest {
     fun `Parses empty response`() {
         val results = mapper.readValue(TestUtils.xml("hot?type=rpgperson"), HotList::class.java)
 
-        Truth.assertThat(results.results).hasSize(0)
+        assertThat(results.results).hasSize(0)
     }
 
     @Test
     fun `Parses a hot list`() {
         val results = mapper.readValue(TestUtils.xml("hot"), HotList::class.java)
 
-        Truth.assertThat(results.results).hasSize(50)
-        Truth.assertThat(results.results[0])
+        assertThat(results.results).hasSize(50)
+        assertThat(results.results[0])
             .isEqualTo(
                 HotListItem(
                     id = 332686,

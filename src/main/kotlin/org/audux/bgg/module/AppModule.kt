@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Bram Wijnands
+ * Copyright 2023-2024 Bram Wijnands
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -31,13 +31,13 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 /** Used to ensure usage of correct Jackson [ObjectMapper]. */
-annotation class BggXmlObjectMapper()
+annotation class BggXmlObjectMapper
 
 /** Used to ensure usage of correct Ktor [HttpClient]. */
-annotation class BggKtorClient()
+annotation class BggKtorClient
 
 /** Used to ensure usage of correct Ktor [HttpClient]. */
-annotation class BggHttpEngine()
+annotation class BggHttpEngine
 
 /** Main Koin module for BggClient. */
 val appModule = module {

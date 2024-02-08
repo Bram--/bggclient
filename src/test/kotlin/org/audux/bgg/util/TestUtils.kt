@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Bram Wijnands
+ * Copyright 2023-2024 Bram Wijnands
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -17,6 +17,8 @@ import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respondOk
 import java.io.InputStream
+import java.lang.IllegalArgumentException
+import java.lang.NullPointerException
 import org.audux.bgg.BggClient
 import org.audux.bgg.module.BggHttpEngine
 import org.koin.core.qualifier.named
@@ -44,6 +46,10 @@ object TestUtils {
 
     /** Returns input stream of `resources/xml/{fileName}.xml` to use in testing. */
     fun xml(fileName: String): InputStream {
-        return TestUtils::class.java.classLoader.getResourceAsStream("xml/$fileName.xml")!!
+        try {
+            return TestUtils::class.java.classLoader.getResourceAsStream("xml/$fileName.xml")!!
+        } catch (e: NullPointerException) {
+            throw IllegalArgumentException("Could not find xml/$fileName.xml", e)
+        }
     }
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Bram Wijnands
+ * Copyright 2023-2024 Bram Wijnands
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -18,21 +18,20 @@ import co.touchlab.kermit.Severity
 import co.touchlab.kermit.koin.KermitKoinLogger
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.ktor.client.HttpClient
-import kotlin.system.exitProcess
+import java.time.LocalDate
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import org.audux.bgg.common.ThingType
+import org.audux.bgg.common.PlayThingType
+import org.audux.bgg.common.SubType
 import org.audux.bgg.module.BggKtorClient
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
 import org.audux.bgg.request.Request
-import org.audux.bgg.request.collection
-import org.audux.bgg.request.search
+import org.audux.bgg.request.plays
 import org.jetbrains.annotations.VisibleForTesting
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -72,7 +71,9 @@ class BggClient : KoinComponent, AutoCloseable {
         client.close()
     }
 
-    /** Calls/Launches a request async, once a response is available it will call [response]. */
+    /**
+     * Calls/Launches a request async, once a response is available it will call [responseCallback].
+     */
     internal fun <T> callAsync(request: suspend () -> T, responseCallback: (T) -> Unit) {
         clientScope.launch {
             val response = request()
@@ -104,28 +105,21 @@ class BggClient : KoinComponent, AutoCloseable {
         @JvmStatic
         fun main(args: Array<String>) {
             setLoggerSeverity(Severity.Debug)
-
-            BggClient().use { client ->
-                client
-                    .search("Scythe", arrayOf(ThingType.BOARD_GAME, ThingType.BOARD_GAME_EXPANSION))
-                    .callAsync { response -> println(response.toString()) }
-            }
-
-            BggClient().use { client ->
-                repeat(10) {
-                    client
-                        .collection(
-                            "Novaeux",
-                            ThingType.BOARD_GAME,
-                            excludeSubType = ThingType.BOARD_GAME_EXPANSION
-                        )
-                        .callAsync {}
-                }
-            }
-
             runBlocking {
-                delay(20_000)
-                exitProcess(0)
+                BggClient().use { client ->
+                    val response =
+                        client
+                            .plays(
+                                username = "Allansmw",
+                                page = 1,
+                                subType = SubType.BOARD_GAME,
+                                type = PlayThingType.THING,
+                                minDate = LocalDate.of(2018, 2, 2),
+                                maxDate = LocalDate.of(2020, 2, 7),
+                            )
+                            .call()
+                    println(response.plays.size)
+                }
             }
         }
     }
@@ -139,13 +133,6 @@ class BggClientKoinContext {
     }
 
     val koin = koinApp.koin
-}
-
-/** Thrown whenever an exception happens in the BGGClient outside of a request. */
-class BggClientException : Exception {
-    constructor(message: String) : super(message)
-
-    constructor(message: String, throwable: Throwable) : super(message, throwable)
 }
 
 /** Thrown whenever any exception is thrown during a request to BGG. */

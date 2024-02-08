@@ -32,7 +32,7 @@ import org.audux.bgg.response.Guild
  * @param id ID of the guild you want to view.
  * @param members Include member roster in the results. Member list is paged and sorted.
  * @param sort Specifies how to sort the members list; default is username.
- * @param page The page of the members list to return. Pagesize is 25.
+ * @param page The page of the members list to return. page size is 25.
  */
 fun BggClient.guilds(
     id: Number,

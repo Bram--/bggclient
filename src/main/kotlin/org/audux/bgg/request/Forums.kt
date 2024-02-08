@@ -31,7 +31,7 @@ import org.audux.bgg.response.Forum
  */
 fun BggClient.forum(id: Int, page: Int? = null) = request {
     client
-        .get(Constants.BASE_URL) {
+        .get(Constants.XML2_API_URL) {
             url {
                 appendPathSegments(Constants.PATH_FORUM)
                 parameters.append(Constants.PARAM_ID, id.toString())

@@ -31,6 +31,7 @@ import org.audux.bgg.module.BggKtorClient
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
 import org.audux.bgg.request.Request
+import org.audux.bgg.request.geekList
 import org.audux.bgg.request.plays
 import org.jetbrains.annotations.VisibleForTesting
 import org.koin.core.component.KoinComponent
@@ -109,16 +110,12 @@ class BggClient : KoinComponent, AutoCloseable {
                 BggClient().use { client ->
                     val response =
                         client
-                            .plays(
-                                username = "Allansmw",
-                                page = 1,
-                                subType = SubType.BOARD_GAME,
-                                type = PlayThingType.THING,
-                                minDate = LocalDate.of(2018, 2, 2),
-                                maxDate = LocalDate.of(2020, 2, 7),
+                            .geekList(
+                                id = 11205,
+                                comments = true
                             )
                             .call()
-                    println(response.plays.size)
+                    println(response)
                 }
             }
         }

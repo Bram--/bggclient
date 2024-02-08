@@ -19,7 +19,7 @@ import io.ktor.http.appendPathSegments
 import org.audux.bgg.BggClient
 import org.audux.bgg.BggRequestException
 import org.audux.bgg.common.ThingType
-import org.audux.bgg.request.Constants.BASE_URL
+import org.audux.bgg.request.Constants.XML2_API_URL
 import org.audux.bgg.request.Constants.PARAM_COMMENTS
 import org.audux.bgg.request.Constants.PARAM_ID
 import org.audux.bgg.request.Constants.PARAM_MARKETPLACE
@@ -77,7 +77,7 @@ fun BggClient.things(
     }
 
     client
-        .get(BASE_URL) {
+        .get(XML2_API_URL) {
             url {
                 appendPathSegments(PATH_THING)
 

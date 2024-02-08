@@ -21,7 +21,7 @@ import java.time.format.DateTimeFormatter
 import org.audux.bgg.BggClient
 import org.audux.bgg.common.PlayThingType
 import org.audux.bgg.common.SubType
-import org.audux.bgg.request.Constants.BASE_URL
+import org.audux.bgg.request.Constants.XML2_API_URL
 import org.audux.bgg.request.Constants.PARAM_ID
 import org.audux.bgg.request.Constants.PARAM_PAGE
 import org.audux.bgg.request.Constants.PARAM_SUBTYPE
@@ -57,7 +57,7 @@ fun BggClient.plays(
     val formatter = DateTimeFormatter.ofPattern(Constants.REQUEST_DATE_FORMAT)
 
     client
-        .get(BASE_URL) {
+        .get(XML2_API_URL) {
             url {
                 appendPathSegments(PATH_PLAYS)
                 parameters.append(PARAM_USERNAME, username)

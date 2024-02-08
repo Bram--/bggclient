@@ -18,9 +18,15 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import org.audux.bgg.BggClient
 import org.audux.bgg.common.HotListType
+import org.audux.bgg.request.Constants.PARAM_COMMENT
+import org.audux.bgg.request.Constants.PARAM_COMMENTS
 import org.audux.bgg.request.Constants.XML2_API_URL
 import org.audux.bgg.request.Constants.PARAM_TYPE
+import org.audux.bgg.request.Constants.PATH_GEEK_LIST
 import org.audux.bgg.request.Constants.PATH_HOT
+import org.audux.bgg.request.Constants.XML1_API_URL
+import org.audux.bgg.response.Comment
+import org.audux.bgg.response.GeekList
 import org.audux.bgg.response.HotList
 
 /**
@@ -29,13 +35,13 @@ import org.audux.bgg.response.HotList
  * @param type Single [HotListType] returning only items of the specified type, defaults to
  *   [HotListType.BOARD_GAME].
  */
-fun BggClient.hotItems(type: HotListType? = null) = request {
+fun BggClient.geekList(id: Number, comments: Boolean = false) = request {
     client
-        .get(XML2_API_URL) {
+        .get(XML1_API_URL) {
             url {
-                appendPathSegments(PATH_HOT)
-                type?.let { parameters.append(PARAM_TYPE, it.param) }
+                appendPathSegments(PATH_GEEK_LIST, id.toString())
+                if (comments) parameters.append(PARAM_COMMENTS, "1")
             }
         }
-        .let { mapper.readValue(it.bodyAsText(), HotList::class.java) }
+        .let { mapper.readValue(it.bodyAsText(), GeekList::class.java) }
 }

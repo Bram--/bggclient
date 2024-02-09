@@ -21,7 +21,6 @@ import java.time.format.DateTimeFormatter
 import org.audux.bgg.BggClient
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.common.ThingType
-import org.audux.bgg.request.Constants.BASE_URL
 import org.audux.bgg.request.Constants.PARAM_BGG_RATING
 import org.audux.bgg.request.Constants.PARAM_BRIEF
 import org.audux.bgg.request.Constants.PARAM_COLLECTION_ID
@@ -53,6 +52,7 @@ import org.audux.bgg.request.Constants.PARAM_WISHLIST
 import org.audux.bgg.request.Constants.PARAM_WISHLIST_PRIORITY
 import org.audux.bgg.request.Constants.PATH_COLLECTION
 import org.audux.bgg.request.Constants.REQUEST_DATE_TIME_FORMAT
+import org.audux.bgg.request.Constants.XML2_API_URL
 import org.audux.bgg.response.Collection
 
 /**
@@ -150,7 +150,7 @@ fun BggClient.collection(
     modifiedSince: LocalDateTime? = null,
 ) = request {
     client
-        .get(BASE_URL) {
+        .get(XML2_API_URL) {
             url {
                 appendPathSegments(PATH_COLLECTION)
                 parameters.apply {

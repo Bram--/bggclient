@@ -17,26 +17,27 @@ import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import org.audux.bgg.BggClient
-import org.audux.bgg.response.Forum
+import org.audux.bgg.common.Inclusion
+import org.audux.bgg.request.Constants.PARAM_COMMENTS
+import org.audux.bgg.request.Constants.PATH_GEEK_LIST
+import org.audux.bgg.request.Constants.XML1_API_URL
+import org.audux.bgg.response.GeekList
 
 /**
- * Retrieves the list of threads for the given forum id.
+ * Geek list endpoint, retrieves a specific geek list by its ID.
  *
- * Note: Pagination data is not returned in the response but can be calculated by
- * `Math.ceil(numThreads/50)`.
+ * <p>NOTE: This request returns a (http) 202 the first time the request is made.
  *
- * @param id The id of the forum.
- * @param page Used to paginate, this is the page that is returned, only 50 threads per page are
- *   returned. Note that page 0 and 1 are the same.
+ * @param id the unique ID for the geek list to retrieve
+ * @param comments whether to include the comments in the response or not.
  */
-fun BggClient.forum(id: Int, page: Int? = null) = request {
+fun BggClient.geekList(id: Number, comments: Inclusion? = null) = request {
     client
-        .get(Constants.XML2_API_URL) {
+        .get(XML1_API_URL) {
             url {
-                appendPathSegments(Constants.PATH_FORUM)
-                parameters.append(Constants.PARAM_ID, id.toString())
-                page?.let { parameters.append(Constants.PARAM_PAGE, page.toString()) }
+                appendPathSegments(PATH_GEEK_LIST, id.toString())
+                comments?.let { parameters.append(PARAM_COMMENTS, it.toParam()) }
             }
         }
-        .let { mapper.readValue(it.bodyAsText(), Forum::class.java) }
+        .let { mapper.readValue(it.bodyAsText(), GeekList::class.java) }
 }

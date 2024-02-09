@@ -16,12 +16,15 @@ package org.audux.bgg.request
 /** Collection of constants used in creating an URL for the BGG API. */
 internal object Constants {
     /** Base URL for the XML API2. */
-    const val BASE_URL = "https://boardgamegeek.com/xmlapi2"
+    const val XML2_API_URL = "https://boardgamegeek.com/xmlapi2"
+    /** Base URL for the XML API(1). */
+    const val XML1_API_URL = "https://boardgamegeek.com/xmlapi"
 
     const val PATH_COLLECTION = "collection"
     const val PATH_FAMILY = "family"
     const val PATH_FORUM_LIST = "forumlist"
     const val PATH_FORUM = "forum"
+    const val PATH_GEEK_LIST = "geeklist"
     const val PATH_GUILDS = "guilds"
     const val PATH_HOT = "hot"
     const val PATH_PLAYS = "plays"
@@ -83,6 +86,7 @@ internal object Constants {
     const val PARAM_WISHLIST = "wishlist"
     const val PARAM_WISHLIST_PRIORITY = "wishlistpriority"
 
+    const val REQUEST_XML1_DATE_TIME_FORMAT = "E, dd MMM yyyy HH:mm:ss Z"
     const val REQUEST_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss"
     const val REQUEST_DATE_FORMAT = "yyyy-MM-dd"
 }

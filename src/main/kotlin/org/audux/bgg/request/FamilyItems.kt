@@ -31,7 +31,7 @@ import org.audux.bgg.response.Family
  */
 fun BggClient.familyItems(ids: Array<Int>, types: Array<FamilyType> = arrayOf()) = request {
     client
-        .get(Constants.BASE_URL) {
+        .get(Constants.XML2_API_URL) {
             url {
                 appendPathSegments(Constants.PATH_FAMILY)
                 parameters.apply {

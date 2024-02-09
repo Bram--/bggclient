@@ -18,12 +18,12 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import org.audux.bgg.BggClient
 import org.audux.bgg.common.Inclusion
-import org.audux.bgg.request.Constants.BASE_URL
 import org.audux.bgg.request.Constants.PARAM_ID
 import org.audux.bgg.request.Constants.PARAM_MEMBERS
 import org.audux.bgg.request.Constants.PARAM_PAGE
 import org.audux.bgg.request.Constants.PARAM_SORT
 import org.audux.bgg.request.Constants.PATH_GUILDS
+import org.audux.bgg.request.Constants.XML2_API_URL
 import org.audux.bgg.response.Guild
 
 /**
@@ -41,7 +41,7 @@ fun BggClient.guilds(
     page: Number? = null
 ) = request {
     client
-        .get(BASE_URL) {
+        .get(XML2_API_URL) {
             url {
                 appendPathSegments(PATH_GUILDS)
                 parameters.append(PARAM_ID, id.toString())

@@ -18,20 +18,18 @@ import co.touchlab.kermit.Severity
 import co.touchlab.kermit.koin.KermitKoinLogger
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.ktor.client.HttpClient
-import java.time.LocalDate
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import org.audux.bgg.common.PlayThingType
-import org.audux.bgg.common.SubType
+import org.audux.bgg.common.Inclusion
 import org.audux.bgg.module.BggKtorClient
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
 import org.audux.bgg.request.Request
-import org.audux.bgg.request.plays
+import org.audux.bgg.request.geekList
 import org.jetbrains.annotations.VisibleForTesting
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -107,18 +105,8 @@ class BggClient : KoinComponent, AutoCloseable {
             setLoggerSeverity(Severity.Debug)
             runBlocking {
                 BggClient().use { client ->
-                    val response =
-                        client
-                            .plays(
-                                username = "Allansmw",
-                                page = 1,
-                                subType = SubType.BOARD_GAME,
-                                type = PlayThingType.THING,
-                                minDate = LocalDate.of(2018, 2, 2),
-                                maxDate = LocalDate.of(2020, 2, 7),
-                            )
-                            .call()
-                    println(response.plays.size)
+                    val response = client.geekList(id = 331520, comments = Inclusion.INCLUDE).call()
+                    println(response.items)
                 }
             }
         }

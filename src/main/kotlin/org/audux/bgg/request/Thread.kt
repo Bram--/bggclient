@@ -38,7 +38,7 @@ fun BggClient.thread(
     count: Int? = null
 ) = request {
     client
-        .get(Constants.BASE_URL) {
+        .get(Constants.XML2_API_URL) {
             url {
                 appendPathSegments(Constants.PATH_THREAD)
                 parameters.apply {

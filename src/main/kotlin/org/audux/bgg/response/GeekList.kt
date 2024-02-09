@@ -15,12 +15,16 @@ package org.audux.bgg.response
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText
-import org.audux.bgg.request.Constants
+import org.audux.bgg.common.Link
+import org.audux.bgg.common.Name
 import java.time.LocalDateTime
+import org.audux.bgg.request.Constants
 
 /** Response wrapper for Hot lists to be returned. */
 @JsonRootName("geeklist")
@@ -31,31 +35,32 @@ data class GeekList(
 
     /** Unique ID for the Geek list - same as in the request. */
     @JacksonXmlProperty(isAttribute = true) val id: Number,
-    @JsonFormat(pattern = Constants.REQUEST_DATE_TIME_FORMAT) val postDate: LocalDateTime,
-    @JsonFormat(pattern = Constants.REQUEST_DATE_TIME_FORMAT) val editDate: LocalDateTime,
+    @JsonFormat(pattern = Constants.REQUEST_XML1_DATE_TIME_FORMAT) val postDate: LocalDateTime,
+    @JsonFormat(pattern = Constants.REQUEST_XML1_DATE_TIME_FORMAT) val editDate: LocalDateTime,
     val thumbs: Number,
-    val numItem: Number,
+    val numItems: Number,
     val username: String,
     val title: String,
     val description: String,
-
-    /** List of the actual items in the list. */
-    @JacksonXmlProperty(localName = "comment") val comments: List<GeekListComment>,
-
-    /** List of the actual items in the list. */
     @JacksonXmlProperty(localName = "item") val results: List<GeekListItem>
-)
+) {
+    @JsonProperty("comment")
+    var comments: List<GeekListComment> = mutableListOf()
+        set(value) {
+            field = field + value
+        }
+}
 
 data class GeekListComment(
     @JacksonXmlProperty(isAttribute = true) val username: String,
     @JacksonXmlProperty(isAttribute = true)
-    @JsonFormat(pattern = Constants.REQUEST_DATE_TIME_FORMAT)
+    @JsonFormat(pattern = Constants.REQUEST_XML1_DATE_TIME_FORMAT)
     val date: LocalDateTime,
     @JacksonXmlProperty(isAttribute = true)
-    @JsonFormat(pattern = Constants.REQUEST_DATE_TIME_FORMAT)
+    @JsonFormat(pattern = Constants.REQUEST_XML1_DATE_TIME_FORMAT)
     val postDate: LocalDateTime,
     @JacksonXmlProperty(isAttribute = true)
-    @JsonFormat(pattern = Constants.REQUEST_DATE_TIME_FORMAT)
+    @JsonFormat(pattern = Constants.REQUEST_XML1_DATE_TIME_FORMAT)
     val editDate: LocalDateTime,
     @JacksonXmlProperty(isAttribute = true) val thumbs: Number,
 ) {
@@ -74,17 +79,25 @@ data class GeekListComment(
 data class GeekListItem(
     @JacksonXmlProperty(isAttribute = true) val id: Int,
     @JacksonXmlProperty(isAttribute = true) val objectType: String,
-    @JacksonXmlProperty(isAttribute = true) val subType: org.audux.bgg.common.SubType,
+    @JsonDeserialize(using = SubTypeDeserializer::class)
+    @JacksonXmlProperty(isAttribute = true)
+    val subType: org.audux.bgg.common.SubType,
     @JacksonXmlProperty(isAttribute = true) val objectName: String,
     @JacksonXmlProperty(isAttribute = true) val objectId: Int,
     @JacksonXmlProperty(isAttribute = true) val username: String,
     @JacksonXmlProperty(isAttribute = true)
-    @JsonFormat(pattern = Constants.REQUEST_DATE_TIME_FORMAT)
+    @JsonFormat(pattern = Constants.REQUEST_XML1_DATE_TIME_FORMAT)
     val postDate: LocalDateTime,
     @JacksonXmlProperty(isAttribute = true)
-    @JsonFormat(pattern = Constants.REQUEST_DATE_TIME_FORMAT)
+    @JsonFormat(pattern = Constants.REQUEST_XML1_DATE_TIME_FORMAT)
     val editDate: LocalDateTime,
     @JacksonXmlProperty(isAttribute = true) val thumbs: Number,
     @JacksonXmlProperty(isAttribute = true) val imageId: Number? = null,
     @JsonDeserialize(using = TrimmedStringDeserializer::class) val body: String,
-)
+) {
+    @JsonProperty("comment")
+    var comments: List<GeekListComment> = mutableListOf()
+    set(value) {
+        field = field + value
+    }
+}

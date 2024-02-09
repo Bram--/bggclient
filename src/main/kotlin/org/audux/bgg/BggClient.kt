@@ -111,11 +111,11 @@ class BggClient : KoinComponent, AutoCloseable {
                     val response =
                         client
                             .geekList(
-                                id = 11205,
+                                id = 331520,
                                 comments = true
                             )
                             .call()
-                    println(response)
+                    println(response.comments)
                 }
             }
         }

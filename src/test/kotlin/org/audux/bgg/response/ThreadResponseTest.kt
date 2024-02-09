@@ -39,8 +39,9 @@ class ThreadResponseTest : KoinTest {
 
     @Test
     fun `Parses empty response`() {
-        assertThrows { mapper.readValue(TestUtils.xml("thread?id=0"), Thread::class.java) }
-            as Exception
+        assertThrows<Exception> {
+            mapper.readValue(TestUtils.xml("thread?id=0"), Thread::class.java)
+        }
     }
 
     @Test

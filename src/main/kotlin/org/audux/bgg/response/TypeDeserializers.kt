@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer
 import org.audux.bgg.common.FamilyType
 import org.audux.bgg.common.ForumListType
 import org.audux.bgg.common.PlayThingType
+import org.audux.bgg.common.SubType
 import org.audux.bgg.common.ThingType
 
 /** Deserializes thing types to the associated [ThingType] enum value. */
@@ -57,8 +58,8 @@ internal class PlayThingTypeDeserializer : JsonDeserializer<PlayThingType>() {
         PlayThingType.fromParam(parser?.valueAsString)
 }
 
-/** Deserializes type in Plays response to [PlayThingType]. */
-internal class SubTypeDeserializer : JsonDeserializer<org.audux.bgg.common.SubType>() {
+/** Deserializes type in Plays response to [org.audux.bgg.common.SubType]. */
+internal class SubTypeDeserializer : JsonDeserializer<SubType>() {
     override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
-        org.audux.bgg.common.SubType.fromParam(parser?.valueAsString)
+        SubType.fromParam(parser?.valueAsString)
 }

@@ -21,13 +21,13 @@ import java.time.format.DateTimeFormatter
 import org.audux.bgg.BggClient
 import org.audux.bgg.common.PlayThingType
 import org.audux.bgg.common.SubType
-import org.audux.bgg.request.Constants.XML2_API_URL
 import org.audux.bgg.request.Constants.PARAM_ID
 import org.audux.bgg.request.Constants.PARAM_PAGE
 import org.audux.bgg.request.Constants.PARAM_SUBTYPE
 import org.audux.bgg.request.Constants.PARAM_TYPE
 import org.audux.bgg.request.Constants.PARAM_USERNAME
 import org.audux.bgg.request.Constants.PATH_PLAYS
+import org.audux.bgg.request.Constants.XML2_API_URL
 import org.audux.bgg.response.Plays
 
 /**

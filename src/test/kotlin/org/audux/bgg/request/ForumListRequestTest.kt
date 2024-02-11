@@ -52,7 +52,9 @@ class ForumListRequestTest : KoinTest {
                 )
             assertThat(request.url)
                 .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/forumlist?id=342942&type=thing"))
-            assertThat(response.forums).hasSize(10)
+            assertThat(response.isError()).isFalse()
+            assertThat(response.isSuccess()).isTrue()
+            assertThat(response.data?.forums).hasSize(10)
         }
     }
 }

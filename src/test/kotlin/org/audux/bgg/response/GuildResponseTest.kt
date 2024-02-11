@@ -36,15 +36,6 @@ class GuildResponseTest : KoinTest {
     private val mapper: ObjectMapper by inject(named<BggXmlObjectMapper>())
 
     @Test
-    fun `Parses erroneous response`() {
-        val results = mapper.readValue(TestUtils.xml("guilds?id=-1"), Guild::class.java)
-
-        assertThat(results.name).isNull()
-        assertThat(results.id).isEqualTo(-1)
-        assertThat(results.error).isEqualTo("Guild not found.")
-    }
-
-    @Test
     fun `Parses a guild`() {
         val results = mapper.readValue(TestUtils.xml("guilds?id=2310"), Guild::class.java)
 

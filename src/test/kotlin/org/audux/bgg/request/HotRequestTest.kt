@@ -46,7 +46,9 @@ class HotRequestTest : KoinTest {
                 )
             assertThat(request.url)
                 .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/hot?type=boardgame"))
-            assertThat(response.results).hasSize(50)
+            assertThat(response.isError()).isFalse()
+            assertThat(response.isSuccess()).isTrue()
+            assertThat(response.data?.results).hasSize(50)
         }
     }
 }

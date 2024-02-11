@@ -19,6 +19,7 @@ import io.ktor.http.appendPathSegments
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import org.audux.bgg.BggClient
+import org.audux.bgg.response.Response
 import org.audux.bgg.response.Thread
 
 /**
@@ -53,5 +54,5 @@ fun BggClient.thread(
                 }
             }
         }
-        .let { mapper.readValue(it.bodyAsText(), Thread::class.java) }
+        .let { Response.from<Thread>(it.bodyAsText(), mapper) }
 }

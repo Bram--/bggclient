@@ -54,6 +54,7 @@ import org.audux.bgg.request.Constants.PATH_COLLECTION
 import org.audux.bgg.request.Constants.REQUEST_DATE_TIME_FORMAT
 import org.audux.bgg.request.Constants.XML2_API_URL
 import org.audux.bgg.response.Collection
+import org.audux.bgg.response.Response
 
 /**
  * Request details about a user's collection.
@@ -190,5 +191,5 @@ fun BggClient.collection(
                 }
             }
         }
-        .let { mapper.readValue(it.bodyAsText(), Collection::class.java) }
+        .let { Response.from<Collection>(it.bodyAsText(), mapper) }
 }

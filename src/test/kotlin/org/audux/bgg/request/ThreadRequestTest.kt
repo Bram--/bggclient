@@ -27,6 +27,36 @@ import org.koin.test.KoinTest
 /** Unit tests for [thread] extension function. */
 class ThreadRequestTest : KoinTest {
     @Test
+    fun `Makes a request with wrong thread id`() {
+        runBlocking {
+            val client = TestUtils.setupEngineAndRequest("thread?id=0")
+
+            val response = client.thread(id = 0).call()
+
+            val engine = client.engine() as MockEngine
+            val request = engine.requestHistory[0]
+            assertThat(engine.requestHistory).hasSize(1)
+            assertThat(request.method).isEqualTo(HttpMethod.Get)
+            assertThat(request.headers)
+                .isEqualTo(
+                    Headers.build {
+                        appendAll("Accept", listOf("*/*"))
+                        appendAll("Accept-Charset", listOf("UTF-8"))
+                    }
+                )
+            assertThat(request.url).isEqualTo(Url("https://boardgamegeek.com/xmlapi2/thread?id=0"))
+            assertThat(response.isError()).isTrue()
+            assertThat(response.isSuccess()).isFalse()
+            assertThat(response.error)
+                .isEqualTo(
+                    "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
+                        "<error message='Thread Not Found' />"
+                )
+            assertThat(response.data).isNull()
+        }
+    }
+
+    @Test
     fun `Makes a request with minimum parameters`() {
         runBlocking {
             val client = TestUtils.setupEngineAndRequest("thread")
@@ -46,7 +76,9 @@ class ThreadRequestTest : KoinTest {
                 )
             assertThat(request.url)
                 .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/thread?id=3208373"))
-            assertThat(response.articles).hasSize(13)
+            assertThat(response.isError()).isFalse()
+            assertThat(response.isSuccess()).isTrue()
+            assertThat(response.data?.articles).hasSize(13)
         }
     }
 
@@ -73,7 +105,7 @@ class ThreadRequestTest : KoinTest {
                         "https://boardgamegeek.com/xmlapi2/thread?id=3208373&minarticleid=10&minarticledate=2020-01-01+00%3A00%3A00&count=100000"
                     )
                 )
-            assertThat(response.articles).hasSize(13)
+            assertThat(response.data?.articles).hasSize(13)
         }
     }
 }

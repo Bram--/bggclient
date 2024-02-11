@@ -50,7 +50,9 @@ class UserRequestTest : KoinTest {
                 )
             assertThat(request.url)
                 .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/user?name=Novaeux"))
-            assertThat(response.name).isEqualTo("Novaeux")
+            assertThat(response.isError()).isFalse()
+            assertThat(response.isSuccess()).isTrue()
+            assertThat(response.data?.name).isEqualTo("Novaeux")
         }
     }
 
@@ -83,7 +85,7 @@ class UserRequestTest : KoinTest {
                         "https://boardgamegeek.com/xmlapi2/user?name=Novaeux&buddies=1&guilds=1&top=1&hot=1&domain=boardgame&page=1"
                     )
                 )
-            assertThat(response.name).isEqualTo("Novaeux")
+            assertThat(response.data?.name).isEqualTo("Novaeux")
         }
     }
 }

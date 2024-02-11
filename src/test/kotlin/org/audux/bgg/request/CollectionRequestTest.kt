@@ -32,6 +32,48 @@ import org.koin.test.KoinTest
 /** Unit tests for [collection] extension function. */
 class CollectionRequestTest : KoinTest {
     @Test
+    fun `Makes a request with a user that does not exist`() {
+        runBlocking {
+            val client = TestUtils.setupEngineAndRequest("collection?username=userdoesnotexist")
+
+            val response =
+                client
+                    .collection(userName = "userdoesnotexist", subType = ThingType.RPG_ITEM)
+                    .call()
+
+            val engine = client.engine() as MockEngine
+            val request = engine.requestHistory[0]
+            assertThat(engine.requestHistory).hasSize(1)
+            assertThat(request.method).isEqualTo(HttpMethod.Get)
+            assertThat(request.headers)
+                .isEqualTo(
+                    Headers.build {
+                        appendAll("Accept", listOf("*/*"))
+                        appendAll("Accept-Charset", listOf("UTF-8"))
+                    }
+                )
+            assertThat(request.url)
+                .isEqualTo(
+                    Url(
+                        "https://boardgamegeek.com/xmlapi2/collection?username=userdoesnotexist&subtype=rpgitem"
+                    )
+                )
+            assertThat(response.isError()).isTrue()
+            assertThat(response.isSuccess()).isFalse()
+            assertThat(response.error)
+                .isEqualTo(
+                    "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\" ?>\n" +
+                        "<errors>\n" +
+                        "    <error>\n" +
+                        "        <message>Invalid username specified</message>\n" +
+                        "    </error>\n" +
+                        "</errors>"
+                )
+            assertThat(response.data).isNull()
+        }
+    }
+
+    @Test
     fun `Makes a request with minimum parameters`() {
         runBlocking {
             val client =
@@ -59,7 +101,9 @@ class CollectionRequestTest : KoinTest {
                         "https://boardgamegeek.com/xmlapi2/collection?username=Noveaux&subtype=rpgitem"
                     )
                 )
-            assertThat(response.items).hasSize(1)
+            assertThat(response.isError()).isFalse()
+            assertThat(response.isSuccess()).isTrue()
+            assertThat(response.data!!.items).hasSize(1)
         }
     }
 
@@ -147,7 +191,7 @@ class CollectionRequestTest : KoinTest {
                     )
                     .build()
             assertThat(request.url).isEqualTo(expectedUrl)
-            assertThat(response.items).hasSize(105)
+            assertThat(response.data!!.items).hasSize(105)
         }
     }
 }

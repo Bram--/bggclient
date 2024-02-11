@@ -14,14 +14,15 @@
 package org.audux.bgg.request
 
 import org.audux.bgg.BggClient
+import org.audux.bgg.response.Response
 
 /** Encapsulates a request to BGG so it can be scheduled or queued for later execution. */
-class Request<T>(private val client: BggClient, private val request: suspend () -> T) {
+class Request<T>(private val client: BggClient, private val request: suspend () -> Response<T>) {
     /**
      * Execute the encapsulated [T] request asynchronously and returns the `response` in the
      * provided block if successful.
      */
-    fun callAsync(response: (T) -> Unit) {
+    fun callAsync(response: (Response<T>) -> Unit) {
         client.callAsync(request, response)
     }
 

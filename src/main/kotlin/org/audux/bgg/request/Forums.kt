@@ -18,6 +18,7 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import org.audux.bgg.BggClient
 import org.audux.bgg.response.Forum
+import org.audux.bgg.response.Response
 
 /**
  * Retrieves the list of threads for the given forum id.
@@ -38,5 +39,5 @@ fun BggClient.forum(id: Int, page: Int? = null) = request {
                 page?.let { parameters.append(Constants.PARAM_PAGE, page.toString()) }
             }
         }
-        .let { mapper.readValue(it.bodyAsText(), Forum::class.java) }
+        .let { Response.from<Forum>(it.bodyAsText(), mapper) }
 }

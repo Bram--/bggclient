@@ -35,7 +35,6 @@ data class Guild(
     val description: String?,
     val location: Location?,
     val members: GuildMembers?,
-    val error: String?,
 )
 
 data class Location(

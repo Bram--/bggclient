@@ -20,6 +20,7 @@ import org.audux.bgg.BggClient
 import org.audux.bgg.common.ForumListType
 import org.audux.bgg.response.Family
 import org.audux.bgg.response.ForumList
+import org.audux.bgg.response.Response
 import org.audux.bgg.response.Thing
 
 /**
@@ -40,5 +41,5 @@ fun BggClient.forumList(id: Int, type: ForumListType) = request {
                 }
             }
         }
-        .let { mapper.readValue(it.bodyAsText(), ForumList::class.java) }
+        .let { Response.from<ForumList>(it.bodyAsText(), mapper) }
 }

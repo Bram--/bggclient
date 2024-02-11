@@ -27,6 +27,38 @@ import org.koin.test.KoinTest
 /** Unit tests for [guilds] extension function. */
 class GuildsRequestTest : KoinTest {
     @Test
+    fun `Makes a request with wrong guild id`() {
+        runBlocking {
+            val client = TestUtils.setupEngineAndRequest("guilds?id=-1")
+
+            val response = client.guilds(id = -1).call()
+
+            val engine = client.engine() as MockEngine
+            val request = engine.requestHistory[0]
+            assertThat(engine.requestHistory).hasSize(1)
+            assertThat(request.method).isEqualTo(HttpMethod.Get)
+            assertThat(request.headers)
+                .isEqualTo(
+                    Headers.build {
+                        appendAll("Accept", listOf("*/*"))
+                        appendAll("Accept-Charset", listOf("UTF-8"))
+                    }
+                )
+            assertThat(request.url).isEqualTo(Url("https://boardgamegeek.com/xmlapi2/guilds?id=-1"))
+            assertThat(response.isError()).isTrue()
+            assertThat(response.isSuccess()).isFalse()
+            assertThat(response.error)
+                .isEqualTo(
+                    "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
+                        "<guild id=\"-1\"  termsofuse=\"https://boardgamegeek.com/xmlapi/termsofuse\">\n" +
+                        "    <error>Guild not found.</error>\n" +
+                        "</guild>\n"
+                )
+            assertThat(response.data).isNull()
+        }
+    }
+
+    @Test
     fun `Makes a request with minimum parameters`() {
         runBlocking {
             val client = TestUtils.setupEngineAndRequest("guilds?id=2310")
@@ -46,7 +78,9 @@ class GuildsRequestTest : KoinTest {
                 )
             assertThat(request.url)
                 .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/guilds?id=2310"))
-            assertThat(response.name).isEqualTo("St Albans Board Games Club")
+            assertThat(response.isError()).isFalse()
+            assertThat(response.isSuccess()).isTrue()
+            assertThat(response.data?.name).isEqualTo("St Albans Board Games Club")
         }
     }
 
@@ -73,7 +107,7 @@ class GuildsRequestTest : KoinTest {
                         "https://boardgamegeek.com/xmlapi2/guilds?id=2310&members=1&sort=date&page=1"
                     )
                 )
-            assertThat(response.name).isEqualTo("St Albans Board Games Club")
+            assertThat(response.data?.name).isEqualTo("St Albans Board Games Club")
         }
     }
 }

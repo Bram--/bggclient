@@ -26,6 +26,7 @@ import org.audux.bgg.module.BggKtorClient
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
 import org.audux.bgg.request.Request
+import org.audux.bgg.response.Response
 import org.jetbrains.annotations.VisibleForTesting
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -76,10 +77,10 @@ class BggClient : KoinComponent, AutoCloseable {
     }
 
     /** Calls/Launches a request and returns it's response. */
-    internal suspend fun <T> call(request: suspend () -> T) = request()
+    internal suspend fun <T> call(request: suspend () -> Response<T>) = request()
 
     /** Returns a wrapped request for later execution. */
-    internal fun <T> request(request: suspend () -> T) = Request(this, request)
+    internal fun <T> request(request: suspend () -> Response<T>) = Request(this, request)
 
     /**
      * Returns the current [io.ktor.client.engine.HttpClientEngine] used by this client. Used for
@@ -118,7 +119,6 @@ class BggClient : KoinComponent, AutoCloseable {
 /** Isolated Koin Context for BGG Client. */
 class BggClientKoinContext {
     private val koinApp = koinApplication {
-        BggClient.setLoggerSeverity(BggClient.Companion.Severity.Warn)
         logger(KermitKoinLogger(Logger.withTag("koin")))
         modules(appModule)
     }

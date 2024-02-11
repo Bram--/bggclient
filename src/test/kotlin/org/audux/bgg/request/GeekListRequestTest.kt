@@ -46,7 +46,9 @@ class GeekListRequestTest : KoinTest {
                 )
             assertThat(request.url)
                 .isEqualTo(Url("https://boardgamegeek.com/xmlapi/geeklist/331520"))
-            assertThat(response.items).hasSize(10)
+            assertThat(response.isError()).isFalse()
+            assertThat(response.isSuccess()).isTrue()
+            assertThat(response.data?.items).hasSize(10)
         }
     }
 
@@ -70,7 +72,7 @@ class GeekListRequestTest : KoinTest {
                 )
             assertThat(request.url)
                 .isEqualTo(Url("https://boardgamegeek.com/xmlapi/geeklist/331520?comments=1"))
-            assertThat(response.items).hasSize(10)
+            assertThat(response.data?.items).hasSize(10)
         }
     }
 }

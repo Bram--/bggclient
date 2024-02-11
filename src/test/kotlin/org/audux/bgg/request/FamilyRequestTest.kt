@@ -46,8 +46,10 @@ class FamilyRequestTest : KoinTest {
                 )
             assertThat(request.url)
                 .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/family?id=50152"))
-            assertThat(response.items).hasSize(1)
-            assertThat(response.items[0].links).hasSize(26)
+            assertThat(response.isError()).isFalse()
+            assertThat(response.isSuccess()).isTrue()
+            assertThat(response.data?.items).hasSize(1)
+            assertThat(response.data!!.items[0].links).hasSize(26)
         }
     }
 
@@ -72,8 +74,8 @@ class FamilyRequestTest : KoinTest {
                         "https://boardgamegeek.com/xmlapi2/family?id=50152%2C50153&type=boardgamefamily%2Crpg"
                     )
                 )
-            assertThat(response.items).hasSize(1)
-            assertThat(response.items[0].links).hasSize(26)
+            assertThat(response.data?.items).hasSize(1)
+            assertThat(response.data!!.items[0].links).hasSize(26)
         }
     }
 }

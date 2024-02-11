@@ -18,6 +18,10 @@ import com.fasterxml.jackson.core.JacksonException
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.ktor.client.statement.bodyAsText
 
+/**
+ * Wraps a successful or erroneous response, if a valid response was given it can be found in [data]
+ * otherwise the response can be found as a string in [error].
+ */
 data class Response<T>(
     val error: String? = null,
     val data: T? = null,
@@ -29,6 +33,7 @@ data class Response<T>(
     fun isError() = !isSuccess()
 
     companion object {
+        /** Create a new response from the given response string, using the [mapper]. */
         inline fun <reified T> from(bodyAsText: String, mapper: ObjectMapper): Response<T> {
             return try {
                 Response(data = mapper.readValue(bodyAsText, T::class.java))

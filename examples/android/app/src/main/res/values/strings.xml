@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Android</string>
+    <string name="search_box_placeholder">Username</string>
+    <string name="search_box_content_description">Search for user\'s collection</string>
+
+    <string name="search_placeholder_do_a_search">A list of items is shown here after searching for a username in the search box</string>
+    <string name="search_placeholder_searching">Searching for… %s</string>
+    <string name="search_placeholder_error">Something went wrong searching for \`%s\`</string>
+    <string name="search_placeholder_error_response">Response: \n%s</string>
+
+    <string name="collection_item_status">Status: %s</string>
+
+    <string name="collection_item_for_trade">For trade</string>
+    <string name="collection_item_own">Own</string>
+    <string name="collection_item_pre_ordered">Pre-ordered</string>
+    <string name="collection_item_previously_owned">Previously owned</string>
+    <string name="collection_item_want">Want in trade</string>
+    <string name="collection_item_want_to_buy">Want to buy</string>
+    <string name="collection_item_want_to_play">Want to play</string>
+    <string name="collection_item_wishlist">Wishlist</string>
+    <string name="collection_item_unknown">Unknown</string>
+</resources>

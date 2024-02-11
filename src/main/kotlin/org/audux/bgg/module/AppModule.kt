@@ -70,6 +70,7 @@ val appModule = module {
 
     factory(named<BggKtorClient>()) {
         HttpClient(get(HttpClientEngine::class, named<BggHttpEngine>())) {
+            install(ClientRateLimitPlugin) { requestLimit = 10 }
             install(HttpRequestRetry) {
                 exponentialDelay()
                 retryIf(maxRetries = 5) { _, response ->
@@ -80,7 +81,6 @@ val appModule = module {
                     }
                 }
             }
-            install(ClientRateLimitPlugin) { requestLimit = 10 }
 
             expectSuccess = true
         }

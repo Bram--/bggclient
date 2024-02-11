@@ -23,6 +23,7 @@ import org.audux.bgg.request.Constants.PARAM_QUERY
 import org.audux.bgg.request.Constants.PARAM_TYPE
 import org.audux.bgg.request.Constants.PATH_SEARCH
 import org.audux.bgg.request.Constants.XML2_API_URL
+import org.audux.bgg.response.Response
 import org.audux.bgg.response.SearchResults
 
 /**
@@ -52,5 +53,5 @@ fun BggClient.search(
                 }
             }
         }
-        .let { mapper.readValue(it.bodyAsText(), SearchResults::class.java) }
+        .let { Response.from<SearchResults>(it.bodyAsText(), mapper) }
 }

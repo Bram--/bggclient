@@ -25,6 +25,7 @@ import org.audux.bgg.request.Constants.PARAM_SORT
 import org.audux.bgg.request.Constants.PATH_GUILDS
 import org.audux.bgg.request.Constants.XML2_API_URL
 import org.audux.bgg.response.Guild
+import org.audux.bgg.response.Response
 
 /**
  * Retrieve information about the given guild (id) like name, description, members etc.
@@ -50,5 +51,5 @@ fun BggClient.guilds(
                 page?.let { parameters.append(PARAM_PAGE, it.toString()) }
             }
         }
-        .let { mapper.readValue(it.bodyAsText(), Guild::class.java) }
+        .let { Response.from<Guild>(it.bodyAsText(), mapper) }
 }

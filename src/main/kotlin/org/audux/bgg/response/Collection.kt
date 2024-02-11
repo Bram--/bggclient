@@ -52,6 +52,9 @@ data class CollectionItem(
     /** Name the user has given the thing or primary name of the thing by default. */
     val name: String,
 
+    /** The primary name of the thing by default. */
+    val originalName: String? = null,
+
     /** Optional year of publishing. */
     val yearPublished: Number? = null,
 

@@ -28,6 +28,40 @@ import org.koin.test.KoinTest
 
 /** Unit tests for [plays] extension function. */
 class PlaysRequestTest : KoinTest {
+
+    @Test
+    fun `Makes a request with invalid username`() {
+        runBlocking {
+            val client = TestUtils.setupEngineAndRequest("plays?username=userdoesnotexist")
+
+            val response = client.plays(username = "userdoesnotexist").call()
+
+            val engine = client.engine() as MockEngine
+            val request = engine.requestHistory[0]
+            assertThat(engine.requestHistory).hasSize(1)
+            assertThat(request.method).isEqualTo(HttpMethod.Get)
+            assertThat(request.headers)
+                .isEqualTo(
+                    Headers.build {
+                        appendAll("Accept", listOf("*/*"))
+                        appendAll("Accept-Charset", listOf("UTF-8"))
+                    }
+                )
+            assertThat(request.url)
+                .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/plays?username=userdoesnotexist"))
+            assertThat(response.isError()).isTrue()
+            assertThat(response.isSuccess()).isFalse()
+            assertThat(response.error)
+                .isEqualTo(
+                    "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
+                        "<div class='messagebox error'>\n" +
+                        "    Invalid object or user\n" +
+                        "</div>"
+                )
+            assertThat(response.data).isNull()
+        }
+    }
+
     @Test
     fun `Makes a request with minimum parameters`() {
         runBlocking {
@@ -48,7 +82,9 @@ class PlaysRequestTest : KoinTest {
                 )
             assertThat(request.url)
                 .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/plays?username=Novaeux"))
-            assertThat(response.plays).hasSize(6)
+            assertThat(response.isError()).isFalse()
+            assertThat(response.isSuccess()).isTrue()
+            assertThat(response.data?.plays).hasSize(6)
         }
     }
 
@@ -77,7 +113,7 @@ class PlaysRequestTest : KoinTest {
                         "https://boardgamegeek.com/xmlapi2/plays?username=Novaeux&type=thing&mindate=2018-02-02&maxdate=2020-02-07&subtype=boardgame&page=1"
                     )
                 )
-            assertThat(response.plays).hasSize(6)
+            assertThat(response.data?.plays).hasSize(6)
         }
     }
 }

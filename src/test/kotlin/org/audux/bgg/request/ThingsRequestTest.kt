@@ -21,27 +21,19 @@ import io.ktor.http.Parameters
 import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.BggClient
 import org.audux.bgg.BggRequestException
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.util.TestUtils
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.koin.test.KoinTest
 
 /** Unit test for [things] extension function. */
 class ThingsRequestTest : KoinTest {
-    private lateinit var client: BggClient
-
-    @BeforeEach
-    fun beforeEach() {
-        client = TestUtils.setupEngineAndRequest("thing?id=1,2,3")
-    }
-
     @Test
     fun `Makes a request with minimal parameters`() {
         runBlocking {
+            val client = TestUtils.setupEngineAndRequest("thing?id=1,2,3")
             val response = client.things(ids = arrayOf(1, 2, 3)).call()
 
             val engine = client.engine() as MockEngine
@@ -65,13 +57,16 @@ class ThingsRequestTest : KoinTest {
                         )
                         .build()
                 )
-            assertThat(response.things).hasSize(3)
+            assertThat(response.isError()).isFalse()
+            assertThat(response.isSuccess()).isTrue()
+            assertThat(response.data?.things).hasSize(3)
         }
     }
 
     @Test
     fun `Makes a request with all parameters`() {
         runBlocking {
+            val client = TestUtils.setupEngineAndRequest("thing?id=1,2,3")
             val response =
                 client
                     .things(
@@ -111,13 +106,14 @@ class ThingsRequestTest : KoinTest {
                         )
                         .build()
                 )
-            assertThat(response.things).hasSize(3)
+            assertThat(response.data?.things).hasSize(3)
         }
     }
 
     @Test
     fun `Throws when pageSize is too large`() {
         runBlocking {
+            val client = TestUtils.setupEngineAndRequest("thing?id=1,2,3")
             val exception =
                 assertThrows<BggRequestException> {
                     client.things(ids = arrayOf(1), pageSize = 10_000).call()
@@ -129,6 +125,7 @@ class ThingsRequestTest : KoinTest {
     @Test
     fun `Throws when competing parameters are set`() {
         runBlocking {
+            val client = TestUtils.setupEngineAndRequest("thing?id=1,2,3")
             val exception =
                 assertThrows<BggRequestException> {
                     client.things(ids = arrayOf(1), comments = true, ratingComments = true).call()

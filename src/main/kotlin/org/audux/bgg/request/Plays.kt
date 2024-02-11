@@ -29,6 +29,7 @@ import org.audux.bgg.request.Constants.PARAM_USERNAME
 import org.audux.bgg.request.Constants.PATH_PLAYS
 import org.audux.bgg.request.Constants.XML2_API_URL
 import org.audux.bgg.response.Plays
+import org.audux.bgg.response.Response
 
 /**
  * Request a list of plays (max 100 at the time) for the given user.
@@ -55,7 +56,6 @@ fun BggClient.plays(
     page: Number? = null,
 ) = request {
     val formatter = DateTimeFormatter.ofPattern(Constants.REQUEST_DATE_FORMAT)
-
     client
         .get(XML2_API_URL) {
             url {
@@ -73,5 +73,5 @@ fun BggClient.plays(
                 page?.let { parameters.append(PARAM_PAGE, it.toString()) }
             }
         }
-        .let { mapper.readValue(it.bodyAsText(), Plays::class.java) }
+        .let { Response.from<Plays>(it.bodyAsText(), mapper) }
 }

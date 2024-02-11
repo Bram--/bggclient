@@ -22,6 +22,7 @@ import org.audux.bgg.request.Constants.PARAM_TYPE
 import org.audux.bgg.request.Constants.PATH_HOT
 import org.audux.bgg.request.Constants.XML2_API_URL
 import org.audux.bgg.response.HotList
+import org.audux.bgg.response.Response
 
 /**
  * Hotness endpoint that retrieve the list of most 50 active items on the site filtered by type.
@@ -37,5 +38,5 @@ fun BggClient.hotItems(type: HotListType? = null) = request {
                 type?.let { parameters.append(PARAM_TYPE, it.param) }
             }
         }
-        .let { mapper.readValue(it.bodyAsText(), HotList::class.java) }
+        .let { Response.from<HotList>(it.bodyAsText(), mapper) }
 }

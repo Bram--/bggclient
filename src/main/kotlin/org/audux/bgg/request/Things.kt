@@ -31,6 +31,7 @@ import org.audux.bgg.request.Constants.PARAM_VERSIONS
 import org.audux.bgg.request.Constants.PARAM_VIDEOS
 import org.audux.bgg.request.Constants.PATH_THING
 import org.audux.bgg.request.Constants.XML2_API_URL
+import org.audux.bgg.response.Response
 import org.audux.bgg.response.Things
 
 /**
@@ -99,5 +100,5 @@ fun BggClient.things(
                 }
             }
         }
-        .let { mapper.readValue(it.bodyAsText(), Things::class.java) }
+        .let { Response.from<Things>(it.bodyAsText(), mapper) }
 }

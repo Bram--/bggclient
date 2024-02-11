@@ -22,6 +22,7 @@ import org.audux.bgg.request.Constants.PARAM_COMMENTS
 import org.audux.bgg.request.Constants.PATH_GEEK_LIST
 import org.audux.bgg.request.Constants.XML1_API_URL
 import org.audux.bgg.response.GeekList
+import org.audux.bgg.response.Response
 
 /**
  * Geek list endpoint, retrieves a specific geek list by its ID.
@@ -39,5 +40,5 @@ fun BggClient.geekList(id: Number, comments: Inclusion? = null) = request {
                 comments?.let { parameters.append(PARAM_COMMENTS, it.toParam()) }
             }
         }
-        .let { mapper.readValue(it.bodyAsText(), GeekList::class.java) }
+        .let { Response.from<GeekList>(it.bodyAsText(), mapper) }
 }

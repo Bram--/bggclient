@@ -47,7 +47,9 @@ class SearchRequestTest : KoinTest {
                 .isEqualTo(
                     Url("https://boardgamegeek.com/xmlapi2/search?query=my+little"),
                 )
-            assertThat(response.results).hasSize(144)
+            assertThat(response.isError()).isFalse()
+            assertThat(response.isSuccess()).isTrue()
+            assertThat(response.data?.results).hasSize(144)
         }
     }
 
@@ -72,7 +74,7 @@ class SearchRequestTest : KoinTest {
                         "https://boardgamegeek.com/xmlapi2/search?query=my+little&type=boardgame%2Crpgitem&exact=1"
                     ),
                 )
-            assertThat(response.results).hasSize(144)
+            assertThat(response.data?.results).hasSize(144)
         }
     }
 }

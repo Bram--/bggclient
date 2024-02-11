@@ -14,7 +14,6 @@
 package org.audux.bgg
 
 import co.touchlab.kermit.Logger
-import co.touchlab.kermit.Severity
 import co.touchlab.kermit.koin.KermitKoinLogger
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.ktor.client.HttpClient
@@ -22,14 +21,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import org.audux.bgg.common.Inclusion
 import org.audux.bgg.module.BggKtorClient
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
 import org.audux.bgg.request.Request
-import org.audux.bgg.request.geekList
+import org.audux.bgg.response.Response
 import org.jetbrains.annotations.VisibleForTesting
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -80,10 +77,10 @@ class BggClient : KoinComponent, AutoCloseable {
     }
 
     /** Calls/Launches a request and returns it's response. */
-    internal suspend fun <T> call(request: suspend () -> T) = request()
+    internal suspend fun <T> call(request: suspend () -> Response<T>) = request()
 
     /** Returns a wrapped request for later execution. */
-    internal fun <T> request(request: suspend () -> T) = Request(this, request)
+    internal fun <T> request(request: suspend () -> Response<T>) = Request(this, request)
 
     /**
      * Returns the current [io.ktor.client.engine.HttpClientEngine] used by this client. Used for
@@ -92,23 +89,29 @@ class BggClient : KoinComponent, AutoCloseable {
     @VisibleForTesting internal fun engine() = client.engine
 
     companion object {
-        private var severity = Severity.Error
+        /** Logging level Severity for the BGGClient logging. */
+        enum class Severity {
+            Verbose,
+            Debug,
+            Info,
+            Warn,
+            Error,
+            Assert
+        }
 
         /** Sets the Logger severity defaults to [Severity.Error] */
         @JvmStatic
         fun setLoggerSeverity(severity: Severity) {
-            this.severity = severity
-        }
-
-        @JvmStatic
-        fun main(args: Array<String>) {
-            setLoggerSeverity(Severity.Debug)
-            runBlocking {
-                BggClient().use { client ->
-                    val response = client.geekList(id = 331520, comments = Inclusion.INCLUDE).call()
-                    println(response.items)
+            Logger.setMinSeverity(
+                when (severity) {
+                    Severity.Assert -> co.touchlab.kermit.Severity.Assert
+                    Severity.Debug -> co.touchlab.kermit.Severity.Debug
+                    Severity.Error -> co.touchlab.kermit.Severity.Error
+                    Severity.Info -> co.touchlab.kermit.Severity.Info
+                    Severity.Verbose -> co.touchlab.kermit.Severity.Verbose
+                    Severity.Warn -> co.touchlab.kermit.Severity.Warn
                 }
-            }
+            )
         }
     }
 }

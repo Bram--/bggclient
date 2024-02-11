@@ -28,6 +28,7 @@ import org.audux.bgg.request.Constants.PARAM_PAGE
 import org.audux.bgg.request.Constants.PARAM_TOP
 import org.audux.bgg.request.Constants.PATH_USER
 import org.audux.bgg.request.Constants.XML2_API_URL
+import org.audux.bgg.response.Response
 import org.audux.bgg.response.User
 
 /**
@@ -69,5 +70,5 @@ fun BggClient.user(
                 page?.let { parameters.append(PARAM_PAGE, it.toString()) }
             }
         }
-        .let { mapper.readValue(it.bodyAsText(), User::class.java) }
+        .let { Response.from<User>(it.bodyAsText(), mapper) }
 }

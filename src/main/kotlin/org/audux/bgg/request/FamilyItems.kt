@@ -20,6 +20,7 @@ import org.audux.bgg.BggClient
 import org.audux.bgg.common.FamilyType
 import org.audux.bgg.common.HotListType
 import org.audux.bgg.response.Family
+import org.audux.bgg.response.Response
 
 /**
  * Family thing endpoint that retrieve details about the given family ID and associated `Link`
@@ -42,5 +43,5 @@ fun BggClient.familyItems(ids: Array<Int>, types: Array<FamilyType> = arrayOf())
                 }
             }
         }
-        .let { mapper.readValue(it.bodyAsText(), Family::class.java) }
+        .let { Response.from<Family>(it.bodyAsText(), mapper) }
 }

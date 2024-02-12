@@ -1,70 +1,86 @@
 plugins {
-  jacoco
-  `java-library`
-  `maven-publish`
-  alias(libs.plugins.org.jetbrains.kotlin.jvm)
-  alias(libs.plugins.ktfmt.gradle)
+    jacoco
+    `java-library`
+    `maven-publish`
+    alias(libs.plugins.org.jetbrains.kotlin.jvm)
+    alias(libs.plugins.ktfmt.gradle)
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
 }
 
 publishing {
-  publications {
-    create<MavenPublication>("maven") {
-      groupId = "org.audux.bgg"
-      artifactId = "bggclient"
-      version = "0.2"
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "org.audux.bgg"
+            artifactId = "bggclient"
+            version = "0.3.1"
 
-      from(components["kotlin"])
+            pom {
+                name = "Unofficial JVM BGG client"
+                description = "Wrapper around the Board Game Geek's XML1 and XML2 APIs"
+                url = "https://github.com/Bram--/bggclient"
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "bram--"
+                        name = "Bram Wijnands"
+                        email = "brambomail@gmail.com"
+                    }
+                }
+            }
+
+            from(components["java"])
+        }
     }
-  }
 }
 
 ktfmt {
-  kotlinLangStyle()
+    kotlinLangStyle()
 
-  removeUnusedImports.set(true)
+    removeUnusedImports.set(true)
 }
 
-sourceSets {
-  main {
-    kotlin {
-      exclude("examples/")
-    }
-  }
-}
+sourceSets { main { kotlin { exclude("examples/") } } }
 
-repositories {
-  mavenCentral()
-}
+repositories { mavenCentral() }
 
 dependencies {
-  api(libs.kotlin.coroutines.jdk8)
+    api(libs.kotlin.coroutines.jdk8)
 
-  implementation(libs.jackson.jsr310)
-  implementation(libs.jackson.kotlin)
-  implementation(libs.jackson.xml)
-  implementation(libs.javax.xml.stream)
-  implementation(libs.kermit)
-  implementation(libs.kotlin.datetime)
-  implementation(libs.kotlin.serialization)
-  implementation(libs.ktor.core)
-  implementation(libs.ktor.client)
-  implementation(libs.slf4j)
+    implementation(libs.jackson.jsr310)
+    implementation(libs.jackson.kotlin)
+    implementation(libs.jackson.xml)
+    implementation(libs.javax.xml.stream)
+    implementation(libs.kermit)
+    implementation(libs.kotlin.datetime)
+    implementation(libs.kotlin.serialization)
+    implementation(libs.ktor.core)
+    implementation(libs.ktor.client)
+    implementation(libs.slf4j)
 
-  // Testing dependencies.
-  testApi(libs.ktor.client.mock)
+    // Testing dependencies.
+    testApi(libs.ktor.client.mock)
 
-  testImplementation(libs.junit5.api)
-  testImplementation(libs.truth)
+    testImplementation(libs.junit5.api)
+    testImplementation(libs.truth)
 
-  testRuntimeOnly(libs.junit5.engine)
+    testRuntimeOnly(libs.junit5.engine)
 }
 
 tasks.test {
-  useJUnitPlatform()
-  finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+    useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
 }
 
 jacoco {
-  toolVersion = "0.8.9"
-  reportsDirectory =  layout.buildDirectory.dir("jacoco")
+    toolVersion = "0.8.9"
+    reportsDirectory = layout.buildDirectory.dir("jacoco")
 }

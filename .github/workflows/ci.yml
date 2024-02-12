@@ -5,8 +5,6 @@ on:
   push:
     branches:
       - main
-      - dev
-      - dev*
       - release
   pull_request:
     branches:
@@ -21,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
@@ -39,7 +37,7 @@ jobs:
           ./gradlew clean build
 
       - name: Archive test report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Test report
           path: build/reports/tests/test

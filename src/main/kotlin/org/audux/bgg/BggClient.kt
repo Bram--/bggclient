@@ -30,8 +30,11 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.Locale
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.future.future
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.audux.bgg.common.Domains
@@ -142,6 +145,7 @@ object BggClient {
      *   fortrade, etc.) has changed or been added since the date specified (does not return results
      *   for deletions).
      */
+    @JvmStatic
     fun collection(
         userName: String,
         subType: ThingType,
@@ -214,6 +218,7 @@ object BggClient {
      * @param types Single [HotListType] returning only items of the specified type, defaults to
      *   [HotListType.BOARD_GAME].
      */
+    @JvmStatic
     fun familyItems(ids: Array<Int>, types: Array<FamilyType> = arrayOf()) =
         InternalBggClient().familyItems(ids, types)
 
@@ -224,7 +229,7 @@ object BggClient {
      * @param id The id of either the Family or Thing to retrieve
      * @param type Single [ForumListType] to retrieve, either a [Thing] or [Family]
      */
-    fun forumList(id: Int, type: ForumListType) = InternalBggClient().forumList(id, type)
+    @JvmStatic fun forumList(id: Int, type: ForumListType) = InternalBggClient().forumList(id, type)
 
     /**
      * Retrieves the list of threads for the given forum id.
@@ -236,7 +241,7 @@ object BggClient {
      * @param page Used to paginate, this is the page that is returned, only 50 threads per page are
      *   returned. Note that page 0 and 1 are the same.
      */
-    fun forum(id: Int, page: Int? = null) = InternalBggClient().forum(id, page)
+    @JvmStatic fun forum(id: Int, page: Int? = null) = InternalBggClient().forum(id, page)
 
     /**
      * Geek list endpoint, retrieves a specific geek list by its ID.
@@ -246,6 +251,7 @@ object BggClient {
      * @param id the unique ID for the geek list to retrieve
      * @param comments whether to include the comments in the response or not.
      */
+    @JvmStatic
     fun geekList(id: Number, comments: Inclusion? = null) =
         InternalBggClient().geekList(id, comments)
 
@@ -257,6 +263,7 @@ object BggClient {
      * @param sort Specifies how to sort the members list; default is username.
      * @param page The page of the members list to return. page size is 25.
      */
+    @JvmStatic
     fun guilds(id: Number, members: Inclusion? = null, sort: String? = null, page: Number? = null) =
         InternalBggClient().guilds(id, members, sort, page)
 
@@ -266,7 +273,7 @@ object BggClient {
      * @param type Single [HotListType] returning only items of the specified type, defaults to
      *   [HotListType.BOARD_GAME].
      */
-    fun hotItems(type: HotListType? = null) = InternalBggClient().hotItems(type)
+    @JvmStatic fun hotItems(type: HotListType? = null) = InternalBggClient().hotItems(type)
 
     /**
      * Request a list of plays (max 100 at the time) for the given user.
@@ -283,6 +290,7 @@ object BggClient {
      * @param subType=TYPE Limits play results to the specified TYPE; boardgame is the default.
      * @param page The page of information to request. Page size is 100 records.
      */
+    @JvmStatic
     fun plays(
         username: String,
         id: Number? = null,
@@ -302,6 +310,7 @@ object BggClient {
      *   multiple types by using more.
      * @param exactMatch Limit results to items that match the [query] exactly
      */
+    @JvmStatic
     fun search(
         query: String,
         types: Array<ThingType> = arrayOf(),
@@ -333,6 +342,7 @@ object BggClient {
      * @param pageSize Set the number of records to return in paging. Minimum is 10, maximum is 100.
      *   Defaults to 100.
      */
+    @JvmStatic
     fun things(
         ids: Array<Int>,
         types: Array<ThingType> = arrayOf(),
@@ -369,6 +379,7 @@ object BggClient {
      *   time (HH:MM:SS) or later will be returned.
      * @param count Limits the number of articles returned to no more than NNN.
      */
+    @JvmStatic
     fun thread(
         id: Int,
         minArticleId: Int? = null,
@@ -393,6 +404,7 @@ object BggClient {
      *   page higher than that needed to list all the buddies/guilds or, if you're on page 1, it
      *   means that that user has no buddies and is not part of any guilds.
      */
+    @JvmStatic
     fun user(
         name: String,
         buddies: Inclusion? = null,
@@ -483,6 +495,11 @@ internal class InternalBggClient(private val engine: () -> HttpClientEngine = { 
             val response = request()
             withContext(Dispatchers.Default) { responseCallback(response) }
         }
+
+    /** Calls/Launches a request and returns it's response. */
+    @OptIn(DelicateCoroutinesApi::class)
+    internal fun <T> callAsync(request: suspend () -> Response<T>) =
+        GlobalScope.future { request() }
 
     /** Calls/Launches a request and returns it's response. */
     internal suspend fun <T> call(request: suspend () -> Response<T>) = request()

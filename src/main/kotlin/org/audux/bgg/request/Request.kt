@@ -30,6 +30,12 @@ internal constructor(
         client.callAsync(request, response)
     }
 
+    /**
+     * Execute the encapsulated [T] request and returns [T] if successful for usage with Java's
+     * Futures.
+     */
+    fun callAsync() = client.callAsync(request)
+
     /** Execute the encapsulated [T] request and returns [T] if successful. */
     suspend fun call() = client.call(request)
 }

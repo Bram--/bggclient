@@ -37,6 +37,8 @@ repositories {
 }
 
 dependencies {
+  api(libs.kotlin.coroutines.jdk8)
+
   implementation(libs.jackson.jsr310)
   implementation(libs.jackson.kotlin)
   implementation(libs.jackson.xml)

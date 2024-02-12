@@ -16,7 +16,7 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.BggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.HotListType
 import org.audux.bgg.request.Constants.PARAM_TYPE
 import org.audux.bgg.request.Constants.PATH_HOT
@@ -30,8 +30,8 @@ import org.audux.bgg.response.Response
  * @param type Single [HotListType] returning only items of the specified type, defaults to
  *   [HotListType.BOARD_GAME].
  */
-fun BggClient.hotItems(type: HotListType? = null) = request {
-    client
+internal fun InternalBggClient.hotItems(type: HotListType? = null) = request {
+    client()
         .get(XML2_API_URL) {
             url {
                 appendPathSegments(PATH_HOT)

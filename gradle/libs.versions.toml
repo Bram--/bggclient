@@ -4,7 +4,6 @@ jackson = "2.16.+"
 javax-xml-stream = "1.0-2"
 junit5 = "5.8.1"
 kermit = "2.0.2"
-koin = "3.5.+"
 ktfmt-gradle = "0.15.1"
 ktor = "2.3.+"
 org-jetbrains-kotlin-jvm = "1.9.10"
@@ -20,10 +19,6 @@ jackson-xml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-xm
 junit5-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit5" }
 junit5-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit5" }
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
-kermit-koin = { module = "co.touchlab:kermit-koin", version.ref = "kermit" }
-koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
-koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
-koin-test-junit = { module = "io.insert-koin:koin-test-junit5", version.ref = "koin" }
 kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "dateTime" }
 kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "serialization" }
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }

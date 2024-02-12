@@ -13,35 +13,13 @@
  */
 package org.audux.bgg.util
 
-import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respondOk
 import java.io.InputStream
-import java.lang.IllegalArgumentException
-import java.lang.NullPointerException
-import org.audux.bgg.BggClient
-import org.audux.bgg.module.BggHttpEngine
-import org.koin.core.qualifier.named
-import org.koin.dsl.module
 
 object TestUtils {
-    fun setupEngineAndRequest(xmlFileName: String): BggClient {
-        return BggClient().apply {
-            getKoin()
-                .loadModules(
-                    listOf(
-                        module {
-                            factory(named<BggHttpEngine>()) {
-                                // Not useless as mockEngine needs to be bound to
-                                // HttpClientEngine and not set up a new binding for MockEngine.
-                                @Suppress("USELESS_CAST")
-                                MockEngine { respondOk(String(xml(xmlFileName).readAllBytes())) }
-                                    as HttpClientEngine
-                            }
-                        }
-                    )
-                )
-        }
+    internal fun setupMockEngine(xmlFileName: String) = MockEngine {
+        respondOk(String(xml(xmlFileName).readAllBytes()))
     }
 
     /** Returns input stream of `resources/xml/{fileName}.xml` to use in testing. */

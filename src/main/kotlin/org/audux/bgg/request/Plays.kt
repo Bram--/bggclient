@@ -18,7 +18,7 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import org.audux.bgg.BggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.PlayThingType
 import org.audux.bgg.common.SubType
 import org.audux.bgg.request.Constants.PARAM_ID
@@ -46,7 +46,7 @@ import org.audux.bgg.response.Response
  * @param subType=TYPE Limits play results to the specified TYPE; boardgame is the default.
  * @param page The page of information to request. Page size is 100 records.
  */
-fun BggClient.plays(
+internal fun InternalBggClient.plays(
     username: String,
     id: Number? = null,
     type: PlayThingType? = null,
@@ -56,7 +56,7 @@ fun BggClient.plays(
     page: Number? = null,
 ) = request {
     val formatter = DateTimeFormatter.ofPattern(Constants.REQUEST_DATE_FORMAT)
-    client
+    client()
         .get(XML2_API_URL) {
             url {
                 appendPathSegments(PATH_PLAYS)

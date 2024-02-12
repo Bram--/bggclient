@@ -18,7 +18,7 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import org.audux.bgg.BggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.request.Constants.PARAM_BGG_RATING
@@ -119,7 +119,7 @@ import org.audux.bgg.response.Response
  *   fortrade, etc.) has changed or been added since the date specified (does not return results for
  *   deletions).
  */
-fun BggClient.collection(
+internal fun InternalBggClient.collection(
     userName: String,
     subType: ThingType,
     excludeSubType: ThingType? = null,
@@ -150,7 +150,7 @@ fun BggClient.collection(
     collectionId: Int? = null,
     modifiedSince: LocalDateTime? = null,
 ) = request {
-    client
+    client()
         .get(XML2_API_URL) {
             url {
                 appendPathSegments(PATH_COLLECTION)

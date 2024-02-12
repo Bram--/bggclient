@@ -16,7 +16,7 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.BggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.response.Forum
 import org.audux.bgg.response.Response
 
@@ -30,8 +30,8 @@ import org.audux.bgg.response.Response
  * @param page Used to paginate, this is the page that is returned, only 50 threads per page are
  *   returned. Note that page 0 and 1 are the same.
  */
-fun BggClient.forum(id: Int, page: Int? = null) = request {
-    client
+internal fun InternalBggClient.forum(id: Int, page: Int? = null) = request {
+    client()
         .get(Constants.XML2_API_URL) {
             url {
                 appendPathSegments(Constants.PATH_FORUM)

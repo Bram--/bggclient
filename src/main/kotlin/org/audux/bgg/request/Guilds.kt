@@ -16,7 +16,7 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.BggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.request.Constants.PARAM_ID
 import org.audux.bgg.request.Constants.PARAM_MEMBERS
@@ -35,13 +35,13 @@ import org.audux.bgg.response.Response
  * @param sort Specifies how to sort the members list; default is username.
  * @param page The page of the members list to return. page size is 25.
  */
-fun BggClient.guilds(
+internal fun InternalBggClient.guilds(
     id: Number,
     members: Inclusion? = null,
     sort: String? = null,
     page: Number? = null
 ) = request {
-    client
+    client()
         .get(XML2_API_URL) {
             url {
                 appendPathSegments(PATH_GUILDS)

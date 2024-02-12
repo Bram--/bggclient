@@ -14,7 +14,6 @@
 package org.audux.bgg.request
 
 import com.google.common.truth.Truth.assertThat
-import io.ktor.client.engine.mock.MockEngine
 import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Parameters
@@ -22,21 +21,22 @@ import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
 import kotlinx.coroutines.runBlocking
 import org.audux.bgg.BggRequestException
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import org.koin.test.KoinTest
 
 /** Unit test for [things] extension function. */
-class ThingsRequestTest : KoinTest {
+class ThingsRequestTest {
     @Test
     fun `Makes a request with minimal parameters`() {
         runBlocking {
-            val client = TestUtils.setupEngineAndRequest("thing?id=1,2,3")
+            val engine = TestUtils.setupMockEngine("thing?id=1,2,3")
+            val client = InternalBggClient { engine }
+
             val response = client.things(ids = arrayOf(1, 2, 3)).call()
 
-            val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
@@ -66,7 +66,9 @@ class ThingsRequestTest : KoinTest {
     @Test
     fun `Makes a request with all parameters`() {
         runBlocking {
-            val client = TestUtils.setupEngineAndRequest("thing?id=1,2,3")
+            val engine = TestUtils.setupMockEngine("thing?id=1,2,3")
+            val client = InternalBggClient { engine }
+
             val response =
                 client
                     .things(
@@ -82,7 +84,6 @@ class ThingsRequestTest : KoinTest {
                     )
                     .call()
 
-            val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.url)
@@ -113,7 +114,9 @@ class ThingsRequestTest : KoinTest {
     @Test
     fun `Throws when pageSize is too large`() {
         runBlocking {
-            val client = TestUtils.setupEngineAndRequest("thing?id=1,2,3")
+            val engine = TestUtils.setupMockEngine("thing?id=1,2,3")
+            val client = InternalBggClient { engine }
+
             val exception =
                 assertThrows<BggRequestException> {
                     client.things(ids = arrayOf(1), pageSize = 10_000).call()
@@ -125,7 +128,9 @@ class ThingsRequestTest : KoinTest {
     @Test
     fun `Throws when competing parameters are set`() {
         runBlocking {
-            val client = TestUtils.setupEngineAndRequest("thing?id=1,2,3")
+            val engine = TestUtils.setupMockEngine("thing?id=1,2,3")
+            val client = InternalBggClient { engine }
+
             val exception =
                 assertThrows<BggRequestException> {
                     client.things(ids = arrayOf(1), comments = true, ratingComments = true).call()

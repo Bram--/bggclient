@@ -24,7 +24,6 @@ import kotlinx.coroutines.launch
 import org.audux.bgg.BggClient
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.examples.android.R
-import org.audux.bgg.request.collection
 import org.audux.bgg.response.Status
 
 class SearchViewModel : ViewModel() {
@@ -34,20 +33,15 @@ class SearchViewModel : ViewModel() {
   /** Perform the actual API call with the given query/username. */
   fun search(query: String) {
     // Set the Client logger to VERBOSE.
-    BggClient.setLoggerSeverity(BggClient.Companion.Severity.Verbose)
+    BggClient.setLoggerSeverity(BggClient.Severity.Verbose)
 
     // Updates the UI state to include the query and indicate a search is taking place.
     _uiState.update { _ -> SearchUiState(query = query, isSearching = true) }
 
-    // Create a new client and use it as an [AutoCloseable]
     viewModelScope.launch {
-      val response =
-          BggClient().use { client ->
-            // Actual API call happens here, trims the username and searches only for board games
-            // in the
-            // user's collection.
-            client.collection(query.trim(), subType = ThingType.BOARD_GAME).call()
-          }
+      // Actual API call happens here, trims the username and searches only for board games
+      // in the user's collection.
+      val response = BggClient.collection(query.trim(), subType = ThingType.BOARD_GAME).call()
 
       // If the response was successful update the UIState with the collection items / search
       // results.

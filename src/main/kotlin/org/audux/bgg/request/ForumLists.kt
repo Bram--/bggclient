@@ -16,7 +16,7 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.BggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.ForumListType
 import org.audux.bgg.response.Family
 import org.audux.bgg.response.ForumList
@@ -30,8 +30,8 @@ import org.audux.bgg.response.Thing
  * @param id The id of either the Family or Thing to retrieve
  * @param type Single [ForumListType] to retrieve, either a [Thing] or [Family]
  */
-fun BggClient.forumList(id: Int, type: ForumListType) = request {
-    client
+internal fun InternalBggClient.forumList(id: Int, type: ForumListType) = request {
+    client()
         .get(Constants.XML2_API_URL) {
             url {
                 appendPathSegments(Constants.PATH_FORUM_LIST)

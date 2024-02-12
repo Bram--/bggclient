@@ -14,25 +14,24 @@
 package org.audux.bgg.request
 
 import com.google.common.truth.Truth.assertThat
-import io.ktor.client.engine.mock.MockEngine
 import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import kotlinx.coroutines.runBlocking
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
-import org.koin.test.KoinTest
 
 /** Unit tests for [forum] extension function. */
-class ForumRequestTest : KoinTest {
+class ForumRequestTest {
     @Test
     fun `Makes a request with wrong forum ID`() {
         runBlocking {
-            val client = TestUtils.setupEngineAndRequest("forum?id=-1")
+            val engine = TestUtils.setupMockEngine("forum?id=-1")
+            val client = InternalBggClient { engine }
 
             val response = client.forum(id = -1).call()
 
-            val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
@@ -54,11 +53,11 @@ class ForumRequestTest : KoinTest {
     @Test
     fun `Makes a request with minimum parameters`() {
         runBlocking {
-            val client = TestUtils.setupEngineAndRequest("forum?id=3696796")
+            val engine = TestUtils.setupMockEngine("forum?id=3696796")
+            val client = InternalBggClient { engine }
 
             val response = client.forum(id = 3696796).call()
 
-            val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
@@ -80,17 +79,11 @@ class ForumRequestTest : KoinTest {
     @Test
     fun `Makes a request with all parameters`() {
         runBlocking {
-            val client = TestUtils.setupEngineAndRequest("forum?id=3696796")
+            val engine = TestUtils.setupMockEngine("forum?id=3696796")
+            val client = InternalBggClient { engine }
 
-            val response =
-                client
-                    .forum(
-                        id = 3696796,
-                        page = 0,
-                    )
-                    .call()
+            val response = client.forum(id = 3696796, page = 0).call()
 
-            val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
             assertThat(request.url)
                 .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/forum?id=3696796&page=0"))

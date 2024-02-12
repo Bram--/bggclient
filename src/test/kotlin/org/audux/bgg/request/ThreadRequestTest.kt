@@ -14,26 +14,25 @@
 package org.audux.bgg.request
 
 import com.google.common.truth.Truth.assertThat
-import io.ktor.client.engine.mock.MockEngine
 import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import java.time.LocalDateTime
 import kotlinx.coroutines.runBlocking
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
-import org.koin.test.KoinTest
 
 /** Unit tests for [thread] extension function. */
-class ThreadRequestTest : KoinTest {
+class ThreadRequestTest {
     @Test
     fun `Makes a request with wrong thread id`() {
         runBlocking {
-            val client = TestUtils.setupEngineAndRequest("thread?id=0")
+            val engine = TestUtils.setupMockEngine("thread?id=0")
+            val client = InternalBggClient { engine }
 
             val response = client.thread(id = 0).call()
 
-            val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
@@ -59,11 +58,11 @@ class ThreadRequestTest : KoinTest {
     @Test
     fun `Makes a request with minimum parameters`() {
         runBlocking {
-            val client = TestUtils.setupEngineAndRequest("thread")
+            val engine = TestUtils.setupMockEngine("thread")
+            val client = InternalBggClient { engine }
 
             val response = client.thread(id = 3208373).call()
 
-            val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
@@ -85,7 +84,8 @@ class ThreadRequestTest : KoinTest {
     @Test
     fun `Makes a request with all parameters`() {
         runBlocking {
-            val client = TestUtils.setupEngineAndRequest("thread")
+            val engine = TestUtils.setupMockEngine("thread")
+            val client = InternalBggClient { engine }
 
             val response =
                 client
@@ -97,7 +97,6 @@ class ThreadRequestTest : KoinTest {
                     )
                     .call()
 
-            val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
             assertThat(request.url)
                 .isEqualTo(

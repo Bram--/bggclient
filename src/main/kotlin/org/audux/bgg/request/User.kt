@@ -16,7 +16,7 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.BggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.Domains
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.request.Constants.PARAM_BUDDIES
@@ -48,7 +48,7 @@ import org.audux.bgg.response.User
  *   higher than that needed to list all the buddies/guilds or, if you're on page 1, it means that
  *   that user has no buddies and is not part of any guilds.
  */
-fun BggClient.user(
+internal fun InternalBggClient.user(
     name: String,
     buddies: Inclusion? = null,
     guilds: Inclusion? = null,
@@ -57,7 +57,7 @@ fun BggClient.user(
     domain: Domains? = null,
     page: Number? = null,
 ) = request {
-    client
+    client()
         .get(XML2_API_URL) {
             url {
                 appendPathSegments(PATH_USER)

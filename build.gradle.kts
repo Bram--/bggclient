@@ -51,8 +51,9 @@ dependencies {
   implementation(libs.slf4j)
 
   // Testing dependencies.
+  testApi(libs.ktor.client.mock)
+
   testImplementation(libs.junit5.api)
-  testImplementation(libs.ktor.client.mock)
   testImplementation(libs.truth)
 
   testRuntimeOnly(libs.junit5.engine)

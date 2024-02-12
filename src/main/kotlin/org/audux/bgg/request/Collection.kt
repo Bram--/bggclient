@@ -18,7 +18,7 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.BggClient.InternalBggClient
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.request.Constants.PARAM_BGG_RATING

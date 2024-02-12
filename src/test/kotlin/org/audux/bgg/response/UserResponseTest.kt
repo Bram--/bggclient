@@ -16,14 +16,14 @@ package org.audux.bgg.response
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
 import java.time.LocalDate
-import org.audux.bgg.InternalBggClient
 import org.audux.bgg.response.WrappedValueSubject.Companion.assertThat
+import org.audux.bgg.util.TestUtils
 import org.audux.bgg.util.TestUtils.xml
 import org.junit.jupiter.api.Test
 
 /** Test class for [User] data classes. */
 class UserResponseTest {
-    private val mapper: ObjectMapper = InternalBggClient().mapper
+    private val mapper: ObjectMapper = TestUtils.getBggClientMapper()
 
     @Test
     fun `Parses empty response`() {

@@ -19,7 +19,6 @@ import com.google.common.truth.Truth.assertThat
 import java.net.URI
 import java.time.LocalDate
 import java.time.LocalDateTime
-import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Nested
@@ -27,7 +26,7 @@ import org.junit.jupiter.api.Test
 
 /** Test class for [Things] data classes. */
 class ThingsResponseTest {
-    private val mapper: ObjectMapper = InternalBggClient().mapper
+    private val mapper: ObjectMapper = TestUtils.getBggClientMapper()
 
     @Test
     fun `parses an empty response`() {

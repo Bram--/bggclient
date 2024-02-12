@@ -13,7 +13,7 @@
  */
 package org.audux.bgg.request
 
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.BggClient.InternalBggClient
 import org.audux.bgg.response.Response
 
 /** Encapsulates a request to BGG so it can be scheduled or queued for later execution. */
@@ -29,6 +29,12 @@ internal constructor(
     fun callAsync(response: (Response<T>) -> Unit) {
         client.callAsync(request, response)
     }
+
+    /**
+     * Execute the encapsulated [T] request and returns [T] if successful for usage with Java's
+     * Futures.
+     */
+    fun callAsync() = client.callAsync(request)
 
     /** Execute the encapsulated [T] request and returns [T] if successful. */
     suspend fun call() = client.call(request)

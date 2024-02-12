@@ -18,7 +18,7 @@ import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.BggClient
 import org.audux.bgg.common.ForumListType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
@@ -29,11 +29,10 @@ class ForumListRequestTest {
     fun `Makes a request with all parameters`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("forumlist")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
             val response =
-                client
-                    .forumList(
+                BggClient.forumList(
                         id = 342942,
                         type = ForumListType.THING,
                     )

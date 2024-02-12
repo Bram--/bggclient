@@ -19,7 +19,7 @@ import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import java.time.LocalDate
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.BggClient
 import org.audux.bgg.common.PlayThingType
 import org.audux.bgg.common.SubType
 import org.audux.bgg.util.TestUtils
@@ -32,9 +32,9 @@ class PlaysRequestTest {
     fun `Makes a request with invalid username`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("plays?username=userdoesnotexist")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
-            val response = client.plays(username = "userdoesnotexist").call()
+            val response = BggClient.plays(username = "userdoesnotexist").call()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
@@ -65,9 +65,9 @@ class PlaysRequestTest {
     fun `Makes a request with minimum parameters`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("plays?username=Novaeux")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
-            val response = client.plays(username = "Novaeux").call()
+            val response = BggClient.plays(username = "Novaeux").call()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
@@ -91,11 +91,10 @@ class PlaysRequestTest {
     fun `Makes a request with all parameters`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("plays?username=Novaeux")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
             val response =
-                client
-                    .plays(
+                BggClient.plays(
                         username = "Novaeux",
                         page = 1,
                         subType = SubType.BOARD_GAME,

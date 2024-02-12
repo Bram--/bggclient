@@ -37,6 +37,8 @@ repositories {
 }
 
 dependencies {
+  api(libs.kotlin.coroutines.jdk8)
+
   implementation(libs.jackson.jsr310)
   implementation(libs.jackson.kotlin)
   implementation(libs.jackson.xml)
@@ -49,8 +51,9 @@ dependencies {
   implementation(libs.slf4j)
 
   // Testing dependencies.
+  testApi(libs.ktor.client.mock)
+
   testImplementation(libs.junit5.api)
-  testImplementation(libs.ktor.client.mock)
   testImplementation(libs.truth)
 
   testRuntimeOnly(libs.junit5.engine)

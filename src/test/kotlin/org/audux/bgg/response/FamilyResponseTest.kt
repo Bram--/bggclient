@@ -15,7 +15,6 @@ package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
-import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.FamilyType
 import org.audux.bgg.common.Link
 import org.audux.bgg.common.Name
@@ -24,7 +23,7 @@ import org.junit.jupiter.api.Test
 
 /** Unit test for [Family] data classes. */
 class FamilyResponseTest {
-    private val mapper: ObjectMapper = InternalBggClient().mapper
+    private val mapper: ObjectMapper = TestUtils.getBggClientMapper()
 
     @Test
     fun `Parses empty response`() {

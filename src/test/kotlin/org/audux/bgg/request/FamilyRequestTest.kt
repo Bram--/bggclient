@@ -18,7 +18,7 @@ import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.BggClient
 import org.audux.bgg.common.FamilyType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
@@ -29,9 +29,9 @@ class FamilyRequestTest {
     fun `Makes a request with minimum parameters`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("family")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
-            val response = client.familyItems(ids = arrayOf(50152)).call()
+            val response = BggClient.familyItems(ids = arrayOf(50152)).call()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
@@ -56,11 +56,10 @@ class FamilyRequestTest {
     fun `Makes a request with all parameters`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("family")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
             val response =
-                client
-                    .familyItems(
+                BggClient.familyItems(
                         ids = arrayOf(50152, 50153),
                         arrayOf(FamilyType.BOARD_GAME_FAMILY, FamilyType.RPG)
                     )

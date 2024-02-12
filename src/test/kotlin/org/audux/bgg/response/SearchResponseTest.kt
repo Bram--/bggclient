@@ -15,26 +15,16 @@ package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.Name
 import org.audux.bgg.common.ThingType
-import org.audux.bgg.module.BggXmlObjectMapper
-import org.audux.bgg.module.appModule
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.RegisterExtension
-import org.koin.core.component.inject
-import org.koin.core.qualifier.named
 import org.koin.test.KoinTest
-import org.koin.test.junit5.KoinTestExtension
 
 /** Unit test for [SearchResult] data classes. */
 class SearchResponseTest : KoinTest {
-    @JvmField
-    @RegisterExtension
-    @Suppress("unused")
-    val koinTestExtension = KoinTestExtension.create { modules(appModule) }
-
-    private val mapper: ObjectMapper by inject(named<BggXmlObjectMapper>())
+    private val mapper: ObjectMapper = InternalBggClient().mapper
 
     @Test
     fun `Parses empty response`() {

@@ -14,26 +14,25 @@
 package org.audux.bgg.request
 
 import com.google.common.truth.Truth.assertThat
-import io.ktor.client.engine.mock.MockEngine
 import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import kotlinx.coroutines.runBlocking
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.HotListType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
-import org.koin.test.KoinTest
 
 /** Unit tests for [hotItems] extension function. */
-class HotRequestTest : KoinTest {
+class HotRequestTest {
     @Test
     fun `Makes a request with all parameters`() {
         runBlocking {
-            val client = TestUtils.setupEngineAndRequest("hot")
+            val engine = TestUtils.setupMockEngine("hot")
+            val client = InternalBggClient { engine }
 
             val response = client.hotItems(HotListType.BOARD_GAME).call()
 
-            val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)

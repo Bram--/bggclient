@@ -16,7 +16,7 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.BggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.request.Constants.PARAM_EXACT
 import org.audux.bgg.request.Constants.PARAM_QUERY
@@ -35,12 +35,12 @@ import org.audux.bgg.response.SearchResults
  *   multiple types by using more.
  * @param exactMatch Limit results to items that match the [query] exactly
  */
-fun BggClient.search(
+internal fun InternalBggClient.search(
     query: String,
     types: Array<ThingType> = arrayOf(),
     exactMatch: Boolean = false,
 ) = request {
-    client
+    client()
         .get(XML2_API_URL) {
             url {
                 appendPathSegments(PATH_SEARCH)

@@ -18,7 +18,7 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import org.audux.bgg.BggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.response.Response
 import org.audux.bgg.response.Thread
 
@@ -32,13 +32,13 @@ import org.audux.bgg.response.Thread
  *   (HH:MM:SS) or later will be returned.
  * @param count Limits the number of articles returned to no more than NNN.
  */
-fun BggClient.thread(
+internal fun InternalBggClient.thread(
     id: Int,
     minArticleId: Int? = null,
     minArticleDate: LocalDateTime? = null,
     count: Int? = null
 ) = request {
-    client
+    client()
         .get(Constants.XML2_API_URL) {
             url {
                 appendPathSegments(Constants.PATH_THREAD)

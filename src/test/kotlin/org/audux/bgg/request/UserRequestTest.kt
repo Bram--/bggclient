@@ -14,30 +14,29 @@
 package org.audux.bgg.request
 
 import com.google.common.truth.Truth.assertThat
-import io.ktor.client.engine.mock.MockEngine
 import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import kotlinx.coroutines.runBlocking
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.Domains
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
-import org.koin.test.KoinTest
 
 /** Unit tests for [user] extension function. */
-class UserRequestTest : KoinTest {
+class UserRequestTest {
     @Test
     fun `Makes a request with minimum parameters`() {
         runBlocking {
-            val client =
-                TestUtils.setupEngineAndRequest(
+            val engine =
+                TestUtils.setupMockEngine(
                     "user?name=Novaeux&buddies=1&hot=1&top=1&guilds=1&page=1&domain=boardgame"
                 )
+            val client = InternalBggClient { engine }
 
             val response = client.user(name = "Novaeux").call()
 
-            val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
@@ -59,10 +58,11 @@ class UserRequestTest : KoinTest {
     @Test
     fun `Makes a request with all parameters`() {
         runBlocking {
-            val client =
-                TestUtils.setupEngineAndRequest(
+            val engine =
+                TestUtils.setupMockEngine(
                     "user?name=Novaeux&buddies=1&hot=1&top=1&guilds=1&page=1&domain=boardgame"
                 )
+            val client = InternalBggClient { engine }
 
             val response =
                 client
@@ -77,7 +77,6 @@ class UserRequestTest : KoinTest {
                     )
                     .call()
 
-            val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
             assertThat(request.url)
                 .isEqualTo(

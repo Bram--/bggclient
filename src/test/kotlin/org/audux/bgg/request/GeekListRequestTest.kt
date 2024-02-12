@@ -14,26 +14,25 @@
 package org.audux.bgg.request
 
 import com.google.common.truth.Truth.assertThat
-import io.ktor.client.engine.mock.MockEngine
 import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import kotlinx.coroutines.runBlocking
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
-import org.koin.test.KoinTest
 
 /** Unit tests for [geekList] extension function. */
-class GeekListRequestTest : KoinTest {
+class GeekListRequestTest {
     @Test
     fun `Makes a request with minimal parameters`() {
         runBlocking {
-            val client = TestUtils.setupEngineAndRequest("geeklist?id=331520")
+            val engine = TestUtils.setupMockEngine("geeklist?id=331520")
+            val client = InternalBggClient { engine }
 
             val response = client.geekList(id = 331520).call()
 
-            val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
@@ -55,11 +54,11 @@ class GeekListRequestTest : KoinTest {
     @Test
     fun `Makes a request with all parameters`() {
         runBlocking {
-            val client = TestUtils.setupEngineAndRequest("geeklist?id=331520&comments=1")
+            val engine = TestUtils.setupMockEngine("geeklist?id=331520&comments=1")
+            val client = InternalBggClient { engine }
 
             val response = client.geekList(id = 331520, comments = Inclusion.INCLUDE).call()
 
-            val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)

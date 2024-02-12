@@ -16,8 +16,8 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.BggClient
 import org.audux.bgg.BggRequestException
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.request.Constants.PARAM_COMMENTS
 import org.audux.bgg.request.Constants.PARAM_ID
@@ -58,7 +58,7 @@ import org.audux.bgg.response.Things
  * @param pageSize Set the number of records to return in paging. Minimum is 10, maximum is 100.
  *   Defaults to 100.
  */
-fun BggClient.things(
+internal fun InternalBggClient.things(
     ids: Array<Int>,
     types: Array<ThingType> = arrayOf(),
     stats: Boolean = false,
@@ -77,7 +77,7 @@ fun BggClient.things(
         throw BggRequestException("comments and ratingsComments can't both be true")
     }
 
-    client
+    client()
         .get(XML2_API_URL) {
             url {
                 appendPathSegments(PATH_THING)

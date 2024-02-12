@@ -14,26 +14,25 @@
 package org.audux.bgg.request
 
 import com.google.common.truth.Truth.assertThat
-import io.ktor.client.engine.mock.MockEngine
 import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import kotlinx.coroutines.runBlocking
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.FamilyType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
-import org.koin.test.KoinTest
 
 /** Unit tests for [familyItems] extension function. */
-class FamilyRequestTest : KoinTest {
+class FamilyRequestTest {
     @Test
     fun `Makes a request with minimum parameters`() {
         runBlocking {
-            val client = TestUtils.setupEngineAndRequest("family")
+            val engine = TestUtils.setupMockEngine("family")
+            val client = InternalBggClient { engine }
 
             val response = client.familyItems(ids = arrayOf(50152)).call()
 
-            val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
@@ -56,7 +55,8 @@ class FamilyRequestTest : KoinTest {
     @Test
     fun `Makes a request with all parameters`() {
         runBlocking {
-            val client = TestUtils.setupEngineAndRequest("family")
+            val engine = TestUtils.setupMockEngine("family")
+            val client = InternalBggClient { engine }
 
             val response =
                 client
@@ -66,7 +66,6 @@ class FamilyRequestTest : KoinTest {
                     )
                     .call()
 
-            val engine = client.engine() as MockEngine
             val request = engine.requestHistory[0]
             assertThat(request.url)
                 .isEqualTo(

@@ -26,6 +26,7 @@ import org.audux.bgg.module.BggKtorClient
 import org.audux.bgg.module.BggXmlObjectMapper
 import org.audux.bgg.module.appModule
 import org.audux.bgg.request.Request
+import org.audux.bgg.request.user
 import org.audux.bgg.response.Response
 import org.jetbrains.annotations.VisibleForTesting
 import org.koin.core.component.KoinComponent
@@ -69,10 +70,34 @@ class BggClient : KoinComponent, AutoCloseable {
     /**
      * Calls/Launches a request async, once a response is available it will call [responseCallback].
      */
+<<<<<<< Updated upstream
     internal fun <T> callAsync(request: suspend () -> T, responseCallback: (T) -> Unit) {
         clientScope.launch {
             val response = request()
             withContext(Dispatchers.Default) { responseCallback(response) }
+=======
+    internal fun <T> callAsync(request: suspend () -> T, responseCallback: (T) -> Unit) =
+        clientScope.launch {
+            println("Launched?")
+
+            try {
+                val response = request()
+                println(response)
+                withContext(Dispatchers.Default) {
+                    println("DEFAULT")
+
+                    try {
+                        responseCallback(response)
+                    } catch (e: Exception) {
+                        println(e)
+                        throw e
+                    }
+                }
+            } catch (e: Exception) {
+                print(e)
+                throw e
+            }
+>>>>>>> Stashed changes
         }
     }
 
@@ -89,6 +114,21 @@ class BggClient : KoinComponent, AutoCloseable {
     @VisibleForTesting internal fun engine() = client.engine
 
     companion object {
+
+        @JvmStatic
+        fun main(args: Array<String>) {
+            BggClient().use { client ->
+                try {
+                    client.user("test").callAsync { println(it) }
+                } catch (e: Exception) {
+                    println(e)
+                    e.printStackTrace()
+                }
+            }
+
+            Thread.sleep(10_000)
+        }
+
         /** Logging level Severity for the BGGClient logging. */
         enum class Severity {
             Verbose,

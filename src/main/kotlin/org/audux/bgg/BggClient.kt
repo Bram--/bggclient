@@ -30,8 +30,11 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.Locale
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.future.future
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.audux.bgg.common.Domains
@@ -75,6 +78,8 @@ object BggClient {
     init {
         setLoggerSeverity(Severity.Warn)
     }
+
+    var engine = { CIO.create() }
 
     /**
      * Request details about a user's collection.
@@ -142,6 +147,7 @@ object BggClient {
      *   fortrade, etc.) has changed or been added since the date specified (does not return results
      *   for deletions).
      */
+    @JvmStatic
     fun collection(
         userName: String,
         subType: ThingType,
@@ -173,7 +179,7 @@ object BggClient {
         collectionId: Int? = null,
         modifiedSince: LocalDateTime? = null
     ) =
-        InternalBggClient()
+        InternalBggClient(engine)
             .collection(
                 userName,
                 subType,
@@ -214,8 +220,9 @@ object BggClient {
      * @param types Single [HotListType] returning only items of the specified type, defaults to
      *   [HotListType.BOARD_GAME].
      */
+    @JvmStatic
     fun familyItems(ids: Array<Int>, types: Array<FamilyType> = arrayOf()) =
-        InternalBggClient().familyItems(ids, types)
+        InternalBggClient(engine).familyItems(ids, types)
 
     /**
      * Retrieves the list of available forums for the given id / type combination. e.g. Retrieve all
@@ -224,7 +231,8 @@ object BggClient {
      * @param id The id of either the Family or Thing to retrieve
      * @param type Single [ForumListType] to retrieve, either a [Thing] or [Family]
      */
-    fun forumList(id: Int, type: ForumListType) = InternalBggClient().forumList(id, type)
+    @JvmStatic
+    fun forumList(id: Int, type: ForumListType) = InternalBggClient(engine).forumList(id, type)
 
     /**
      * Retrieves the list of threads for the given forum id.
@@ -236,7 +244,7 @@ object BggClient {
      * @param page Used to paginate, this is the page that is returned, only 50 threads per page are
      *   returned. Note that page 0 and 1 are the same.
      */
-    fun forum(id: Int, page: Int? = null) = InternalBggClient().forum(id, page)
+    @JvmStatic fun forum(id: Int, page: Int? = null) = InternalBggClient(engine).forum(id, page)
 
     /**
      * Geek list endpoint, retrieves a specific geek list by its ID.
@@ -246,8 +254,9 @@ object BggClient {
      * @param id the unique ID for the geek list to retrieve
      * @param comments whether to include the comments in the response or not.
      */
+    @JvmStatic
     fun geekList(id: Number, comments: Inclusion? = null) =
-        InternalBggClient().geekList(id, comments)
+        InternalBggClient(engine).geekList(id, comments)
 
     /**
      * Retrieve information about the given guild (id) like name, description, members etc.
@@ -257,8 +266,9 @@ object BggClient {
      * @param sort Specifies how to sort the members list; default is username.
      * @param page The page of the members list to return. page size is 25.
      */
+    @JvmStatic
     fun guilds(id: Number, members: Inclusion? = null, sort: String? = null, page: Number? = null) =
-        InternalBggClient().guilds(id, members, sort, page)
+        InternalBggClient(engine).guilds(id, members, sort, page)
 
     /**
      * Hotness endpoint that retrieve the list of most 50 active items on the site filtered by type.
@@ -266,7 +276,7 @@ object BggClient {
      * @param type Single [HotListType] returning only items of the specified type, defaults to
      *   [HotListType.BOARD_GAME].
      */
-    fun hotItems(type: HotListType? = null) = InternalBggClient().hotItems(type)
+    @JvmStatic fun hotItems(type: HotListType? = null) = InternalBggClient(engine).hotItems(type)
 
     /**
      * Request a list of plays (max 100 at the time) for the given user.
@@ -283,6 +293,7 @@ object BggClient {
      * @param subType=TYPE Limits play results to the specified TYPE; boardgame is the default.
      * @param page The page of information to request. Page size is 100 records.
      */
+    @JvmStatic
     fun plays(
         username: String,
         id: Number? = null,
@@ -291,7 +302,7 @@ object BggClient {
         maxDate: LocalDate? = null,
         subType: SubType? = null,
         page: Number? = null,
-    ) = InternalBggClient().plays(username, id, type, minDate, maxDate, subType, page)
+    ) = InternalBggClient(engine).plays(username, id, type, minDate, maxDate, subType, page)
 
     /**
      * Search endpoint that allows searching by name for things on BGG.
@@ -302,11 +313,12 @@ object BggClient {
      *   multiple types by using more.
      * @param exactMatch Limit results to items that match the [query] exactly
      */
+    @JvmStatic
     fun search(
         query: String,
         types: Array<ThingType> = arrayOf(),
         exactMatch: Boolean = false,
-    ) = InternalBggClient().search(query, types, exactMatch)
+    ) = InternalBggClient(engine).search(query, types, exactMatch)
 
     /**
      * Request a Thing or list of things. Multiple things can be requested by passing in several
@@ -333,6 +345,7 @@ object BggClient {
      * @param pageSize Set the number of records to return in paging. Minimum is 10, maximum is 100.
      *   Defaults to 100.
      */
+    @JvmStatic
     fun things(
         ids: Array<Int>,
         types: Array<ThingType> = arrayOf(),
@@ -345,7 +358,7 @@ object BggClient {
         page: Int = 0,
         pageSize: Int = 0,
     ) =
-        InternalBggClient()
+        InternalBggClient(engine)
             .things(
                 ids,
                 types,
@@ -369,12 +382,13 @@ object BggClient {
      *   time (HH:MM:SS) or later will be returned.
      * @param count Limits the number of articles returned to no more than NNN.
      */
+    @JvmStatic
     fun thread(
         id: Int,
         minArticleId: Int? = null,
         minArticleDate: LocalDateTime? = null,
         count: Int? = null
-    ) = InternalBggClient().thread(id, minArticleId, minArticleDate, count)
+    ) = InternalBggClient(engine).thread(id, minArticleId, minArticleDate, count)
 
     /**
      * User endpoint that retrieves a specific user by their [name].
@@ -393,6 +407,7 @@ object BggClient {
      *   page higher than that needed to list all the buddies/guilds or, if you're on page 1, it
      *   means that that user has no buddies and is not part of any guilds.
      */
+    @JvmStatic
     fun user(
         name: String,
         buddies: Inclusion? = null,
@@ -401,7 +416,7 @@ object BggClient {
         hot: Inclusion? = null,
         domain: Domains? = null,
         page: Number? = null,
-    ) = InternalBggClient().user(name, buddies, guilds, top, hot, domain, page)
+    ) = InternalBggClient(engine).user(name, buddies, guilds, top, hot, domain, page)
 
     /** Logging level Severity for the BGGClient logging. */
     enum class Severity {
@@ -427,68 +442,75 @@ object BggClient {
             }
         )
     }
-}
 
-/** Internal BGG Client containing the actual implementations of the API Calls. */
-internal class InternalBggClient(private val engine: () -> HttpClientEngine = { CIO.create() }) {
-    private val clientScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+    /** Internal BGG Client containing the actual implementations of the API Calls. */
+    internal class InternalBggClient(private val engine: () -> HttpClientEngine) {
+        private val clientScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
-    internal val client = {
-        HttpClient(engine()) {
-            install(ClientRateLimitPlugin) { requestLimit = 10 }
-            install(HttpRequestRetry) {
-                exponentialDelay()
-                retryIf(maxRetries = 5) { _, response ->
-                    response.status.value.let {
-                        // Add 202 (Accepted) for retries, see:
-                        // https://boardgamegeek.com/thread/1188687/export-collections-has-been-updated-xmlapi-develop
-                        it in (500..599) + 202
+        internal val client = {
+            HttpClient(engine()) {
+                install(ClientRateLimitPlugin) { requestLimit = 10 }
+                install(HttpRequestRetry) {
+                    exponentialDelay()
+                    retryIf(maxRetries = 5) { _, response ->
+                        response.status.value.let {
+                            // Add 202 (Accepted) for retries, see:
+                            // https://boardgamegeek.com/thread/1188687/export-collections-has-been-updated-xmlapi-develop
+                            it in (500..599) + 202
+                        }
                     }
                 }
+
+                expectSuccess = true
+            }
+        }
+
+        val mapper: ObjectMapper =
+            XmlMapper.builder()
+                .apply {
+                    configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
+                    configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true)
+
+                    addModule(JacksonXmlModule())
+                    addModule(JavaTimeModule())
+                    addModule(
+                        KotlinModule.Builder()
+                            .enable(KotlinFeature.NullToEmptyCollection)
+                            .enable(KotlinFeature.StrictNullChecks)
+                            .build()
+                    )
+
+                    // Keep hardcoded to US: https://bugs.openjdk.org/browse/JDK-8251317
+                    // en_GB Locale uses 'Sept' as a shortname when formatting dates (e.g. 'MMM').
+                    // The
+                    // locale en_US remains 'Sep'.
+                    defaultLocale(Locale.US)
+                    defaultMergeable(true)
+                    defaultUseWrapper(false)
+                }
+                .build()
+
+        /**
+         * Calls/Launches a request async, once a response is available it will call
+         * [responseCallback].
+         */
+        internal fun <T> callAsync(request: suspend () -> T, responseCallback: (T) -> Unit) =
+            clientScope.launch {
+                val response = request()
+                withContext(Dispatchers.Default) { responseCallback(response) }
             }
 
-            expectSuccess = true
-        }
+        /** Calls/Launches a request and returns it's response. */
+        @OptIn(DelicateCoroutinesApi::class)
+        internal fun <T> callAsync(request: suspend () -> Response<T>) =
+            GlobalScope.future { request() }
+
+        /** Calls/Launches a request and returns it's response. */
+        internal suspend fun <T> call(request: suspend () -> Response<T>) = request()
+
+        /** Returns a wrapped request for later execution. */
+        internal fun <T> request(request: suspend () -> Response<T>) = Request(this, request)
     }
-
-    internal val mapper: ObjectMapper =
-        XmlMapper.builder()
-            .apply {
-                configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
-                configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true)
-
-                addModule(JacksonXmlModule())
-                addModule(JavaTimeModule())
-                addModule(
-                    KotlinModule.Builder()
-                        .enable(KotlinFeature.NullToEmptyCollection)
-                        .enable(KotlinFeature.StrictNullChecks)
-                        .build()
-                )
-
-                // Keep hardcoded to US: https://bugs.openjdk.org/browse/JDK-8251317
-                // en_GB Locale uses 'Sept' as a shortname when formatting dates (e.g. 'MMM'). The
-                // locale en_US remains 'Sep'.
-                defaultLocale(Locale.US)
-                defaultMergeable(true)
-                defaultUseWrapper(false)
-            }
-            .build()
-
-    /**
-     * Calls/Launches a request async, once a response is available it will call [responseCallback].
-     */
-    internal fun <T> callAsync(request: suspend () -> T, responseCallback: (T) -> Unit) =
-        clientScope.launch {
-            val response = request()
-            withContext(Dispatchers.Default) { responseCallback(response) }
-        }
-
-    /** Calls/Launches a request and returns it's response. */
-    internal suspend fun <T> call(request: suspend () -> Response<T>) = request()
-
-    /** Returns a wrapped request for later execution. */
-    internal fun <T> request(request: suspend () -> Response<T>) = Request(this, request)
 }
 
 /** Thrown whenever any exception is thrown during a request to BGG. */

@@ -16,7 +16,6 @@ package org.audux.bgg.response
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
 import java.time.LocalDateTime
-import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.SubType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
@@ -24,7 +23,7 @@ import org.junit.jupiter.api.assertThrows
 
 /** Unit test for [GeekList] data classes. */
 class GeekListResponseTest {
-    private val mapper: ObjectMapper = InternalBggClient().mapper
+    private val mapper: ObjectMapper = TestUtils.getBggClientMapper()
 
     @Test
     fun `Parses empty response`() {

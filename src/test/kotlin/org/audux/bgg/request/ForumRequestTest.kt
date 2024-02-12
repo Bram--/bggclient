@@ -18,7 +18,7 @@ import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.BggClient
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 
@@ -28,9 +28,9 @@ class ForumRequestTest {
     fun `Makes a request with wrong forum ID`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("forum?id=-1")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
-            val response = client.forum(id = -1).call()
+            val response = BggClient.forum(id = -1).call()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
@@ -54,9 +54,9 @@ class ForumRequestTest {
     fun `Makes a request with minimum parameters`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("forum?id=3696796")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
-            val response = client.forum(id = 3696796).call()
+            val response = BggClient.forum(id = 3696796).call()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
@@ -80,9 +80,9 @@ class ForumRequestTest {
     fun `Makes a request with all parameters`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("forum?id=3696796")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
-            val response = client.forum(id = 3696796, page = 0).call()
+            val response = BggClient.forum(id = 3696796, page = 0).call()
 
             val request = engine.requestHistory[0]
             assertThat(request.url)

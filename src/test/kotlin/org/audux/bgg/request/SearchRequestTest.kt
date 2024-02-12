@@ -18,7 +18,7 @@ import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.BggClient
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
@@ -29,9 +29,9 @@ class SearchRequestTest {
     fun `Makes a request with minimum parameters`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("search?query=my+little")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
-            val response = client.search(query = "my little").call()
+            val response = BggClient.search(query = "my little").call()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
@@ -57,11 +57,10 @@ class SearchRequestTest {
     fun `Makes a request with all parameters`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("search?query=my+little")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
             val response =
-                client
-                    .search(
+                BggClient.search(
                         query = "my little",
                         types = arrayOf(ThingType.BOARD_GAME, ThingType.RPG_ITEM),
                         exactMatch = true

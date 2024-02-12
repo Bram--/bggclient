@@ -17,13 +17,12 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import org.audux.bgg.InternalBggClient
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 
 /** Unit test for [ForumList] data classes. */
 class ForumListResponseTest {
-    private val mapper: ObjectMapper = InternalBggClient().mapper
+    private val mapper: ObjectMapper = TestUtils.getBggClientMapper()
 
     @Test
     fun `Parses empty response`() {

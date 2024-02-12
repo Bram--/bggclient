@@ -26,6 +26,7 @@ import io.ktor.client.request.get
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 /** Tests for [ClientRateLimitPlugin] and [ConcurrentRequestLimiter]. */
@@ -37,6 +38,12 @@ class ClientRateLimitPluginTest {
             delay(50)
             respondOk("OK")
         }
+
+    @BeforeEach
+    fun beforeEach() {
+        ConcurrentLinkedSingletonQueue.instance.reset()
+        AtomicSingletonInteger.instance.reset()
+    }
 
     @Test
     fun `Does not enqueue incoming requests that do not exceed the concurrent requests limit`() {
@@ -92,6 +99,33 @@ class ClientRateLimitPluginTest {
         // After all coroutines have finished ensure 3 requests are made
         val engine = client.engine as MockEngine
         assertThat(engine.requestHistory).hasSize(3)
+    }
+
+    @Test
+    fun `Enqueues incoming requests that would exceed the concurrent requests limit even for different clients`() {
+        val clients =
+            listOf(
+                createClient(requestLimit = 2) { addHandler(delayedResponse) },
+                createClient(requestLimit = 2) { addHandler(delayedResponse) },
+                createClient(requestLimit = 2) { addHandler(delayedResponse) },
+                createClient(requestLimit = 2) { addHandler(delayedResponse) },
+                createClient(requestLimit = 2) { addHandler(delayedResponse) },
+            )
+
+        runBlocking {
+            // Launch 5 concurrent requests
+            clients.forEach { client -> launch { client.get("/") } }
+            // Minor delay to ensure client.get calls are done
+            delay(10)
+
+            // Ensure 2 requests are in-flight and 3 are queued.
+            assertThat(requestLimiter.inFlightRequests.get()).isEqualTo(2)
+            assertThat(requestLimiter.requestQueue).hasSize(3)
+        }
+
+        // After all coroutines have finished ensure 3 requests are made
+        val totalRequests = clients.map { it.engine as MockEngine }.sumOf { it.requestHistory.size }
+        assertThat(totalRequests).isEqualTo(5)
     }
 
     private fun createClient(

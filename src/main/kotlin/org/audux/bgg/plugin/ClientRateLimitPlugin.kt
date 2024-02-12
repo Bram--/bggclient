@@ -21,6 +21,8 @@ import io.ktor.client.request.request
 import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.atomic.AtomicInteger
 import org.audux.bgg.BggRequestException
+import org.jetbrains.annotations.Contract
+import org.jetbrains.annotations.VisibleForTesting
 
 /**
  * Ktor plugin to configure the client to limit the number of concurrent requests it can make.
@@ -42,8 +44,8 @@ val ClientRateLimitPlugin =
  * [ConcurrentRequestLimiterConfiguration.requestLimit] are being made concurrently.
  */
 class ConcurrentRequestLimiter(private val client: HttpClient, private val requestLimit: Int) {
-    internal val inFlightRequests = AtomicInteger(0)
-    internal val requestQueue = ConcurrentLinkedQueue<HttpRequestBuilder>()
+    internal val inFlightRequests = AtomicSingletonInteger.instance
+    internal val requestQueue = ConcurrentLinkedSingletonQueue.instance
 
     /**
      * Cancels the request and adds it to the [requestQueue] to be re-requested when a response
@@ -93,4 +95,37 @@ class ConcurrentRequestLimiter(private val client: HttpClient, private val reque
  */
 class ConcurrentRequestLimiterConfiguration {
     var requestLimit: Int = 10
+}
+
+/**
+ * Singleton [AtomicInteger] to be shared between [org.audux.bgg.BggClient] instances as a new
+ * instance of the plugin is created for each client.
+ */
+internal class AtomicSingletonInteger
+@Contract(pure = true)
+private constructor(initialValue: Int) : AtomicInteger(initialValue) {
+    companion object {
+        val instance: AtomicSingletonInteger by lazy { AtomicSingletonInteger(0) }
+    }
+
+    /** Clears the in-flight requests counter. */
+    @VisibleForTesting fun reset() = this.set(0)
+
+    override fun toByte() = get().toByte()
+
+    override fun toShort() = get().toShort()
+}
+
+/**
+ * Singleton [AtomicInteger] to be shared between [org.audux.bgg.BggClient] instances as a new
+ * instance of the plugin is created for each client.
+ */
+internal class ConcurrentLinkedSingletonQueue private constructor() :
+    ConcurrentLinkedQueue<HttpRequestBuilder>() {
+    companion object {
+        val instance: ConcurrentLinkedSingletonQueue by lazy { ConcurrentLinkedSingletonQueue() }
+    }
+
+    /** Clears the queue for testing. */
+    @VisibleForTesting fun reset() = this.clear()
 }

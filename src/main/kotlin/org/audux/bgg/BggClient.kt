@@ -70,12 +70,6 @@ class BggClient : KoinComponent, AutoCloseable {
     /**
      * Calls/Launches a request async, once a response is available it will call [responseCallback].
      */
-<<<<<<< Updated upstream
-    internal fun <T> callAsync(request: suspend () -> T, responseCallback: (T) -> Unit) {
-        clientScope.launch {
-            val response = request()
-            withContext(Dispatchers.Default) { responseCallback(response) }
-=======
     internal fun <T> callAsync(request: suspend () -> T, responseCallback: (T) -> Unit) =
         clientScope.launch {
             println("Launched?")
@@ -97,9 +91,7 @@ class BggClient : KoinComponent, AutoCloseable {
                 print(e)
                 throw e
             }
->>>>>>> Stashed changes
         }
-    }
 
     /** Calls/Launches a request and returns it's response. */
     internal suspend fun <T> call(request: suspend () -> Response<T>) = request()

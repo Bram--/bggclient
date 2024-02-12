@@ -20,8 +20,8 @@ import io.ktor.http.Parameters
 import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
 import kotlinx.coroutines.runBlocking
+import org.audux.bgg.BggClient
 import org.audux.bgg.BggRequestException
-import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
@@ -33,9 +33,9 @@ class ThingsRequestTest {
     fun `Makes a request with minimal parameters`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("thing?id=1,2,3")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
-            val response = client.things(ids = arrayOf(1, 2, 3)).call()
+            val response = BggClient.things(ids = arrayOf(1, 2, 3)).call()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
@@ -67,11 +67,10 @@ class ThingsRequestTest {
     fun `Makes a request with all parameters`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("thing?id=1,2,3")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
             val response =
-                client
-                    .things(
+                BggClient.things(
                         ids = arrayOf(1, 2, 3),
                         types = arrayOf(ThingType.BOARD_GAME, ThingType.RPG_ITEM),
                         stats = true,
@@ -115,11 +114,11 @@ class ThingsRequestTest {
     fun `Throws when pageSize is too large`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("thing?id=1,2,3")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
             val exception =
                 assertThrows<BggRequestException> {
-                    client.things(ids = arrayOf(1), pageSize = 10_000).call()
+                    BggClient.things(ids = arrayOf(1), pageSize = 10_000).call()
                 }
             assertThat(exception).hasMessageThat().isEqualTo("pageSize must be between 10 and 100")
         }
@@ -129,11 +128,12 @@ class ThingsRequestTest {
     fun `Throws when competing parameters are set`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("thing?id=1,2,3")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
             val exception =
                 assertThrows<BggRequestException> {
-                    client.things(ids = arrayOf(1), comments = true, ratingComments = true).call()
+                    BggClient.things(ids = arrayOf(1), comments = true, ratingComments = true)
+                        .call()
                 }
             assertThat(exception)
                 .hasMessageThat()

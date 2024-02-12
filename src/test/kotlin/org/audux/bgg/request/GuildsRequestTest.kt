@@ -18,7 +18,7 @@ import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.BggClient
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
@@ -29,9 +29,9 @@ class GuildsRequestTest {
     fun `Makes a request with wrong guild id`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("guilds?id=-1")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
-            val response = client.guilds(id = -1).call()
+            val response = BggClient.guilds(id = -1).call()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
@@ -61,9 +61,9 @@ class GuildsRequestTest {
     fun `Makes a request with minimum parameters`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("guilds?id=2310")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
-            val response = client.guilds(id = 2310).call()
+            val response = BggClient.guilds(id = 2310).call()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
@@ -87,11 +87,10 @@ class GuildsRequestTest {
     fun `Makes a request with all parameters`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("guilds?id=2310")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
             val response =
-                client
-                    .guilds(
+                BggClient.guilds(
                         id = 2310,
                         members = Inclusion.INCLUDE,
                         sort = "date",

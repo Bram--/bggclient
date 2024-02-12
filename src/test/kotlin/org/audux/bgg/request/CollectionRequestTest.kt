@@ -22,7 +22,7 @@ import io.ktor.http.URLProtocol
 import io.ktor.http.Url
 import java.time.LocalDateTime
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.BggClient
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.util.TestUtils
@@ -34,11 +34,10 @@ class CollectionRequestTest {
     fun `Makes a request with a user that does not exist`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("collection?username=userdoesnotexist")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
             val response =
-                client
-                    .collection(userName = "userdoesnotexist", subType = ThingType.RPG_ITEM)
+                BggClient.collection(userName = "userdoesnotexist", subType = ThingType.RPG_ITEM)
                     .call()
 
             val request = engine.requestHistory[0]
@@ -77,10 +76,10 @@ class CollectionRequestTest {
         runBlocking {
             val engine =
                 TestUtils.setupMockEngine("collection?username=novaeux&stats=1&subtype=rpgitem")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
             val response =
-                client.collection(userName = "Noveaux", subType = ThingType.RPG_ITEM).call()
+                BggClient.collection(userName = "Noveaux", subType = ThingType.RPG_ITEM).call()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
@@ -111,11 +110,10 @@ class CollectionRequestTest {
                 TestUtils.setupMockEngine(
                     "collection?username=novaeux&stats=1&subtype=boardgame&excludesubtype=boardgameexpansion"
                 )
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
             val response =
-                client
-                    .collection(
+                BggClient.collection(
                         userName = "Noveaux",
                         subType = ThingType.BOARD_GAME,
                         excludeSubType = ThingType.BOARD_GAME_EXPANSION,

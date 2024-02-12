@@ -18,7 +18,7 @@ import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.BggClient
 import org.audux.bgg.common.HotListType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
@@ -29,9 +29,9 @@ class HotRequestTest {
     fun `Makes a request with all parameters`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("hot")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
-            val response = client.hotItems(HotListType.BOARD_GAME).call()
+            val response = BggClient.hotItems(HotListType.BOARD_GAME).call()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)

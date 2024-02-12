@@ -18,7 +18,7 @@ import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.BggClient
 import org.audux.bgg.common.Domains
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.util.TestUtils
@@ -33,9 +33,9 @@ class UserRequestTest {
                 TestUtils.setupMockEngine(
                     "user?name=Novaeux&buddies=1&hot=1&top=1&guilds=1&page=1&domain=boardgame"
                 )
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
-            val response = client.user(name = "Novaeux").call()
+            val response = BggClient.user(name = "Novaeux").call()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
@@ -62,11 +62,10 @@ class UserRequestTest {
                 TestUtils.setupMockEngine(
                     "user?name=Novaeux&buddies=1&hot=1&top=1&guilds=1&page=1&domain=boardgame"
                 )
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
             val response =
-                client
-                    .user(
+                BggClient.user(
                         name = "Novaeux",
                         buddies = Inclusion.INCLUDE,
                         guilds = Inclusion.INCLUDE,

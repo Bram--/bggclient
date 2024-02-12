@@ -19,7 +19,7 @@ import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import java.time.LocalDateTime
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.BggClient
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 
@@ -29,9 +29,9 @@ class ThreadRequestTest {
     fun `Makes a request with wrong thread id`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("thread?id=0")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
-            val response = client.thread(id = 0).call()
+            val response = BggClient.thread(id = 0).call()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
@@ -59,9 +59,9 @@ class ThreadRequestTest {
     fun `Makes a request with minimum parameters`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("thread")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
-            val response = client.thread(id = 3208373).call()
+            val response = BggClient.thread(id = 3208373).call()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
@@ -85,11 +85,10 @@ class ThreadRequestTest {
     fun `Makes a request with all parameters`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("thread")
-            val client = InternalBggClient { engine }
+            BggClient.engine = { engine }
 
             val response =
-                client
-                    .thread(
+                BggClient.thread(
                         id = 3208373,
                         minArticleId = 10,
                         minArticleDate = LocalDateTime.of(2020, 1, 1, 0, 0),

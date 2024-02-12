@@ -16,7 +16,7 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.BggClient.InternalBggClient
 import org.audux.bgg.common.ForumListType
 import org.audux.bgg.response.Family
 import org.audux.bgg.response.ForumList

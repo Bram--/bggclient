@@ -40,26 +40,25 @@ public class Main {
 
         // If the user exists and the call was successful display a summary.
         if (collectionResponse.isSuccess() && response != null) {
-            System.out.println(
+            System.out.println("""
+                    %s profile summary
+                    Location: %s / %s
+                    No. Buddies: %s
+                    No. Guilds: %s
+                    No. Top items: %s
+                    No. Hot items: %s
                     """
-                            %s profile summary
-                            Location: %s / %s
-                            No. Buddies: %s
-                            No. Guilds: %s
-                            No. Top items: %s
-                            No. Hot items: %s
-                            """
-                            .formatted(
-                                    response.getName(),
-                                    response.getStateOrProvince() == null
-                                            ? ""
-                                            : response.getStateOrProvince().getValue(),
-                                    response.getCountry() == null ? "" : response.getCountry().getValue(),
-                                    response.getBuddies() == null ? "0" : response.getBuddies().getTotal(),
-                                    response.getGuilds() == null ? "0" : response.getGuilds().getTotal(),
-                                    response.getTop() == null ? "0" : response.getTop().getItems().size(),
-                                    response.getHot() == null ? "0" : response.getHot().getItems().size())
-                            .trim());
+                    .formatted(
+                            response.getName(),
+                            response.getStateOrProvince() == null
+                                    ? ""
+                                    : response.getStateOrProvince().getValue(),
+                            response.getCountry() == null ? "" : response.getCountry().getValue(),
+                            response.getBuddies() == null ? "0" : response.getBuddies().getTotal(),
+                            response.getGuilds() == null ? "0" : response.getGuilds().getTotal(),
+                            response.getTop() == null ? "0" : response.getTop().getItems().size(),
+                            response.getHot() == null ? "0" : response.getHot().getItems().size())
+                    .trim());
         } else {
             // Show the erroneous response - raw xml response.
             System.out.println("Whoops something went wrong:\n" + collectionResponse.getError());

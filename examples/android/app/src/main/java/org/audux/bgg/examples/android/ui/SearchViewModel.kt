@@ -40,26 +40,28 @@ class SearchViewModel : ViewModel() {
     _uiState.update { _ -> SearchUiState(query = query, isSearching = true) }
 
     // Create a new client and use it as an [AutoCloseable]
-    BggClient().use { client ->
-      viewModelScope.launch {
-        // Actual API call happens here, trims the username and searches only for board games in the
-        // user's collection.
-        val response = client.collection(query.trim(), subType = ThingType.BOARD_GAME).call()
+    viewModelScope.launch {
+      val response =
+          BggClient().use { client ->
+            // Actual API call happens here, trims the username and searches only for board games
+            // in the
+            // user's collection.
+            client.collection(query.trim(), subType = ThingType.BOARD_GAME).call()
+          }
 
-        // If the response was successful update the UIState with the collection items / search
-        // results.
-        if (response.isSuccess()) {
-          response.data?.let {
-            _uiState.update { currentState ->
-              currentState.copy(results = it.items, isSearching = false)
-            }
-          }
-        } else {
-          // If the search was not successful for whatever reason update the UIState with the
-          // erroneous response (XML/HTML depending on the endpoint used).
+      // If the response was successful update the UIState with the collection items / search
+      // results.
+      if (response.isSuccess()) {
+        response.data?.let {
           _uiState.update { currentState ->
-            currentState.copy(isSearching = false, error = response.error)
+            currentState.copy(results = it.items, isSearching = false)
           }
+        }
+      } else {
+        // If the search was not successful for whatever reason update the UIState with the
+        // erroneous response (XML/HTML depending on the endpoint used).
+        _uiState.update { currentState ->
+          currentState.copy(isSearching = false, error = response.error)
         }
       }
     }

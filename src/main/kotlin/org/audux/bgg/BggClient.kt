@@ -64,20 +64,12 @@ import org.audux.bgg.response.Thing
  * Unofficial Board Game Geek API Client for the
  * [BGG XML2 API2](https://boardgamegeek.com/wiki/page/BGG_XML_API2).
  *
- * <p>The actual BGG API can be interacted with, with the use of the extension functions in
- * [org.audux.bgg.request]. For example to do a search import [org.audux.bgg.request.search].
- *
  * <p>Search example usage:
  * ```
- * BggClient().use { client ->
- *          client
- *              .search("Scythe", arrayOf(ThingType.BOARD_GAME, ThingType.BOARD_GAME_EXPANSION))
- *              .call { response -> println(response) }
+ * BggClient
+ *      .search("Scythe", arrayOf(ThingType.BOARD_GAME, ThingType.BOARD_GAME_EXPANSION))
+ *      .call { response -> println(response) }
  * ```
- *
- * <p>Available API Calls:
- * <ul>
- * </ul>
  */
 object BggClient {
     init {
@@ -497,15 +489,6 @@ internal class InternalBggClient(private val engine: () -> HttpClientEngine = { 
 
     /** Returns a wrapped request for later execution. */
     internal fun <T> request(request: suspend () -> Response<T>) = Request(this, request)
-
-    companion object {
-        @JvmStatic
-        fun main(args: Array<String>) {
-            BggClient.user("test").callAsync { Logger.e("$it") }
-
-            Thread.sleep(10_000)
-        }
-    }
 }
 
 /** Thrown whenever any exception is thrown during a request to BGG. */

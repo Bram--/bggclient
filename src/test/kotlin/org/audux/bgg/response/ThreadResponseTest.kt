@@ -21,10 +21,9 @@ import org.audux.bgg.InternalBggClient
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import org.koin.test.KoinTest
 
 /** Test class for [Thread] data classes. */
-class ThreadResponseTest : KoinTest {
+class ThreadResponseTest {
     private val mapper: ObjectMapper = InternalBggClient().mapper
 
     @Test

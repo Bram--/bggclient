@@ -20,10 +20,9 @@ import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.PlayThingType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
-import org.koin.test.KoinTest
 
 /** Unit test for [Plays] data classes. */
-class PlaysResponseTest : KoinTest {
+class PlaysResponseTest {
     private val mapper: ObjectMapper = InternalBggClient().mapper
 
     @Test

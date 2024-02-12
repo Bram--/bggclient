@@ -18,10 +18,9 @@ import com.google.common.truth.Truth.assertThat
 import org.audux.bgg.InternalBggClient
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
-import org.koin.test.KoinTest
 
 /** Unit test for [Hot] data classes. */
-class HotResponseTest : KoinTest {
+class HotResponseTest {
     private val mapper: ObjectMapper = InternalBggClient().mapper
 
     @Test

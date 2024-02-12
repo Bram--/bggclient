@@ -20,10 +20,9 @@ import java.time.format.DateTimeFormatter
 import org.audux.bgg.InternalBggClient
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
-import org.koin.test.KoinTest
 
 /** Unit test for [ForumList] data classes. */
-class ForumListResponseTest : KoinTest {
+class ForumListResponseTest {
     private val mapper: ObjectMapper = InternalBggClient().mapper
 
     @Test

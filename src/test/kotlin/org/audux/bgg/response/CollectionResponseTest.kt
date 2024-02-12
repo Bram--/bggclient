@@ -22,10 +22,9 @@ import org.audux.bgg.common.Ratings
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
-import org.koin.test.KoinTest
 
 /** Unit test for [Collection] data classes. */
-class CollectionResponseTest : KoinTest {
+class CollectionResponseTest {
     private val mapper: ObjectMapper = InternalBggClient().mapper
 
     @Test

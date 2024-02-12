@@ -37,14 +37,11 @@ repositories {
 }
 
 dependencies {
-  api(libs.koin.core)
-
   implementation(libs.jackson.jsr310)
   implementation(libs.jackson.kotlin)
   implementation(libs.jackson.xml)
   implementation(libs.javax.xml.stream)
   implementation(libs.kermit)
-  implementation(libs.kermit.koin)
   implementation(libs.kotlin.datetime)
   implementation(libs.kotlin.serialization)
   implementation(libs.ktor.core)
@@ -53,8 +50,6 @@ dependencies {
 
   // Testing dependencies.
   testImplementation(libs.junit5.api)
-  testImplementation(libs.koin.test)
-  testImplementation(libs.koin.test.junit)
   testImplementation(libs.ktor.client.mock)
   testImplementation(libs.truth)
 

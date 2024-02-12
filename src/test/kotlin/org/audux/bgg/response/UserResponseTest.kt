@@ -20,10 +20,9 @@ import org.audux.bgg.InternalBggClient
 import org.audux.bgg.response.WrappedValueSubject.Companion.assertThat
 import org.audux.bgg.util.TestUtils.xml
 import org.junit.jupiter.api.Test
-import org.koin.test.KoinTest
 
 /** Test class for [User] data classes. */
-class UserResponseTest : KoinTest {
+class UserResponseTest {
     private val mapper: ObjectMapper = InternalBggClient().mapper
 
     @Test

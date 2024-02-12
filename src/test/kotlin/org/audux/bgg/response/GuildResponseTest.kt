@@ -19,10 +19,9 @@ import java.time.LocalDateTime
 import org.audux.bgg.InternalBggClient
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
-import org.koin.test.KoinTest
 
 /** Unit test for [Guild] data classes. */
-class GuildResponseTest : KoinTest {
+class GuildResponseTest {
     private val mapper: ObjectMapper = InternalBggClient().mapper
 
     @Test

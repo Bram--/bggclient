@@ -21,10 +21,9 @@ import org.audux.bgg.common.Link
 import org.audux.bgg.common.Name
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
-import org.koin.test.KoinTest
 
 /** Unit test for [Family] data classes. */
-class FamilyResponseTest : KoinTest {
+class FamilyResponseTest {
     private val mapper: ObjectMapper = InternalBggClient().mapper
 
     @Test

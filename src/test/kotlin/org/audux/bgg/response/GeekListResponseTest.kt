@@ -21,10 +21,9 @@ import org.audux.bgg.common.SubType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import org.koin.test.KoinTest
 
 /** Unit test for [GeekList] data classes. */
-class GeekListResponseTest : KoinTest {
+class GeekListResponseTest {
     private val mapper: ObjectMapper = InternalBggClient().mapper
 
     @Test

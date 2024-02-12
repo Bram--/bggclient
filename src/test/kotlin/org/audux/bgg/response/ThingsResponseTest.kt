@@ -24,10 +24,9 @@ import org.audux.bgg.common.ThingType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import org.koin.test.KoinTest
 
 /** Test class for [Things] data classes. */
-class ThingsResponseTest : KoinTest {
+class ThingsResponseTest {
     private val mapper: ObjectMapper = InternalBggClient().mapper
 
     @Test

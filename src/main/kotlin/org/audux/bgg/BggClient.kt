@@ -14,25 +14,28 @@
 package org.audux.bgg
 
 import co.touchlab.kermit.Logger
-import co.touchlab.kermit.koin.KermitKoinLogger
+import com.fasterxml.jackson.databind.DeserializationFeature
+import com.fasterxml.jackson.databind.MapperFeature
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule
+import com.fasterxml.jackson.dataformat.xml.XmlMapper
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import com.fasterxml.jackson.module.kotlin.KotlinFeature
+import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.ktor.client.HttpClient
+import io.ktor.client.engine.cio.CIO
+import io.ktor.client.plugins.HttpRequestRetry
+import java.util.Locale
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.audux.bgg.module.BggKtorClient
-import org.audux.bgg.module.BggXmlObjectMapper
-import org.audux.bgg.module.appModule
+import org.audux.bgg.plugin.ClientRateLimitPlugin
 import org.audux.bgg.request.Request
 import org.audux.bgg.request.user
 import org.audux.bgg.response.Response
 import org.jetbrains.annotations.VisibleForTesting
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
-import org.koin.core.qualifier.named
-import org.koin.dsl.koinApplication
 
 /**
  * Unofficial Board Game Geek API Client for the
@@ -53,29 +56,19 @@ import org.koin.dsl.koinApplication
  * <ul>
  * </ul>
  */
-class BggClient : KoinComponent, AutoCloseable {
-    internal val client: HttpClient by inject(named<BggKtorClient>())
-    internal val mapper: ObjectMapper by inject(named<BggXmlObjectMapper>())
+class BggClient {
+    internal val mapper: ObjectMapper = newMapper()
     private val clientScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
-    private val koinContext = BggClientKoinContext()
-
-    /** Override Koin to get an isolated Koin context, see: [BggClientKoinContext]. */
-    override fun getKoin() = koinContext.koin
-
-    /** Closes the [HttpClient] client after use. */
-    override fun close() {
-        client.close()
-    }
 
     /**
      * Calls/Launches a request async, once a response is available it will call [responseCallback].
      */
-    internal fun <T> callAsync(request: suspend () -> T, responseCallback: (T) -> Unit) =
+    internal fun <T> callAsync(request: suspend BggClient.() -> T, responseCallback: (T) -> Unit) =
         clientScope.launch {
             println("Launched?")
 
             try {
-                val response = request()
+                val response = request.invoke(this@BggClient)
                 println(response)
                 withContext(Dispatchers.Default) {
                     println("DEFAULT")
@@ -94,22 +87,42 @@ class BggClient : KoinComponent, AutoCloseable {
         }
 
     /** Calls/Launches a request and returns it's response. */
-    internal suspend fun <T> call(request: suspend () -> Response<T>) = request()
+    internal suspend fun <T> call(request: suspend BggClient.() -> Response<T>) = request.invoke(this)
 
     /** Returns a wrapped request for later execution. */
-    internal fun <T> request(request: suspend () -> Response<T>) = Request(this, request)
+    internal fun <T> request(request: suspend BggClient.() -> Response<T>) = Request(this, request)
 
     /**
      * Returns the current [io.ktor.client.engine.HttpClientEngine] used by this client. Used for
      * testing only.
      */
-    @VisibleForTesting internal fun engine() = client.engine
+    //    @VisibleForTesting internal fun engine() = client.engine
+
+    internal fun client() = buildClient()
+
+    @VisibleForTesting
+    internal fun buildClient() =
+        HttpClient(CIO.create()) {
+            install(ClientRateLimitPlugin) { requestLimit = 10 }
+            install(HttpRequestRetry) {
+                exponentialDelay()
+                retryIf(maxRetries = 5) { _, response ->
+                    response.status.value.let {
+                        // Add 202 (Accepted) for retries, see:
+                        // https://boardgamegeek.com/thread/1188687/export-collections-has-been-updated-xmlapi-develop
+                        it in (500..599) + 202
+                    }
+                }
+            }
+
+            expectSuccess = true
+        }
 
     companion object {
 
         @JvmStatic
         fun main(args: Array<String>) {
-            BggClient().use { client ->
+            BggClient().also { client ->
                 try {
                     client.user("test").callAsync { println(it) }
                 } catch (e: Exception) {
@@ -148,15 +161,35 @@ class BggClient : KoinComponent, AutoCloseable {
     }
 }
 
-/** Isolated Koin Context for BGG Client. */
-class BggClientKoinContext {
-    private val koinApp = koinApplication {
-        logger(KermitKoinLogger(Logger.withTag("koin")))
-        modules(appModule)
-    }
-
-    val koin = koinApp.koin
+object BggClient2 {
+    /** Returns a wrapped request for later execution. */
+    internal fun <T> request(request: suspend BggClient.() -> Response<T>) = Request(
+        BggClient(), request)
 }
+
+internal fun newMapper() =
+    XmlMapper.builder()
+        .apply {
+            configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
+            configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true)
+
+            addModule(JacksonXmlModule())
+            addModule(JavaTimeModule())
+            addModule(
+                KotlinModule.Builder()
+                    .enable(KotlinFeature.NullToEmptyCollection)
+                    .enable(KotlinFeature.StrictNullChecks)
+                    .build()
+            )
+
+            // Keep hardcoded to US: https://bugs.openjdk.org/browse/JDK-8251317
+            // en_GB Locale uses 'Sept' as a shortname when formatting dates (e.g. 'MMM'). The
+            // locale en_US remains 'Sep'.
+            defaultLocale(Locale.US)
+            defaultMergeable(true)
+            defaultUseWrapper(false)
+        }
+        .build()
 
 /** Thrown whenever any exception is thrown during a request to BGG. */
 class BggRequestException(message: String) : Exception(message)

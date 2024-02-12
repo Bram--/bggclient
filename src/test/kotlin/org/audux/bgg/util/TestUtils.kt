@@ -20,13 +20,13 @@ import java.io.InputStream
 import java.lang.IllegalArgumentException
 import java.lang.NullPointerException
 import org.audux.bgg.BggClient
-import org.audux.bgg.module.BggHttpEngine
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 object TestUtils {
     fun setupEngineAndRequest(xmlFileName: String): BggClient {
         return BggClient().apply {
+            buildClient()
             getKoin()
                 .loadModules(
                     listOf(

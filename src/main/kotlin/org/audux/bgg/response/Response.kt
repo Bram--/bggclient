@@ -17,6 +17,8 @@ import co.touchlab.kermit.Logger
 import com.fasterxml.jackson.core.JacksonException
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.ktor.client.statement.bodyAsText
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /**
  * Wraps a successful or erroneous response, if a valid response was given it can be found in [data]
@@ -34,13 +36,14 @@ data class Response<T>(
 
     companion object {
         /** Create a new response from the given response string, using the [mapper]. */
-        inline fun <reified T> from(bodyAsText: String, mapper: ObjectMapper): Response<T> {
-            return try {
-                Response(data = mapper.readValue(bodyAsText, T::class.java))
-            } catch (e: JacksonException) {
-                Logger.i("Error parsing response", e)
-                Response(error = bodyAsText)
+        suspend inline fun <reified T> from(bodyAsText: String, mapper: ObjectMapper): Response<T> =
+            withContext(Dispatchers.Default) {
+                try {
+                    Response(data = mapper.readValue(bodyAsText, T::class.java))
+                } catch (e: JacksonException) {
+                    Logger.i("Error parsing response", e)
+                    Response(error = bodyAsText)
+                }
             }
-        }
     }
 }

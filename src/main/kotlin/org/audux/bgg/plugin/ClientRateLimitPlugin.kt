@@ -14,13 +14,10 @@
 package org.audux.bgg.plugin
 
 import co.touchlab.kermit.Logger
-import io.ktor.client.HttpClient
 import io.ktor.client.plugins.api.createClientPlugin
 import io.ktor.client.request.HttpRequestBuilder
-import io.ktor.client.request.request
-import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.atomic.AtomicInteger
-import org.audux.bgg.BggRequestException
+import kotlinx.coroutines.delay
 import org.jetbrains.annotations.Contract
 import org.jetbrains.annotations.VisibleForTesting
 
@@ -34,57 +31,52 @@ val ClientRateLimitPlugin =
         "ClientRateLimitPlugin",
         createConfiguration = ::ConcurrentRequestLimiterConfiguration
     ) {
-        val requestLimiter = ConcurrentRequestLimiter(client, pluginConfig.requestLimit)
+        val requestLimiter = ConcurrentRequestLimiter(pluginConfig.requestLimit)
         onRequest { request, _ -> requestLimiter.onNewRequest(request) }
-        onResponse { requestLimiter.onNewResponse() }
     }
 
 /**
  * Implementation of [ClientRateLimitPlugin] ensuring not more than
  * [ConcurrentRequestLimiterConfiguration.requestLimit] are being made concurrently.
  */
-class ConcurrentRequestLimiter(private val client: HttpClient, private val requestLimit: Int) {
+class ConcurrentRequestLimiter(private val requestLimit: Int) {
     internal val inFlightRequests = AtomicSingletonInteger.instance
-    internal val requestQueue = ConcurrentLinkedSingletonQueue.instance
 
     /**
-     * Cancels the request and adds it to the [requestQueue] to be re-requested when a response
-     * comes back.
+     * Keeps an counter for the number of requests that are active/in-flight. If ever the limit is
+     * reached the request is held indefinitely until this request or other requests are
+     * completed/cancelled.
      *
      * <p>Called on [io.ktor.client.plugins.api.ClientPluginBuilder.onRequest].
      */
-    fun onNewRequest(request: HttpRequestBuilder) {
-        logger.v("ConcurrentRequestLimiter#OnNewRequest()")
-        if (inFlightRequests.get() >= requestLimit) {
-            logger.d("Request limit met[limit=$requestLimit]: queueing request")
-            request.executionContext.cancel()
+    suspend fun onNewRequest(request: HttpRequestBuilder) {
+        logger.v(tag = "ConcurrentRequestLimiter") { "#OnNewRequest()" }
+        // Ensure inFlight requests count is decremented whenever a request [Job] completes.
+        request.executionContext.invokeOnCompletion {
+            logger.v(tag = "ConcurrentRequestLimiter") { "Request completed" }
+            inFlightRequests.decrementAndGet()
+        }
 
-            if (!requestQueue.add(HttpRequestBuilder().takeFrom(request))) {
-                throw BggRequestException(
-                    "Failed to queue request in ${ConcurrentRequestLimiter::class.simpleName}"
-                )
+        // Check whether the `inFlightRequests` count has been reached, if so delay and check again.
+        do {
+            val currentInFlightRequests = inFlightRequests.get()
+            if (currentInFlightRequests < requestLimit) {
+                inFlightRequests.incrementAndGet()
+                break
             }
-        } else {
-            inFlightRequests.incrementAndGet()
-        }
-    }
 
-    /**
-     * Whenever a response comes back and there a [HttpRequestBuilder] objects in the queue,
-     * [HttpClient.request] will be called.
-     *
-     * <p>Called on [io.ktor.client.plugins.api.ClientPluginBuilder.onResponse].
-     */
-    suspend fun onNewResponse() {
-        logger.v("ConcurrentRequestLimiter#OnNewResponse()")
-        if (inFlightRequests.decrementAndGet() < requestLimit && requestQueue.isNotEmpty()) {
-            client.request(requestQueue.remove())
-            logger.d("Sent request from RequestQueue[empty=${requestQueue.isNotEmpty()}}]")
-        }
+            logger.d(tag = "ConcurrentRequestLimiter") {
+                "Concurrent Requests limit reached[$currentInFlightRequests/$requestLimit]"
+            }
+
+            // Delay and yield as we've reached the concurrent request limit.
+            delay(IDLING_DELAY)
+        } while (true)
     }
 
     companion object {
         private val logger = Logger.withTag("ClientRateLimitPlugin")
+        private const val IDLING_DELAY = 50L
     }
 }
 
@@ -114,18 +106,4 @@ private constructor(initialValue: Int) : AtomicInteger(initialValue) {
     override fun toByte() = get().toByte()
 
     override fun toShort() = get().toShort()
-}
-
-/**
- * Singleton [AtomicInteger] to be shared between [org.audux.bgg.BggClient] instances as a new
- * instance of the plugin is created for each client.
- */
-internal class ConcurrentLinkedSingletonQueue private constructor() :
-    ConcurrentLinkedQueue<HttpRequestBuilder>() {
-    companion object {
-        val instance: ConcurrentLinkedSingletonQueue by lazy { ConcurrentLinkedSingletonQueue() }
-    }
-
-    /** Clears the queue for testing. */
-    @VisibleForTesting fun reset() = this.clear()
 }

@@ -23,6 +23,7 @@ import io.ktor.client.plugins.api.createClientPlugin
 import io.ktor.client.request.HttpRequestData
 import io.ktor.client.request.HttpResponseData
 import io.ktor.client.request.get
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -35,13 +36,12 @@ class ClientRateLimitPluginTest {
     private var delayedResponse:
         suspend MockRequestHandleScope.(HttpRequestData) -> HttpResponseData =
         {
-            delay(50)
+            delay(20)
             respondOk("OK")
         }
 
     @BeforeEach
     fun beforeEach() {
-        ConcurrentLinkedSingletonQueue.instance.reset()
         AtomicSingletonInteger.instance.reset()
     }
 
@@ -54,23 +54,25 @@ class ClientRateLimitPluginTest {
                 addHandler(delayedResponse)
             }
 
-        runBlocking {
+        val jobs = runBlocking {
             // Launch 3 concurrent requests
-            launch { client.get("/") }
-            launch { client.get("/") }
-            launch { client.get("/") }
+            val jobs = (1..3).map { launch { client.get("/") } }
 
             // Minor delay to ensure client.get calls are done
-            delay(10)
+            delay(2)
 
-            // Ensure 2 requests are in-flight and 1 is queued.
+            // Ensure all 3 requests are in-flight and 1 is queued.
             assertThat(requestLimiter.inFlightRequests.get()).isEqualTo(3)
-            assertThat(requestLimiter.requestQueue).isEmpty()
+
+            jobs
         }
 
         // After all coroutines have finished ensure 3 requests are made
         val engine = client.engine as MockEngine
         assertThat(engine.requestHistory).hasSize(3)
+        assertAllJobsAre(jobs) { !isActive }
+        assertAllJobsAre(jobs) { !isCancelled }
+        assertAllJobsAre(jobs) { isCompleted }
     }
 
     @Test
@@ -82,23 +84,25 @@ class ClientRateLimitPluginTest {
                 addHandler(delayedResponse)
             }
 
-        runBlocking {
+        val jobs = runBlocking {
             // Launch 3 concurrent requests
-            launch { client.get("/") }
-            launch { client.get("/") }
-            launch { client.get("/") }
+            val jobs = (1..3).map { launch { client.get("/") } }
 
             // Minor delay to ensure client.get calls are done
-            delay(10)
+            delay(2)
 
-            // Ensure 2 requests are in-flight and 1 is queued.
+            // Ensure only 2 requests are in-flight
             assertThat(requestLimiter.inFlightRequests.get()).isEqualTo(2)
-            assertThat(requestLimiter.requestQueue).hasSize(1)
+
+            jobs
         }
 
         // After all coroutines have finished ensure 3 requests are made
         val engine = client.engine as MockEngine
         assertThat(engine.requestHistory).hasSize(3)
+        assertAllJobsAre(jobs) { !isActive }
+        assertAllJobsAre(jobs) { !isCancelled }
+        assertAllJobsAre(jobs) { isCompleted }
     }
 
     @Test
@@ -112,20 +116,25 @@ class ClientRateLimitPluginTest {
                 createClient(requestLimit = 2) { addHandler(delayedResponse) },
             )
 
-        runBlocking {
+        val jobs = runBlocking {
             // Launch 5 concurrent requests
-            clients.forEach { client -> launch { client.get("/") } }
-            // Minor delay to ensure client.get calls are done
-            delay(10)
+            val jobs = clients.map { client -> launch { client.get("/") } }
 
-            // Ensure 2 requests are in-flight and 3 are queued.
+            // Minor delay to ensure client.get calls are done
+            delay(2)
+
+            // Ensure only 2 requests are in-flight.
             assertThat(requestLimiter.inFlightRequests.get()).isEqualTo(2)
-            assertThat(requestLimiter.requestQueue).hasSize(3)
+
+            jobs
         }
 
         // After all coroutines have finished ensure 3 requests are made
         val totalRequests = clients.map { it.engine as MockEngine }.sumOf { it.requestHistory.size }
         assertThat(totalRequests).isEqualTo(5)
+        assertAllJobsAre(jobs) { !isActive }
+        assertAllJobsAre(jobs) { !isCancelled }
+        assertAllJobsAre(jobs) { isCompleted }
     }
 
     private fun createClient(
@@ -135,11 +144,14 @@ class ClientRateLimitPluginTest {
         return HttpClient(MockEngine(MockEngineConfig().apply { responses(this) })) {
             install(
                 createClientPlugin("ClientRateLimitPlugin") {
-                    requestLimiter = ConcurrentRequestLimiter(client, requestLimit)
+                    requestLimiter = ConcurrentRequestLimiter(requestLimit)
                     onRequest { request, _ -> requestLimiter.onNewRequest(request) }
-                    onResponse { requestLimiter.onNewResponse() }
                 }
             )
         }
+    }
+
+    private fun assertAllJobsAre(jobs: List<Job>, predicate: Job.() -> Boolean) {
+        assertThat(jobs.all(predicate)).isTrue()
     }
 }

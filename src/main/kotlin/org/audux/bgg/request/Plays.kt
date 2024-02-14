@@ -75,3 +75,4 @@ internal fun InternalBggClient.plays(
         }
         .let { Response.from<Plays>(it.bodyAsText(), mapper) }
 }
+

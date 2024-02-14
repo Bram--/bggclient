@@ -17,7 +17,7 @@ import org.audux.bgg.BggClient.InternalBggClient
 import org.audux.bgg.response.Response
 
 /** Encapsulates a request to BGG so it can be scheduled or queued for later execution. */
-class Request<T>
+open class Request<T>
 internal constructor(
     private val client: InternalBggClient,
     private val request: suspend () -> Response<T>

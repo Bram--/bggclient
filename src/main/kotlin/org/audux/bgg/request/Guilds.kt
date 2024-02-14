@@ -40,7 +40,7 @@ internal fun InternalBggClient.guilds(
     members: Inclusion? = null,
     sort: String? = null,
     page: Number? = null
-) = request {
+) = PaginatedGuilds(this, members) {
     client()
         .get(XML2_API_URL) {
             url {

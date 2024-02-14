@@ -47,7 +47,7 @@ class ConcurrentRequestLimiter(private val requestLimit: Int) {
      * reached the request is held indefinitely until this request or other requests are
      * completed/cancelled.
      *
-     * <p>Called on [io.ktor.client.plugins.api.ClientPluginBuilder.onRequest].
+     * Called on [io.ktor.client.plugins.api.ClientPluginBuilder.onRequest].
      */
     suspend fun onNewRequest(request: HttpRequestBuilder) {
         logger.v(tag = "ConcurrentRequestLimiter") { "#OnNewRequest()" }

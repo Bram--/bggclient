@@ -60,45 +60,53 @@ import org.audux.bgg.response.Things
  */
 internal fun InternalBggClient.things(
     ids: Array<Int>,
-    types: Array<ThingType> = arrayOf(),
-    stats: Boolean = false,
-    versions: Boolean = false,
-    videos: Boolean = false,
-    marketplace: Boolean = false,
-    comments: Boolean = false,
-    ratingComments: Boolean = false,
-    page: Int = 0,
-    pageSize: Int = 0,
-) = request {
-    if (pageSize != 0 && !(10..100).contains(pageSize)) {
-        throw BggRequestException("pageSize must be between 10 and 100")
-    }
-    if (comments && ratingComments) {
-        throw BggRequestException("comments and ratingsComments can't both be true")
-    }
+    types: Array<ThingType>,
+    stats: Boolean,
+    versions: Boolean,
+    videos: Boolean,
+    marketplace: Boolean,
+    comments: Boolean,
+    ratingComments: Boolean,
+    page: Int,
+    pageSize: Int?,
+) =
+    PaginatedThings(
+        this,
+        ids = ids,
+        currentPage = page,
+        pageSize = pageSize ?: 100,
+        comments = comments,
+        ratingComments = ratingComments
+    ) {
+        if (pageSize != null && !(10..100).contains(pageSize)) {
+            throw BggRequestException("pageSize must be between 10 and 100")
+        }
+        if (comments && ratingComments) {
+            throw BggRequestException("comments and ratingsComments can't both be true")
+        }
 
-    client()
-        .get(XML2_API_URL) {
-            url {
-                appendPathSegments(PATH_THING)
+        client()
+            .get(XML2_API_URL) {
+                url {
+                    appendPathSegments(PATH_THING)
 
-                parameters.apply {
-                    append(PARAM_ID, ids.joinToString(","))
+                    parameters.apply {
+                        append(PARAM_ID, ids.joinToString(","))
 
-                    if (types.isNotEmpty()) {
-                        append(PARAM_TYPE, types.joinToString(",") { it.param })
+                        if (types.isNotEmpty()) {
+                            append(PARAM_TYPE, types.joinToString(",") { it.param })
+                        }
+
+                        if (stats) append(PARAM_STATS, "1")
+                        if (versions) append(PARAM_VERSIONS, "1")
+                        if (videos) append(PARAM_VIDEOS, "1")
+                        if (marketplace) append(PARAM_MARKETPLACE, "1")
+                        if (comments) append(PARAM_COMMENTS, "1")
+                        if (ratingComments) append(PARAM_RATING_COMMENTS, "1")
+                        if (page > 1) append(PARAM_PAGE, page.toString())
+                        if (pageSize != null) append(PARAM_PAGE_SIZE, pageSize.toString())
                     }
-
-                    if (stats) append(PARAM_STATS, "1")
-                    if (versions) append(PARAM_VERSIONS, "1")
-                    if (videos) append(PARAM_VIDEOS, "1")
-                    if (marketplace) append(PARAM_MARKETPLACE, "1")
-                    if (comments) append(PARAM_COMMENTS, "1")
-                    if (ratingComments) append(PARAM_RATING_COMMENTS, "1")
-                    if (page > 0) append(PARAM_PAGE, page.toString())
-                    if (pageSize > 0) append(PARAM_PAGE_SIZE, pageSize.toString())
                 }
             }
-        }
-        .let { Response.from<Things>(it.bodyAsText(), mapper) }
-}
+            .let { Response.from<Things>(it.bodyAsText(), mapper) }
+    }

@@ -59,9 +59,9 @@ import org.audux.bgg.response.Response
 /**
  * Request details about a user's collection.
  *
- * <p>NOTE: The default (or using [subType]=[ThingType.BOARD_GAME]) returns both
- * [ThingType.BOARD_GAME] and [ThingType.BOARD_GAME_EXPANSION] in the collection... BUT incorrectly
- * marks the [subType] as [ThingType.BOARD_GAME] for the expansions. Workaround is to use
+ * NOTE: The default (or using [subType]=[ThingType.BOARD_GAME]) returns both [ThingType.BOARD_GAME]
+ * and [ThingType.BOARD_GAME_EXPANSION] in the collection... BUT incorrectly marks the [subType] as
+ * [ThingType.BOARD_GAME] for the expansions. Workaround is to use
  * [excludeSubType]=[ThingType.BOARD_GAME_EXPANSION] and make a 2nd call asking for
  * [subType]=[ThingType.BOARD_GAME_EXPANSION]
  *

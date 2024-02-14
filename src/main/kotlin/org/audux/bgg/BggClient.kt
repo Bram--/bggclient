@@ -36,6 +36,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.future.future
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.audux.bgg.common.Domains
 import org.audux.bgg.common.FamilyType
@@ -67,7 +68,7 @@ import org.audux.bgg.response.Thing
  * Unofficial Board Game Geek API Client for the
  * [BGG XML2 API2](https://boardgamegeek.com/wiki/page/BGG_XML_API2).
  *
- * <p>Search example usage:
+ * Search example usage:
  * ```
  * BggClient
  *      .search("Scythe", arrayOf(ThingType.BOARD_GAME, ThingType.BOARD_GAME_EXPANSION))
@@ -81,10 +82,20 @@ object BggClient {
 
     var engine = { CIO.create() }
 
+    @JvmStatic
+    fun main(vararg args: String) {
+        setLoggerSeverity(Severity.Verbose)
+        val things = runBlocking { things(arrayOf(396790), comments = true).paginate().call() }
+
+        println("Things:: ${things.data?.things?.size}")
+        val firstComment = things.data?.things!![0].comments!!
+        println("${firstComment.comments?.size} / ${firstComment.totalItems}")
+    }
+
     /**
      * Request details about a user's collection.
      *
-     * <p>NOTE: The default (or using [subType]=[ThingType.BOARD_GAME]) returns both
+     * NOTE: The default (or using [subType]=[ThingType.BOARD_GAME]) returns both
      * [ThingType.BOARD_GAME] and [ThingType.BOARD_GAME_EXPANSION] in the collection... BUT
      * incorrectly marks the [subType] as [ThingType.BOARD_GAME] for the expansions. Workaround is
      * to use [excludeSubType]=[ThingType.BOARD_GAME_EXPANSION] and make a 2nd call asking for
@@ -249,7 +260,7 @@ object BggClient {
     /**
      * Geek list endpoint, retrieves a specific geek list by its ID.
      *
-     * <p>NOTE: This request returns a (http) 202 the first time the request is made.
+     * NOTE: This request returns a (http) 202 the first time the request is made.
      *
      * @param id the unique ID for the geek list to retrieve
      * @param comments whether to include the comments in the response or not.
@@ -355,8 +366,8 @@ object BggClient {
         marketplace: Boolean = false,
         comments: Boolean = false,
         ratingComments: Boolean = false,
-        page: Int = 0,
-        pageSize: Int = 0,
+        page: Int = 1,
+        pageSize: Int? = null,
     ) =
         InternalBggClient(engine)
             .things(

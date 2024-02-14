@@ -30,14 +30,15 @@ import org.audux.bgg.response.Response
  * @param page Used to paginate, this is the page that is returned, only 50 threads per page are
  *   returned. Note that page 0 and 1 are the same.
  */
-internal fun InternalBggClient.forum(id: Int, page: Int? = null) = request {
-    client()
-        .get(Constants.XML2_API_URL) {
-            url {
-                appendPathSegments(Constants.PATH_FORUM)
-                parameters.append(Constants.PARAM_ID, id.toString())
-                page?.let { parameters.append(Constants.PARAM_PAGE, page.toString()) }
+internal fun InternalBggClient.forum(id: Int, page: Int? = null) =
+    PaginatedForum(this, page ?: 1) {
+        client()
+            .get(Constants.XML2_API_URL) {
+                url {
+                    appendPathSegments(Constants.PATH_FORUM)
+                    parameters.append(Constants.PARAM_ID, id.toString())
+                    page?.let { parameters.append(Constants.PARAM_PAGE, page.toString()) }
+                }
             }
-        }
-        .let { Response.from<Forum>(it.bodyAsText(), mapper) }
-}
+            .let { Response.from<Forum>(it.bodyAsText(), mapper) }
+    }

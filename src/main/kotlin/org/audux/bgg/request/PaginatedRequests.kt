@@ -108,7 +108,7 @@ internal constructor(
                     val currentPage = guildMembers.page.toInt()
                     lastPage = min(ceil(guildMembers.count.toDouble() / 25).toInt(), toPage)
 
-                    for (i in (currentPage+ 1)..lastPage) {
+                    for (i in (currentPage + 1)..lastPage) {
                         val response =
                             client.guilds(id = guild.data.id, page = i, members = members).call()
 
@@ -174,7 +174,6 @@ internal constructor(
 ) : PaginatedRequest<Things>(client, request) {
     override suspend fun paginate(toPage: Int) =
         Request(client) {
-            println("Got pageSize: $pageSize")
             request().let { things ->
                 if (things.data == null) return@Request things
 

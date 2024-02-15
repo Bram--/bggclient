@@ -85,11 +85,16 @@ object BggClient {
     @JvmStatic
     fun main(vararg args: String) {
         setLoggerSeverity(Severity.Verbose)
-        val things = runBlocking { things(arrayOf(396790), comments = true).paginate().call() }
+        val things = runBlocking {
+            things(ids = arrayOf(224517, 342942), comments = true).paginate().call()
+        }
 
         println("Things:: ${things.data?.things?.size}")
         val firstComment = things.data?.things!![0].comments!!
-        println("${firstComment.comments?.size} / ${firstComment.totalItems}")
+        println("${firstComment.comments.size} / ${firstComment.totalItems}")
+
+        val secondComments = things.data.things[1].comments!!
+        println("${secondComments.comments.size} / ${secondComments.totalItems}")
     }
 
     /**
@@ -463,11 +468,19 @@ object BggClient {
                 install(ClientRateLimitPlugin) { requestLimit = 10 }
                 install(HttpRequestRetry) {
                     exponentialDelay()
-                    retryIf(maxRetries = 5) { _, response ->
+                    retryIf(maxRetries = 5) { request, response ->
                         response.status.value.let {
-                            // Add 202 (Accepted) for retries, see:
+                            // Add 429 (TooManyRequests) and 202 (Accepted) for retries, see:
                             // https://boardgamegeek.com/thread/1188687/export-collections-has-been-updated-xmlapi-develop
-                            it in (500..599) + 202
+                            val shouldRetry = it in (500..599) + 202 + 429
+
+                            if (shouldRetry) {
+                                Logger.i("HttpRequestRetry") {
+                                    "Got status code $it Retrying request[${request.url}]."
+                                }
+                            }
+
+                            shouldRetry
                         }
                     }
                 }

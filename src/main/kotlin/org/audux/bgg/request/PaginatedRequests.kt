@@ -14,14 +14,17 @@
 package org.audux.bgg.request
 
 import co.touchlab.kermit.Logger
+import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.math.ceil
 import kotlin.math.max
 import kotlin.math.min
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.audux.bgg.BggClient
+import org.audux.bgg.BggRequestException
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.response.Buddy
 import org.audux.bgg.response.Forum
@@ -31,6 +34,7 @@ import org.audux.bgg.response.GuildReference
 import org.audux.bgg.response.Play
 import org.audux.bgg.response.Plays
 import org.audux.bgg.response.Response
+import org.audux.bgg.response.Thing
 import org.audux.bgg.response.Things
 import org.audux.bgg.response.ThreadSummary
 import org.audux.bgg.response.User
@@ -39,6 +43,11 @@ import org.audux.bgg.response.User
  * Allows pagination on compatible API requests. Using [paginate] will automatically request all
  * pages from page of the initial request. By default it paginates all pages but this can be
  * controlled by the [to] parameter.
+ *
+ * @param client The [BggClient] that's running this request
+ * @param request The initial request that should be paginated, it will paginate FROM the first page
+ *   requested i.e. if the [request] makes a request with `page = 10` pagination will only happen
+ *   from 10 onwards.
  */
 abstract class PaginatedRequest<T>
 internal constructor(client: BggClient.InternalBggClient, request: suspend () -> Response<T>) :
@@ -59,70 +68,90 @@ internal constructor(client: BggClient.InternalBggClient, request: suspend () ->
     abstract suspend fun paginate(toPage: Int = Int.MAX_VALUE): Request<T>
 }
 
-/** Pagination implementation for [forum]. */
+/** [PaginatedRequest] implementation for [forum]. */
 class PaginatedForum
 internal constructor(
     private val client: BggClient.InternalBggClient,
     private val currentPage: Int,
     private val request: suspend () -> Response<Forum>
 ) : PaginatedRequest<Forum>(client, request) {
+    /** The pageSize for forum requests i.e. the number of [ThreadSummary]s returned per request. */
+    private val pageSize = 50
+
     override suspend fun paginate(toPage: Int) =
         Request(client) {
+            // Run the initial request
             request().let { forum ->
                 if (forum.data == null) return@Request forum
                 val allThreads =
                     CopyOnWriteArrayList<ThreadSummary>().apply { addAllAbsent(forum.data.threads) }
-                val lastPage = ceil(forum.data.numThreads.toDouble() / 50).toInt()
+                val lastPage = ceil(forum.data.numThreads.toDouble() / pageSize).toInt()
 
+                // Start pagination concurrently.
                 concurrentRequests((currentPage + 1)..lastPage) { page ->
                     val response = client.forum(id = forum.data.id, page = page).call()
 
                     if (response.isError()) {
-                        Logger.w("Error paginating guilds page $page")
+                        // Ignore errors but do log them.
+                        Logger.w("Error paginating forum page $page")
                     } else {
+                        // Collect all Threads
                         response.data?.let { allThreads.addAllAbsent(it.threads) }
                     }
                 }
 
+                // Finally copy all the collected threads into the initial Forum object.
                 forum.copy(data = forum.data.copy(threads = allThreads.toList()))
             }
         }
 }
 
-/** Pagination implementation for [guilds]. */
+/** [PaginatedRequest] implementation for [guilds]. */
 class PaginatedGuilds
 internal constructor(
     private val client: BggClient.InternalBggClient,
     private val members: Inclusion? = null,
     private val request: suspend () -> Response<Guild>
 ) : PaginatedRequest<Guild>(client, request) {
+    /** The pageSize for guild requests i.e. the number of [GuildMember]s returned per request. */
+    private val pageSize = 25
 
     override suspend fun paginate(toPage: Int) =
         Request(client) {
+            if (members != Inclusion.INCLUDE) {
+                throw BggRequestException("Nothing to paginate without the members parameter set.")
+            }
+
+            // Run the initial request
             request().let { guild ->
                 if (guild.data == null) return@Request guild
                 val allGuildMembers = CopyOnWriteArrayList<GuildMember>()
                 var lastPage = 1
 
+                // Only if there are actually members returned does it make sense to paginate.
                 guild.data.members?.let { guildMembers ->
                     allGuildMembers.addAllAbsent(guildMembers.members)
 
-                    // Number of pages to paginate.
+                    // Number of pages to paginate: (CurrentPage + 1)..lastPage.
                     val currentPage = guildMembers.page.toInt()
-                    lastPage = min(ceil(guildMembers.count.toDouble() / 25).toInt(), toPage)
+                    lastPage = min(ceil(guildMembers.count.toDouble() / pageSize).toInt(), toPage)
 
+                    // Start pagination concurrently.
                     concurrentRequests((currentPage + 1)..lastPage) { page ->
                         val response =
                             client.guilds(id = guild.data.id, page = page, members = members).call()
 
                         if (response.isError()) {
+                            // Ignore errors but do log them.
                             Logger.w("Error paginating guilds page $page")
                         } else {
+                            // Collect all GuildMembers
                             response.data?.let { allGuildMembers.addAllAbsent(it.members?.members) }
                         }
                     }
                 }
 
+                // Finally copy all the collected GuildMembers into the initial Guild object.
                 guild.copy(
                     data =
                         guild.data.copy(
@@ -134,37 +163,45 @@ internal constructor(
         }
 }
 
-/** Pagination implementation for [Plays]. */
+/** [PaginatedRequest] implementation for [plays]. */
 class PaginatedPlays
 internal constructor(
     private val client: BggClient.InternalBggClient,
     private val request: suspend () -> Response<Plays>
 ) : PaginatedRequest<Plays>(client, request) {
+    /** The pageSize for plays requests i.e. the number of [Play]s returned per request. */
+    private val pageSize = 100
+
     override suspend fun paginate(toPage: Int) =
         Request(client) {
+            // Run the initial request
             request().let { plays ->
                 if (plays.data == null) return@Request plays
                 val allPlays = CopyOnWriteArrayList<Play>().apply { addAllAbsent(plays.data.plays) }
 
-                // Number of pages to paginate.
+                // Number of pages to paginate: (CurrentPage + 1)..lastPage.
                 val currentPage = plays.data.page.toInt()
-                val lastPage = min(ceil(plays.data.total.toDouble() / 100).toInt(), toPage)
+                val lastPage = min(ceil(plays.data.total.toDouble() / pageSize).toInt(), toPage)
 
+                // Start pagination concurrently.
                 concurrentRequests((currentPage + 1)..lastPage) { page ->
                     val response = client.plays(username = plays.data.username, page = page).call()
                     if (response.isError()) {
+                        // Ignore errors but do log them.
                         Logger.w("Error paginating plays page $page")
                     } else {
+                        // Collect all Plays
                         response.data?.let { allPlays.addAllAbsent(it.plays) }
                     }
                 }
 
+                // Finally copy all the collected plays into the initial Plays object.
                 plays.copy(data = plays.data.copy(page = lastPage, plays = allPlays.toList()))
             }
         }
 }
 
-/** Pagination implementation for [forum]. */
+/** [PaginatedRequest] implementation for [things]. */
 class PaginatedThings
 internal constructor(
     private val client: BggClient.InternalBggClient,
@@ -177,15 +214,29 @@ internal constructor(
 ) : PaginatedRequest<Things>(client, request) {
     override suspend fun paginate(toPage: Int) =
         Request(client) {
+            if (!comments && !ratingComments) {
+                throw BggRequestException(
+                    "Nothing to paginate without the either the comments or ratingComments parameter set."
+                )
+            }
+
+            // Run the initial request
             request().let { things ->
                 if (things.data == null) return@Request things
+                // Create a Concurrent Hashmap to collect Things and update their comments.
+                val thingList =
+                    ConcurrentHashMap<Int, Thing>().apply {
+                        this.putAll(
+                            mapOf(*things.data.things.map { Pair(it.id, it) }.toTypedArray())
+                        )
+                    }
 
+                // Number of pages to paginate: (CurrentPage + 1)..lastPage.
                 val maxComments =
                     things.data.things.maxOfOrNull { it.comments?.totalItems ?: 0 } ?: 0
                 val lastPage = ceil(maxComments.toDouble() / pageSize).toInt()
-                val thingList =
-                    mutableMapOf(*things.data.things.map { Pair(it.id, it) }.toTypedArray())
 
+                // Start pagination concurrently.
                 concurrentRequests((currentPage + 1)..lastPage) { page ->
                     val response =
                         BggClient.things(
@@ -198,14 +249,17 @@ internal constructor(
                             .call()
 
                     if (response.isError()) {
-                        Logger.w("Error paginating guilds page $page")
+                        // Ignore errors but do log them.
+                        Logger.w("Error paginating things page $page")
                     } else {
+                        // Collect all Things' comments.
                         response.data?.let {
                             it.things.forEach { newThing ->
                                 val existingThing = thingList.getValue(newThing.id)
                                 if (newThing.comments == null) return@forEach
                                 if (existingThing.comments == null) return@forEach
 
+                                // Update the Thing by adding comments to the existing Thing.
                                 thingList[newThing.id] =
                                     existingThing.copy(
                                         comments =
@@ -221,14 +275,15 @@ internal constructor(
                     }
                 }
 
+                // Finally copy all the collected Things into the initial Things object.
                 things.copy(data = things.data.copy(things = thingList.values.toList()))
             }
         }
 }
 
 /**
- * Pagination implementation for [User]. Paginates [User.buddies] and/or [User.guilds] depending on
- * which are available in the response.
+ * [PaginatedRequest] implementation for [User]. Paginates [User.buddies] and/or [User.guilds]
+ * depending on which are available in the response.
  */
 class PaginatedUser
 internal constructor(
@@ -237,8 +292,19 @@ internal constructor(
     private val guilds: Inclusion?,
     private val request: suspend () -> Response<User>,
 ) : PaginatedRequest<User>(client, request) {
+    /**
+     * The pageSize for plays requests i.e. the number of [Buddy]s and [GuildReference]s returned
+     * per request.
+     */
+    private val pageSize = 1_000
+
     override suspend fun paginate(toPage: Int) =
         Request(client) {
+            if (buddies != Inclusion.INCLUDE && guilds != Inclusion.INCLUDE) {
+                throw BggRequestException(
+                    "Nothing to paginate without the either the buddies or guilds parameter set."
+                )
+            }
             request().let { user ->
                 if (user.data == null) return@Request user
                 if (user.data.buddies == null && user.data.guilds == null) return@Request user
@@ -261,7 +327,7 @@ internal constructor(
                         user.data.guilds?.total?.toInt() ?: 1,
                         user.data.buddies?.total?.toInt() ?: 1
                     )
-                val lastPage = min(ceil(maxPage.toDouble() / 1_000).toInt(), toPage)
+                val lastPage = min(ceil(maxPage.toDouble() / pageSize).toInt(), toPage)
 
                 // Retrieve all pages
                 concurrentRequests((currentPage + 1)..lastPage) { page ->
@@ -276,8 +342,10 @@ internal constructor(
                             .call()
 
                     if (response.isError()) {
+                        // Ignore errors but do log them.
                         Logger.w("Error paginating user page $page")
                     } else {
+                        // Collect all user's guilds and buddies.
                         response.data?.let { paginatedUser ->
                             paginatedUser.guilds?.let { allGuilds.addAllAbsent(it.guilds) }
                             paginatedUser.buddies?.let { allBuddies.addAllAbsent(it.buddies) }
@@ -285,6 +353,7 @@ internal constructor(
                     }
                 }
 
+                // Finally copy all the collected Buddies and Guilds into the initial User object.
                 user.copy(
                     data =
                         user.data.copy(
@@ -304,16 +373,21 @@ internal constructor(
         }
 }
 
+/**
+ * Runs `pages.first`..`pages.last` pagination requests, where the actual request happens inside
+ * [request].
+ */
 private suspend inline fun <T> concurrentRequests(
     pages: IntRange,
     crossinline request: suspend (page: Int) -> T
 ) {
-    val jobs = mutableListOf<Job>()
+    val jobs = CopyOnWriteArrayList<Job>()
     runBlocking {
         pages.forEach {
             jobs.add(launch { request(it) })
-
-            jobs.onEach { it.join() }
         }
+
+        // Wait for all requests to complete.
+        jobs.forEach() { it.join() }
     }
 }

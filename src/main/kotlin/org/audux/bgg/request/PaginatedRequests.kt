@@ -18,6 +18,9 @@ import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.math.ceil
 import kotlin.math.max
 import kotlin.math.min
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.audux.bgg.BggClient
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.response.Buddy
@@ -71,11 +74,11 @@ internal constructor(
                     CopyOnWriteArrayList<ThreadSummary>().apply { addAllAbsent(forum.data.threads) }
                 val lastPage = ceil(forum.data.numThreads.toDouble() / 50).toInt()
 
-                for (i in (currentPage + 1)..lastPage) {
-                    val response = client.forum(id = forum.data.id, page = i).call()
+                concurrentRequests((currentPage + 1)..lastPage) { page ->
+                    val response = client.forum(id = forum.data.id, page = page).call()
 
                     if (response.isError()) {
-                        Logger.w("Error paginating guilds page $i")
+                        Logger.w("Error paginating guilds page $page")
                     } else {
                         response.data?.let { allThreads.addAllAbsent(it.threads) }
                     }
@@ -108,12 +111,12 @@ internal constructor(
                     val currentPage = guildMembers.page.toInt()
                     lastPage = min(ceil(guildMembers.count.toDouble() / 25).toInt(), toPage)
 
-                    for (i in (currentPage + 1)..lastPage) {
+                    concurrentRequests((currentPage + 1)..lastPage) { page ->
                         val response =
-                            client.guilds(id = guild.data.id, page = i, members = members).call()
+                            client.guilds(id = guild.data.id, page = page, members = members).call()
 
                         if (response.isError()) {
-                            Logger.w("Error paginating guilds page $i")
+                            Logger.w("Error paginating guilds page $page")
                         } else {
                             response.data?.let { allGuildMembers.addAllAbsent(it.members?.members) }
                         }
@@ -146,11 +149,11 @@ internal constructor(
                 // Number of pages to paginate.
                 val currentPage = plays.data.page.toInt()
                 val lastPage = min(ceil(plays.data.total.toDouble() / 100).toInt(), toPage)
-                for (i in (currentPage + 1)..lastPage) {
 
-                    val response = client.plays(username = plays.data.username, page = i).call()
+                concurrentRequests((currentPage + 1)..lastPage) { page ->
+                    val response = client.plays(username = plays.data.username, page = page).call()
                     if (response.isError()) {
-                        Logger.w("Error paginating plays page $i")
+                        Logger.w("Error paginating plays page $page")
                     } else {
                         response.data?.let { allPlays.addAllAbsent(it.plays) }
                     }
@@ -177,18 +180,17 @@ internal constructor(
             request().let { things ->
                 if (things.data == null) return@Request things
 
-                println("GOT: ${things.data}")
                 val maxComments =
                     things.data.things.maxOfOrNull { it.comments?.totalItems ?: 0 } ?: 0
                 val lastPage = ceil(maxComments.toDouble() / pageSize).toInt()
                 val thingList =
                     mutableMapOf(*things.data.things.map { Pair(it.id, it) }.toTypedArray())
 
-                for (i in (currentPage + 1)..lastPage) {
+                concurrentRequests((currentPage + 1)..lastPage) { page ->
                     val response =
                         BggClient.things(
                                 ids = ids,
-                                page = i,
+                                page = page,
                                 pageSize = pageSize,
                                 comments = comments,
                                 ratingComments = ratingComments
@@ -196,20 +198,14 @@ internal constructor(
                             .call()
 
                     if (response.isError()) {
-                        Logger.w("Error paginating guilds page $i")
+                        Logger.w("Error paginating guilds page $page")
                     } else {
                         response.data?.let {
                             it.things.forEach { newThing ->
-                                println(
-                                    "Got new thing: ${newThing.comments} for page $i -> $pageSize"
-                                )
                                 val existingThing = thingList.getValue(newThing.id)
                                 if (newThing.comments == null) return@forEach
                                 if (existingThing.comments == null) return@forEach
 
-                                println(
-                                    "Adding 2 list ${existingThing.comments.comments.size} + ${newThing.comments.comments.size} "
-                                )
                                 thingList[newThing.id] =
                                     existingThing.copy(
                                         comments =
@@ -268,19 +264,19 @@ internal constructor(
                 val lastPage = min(ceil(maxPage.toDouble() / 1_000).toInt(), toPage)
 
                 // Retrieve all pages
-                for (i in (currentPage + 1)..lastPage) {
+                concurrentRequests((currentPage + 1)..lastPage) { page ->
                     val response =
                         client
                             .user(
                                 name = user.data.name,
                                 guilds = guilds,
                                 buddies = buddies,
-                                page = i,
+                                page = page,
                             )
                             .call()
 
                     if (response.isError()) {
-                        Logger.w("Error paginating user page $i")
+                        Logger.w("Error paginating user page $page")
                     } else {
                         response.data?.let { paginatedUser ->
                             paginatedUser.guilds?.let { allGuilds.addAllAbsent(it.guilds) }
@@ -306,4 +302,18 @@ internal constructor(
                 )
             }
         }
+}
+
+private suspend inline fun <T> concurrentRequests(
+    pages: IntRange,
+    crossinline request: suspend (page: Int) -> T
+) {
+    val jobs = mutableListOf<Job>()
+    runBlocking {
+        pages.forEach {
+            jobs.add(launch { request(it) })
+
+            jobs.onEach { it.join() }
+        }
+    }
 }

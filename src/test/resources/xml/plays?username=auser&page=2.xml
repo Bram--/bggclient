@@ -1,0 +1,1494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plays username="auser" userid="2202051" total="270" page="2" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+    <play id="76580403" date="2023-10-11" quantity="1" length="121" incomplete="0" nowinstats="0" location="">
+        <item name="Beyond the Sun" objecttype="thing" objectid="317985">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats
+
+            Played with expansions:
+            - [thing=378291]Beyond the Sun: Leaders of the New Dawn[/thing] ([geekurl=/play/76580404]play[/geekurl])</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="Disciples of the Tabernacle adva" score="49" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Nishida Ostergaard Corporation a" score="55" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="The Zheng-Yi Brotherhood advance" score="59" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="United Nations of Sol advanced" score="52" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="76580404" date="2023-10-11" quantity="0" length="121" incomplete="0" nowinstats="0" location="">
+        <item name="Beyond the Sun: Leaders of the New Dawn" objecttype="thing" objectid="378291">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameexpansion" />
+            </subtypes>
+        </item>
+        <comments>Played as expansion for [thing=317985]Beyond the Sun[/thing] in [geekurl=/play/76580403]this parent play[/geekurl].
+            #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="Disciples of the Tabernacle adva" score="49" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Nishida Ostergaard Corporation a" score="55" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="The Zheng-Yi Brotherhood advance" score="59" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="United Nations of Sol advanced" score="52" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="76414231" date="2023-10-06" quantity="1" length="18" incomplete="0" nowinstats="0" location="">
+        <item name="Abandon All Artichokes" objecttype="thing" objectid="302260">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="2278239" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="76415199" date="2023-10-06" quantity="1" length="15" incomplete="0" nowinstats="0" location="">
+        <item name="Monopoly Deal" objecttype="thing" objectid="164840">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameimplementation" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="2278239" name="" startposition="" color="" score="" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="76416025" date="2023-10-06" quantity="1" length="9" incomplete="0" nowinstats="0" location="">
+        <item name="Monopoly Deal" objecttype="thing" objectid="164840">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameimplementation" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="0" rating="0" win="1" />
+            <player username="" userid="2278239" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="76412266" date="2023-10-06" quantity="1" length="70" incomplete="0" nowinstats="0" location="">
+        <item name="The Quacks of Quedlinburg" objecttype="thing" objectid="244521">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="32" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="37" new="1" rating="0" win="0" />
+            <player username="" userid="2278239" name="" startposition="" color="" score="51" new="0" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="76315338" date="2023-10-02" quantity="1" length="39" incomplete="0" nowinstats="0" location="">
+        <item name="Indiana Jones: Sands of Adventure" objecttype="thing" objectid="384175">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="Marion Ravenwood" score="" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="76014224" date="2023-09-23" quantity="1" length="253" incomplete="0" nowinstats="0" location="">
+        <item name="Rising Sun" objecttype="thing" objectid="205896">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="67" new="1" rating="0" win="1" />
+            <player username="" userid="2639010" name="" startposition="" color="" score="17" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="44" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="40" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="44" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="41" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="76032795" date="2023-09-23" quantity="1" length="330" incomplete="0" nowinstats="0" location="">
+        <item name="Through the Ages: New Leaders and Wonders" objecttype="thing" objectid="280833">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameexpansion" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="233" new="0" rating="0" win="0" />
+            <player username="" userid="2639010" name="" startposition="" color="" score="265" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="171" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="75894627" date="2023-09-18" quantity="1" length="121" incomplete="0" nowinstats="0" location="">
+        <item name="Exodus Fleet" objecttype="thing" objectid="182352">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="48" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="50" new="1" rating="0" win="0" />
+            <player username="" userid="2639010" name="" startposition="" color="" score="41" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="53" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="75890482" date="2023-09-18" quantity="1" length="5" incomplete="0" nowinstats="0" location="">
+        <item name="PitchCar" objecttype="thing" objectid="150">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>5 is first place #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="4" new="0" rating="0" win="0" />
+            <player username="" userid="7073" name="" startposition="" color="" score="3" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="1" new="1" rating="0" win="0" />
+            <player username="" userid="2639010" name="" startposition="" color="" score="2" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="5" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="75858717" date="2023-09-17" quantity="1" length="22" incomplete="0" nowinstats="0" location="">
+        <item name="Tokyo Highway" objecttype="thing" objectid="261901">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgamecompilation" />
+                <subtype value="boardgameintegration" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="10" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="8" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="75860053" date="2023-09-17" quantity="1" length="20" incomplete="0" nowinstats="0" location="">
+        <item name="Tokyo Highway" objecttype="thing" objectid="261901">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgamecompilation" />
+                <subtype value="boardgameintegration" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="7" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="8" new="0" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="75740233" date="2023-09-13" quantity="1" length="61" incomplete="0" nowinstats="0" location="">
+        <item name="SCOUT" objecttype="thing" objectid="291453">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="10" new="0" rating="0" win="0" />
+            <player username="" userid="2639010" name="" startposition="" color="" score="37" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="4" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="48" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="8" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="75738133" date="2023-09-13" quantity="1" length="14" incomplete="0" nowinstats="0" location="">
+        <item name="Skull" objecttype="thing" objectid="92415">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="2639010" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="1" new="0" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="75632887" date="2023-09-09" quantity="1" length="15" incomplete="0" nowinstats="0" location="">
+        <item name="No Thanks!" objecttype="thing" objectid="12942">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="0" name="" startposition="" color="" score="51" new="0" rating="0" win="0" />
+            <player username="" userid="2202051" name="" startposition="" color="" score="46" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="108" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="75633434" date="2023-09-09" quantity="1" length="13" incomplete="0" nowinstats="0" location="">
+        <item name="No Thanks!" objecttype="thing" objectid="12942">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="0" name="" startposition="" color="" score="23" new="0" rating="0" win="1" />
+            <player username="" userid="2202051" name="" startposition="" color="" score="60" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="87" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="75495606" date="2023-09-04" quantity="1" length="118" incomplete="0" nowinstats="0" location="">
+        <item name="Calimala" objecttype="thing" objectid="199383">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>Prototype Expansion #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="23" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="36" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="19" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="26" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="38" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="75497631" date="2023-09-04" quantity="1" length="26" incomplete="0" nowinstats="0" location="">
+        <item name="SCOUT" objecttype="thing" objectid="291453">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="0" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="start player" color="" score="7" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="14" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="75329260" date="2023-08-30" quantity="1" length="24" incomplete="0" nowinstats="0" location="">
+        <item name="Firefly Fluxx" objecttype="thing" objectid="183896">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameimplementation" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="75327972" date="2023-08-30" quantity="1" length="136" incomplete="0" nowinstats="0" location="">
+        <item name="Pax Pamir: Second Edition" objecttype="thing" objectid="256960">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameimplementation" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="3" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="7" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="14" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="11" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="0" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="75190600" date="2023-08-26" quantity="1" length="195" incomplete="0" nowinstats="0" location="">
+        <item name="Tiletum" objecttype="thing" objectid="351913">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="164" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="154" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="198" new="0" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="75031464" date="2023-08-21" quantity="1" length="32" incomplete="0" nowinstats="0" location="">
+        <item name="Pickomino" objecttype="thing" objectid="15818">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="19" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="2" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="75032266" date="2023-08-21" quantity="1" length="35" incomplete="0" nowinstats="0" location="">
+        <item name="Pickomino" objecttype="thing" objectid="15818">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="6" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="10" new="0" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="74990289" date="2023-08-20" quantity="1" length="19" incomplete="0" nowinstats="0" location="">
+        <item name="Deep Sea Adventure" objecttype="thing" objectid="169654">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="38" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="15" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="75030106" date="2023-08-15" quantity="1" length="16" incomplete="0" nowinstats="0" location="">
+        <item name="Deep Sea Adventure" objecttype="thing" objectid="169654">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="20" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="30" new="0" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="75030109" date="2023-08-15" quantity="1" length="30" incomplete="0" nowinstats="0" location="">
+        <item name="Pickomino" objecttype="thing" objectid="15818">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="9" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="7" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="74404507" date="2023-08-02" quantity="1" length="82" incomplete="0" nowinstats="0" location="">
+        <item name="Guards of Atlantis II" objecttype="thing" objectid="267609">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameimplementation" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="Arien the Tidemaster - Arien the" score="" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Arien the Tidemaster - Dodger th" score="" new="1" rating="0" win="1" />
+            <player username="" userid="2639010" name="" startposition="" color="Sabina the Gunslinger - Sabina t" score="" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Sabina the Gunslinger - Xargatha" score="" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="74409305" date="2023-08-02" quantity="1" length="90" incomplete="0" nowinstats="1" location="">
+        <item name="Tiletum" objecttype="thing" objectid="351913">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>2 round completed only #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="81" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="73" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="53" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="74306245" date="2023-07-30" quantity="1" length="85" incomplete="0" nowinstats="0" location="">
+        <item name="Fluff" objecttype="thing" objectid="256701">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="0" name="" startposition="" color="" score="" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="1" rating="0" win="0" />
+            <player username="" userid="2278239" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="74306260" date="2023-07-30" quantity="1" length="25" incomplete="0" nowinstats="0" location="">
+        <item name="Fluff" objecttype="thing" objectid="256701">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="0" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="2202051" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="74121060" date="2023-07-24" quantity="1" length="77" incomplete="0" nowinstats="0" location="">
+        <item name="Cutthroat Caverns" objecttype="thing" objectid="28259">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="76459657" date="2023-07-24" quantity="1" length="185" incomplete="0" nowinstats="0" location="">
+        <item name="Cutthroat Caverns" objecttype="thing" objectid="28259">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>Allan last man standing. Round 7 lost. #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="6" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="1" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="4" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="5" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="3" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="2" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="74117772" date="2023-07-24" quantity="1" length="48" incomplete="0" nowinstats="0" location="">
+        <item name="Hansa Teutonica: Big Box" objecttype="thing" objectid="286749">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgamecompilation" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="29" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="40" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="30" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="74115538" date="2023-07-24" quantity="1" length="50" incomplete="0" nowinstats="0" location="">
+        <item name="Pickomino" objecttype="thing" objectid="15818">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="7" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="0" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="0" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="6" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="2" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="0" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="0" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73804982" date="2023-07-15" quantity="1" length="73" incomplete="0" nowinstats="0" location="">
+        <item name="Design Town" objecttype="thing" objectid="207370">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgamecompilation" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73819128" date="2023-07-15" quantity="1" length="287" incomplete="0" nowinstats="0" location="">
+        <item name="Eclipse: Second Dawn for the Galaxy" objecttype="thing" objectid="246900">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameimplementation" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="22" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="18" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="27" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="23" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="25" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73800194" date="2023-07-15" quantity="1" length="96" incomplete="0" nowinstats="0" location="">
+        <item name="Shards of Infinity" objecttype="thing" objectid="244115">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73801987" date="2023-07-15" quantity="1" length="51" incomplete="0" nowinstats="0" location="">
+        <item name="Shards of Infinity" objecttype="thing" objectid="244115">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73797165" date="2023-07-15" quantity="1" length="18" incomplete="0" nowinstats="0" location="">
+        <item name="Startups" objecttype="thing" objectid="223770">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameimplementation" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="20" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="19" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="13" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="6" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="11" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73676030" date="2023-07-10" quantity="1" length="68" incomplete="0" nowinstats="0" location="">
+        <item name="Sabotage" objecttype="thing" objectid="252854">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="Badies" score="" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Spies" score="" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Badies" score="" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="73565942" date="2023-07-07" quantity="1" length="105" incomplete="0" nowinstats="0" location="">
+        <item name="Potion Explosion" objecttype="thing" objectid="180974">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="73" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="start player" color="" score="41" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="59" new="0" rating="0" win="0" />
+            <player username="" userid="2278239" name="" startposition="" color="" score="52" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73568897" date="2023-07-07" quantity="1" length="59" incomplete="0" nowinstats="0" location="">
+        <item name="Tokaido" objecttype="thing" objectid="123540">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="80" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="66" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="79" new="1" rating="0" win="0" />
+            <player username="" userid="2278239" name="" startposition="" color="" score="85" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="73506823" date="2023-07-05" quantity="1" length="28" incomplete="0" nowinstats="0" location="">
+        <item name="Cat in the Box: Deluxe Edition" objecttype="thing" objectid="345972">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameimplementation" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="2" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="5" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="11" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="73511227" date="2023-07-05" quantity="1" length="77" incomplete="0" nowinstats="1" location="">
+        <item name="Clinic: Deluxe Edition" objecttype="thing" objectid="272739">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameimplementation" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73512185" date="2023-07-05" quantity="1" length="27" incomplete="0" nowinstats="0" location="">
+        <item name="Codex Naturalis" objecttype="thing" objectid="314503">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="31" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="25" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73507993" date="2023-07-05" quantity="1" length="27" incomplete="0" nowinstats="0" location="">
+        <item name="Eight-Minute Empire: Mountains" objecttype="thing" objectid="176445">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameexpansion" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="13.04" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="13.02" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="13.01" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="8" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73374168" date="2023-07-01" quantity="1" length="85" incomplete="0" nowinstats="1" location="">
+        <item name="Wonderland&#039;s War" objecttype="thing" objectid="227935">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73231432" date="2023-06-26" quantity="1" length="13" incomplete="0" nowinstats="0" location="">
+        <item name="Codex Naturalis" objecttype="thing" objectid="314503">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="16" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="start player" color="" score="22" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="73334155" date="2023-06-26" quantity="1" length="88" incomplete="0" nowinstats="0" location="">
+        <item name="Istanbul" objecttype="thing" objectid="148949">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats
+
+            Played with expansions:
+            - [thing=192779]Istanbul: Letters &amp;amp; Seals[/thing] ([geekurl=/play/73334157]play[/geekurl])</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="3.03" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="5" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="3.37" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73334157" date="2023-06-26" quantity="0" length="88" incomplete="0" nowinstats="0" location="">
+        <item name="Istanbul: Letters &amp; Seals" objecttype="thing" objectid="192779">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameexpansion" />
+            </subtypes>
+        </item>
+        <comments>Played as expansion for [thing=148949]Istanbul[/thing] in [geekurl=/play/73334155]this parent play[/geekurl].
+            #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="3.03" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="5" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="3.37" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73230852" date="2023-06-26" quantity="1" length="50" incomplete="0" nowinstats="0" location="">
+        <item name="Nova Luna" objecttype="thing" objectid="284435">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameimplementation" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="18" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="16" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="13" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="20" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="73229030" date="2023-06-26" quantity="1" length="116" incomplete="0" nowinstats="0" location="">
+        <item name="Terraforming Mars: Ares Expedition" objecttype="thing" objectid="328871">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameimplementation" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="29" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="35" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="15" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="33" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73329386" date="2023-06-26" quantity="1" length="72" incomplete="0" nowinstats="0" location="">
+        <item name="Thurn and Taxis" objecttype="thing" objectid="21790">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="18" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="20" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="26" new="0" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="73144131" date="2023-06-24" quantity="1" length="110" incomplete="0" nowinstats="0" location="">
+        <item name="Concordia" objecttype="thing" objectid="124361">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats
+
+            Played with expansions:
+            - [thing=165023]Concordia: Britannia / Germania[/thing] ([geekurl=/play/73144132]play[/geekurl])</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="169" new="0" rating="0" win="1" />
+            <player username="" userid="2639010" name="" startposition="" color="" score="156" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="116" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="110" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73144132" date="2023-06-24" quantity="0" length="110" incomplete="0" nowinstats="0" location="">
+        <item name="Concordia: Britannia / Germania" objecttype="thing" objectid="165023">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameexpansion" />
+            </subtypes>
+        </item>
+        <comments>Played as expansion for [thing=124361]Concordia[/thing] in [geekurl=/play/73144131]this parent play[/geekurl].
+            #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="169" new="0" rating="0" win="1" />
+            <player username="" userid="2639010" name="" startposition="" color="" score="156" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="116" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="110" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73156037" date="2023-06-24" quantity="1" length="233" incomplete="0" nowinstats="0" location="">
+        <item name="Heroes of Land, Air &amp; Sea" objecttype="thing" objectid="198830">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats
+
+            Played with expansions:
+            - [thing=248273]Heroes of Land, Air &amp;amp; Sea: Nomads Mini-Expansion[/thing] ([geekurl=/play/73156038]play[/geekurl])
+            - [thing=248271]Heroes of Land, Air &amp;amp; Sea: Siege Engines Mini-Expansion[/thing] ([geekurl=/play/73156040]play[/geekurl])</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="Undead" score="58" new="0" rating="0" win="0" />
+            <player username="" userid="2639010" name="" startposition="" color="Humans" score="63" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Elves" score="46" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73156038" date="2023-06-24" quantity="0" length="233" incomplete="0" nowinstats="0" location="">
+        <item name="Heroes of Land, Air &amp; Sea: Nomads Mini-Expansion" objecttype="thing" objectid="248273">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameexpansion" />
+            </subtypes>
+        </item>
+        <comments>Played as expansion for [thing=198830]Heroes of Land, Air &amp;amp; Sea[/thing] in [geekurl=/play/73156037]this parent play[/geekurl].
+            #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="Undead" score="58" new="0" rating="0" win="0" />
+            <player username="" userid="2639010" name="" startposition="" color="Humans" score="63" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Elves" score="46" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73156040" date="2023-06-24" quantity="0" length="233" incomplete="0" nowinstats="0" location="">
+        <item name="Heroes of Land, Air &amp; Sea: Siege Engines Mini-Expansion" objecttype="thing" objectid="248271">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameexpansion" />
+            </subtypes>
+        </item>
+        <comments>Played as expansion for [thing=198830]Heroes of Land, Air &amp;amp; Sea[/thing] in [geekurl=/play/73156037]this parent play[/geekurl].
+            #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="Undead" score="58" new="0" rating="0" win="0" />
+            <player username="" userid="2639010" name="" startposition="" color="Humans" score="63" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Elves" score="46" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73141385" date="2023-06-24" quantity="1" length="16" incomplete="0" nowinstats="0" location="">
+        <item name="Marvel: Remix" objecttype="thing" objectid="359152">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameimplementation" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="80" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="0" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="50" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="50" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="49" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="70" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73162446" date="2023-06-24" quantity="1" length="97" incomplete="0" nowinstats="0" location="">
+        <item name="Memoir &#039;44" objecttype="thing" objectid="10630">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameimplementation" />
+                <subtype value="boardgameintegration" />
+            </subtypes>
+        </item>
+        <comments>#bgstats
+
+            Played with expansions:
+            - [thing=31638]Memoir &apos;44: Air Pack[/thing] ([geekurl=/play/73162448]play[/geekurl])
+            - [thing=19245]Memoir &apos;44: Eastern Front[/thing] ([geekurl=/play/73162449]play[/geekurl])
+            - [thing=125755]Memoir &apos;44: Equipment Pack[/thing] ([geekurl=/play/73162451]play[/geekurl])
+            - [thing=37911]Memoir &apos;44: Operation Overlord[/thing] ([geekurl=/play/73162453]play[/geekurl])
+            - [thing=27112]Memoir &apos;44: Overlord[/thing] ([geekurl=/play/73162454]play[/geekurl])
+            - [thing=59127]Memoir &apos;44: Sword of Stalingrad[/thing] ([geekurl=/play/73162455]play[/geekurl])
+            - [thing=19244]Memoir &apos;44: Terrain Pack[/thing] ([geekurl=/play/73162457]play[/geekurl])</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="2639010" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="73162448" date="2023-06-24" quantity="0" length="97" incomplete="0" nowinstats="0" location="">
+        <item name="Memoir &#039;44: Air Pack" objecttype="thing" objectid="31638">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameexpansion" />
+            </subtypes>
+        </item>
+        <comments>Played as expansion for [thing=10630]Memoir &apos;44[/thing] in [geekurl=/play/73162446]this parent play[/geekurl].
+            #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="2639010" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="73162449" date="2023-06-24" quantity="0" length="97" incomplete="0" nowinstats="0" location="">
+        <item name="Memoir &#039;44: Eastern Front" objecttype="thing" objectid="19245">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameexpansion" />
+            </subtypes>
+        </item>
+        <comments>Played as expansion for [thing=10630]Memoir &apos;44[/thing] in [geekurl=/play/73162446]this parent play[/geekurl].
+            #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="2639010" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="73162451" date="2023-06-24" quantity="0" length="97" incomplete="0" nowinstats="0" location="">
+        <item name="Memoir &#039;44: Equipment Pack" objecttype="thing" objectid="125755">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameexpansion" />
+            </subtypes>
+        </item>
+        <comments>Played as expansion for [thing=10630]Memoir &apos;44[/thing] in [geekurl=/play/73162446]this parent play[/geekurl].
+            #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="2639010" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="73162453" date="2023-06-24" quantity="0" length="97" incomplete="0" nowinstats="0" location="">
+        <item name="Memoir &#039;44: Operation Overlord" objecttype="thing" objectid="37911">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameexpansion" />
+                <subtype value="boardgameimplementation" />
+            </subtypes>
+        </item>
+        <comments>Played as expansion for [thing=10630]Memoir &apos;44[/thing] in [geekurl=/play/73162446]this parent play[/geekurl].
+            #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="2639010" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="73162454" date="2023-06-24" quantity="0" length="97" incomplete="0" nowinstats="0" location="">
+        <item name="Memoir &#039;44: Overlord" objecttype="thing" objectid="27112">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameexpansion" />
+            </subtypes>
+        </item>
+        <comments>Played as expansion for [thing=10630]Memoir &apos;44[/thing] in [geekurl=/play/73162446]this parent play[/geekurl].
+            #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="2639010" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="73162455" date="2023-06-24" quantity="0" length="97" incomplete="0" nowinstats="0" location="">
+        <item name="Memoir &#039;44: Sword of Stalingrad" objecttype="thing" objectid="59127">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameexpansion" />
+            </subtypes>
+        </item>
+        <comments>Played as expansion for [thing=10630]Memoir &apos;44[/thing] in [geekurl=/play/73162446]this parent play[/geekurl].
+            #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="2639010" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="73162457" date="2023-06-24" quantity="0" length="97" incomplete="0" nowinstats="0" location="">
+        <item name="Memoir &#039;44: Terrain Pack" objecttype="thing" objectid="19244">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameexpansion" />
+            </subtypes>
+        </item>
+        <comments>Played as expansion for [thing=10630]Memoir &apos;44[/thing] in [geekurl=/play/73162446]this parent play[/geekurl].
+            #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="2639010" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="19" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="72931647" date="2023-06-16" quantity="1" length="72" incomplete="0" nowinstats="0" location="">
+        <item name="Komodo" objecttype="thing" objectid="124992">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="200" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="115" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73076263" date="2023-06-16" quantity="1" length="53" incomplete="0" nowinstats="0" location="">
+        <item name="Komodo" objecttype="thing" objectid="124992">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="40" new="0" rating="0" win="0" />
+            <player username="" userid="2639010" name="" startposition="" color="" score="60" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="65" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="110" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="72834696" date="2023-06-07" quantity="1" length="24" incomplete="0" nowinstats="0" location="">
+        <item name="Blokus" objecttype="thing" objectid="2453">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="21" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="29" new="0" rating="0" win="0" />
+            <player username="" userid="2639010" name="" startposition="" color="" score="12" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="23" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="72679788" date="2023-06-07" quantity="1" length="18" incomplete="0" nowinstats="0" location="">
+        <item name="Codex Naturalis" objecttype="thing" objectid="314503">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="start player" color="" score="36" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="29" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="72679167" date="2023-06-07" quantity="1" length="77" incomplete="0" nowinstats="0" location="">
+        <item name="Cubitos" objecttype="thing" objectid="298069">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="72839846" date="2023-06-07" quantity="1" length="183" incomplete="0" nowinstats="0" location="">
+        <item name="Dune: Imperium" objecttype="thing" objectid="316554">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameintegration" />
+            </subtypes>
+        </item>
+        <comments>#bgstats
+
+            Played with expansions:
+            - [thing=367466]Dune: Imperium – Immortality[/thing] ([geekurl=/play/72839847]play[/geekurl])
+            - [thing=342031]Dune: Imperium – Rise of Ix[/thing] ([geekurl=/play/72839848]play[/geekurl])</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="Count Ilban Richese" score="7" new="0" rating="0" win="0" />
+            <player username="" userid="2639010" name="" startposition="" color="Prince Rhombur Vernius" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Glossu &quot;The Beast&quot; Rabban" score="9" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Paul Atreides" score="8" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="72839847" date="2023-06-07" quantity="0" length="183" incomplete="0" nowinstats="0" location="">
+        <item name="Dune: Imperium – Immortality" objecttype="thing" objectid="367466">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameexpansion" />
+            </subtypes>
+        </item>
+        <comments>Played as expansion for [thing=316554]Dune: Imperium[/thing] in [geekurl=/play/72839846]this parent play[/geekurl].
+            #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="Count Ilban Richese" score="7" new="0" rating="0" win="0" />
+            <player username="" userid="2639010" name="" startposition="" color="Prince Rhombur Vernius" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Glossu &quot;The Beast&quot; Rabban" score="9" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Paul Atreides" score="8" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="72839848" date="2023-06-07" quantity="0" length="183" incomplete="0" nowinstats="0" location="">
+        <item name="Dune: Imperium – Rise of Ix" objecttype="thing" objectid="342031">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameexpansion" />
+            </subtypes>
+        </item>
+        <comments>Played as expansion for [thing=316554]Dune: Imperium[/thing] in [geekurl=/play/72839846]this parent play[/geekurl].
+            #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="Count Ilban Richese" score="7" new="0" rating="0" win="0" />
+            <player username="" userid="2639010" name="" startposition="" color="Prince Rhombur Vernius" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Glossu &quot;The Beast&quot; Rabban" score="9" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Paul Atreides" score="8" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="72834101" date="2023-06-07" quantity="1" length="20" incomplete="0" nowinstats="0" location="">
+        <item name="Firefly Fluxx" objecttype="thing" objectid="183896">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameimplementation" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="2639010" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="1" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="72676593" date="2023-06-07" quantity="1" length="46" incomplete="0" nowinstats="0" location="">
+        <item name="Glow" objecttype="thing" objectid="275044">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>Boats #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="97" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="64" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="116" new="0" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="72675150" date="2023-06-07" quantity="1" length="16" incomplete="0" nowinstats="0" location="">
+        <item name="Parade" objecttype="thing" objectid="56692">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="4" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="9" new="1" rating="0" win="0" />
+            <player username="" userid="2639010" name="" startposition="" color="" score="16" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="8" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="22" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="4" new="0" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="72681275" date="2023-06-07" quantity="1" length="42" incomplete="0" nowinstats="0" location="">
+        <item name="SCOUT" objecttype="thing" objectid="291453">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="24" new="0" rating="0" win="0" />
+            <player username="" userid="2639010" name="" startposition="" color="" score="29" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="22" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="22" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="3" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="72563944" date="2023-06-03" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+        <item name="Codex Naturalis" objecttype="thing" objectid="314503">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="7073" name="" startposition="" color="" score="18" new="1" rating="0" win="1" />
+            <player username="" userid="2202051" name="" startposition="" color="" score="14" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="72559888" date="2023-06-03" quantity="1" length="10" incomplete="0" nowinstats="0" location="">
+        <item name="Ghost Blitz" objecttype="thing" objectid="83195">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameimplementation" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="15" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="16" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="21" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="8" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="72558772" date="2023-06-03" quantity="1" length="6" incomplete="0" nowinstats="0" location="">
+        <item name="Insider" objecttype="thing" objectid="206051">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameintegration" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="72559072" date="2023-06-03" quantity="1" length="7" incomplete="0" nowinstats="0" location="">
+        <item name="Insider" objecttype="thing" objectid="206051">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameintegration" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="72499304" date="2023-06-01" quantity="1" length="49" incomplete="0" nowinstats="0" location="">
+        <item name="Elawa" objecttype="thing" objectid="379625">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="46" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="37" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="44" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="39" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="72522295" date="2023-06-01" quantity="1" length="84" incomplete="0" nowinstats="0" location="">
+        <item name="Tiny Epic Vikings: Deluxe Edition" objecttype="thing" objectid="363893">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgamecompilation" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="30" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="30" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="72422973" date="2023-05-29" quantity="1" length="151" incomplete="0" nowinstats="0" location="">
+        <item name="Warpgate" objecttype="thing" objectid="209641">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats
+
+            Played with expansions:
+            - [thing=358749]Warpgate: Beyond[/thing] ([geekurl=/play/73441675]play[/geekurl])</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="57" new="1" rating="0" win="1" />
+            <player username="" userid="7073" name="" startposition="" color="" score="36" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="43" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="38" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="49" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="73441675" date="2023-05-29" quantity="0" length="151" incomplete="0" nowinstats="0" location="">
+        <item name="Warpgate: Beyond" objecttype="thing" objectid="358749">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameexpansion" />
+            </subtypes>
+        </item>
+        <comments>Played as expansion for [thing=209641]Warpgate[/thing] in [geekurl=/play/72422973]this parent play[/geekurl].
+            #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="57" new="1" rating="0" win="1" />
+            <player username="" userid="7073" name="" startposition="" color="" score="36" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="43" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="38" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="49" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="72245120" date="2023-05-24" quantity="1" length="62" incomplete="0" nowinstats="0" location="">
+        <item name="Architects of the West Kingdom" objecttype="thing" objectid="236457">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats
+
+            Played with expansions:
+            - [thing=285235]Architects of the West Kingdom: Age of Artisans[/thing] ([geekurl=/play/72245122]play[/geekurl])</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="30" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="27" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="39" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="72245122" date="2023-05-24" quantity="0" length="62" incomplete="0" nowinstats="0" location="">
+        <item name="Architects of the West Kingdom: Age of Artisans" objecttype="thing" objectid="285235">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameexpansion" />
+            </subtypes>
+        </item>
+        <comments>Played as expansion for [thing=236457]Architects of the West Kingdom[/thing] in [geekurl=/play/72245120]this parent play[/geekurl].
+            #bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="30" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="27" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="39" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="72248006" date="2023-05-24" quantity="1" length="62" incomplete="0" nowinstats="0" location="">
+        <item name="Garden Nation" objecttype="thing" objectid="341245">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="1" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="1" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="34" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="72118493" date="2023-05-20" quantity="1" length="11" incomplete="0" nowinstats="0" location="">
+        <item name="Blokus" objecttype="thing" objectid="2453">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="8" new="1" rating="0" win="1" />
+            <player username="" userid="2639010" name="" startposition="" color="" score="16" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="31" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="18" new="1" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="72117355" date="2023-05-20" quantity="1" length="40" incomplete="0" nowinstats="0" location="">
+        <item name="SOS Dino" objecttype="thing" objectid="244320">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="9" new="1" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="9" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="" score="9" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="75030110" date="2023-05-15" quantity="1" length="93" incomplete="0" nowinstats="0" location="">
+        <item name="Garden Nation" objecttype="thing" objectid="341245">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="21" new="1" rating="0" win="0" />
+            <player username="" userid="7073" name="" startposition="" color="" score="22" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="23" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="71889759" date="2023-05-12" quantity="1" length="8" incomplete="0" nowinstats="0" location="">
+        <item name="No Thanks!" objecttype="thing" objectid="12942">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="91" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="48" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="25" new="0" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="71889402" date="2023-05-12" quantity="1" length="19" incomplete="0" nowinstats="0" location="">
+        <item name="Parade" objecttype="thing" objectid="56692">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="8" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="12" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="5" new="0" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="71839023" date="2023-05-10" quantity="1" length="118" incomplete="0" nowinstats="0" location="">
+        <item name="Darwin&#039;s Journey" objecttype="thing" objectid="322289">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="154" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="244" new="0" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="71787301" date="2023-05-08" quantity="1" length="242" incomplete="0" nowinstats="0" location="">
+        <item name="Articulate!" objecttype="thing" objectid="6541">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="" new="1" rating="0" win="0" />
+            <player username="" userid="2202051" name="" startposition="" color="Team 1" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 3" score="" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Team 1" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 3" score="" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="" startposition="" color="Team 4" score="" new="1" rating="0" win="0" />
+            <player username="" userid="2278239" name="" startposition="" color="Team 4" score="" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="Team 2" score="" new="0" rating="0" win="0" />
+        </players>
+    </play>
+    <play id="71790991" date="2023-05-08" quantity="1" length="50" incomplete="0" nowinstats="0" location="">
+        <item name="Pickomino" objecttype="thing" objectid="15818">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="0" name="" startposition="" color="" score="3" new="0" rating="0" win="0" />
+            <player username="" userid="2202051" name="" startposition="" color="" score="0" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="0" new="1" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="2" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="2" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="3" new="1" rating="0" win="0" />
+            <player username="" userid="2278239" name="" startposition="" color="" score="5" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="" startposition="" color="" score="6" new="1" rating="0" win="1" />
+        </players>
+    </play>
+    <play id="71571624" date="2023-05-01" quantity="1" length="23" incomplete="0" nowinstats="0" location="">
+        <item name="Funkoverse Strategy Game: DC Comics 100" objecttype="thing" objectid="292034">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameintegration" />
+            </subtypes>
+        </item>
+        <comments>#bgstats</comments>
+        <players>
+            <player username="" userid="2202051" name="" startposition="" color="" score="0" new="1" rating="0" win="0" />
+            <player username="" userid="7073" name="" startposition="" color="" score="1" new="1" rating="0" win="1" />
+        </players>
+    </play>
+</plays>
+

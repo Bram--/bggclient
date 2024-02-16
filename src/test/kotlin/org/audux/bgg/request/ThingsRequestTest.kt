@@ -19,11 +19,13 @@ import io.ktor.http.HttpMethod
 import io.ktor.http.Parameters
 import io.ktor.http.URLBuilder
 import io.ktor.http.URLProtocol
+import io.ktor.http.Url
 import kotlinx.coroutines.runBlocking
 import org.audux.bgg.BggClient
 import org.audux.bgg.BggRequestException
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.util.TestUtils
+import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -78,7 +80,7 @@ class ThingsRequestTest {
                         videos = true,
                         marketplace = true,
                         comments = true,
-                        page = 1,
+                        page = 2,
                         pageSize = 100,
                     )
                     .call()
@@ -100,7 +102,7 @@ class ThingsRequestTest {
                                     append("videos", "1")
                                     append("marketplace", "1")
                                     append("comments", "1")
-                                    append("page", "1")
+                                    append("page", "2")
                                     append("pagesize", "100")
                                 }
                         )
@@ -138,6 +140,138 @@ class ThingsRequestTest {
             assertThat(exception)
                 .hasMessageThat()
                 .isEqualTo("comments and ratingsComments can't both be true")
+        }
+    }
+
+    @Nested
+    inner class Paginates {
+        @Test
+        fun `Automatically to the end`() = runBlocking {
+            val engine =
+                TestUtils.setupMockEngine(
+                    "thing?id=396790&comments=1&page=1",
+                    "thing?id=396790&comments=1&page=2",
+                    "thing?id=396790&comments=1&page=3",
+                )
+            BggClient.engine = { engine }
+
+            val response =
+                BggClient.things(ids = arrayOf(396790), comments = true).paginate().call()
+
+            assertThat(engine.requestHistory).hasSize(3)
+            assertThat(engine.requestHistory.map { it.url })
+                .containsExactly(
+                    Url("https://boardgamegeek.com/xmlapi2/thing?id=396790&comments=1"),
+                    Url(
+                        "https://boardgamegeek.com/xmlapi2/thing?id=396790&comments=1&page=2&pagesize=100"
+                    ),
+                    Url(
+                        "https://boardgamegeek.com/xmlapi2/thing?id=396790&comments=1&page=3&pagesize=100"
+                    ),
+                )
+            assertThat(response.data?.things).hasSize(1)
+            assertThat(response.data?.things!![0].comments?.totalItems).isEqualTo(213)
+            assertThat(response.data?.things!![0].comments?.comments).hasSize(213)
+        }
+
+        @Test
+        fun `To the toPage parameter`() = runBlocking {
+            val engine =
+                TestUtils.setupMockEngine(
+                    "thing?id=396790&comments=1&page=1",
+                    "thing?id=396790&comments=1&page=2",
+                    "thing?id=396790&comments=1&page=3",
+                )
+            BggClient.engine = { engine }
+
+            val response =
+                BggClient.things(ids = arrayOf(396790), comments = true).paginate(toPage = 2).call()
+
+            assertThat(engine.requestHistory).hasSize(2)
+            assertThat(engine.requestHistory.map { it.url })
+                .containsExactly(
+                    Url("https://boardgamegeek.com/xmlapi2/thing?id=396790&comments=1"),
+                    Url(
+                        "https://boardgamegeek.com/xmlapi2/thing?id=396790&comments=1&page=2&pagesize=100"
+                    ),
+                )
+            assertThat(response.data?.things).hasSize(1)
+            assertThat(response.data?.things!![0].comments?.totalItems).isEqualTo(213)
+            assertThat(response.data?.things!![0].comments?.comments).hasSize(200)
+        }
+
+        @Test
+        fun `From the initial page to the end`() = runBlocking {
+            val engine =
+                TestUtils.setupMockEngine(
+                    "thing?id=396790&comments=1&page=2",
+                    "thing?id=396790&comments=1&page=3",
+                )
+            BggClient.engine = { engine }
+
+            val response =
+                BggClient.things(ids = arrayOf(396790), ratingComments = true, page = 2)
+                    .paginate()
+                    .call()
+
+            assertThat(engine.requestHistory).hasSize(2)
+            assertThat(engine.requestHistory.map { it.url })
+                .containsExactly(
+                    Url(
+                        "https://boardgamegeek.com/xmlapi2/thing?id=396790&ratingcomments=1&page=2"
+                    ),
+                    Url(
+                        "https://boardgamegeek.com/xmlapi2/thing?id=396790&ratingcomments=1&page=3&pagesize=100"
+                    ),
+                )
+            assertThat(response.data?.things).hasSize(1)
+            assertThat(response.data?.things!![0].comments?.totalItems).isEqualTo(213)
+            assertThat(response.data?.things!![0].comments?.comments).hasSize(113)
+        }
+
+        @Test
+        fun `Quietly skips failures`() = runBlocking {
+            val engine =
+                TestUtils.setupMockEngine(
+                    "thing?id=396790&comments=1&page=1",
+                    "thing?id=-1",
+                    "thing?id=396790&comments=1&page=3",
+                )
+
+            BggClient.engine = { engine }
+
+            val response =
+                BggClient.things(ids = arrayOf(396790), comments = true).paginate().call()
+
+            assertThat(engine.requestHistory).hasSize(3)
+            assertThat(engine.requestHistory.map { it.url })
+                .containsExactly(
+                    Url("https://boardgamegeek.com/xmlapi2/thing?id=396790&comments=1"),
+                    Url(
+                        "https://boardgamegeek.com/xmlapi2/thing?id=396790&comments=1&page=2&pagesize=100"
+                    ),
+                    Url(
+                        "https://boardgamegeek.com/xmlapi2/thing?id=396790&comments=1&page=3&pagesize=100"
+                    ),
+                )
+            assertThat(response.data?.things).hasSize(1)
+            assertThat(response.data?.things!![0].comments?.totalItems).isEqualTo(213)
+            assertThat(response.data?.things!![0].comments?.comments).hasSize(113)
+        }
+
+        @Test
+        fun `Throws when comments AND ratings comments param is not set`() {
+            runBlocking {
+                val engine = TestUtils.setupMockEngine("thing?id=396790&comments=1&page=1")
+                BggClient.engine = { engine }
+
+                assertThrows(
+                    "Nothing to paginate without the either the comments or ratingComments parameter set."
+                ) {
+                    BggClient.things(ids = arrayOf(396790)).paginate().call()
+                }
+                    as BggRequestException
+            }
         }
     }
 }

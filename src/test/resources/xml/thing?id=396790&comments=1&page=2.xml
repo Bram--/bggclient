@@ -1,0 +1,978 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+    <item
+        id="396790"
+        type="boardgame">
+        <thumbnail>
+            https://cf.geekdo-images.com/fIVUaMvbfy6GCOgfxt7xaw__thumb/img/jKsO4nKmtNjX5bfH7aCPeK7hsqU=/fit-in/200x150/filters:strip_icc()/pic7647168.jpg
+        </thumbnail>
+        <image>
+            https://cf.geekdo-images.com/fIVUaMvbfy6GCOgfxt7xaw__original/img/dBMnuz3SrgxsDLHT6pwbQFPQBIw=/0x0/filters:format(jpeg)/pic7647168.jpg
+        </image>
+
+        <name
+            sortindex="1"
+            type="primary"
+            value="Nucleum" />
+
+
+        <name
+            sortindex="1"
+            type="alternate"
+            value="Nukleum" />
+
+        <name
+            sortindex="1"
+            type="alternate"
+            value="核子激荡" />
+
+        <description>When Elsa von Fr&amp;uuml;hlingfeld presented her invention to King Frederik
+            Augustus II of Saxony, people thought it was trickery. She used the recently isolated
+            element Uranium to heat up a jar of water and used the resulting steam to power an
+            engine that kept the Uranium active via a process she called &amp;ldquo;atomization.&amp;rdquo;
+            Her device, the Nucleum, ushered in a new era of energy and prosperity over the next
+            decades. Saxony went from a minor regional power to the hub of European science and
+            engineering. Now, a generation later, factories are still hungry for more power,
+            demanding bigger and more Nucleums to be built, more Uranium imported from the nearby
+            country of Bohemia, and railways and power lines built across the country to carry the
+            tamed power of the atoms to Saxony&amp;rsquo;s great cities. Inventors, engineers, and
+            industrialists flock to the Saxon court, vying to be the leader in this new industrial
+            revolution.&amp;#10;&amp;#10;Nucleum is a heavy euro board game in which players take
+            role of industrialists trying to succeed during the economic and technological boom of
+            19th-century Saxony, fueled by the invention and spread of the Nucleum (a nuclear
+            reactor).&amp;#10;&amp;#10;Players earn victory points by developing their networks,
+            building and powering urban buildings, securing contracts, and meeting milestones
+            (randomized endgame goals). Each player also gets unique asymmetric technologies, giving
+            them special powers when unlocked. Gameplay is continuous; players take turns one after
+            another with no rounds or phases.&amp;#10;&amp;#10;&amp;mdash;description from the
+            publisher&amp;#10;&amp;#10;
+        </description>
+        <yearpublished value="2023" />
+        <minplayers value="1" />
+        <maxplayers value="4" />
+        <poll
+            name="suggested_numplayers"
+            title="User Suggested Number of Players"
+            totalvotes="138">
+
+            <results numplayers="1">
+                <result
+                    numvotes="5"
+                    value="Best" />
+                <result
+                    numvotes="41"
+                    value="Recommended" />
+                <result
+                    numvotes="28"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="2">
+                <result
+                    numvotes="29"
+                    value="Best" />
+                <result
+                    numvotes="59"
+                    value="Recommended" />
+                <result
+                    numvotes="12"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="3">
+                <result
+                    numvotes="52"
+                    value="Best" />
+                <result
+                    numvotes="45"
+                    value="Recommended" />
+                <result
+                    numvotes="4"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="4">
+                <result
+                    numvotes="42"
+                    value="Best" />
+                <result
+                    numvotes="46"
+                    value="Recommended" />
+                <result
+                    numvotes="13"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="4+">
+                <result
+                    numvotes="0"
+                    value="Best" />
+                <result
+                    numvotes="1"
+                    value="Recommended" />
+                <result
+                    numvotes="52"
+                    value="Not Recommended" />
+            </results>
+        </poll>
+        <playingtime value="150" />
+        <minplaytime value="60" />
+        <maxplaytime value="150" />
+        <minage value="14" />
+        <poll
+            name="suggested_playerage"
+            title="User Suggested Player Age"
+            totalvotes="13">
+            <results>
+                <result
+                    numvotes="0"
+                    value="2" />
+                <result
+                    numvotes="0"
+                    value="3" />
+                <result
+                    numvotes="0"
+                    value="4" />
+                <result
+                    numvotes="0"
+                    value="5" />
+                <result
+                    numvotes="0"
+                    value="6" />
+                <result
+                    numvotes="0"
+                    value="8" />
+                <result
+                    numvotes="0"
+                    value="10" />
+                <result
+                    numvotes="2"
+                    value="12" />
+                <result
+                    numvotes="9"
+                    value="14" />
+                <result
+                    numvotes="2"
+                    value="16" />
+                <result
+                    numvotes="0"
+                    value="18" />
+                <result
+                    numvotes="0"
+                    value="21 and up" />
+            </results>
+        </poll>
+        <poll
+            name="language_dependence"
+            title="Language Dependence"
+            totalvotes="10">
+
+            <results>
+                <result
+                    level="1"
+                    numvotes="9"
+                    value="No necessary in-game text" />
+                <result
+                    level="2"
+                    numvotes="1"
+                    value="Some necessary text - easily memorized or small crib sheet" />
+                <result
+                    level="3"
+                    numvotes="0"
+                    value="Moderate in-game text - needs crib sheet or paste ups" />
+                <result
+                    level="4"
+                    numvotes="0"
+                    value="Extensive use of text - massive conversion needed to be playable" />
+                <result
+                    level="5"
+                    numvotes="0"
+                    value="Unplayable in another language" />
+            </results>
+        </poll>
+
+
+        <link
+            id="1021"
+            type="boardgamecategory"
+            value="Economic" />
+
+
+        <link
+            id="1088"
+            type="boardgamecategory"
+            value="Industry / Manufacturing" />
+
+
+        <link
+            id="1016"
+            type="boardgamecategory"
+            value="Science Fiction" />
+
+
+        <link
+            id="2839"
+            type="boardgamemechanic"
+            value="Action Retrieval" />
+
+
+        <link
+            id="2912"
+            type="boardgamemechanic"
+            value="Contracts" />
+
+
+        <link
+            id="2875"
+            type="boardgamemechanic"
+            value="End Game Bonuses" />
+
+
+        <link
+            id="2040"
+            type="boardgamemechanic"
+            value="Hand Management" />
+
+
+        <link
+            id="2902"
+            type="boardgamemechanic"
+            value="Income" />
+
+
+        <link
+            id="2900"
+            type="boardgamemechanic"
+            value="Market" />
+
+
+        <link
+            id="2081"
+            type="boardgamemechanic"
+            value="Network and Route Building" />
+
+
+        <link
+            id="2819"
+            type="boardgamemechanic"
+            value="Solo / Solitaire Game" />
+
+
+        <link
+            id="2849"
+            type="boardgamemechanic"
+            value="Tech Trees / Tech Tracks" />
+
+
+        <link
+            id="2015"
+            type="boardgamemechanic"
+            value="Variable Player Powers" />
+
+
+        <link
+            id="50152"
+            type="boardgamefamily"
+            value="History: Industrial Revolution" />
+
+
+        <link
+            id="59705"
+            type="boardgamefamily"
+            value="Misc: LongPack Games" />
+
+
+        <link
+            id="75798"
+            type="boardgamefamily"
+            value="Region: Saxony (Germany)" />
+
+
+        <link
+            id="26464"
+            type="boardgamefamily"
+            value="Theme: Alternate History" />
+
+
+        <link
+            id="99080"
+            type="boardgamefamily"
+            value="Theme: Electricity Generation" />
+
+
+        <link
+            id="400823"
+            type="boardgameexpansion"
+            value="Nucleum: Acrylic Nucleums Promo" />
+
+
+        <link
+            id="408223"
+            type="boardgameexpansion"
+            value="Nucleum: Australia" />
+
+
+        <link
+            id="400825"
+            type="boardgameexpansion"
+            value="Nucleum: Nucleum Half Tiles Promo" />
+
+
+        <link
+            id="35418"
+            type="boardgamedesigner"
+            value="Simone Luciani" />
+
+
+        <link
+            id="76227"
+            type="boardgamedesigner"
+            value="Dávid Turczi" />
+
+
+        <link
+            id="11898"
+            type="boardgameartist"
+            value="Andreas Resch" />
+
+
+        <link
+            id="123923"
+            type="boardgameartist"
+            value="Piotr Sokołowski" />
+
+
+        <link
+            id="86237"
+            type="boardgameartist"
+            value="Zbigniew Umgelter" />
+
+
+        <link
+            id="26630"
+            type="boardgamepublisher"
+            value="Board&amp;Dice" />
+
+
+        <link
+            id="21608"
+            type="boardgamepublisher"
+            value="CMON Global Limited" />
+
+
+        <link
+            id="6194"
+            type="boardgamepublisher"
+            value="Delta Vision Publishing" />
+
+
+        <link
+            id="42147"
+            type="boardgamepublisher"
+            value="Giant Roc" />
+
+
+        <link
+            id="5380"
+            type="boardgamepublisher"
+            value="Intrafin Games" />
+
+
+        <link
+            id="30677"
+            type="boardgamepublisher"
+            value="Maldito Games" />
+
+
+        <link
+            id="44349"
+            type="boardgamepublisher"
+            value="Mosaico Jogos" />
+
+
+        <link
+            id="55187"
+            type="boardgamepublisher"
+            value="Old Dawg" />
+
+
+        <link
+            id="7466"
+            type="boardgamepublisher"
+            value="Rebel Sp. z o.o." />
+
+
+        <comments
+            page="2"
+            totalitems="213">
+            <comment
+                rating="7"
+                username="DadouXIII"
+                value="Needs more plays" />
+            <comment
+                rating="N/A"
+                username="Daimler"
+                value="LD. Highly complex, long and completely dry euro game. Reminded me of Brass (in fact commenters mention that is reminiscent of Brass + Barrage + Concordia, none of them I enjoyed much).
+
+Not my cup of tea." />
+            <comment
+                rating="3"
+                username="Dalnemi"
+                value="He seems to have fallen into mannerisms.
+I can&apos;t find anything special about the game
+Uranium is just an instant packaging" />
+            <comment
+                rating="9"
+                username="danielwahlen"
+                value="Ahhhhh this game is so good. Brass + Barrage lovechild that just gets me so excited playing." />
+            <comment
+                rating="N/A"
+                username="Dark Herald"
+                value="Notes: On Order SO58839" />
+            <comment
+                rating="N/A"
+                username="darkfinale"
+                value="Want to Play: Nice artwork." />
+            <comment
+                rating="8"
+                username="Davidloz"
+                value="Un jeu agréable à jouer, beaucoup de possibilités. Dans les points négatifs, je mettrais que le jeu est peu lisible et thématiquement, cela fonctionne quand même pas terrible." />
+            <comment
+                rating="N/A"
+                username="DavyC"
+                value="Essen 2023" />
+            <comment
+                rating="8.5"
+                username="deactivision"
+                value="I need more plays. I like the domino system and sacrificing action potential, also like the assymetrical player boards." />
+            <comment
+                rating="8"
+                username="Dean Bud"
+                value="This game feels like a bit like Brass. You are expanding out, trying to get cities, turbines and mines off your player board and onto the main board. There is a lot going on here but this engine was one that I wasn&apos;t too excited about figuring out. It&apos;s a good game and I would like to play it again, but I don&apos;t see it entering my collection." />
+            <comment
+                rating="9"
+                username="debelbot"
+                value="A big euro with a lot of interconnected systems.
+
+People keep comparing it to Brass and Barrage.. yes there are shared elements with both but Nucleum feels and plays differently. A comparison that I haven’t seen mentioned is Concordia - the action selection system feels like an evolution of its card system, but the tiles being used as roads adds another layer to it.
+
+The game presents a good mix of tactical and strategic opportunities. All the end game scoring, purple contracts and technologies are layed out from the start, plus you can build / unlock from any level you want. These allow players to plan their strategy. While new action tiles, blocked and neutral buildings, contracts and how the board state develops create tactical opportunities for players to exploit.
+
+I really like the action selection. It&apos;s the most elegant part of the game and connects cleverly to multiple other aspects (besides taking actions) - potentially increasing your income, allowing you to fulfill contracts, or build connections.
+
+I like the board-play. Yes, it&apos;s not as directly interactive as I might have hoped, but there are still a lot of subtle elements of interaction especially in the route building and government building placement. The board always feels tight and places for everything are either scarce or far from power plants.
+
+Energizing is the single most complex action, but after you learn it, it&apos;s pretty easy to follow through. I like how it links to the achievements tracks and the variable end-game scoring options.
+
+The game is both tight and rewarding - you can get small benefits from both getting and fulfilling contracts, discounts and bonuses on action tiles, technologies, etc, but I still always feel strapped for resources.
+
+The urban buildings, mines and turbines are a little bland, both in terms of art and their effects, but they work well. I would have liked for the icons on the urban buildings to have been a bit bigger as it’s pretty hard to see if you have unenergized buildings and what kind on the board.
+
+The technologies are nice, but not amazing. I like them more than the paths in Anachrony where I feel they push you too much into a specific play style. Here you can leverage them if you want, but it doesn’t seem like they are a critical part of victory.
+
+The board is a bit too big. It’s very hard to fit even on a pretty big table (I guess it fits in a dedicated board game table, but..). The iconography is pretty clear and the rules were relatively easy to parse.
+
+My biggest problem with the game is my wife didn’t enjoy it, so now I don’t know who I would play it with." />
+            <comment
+                rating="8"
+                username="deedw"
+                value="Januar 2024: In „Nukleum“ geht es um die effiziente Energiegewinnung. Hierfür bauen wir gemeinsam auf einem Plan ein Schienennetz aus und versuchen so bestehende Kraftwerke mit den aufgedruckten Städten zu verbinden. In den Städten bauen wir unsere Gebäude, die wir mit dem gewonnenen Strom versorgen wollen, was uns Punkte bringt. Und ja, thematisch erinnert das stark an „Wasserkraft“, nur dass der Strom dort keine Gebäude versorgen muss. Die Kraftwerke nutzen anfangs Kohle, werden im Spielverlauf aber erweitert, sodass sie auch Uranium verarbeiten können. Das muss ich aber erst einmal durch gebaute Minen zutage tragen. Die Stromproduktion der Uranium-Kraftwerke (ein sogenanntes Nukleum) kann noch durch eigene und fremde Turbinen gesteigert werden. Die Mitbenutzung fremder Turbinen hat mich ebenfalls an die Rohrwerke in „Wasserkraft“ erinnert. Natürlich gibt es auch Auftragsplättchen, die ich mir nehmen und später erfüllen kann bzw. gibt es wie bei „Wasserkraft“ gemeinsame Aufträge, die von der Person erfüllt werden können, die zuerst die Bedingung erfüllt.
+
+Durchführen kann ich diese Aktionen mittels Aktionsplättchen, derer ich fünf als Standard zu Beginn des Spiels zur Auswahl habe. Auf jedem sind meist zwei Aktionen abgebildet. Das erinnerte mich stark an „Praga Caput Regni“, auch wenn ich dort die Aktionsplättchen aus einem gemeinsamen Pool wähle und nur eine der beiden Aktionen ausführe. In meinem Zug lege ich diese einfach an mein Spielertableau und führe die zwei Aktionen aus. Auf Dauer wäre das aber langweilig, deswegen kann ich mir mit einer Aktion neue Aktionsplättchen mit besseren Fähigkeiten kaufen. Auch das erinnerte mich an „Praga Caput Regni“, wo ich Aktionen verbessern kann. Noch mehr kam mir aber „Lacrimosa“ in den Kopf, wo ich meine Standardaktionskarten durch bessere aufwerten kann. Die Hinzunahme neuer Plättchen in „Nukleum“ ist auch zwingend notwendig, denn die Schienen, die ich für mein Netzwerk bauen muss, bestehen genau aus diesen Aktionsplättchen, die ich dafür umgedreht auf den Plan lege. Das mache ich aber nicht einfach so, sondern ich lege diese an und führe die Aktionen darauf aus, wenn ich eine farbliche Kodierung passend anlege. Sollte ich an eine andere Schiene farblich passend bauen, erhält der Besitzer der Schiene seine Aktion ebenfalls.
+
+Wenn ich keine Aktionsplättchen (oder kein Geld) mehr habe, passe ich, um Einkommen in Form von Geld, Arbeitern und Siegpunkten zu erhalten. Die Menge des Einkommens ist dabei an die Anzahl der Aktionsplättchen gekoppelt, die ich gespielt habe. Je mehr Aktionen ich durchführe, desto mehr Einkommen erhalte ich. Die Arbeiter benötige ich dabei zur Markierung meiner Schienen und für den Bau von Turbinen und Minen. Zusätzlich zähle ich noch zusammen, wie viele Sterne (die irgendwie Stromproduktion, Ansehen oder irgendetwas anderes darstellen) ich gesammelt habe und lege einen eigenen Marker auf ein Siegpunktleisten-Feld ab. Diese Marker bestimmen später bei der Endwertung, wie viele Punkte ich für bestimmte Ziele erhalte (beispielsweise Anzahl Gebäude oder Minen etc.). Hier kamen bei mir Erinnerungen an „Scythe“ auf, bei der ebenfalls so ein Marker den Multiplikator für die Endwertung bestimmt. Wichtig ist, dass ich im nächsten Zug einfach weitermache und nicht warte, bis die anderen gepasst haben. Das kannte ich schon aus „Everdell“, hat mich anfangs dennoch etwas verwirrt. Das Spielende wird durch verschiedene Ereignisse ausgelöst, meist wenn irgendein Stapel von irgendetwas leer ist.
+
+„Nukleum“ wirkt auf mich ein bisschen wie Frankensteins Monster. Ich sehe in dem Spiel so viele Mechanismen und Anleihen aus anderen Spielen, dass ich mich frage, wie daraus etwas Eigenes werden konnte. Aber es wurde etwas. Und im Gegensatz zu Frankensteins Monster tappst „Nukleum“ nicht behäbig und grollend durch die Gegend, sondern hüpft wider Erwarten fröhlich glucksend durch die Gegend und erfreut das Gemüt.
+
+Zumindest manchmal. Manchmal verfinsterte sich meine Miene aber auch, als ich erkannte, was für bescheidene Entscheidungen ich getroffen hatte. Allein das Setzen meines ersten Gebäudes war so bescheiden, weil ich fast bis Spielende keine Chance hatte, das Gebäude mit Strom zu versorgen. Und ich wurde auch sofort vom Netzwerk abgeschnitten, sodass ich hier rein gar nichts Zusammenhängendes aufbauen konnte. „Nukleum“ ist vielleicht nicht ganz so fies wie „Wasserkraft“, aber viel nehmen sich beide Titel nicht. Was ich leider ständig vergaß und bis Spielende nie so richtig in meinen Kopf wollte, war, dass ich Schienen überall hinbauen kann. Damit kann ich ein bestehendes Netzwerk zwar nicht erweitern, aber ich kann zumindest woanders ein zweites oder drittes aufbauen, um dann dort Gebäude, Minen oder Turbinen zu bauen, denn die müssen wiederum angrenzend an eines meiner Netzwerke gelegt werden. Ebenfalls netter als bei „Wasserkraft“ ist, dass ich die Schienen der Mitspieler mitbenutzen darf, wenn es um den Transport von Uranium zum Kraftwerk bzw. den Transport des Stroms vom Kraftwerk zum Gebäude geht.
+
+Die Interaktion im Spiel ist entsprechend hoch. Wir nehmen uns zwar keine Aktionen weg, aber es ist ein Leichtes, das Netzwerk anderer Spielerinnen zu begrenzen. Damit werden diese zwar (glücklicherweise!) nicht aus dem Spiel geworfen, aber sind dennoch stark eingeschränkt, was die Expansion ihres eigenen Netzwerks angeht. Irgendeine Begründung für meine haushohe Niederlage musste ich ja finden. ;) Die zweite Interaktion kommt durch das Anlegen farblich passender Schienen, sodass ich Aktionen ausführen kann, obwohl ich gar nicht am Zug bin.
+
+Diese Mehrfachaktionen sind das, was mir am Spiel leider am wenigsten gefällt. Ich liebe „Wasserkraft“, weil es einfache, schnelle Züge hat. Jede Aktion ist meist sehr schnell ausgeführt, selbst die Energieproduktion geht zügig von der Hand. „Nukleum“ ist da leider anders, weil ich immer zwei Aktionen ausführen kann. Das erfordert mehr Planung, die mir Spaß macht, aber es verlängert eben auch die Züge. Ich habe die Zeit gestoppt und 10 Minuten Wartezeit zwischen meinen beiden Zügen waren keine Seltenheit. Und wie gesagt, liegt das weniger am langen Nachdenken, sondern an der langen Zugausführung. Hier erinnert mich „Nukleum“ dann doch wieder an Frankensteins Monster, was etwas behäbig durch die Gegend schlurft. Auch die Endwertung fand ich etwas lang. Es gibt für so viele Sachen Punkte. Vor allem die Siegpunktleiste mit Multiplikator dauert eine Weile und auch das Auszählen der Punkte für elektrisierte Gebäude hat nicht wenig Zeit gekostet – vor allem, weil wir die elektrisierten Gebäude nicht so leicht von den nicht-elektrisierten unterscheiden konnten. Daher spielten wir zu viert auch circa 3,5 Stunden. Ein Hinweis aber: Wir haben in der Partie eine Regel falsch gespielt und uns zu viele Bonusaktionen beim Anlegen einer Schiene gegeben. Somit wäre die Wartezeit ein bisschen geringer gewesen.
+
+Für meine drei Mitspieler war es die zweite Partie, für mich die erste. Kein Wunder, dass ich mit 186:185:138:117 haushoch verloren habe. Aber immerhin nicht so schlecht wie in meiner ersten Partie „Wasserkraft“. ;) Was ich erst im Laufe der Partie merkte, war die enorme Wichtigkeit der Schienen. Zum einen, um das eigene Netzwerk groß zu halten. Ich war sehr schnell abgeschnitten und konnte somit nicht dort bauen, wo ich wollte. Klar konnte ich mit einer weiteren Schiene irgendwo anders neu starten, aber dadurch verlor ich unnötig Momentum und Aktionen. Meine Art der Expansion war alles andere als effizient. Zum anderen sind Schienen wegen ihrer Aktionen wichtig. Zusätzlich zu meinen Aktionen erhalte ich auch noch die Aktion der Nachbarschiene. Das war mir im Vorfeld gar nicht klar und ich weiß, was ich in der nächsten Partie anders machen muss.
+
+Und es wird hoffentlich eine weitere Partie geben. „Nukleum“ wird sicher nicht mein Lieblingsspiel. Dafür finde ich es nicht elegant genug. Zum Beispiel halte ich die Wertung bei Abschluss von zwei oder drei Schienen für unnötig. Das Spiel würde sehr gut ohne diese extra Regel funktionieren. Und die Mehrfachaktionen finde ich nicht gut, weil sie eine sehr hohe Wartezeit erzeugen können. In beiden Punkten steht „Wasserkraft“ für mich wesentlich besser da. Dennoch hat mir „Nukleum“ Spaß gemacht, und beim Schreiben des Textes merkte ich, dass ich es liebend gerne noch einmal spielen will. (8,0)" />
+            <comment
+                rating="9"
+                username="Delphinium"
+                value="This is game of 2023 for me. It feels like I’m forever uncovering more layers to this every time I play or think about strategy. Player interaction is mainly indirect, but I’d definitely keep an eye on your opponents. It will get to the table more (hopefully) as it isn’t as vicious as Barrage." />
+            <comment
+                rating="9"
+                username="demiesta"
+                value="Only one play, but i want more!!" />
+            <comment
+                rating="8.8"
+                username="Demiss"
+                value="Only one solo play so far but really good feeling, really clever action system you can turn into rail.
+Nice choices and good combos !" />
+            <comment
+                rating="N/A"
+                username="demuellae"
+                value="SB
+" />
+            <comment
+                rating="6"
+                username="dennislaumen"
+                value="This one was pitched as the love child of Brass: Lancashire and Barrage which got me excited. Unfortunately, there are lots of shallow similarities to those games but Nucleum removes most of the interesting interaction in those games and replaces it with combos and kitchen sink design. For example, it has the Brass building flipping, and putting resources on buildings, but nobody can take anything away from you, or cooperate with you. It has Barrage style energy production to flip those buildings, and you need to build a network to supply this energy to those buildings, but the energize action isn&apos;t contested and the networks aren&apos;t competing in any way. The one piece of interaction here is that you need to pay others if you want to use one specific type of infrastructure (which I think happened once maybe twice in our game, wow). There&apos;s even some stuff in there that reminded me of Great Western Trail.
+
+The funny thing is that the few original mechanisms in the game are pretty cool. The action mechanism works by slotting action tiles into your player board allowing you to do two specific actions. You can get more of those with better actions or better combinations of them, but you also use them as railway tiles (like in Brass) between cities to expand your network and those actions trigger if the ends are color matched with cities or other railway tiles (even opponents). The design however feels pretty cynical to me, mashing up two of the most popular and highly ranked euros on BGG, but adding other popular stuff like combos and removing unpopular stuff like negative interaction (maybe there&apos;s more of an opportunity significant interaction for this but it felt like turtling near a power plant is the right way to play, we could be wrong).
+
+Despite all of this, I still kind of enjoyed it. This game is definitely not for me, and I won&apos;t highly rank it or recommend it, but my brain liked the puzzle. I think this is mostly because turns zip around the table (but I played with people who aren&apos;t known for AP so YMMV), there was barely any downtime, and we were done in a little bit under 2 hours which is pretty good for a learning game of a baroque newro. I&apos;m curious to see how a second play of this goes and if we turtle less or if it&apos;s just the game it is.
+
+On the production side, this was one of the most intense boards I&apos;ve ever played on. This board was way too hard to read." />
+            <comment
+                rating="N/A"
+                username="Dino25"
+                value="Dec 23" />
+            <comment
+                rating="N/A"
+                username="ditterio"
+                value="A heavy eurogame, the baby of Brass and Barrage. I would like to play it to see if it&apos;s not too heavy for me.
+
+Play with Tristan" />
+            <comment
+                rating="8"
+                username="Divinity99"
+                value="Recommended 4,2" />
+            <comment
+                rating="N/A"
+                username="djfranklin"
+                value="I tried it on Spiel &apos;23." />
+            <comment
+                rating="N/A"
+                username="DJ_Tsaladi_Tjatekok"
+                value="Érdekes téma, (nem túl szép grafika,) a trendekre felülve." />
+            <comment
+                rating="8"
+                username="Dkarpoj"
+                value="What to say. It&apos;s not as good as Brass.  But it&apos;s a very stellar Euro.  I&apos;m pretty sure this will grow on me with more plays." />
+            <comment
+                rating="8.8"
+                username="dlc_1532"
+                value="[December 2023 - 8.8]
+Brain burner of the year.
+
+Nucleum checks a lot of boxes for me.  Lots of good options to do on your turn.  Personal engine-building board + interactive fight for position on the map with some opportunities for co-operation, too. Plus, tight resources (I need one more X!) and plentiful paths to victory.
+
+There are some concepts around energizing and particularly the definition of what constitutes as a network that are tricky to learn/teach the first time around, but repeated plays help. Still, you have to study the board a bit before you launch into your actions to make sure things are connected right. And if others are paying attention, they can completely block you. I&apos;ve found it effective to lay track around a few key areas of the board early on to assure I&apos;m not being blocked of those areas later.
+
+Of course, Nucleum gets compared to Brass and Barrage, so how does it stack up against the other two? For me, Nucleum is much more of a varied beast, whereas Brass and Barrage are a little more focused. That can be good in that there are more varied paths to victory, but less good if it starts to feel too much like a point-salad free-for-all. I also think it&apos;s tougher to see who&apos;s winning in Nucleum as the end-game can add 100 points or more. That being said, there is no hidden information, so you can make rough calculations.
+
+My last concern, related to the above, is that we&apos;ve had some pretty big score differences among players in the game ... like folks winning by 50-70 points over the second-place player. A lot can depend on the timing of the contracts that come out, plus the chance of double-dip scoring opportunities from the milestone marker scoring tiles and asymmetric lettered technology scoring tiles.
+
+My guess is this will rise in the rankings with repeated plays, but it isn&apos;t a slam dunk over the other two yet." />
+            <comment
+                rating="N/A"
+                username="dmoser22"
+                value="For several years, my favorite game was Barrage, but Nucleum has taken over as my #1. After 15+ games, I am still learning new strategies and stumbling through new mistakes, but every play has evolved differently, and it is has been fun every time. For me this is the perfect level of brain burn and satisfying combo delights." />
+            <comment
+                rating="8"
+                username="DoctorPhil"
+                value="first impressions: https://spotifyanchor-web.app.link/e/AzgVGxuO4Cb" />
+            <comment
+                rating="7"
+                username="dollo28"
+                value="1" />
+            <comment
+                rating="6.5"
+                username="Donnin"
+                value="The &quot;Brass&quot; familiarity is a sales bait, don&apos;t bite. It is far from being 1% the elegant design of the great Martin Wallace.
+
+&quot;Blasphemy&quot; aside, it is a more forgiving and less tight Barrage clone without the shared resource of water, win-more everywhere, extra actions on every touch - feel-good deception to hide the lack of any actual tough decision-making.
+
+Laughable, almost non-existent scaling between 3 and 4 players, especially in the action and contract tiles with the latter being a meaningless yolo-grab and in complete contrast with the same mechanism in the &quot;father&quot; design of barrage.
+
+The production is good - very good for the sub-par overall quality of Board&amp;Dice - the player tech board is flimsy and easy to break if you are a bit clumsy, the board design is ok, the colors are a bit over the place but yeah...There are worse things to point out in this game so it is a plus, I guess." />
+            <comment
+                rating="8"
+                username="Double Dan"
+                value="Starting at an 8 as I’m keen to play again.  Takes awhile to get the hang of how routes work.
+
+Played again.  Still keeping it at an 8 as I would still suggest it.  However, I could see this dropping down to a 7 with more plays.  How same-y is this game after a dozen plays?" />
+            <comment
+                rating="N/A"
+                username="dragos_br"
+                value="With Kenny from kohii. Settled mats. " />
+            <comment
+                rating="N/A"
+                username="drasher25"
+                value="Simone Luciani and Dávid Turczi, heavy Euro.  Literally all I needed to hear.  Preordered!" />
+            <comment
+                rating="8.5"
+                username="Drewbag84"
+                value="Based on a couple of online playtest, I am massively excited to add this game to my collection. There are definite links to both Barrage and Brass, but feels different enough from both to be its own game (and I&apos;ll happy own this alongside Barrage and Brass: Birmingham). " />
+            <comment
+                rating="N/A"
+                username="DTWLibrary"
+                value="7B" />
+            <comment
+                rating="N/A"
+                username="DubiousCraft"
+                value="3 player game*
+
+4 player game" />
+            <comment
+                rating="8"
+                username="dukesavard"
+                value="Toplay" />
+            <comment
+                rating="N/A"
+                username="dumpty"
+                value="Preordered @ Boards&amp;Dice
+Free gifts: Acrylic Nucleum Tokens Promo, Half Tiles Promo" />
+            <comment
+                rating="9"
+                username="dunedragn"
+                value="10" />
+            <comment
+                rating="7"
+                username="DWilson11"
+                value="Retail Edition" />
+            <comment
+                rating="8"
+                username="Ebobo"
+                value="Spiel 23" />
+            <comment
+                rating="6"
+                username="eddy_sterckx"
+                value="2023-11-15 : First play. My initial gut feeling after playing the game was that this was an &quot;8&quot; - but a good night&apos;s sleep has cleared things up a bit : in essence this is a more complicated Brass. And I like Brass more because of the easier setup, too many bits &amp; pieces, shorter playtime and less convoluted way of getting things done." />
+            <comment
+                rating="9"
+                username="eduart"
+                value="This game flows different every time I played it so far, that is a big plus. The network rules force you to think carefully about your placement of structures.
+
+I very much like the system that you have to give up action tiles to make your network." />
+            <comment
+                rating="N/A"
+                username="Elixanpe"
+                value="Not sleeved" />
+            <comment
+                rating="8.5"
+                username="Elvis75"
+                value="Gekauft am 09.08.2023
+Spiele-Offensive 75 Euro" />
+            <comment
+                rating="10"
+                username="el_mIka_el"
+                value="top" />
+            <comment
+                rating="N/A"
+                username="emilflight"
+                value="[2023]
+3P / 2hr 30m" />
+            <comment
+                rating="6.5"
+                username="emmaak"
+                value="It’s ok but Brass kinda scratches the same itch and it has more player interaction, feels deeper and is more streamlined. It also reminds me of Russian Railroads for some reason (powerful bonuses?)…but with a more disjointed “theme”. Also, it’s a bit too long, and not to mention the setup time…" />
+            <comment
+                rating="10"
+                username="Emmdizzle24"
+                value="Two of my favorite designers = instabuy!
+
+Received 10/16/2023
+
+Just played my first game and Wow! Exceeded my expectations, and they were already high!" />
+            <comment
+                rating="N/A"
+                username="EmpireBGL"
+                value="New" />
+            <comment
+                rating="9"
+                username="enzo622"
+                value="This is easily the game of the year for me for 2023 and one of my all-time favorites – maybe my all-time favorite euro, in fact. The decisions on how to use your action tiles -- and which action tiles to acquire -- are absolutely delightful. You use them either a) above your board, which guarantees you get both actions on the tile plus it increases your income, or b) as rails on the board, which sacrifices them permanently. You are absolutely torn between trying to conserve tiles but desperately needing to place rails. The action tiles as actions, rails, but also income limiters is just brilliant.
+
+From there, you’re racing for board position, to complete some goals, or to take action tiles/contract tiles before they get snatched up. I find the game has plenty of tension. The middle part of the game is about contract fulfillment. Sometimes you even take a contract you’ve already fulfilled and get immediate points/resources; yay. But towards the end, you realize contracts are less important than positioning yourself for endgame scoring where half – or more – of your points will come from. Contracts are the icing, but your endgame scoring is the cake. I find I’m constantly delighted by the decisions before me; they all feel good, but which ones are best?
+
+CLARIFICATION ON DEFINITION OF &quot;NETWORK&quot; (from Turczi):
+
+1. SINGLE CITY IN YOUR NETWORK
+A city is in one of your networks if at least one of the following conditions are met:
+- You have a building there
+- You are part of a completed link connecting that city to another
+- You have a railway tile adjacent to the city (this includes being next to other links that ultimately touch the city) — even if it&apos;s not part of a completed link.
+
+2. CONNECTED CITIES
+Two cities are connected, if you can trace a path between them using only completed links.
+
+3. TWO (OR MORE) CITIES IN YOUR NETWORK
+Two cities are in the same network of yours (assuming we&apos;ve established they&apos;re both in one of your networks) if you can trace a path between them using only completed links you are part of.
+
+You care about #1 when you want to urbanize or industrialize.
+You care about #2 when you want to energize.
+You care about #3 when you are scoring government buildings (and a small number of contracts)." />
+            <comment
+                rating="N/A"
+                username="Erendil7294"
+                value="Want To Play" />
+            <comment
+                rating="8.5"
+                username="ericbjohnson"
+                value="Gaming: This game feels like a combination if Barrage, Brass and Power Grid." />
+            <comment
+                rating="7"
+                username="ervandarnell"
+                value="It&apos;s a great game in so many ways, the money/meeple constraints on building a 3-point network (fuel, power, building to light), different resources for all of them.  The action selection mechanism versus income is a nice mechanic.  Playing action tiles as railroads or regular actions is a nice twist.   Using an action to buy new action tiles (which have two specific actions) is a nice mechanism, very difficult to optimize.
+
+The VP salad part is a little overwhelming.  The network building rules (rails anywhere, but then buddings connected) is thematically awkward.  Global turbine power-ups are also a bit confusing (some effects are global, some local).  This fails to be an 8 because out of 2 plays we still did not get all of the rules right.  There are too many hidden rules (i.e. not explicit in the iconography) and too many special case rules.  For instance, does the game even need Praha?" />
+            <comment
+                rating="N/A"
+                username="etcjensen"
+                value="Insert OK
+3.47Kg" />
+            <comment
+                rating="9"
+                username="Evaldas"
+                value="Great game I want to play more. Played twice with 4 and 3 players.
+
++Easy to learn (5 basic actions + recharge)
++Deep game (you will notice it on your first move)
++Very tactical, you have to react to what other players are doing
++Tiles used as actions or road
+
+-Time to setup
+-Visuals (difficult to see there is your network and which buildings you still need to energize)
+-Included insert is rubish (threw it away) - 3D printed on the way" />
+            <comment
+                rating="9"
+                username="Evalkos"
+                value="3P first game - need to focus on top milestone, purple contracts, and purple tech" />
+            <comment
+                rating="3"
+                username="Evan43"
+                value="Game is disjointed. Game is mostly reactionary. Planning ahead is almost non-existent. The end game scoring is absurd and renders most of the game worthless." />
+            <comment
+                rating="N/A"
+                username="evkefalas"
+                value="Premium Sleeved Kaissa (Mayday) 63x88" />
+            <comment
+                rating="5"
+                username="Experte"
+                value="Hype game but its a normal game with no interesting things. For people they are not playing other games, its ok." />
+            <comment
+                rating="N/A"
+                username="eyelashpulse"
+                value="1-4P (best 3) - 150mn
+FR" />
+            <comment
+                rating="9"
+                username="fakegame"
+                value="Great game, need to play it more, I was expecting it to be lighter than it was. First time playing, it felt like playing a heavy game for the first time (tzolkin, terra mystica)." />
+            <comment
+                rating="4"
+                username="Faribero"
+                value="Ugly and boring, like working for money.
+" />
+            <comment
+                rating="3"
+                username="Fawkes"
+                value="One of the worst cases of the underdeveloped Euro boardgame. Who thought that having all of these moving parts was a great idea? If you slashed all the *stuff* in this game by half it would still be a bloated abomination. There is nothing fun about this at all. Hire some good developers, this game desperately needed them." />
+            <comment
+                rating="8"
+                username="federik21"
+                value="Less elegant than brass, less constricted than barrage (feels less punishing and fun through the game).
+Very good mix." />
+            <comment
+                rating="8"
+                username="feldfan2014"
+                value="[url=https://boardanddice.com/]Board and Dice[/url] - this also included the [thing=400823][/thing] and the [thing=400825][/thing]" />
+            <comment
+                rating="N/A"
+                username="fellow92700"
+                value="57" />
+            <comment
+                rating="8"
+                username="ferion"
+                value="Above average Eurogame.
+But since it is frequently compared to Brass (Birmingham) and Barrage: I would prefer to play either of these two any day." />
+            <comment
+                rating="N/A"
+                username="fess66"
+                value="11/23  CMON BKK 2023 pick up" />
+            <comment
+                rating="9"
+                username="Firerevenge"
+                value="I have not played Barrage, but for me the game feels like a refreshing mix of Great Western Trail and Brass Birmingham. I really like it!" />
+            <comment
+                rating="8"
+                username="Fishpeddler"
+                value="Didn&apos;t love my first play, but it was fun. I could see this going above 8 with experience. High complexity (one of the longer rules summaries I&apos;ve written for a euro), but not difficult for newcomers to grasp if they have played Brass, Barrage, Concordia and Great Western Trail; all the major systems of this game come from those 4 games. The big twist is the multi-use action tiles, which are pretty cool. Picture your cards in Concordia providing two different actions, and with an option for the cards to be placed on the board to build infrastructure. Mind. Blown.
+
+The massive table presence is somewhat problematic. Besides the obvious issue of simply making it fit on the table, it is difficult to see all the tiny bits of information on buildings, contracts, action tiles in the market, etc. This is one where you will finish the game with tired legs from standing up so often to get a better look around the board." />
+            <comment
+                rating="6"
+                username="fizzle"
+                value="Nucleum carries lots of reminiscences to Brass and Barrage, but it also carries a lot of baggage in the form of heaps of little special rules that need to be remembered and considered. I feel like with a bit of development a lot of these bumps could have been removed, but even then, the game wouldn&apos;t reach the lofty levels of the aforementioned titles, mostly because because it moves a lot of the focus of the game from the shared board to the private tableau. The board certainly isn&apos;t unimportant here but only plays second fiddle to the the action sequencing subgame." />
+            <comment
+                rating="8"
+                username="Flundi"
+                value="Wasserkraft, Brass, Funkenschlag und Great Western Trail feiern eine Orgie der Neuronen im Gehirn." />
+            <comment
+                rating="5.5"
+                username="fnord23"
+                value="Giant table hog (this will not fit on a normal dining room table).
+Baroque chrome for the sake of baroque chrome.
+Ludicrous set-up time.
+Nearly as ludicrous play time.
+Almost as ludicrous teach time.
+Just buy (and play) Brass." />
+            <comment
+                rating="N/A"
+                username="frahminator"
+                value="GameNerdz" />
+            <comment
+                rating="8.5"
+                username="Franky5Angels"
+                value="Intuitive and pretty easy to teach for a heavy euro. Luciani does not miss." />
+            <comment
+                rating="9"
+                username="Fred86"
+                value="Fi 9" />
+            <comment
+                rating="5"
+                username="FrockLobster"
+                value="Playing Nucleum is one of those experiences that I&apos;m finding more typical lately. As it&apos;s taught and we get started, I&apos;m wowed by the design, and mechanics referenced from other games. &quot;How clever! I need this!&quot; But then by the end, I feel like it&apos;s just layers of mechanics for mechanics sake, and any games that it is similar to, I&apos;d rather just play those. It&apos;s kind of like Brass, but with a junk drawer of mechanisms poured on top. And each player has a unique player board and special, yet whole incremental, powers for... reasons? It only served to make the game more MPS. &quot;What, you have a special yet wholly uninteresting advantage when doing a thing for no thematic reason and none of us would have known that if we hadn&apos;t played before? Cool.&quot; More for the MOAR god." />
+            <comment
+                rating="9"
+                username="frostypenguinz"
+                value="Turczi and Luciani have produced an absolutely wonderful game here despite the fact it&apos;s a big, meaty, possibly overly bloated system... but I LOVE it. It gives me vibes of Brass and Barrage although it doesn&apos;t quite feel as punishing as either. There are so many juicy choices, balancing income, route building and city connections, contracts, and multi-use rail tiles. I hope to play many more plays of this, although the gameplay length will be a detractor. 4+ hours for a learning game with 4 seasoned gamers is a little long. I am really hoping the 2p implementation works well..." />
+            <comment
+                rating="7"
+                username="G0nzo"
+                value="Good player interaction, fast turns
+Brass + Barrage + Concordia (action selection)
+Long setup, tough teaching, 3h gameplay @ 4p.
+I didn&apos;t like the gameplay video.
+$RegatulJocurilor(624--), MeepleGalaxy(995)
+
+ORDERED FROM RJ" />
+            <comment
+                rating="N/A"
+                username="gamefool"
+                value="Highlight: 2023." />
+            <comment
+                rating="10"
+                username="Gamergl"
+                value="Very crunchy and enjoyable game. Solo play is smooth once you get used to it and Barron plays (and scores) interestingly different each time. Nevertheless I’ve lost clearly each time after three plays. It actually feels like you play against another player. Easily one of my favourite solo game experiences. (I mostly play solo.)" />
+            <comment
+                rating="8"
+                username="Gamer_Dog"
+                value="A couple plays now, and rating could go higher. Very heavy game with a ton to consider with every decision. -Rules are heavy too, but other than the network, not difficult to remember. The mechanisms tie together in a way that makes the decisions around interactions complex and satisfying. Player interaction is high for a Euro given the tight board and scoring competition. Overall enjoyed it. Looking forward to the new map expansion." />
+            <comment
+                rating="6"
+                username="GarcianIII"
+                value="Would play again to get a better understanding of the meta gameplay but I wasn&apos;t fully enamoured with the design. Lots of abilities just felt like the mechanistic tick of a watch as opposed to more interesting, weightier turns.
+
+In Great Western Trail, you can feel the significance of placing a building which forces players to pay you whilst opening up a new powerful action. In Nucleum, adding a wind turbine to another player&apos;s closest plant barely registers on their radar. Paying an extra 1 coin can be accounted for with such ease. Receiving an extra coin feels unsatisfactory. What is more, powering up an urban site just, yet again, ups a track or gives you another small tick upon your spreadsheet. Perhaps it was a lack of combonational play, with every action seemingly ring-fenced as its own separate moment. I understand that the combos were happening on a macro level but I never found it to be particularly rewarding to parse the myriad of strings into a 1-2-3-4 part symposium.
+
+I enjoyed the push and pull of using actions versus placing the action tiles as tracks. That is the game&apos;s techne but I am not sure it is enough for me to stitch the whole experience together. Often, I found the decision on which action tile to play, and whether as a colour-attached track or as a simple action, to be stifling as opposed to enticing (AP players will fret).
+
+And that, right there, is at the heart of my experience. I enjoyed the puzzle and logistical management of Nucleum, but less so the expression of play. Perhaps it was the theme too, a lack of Barrage style company asynchrony or simply the buildings lacking character: just offering a higher integer of a sub-type reward (+2coin income versus +3) rather than offering a unique thematic benefit. The cities were but colours, and the nucleum just felt inert.
+
+Nucleum is worse than all of the games it is leeching power from." />
+            <comment
+                rating="8"
+                username="garry_rice"
+                value="Enjoyed this one in my first play quite a bit after initial uncertainty. Enjoyed the tension in choosing how to use one&apos;s action tokens, the timing in the game, and how a number of the mechanics interact with each other. Not a difficult game to teach/learn, but takes some time to play well and grasp how everything ties together." />
+            <comment
+                rating="N/A"
+                username="Geeken"
+                value="?.??KS 2025" />
+            <comment
+                rating="N/A"
+                username="Geerius"
+                value="1-4 players" />
+            <comment
+                rating="N/A"
+                username="geocentrix"
+                value="Essen 2023" />
+            <comment
+                rating="N/A"
+                username="Georgiagals"
+                value="from board and dice" />
+            <comment
+                rating="7.3"
+                username="Gert12555"
+                value="Not sure how I feel about this one. Only played 1 time but it felt too long for what it is. I really like the action selection mechanism. I would never play this with 4. I can&apos;t imagine how long a game with AP prone first timers would turn out. Maybe I will like it more as a solo game. Anyway, I expected more from this title..." />
+            <comment
+                rating="N/A"
+                username="Gia187"
+                value="Solo eco" />
+            <comment
+                rating="8"
+                username="Giulie"
+                value="First impression - amazing! took me a bit to get into it but I enjoy this a lot!" />
+            <comment
+                rating="6"
+                username="Glakus"
+                value="D&apos;accord, c&apos;est un bon jeu, avec un thème, une esthétique, des mécaniques assez conventionnelles mais il souffre d&apos;une abondance de beaucoup de choses sur beaucoup d&apos;aspects qui finissent par épuiser le joueur.
+
+Niveau matos déjà, il y en a tellement que ça ne rentre plus dans la boîte, même si l&apos;éditeur a fait l&apos;effort de mettre un pauvre kit en carton à monter soi-même (avec un peu de recherches internet tout de même) mais qui ne permet pas de ranger les éléments de façon ni pratique ni judicieuse.
+
+Tout cela amène à une mise en place extrêmement longue qui va se justifier par une rejouabilité assez conséquente. Aucune partie ne ressemblera à une autre mais pour cela, il faudra compter sur 20 minutes de préparation. Bon nombre de jeux proposent une rejouabilité tout aussi élevée mais sans avoir à passer la moitié de sa journée pour installer une partie.
+
+À cela doit se rajouter la bonne demi-heure, voir 40 minutes d&apos;explications de règles pour la première partie et avec un peu de chance les joueurs auront encore un peu de courage pour se confronter au monstre.
+
+Car si de principe, le jeu reste assez simple, il se complexifie considérablement par une multitudes de petits détails pas toujours logiques qui feront que l&apos;on passera plus de temps le nez dans les livrets de règles que sur le plateau de jeu. Et d&apos;autres de ces détails seront carrément oubliés, ce qui peut impacter plus ou moins une partie.
+
+Le matériel est de très bonne facture mais là aussi, les auteurs se prennent les pieds dans le tapis sur la dernière ligne droite. Le plateau expérience est tout simplement mal pensé. Oui, c&apos;est fun d&apos;avoir pensé à l&apos;activation de huit tuiles de manière peu commune mais le plateau devient très rapidement fragile et à force de manipulations, j&apos;ai peur qu&apos;il ne survive pas longtemps.
+
+Et encore une fois ! La place que ça prend sur une table ! On est arrivé à un point où même une table grand luxe de celle qu&apos;on peut trouver dans un manoir ne suffit plus pour accueillir tous les éléments du jeu. En solo, c&apos;est déjà compliqué de tout agencer alors imaginez un multi !
+
+Non, franchement, ce jeu est plutôt pas mal, avec de multiples façons de scorer, sans que l&apos;une soit mieux qu&apos;une autre, mais il ne donne pas l&apos;impression de vouloir nous inviter à jouer et rejouer. Je vais certainement avoir du mal à le ressortir juste pour moi alors le proposer à d&apos;autres, ça va être plus compliqué encore." />
+            <comment
+                rating="8"
+                username="GoingTopShelf"
+                value="Is it Brass? No. But it has elements of Brass in it, which I like. It&apos;s very good, but I didn&apos;t feel after two plays like I needed to buy it. So it&apos;s an 8, but nothing more." />
+            <comment
+                rating="N/A"
+                username="graciegracegrace"
+                value="Includes:
+Half Tile Promos
+Acrylic Nuclear Tokens Promo" />
+            <comment
+                rating="8"
+                username="grecorivera"
+                value="really fun game. Looking forward to trying different strategies. It is a heavy sandbox with some tactical elements thrown in that hightened the interest level." />
+            <comment
+                rating="6.5"
+                username="grogboxer"
+                value="I&apos;ve played twice now. It&apos;s...fine. In my opinon it is less interesting and less interactive than Barrage, and the Brass comparisons aren&apos;t really fair to how interactive, and cutthroat (in a good way), Brass is. Brass is a classic for a reason. Nucleum is no Brass.
+
+The action selection mechanism, and turning them into rail links on the board (for 0-2 actions) is unique. However, the result is also that you don&apos;t meaningfully compete on actions. The competing on the board part is slowed down by having the accrue the actions to do so, and slowly building the network (or getting a rail). The fact you can&apos;t use anyone&apos;s but your uranium is a bit of an odd choice. It feels like a &quot;build your things&quot; game.
+
+It&apos;s good and fun, I&apos;ll happily play Nucleum again. Just, I think it&apos;s quite a bit below Brass and Barrage. Hegemony does the asymmetric competition part a lot better, as well, in terms of recent games." />
+            <comment
+                rating="10"
+                username="HandOfBuddha"
+                value="So much better than Brass!" />
+            <comment
+                rating="8"
+                username="Hassard"
+                value="4.08 / 5" />
+            <comment
+                rating="N/A"
+                username="hausboot82"
+                value="X" />
+            <comment
+                rating="8"
+                username="Hdgami"
+                value="* 1.5/2   : Art/Craft
+* 1.5/2   : Interactions
+* 2/2   : Mechanisms
+* 1/2   : Tempo/Fluidity
+* 2/2   : X-Factor
+*
+* Total:   8/10
+
+X-Factor :
+Very good feeling (Lucciani) for a genre that generally lack of it." />
+            <comment
+                rating="9"
+                username="hedisch"
+                value="FozzyBear Insert, Deluxe Komponenten" />
+        </comments>
+
+
+    </item>
+</items>

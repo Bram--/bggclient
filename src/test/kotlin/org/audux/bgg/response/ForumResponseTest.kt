@@ -44,13 +44,12 @@ class ForumResponseTest {
         assertThat(results.threads[0])
             .isEqualTo(
                 ThreadSummary(
-                    id = 3202992,
-                    subject =
-                        "Solo AI Variant \"Haven\" - Competitive bot - Compact, quick, low maintenance - VIDEO TUTORIAL",
-                    author = "cell141",
-                    numArticles = 29,
-                    postDate = LocalDateTime.parse("Tue, 05 Dec 2023 17:37:32 +0000", formatter),
-                    lastPostDate = LocalDateTime.parse("Tue, 23 Jan 2024 12:33:44 +0000", formatter)
+                    id = 3244901,
+                    subject = "Limited aquarium",
+                    author = "Farouke",
+                    numArticles = 11,
+                    postDate = LocalDateTime.parse("Sun, 11 Feb 2024 13:15:58 +0000", formatter),
+                    lastPostDate = LocalDateTime.parse("Wed, 14 Feb 2024 22:44:14 +0000", formatter)
                 )
             )
     }

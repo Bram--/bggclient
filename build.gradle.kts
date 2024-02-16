@@ -16,7 +16,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "org.audux.bgg"
             artifactId = "bggclient"
-            version = "0.3.3"
+            version = "0.4"
 
             pom {
                 name = "Unofficial JVM BGG client"
@@ -34,6 +34,11 @@ publishing {
                         name = "Bram Wijnands"
                         email = "brambomail@gmail.com"
                     }
+                }
+                scm {
+                    connection = "scm:git:git://git@github.com:Bram--/bggclient.git"
+                    developerConnection = "scm:git:ssh:git@github.com:Bram--/bggclient.git"
+                    url = "https://github.com/Bram--/bggclient"
                 }
             }
 

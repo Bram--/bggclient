@@ -297,8 +297,11 @@ data class Comment(
     /** Username of the user that posted the rating/comment. */
     @JacksonXmlProperty(isAttribute = true) val username: String,
 
-    /** A rating expressed in a number ranging from 1-10. May be expressed as a decimal number. */
-    @JacksonXmlProperty(isAttribute = true) val rating: Number?,
+    /**
+     * A rating expressed in a number ranging from 1-10. May be expressed as a decimal number or
+     * "N/A".
+     */
+    @JacksonXmlProperty(isAttribute = true) val rating: String?,
 
     /** The comment the user posted. */
     @JacksonXmlProperty(isAttribute = true) val value: String?,

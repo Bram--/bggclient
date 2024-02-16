@@ -67,7 +67,7 @@ import org.audux.bgg.response.Thing
  * Unofficial Board Game Geek API Client for the
  * [BGG XML2 API2](https://boardgamegeek.com/wiki/page/BGG_XML_API2).
  *
- * <p>Search example usage:
+ * Search example usage:
  * ```
  * BggClient
  *      .search("Scythe", arrayOf(ThingType.BOARD_GAME, ThingType.BOARD_GAME_EXPANSION))
@@ -84,7 +84,7 @@ object BggClient {
     /**
      * Request details about a user's collection.
      *
-     * <p>NOTE: The default (or using [subType]=[ThingType.BOARD_GAME]) returns both
+     * NOTE: The default (or using [subType]=[ThingType.BOARD_GAME]) returns both
      * [ThingType.BOARD_GAME] and [ThingType.BOARD_GAME_EXPANSION] in the collection... BUT
      * incorrectly marks the [subType] as [ThingType.BOARD_GAME] for the expansions. Workaround is
      * to use [excludeSubType]=[ThingType.BOARD_GAME_EXPANSION] and make a 2nd call asking for
@@ -249,7 +249,7 @@ object BggClient {
     /**
      * Geek list endpoint, retrieves a specific geek list by its ID.
      *
-     * <p>NOTE: This request returns a (http) 202 the first time the request is made.
+     * NOTE: This request returns a (http) 202 the first time the request is made.
      *
      * @param id the unique ID for the geek list to retrieve
      * @param comments whether to include the comments in the response or not.
@@ -355,8 +355,8 @@ object BggClient {
         marketplace: Boolean = false,
         comments: Boolean = false,
         ratingComments: Boolean = false,
-        page: Int = 0,
-        pageSize: Int = 0,
+        page: Int = 1,
+        pageSize: Int? = null,
     ) =
         InternalBggClient(engine)
             .things(
@@ -452,11 +452,19 @@ object BggClient {
                 install(ClientRateLimitPlugin) { requestLimit = 10 }
                 install(HttpRequestRetry) {
                     exponentialDelay()
-                    retryIf(maxRetries = 5) { _, response ->
+                    retryIf(maxRetries = 5) { request, response ->
                         response.status.value.let {
-                            // Add 202 (Accepted) for retries, see:
+                            // Add 429 (TooManyRequests) and 202 (Accepted) for retries, see:
                             // https://boardgamegeek.com/thread/1188687/export-collections-has-been-updated-xmlapi-develop
-                            it in (500..599) + 202
+                            val shouldRetry = it in (500..599) + 202 + 429
+
+                            if (shouldRetry) {
+                                Logger.i("HttpRequestRetry") {
+                                    "Got status code $it Retrying request[${request.url}]."
+                                }
+                            }
+
+                            shouldRetry
                         }
                     }
                 }

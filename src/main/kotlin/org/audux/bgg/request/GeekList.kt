@@ -27,7 +27,7 @@ import org.audux.bgg.response.Response
 /**
  * Geek list endpoint, retrieves a specific geek list by its ID.
  *
- * <p>NOTE: This request returns a (http) 202 the first time the request is made.
+ * NOTE: This request returns a (http) 202 the first time the request is made.
  *
  * @param id the unique ID for the geek list to retrieve
  * @param comments whether to include the comments in the response or not.

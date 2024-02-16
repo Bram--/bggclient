@@ -56,19 +56,20 @@ internal fun InternalBggClient.user(
     hot: Inclusion? = null,
     domain: Domains? = null,
     page: Number? = null,
-) = request {
-    client()
-        .get(XML2_API_URL) {
-            url {
-                appendPathSegments(PATH_USER)
-                parameters.append(PARAM_NAME, name)
-                buddies?.let { parameters.append(PARAM_BUDDIES, it.toParam()) }
-                guilds?.let { parameters.append(PARAM_GUILDS, it.toParam()) }
-                top?.let { parameters.append(PARAM_TOP, it.toParam()) }
-                hot?.let { parameters.append(PARAM_HOT, it.toParam()) }
-                domain?.let { parameters.append(PARAM_DOMAIN, it.param) }
-                page?.let { parameters.append(PARAM_PAGE, it.toString()) }
+) =
+    PaginatedUser(this, buddies, guilds) {
+        client()
+            .get(XML2_API_URL) {
+                url {
+                    appendPathSegments(PATH_USER)
+                    parameters.append(PARAM_NAME, name)
+                    buddies?.let { parameters.append(PARAM_BUDDIES, it.toParam()) }
+                    guilds?.let { parameters.append(PARAM_GUILDS, it.toParam()) }
+                    top?.let { parameters.append(PARAM_TOP, it.toParam()) }
+                    hot?.let { parameters.append(PARAM_HOT, it.toParam()) }
+                    domain?.let { parameters.append(PARAM_DOMAIN, it.param) }
+                    page?.let { parameters.append(PARAM_PAGE, it.toString()) }
+                }
             }
-        }
-        .let { Response.from<User>(it.bodyAsText(), mapper) }
-}
+            .let { Response.from<User>(it.bodyAsText(), mapper) }
+    }

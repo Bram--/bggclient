@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse"><item type="boardgame" id="396790">
+    <thumbnail>https://cf.geekdo-images.com/fIVUaMvbfy6GCOgfxt7xaw__thumb/img/jKsO4nKmtNjX5bfH7aCPeK7hsqU=/fit-in/200x150/filters:strip_icc()/pic7647168.jpg</thumbnail>
+    <image>https://cf.geekdo-images.com/fIVUaMvbfy6GCOgfxt7xaw__original/img/dBMnuz3SrgxsDLHT6pwbQFPQBIw=/0x0/filters:format(jpeg)/pic7647168.jpg</image>
+
+    <name type="primary" sortindex="1" value="Nucleum" />
+
+
+    <name type="alternate" sortindex="1" value="Nukleum" />
+
+    <name type="alternate" sortindex="1" value="核子激荡" />
+
+    <description>When Elsa von Fr&amp;uuml;hlingfeld presented her invention to King Frederik Augustus II of Saxony, people thought it was trickery. She used the recently isolated element Uranium to heat up a jar of water and used the resulting steam to power an engine that kept the Uranium active via a process she called &amp;ldquo;atomization.&amp;rdquo; Her device, the Nucleum, ushered in a new era of energy and prosperity over the next decades. Saxony went from a minor regional power to the hub of European science and engineering. Now, a generation later, factories are still hungry for more power, demanding bigger and more Nucleums to be built, more Uranium imported from the nearby country of Bohemia, and railways and power lines built across the country to carry the tamed power of the atoms to Saxony&amp;rsquo;s great cities. Inventors, engineers, and industrialists flock to the Saxon court, vying to be the leader in this new industrial revolution.&amp;#10;&amp;#10;Nucleum is a heavy euro board game in which players take role of industrialists trying to succeed during the economic and technological boom of 19th-century Saxony, fueled by the invention and spread of the Nucleum (a nuclear reactor).&amp;#10;&amp;#10;Players earn victory points by developing their networks, building and powering urban buildings, securing contracts, and meeting milestones (randomized endgame goals). Each player also gets unique asymmetric technologies, giving them special powers when unlocked. Gameplay is continuous; players take turns one after another with no rounds or phases.&amp;#10;&amp;#10;&amp;mdash;description from the publisher&amp;#10;&amp;#10;</description>
+    <yearpublished value="2023" />
+    <minplayers value="1" />
+    <maxplayers value="4" />
+    <poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="138">
+
+        <results numplayers="1">
+            <result value="Best" numvotes="5" />
+            <result value="Recommended" numvotes="41" />
+            <result value="Not Recommended" numvotes="28" />
+        </results>
+
+        <results numplayers="2">
+            <result value="Best" numvotes="29" />
+            <result value="Recommended" numvotes="59" />
+            <result value="Not Recommended" numvotes="12" />
+        </results>
+
+        <results numplayers="3">
+            <result value="Best" numvotes="52" />
+            <result value="Recommended" numvotes="45" />
+            <result value="Not Recommended" numvotes="4" />
+        </results>
+
+        <results numplayers="4">
+            <result value="Best" numvotes="42" />
+            <result value="Recommended" numvotes="46" />
+            <result value="Not Recommended" numvotes="13" />
+        </results>
+
+        <results numplayers="4+">
+            <result value="Best" numvotes="0" />
+            <result value="Recommended" numvotes="1" />
+            <result value="Not Recommended" numvotes="52" />
+        </results>
+    </poll> 			               				<playingtime value="150" />
+    <minplaytime value="60" />
+    <maxplaytime value="150" />
+    <minage value="14" />
+    <poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="13">
+        <results>
+            <result value="2" numvotes="0" />
+            <result value="3" numvotes="0" />
+            <result value="4" numvotes="0" />
+            <result value="5" numvotes="0" />
+            <result value="6" numvotes="0" />
+            <result value="8" numvotes="0" />
+            <result value="10" numvotes="0" />
+            <result value="12" numvotes="2" />
+            <result value="14" numvotes="9" />
+            <result value="16" numvotes="2" />
+            <result value="18" numvotes="0" />
+            <result value="21 and up" numvotes="0" />
+        </results>
+    </poll> 			      			<poll name="language_dependence" title="Language Dependence" totalvotes="10">
+
+    <results>
+        <result level="1" value="No necessary in-game text" numvotes="9" />
+        <result level="2" value="Some necessary text - easily memorized or small crib sheet" numvotes="1" />
+        <result level="3" value="Moderate in-game text - needs crib sheet or paste ups" numvotes="0" />
+        <result level="4" value="Extensive use of text - massive conversion needed to be playable" numvotes="0" />
+        <result level="5" value="Unplayable in another language" numvotes="0" />
+    </results>
+</poll>
+
+
+
+
+    <link type="boardgamecategory" id="1021" value="Economic" />
+
+
+
+
+
+
+
+    <link type="boardgamecategory" id="1088" value="Industry / Manufacturing" />
+
+
+
+
+
+
+
+    <link type="boardgamecategory" id="1016" value="Science Fiction" />
+
+
+
+
+
+
+
+
+
+    <link type="boardgamemechanic" id="2839" value="Action Retrieval" />
+
+
+
+
+
+
+
+    <link type="boardgamemechanic" id="2912" value="Contracts" />
+
+
+
+
+
+
+
+    <link type="boardgamemechanic" id="2875" value="End Game Bonuses" />
+
+
+
+
+
+
+
+    <link type="boardgamemechanic" id="2040" value="Hand Management" />
+
+
+
+
+
+
+
+    <link type="boardgamemechanic" id="2902" value="Income" />
+
+
+
+
+
+
+
+    <link type="boardgamemechanic" id="2900" value="Market" />
+
+
+
+
+
+
+
+    <link type="boardgamemechanic" id="2081" value="Network and Route Building" />
+
+
+
+
+
+
+
+    <link type="boardgamemechanic" id="2819" value="Solo / Solitaire Game" />
+
+
+
+
+
+
+
+    <link type="boardgamemechanic" id="2849" value="Tech Trees / Tech Tracks" />
+
+
+
+
+
+
+
+    <link type="boardgamemechanic" id="2015" value="Variable Player Powers" />
+
+
+
+
+
+
+
+
+
+    <link type="boardgamefamily" id="50152" value="History: Industrial Revolution" />
+
+
+
+
+
+
+
+    <link type="boardgamefamily" id="59705" value="Misc: LongPack Games" />
+
+
+
+
+
+
+
+    <link type="boardgamefamily" id="75798" value="Region: Saxony (Germany)" />
+
+
+
+
+
+
+
+    <link type="boardgamefamily" id="26464" value="Theme: Alternate History" />
+
+
+
+
+
+
+
+    <link type="boardgamefamily" id="99080" value="Theme: Electricity Generation" />
+
+
+
+
+
+
+
+
+
+    <link type="boardgameexpansion" id="400823" value="Nucleum: Acrylic Nucleums Promo" />
+
+
+
+
+
+
+
+    <link type="boardgameexpansion" id="408223" value="Nucleum: Australia" />
+
+
+
+
+
+
+
+    <link type="boardgameexpansion" id="400825" value="Nucleum: Nucleum Half Tiles Promo" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <link type="boardgamedesigner" id="35418" value="Simone Luciani" />
+
+
+
+
+
+
+
+    <link type="boardgamedesigner" id="76227" value="Dávid Turczi" />
+
+
+
+
+
+
+
+
+
+    <link type="boardgameartist" id="11898" value="Andreas Resch" />
+
+
+
+
+
+
+
+    <link type="boardgameartist" id="123923" value="Piotr Sokołowski" />
+
+
+
+
+
+
+
+    <link type="boardgameartist" id="86237" value="Zbigniew Umgelter" />
+
+
+
+
+
+
+
+
+
+    <link type="boardgamepublisher" id="26630" value="Board&amp;Dice" />
+
+
+
+
+
+
+
+    <link type="boardgamepublisher" id="21608" value="CMON Global Limited" />
+
+
+
+
+
+
+
+    <link type="boardgamepublisher" id="6194" value="Delta Vision Publishing" />
+
+
+
+
+
+
+
+    <link type="boardgamepublisher" id="42147" value="Giant Roc" />
+
+
+
+
+
+
+
+    <link type="boardgamepublisher" id="5380" value="Intrafin Games" />
+
+
+
+
+
+
+
+    <link type="boardgamepublisher" id="30677" value="Maldito Games" />
+
+
+
+
+
+
+
+    <link type="boardgamepublisher" id="44349" value="Mosaico Jogos" />
+
+
+
+
+
+
+
+    <link type="boardgamepublisher" id="55187" value="Old Dawg" />
+
+
+
+
+
+
+
+    <link type="boardgamepublisher" id="7466" value="Rebel Sp. z o.o." />
+
+
+
+
+
+
+
+
+
+
+    <comments page="3" totalitems="213">
+        <comment username="ygram" rating="7" value="One play: This is a very economically tight game which I appreciate. The action selection mechanism where you lose action tiles when you build railways is very good and adds an extra dimension.
+
+I was hoping for a lot of interaction but in our first play with tree people it was too low for my taste. We ended up building in three different locations only competing for spots in the end. I am hopeful for next play, perhaps you can grow strong faster by using other peoples infrastructure making competition for city spots tighter." />
+        <comment username="yob23" rating="N/A" value="6월 예정(펀딩 중)" />
+        <comment username="Yogan" rating="9" value="Fluide, brillant, addictif! Déjà 5 parties dans toutes les configurations de joueurs.euses et ça dépôte!!! Je recommande ! Une des meilleures sensations de 2023!!" />
+        <comment username="yroeht" rating="8" value="The best thing here is the scoring. You need to work on pacing to get optimal amounts of milestones at the right levels (will I score 4x this objective, or this one? can I be the first to a certain tier for the bonus nucleum placement or tier 3 tech?) . There are the contracts, which give you a bonus for taking them, which is interesting and not seen so often. And then, there are the government buildings, which give a lot of importance to expanding networks and blocking others.
+
+The map layout is full of strategic choices (getting access to build spots for mines and turbines, early game connecting to a power plant and energy source)." />
+        <comment username="yves427" rating="N/A" value="ESSEN 2023" />
+        <comment username="z25648911" rating="6" value="初玩" />
+        <comment username="zardon" rating="8" value="Very enjoyable but long.  Turns out we played the game a bit wrong.  We didn’t realise that the number of triggers needed to end the game was not all 5!    Worth playing.  Not sure if I want to actually buy it knowing how long it is and how long teach was
+
+Worth playing" />
+        <comment username="Zarkis" rating="10" value="Brass and barrage just had a beautiful baby " />
+        <comment username="zksam0924" rating="7" value="cmon" />
+        <comment username="zoodok" rating="9.7" value="I love it" />
+        <comment username="Zowin11" rating="N/A" value="Through GameNerdz" />
+        <comment username="zubor" rating="10" value="Essen" />
+        <comment username="Zulu676" rating="10" value="Harder to learn and easier to play that I though sitting down the first time.  The game tempo feels good.  There are 5 end game triggers and the number that need to be met too really trigger end game change with player count and don&apos;t sneak up on you.  Scores increased 150% after the game ended.  Will play again and everyone at the table said the same thing." />
+    </comments>
+
+
+
+
+
+</item>
+</items>

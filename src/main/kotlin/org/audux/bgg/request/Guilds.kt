@@ -40,16 +40,17 @@ internal fun InternalBggClient.guilds(
     members: Inclusion? = null,
     sort: String? = null,
     page: Number? = null
-) = request {
-    client()
-        .get(XML2_API_URL) {
-            url {
-                appendPathSegments(PATH_GUILDS)
-                parameters.append(PARAM_ID, id.toString())
-                members?.let { parameters.append(PARAM_MEMBERS, it.toParam()) }
-                sort?.let { parameters.append(PARAM_SORT, it) }
-                page?.let { parameters.append(PARAM_PAGE, it.toString()) }
+) =
+    PaginatedGuilds(this, members) {
+        client()
+            .get(XML2_API_URL) {
+                url {
+                    appendPathSegments(PATH_GUILDS)
+                    parameters.append(PARAM_ID, id.toString())
+                    members?.let { parameters.append(PARAM_MEMBERS, it.toParam()) }
+                    sort?.let { parameters.append(PARAM_SORT, it) }
+                    page?.let { parameters.append(PARAM_PAGE, it.toString()) }
+                }
             }
-        }
-        .let { Response.from<Guild>(it.bodyAsText(), mapper) }
-}
+            .let { Response.from<Guild>(it.bodyAsText(), mapper) }
+    }

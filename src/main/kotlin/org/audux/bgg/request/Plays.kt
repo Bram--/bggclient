@@ -54,24 +54,25 @@ internal fun InternalBggClient.plays(
     maxDate: LocalDate? = null,
     subType: SubType? = null,
     page: Number? = null,
-) = request {
-    val formatter = DateTimeFormatter.ofPattern(Constants.REQUEST_DATE_FORMAT)
-    client()
-        .get(XML2_API_URL) {
-            url {
-                appendPathSegments(PATH_PLAYS)
-                parameters.append(PARAM_USERNAME, username)
-                id?.let { parameters.append(PARAM_ID, it.toString()) }
-                type?.let { parameters.append(PARAM_TYPE, it.param) }
-                minDate?.let {
-                    parameters.append(Constants.PARAM_MINIMUM_DATE, formatter.format(it))
+) =
+    PaginatedPlays(this) {
+        val formatter = DateTimeFormatter.ofPattern(Constants.REQUEST_DATE_FORMAT)
+        client()
+            .get(XML2_API_URL) {
+                url {
+                    appendPathSegments(PATH_PLAYS)
+                    parameters.append(PARAM_USERNAME, username)
+                    id?.let { parameters.append(PARAM_ID, it.toString()) }
+                    type?.let { parameters.append(PARAM_TYPE, it.param) }
+                    minDate?.let {
+                        parameters.append(Constants.PARAM_MINIMUM_DATE, formatter.format(it))
+                    }
+                    maxDate?.let {
+                        parameters.append(Constants.PARAM_MAXIMUM_DATE, formatter.format(it))
+                    }
+                    subType?.let { parameters.append(PARAM_SUBTYPE, it.param) }
+                    page?.let { parameters.append(PARAM_PAGE, it.toString()) }
                 }
-                maxDate?.let {
-                    parameters.append(Constants.PARAM_MAXIMUM_DATE, formatter.format(it))
-                }
-                subType?.let { parameters.append(PARAM_SUBTYPE, it.param) }
-                page?.let { parameters.append(PARAM_PAGE, it.toString()) }
             }
-        }
-        .let { Response.from<Plays>(it.bodyAsText(), mapper) }
-}
+            .let { Response.from<Plays>(it.bodyAsText(), mapper) }
+    }

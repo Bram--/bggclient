@@ -14,17 +14,24 @@
 package org.audux.bgg.util
 
 import io.ktor.client.engine.mock.MockEngine
+import io.ktor.client.engine.mock.MockEngineConfig
 import io.ktor.client.engine.mock.respondOk
 import java.io.InputStream
 import org.audux.bgg.BggClient.InternalBggClient
 
 object TestUtils {
-    internal fun setupMockEngine(xmlFileName: String) = MockEngine {
-        respondOk(String(xml(xmlFileName).readAllBytes()))
-    }
+    internal fun setupMockEngine(vararg xmlFileName: String) =
+        MockEngine(
+            MockEngineConfig().apply {
+                xmlFileName.map { fileName ->
+                    addHandler { respondOk(String(xml(fileName).readAllBytes())) }
+                }
+            }
+        )
 
     internal fun getBggClientMapper() = InternalBggClient { MockEngine { respondOk() } }.mapper
 
+    /** Returns input stream of `resources/xml/{fileName}.xml` to use in testing. */
     /** Returns input stream of `resources/xml/{fileName}.xml` to use in testing. */
     fun xml(fileName: String): InputStream {
         try {

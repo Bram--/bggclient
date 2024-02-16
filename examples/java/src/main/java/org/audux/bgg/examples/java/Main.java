@@ -30,6 +30,7 @@ public class Main {
                         /* hot= */ Inclusion.INCLUDE,
                         /* domain= */ Domains.BOARD_GAME_GEEK,
                         /* page= */ 1)
+                .paginate(1)
                 .callAsync();
 
         // Wait for the user call to finish

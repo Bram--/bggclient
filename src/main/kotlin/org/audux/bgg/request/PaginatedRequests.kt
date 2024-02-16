@@ -68,8 +68,14 @@ internal constructor(client: BggClient.InternalBggClient, request: suspend () ->
      * @param toPage Paginate from the initial request to the `toPage`
      * @throws BggRequestException Thrown when something went wrong in the initial request
      */
-    @Throws(BggRequestException::class)
-    abstract suspend fun paginate(toPage: Int = Int.MAX_VALUE): Request<T>
+    @Throws(BggRequestException::class) abstract fun paginate(toPage: Int): Request<T>
+
+    /**
+     * No-arg implementation for Java.
+     *
+     * @see paginate
+     */
+    @Throws(BggRequestException::class) fun paginate() = paginate(Int.MAX_VALUE)
 }
 
 /** [PaginatedRequest] implementation for [forum]. */
@@ -86,7 +92,7 @@ internal constructor(
         const val PAGE_SIZE = 50
     }
 
-    override suspend fun paginate(toPage: Int) =
+    override fun paginate(toPage: Int) =
         Request(client) {
             // Run the initial request
             request().let { forum ->
@@ -129,7 +135,7 @@ internal constructor(
         const val PAGE_SIZE = 25
     }
 
-    override suspend fun paginate(toPage: Int) =
+    override fun paginate(toPage: Int) =
         Request(client) {
             if (members != Inclusion.INCLUDE) {
                 throw BggRequestException("Nothing to paginate without the members parameter set")
@@ -187,7 +193,7 @@ internal constructor(
         const val PAGE_SIZE = 100
     }
 
-    override suspend fun paginate(toPage: Int) =
+    override fun paginate(toPage: Int) =
         Request(client) {
             // Run the initial request
             request().let { plays ->
@@ -227,7 +233,7 @@ internal constructor(
     private val ratingComments: Boolean,
     private val request: suspend () -> Response<Things>
 ) : PaginatedRequest<Things>(client, request) {
-    override suspend fun paginate(toPage: Int) =
+    override fun paginate(toPage: Int) =
         Request(client) {
             if (!comments && !ratingComments) {
                 throw BggRequestException(
@@ -315,7 +321,7 @@ internal constructor(
         const val PAGE_SIZE = 1_000
     }
 
-    override suspend fun paginate(toPage: Int) =
+    override fun paginate(toPage: Int) =
         Request(client) {
             if (buddies != Inclusion.INCLUDE && guilds != Inclusion.INCLUDE) {
                 throw BggRequestException(

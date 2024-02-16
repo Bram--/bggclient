@@ -65,7 +65,7 @@ class ConcurrentRequestLimiter(private val requestLimit: Int) {
                 break
             }
 
-            logger.d(tag = "ConcurrentRequestLimiter") {
+            logger.v(tag = "ConcurrentRequestLimiter") {
                 "Concurrent Requests limit reached[$currentInFlightRequests/$requestLimit]"
             }
 

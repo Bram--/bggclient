@@ -12,11 +12,12 @@ repositories {
 }
 
 dependencies {
-    implementation("org.audux.bgg:bggclient:0.3.1")
+    implementation("org.audux.bgg:bggclient:0.4.1")
 
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
+
 tasks.named<JavaExec>("run") {
     standardInput = System.`in`
 }

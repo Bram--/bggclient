@@ -62,6 +62,7 @@ import org.audux.bgg.request.user
 import org.audux.bgg.response.Family
 import org.audux.bgg.response.Response
 import org.audux.bgg.response.Thing
+import org.jetbrains.annotations.VisibleForTesting
 
 /**
  * Unofficial Board Game Geek API Client for the
@@ -79,7 +80,7 @@ object BggClient {
         setLoggerSeverity(Severity.Warn)
     }
 
-    var engine = { CIO.create() }
+    @VisibleForTesting var engine = { CIO.create() }
 
     /**
      * Request details about a user's collection.
@@ -449,22 +450,20 @@ object BggClient {
 
         internal val client = {
             HttpClient(engine()) {
-                install(ClientRateLimitPlugin) { requestLimit = 10 }
+                install(ClientRateLimitPlugin) { requestLimit = 25 }
                 install(HttpRequestRetry) {
                     exponentialDelay()
-                    retryIf(maxRetries = 5) { request, response ->
+                    retryIf(maxRetries = 10) { request, response ->
                         response.status.value.let {
                             // Add 429 (TooManyRequests) and 202 (Accepted) for retries, see:
                             // https://boardgamegeek.com/thread/1188687/export-collections-has-been-updated-xmlapi-develop
-                            val shouldRetry = it in (500..599) + 202 + 429
-
-                            if (shouldRetry) {
-                                Logger.i("HttpRequestRetry") {
-                                    "Got status code $it Retrying request[${request.url}]."
+                            (it in (500..599) + 202 + 429).also { shouldRetry ->
+                                if (shouldRetry) {
+                                    Logger.i("HttpRequestRetry") {
+                                        "Got status code $it Retrying request[${request.url}"
+                                    }
                                 }
                             }
-
-                            shouldRetry
                         }
                     }
                 }

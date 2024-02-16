@@ -23,6 +23,7 @@ import org.audux.bgg.BggClient
 import org.audux.bgg.common.PlayThingType
 import org.audux.bgg.common.SubType
 import org.audux.bgg.util.TestUtils
+import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
 /** Unit tests for [plays] extension function. */
@@ -112,6 +113,99 @@ class PlaysRequestTest {
                     )
                 )
             assertThat(response.data?.plays).hasSize(6)
+        }
+    }
+
+    @Nested
+    inner class Paginates {
+        @Test
+        fun `Automatically to the end`() = runBlocking {
+            val engine =
+                TestUtils.setupMockEngine(
+                    "plays?username=auser&page=1",
+                    "plays?username=auser&page=2",
+                    "plays?username=auser&page=3",
+                )
+            BggClient.engine = { engine }
+
+            val response = BggClient.plays(username = "auser").paginate().call()
+
+            assertThat(engine.requestHistory).hasSize(3)
+            assertThat(engine.requestHistory.map { it.url })
+                .containsExactly(
+                    Url("https://boardgamegeek.com/xmlapi2/plays?username=auser"),
+                    Url("https://boardgamegeek.com/xmlapi2/plays?username=auser&page=2"),
+                    Url("https://boardgamegeek.com/xmlapi2/plays?username=auser&page=3"),
+                )
+            assertThat(response.data?.total).isEqualTo(270)
+            assertThat(response.data?.plays).hasSize(270)
+        }
+
+        @Test
+        fun `To the toPage parameter`() = runBlocking {
+            val engine =
+                TestUtils.setupMockEngine(
+                    "plays?username=auser&page=1",
+                    "plays?username=auser&page=2",
+                    "plays?username=auser&page=3",
+                )
+            BggClient.engine = { engine }
+
+            val response = BggClient.plays(username = "auser").paginate(toPage = 2).call()
+
+            assertThat(engine.requestHistory).hasSize(2)
+            assertThat(engine.requestHistory.map { it.url })
+                .containsExactly(
+                    Url("https://boardgamegeek.com/xmlapi2/plays?username=auser"),
+                    Url("https://boardgamegeek.com/xmlapi2/plays?username=auser&page=2"),
+                )
+            assertThat(response.data?.total).isEqualTo(270)
+            assertThat(response.data?.plays).hasSize(200)
+        }
+
+        @Test
+        fun `From the initial page to the end`() = runBlocking {
+            val engine =
+                TestUtils.setupMockEngine(
+                    "plays?username=auser&page=2",
+                    "plays?username=auser&page=3",
+                )
+            BggClient.engine = { engine }
+
+            val response = BggClient.plays(username = "auser", page = 2).paginate().call()
+
+            assertThat(engine.requestHistory).hasSize(2)
+            assertThat(engine.requestHistory.map { it.url })
+                .containsExactly(
+                    Url("https://boardgamegeek.com/xmlapi2/plays?username=auser&page=2"),
+                    Url("https://boardgamegeek.com/xmlapi2/plays?username=auser&page=3"),
+                )
+            assertThat(response.data?.total).isEqualTo(270)
+            assertThat(response.data?.plays).hasSize(170)
+        }
+
+        @Test
+        fun `Quietly skips failures`() = runBlocking {
+            val engine =
+                TestUtils.setupMockEngine(
+                    "plays?username=auser&page=1",
+                    "plays?username=userdoesnotexist", // Erroneous response
+                    "plays?username=auser&page=3",
+                )
+
+            BggClient.engine = { engine }
+
+            val response = BggClient.plays(username = "auser").paginate().call()
+
+            assertThat(engine.requestHistory).hasSize(3)
+            assertThat(engine.requestHistory.map { it.url })
+                .containsExactly(
+                    Url("https://boardgamegeek.com/xmlapi2/plays?username=auser"),
+                    Url("https://boardgamegeek.com/xmlapi2/plays?username=auser&page=2"),
+                    Url("https://boardgamegeek.com/xmlapi2/plays?username=auser&page=3"),
+                )
+            assertThat(response.data?.total).isEqualTo(270)
+            assertThat(response.data?.plays).hasSize(170)
         }
     }
 }

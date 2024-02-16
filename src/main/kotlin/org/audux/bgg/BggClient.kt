@@ -26,6 +26,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.HttpRequestRetry
+import java.io.File
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.Locale
@@ -36,7 +37,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.future.future
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.audux.bgg.common.Domains
 import org.audux.bgg.common.FamilyType
@@ -81,21 +81,6 @@ object BggClient {
     }
 
     var engine = { CIO.create() }
-
-    @JvmStatic
-    fun main(vararg args: String) {
-        setLoggerSeverity(Severity.Verbose)
-        val things = runBlocking {
-            things(ids = arrayOf(224517, 342942), comments = true).paginate().call()
-        }
-
-        println("Things:: ${things.data?.things?.size}")
-        val firstComment = things.data?.things!![0].comments!!
-        println("${firstComment.comments.size} / ${firstComment.totalItems}")
-
-        val secondComments = things.data.things[1].comments!!
-        println("${secondComments.comments.size} / ${secondComments.totalItems}")
-    }
 
     /**
      * Request details about a user's collection.

@@ -51,13 +51,10 @@ class GuildResponseTest {
     @Test
     fun `Parses a guild including members`() {
         val results =
-            mapper.readValue(
-                TestUtils.xml("guilds?id=2310&members=1&sort=date&page=0"),
-                Guild::class.java
-            )
+            mapper.readValue(TestUtils.xml("guilds?id=2310&members=1&page=1"), Guild::class.java)
 
         assertThat(results.id).isEqualTo(2310)
-        assertThat(results.members?.count).isEqualTo(31)
+        assertThat(results.members?.count).isEqualTo(62)
         assertThat(results.members?.page).isEqualTo(1)
         assertThat(results.members!!.members[0])
             .isEqualTo(

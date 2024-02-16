@@ -26,7 +26,6 @@ import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.HttpRequestRetry
-import java.io.File
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.Locale

@@ -32,7 +32,7 @@ import org.audux.bgg.response.Response
  * @param id the unique ID for the geek list to retrieve
  * @param comments whether to include the comments in the response or not.
  */
-internal fun InternalBggClient.geekList(id: Number, comments: Inclusion? = null) = request {
+internal fun InternalBggClient.geekList(id: Int, comments: Inclusion? = null) = request {
     client()
         .get(XML1_API_URL) {
             url {

@@ -13,9 +13,11 @@
  */
 package org.audux.bgg.common
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import org.audux.bgg.response.WrappedValue
+import org.audux.bgg.response.WrappedDoubleDeserializer
+import org.audux.bgg.response.WrappedIntDeserializer
 
 /**
  * The different kind/type of things the API may return such as a board game or expansion etc.
@@ -160,41 +162,41 @@ data class Ratings(
     /** A user rating if available. */
     @JacksonXmlProperty(isAttribute = true) val value: String? = null,
 
-    /** Number of user ratings. */
-    val usersRated: WrappedValue<Number>? = null,
+    /** Int of user ratings. */
+    @JsonDeserialize(using = WrappedIntDeserializer::class) val usersRated: Int? = null,
 
     /** The average rating. */
-    val average: WrappedValue<Number>? = null,
+    @JsonDeserialize(using = WrappedDoubleDeserializer::class) val average: Double? = null,
 
     /** Standard deviation. */
-    val stdDev: WrappedValue<Number>? = null,
+    @JsonDeserialize(using = WrappedDoubleDeserializer::class) val stdDev: Double? = null,
 
     /** Bayesian average rating. */
-    val bayesAverage: WrappedValue<Number>? = null,
+    @JsonDeserialize(using = WrappedDoubleDeserializer::class) val bayesAverage: Double? = null,
 
     /** The median rating. */
-    val median: WrappedValue<Number>? = null,
+    @JsonDeserialize(using = WrappedDoubleDeserializer::class) val median: Double? = null,
 
     /** Total number of users owning this thing. */
-    val owned: WrappedValue<Number>? = null,
+    @JsonDeserialize(using = WrappedIntDeserializer::class) val owned: Int? = null,
 
     /** Total number of users looking to trade away this thing. */
-    val trading: WrappedValue<Number>? = null,
+    @JsonDeserialize(using = WrappedIntDeserializer::class) val trading: Int? = null,
 
     /** Total number of users wanting this thing. */
-    val wanting: WrappedValue<Number>? = null,
+    @JsonDeserialize(using = WrappedIntDeserializer::class) val wanting: Int? = null,
 
     /** Total number of users wishing for this thing. */
-    val wishing: WrappedValue<Number>? = null,
+    @JsonDeserialize(using = WrappedIntDeserializer::class) val wishing: Int? = null,
 
     /** Total number of comments left on the thing. */
-    val numComments: WrappedValue<Number>? = null,
+    @JsonDeserialize(using = WrappedIntDeserializer::class) val numComments: Int? = null,
 
-    /** Number of weight ratings. */
-    val numWeights: WrappedValue<Number>? = null,
+    /** Int of weight ratings. */
+    @JsonDeserialize(using = WrappedIntDeserializer::class) val numWeights: Int? = null,
 
     /** Average weight rating. */
-    val averageWeight: WrappedValue<Number>? = null,
+    @JsonDeserialize(using = WrappedDoubleDeserializer::class) val averageWeight: Double? = null,
 
     /**
      * A thing can be listed on different rankings. For example a board game could both be ranked as
@@ -206,7 +208,7 @@ data class Ratings(
 /** Represents a rank in a single ranking (Consisting of type & name). */
 data class Rank(
     /** Unique of the ranking type - ID and type+name should always be a coupled. */
-    @JacksonXmlProperty(isAttribute = true) val id: Number,
+    @JacksonXmlProperty(isAttribute = true) val id: Int,
 
     /** Type of ranking e.g. the thing's main type or sub type */
     @JacksonXmlProperty(isAttribute = true) val type: String? = null,

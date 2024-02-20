@@ -256,7 +256,7 @@ object BggClient {
      * @param comments whether to include the comments in the response or not.
      */
     @JvmStatic
-    fun geekList(id: Number, comments: Inclusion? = null) =
+    fun geekList(id: Int, comments: Inclusion? = null) =
         InternalBggClient(engine).geekList(id, comments)
 
     /**
@@ -268,7 +268,7 @@ object BggClient {
      * @param page The page of the members list to return. page size is 25.
      */
     @JvmStatic
-    fun guilds(id: Number, members: Inclusion? = null, sort: String? = null, page: Number? = null) =
+    fun guilds(id: Int, members: Inclusion? = null, sort: String? = null, page: Int? = null) =
         InternalBggClient(engine).guilds(id, members, sort, page)
 
     /**
@@ -297,12 +297,12 @@ object BggClient {
     @JvmStatic
     fun plays(
         username: String,
-        id: Number? = null,
+        id: Int? = null,
         type: PlayThingType? = null,
         minDate: LocalDate? = null,
         maxDate: LocalDate? = null,
         subType: SubType? = null,
-        page: Number? = null,
+        page: Int? = null,
     ) = InternalBggClient(engine).plays(username, id, type, minDate, maxDate, subType, page)
 
     /**
@@ -416,7 +416,7 @@ object BggClient {
         top: Inclusion? = null,
         hot: Inclusion? = null,
         domain: Domains? = null,
-        page: Number? = null,
+        page: Int? = null,
     ) = InternalBggClient(engine).user(name, buddies, guilds, top, hot, domain, page)
 
     /** Logging level Severity for the BGGClient logging. */

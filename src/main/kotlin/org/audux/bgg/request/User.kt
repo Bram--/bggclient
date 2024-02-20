@@ -55,7 +55,7 @@ internal fun InternalBggClient.user(
     top: Inclusion? = null,
     hot: Inclusion? = null,
     domain: Domains? = null,
-    page: Number? = null,
+    page: Int? = null,
 ) =
     PaginatedUser(this, buddies, guilds) {
         client()

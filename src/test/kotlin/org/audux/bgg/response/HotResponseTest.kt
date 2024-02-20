@@ -39,12 +39,10 @@ class HotResponseTest {
                 HotListItem(
                     id = 332686,
                     rank = 1,
-                    name = WrappedValue("John Company: Second Edition"),
-                    yearPublished = WrappedValue(2022),
+                    name = "John Company: Second Edition",
+                    yearPublished = 2022,
                     thumbnail =
-                        WrappedValue(
-                            "https://cf.geekdo-images.com/TAdE4z_bwAAjJlmPrkmKhA__thumb/img/pwgtQn8ArKjwBxk3bnDuIVAPWgU=/fit-in/200x150/filters:strip_icc()/pic6601629.jpg"
-                        ),
+                        "https://cf.geekdo-images.com/TAdE4z_bwAAjJlmPrkmKhA__thumb/img/pwgtQn8ArKjwBxk3bnDuIVAPWgU=/fit-in/200x150/filters:strip_icc()/pic6601629.jpg"
                 )
             )
     }

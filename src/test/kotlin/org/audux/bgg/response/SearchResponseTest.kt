@@ -47,7 +47,7 @@ class SearchResponseTest {
                     id = 167159,
                     name = Name("Connect 4: My Little Pony", "primary"),
                     type = ThingType.BOARD_GAME,
-                    yearPublished = WrappedValue(2014)
+                    yearPublished = 2014
                 )
             )
     }

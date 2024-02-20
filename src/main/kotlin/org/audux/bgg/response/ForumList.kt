@@ -65,10 +65,10 @@ data class ForumSummary(
     val description: String,
 
     /** The number of threads that are active/created in the forum. */
-    @JacksonXmlProperty(isAttribute = true) val numThreads: Number,
+    @JacksonXmlProperty(isAttribute = true) val numThreads: Int,
 
     /** Total number of posts in the forum spread over the threads. */
-    @JacksonXmlProperty(isAttribute = true) val numPosts: Number,
+    @JacksonXmlProperty(isAttribute = true) val numPosts: Int,
 
     /** The date and time a post was last made. */
     @JsonFormat(pattern = "E, dd MMM yyyy HH:mm:ss Z")

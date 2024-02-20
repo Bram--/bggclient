@@ -20,11 +20,6 @@ import java.time.LocalDateTime
 import org.audux.bgg.common.SubType
 
 /** 'Hack' as many BGG API values are stored in an attribute e.g. '<element value='2.123 />'' */
-data class WrappedValue<T>(
-    @JacksonXmlProperty(isAttribute = true) val value: T,
-)
-
-/** 'Hack' as many BGG API values are stored in an attribute e.g. '<element value='2.123 />'' */
 data class WrappedLocalDateTime(
     @JacksonXmlProperty(isAttribute = true)
     @JsonFormat(pattern = "E, dd MMM yyyy HH:mm:ss Z")

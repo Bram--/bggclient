@@ -43,10 +43,10 @@ data class Forum(
     val title: String,
 
     /** The number of threads that are active/created in the forum. */
-    @JacksonXmlProperty(isAttribute = true) val numThreads: Number,
+    @JacksonXmlProperty(isAttribute = true) val numThreads: Int,
 
     /** Total number of posts in the forum spread over the threads. */
-    @JacksonXmlProperty(isAttribute = true) val numPosts: Number,
+    @JacksonXmlProperty(isAttribute = true) val numPosts: Int,
 
     /** The date and time a post was last made. */
     @JsonFormat(pattern = "E, dd MMM yyyy HH:mm:ss Z")
@@ -75,7 +75,7 @@ data class ThreadSummary(
     val author: String,
 
     /** The number of posts/articles in this thread. */
-    @JacksonXmlProperty(isAttribute = true) val numArticles: Number,
+    @JacksonXmlProperty(isAttribute = true) val numArticles: Int,
 
     /** The date and time this thread was created. */
     @JsonFormat(pattern = "E, dd MMM yyyy HH:mm:ss Z")

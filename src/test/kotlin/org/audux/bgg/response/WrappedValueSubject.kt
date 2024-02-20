@@ -18,26 +18,6 @@ import com.google.common.truth.Subject
 import com.google.common.truth.Truth.assertAbout
 import java.time.LocalDateTime
 
-/** Truth [Subject] that adds `hasValue()` for [WrappedValue] objects. */
-class WrappedValueSubject(failureMetadata: FailureMetadata, private val actual: WrappedValue<*>?) :
-    Subject(failureMetadata, actual) {
-
-    fun hasValue(value: Any?) {
-        check("value()").that(actual?.value).isEqualTo(value)
-    }
-
-    companion object {
-        @JvmStatic
-        fun assertThat(wrappedValue: WrappedValue<*>?): WrappedValueSubject {
-            return assertAbout(wrappedValues()).that(wrappedValue)
-        }
-
-        private fun wrappedValues(): Factory<WrappedValueSubject, WrappedValue<*>> {
-            return Factory { a, b -> WrappedValueSubject(a, b) }
-        }
-    }
-}
-
 /** Truth [Subject] that adds `hasValue` for [WrappedLocalDateTime] objects. */
 class WrappedLocalDateTimeSubject(
     failureMetadata: FailureMetadata,

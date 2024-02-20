@@ -29,7 +29,7 @@ data class Collection(
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
 
     /** Total number of items in the resulting collection. */
-    @JacksonXmlProperty(isAttribute = true) val totalItems: Number,
+    @JacksonXmlProperty(isAttribute = true) val totalItems: Int,
 
     /** Date and time when the collection was 'published' i.e. created by the BGG API. */
     @JacksonXmlProperty(isAttribute = true, localName = "pubdate") val publishDate: String,
@@ -41,8 +41,8 @@ data class Collection(
 /** An item in the collection e.g. a board game, rpg etc. */
 @JsonIgnoreProperties("objecttype")
 data class CollectionItem(
-    @JacksonXmlProperty(isAttribute = true, localName = "collid") val collectionId: Number,
-    @JacksonXmlProperty(isAttribute = true) val objectId: Number,
+    @JacksonXmlProperty(isAttribute = true, localName = "collid") val collectionId: Int,
+    @JacksonXmlProperty(isAttribute = true) val objectId: Int,
 
     /** Rank in the returned list. */
     @JacksonXmlProperty(isAttribute = true, localName = "subtype")
@@ -56,7 +56,7 @@ data class CollectionItem(
     val originalName: String? = null,
 
     /** Optional year of publishing. */
-    val yearPublished: Number? = null,
+    val yearPublished: Int? = null,
 
     /** Web URL to the thumbnail image. */
     @JsonDeserialize(using = TrimmedStringDeserializer::class) val thumbnail: String? = null,
@@ -67,8 +67,8 @@ data class CollectionItem(
     /** Status of the collection item e.g. whether the user owns it, previously owns it etc. */
     val status: Status? = null,
 
-    /** Number of plays the user had with this item. */
-    val numPlays: Number? = null,
+    /** Int of plays the user had with this item. */
+    val numPlays: Int? = null,
 
     /** Comment owner/user left on the collection item. */
     val comment: String? = null,
@@ -118,7 +118,7 @@ data class Status(
     val wishlist: Boolean = false,
 
     /** Whether item is currently owned. */
-    @JacksonXmlProperty(isAttribute = true) val wishlistPriority: Number? = null,
+    @JacksonXmlProperty(isAttribute = true) val wishlistPriority: Int? = null,
 
     /** Whether item is currently owned. */
     @JsonDeserialize(using = NumberToBooleanDeserializer::class)
@@ -134,22 +134,22 @@ data class Status(
 /** Statistics for a collection item. */
 data class CollectionStatistics(
     /** Minimum number of players. */
-    @JacksonXmlProperty(localName = "minplayers") val minimumPlayers: Number?,
+    @JacksonXmlProperty(localName = "minplayers") val minimumPlayers: Int?,
 
     /** Maximum number of players. */
-    @JacksonXmlProperty(localName = "maxplayers") val maximumPlayers: Number?,
+    @JacksonXmlProperty(localName = "maxplayers") val maximumPlayers: Int?,
 
     /** Minimum play time in minutes. */
-    @JacksonXmlProperty(localName = "minplaytime") val minimumPlayTime: Number?,
+    @JacksonXmlProperty(localName = "minplaytime") val minimumPlayTime: Int?,
 
     /** Maximum play time in minutes. */
-    @JacksonXmlProperty(localName = "maxplaytime") val maximumPlayTime: Number?,
+    @JacksonXmlProperty(localName = "maxplaytime") val maximumPlayTime: Int?,
 
     /** Average playing time. */
-    @JacksonXmlProperty(localName = "playingtime") val playingTime: Number?,
+    @JacksonXmlProperty(localName = "playingtime") val playingTime: Int?,
 
     /** How often this item is seen in collections. */
-    val numOwned: Number?,
+    val numOwned: Int?,
 
     /** The set of ratings */
     @JacksonXmlProperty(localName = "rating") val ratings: Ratings,

@@ -14,6 +14,7 @@
 package org.audux.bgg.response
 
 import com.fasterxml.jackson.annotation.JsonRootName
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 
 /** Response wrapper for Hot lists to be returned. */
@@ -35,11 +36,11 @@ data class HotListItem(
     @JacksonXmlProperty(isAttribute = true) val rank: Int,
 
     /** Primary name represented as [WrappedValue]. */
-    val name: WrappedValue<String>,
+    @JsonDeserialize(using = WrappedStringDeserializer::class) val name: String?,
 
     /** Thumbnail image URL of the item. */
-    val thumbnail: WrappedValue<String>?,
+    @JsonDeserialize(using = WrappedStringDeserializer::class) val thumbnail: String?,
 
     /** Optional year of publishing. */
-    val yearPublished: WrappedValue<Int>?,
+    @JsonDeserialize(using = WrappedIntDeserializer::class) val yearPublished: Int?,
 )

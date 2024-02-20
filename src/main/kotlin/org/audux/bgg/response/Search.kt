@@ -44,5 +44,5 @@ data class SearchResult(
     @JsonDeserialize(using = ThingTypeDeserializer::class) val type: ThingType,
 
     /** Optional year of publishing. */
-    val yearPublished: WrappedValue<Int>?,
+    @JsonDeserialize(using = WrappedIntDeserializer::class) val yearPublished: Int?,
 )

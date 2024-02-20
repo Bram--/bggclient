@@ -16,7 +16,6 @@ package org.audux.bgg.response
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
 import java.time.LocalDate
-import org.audux.bgg.response.WrappedValueSubject.Companion.assertThat
 import org.audux.bgg.util.TestUtils
 import org.audux.bgg.util.TestUtils.xml
 import org.junit.jupiter.api.Test
@@ -38,20 +37,20 @@ class UserResponseTest {
 
         assertThat(results.name).isEqualTo("Novaeux")
         assertThat(results.id).isEqualTo(2639010)
-        assertThat(results.firstName).hasValue("Bram")
-        assertThat(results.lastName).hasValue("Wijnands")
-        assertThat(results.avatarLink).hasValue("N/A")
-        assertThat(results.yearRegistered).hasValue(2020)
-        assertThat(results.lastLogin).hasValue(LocalDate.of(2024, 2, 5))
-        assertThat(results.stateOrProvince).hasValue("England")
-        assertThat(results.country).hasValue("United Kingdom")
-        assertThat(results.webAddress).hasValue("")
-        assertThat(results.xBoxAccount).hasValue("")
-        assertThat(results.wiiAccount).hasValue("")
-        assertThat(results.psnAccount).hasValue("")
-        assertThat(results.battleNetAccount).hasValue("")
-        assertThat(results.steamAccount).hasValue("")
-        assertThat(results.tradeRating).hasValue(0)
+        assertThat(results.firstName).isEqualTo("Bram")
+        assertThat(results.lastName).isEqualTo("Wijnands")
+        assertThat(results.avatarLink).isEqualTo("N/A")
+        assertThat(results.yearRegistered).isEqualTo(2020)
+        assertThat(results.lastLogin).isEqualTo(LocalDate.of(2024, 2, 5))
+        assertThat(results.stateOrProvince).isEqualTo("England")
+        assertThat(results.country).isEqualTo("United Kingdom")
+        assertThat(results.webAddress).isEqualTo("")
+        assertThat(results.xBoxAccount).isEqualTo("")
+        assertThat(results.wiiAccount).isEqualTo("")
+        assertThat(results.psnAccount).isEqualTo("")
+        assertThat(results.battleNetAccount).isEqualTo("")
+        assertThat(results.steamAccount).isEqualTo("")
+        assertThat(results.tradeRating).isEqualTo(0)
         assertThat(results.buddies).isNull()
         assertThat(results.guilds).isNull()
         assertThat(results.top).isNull()
@@ -68,8 +67,8 @@ class UserResponseTest {
 
         assertThat(results.name).isEqualTo("Novaeux")
         assertThat(results.id).isEqualTo(2639010)
-        assertThat(results.firstName).hasValue("Bram")
-        assertThat(results.lastName).hasValue("Wijnands")
+        assertThat(results.firstName).isEqualTo("Bram")
+        assertThat(results.lastName).isEqualTo("Wijnands")
         assertThat(results.buddies?.total).isEqualTo(1)
         assertThat(results.guilds?.total).isEqualTo(2)
         assertThat(results.top?.items).hasSize(2)

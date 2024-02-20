@@ -36,10 +36,10 @@ import org.audux.bgg.response.Response
  * @param page The page of the members list to return. page size is 25.
  */
 internal fun InternalBggClient.guilds(
-    id: Number,
+    id: Int,
     members: Inclusion? = null,
     sort: String? = null,
-    page: Number? = null
+    page: Int? = null
 ) =
     PaginatedGuilds(this, members) {
         client()

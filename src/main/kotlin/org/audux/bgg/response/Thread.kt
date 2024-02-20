@@ -36,7 +36,7 @@ data class Thread(
     val subject: String,
 
     /** The number of threads that are active/created in the forum. */
-    @JacksonXmlProperty(isAttribute = true) val numArticles: Number,
+    @JacksonXmlProperty(isAttribute = true) val numArticles: Int,
 
     /** The list of articles in this thread. */
     @JacksonXmlElementWrapper(localName = "articles") val articles: List<Article> = listOf(),
@@ -56,7 +56,7 @@ data class Article(
     val username: String,
 
     /** The number of edits made to this article. */
-    @JacksonXmlProperty(isAttribute = true) val numEdits: Number,
+    @JacksonXmlProperty(isAttribute = true) val numEdits: Int,
 
     /** The date and time this article was created. */
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssz")

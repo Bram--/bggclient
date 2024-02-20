@@ -120,6 +120,7 @@ class PlaysRequestTest {
     inner class Paginates {
         @Test
         fun `Automatically to the end`() = runBlocking {
+            BggClient.setLoggerSeverity(BggClient.Severity.Verbose)
             val engine =
                 TestUtils.setupMockEngine(
                     "plays?username=auser&page=1",

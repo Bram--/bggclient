@@ -31,7 +31,7 @@ data class GeekList(
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
 
     /** Unique ID for the Geek list - same as in the request. */
-    @JacksonXmlProperty(isAttribute = true) val id: Number,
+    @JacksonXmlProperty(isAttribute = true) val id: Int,
 
     /** The date and time the geek list was posted/published. */
     @JsonFormat(pattern = Constants.REQUEST_XML1_DATE_TIME_FORMAT) val postDate: LocalDateTime,
@@ -40,10 +40,10 @@ data class GeekList(
     @JsonFormat(pattern = Constants.REQUEST_XML1_DATE_TIME_FORMAT) val editDate: LocalDateTime,
 
     /** The number of thumbs up/likes the geek list received. */
-    val thumbs: Number,
+    val thumbs: Int,
 
     /** The of number of items in the geek list. */
-    val numItems: Number,
+    val numItems: Int,
 
     /** The username of the user that published this geek list. */
     val username: String,
@@ -86,7 +86,7 @@ data class GeekListComment(
     val editDate: LocalDateTime,
 
     /** The number of thumbs up/likes on this item. */
-    @JacksonXmlProperty(isAttribute = true) val thumbs: Number,
+    @JacksonXmlProperty(isAttribute = true) val thumbs: Int,
 ) {
     /** The actual comment the user posted. */
     // As this is the innerText of the XML element, using this in a (Kotlin) data class does
@@ -132,13 +132,13 @@ data class GeekListItem(
     val editDate: LocalDateTime,
 
     /** The number of thumbs up/likes this item has received. */
-    @JacksonXmlProperty(isAttribute = true) val thumbs: Number,
+    @JacksonXmlProperty(isAttribute = true) val thumbs: Int,
 
     /**
      * The Image ID this item, these can be formatted as an URL as follows: `*
      * https://boardgamegeek.com/image/$imageId to display/look up the image.
      */
-    @JacksonXmlProperty(isAttribute = true) val imageId: Number? = null,
+    @JacksonXmlProperty(isAttribute = true) val imageId: Int? = null,
     @JsonDeserialize(using = TrimmedStringDeserializer::class) val body: String,
 ) {
     /** The list of comments of this list. */

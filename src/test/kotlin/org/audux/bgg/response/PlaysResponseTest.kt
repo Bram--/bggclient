@@ -69,7 +69,7 @@ class PlaysResponseTest {
                     name = "Bram Wijnands",
                     startPosition = "",
                     new = false,
-                    rating = 0,
+                    rating = 0.0,
                     win = true,
                     color = "Purple"
                 ),
@@ -79,7 +79,7 @@ class PlaysResponseTest {
                     name = "Redacted",
                     startPosition = "",
                     new = false,
-                    rating = 0,
+                    rating = 0.0,
                     win = false,
                     color = "Yellow"
                 ),
@@ -90,7 +90,7 @@ class PlaysResponseTest {
                     startPosition = "",
                     color = "",
                     new = false,
-                    rating = 0,
+                    rating = 0.0,
                     win = false
                 ),
             )

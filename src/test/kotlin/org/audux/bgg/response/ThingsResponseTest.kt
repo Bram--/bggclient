@@ -15,13 +15,13 @@ package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
+import java.net.URI
+import java.time.LocalDate
+import java.time.LocalDateTime
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import java.net.URI
-import java.time.LocalDate
-import java.time.LocalDateTime
 
 /** Test class for [Things] data classes. */
 class ThingsResponseTest {

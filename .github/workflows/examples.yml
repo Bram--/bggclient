@@ -1,0 +1,50 @@
+name: build examples
+
+on:
+  # Trigger the workflow on push or pull request,
+  push:
+    branches:
+      - main
+      - release
+  pull_request:
+    branches:
+      - main
+      - dev
+      - release
+
+jobs:
+  build:
+    strategy:
+      matrix: { dir: [
+        'examples/android',
+        'examples/java',
+        'examples/paginate'
+      ] }
+    name: build Examples
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+          working-directory: ${{ matrix.dir }}
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'corretto'
+          java-version: '17'
+
+      - name: Mvn local install
+        run: |
+          ./gradlew publishToMavenLocal
+
+      - name: Run Examples builds
+        run: |
+          ./gradlew build
+        working-directory: ${{ matrix.dir }}

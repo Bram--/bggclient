@@ -80,12 +80,23 @@ dependencies {
     testRuntimeOnly(libs.junit5.engine)
 }
 
-tasks.test {
-    useJUnitPlatform()
-    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
-}
-
 jacoco {
     toolVersion = "0.8.9"
     reportsDirectory = layout.buildDirectory.dir("jacoco")
+}
+
+tasks {
+    test {
+        useJUnitPlatform()
+        finalizedBy(jacocoTestReport)
+    }
+
+    jacocoTestReport {
+        dependsOn(test)
+
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+        }
+    }
 }

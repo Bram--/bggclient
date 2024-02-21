@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText
 import java.time.LocalDateTime
-import org.audux.bgg.request.Constants
+import org.audux.bgg.common.Constants
 
 /** Encapsulates a geek list including its items and optionally its comments. */
 @JsonRootName("geeklist")
@@ -34,10 +34,10 @@ data class GeekList(
     @JacksonXmlProperty(isAttribute = true) val id: Int,
 
     /** The date and time the geek list was posted/published. */
-    @JsonFormat(pattern = Constants.REQUEST_XML1_DATE_TIME_FORMAT) val postDate: LocalDateTime,
+    @JsonFormat(pattern = Constants.DAY_FIRST_DATE_TIME_FORMAT) val postDate: LocalDateTime,
 
     /** The date and time the geek list was last edited - the same as [postDate] if not edited. */
-    @JsonFormat(pattern = Constants.REQUEST_XML1_DATE_TIME_FORMAT) val editDate: LocalDateTime,
+    @JsonFormat(pattern = Constants.DAY_FIRST_DATE_TIME_FORMAT) val editDate: LocalDateTime,
 
     /** The number of thumbs up/likes the geek list received. */
     val thumbs: Int,
@@ -72,17 +72,17 @@ data class GeekListComment(
 
     /** The date the comment was originally posted. */
     @JacksonXmlProperty(isAttribute = true)
-    @JsonFormat(pattern = Constants.REQUEST_XML1_DATE_TIME_FORMAT)
+    @JsonFormat(pattern = Constants.DAY_FIRST_DATE_TIME_FORMAT)
     val date: LocalDateTime,
 
     /** The date the comment was originally posted. */
     @JacksonXmlProperty(isAttribute = true)
-    @JsonFormat(pattern = Constants.REQUEST_XML1_DATE_TIME_FORMAT)
+    @JsonFormat(pattern = Constants.DAY_FIRST_DATE_TIME_FORMAT)
     val postDate: LocalDateTime,
 
     /** The date the comment was last edited - the same as [postDate] if not edited. */
     @JacksonXmlProperty(isAttribute = true)
-    @JsonFormat(pattern = Constants.REQUEST_XML1_DATE_TIME_FORMAT)
+    @JsonFormat(pattern = Constants.DAY_FIRST_DATE_TIME_FORMAT)
     val editDate: LocalDateTime,
 
     /** The number of thumbs up/likes on this item. */
@@ -123,12 +123,12 @@ data class GeekListItem(
 
     /** The original date this item was added/posted to the list. */
     @JacksonXmlProperty(isAttribute = true)
-    @JsonFormat(pattern = Constants.REQUEST_XML1_DATE_TIME_FORMAT)
+    @JsonFormat(pattern = Constants.DAY_FIRST_DATE_TIME_FORMAT)
     val postDate: LocalDateTime,
 
     /** The date this item was last edited/changed. */
     @JacksonXmlProperty(isAttribute = true)
-    @JsonFormat(pattern = Constants.REQUEST_XML1_DATE_TIME_FORMAT)
+    @JsonFormat(pattern = Constants.DAY_FIRST_DATE_TIME_FORMAT)
     val editDate: LocalDateTime,
 
     /** The number of thumbs up/likes this item has received. */

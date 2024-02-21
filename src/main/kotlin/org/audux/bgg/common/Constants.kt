@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.audux.bgg.request
+package org.audux.bgg.common
 
 /** Collection of constants used in creating an URL for the BGG API. */
 internal object Constants {
@@ -86,7 +86,7 @@ internal object Constants {
     const val PARAM_WISHLIST = "wishlist"
     const val PARAM_WISHLIST_PRIORITY = "wishlistpriority"
 
-    const val REQUEST_XML1_DATE_TIME_FORMAT = "E, dd MMM yyyy HH:mm:ss Z"
+    const val DAY_FIRST_DATE_TIME_FORMAT = "E, dd MMM yyyy HH:mm:ss Z"
     const val REQUEST_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss"
     const val REQUEST_DATE_FORMAT = "yyyy-MM-dd"
 }

@@ -18,9 +18,9 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import org.audux.bgg.BggClient.InternalBggClient
 import org.audux.bgg.common.HotListType
-import org.audux.bgg.request.Constants.PARAM_TYPE
-import org.audux.bgg.request.Constants.PATH_HOT
-import org.audux.bgg.request.Constants.XML2_API_URL
+import org.audux.bgg.common.Constants.PARAM_TYPE
+import org.audux.bgg.common.Constants.PATH_HOT
+import org.audux.bgg.common.Constants.XML2_API_URL
 import org.audux.bgg.response.HotList
 import org.audux.bgg.response.Response
 

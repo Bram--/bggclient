@@ -107,7 +107,9 @@ data class PlayItem(
 )
 
 /** A SubType of a thing e.g. board game. */
-data class SubType(val subtype: WrappedSubType)
+data class SubType(
+    @JsonDeserialize(using = WrappedSubTypeDeserializer::class)
+    val subtype: org.audux.bgg.common.SubType)
 
 /**
  * Represents a person in the play i.e. their username, id, what color they played, how they did

@@ -18,7 +18,9 @@ import com.fasterxml.jackson.core.JsonToken
 import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JsonDeserializer
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.Locale
 import org.audux.bgg.common.FamilyType
 import org.audux.bgg.common.ForumListType
 import org.audux.bgg.common.PlayThingType
@@ -102,12 +104,27 @@ internal class WrappedLocalDateDeserializer : JsonDeserializer<LocalDate?>() {
  * Deserializes `<elementName value="2012-10-12" />` objects into a `LocalDate.of(2012, 10, 12)
  * property.
  */
-internal class WrappedLocalDateTimeDeserializer : JsonDeserializer<LocalDate?>() {
+internal class WrappedLocalDateTimeDeserializer : JsonDeserializer<LocalDateTime?>() {
     override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
         readWrappedValue(parser) {
-            val formatter = DateTimeFormatter.ofPattern("E, dd MMM yyyy HH:mm:ss Z")
-            LocalDate.parse(it.valueAsString, formatter)
+            it.valueAsString
+                ?.takeIf { str -> str.isNotBlank() }
+                ?.let { str ->
+                    val formatter =
+                        DateTimeFormatter.ofPattern("E, dd MMM yyyy HH:mm:ss Z")
+                            .localizedBy(Locale.US)
+                    LocalDateTime.parse(str, formatter)
+                }
         }
+}
+
+/**
+ * Deserializes `<elementName value="2012-10-12" />` objects into a `LocalDate.of(2012, 10, 12)
+ * property.
+ */
+internal class WrappedSubTypeDeserializer : JsonDeserializer<SubType?>() {
+    override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
+        readWrappedValue(parser) { SubType.fromParam(parser?.valueAsString) }
 }
 
 /** Deserializes and trims strings. */

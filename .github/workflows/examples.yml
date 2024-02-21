@@ -1,4 +1,4 @@
-name: build
+name: build examples
 
 on:
   # Trigger the workflow on push or pull request,

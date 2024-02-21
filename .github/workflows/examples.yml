@@ -1,0 +1,43 @@
+name: build
+
+on:
+  # Trigger the workflow on push or pull request,
+  push:
+    branches:
+      - main
+      - release
+  pull_request:
+    branches:
+      - main
+      - dev
+      - release
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-22.04
+    matrix:
+      examples:
+        - android
+        - java
+        - paginate
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'corretto'
+          java-version: '17'
+
+      - name: Run Examples builds
+        run: |
+          ./gradlew clean build

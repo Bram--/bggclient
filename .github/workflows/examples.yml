@@ -14,7 +14,7 @@ on:
 
 jobs:
   build:
-    name: build
+    name: build Examples
     runs-on: ubuntu-22.04
     matrix:
       examples:

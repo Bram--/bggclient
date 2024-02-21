@@ -16,9 +16,9 @@ jobs:
   build:
     strategy:
       matrix: { dir: [
-        'android',
-        'java',
-        'paginate'
+        'examples/android',
+        'examples/java',
+        'examples/paginate'
       ] }
     name: build Examples
     runs-on: ubuntu-22.04

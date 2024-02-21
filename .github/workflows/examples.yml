@@ -14,13 +14,14 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix: { dir: [
+        'android',
+        'java',
+        'paginate'
+      ] }
     name: build Examples
     runs-on: ubuntu-22.04
-    matrix:
-      examples:
-        - android
-        - java
-        - paginate
     steps:
       - uses: actions/checkout@v4
 
@@ -32,6 +33,8 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+          working-directory: ${{ matrix.dir }}
+
 
       - uses: actions/setup-java@v3
         with:
@@ -41,3 +44,4 @@ jobs:
       - name: Run Examples builds
         run: |
           ./gradlew clean build
+        working-directory: ${{ matrix.dir }}

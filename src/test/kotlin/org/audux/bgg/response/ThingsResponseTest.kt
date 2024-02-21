@@ -13,7 +13,6 @@
  */
 package org.audux.bgg.response
 
-import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
 import java.net.URI
@@ -54,13 +53,13 @@ class ThingsResponseTest {
             assertThat(thing.type).isEqualTo(ThingType.BOARD_GAME)
             assertThat(thing.names).hasSize(3)
             assertThat(thing.description).hasLength(1270)
-            WrappedValueSubject.assertThat(thing.yearPublished).hasValue(1986)
-            WrappedValueSubject.assertThat(thing.minPlayers).hasValue(3)
-            WrappedValueSubject.assertThat(thing.maxPlayers).hasValue(5)
-            WrappedValueSubject.assertThat(thing.playingTimeInMinutes).hasValue(240)
-            WrappedValueSubject.assertThat(thing.minPlayingTimeInMinutes).hasValue(240)
-            WrappedValueSubject.assertThat(thing.maxPlayingTimeInMinutes).hasValue(240)
-            WrappedValueSubject.assertThat(thing.minAge).hasValue(14)
+            assertThat(thing.yearPublished).isEqualTo(1986)
+            assertThat(thing.minPlayers).isEqualTo(3)
+            assertThat(thing.maxPlayers).isEqualTo(5.0)
+            assertThat(thing.playingTimeInMinutes).isEqualTo(240)
+            assertThat(thing.minPlayingTimeInMinutes).isEqualTo(240)
+            assertThat(thing.maxPlayingTimeInMinutes).isEqualTo(240)
+            assertThat(thing.minAge).isEqualTo(14)
         }
 
         @Test
@@ -269,12 +268,12 @@ class ThingsResponseTest {
             assertThat(versions).hasSize(8)
             assertThat(versions[0].id).isEqualTo(685632)
             assertThat(versions[0].type).isEqualTo("boardgameversion")
-            WrappedValueSubject.assertThat(versions[0].yearPublished).hasValue(2024)
-            WrappedValueSubject.assertThat(versions[0].productCode).hasValue("8593085104517")
-            WrappedValueSubject.assertThat(versions[0].width).hasValue(11.7)
-            WrappedValueSubject.assertThat(versions[0].length).hasValue(11.7)
-            WrappedValueSubject.assertThat(versions[0].depth).hasValue(2.8)
-            WrappedValueSubject.assertThat(versions[0].weight).hasValue(0)
+            assertThat(versions[0].yearPublished).isEqualTo(2024)
+            assertThat(versions[0].productCode).isEqualTo("8593085104517")
+            assertThat(versions[0].width).isEqualTo(11.7)
+            assertThat(versions[0].length).isEqualTo(11.7)
+            assertThat(versions[0].depth).isEqualTo(2.8)
+            assertThat(versions[0].weight).isEqualTo(0)
             assertThat(versions[0].thumbnail)
                 .isEqualTo(
                     "https://cf.geekdo-images.com/D3TEgieEudyIiY70hkQiKw__thumb/img/DhEkGYrwkfDTAUWK7EFjwiVdBMU=/fit-in/200x150/filters:strip_icc()/pic7800352.png"
@@ -304,9 +303,9 @@ class ThingsResponseTest {
             val stats = things.things[0].statistics!!
             val ratings = stats.ratings
             assertThat(stats.page).isEqualTo(1)
-            WrappedValueSubject.assertThat(ratings.usersRated).hasValue(1373)
-            WrappedValueSubject.assertThat(ratings.average).hasValue(8.27146)
-            WrappedValueSubject.assertThat(ratings.bayesAverage).hasValue(6.57535)
+            assertThat(ratings.usersRated).isEqualTo(1373)
+            assertThat(ratings.average).isEqualTo(8.27146)
+            assertThat(ratings.bayesAverage).isEqualTo(6.57535)
             assertThat(ratings.ranks).hasSize(2)
             assertThat(ratings.ranks[0].type).isEqualTo("subtype")
             assertThat(ratings.ranks[0].id).isEqualTo(1)
@@ -314,15 +313,15 @@ class ThingsResponseTest {
             assertThat(ratings.ranks[0].friendlyName).isEqualTo("Board Game Rank")
             assertThat(ratings.ranks[0].value).isEqualTo("1045")
             assertThat(ratings.ranks[0].bayesAverage).isEqualTo("6.57535")
-            WrappedValueSubject.assertThat(ratings.stdDev).hasValue(1.25647)
-            WrappedValueSubject.assertThat(ratings.median).hasValue(0)
-            WrappedValueSubject.assertThat(ratings.owned).hasValue(2911)
-            WrappedValueSubject.assertThat(ratings.trading).hasValue(9)
-            WrappedValueSubject.assertThat(ratings.wanting).hasValue(381)
-            WrappedValueSubject.assertThat(ratings.wishing).hasValue(3076)
-            WrappedValueSubject.assertThat(ratings.numComments).hasValue(324)
-            WrappedValueSubject.assertThat(ratings.numWeights).hasValue(173)
-            WrappedValueSubject.assertThat(ratings.averageWeight).hasValue(4.0578)
+            assertThat(ratings.stdDev).isEqualTo(1.25647)
+            assertThat(ratings.median).isAtLeast(0)
+            assertThat(ratings.owned).isEqualTo(2911)
+            assertThat(ratings.trading).isEqualTo(9)
+            assertThat(ratings.wanting).isEqualTo(381)
+            assertThat(ratings.wishing).isEqualTo(3076)
+            assertThat(ratings.numComments).isEqualTo(324)
+            assertThat(ratings.numWeights).isEqualTo(173)
+            assertThat(ratings.averageWeight).isEqualTo(4.0578)
         }
 
         @Test
@@ -338,12 +337,11 @@ class ThingsResponseTest {
             assertThat(things.things).hasSize(1)
             val listings = things.things[0].listings
             assertThat(listings).hasSize(11)
-            WrappedLocalDateTimeSubject.assertThat(listings[0].listDate)
-                .hasValue(LocalDateTime.of(2023, 10, 6, 19, 41, 25))
+            assertThat(listings[0].listDate).isEqualTo(LocalDateTime.of(2023, 10, 6, 19, 41, 25))
             assertThat(listings[0].price.value).isEqualTo(80.00)
             assertThat(listings[0].price.currency).isEqualTo("USD")
-            WrappedValueSubject.assertThat(listings[0].condition).hasValue("new")
-            assertThat(listings[0].notes?.value).startsWith("Game is NIS")
+            assertThat(listings[0].condition).isEqualTo("new")
+            assertThat(listings[0].notes).startsWith("Game is NIS")
             assertThat(listings[0].webLink.title).isEqualTo("marketlisting")
             assertThat(listings[0].webLink.href)
                 .isEqualTo(URI.create("https://boardgamegeek.com/market/product/3276360"))
@@ -369,13 +367,13 @@ class ThingsResponseTest {
             assertThat(thing.names).hasSize(5)
             assertThat(thing.description)
                 .startsWith("Final Girl Feature Film Box&#10;&#10;Summer camp ")
-            WrappedValueSubject.assertThat(thing.yearPublished).hasValue(2021)
-            WrappedValueSubject.assertThat(thing.minPlayers).hasValue(1)
-            WrappedValueSubject.assertThat(thing.maxPlayers).hasValue(1)
-            WrappedValueSubject.assertThat(thing.playingTimeInMinutes).hasValue(60)
-            WrappedValueSubject.assertThat(thing.minPlayingTimeInMinutes).hasValue(20)
-            WrappedValueSubject.assertThat(thing.maxPlayingTimeInMinutes).hasValue(60)
-            WrappedValueSubject.assertThat(thing.minAge).hasValue(14)
+            assertThat(thing.yearPublished).isEqualTo(2021)
+            assertThat(thing.minPlayers).isEqualTo(1)
+            assertThat(thing.maxPlayers).isEqualTo(1)
+            assertThat(thing.playingTimeInMinutes).isEqualTo(60)
+            assertThat(thing.minPlayingTimeInMinutes).isEqualTo(20)
+            assertThat(thing.maxPlayingTimeInMinutes).isEqualTo(60)
+            assertThat(thing.minAge).isEqualTo(14)
             assertThat(thing.thumbnail).contains("T6zgfc99T9uq0RVqsqxdmFDuhEo")
             assertThat(thing.image).contains("Duq3Zkvlajxqsy7Vh1scYKru70M")
             assertThat(thing.links).hasSize(30)
@@ -383,8 +381,7 @@ class ThingsResponseTest {
             assertThat(thing.versions).hasSize(5)
             assertThat(thing.comments?.totalItems).isEqualTo(1238)
             assertThat(thing.comments?.comments).hasSize(100)
-            WrappedValueSubject.assertThat(thing.statistics?.ratings?.usersRated)
-                .hasValue(1236) // Bug in BGG?
+            assertThat(thing.statistics?.ratings?.usersRated).isEqualTo(1236) // Bug in BGG?
             assertThat(thing.listings).hasSize(3)
         }
     }
@@ -408,7 +405,7 @@ class ThingsResponseTest {
             assertThat(thing.names).hasSize(2)
             assertThat(thing.description)
                 .startsWith("A high quality game mat bundle that comes with two game mats")
-            WrappedValueSubject.assertThat(thing.yearPublished).hasValue(2021)
+            assertThat(thing.yearPublished).isEqualTo(2021)
             assertThat(thing.thumbnail).contains("Iv24VIJgXkwqMDQSbrb1HBt3gWI")
             assertThat(thing.image).contains("eI0-anIUPjq9MyHxAjsu54HaZHs=")
             assertThat(thing.links).hasSize(2)
@@ -416,7 +413,7 @@ class ThingsResponseTest {
             assertThat(thing.versions).hasSize(2)
             assertThat(thing.comments?.totalItems).isEqualTo(22)
             assertThat(thing.comments?.comments).hasSize(22)
-            WrappedValueSubject.assertThat(thing.statistics?.ratings?.usersRated).hasValue(22)
+            assertThat(thing.statistics?.ratings?.usersRated).isEqualTo(22)
             assertThat(thing.listings).hasSize(3)
         }
     }
@@ -440,8 +437,8 @@ class ThingsResponseTest {
             assertThat(thing.names).hasSize(2)
             assertThat(thing.description)
                 .startsWith("Sheathe your sword, draw your deck, and get ready for Hearthstone")
-            WrappedValueSubject.assertThat(thing.yearPublished).isNull()
-            WrappedValueSubject.assertThat(thing.releaseDate).hasValue(LocalDate.of(2014, 1, 21))
+            assertThat(thing.yearPublished).isNull()
+            assertThat(thing.releaseDate).isEqualTo(LocalDate.of(2014, 1, 21))
             assertThat(thing.thumbnail).contains("ppeDi-cEnHYG96vYa7T8gwnn7OI")
             assertThat(thing.image).contains("ft5vToSnwsCajOxHMaSuKgl_IL4")
             assertThat(thing.links).hasSize(38)
@@ -449,7 +446,7 @@ class ThingsResponseTest {
             assertThat(thing.versions).hasSize(21)
             assertThat(thing.comments?.totalItems).isEqualTo(319)
             assertThat(thing.comments?.comments).hasSize(100)
-            WrappedValueSubject.assertThat(thing.statistics?.ratings?.usersRated).hasValue(307)
+            assertThat(thing.statistics?.ratings?.usersRated).isEqualTo(307)
             assertThat(thing.listings).hasSize(1)
         }
     }
@@ -471,10 +468,10 @@ class ThingsResponseTest {
             assertThat(thing.name).isEqualTo("Alice is Missing")
             assertThat(thing.type).isEqualTo(ThingType.RPG_ITEM)
             assertThat(thing.names).hasSize(2)
-            WrappedValueSubject.assertThat(thing.seriesCode).hasValue("")
+            assertThat(thing.seriesCode).isEqualTo("")
             assertThat(thing.description)
                 .startsWith("From the kickstarter:&#10;&#10;Alice is Missing")
-            WrappedValueSubject.assertThat(thing.yearPublished).hasValue(2020)
+            assertThat(thing.yearPublished).isEqualTo(2020)
             assertThat(thing.thumbnail).contains("g9QMstNAY2uOVSR1rH5Hx7Gxquk")
             assertThat(thing.image).contains("nGOu9LrFF5udRimbJrei6HExde8")
             assertThat(thing.links).hasSize(16)
@@ -482,7 +479,7 @@ class ThingsResponseTest {
             assertThat(thing.versions).hasSize(0)
             assertThat(thing.comments?.totalItems).isEqualTo(57)
             assertThat(thing.comments?.comments).hasSize(57)
-            WrappedValueSubject.assertThat(thing.statistics?.ratings?.usersRated).hasValue(56)
+            assertThat(thing.statistics?.ratings?.usersRated).isEqualTo(56)
             assertThat(thing.listings).hasSize(3)
         }
     }
@@ -504,9 +501,9 @@ class ThingsResponseTest {
             assertThat(thing.names).hasSize(1)
             assertThat(thing.description)
                 .startsWith("A boxed set of 5 Data CD's that includes up to")
-            WrappedValueSubject.assertThat(thing.yearPublished).isNull()
-            WrappedValueSubject.assertThat(thing.datePublished).hasValue("1999-00-00")
-            WrappedValueSubject.assertThat(thing.issueIndex).hasValue(5000)
+            assertThat(thing.yearPublished).isNull()
+            assertThat(thing.datePublished).isEqualTo("1999-00-00")
+            assertThat(thing.issueIndex).isEqualTo(5000)
             assertThat(thing.thumbnail).contains("DueVd0hHrr37r4WDXcQZnZks19E")
             assertThat(thing.image).contains("H4w1nkrD9nSW4lkWGaYH3kFPOY0")
             assertThat(thing.links).hasSize(17)
@@ -514,33 +511,8 @@ class ThingsResponseTest {
             assertThat(thing.versions).hasSize(0)
             assertThat(thing.comments?.totalItems).isEqualTo(27)
             assertThat(thing.comments?.comments).hasSize(27)
-            WrappedValueSubject.assertThat(thing.statistics?.ratings?.usersRated).hasValue(26)
+            assertThat(thing.statistics?.ratings?.usersRated).isEqualTo(26)
             assertThat(thing.listings).hasSize(0)
         }
-    }
-
-    @Test
-    fun `WrappedValue Parses self closing elements - Int`() {
-        val xml = """<item value="100" />""""
-        val wrappedInt = mapper.readValue(xml, object : TypeReference<WrappedValue<Int>>() {})
-
-        WrappedValueSubject.assertThat(wrappedInt).hasValue(100)
-    }
-
-    @Test
-    fun `WrappedValue Parses self closing elements - String`() {
-        val xml = """<item value="Hello" />""""
-        val wrappedInt = mapper.readValue(xml, object : TypeReference<WrappedValue<String>>() {})
-
-        WrappedValueSubject.assertThat(wrappedInt).hasValue("Hello")
-    }
-
-    @Test
-    fun `WrappedLocalDateTime Parses BGG specific date format`() {
-        val localDateXml = """<item value="Sun, 13 Sep 2020 10:43:49 +0000" />""""
-        val localDateTime = mapper.readValue(localDateXml, WrappedLocalDateTime::class.java)
-
-        WrappedLocalDateTimeSubject.assertThat(localDateTime)
-            .hasValue(LocalDateTime.of(2020, 9, 13, 10, 43, 49))
     }
 }

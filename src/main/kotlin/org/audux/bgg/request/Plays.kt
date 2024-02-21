@@ -48,12 +48,12 @@ import org.audux.bgg.response.Response
  */
 internal fun InternalBggClient.plays(
     username: String,
-    id: Number? = null,
+    id: Int? = null,
     type: PlayThingType? = null,
     minDate: LocalDate? = null,
     maxDate: LocalDate? = null,
     subType: SubType? = null,
-    page: Number? = null,
+    page: Int? = null,
 ) =
     PaginatedPlays(this) {
         val formatter = DateTimeFormatter.ofPattern(Constants.REQUEST_DATE_FORMAT)

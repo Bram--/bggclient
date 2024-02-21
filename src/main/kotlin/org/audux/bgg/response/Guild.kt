@@ -24,7 +24,7 @@ import java.time.LocalDateTime
 data class Guild(
     /** Terms of use of the BGG API. */
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
-    @JacksonXmlProperty(isAttribute = true) val id: Number,
+    @JacksonXmlProperty(isAttribute = true) val id: Int,
     @JacksonXmlProperty(isAttribute = true) val name: String?,
     @JsonFormat(pattern = "E, dd MMM yyyy HH:mm:ss Z")
     @JacksonXmlProperty(isAttribute = true, localName = "created")
@@ -47,8 +47,8 @@ data class Location(
 )
 
 data class GuildMembers(
-    @JacksonXmlProperty(isAttribute = true) val count: Number,
-    @JacksonXmlProperty(isAttribute = true) val page: Number,
+    @JacksonXmlProperty(isAttribute = true) val count: Int,
+    @JacksonXmlProperty(isAttribute = true) val page: Int,
     @JsonProperty("member") val members: List<GuildMember>,
 )
 

@@ -15,6 +15,7 @@ package org.audux.bgg.response
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import java.time.LocalDate
 
@@ -28,52 +29,52 @@ data class User(
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
 
     /** User's unique ID. */
-    @JacksonXmlProperty(isAttribute = true) val id: Number?,
+    @JacksonXmlProperty(isAttribute = true) val id: Int?,
 
     /** User's name (username). */
     @JacksonXmlProperty(isAttribute = true) val name: String,
 
     /** User's first name. */
-    val firstName: WrappedValue<String>,
+    @JsonDeserialize(using = WrappedStringDeserializer::class) val firstName: String,
 
     /** User's last name. */
-    val lastName: WrappedValue<String>,
+    @JsonDeserialize(using = WrappedStringDeserializer::class) val lastName: String,
 
     /** User's web address/URL to their avatar or "N/A". */
-    val avatarLink: WrappedValue<String>,
+    @JsonDeserialize(using = WrappedStringDeserializer::class) val avatarLink: String,
 
     /** The year the user registered on BGG or its network sites (e.g. rpggeek etx.) */
-    val yearRegistered: WrappedValue<Number>?,
+    @JsonDeserialize(using = WrappedIntDeserializer::class) val yearRegistered: Int?,
 
     /** Date the user last logged in */
-    val lastLogin: WrappedValue<LocalDate>?,
+    @JsonDeserialize(using = WrappedLocalDateDeserializer::class) val lastLogin: LocalDate?,
 
     /** The state or province the user lives - if provided. */
-    val stateOrProvince: WrappedValue<String>?,
+    @JsonDeserialize(using = WrappedStringDeserializer::class) val stateOrProvince: String?,
 
     /** The country the user lives - if provided. */
-    val country: WrappedValue<String>?,
+    @JsonDeserialize(using = WrappedStringDeserializer::class) val country: String?,
 
     /** The user's website - if provided. */
-    val webAddress: WrappedValue<String>?,
+    @JsonDeserialize(using = WrappedStringDeserializer::class) val webAddress: String?,
 
     /** The user's xBox account name - if provided. */
-    val xBoxAccount: WrappedValue<String>,
+    @JsonDeserialize(using = WrappedStringDeserializer::class) val xBoxAccount: String,
 
     /** The user's Nintendo/Wii account name - if provided. */
-    val wiiAccount: WrappedValue<String>,
+    @JsonDeserialize(using = WrappedStringDeserializer::class) val wiiAccount: String,
 
     /** The user's PSN account name - if provided. */
-    val psnAccount: WrappedValue<String>,
+    @JsonDeserialize(using = WrappedStringDeserializer::class) val psnAccount: String,
 
     /** The user's BattleNet account name - if provided. */
-    val battleNetAccount: WrappedValue<String>,
+    @JsonDeserialize(using = WrappedStringDeserializer::class) val battleNetAccount: String,
 
     /** The user's Steam account name - if provided. */
-    val steamAccount: WrappedValue<String>?,
+    @JsonDeserialize(using = WrappedStringDeserializer::class) val steamAccount: String?,
 
     /** The user's aggregated rating for the marketplace. */
-    val tradeRating: WrappedValue<Number>?,
+    @JsonDeserialize(using = WrappedIntDeserializer::class) val tradeRating: Int?,
 
     /** The list of the User's buddies/friends. */
     val buddies: Buddies?,
@@ -91,10 +92,10 @@ data class User(
 /** List of Buddies/Friends of the user. */
 data class Buddies(
     /** Total number of buddies. */
-    val total: Number,
+    val total: Int,
 
     /** The current page - used in pagination. */
-    val page: Number,
+    val page: Int,
 
     /** The actual list of buddies.. */
     @JacksonXmlProperty(localName = "buddy") val buddies: List<Buddy>,
@@ -103,7 +104,7 @@ data class Buddies(
 /** Buddy of the user. */
 data class Buddy(
     /** The id of the buddy. */
-    @JacksonXmlProperty(isAttribute = true) val id: Number,
+    @JacksonXmlProperty(isAttribute = true) val id: Int,
 
     /** The username of the buddy. */
     @JacksonXmlProperty(isAttribute = true) val name: String
@@ -112,10 +113,10 @@ data class Buddy(
 /** Guilds user is a member of. */
 data class Guilds(
     /** The total number of guilds user is a member of. */
-    val total: Number,
+    val total: Int,
 
     /** The current page - used in pagination. */
-    val page: Number,
+    val page: Int,
 
     /** The actual list of guilds */
     @JsonProperty("guild") val guilds: List<GuildReference>,
@@ -124,7 +125,7 @@ data class Guilds(
 /** The id and name of a guild the user is a member of. */
 data class GuildReference(
     /** The id of the guild. */
-    @JacksonXmlProperty(isAttribute = true) val id: Number,
+    @JacksonXmlProperty(isAttribute = true) val id: Int,
 
     /** The name of the guild. */
     @JacksonXmlProperty(isAttribute = true) val name: String,
@@ -154,13 +155,13 @@ data class Top(
  */
 data class ListItem(
     /** The (local) rank of the thin, i.e. the rank of the item in the user's hot or top list. */
-    @JacksonXmlProperty(isAttribute = true) val rank: Number,
+    @JacksonXmlProperty(isAttribute = true) val rank: Int,
 
     /** The type of item/thing i.e. 'thing' */
     @JacksonXmlProperty(isAttribute = true) val type: String,
 
     /** The id of the item/thing. */
-    @JacksonXmlProperty(isAttribute = true) val id: Number,
+    @JacksonXmlProperty(isAttribute = true) val id: Int,
 
     /** The (primary) name of the item/thing. */
     @JacksonXmlProperty(isAttribute = true) val name: String,

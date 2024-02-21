@@ -151,7 +151,7 @@ internal constructor(
                 guild.data.members?.let { guildMembers ->
                     allGuildMembers.addAllAbsent(guildMembers.members)
 
-                    // Number of pages to paginate: (CurrentPage + 1)..lastPage.
+                    // Int of pages to paginate: (CurrentPage + 1)..lastPage.
                     val currentPage = guildMembers.page.toInt()
                     lastPage = min(ceil(guildMembers.count.toDouble() / PAGE_SIZE).toInt(), toPage)
 
@@ -200,7 +200,7 @@ internal constructor(
                 if (plays.data == null) return@Request plays
                 val allPlays = CopyOnWriteArrayList<Play>().apply { addAllAbsent(plays.data.plays) }
 
-                // Number of pages to paginate: (CurrentPage + 1)..lastPage.
+                // Int of pages to paginate: (CurrentPage + 1)..lastPage.
                 val currentPage = plays.data.page.toInt()
                 val lastPage = min(ceil(plays.data.total.toDouble() / PAGE_SIZE).toInt(), toPage)
 
@@ -252,7 +252,7 @@ internal constructor(
                         )
                     }
 
-                // Number of pages to paginate: (CurrentPage + 1)..lastPage.
+                // Int of pages to paginate: (CurrentPage + 1)..lastPage.
                 val maxComments =
                     things.data.things.maxOfOrNull { it.comments?.totalItems ?: 0 } ?: 0
                 val lastPage = min(toPage, ceil(maxComments.toDouble() / pageSize).toInt())
@@ -341,7 +341,7 @@ internal constructor(
                         user.data.buddies?.let { addAllAbsent(it.buddies) }
                     }
 
-                // Number of pages to paginate.
+                // Int of pages to paginate.
                 val currentPage =
                     user.data.guilds?.page?.toInt() ?: user.data.buddies?.page?.toInt() ?: 1
 

@@ -15,12 +15,13 @@ package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
-import java.net.URI
-import java.time.LocalDate
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import java.net.URI
+import java.time.LocalDate
+import java.time.LocalDateTime
 
 /** Test class for [Things] data classes. */
 class ThingsResponseTest {
@@ -336,12 +337,10 @@ class ThingsResponseTest {
             assertThat(things.things).hasSize(1)
             val listings = things.things[0].listings
             assertThat(listings).hasSize(11)
-<<<<<<< HEAD
             assertThat(listings[0].listDate).isEqualTo(LocalDateTime.of(2023, 10, 6, 19, 41, 25))
-=======
             //            WrappedLocalDateTimeSubject.assertThat(listings[0].listDate)
             //                .isEqualTo(LocalDateTime.of(2023, 10, 6, 19, 41, 25))
->>>>>>> Get rid of WrappedValue<>. TODO: Get rid of WrappedLocalDateTime &
+            assertThat(listings[0].listDate).isEqualTo(LocalDateTime.of(2023, 10, 6, 19, 41, 25))
             assertThat(listings[0].price.value).isEqualTo(80.00)
             assertThat(listings[0].price.currency).isEqualTo("USD")
             assertThat(listings[0].condition).isEqualTo("new")

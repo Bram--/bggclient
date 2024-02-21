@@ -57,7 +57,8 @@ class PlaysResponseTest {
                     name = "Sid Meier's Civilization: The Board Game",
                     objectType = PlayThingType.THING,
                     objectId = 77130,
-                    subTypes = listOf(SubType(org.audux.bgg.common.SubType.BOARD_GAME))
+                    subTypes =
+                        listOf(SubType(org.audux.bgg.common.SubType.BOARD_GAME))
                 )
             )
         assertThat(civGame.players)

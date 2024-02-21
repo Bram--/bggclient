@@ -318,7 +318,8 @@ data class Comment(
 /** A single listing for the thing i.e. a 'for sale'-listing. */
 data class MarketplaceListing(
     /** When the listing was created. */
-    @JsonDeserialize(using = WrappedLocalDateTimeDeserializer::class) val listDate: LocalDateTime,
+    @JsonDeserialize(using = WrappedLocalDateTimeDeserializer::class)
+    val listDate: LocalDateTime,
 
     /** The requested price for the listing. */
     val price: Price,

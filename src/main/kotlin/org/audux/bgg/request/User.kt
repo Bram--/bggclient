@@ -19,15 +19,15 @@ import io.ktor.http.appendPathSegments
 import org.audux.bgg.BggClient.InternalBggClient
 import org.audux.bgg.common.Domains
 import org.audux.bgg.common.Inclusion
-import org.audux.bgg.request.Constants.PARAM_BUDDIES
-import org.audux.bgg.request.Constants.PARAM_DOMAIN
-import org.audux.bgg.request.Constants.PARAM_GUILDS
-import org.audux.bgg.request.Constants.PARAM_HOT
-import org.audux.bgg.request.Constants.PARAM_NAME
-import org.audux.bgg.request.Constants.PARAM_PAGE
-import org.audux.bgg.request.Constants.PARAM_TOP
-import org.audux.bgg.request.Constants.PATH_USER
-import org.audux.bgg.request.Constants.XML2_API_URL
+import org.audux.bgg.common.Constants.PARAM_BUDDIES
+import org.audux.bgg.common.Constants.PARAM_DOMAIN
+import org.audux.bgg.common.Constants.PARAM_GUILDS
+import org.audux.bgg.common.Constants.PARAM_HOT
+import org.audux.bgg.common.Constants.PARAM_NAME
+import org.audux.bgg.common.Constants.PARAM_PAGE
+import org.audux.bgg.common.Constants.PARAM_TOP
+import org.audux.bgg.common.Constants.PATH_USER
+import org.audux.bgg.common.Constants.XML2_API_URL
 import org.audux.bgg.response.Response
 import org.audux.bgg.response.User
 

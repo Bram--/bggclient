@@ -14,6 +14,7 @@
 package org.audux.bgg
 
 import co.touchlab.kermit.Logger
+import co.touchlab.kermit.Severity
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.MapperFeature
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -23,7 +24,6 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.KotlinFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.HttpRequestRetry
 import java.time.LocalDate
@@ -81,6 +81,17 @@ object BggClient {
     }
 
     @VisibleForTesting var engine = { CIO.create() }
+
+    private var configuration = BggClientConfiguration()
+
+    /**
+     * Allows configuration of requests strategies of the BggClient.
+     *
+     * @see BggClientConfiguration
+     */
+    fun configure(block: BggClientConfiguration.() -> Unit) {
+        configuration = BggClientConfiguration().apply { block.invoke(this) }
+    }
 
     /**
      * Request details about a user's collection.
@@ -180,7 +191,7 @@ object BggClient {
         collectionId: Int? = null,
         modifiedSince: LocalDateTime? = null
     ) =
-        InternalBggClient(engine)
+        InternalBggClient()
             .collection(
                 userName,
                 subType,
@@ -223,7 +234,7 @@ object BggClient {
      */
     @JvmStatic
     fun familyItems(ids: Array<Int>, types: Array<FamilyType> = arrayOf()) =
-        InternalBggClient(engine).familyItems(ids, types)
+        InternalBggClient().familyItems(ids, types)
 
     /**
      * Retrieves the list of available forums for the given id / type combination. e.g. Retrieve all
@@ -232,8 +243,7 @@ object BggClient {
      * @param id The id of either the Family or Thing to retrieve
      * @param type Single [ForumListType] to retrieve, either a [Thing] or [Family]
      */
-    @JvmStatic
-    fun forumList(id: Int, type: ForumListType) = InternalBggClient(engine).forumList(id, type)
+    @JvmStatic fun forumList(id: Int, type: ForumListType) = InternalBggClient().forumList(id, type)
 
     /**
      * Retrieves the list of threads for the given forum id.
@@ -245,7 +255,7 @@ object BggClient {
      * @param page Used to paginate, this is the page that is returned, only 50 threads per page are
      *   returned. Note that page 0 and 1 are the same.
      */
-    @JvmStatic fun forum(id: Int, page: Int? = null) = InternalBggClient(engine).forum(id, page)
+    @JvmStatic fun forum(id: Int, page: Int? = null) = InternalBggClient().forum(id, page)
 
     /**
      * Geek list endpoint, retrieves a specific geek list by its ID.
@@ -256,8 +266,7 @@ object BggClient {
      * @param comments whether to include the comments in the response or not.
      */
     @JvmStatic
-    fun geekList(id: Int, comments: Inclusion? = null) =
-        InternalBggClient(engine).geekList(id, comments)
+    fun geekList(id: Int, comments: Inclusion? = null) = InternalBggClient().geekList(id, comments)
 
     /**
      * Retrieve information about the given guild (id) like name, description, members etc.
@@ -269,7 +278,7 @@ object BggClient {
      */
     @JvmStatic
     fun guilds(id: Int, members: Inclusion? = null, sort: String? = null, page: Int? = null) =
-        InternalBggClient(engine).guilds(id, members, sort, page)
+        InternalBggClient().guilds(id, members, sort, page)
 
     /**
      * Hotness endpoint that retrieve the list of most 50 active items on the site filtered by type.
@@ -277,7 +286,7 @@ object BggClient {
      * @param type Single [HotListType] returning only items of the specified type, defaults to
      *   [HotListType.BOARD_GAME].
      */
-    @JvmStatic fun hotItems(type: HotListType? = null) = InternalBggClient(engine).hotItems(type)
+    @JvmStatic fun hotItems(type: HotListType? = null) = InternalBggClient().hotItems(type)
 
     /**
      * Request a list of plays (max 100 at the time) for the given user.
@@ -303,7 +312,7 @@ object BggClient {
         maxDate: LocalDate? = null,
         subType: SubType? = null,
         page: Int? = null,
-    ) = InternalBggClient(engine).plays(username, id, type, minDate, maxDate, subType, page)
+    ) = InternalBggClient().plays(username, id, type, minDate, maxDate, subType, page)
 
     /**
      * Search endpoint that allows searching by name for things on BGG.
@@ -319,7 +328,7 @@ object BggClient {
         query: String,
         types: Array<ThingType> = arrayOf(),
         exactMatch: Boolean = false,
-    ) = InternalBggClient(engine).search(query, types, exactMatch)
+    ) = InternalBggClient().search(query, types, exactMatch)
 
     /**
      * Request a Thing or list of things. Multiple things can be requested by passing in several
@@ -359,7 +368,7 @@ object BggClient {
         page: Int = 1,
         pageSize: Int? = null,
     ) =
-        InternalBggClient(engine)
+        InternalBggClient()
             .things(
                 ids,
                 types,
@@ -389,7 +398,7 @@ object BggClient {
         minArticleId: Int? = null,
         minArticleDate: LocalDateTime? = null,
         count: Int? = null
-    ) = InternalBggClient(engine).thread(id, minArticleId, minArticleDate, count)
+    ) = InternalBggClient().thread(id, minArticleId, minArticleDate, count)
 
     /**
      * User endpoint that retrieves a specific user by their [name].
@@ -417,7 +426,7 @@ object BggClient {
         hot: Inclusion? = null,
         domain: Domains? = null,
         page: Int? = null,
-    ) = InternalBggClient(engine).user(name, buddies, guilds, top, hot, domain, page)
+    ) = InternalBggClient().user(name, buddies, guilds, top, hot, domain, page)
 
     /** Logging level Severity for the BGGClient logging. */
     enum class Severity {
@@ -425,8 +434,7 @@ object BggClient {
         Debug,
         Info,
         Warn,
-        Error,
-        Assert
+        Error
     }
 
     /** Sets the Logger severity defaults to [Severity.Error] */
@@ -434,7 +442,6 @@ object BggClient {
     fun setLoggerSeverity(severity: Severity) {
         Logger.setMinSeverity(
             when (severity) {
-                Severity.Assert -> co.touchlab.kermit.Severity.Assert
                 Severity.Debug -> co.touchlab.kermit.Severity.Debug
                 Severity.Error -> co.touchlab.kermit.Severity.Error
                 Severity.Info -> co.touchlab.kermit.Severity.Info
@@ -445,15 +452,21 @@ object BggClient {
     }
 
     /** Internal BGG Client containing the actual implementations of the API Calls. */
-    internal class InternalBggClient(private val engine: () -> HttpClientEngine) {
+    internal class InternalBggClient {
         private val clientScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
         internal val client = {
             HttpClient(engine()) {
-                install(ClientRateLimitPlugin) { requestLimit = 25 }
+                install(ClientRateLimitPlugin) {
+                    requestLimit = configuration.maxConcurrentRequests
+                }
                 install(HttpRequestRetry) {
-                    exponentialDelay()
-                    retryIf(maxRetries = 10) { request, response ->
+                    exponentialDelay(
+                        base = configuration.retryBase,
+                        maxDelayMs = configuration.retryMaxDelayMs,
+                        randomizationMs = configuration.retryRandomizationMs
+                    )
+                    retryIf(maxRetries = configuration.maxRetries) { request, response ->
                         response.status.value.let {
                             // Add 429 (TooManyRequests) and 202 (Accepted) for retries, see:
                             // https://boardgamegeek.com/thread/1188687/export-collections-has-been-updated-xmlapi-develop
@@ -489,8 +502,7 @@ object BggClient {
 
                     // Keep hardcoded to US: https://bugs.openjdk.org/browse/JDK-8251317
                     // en_GB Locale uses 'Sept' as a shortname when formatting dates (e.g. 'MMM').
-                    // The
-                    // locale en_US remains 'Sep'.
+                    // The locale en_US remains 'Sep'.
                     defaultLocale(Locale.US)
                     defaultMergeable(true)
                     defaultUseWrapper(false)
@@ -519,6 +531,28 @@ object BggClient {
         internal fun <T> request(request: suspend () -> Response<T>) = Request(this, request)
     }
 }
+
+/**
+ * Configure the BGGClient request strategies i.e. how many concurrent requests are allowed and how
+ * should retying be done.
+ *
+ * Specifies an exponential delay between retries, is done using [retryBase], [retryMaxDelayMs] and
+ * [retryRandomizationMs] This is then calculated using the Exponential backoff algorithm: delay
+ * equals to `retryBase ^ retryAttempt * 1000 + [0..randomizationMs]`
+ *
+ * @param maxConcurrentRequests How many requests can be active at the same time.
+ * @param maxRetries How many retries per URL should be tried.
+ * @param retryBase see kdoc for formula
+ * @param retryMaxDelayMs see kdoc for formula
+ * @param retryRandomizationMs see kdoc for formula
+ */
+data class BggClientConfiguration(
+    var maxConcurrentRequests: Int = 10,
+    var maxRetries: Int = 5,
+    var retryBase: Double = 2.0,
+    var retryMaxDelayMs: Long = 60_000,
+    var retryRandomizationMs: Long = 1_000,
+)
 
 /** Thrown whenever any exception is thrown during a request to BGG. */
 class BggRequestException(message: String) : Exception(message)

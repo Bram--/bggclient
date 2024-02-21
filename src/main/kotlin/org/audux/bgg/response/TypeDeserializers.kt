@@ -17,15 +17,16 @@ import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.core.JsonToken
 import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JsonDeserializer
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.Locale
+import org.audux.bgg.common.Constants
 import org.audux.bgg.common.FamilyType
 import org.audux.bgg.common.ForumListType
 import org.audux.bgg.common.PlayThingType
 import org.audux.bgg.common.SubType
 import org.audux.bgg.common.ThingType
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 /** Deserializes thing types to the associated [ThingType] enum value. */
 internal class ThingTypeDeserializer : JsonDeserializer<ThingType>() {
@@ -111,7 +112,7 @@ internal class WrappedLocalDateTimeDeserializer : JsonDeserializer<LocalDateTime
                 ?.takeIf { str -> str.isNotBlank() }
                 ?.let { str ->
                     val formatter =
-                        DateTimeFormatter.ofPattern("E, dd MMM yyyy HH:mm:ss Z")
+                        DateTimeFormatter.ofPattern(Constants.DAY_FIRST_DATE_TIME_FORMAT)
                             .localizedBy(Locale.US)
                     LocalDateTime.parse(str, formatter)
                 }

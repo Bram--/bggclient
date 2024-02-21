@@ -35,11 +35,14 @@ jobs:
             ${{ runner.os }}-gradle-
           working-directory: ${{ matrix.dir }}
 
-
       - uses: actions/setup-java@v3
         with:
           distribution: 'corretto'
           java-version: '17'
+
+      - name: Mvn local install
+        run: |
+          ./gradlew publishToMavenLocal
 
       - name: Run Examples builds
         run: |

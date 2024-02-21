@@ -53,10 +53,10 @@ public class Main {
                             response.getName(),
                             response.getStateOrProvince() == null
                                     ? ""
-                                    : response.getStateOrProvince().getValue(),
-                            response.getCountry() == null ? "" : response.getCountry().getValue(),
-                            response.getBuddies() == null ? "0" : response.getBuddies().getTotal(),
-                            response.getGuilds() == null ? "0" : response.getGuilds().getTotal(),
+                                    : response.getStateOrProvince(),
+                            response.getCountry() == null ? "" : response.getCountry(),
+                            response.getBuddies() == null ? "0" : response.getBuddies(),
+                            response.getGuilds() == null ? "0" : response.getGuilds(),
                             response.getTop() == null ? "0" : response.getTop().getItems().size(),
                             response.getHot() == null ? "0" : response.getHot().getItems().size())
                     .trim());

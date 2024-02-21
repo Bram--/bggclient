@@ -58,7 +58,7 @@ class PlaysResponseTest {
                     objectType = PlayThingType.THING,
                     objectId = 77130,
                     subTypes =
-                        listOf(SubType(WrappedSubType(org.audux.bgg.common.SubType.BOARD_GAME)))
+                        listOf(SubType(org.audux.bgg.common.SubType.BOARD_GAME))
                 )
             )
         assertThat(civGame.players)

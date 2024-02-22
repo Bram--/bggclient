@@ -65,7 +65,6 @@ dependencies {
     implementation(libs.jackson.xml)
     implementation(libs.javax.xml.stream)
     implementation(libs.kermit)
-    implementation(libs.kotlin.datetime)
     implementation(libs.kotlin.serialization)
     implementation(libs.ktor.core)
     implementation(libs.ktor.client)

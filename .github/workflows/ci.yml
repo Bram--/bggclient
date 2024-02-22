@@ -13,6 +13,10 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     permissions:
+      actions: read
+      contents: read
+      id-token: write
+      pages: writw
       pull-requests: write
     steps:
       - uses: actions/checkout@v4

@@ -18,7 +18,6 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import org.audux.bgg.BggClient.InternalBggClient
 import org.audux.bgg.BggRequestException
-import org.audux.bgg.common.ThingType
 import org.audux.bgg.common.Constants.PARAM_COMMENTS
 import org.audux.bgg.common.Constants.PARAM_ID
 import org.audux.bgg.common.Constants.PARAM_MARKETPLACE
@@ -31,6 +30,7 @@ import org.audux.bgg.common.Constants.PARAM_VERSIONS
 import org.audux.bgg.common.Constants.PARAM_VIDEOS
 import org.audux.bgg.common.Constants.PATH_THING
 import org.audux.bgg.common.Constants.XML2_API_URL
+import org.audux.bgg.common.ThingType
 import org.audux.bgg.response.Response
 import org.audux.bgg.response.Things
 

@@ -80,7 +80,7 @@ object BggClient {
         setLoggerSeverity(Severity.Warn)
     }
 
-    @VisibleForTesting var engine = { CIO.create() }
+    @VisibleForTesting @JvmStatic var engine = { CIO.create() }
 
     private var configuration = BggClientConfiguration()
 
@@ -89,6 +89,7 @@ object BggClient {
      *
      * @see BggClientConfiguration
      */
+    @JvmStatic
     fun configure(block: BggClientConfiguration.() -> Unit) {
         configuration = BggClientConfiguration().apply { block.invoke(this) }
     }
@@ -160,6 +161,7 @@ object BggClient {
      *   for deletions).
      */
     @JvmStatic
+    @JvmOverloads
     fun collection(
         userName: String,
         subType: ThingType,
@@ -233,6 +235,7 @@ object BggClient {
      *   [HotListType.BOARD_GAME].
      */
     @JvmStatic
+    @JvmOverloads
     fun familyItems(ids: Array<Int>, types: Array<FamilyType> = arrayOf()) =
         InternalBggClient().familyItems(ids, types)
 
@@ -243,7 +246,9 @@ object BggClient {
      * @param id The id of either the Family or Thing to retrieve
      * @param type Single [ForumListType] to retrieve, either a [Thing] or [Family]
      */
-    @JvmStatic fun forumList(id: Int, type: ForumListType) = InternalBggClient().forumList(id, type)
+    @JvmStatic
+    @JvmOverloads
+    fun forumList(id: Int, type: ForumListType) = InternalBggClient().forumList(id, type)
 
     /**
      * Retrieves the list of threads for the given forum id.
@@ -255,7 +260,9 @@ object BggClient {
      * @param page Used to paginate, this is the page that is returned, only 50 threads per page are
      *   returned. Note that page 0 and 1 are the same.
      */
-    @JvmStatic fun forum(id: Int, page: Int? = null) = InternalBggClient().forum(id, page)
+    @JvmStatic
+    @JvmOverloads
+    fun forum(id: Int, page: Int? = null) = InternalBggClient().forum(id, page)
 
     /**
      * Geek list endpoint, retrieves a specific geek list by its ID.
@@ -266,6 +273,7 @@ object BggClient {
      * @param comments whether to include the comments in the response or not.
      */
     @JvmStatic
+    @JvmOverloads
     fun geekList(id: Int, comments: Inclusion? = null) = InternalBggClient().geekList(id, comments)
 
     /**
@@ -277,6 +285,7 @@ object BggClient {
      * @param page The page of the members list to return. page size is 25.
      */
     @JvmStatic
+    @JvmOverloads
     fun guilds(id: Int, members: Inclusion? = null, sort: String? = null, page: Int? = null) =
         InternalBggClient().guilds(id, members, sort, page)
 
@@ -286,7 +295,9 @@ object BggClient {
      * @param type Single [HotListType] returning only items of the specified type, defaults to
      *   [HotListType.BOARD_GAME].
      */
-    @JvmStatic fun hotItems(type: HotListType? = null) = InternalBggClient().hotItems(type)
+    @JvmStatic
+    @JvmOverloads
+    fun hotItems(type: HotListType? = null) = InternalBggClient().hotItems(type)
 
     /**
      * Request a list of plays (max 100 at the time) for the given user.
@@ -304,6 +315,7 @@ object BggClient {
      * @param page The page of information to request. Page size is 100 records.
      */
     @JvmStatic
+    @JvmOverloads
     fun plays(
         username: String,
         id: Int? = null,
@@ -324,6 +336,7 @@ object BggClient {
      * @param exactMatch Limit results to items that match the [query] exactly
      */
     @JvmStatic
+    @JvmOverloads
     fun search(
         query: String,
         types: Array<ThingType> = arrayOf(),
@@ -356,6 +369,7 @@ object BggClient {
      *   Defaults to 100.
      */
     @JvmStatic
+    @JvmOverloads
     fun things(
         ids: Array<Int>,
         types: Array<ThingType> = arrayOf(),
@@ -393,6 +407,7 @@ object BggClient {
      * @param count Limits the number of articles returned to no more than NNN.
      */
     @JvmStatic
+    @JvmOverloads
     fun thread(
         id: Int,
         minArticleId: Int? = null,
@@ -418,6 +433,7 @@ object BggClient {
      *   means that that user has no buddies and is not part of any guilds.
      */
     @JvmStatic
+    @JvmOverloads
     fun user(
         name: String,
         buddies: Inclusion? = null,

@@ -245,11 +245,48 @@ class UserRequestTest {
         }
 
         @Test
-        fun `Quietly skips failures`() = runBlocking {
+        fun `Quietly skips empty responses`() = runBlocking {
             val engine =
                 TestUtils.setupMockEngine(
                     "user?name=Novaeux&buddies=1&guilds=1&page=1",
                     "user?name=NULL",
+                    "user?name=Novaeux&buddies=1&guilds=1&page=3",
+                )
+
+            BggClient.engine = { engine }
+
+            val response =
+                BggClient.user(
+                        name = "Novaeux",
+                        buddies = Inclusion.INCLUDE,
+                        guilds = Inclusion.INCLUDE
+                    )
+                    .paginate()
+                    .call()
+
+            assertThat(engine.requestHistory).hasSize(3)
+            assertThat(engine.requestHistory.map { it.url })
+                .containsExactly(
+                    Url("https://boardgamegeek.com/xmlapi2/user?name=Novaeux&buddies=1&guilds=1"),
+                    Url(
+                        "https://boardgamegeek.com/xmlapi2/user?name=Novaeux&buddies=1&guilds=1&page=2"
+                    ),
+                    Url(
+                        "https://boardgamegeek.com/xmlapi2/user?name=Novaeux&buddies=1&guilds=1&page=3"
+                    ),
+                )
+            assertThat(response.data?.buddies?.total).isEqualTo(2_200)
+            assertThat(response.data?.buddies?.buddies).hasSize(1_200)
+            assertThat(response.data?.guilds?.total).isEqualTo(1_900)
+            assertThat(response.data?.guilds?.guilds).hasSize(1000)
+        }
+
+        @Test
+        fun `Quietly skips failures`() = runBlocking {
+            val engine =
+                TestUtils.setupMockEngine(
+                    "user?name=Novaeux&buddies=1&guilds=1&page=1",
+                    "thread",
                     "user?name=Novaeux&buddies=1&guilds=1&page=3",
                 )
 

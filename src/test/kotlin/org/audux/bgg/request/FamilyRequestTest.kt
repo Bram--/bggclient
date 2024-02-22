@@ -48,7 +48,7 @@ class FamilyRequestTest {
             assertThat(response.isError()).isFalse()
             assertThat(response.isSuccess()).isTrue()
             assertThat(response.data?.items).hasSize(1)
-            assertThat(response.data!!.items[0].links).hasSize(26)
+            assertThat(response.data!!.items[0].links).hasSize(3)
         }
     }
 
@@ -73,7 +73,7 @@ class FamilyRequestTest {
                     )
                 )
             assertThat(response.data?.items).hasSize(1)
-            assertThat(response.data!!.items[0].links).hasSize(26)
+            assertThat(response.data!!.items[0].links).hasSize(3)
         }
     }
 }

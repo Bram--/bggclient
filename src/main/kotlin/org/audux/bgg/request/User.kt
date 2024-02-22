@@ -17,8 +17,6 @@ import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import org.audux.bgg.BggClient.InternalBggClient
-import org.audux.bgg.common.Domains
-import org.audux.bgg.common.Inclusion
 import org.audux.bgg.common.Constants.PARAM_BUDDIES
 import org.audux.bgg.common.Constants.PARAM_DOMAIN
 import org.audux.bgg.common.Constants.PARAM_GUILDS
@@ -28,6 +26,8 @@ import org.audux.bgg.common.Constants.PARAM_PAGE
 import org.audux.bgg.common.Constants.PARAM_TOP
 import org.audux.bgg.common.Constants.PATH_USER
 import org.audux.bgg.common.Constants.XML2_API_URL
+import org.audux.bgg.common.Domains
+import org.audux.bgg.common.Inclusion
 import org.audux.bgg.response.Response
 import org.audux.bgg.response.User
 
@@ -50,14 +50,14 @@ import org.audux.bgg.response.User
  */
 internal fun InternalBggClient.user(
     name: String,
-    buddies: Inclusion? = null,
-    guilds: Inclusion? = null,
-    top: Inclusion? = null,
-    hot: Inclusion? = null,
-    domain: Domains? = null,
-    page: Int? = null,
+    buddies: Inclusion?,
+    guilds: Inclusion?,
+    top: Inclusion?,
+    hot: Inclusion?,
+    domain: Domains?,
+    page: Int?,
 ) =
-    PaginatedUser(this, buddies, guilds) {
+    PaginatedUser(this, buddies, guilds, top, hot, domain) {
         client()
             .get(XML2_API_URL) {
                 url {

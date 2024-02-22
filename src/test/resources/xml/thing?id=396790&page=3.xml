@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+    <item
+        id="396790"
+        type="boardgame">
+        <thumbnail>
+            https://cf.geekdo-images.com/fIVUaMvbfy6GCOgfxt7xaw__thumb/img/jKsO4nKmtNjX5bfH7aCPeK7hsqU=/fit-in/200x150/filters:strip_icc()/pic7647168.jpg
+        </thumbnail>
+        <image>
+            https://cf.geekdo-images.com/fIVUaMvbfy6GCOgfxt7xaw__original/img/dBMnuz3SrgxsDLHT6pwbQFPQBIw=/0x0/filters:format(jpeg)/pic7647168.jpg
+        </image>
+
+        <name
+            sortindex="1"
+            type="primary"
+            value="Nucleum" />
+
+
+        <name
+            sortindex="1"
+            type="alternate"
+            value="Nukleum" />
+
+        <name
+            sortindex="1"
+            type="alternate"
+            value="核子激荡" />
+
+        <description>When Elsa von Fr&amp;uuml;hlingfeld presented her invention to King Frederik
+            Augustus II of Saxony, people thought it was trickery. She used the recently isolated
+            element Uranium to heat up a jar of water and used the resulting steam to power an
+            engine that kept the Uranium active via a process she called &amp;ldquo;atomization.&amp;rdquo;
+            Her device, the Nucleum, ushered in a new era of energy and prosperity over the next
+            decades. Saxony went from a minor regional power to the hub of European science and
+            engineering. Now, a generation later, factories are still hungry for more power,
+            demanding bigger and more Nucleums to be built, more Uranium imported from the nearby
+            country of Bohemia, and railways and power lines built across the country to carry the
+            tamed power of the atoms to Saxony&amp;rsquo;s great cities. Inventors, engineers, and
+            industrialists flock to the Saxon court, vying to be the leader in this new industrial
+            revolution.&amp;#10;&amp;#10;Nucleum is a heavy euro board game in which players take
+            role of industrialists trying to succeed during the economic and technological boom of
+            19th-century Saxony, fueled by the invention and spread of the Nucleum (a nuclear
+            reactor).&amp;#10;&amp;#10;Players earn victory points by developing their networks,
+            building and powering urban buildings, securing contracts, and meeting milestones
+            (randomized endgame goals). Each player also gets unique asymmetric technologies, giving
+            them special powers when unlocked. Gameplay is continuous; players take turns one after
+            another with no rounds or phases.&amp;#10;&amp;#10;&amp;mdash;description from the
+            publisher&amp;#10;&amp;#10;
+        </description>
+        <yearpublished value="2023" />
+        <minplayers value="1" />
+        <maxplayers value="4" />
+        <poll
+            name="suggested_numplayers"
+            title="User Suggested Number of Players"
+            totalvotes="138">
+
+            <results numplayers="1">
+                <result
+                    numvotes="5"
+                    value="Best" />
+                <result
+                    numvotes="41"
+                    value="Recommended" />
+                <result
+                    numvotes="28"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="2">
+                <result
+                    numvotes="29"
+                    value="Best" />
+                <result
+                    numvotes="59"
+                    value="Recommended" />
+                <result
+                    numvotes="12"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="3">
+                <result
+                    numvotes="52"
+                    value="Best" />
+                <result
+                    numvotes="45"
+                    value="Recommended" />
+                <result
+                    numvotes="4"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="4">
+                <result
+                    numvotes="42"
+                    value="Best" />
+                <result
+                    numvotes="46"
+                    value="Recommended" />
+                <result
+                    numvotes="13"
+                    value="Not Recommended" />
+            </results>
+
+            <results numplayers="4+">
+                <result
+                    numvotes="0"
+                    value="Best" />
+                <result
+                    numvotes="1"
+                    value="Recommended" />
+                <result
+                    numvotes="52"
+                    value="Not Recommended" />
+            </results>
+        </poll>
+        <playingtime value="150" />
+        <minplaytime value="60" />
+        <maxplaytime value="150" />
+        <minage value="14" />
+        <poll
+            name="suggested_playerage"
+            title="User Suggested Player Age"
+            totalvotes="13">
+            <results>
+                <result
+                    numvotes="0"
+                    value="2" />
+                <result
+                    numvotes="0"
+                    value="3" />
+                <result
+                    numvotes="0"
+                    value="4" />
+                <result
+                    numvotes="0"
+                    value="5" />
+                <result
+                    numvotes="0"
+                    value="6" />
+                <result
+                    numvotes="0"
+                    value="8" />
+                <result
+                    numvotes="0"
+                    value="10" />
+                <result
+                    numvotes="2"
+                    value="12" />
+                <result
+                    numvotes="9"
+                    value="14" />
+                <result
+                    numvotes="2"
+                    value="16" />
+                <result
+                    numvotes="0"
+                    value="18" />
+                <result
+                    numvotes="0"
+                    value="21 and up" />
+            </results>
+        </poll>
+        <poll
+            name="language_dependence"
+            title="Language Dependence"
+            totalvotes="10">
+
+            <results>
+                <result
+                    level="1"
+                    numvotes="9"
+                    value="No necessary in-game text" />
+                <result
+                    level="2"
+                    numvotes="1"
+                    value="Some necessary text - easily memorized or small crib sheet" />
+                <result
+                    level="3"
+                    numvotes="0"
+                    value="Moderate in-game text - needs crib sheet or paste ups" />
+                <result
+                    level="4"
+                    numvotes="0"
+                    value="Extensive use of text - massive conversion needed to be playable" />
+                <result
+                    level="5"
+                    numvotes="0"
+                    value="Unplayable in another language" />
+            </results>
+        </poll>
+
+
+        <link
+            id="1021"
+            type="boardgamecategory"
+            value="Economic" />
+
+
+        <link
+            id="1088"
+            type="boardgamecategory"
+            value="Industry / Manufacturing" />
+
+
+        <link
+            id="1016"
+            type="boardgamecategory"
+            value="Science Fiction" />
+
+
+        <link
+            id="2839"
+            type="boardgamemechanic"
+            value="Action Retrieval" />
+
+
+        <link
+            id="2912"
+            type="boardgamemechanic"
+            value="Contracts" />
+
+
+        <link
+            id="2875"
+            type="boardgamemechanic"
+            value="End Game Bonuses" />
+
+
+        <link
+            id="2040"
+            type="boardgamemechanic"
+            value="Hand Management" />
+
+
+        <link
+            id="2902"
+            type="boardgamemechanic"
+            value="Income" />
+
+
+        <link
+            id="2900"
+            type="boardgamemechanic"
+            value="Market" />
+
+
+        <link
+            id="2081"
+            type="boardgamemechanic"
+            value="Network and Route Building" />
+
+
+        <link
+            id="2819"
+            type="boardgamemechanic"
+            value="Solo / Solitaire Game" />
+
+
+        <link
+            id="2849"
+            type="boardgamemechanic"
+            value="Tech Trees / Tech Tracks" />
+
+
+        <link
+            id="2015"
+            type="boardgamemechanic"
+            value="Variable Player Powers" />
+
+
+        <link
+            id="50152"
+            type="boardgamefamily"
+            value="History: Industrial Revolution" />
+
+
+        <link
+            id="59705"
+            type="boardgamefamily"
+            value="Misc: LongPack Games" />
+
+
+        <link
+            id="75798"
+            type="boardgamefamily"
+            value="Region: Saxony (Germany)" />
+
+
+        <link
+            id="26464"
+            type="boardgamefamily"
+            value="Theme: Alternate History" />
+
+
+        <link
+            id="99080"
+            type="boardgamefamily"
+            value="Theme: Electricity Generation" />
+
+
+        <link
+            id="400823"
+            type="boardgameexpansion"
+            value="Nucleum: Acrylic Nucleums Promo" />
+
+
+        <link
+            id="408223"
+            type="boardgameexpansion"
+            value="Nucleum: Australia" />
+
+
+        <link
+            id="400825"
+            type="boardgameexpansion"
+            value="Nucleum: Nucleum Half Tiles Promo" />
+
+
+        <link
+            id="35418"
+            type="boardgamedesigner"
+            value="Simone Luciani" />
+
+
+        <link
+            id="76227"
+            type="boardgamedesigner"
+            value="Dávid Turczi" />
+
+
+        <link
+            id="11898"
+            type="boardgameartist"
+            value="Andreas Resch" />
+
+
+        <link
+            id="123923"
+            type="boardgameartist"
+            value="Piotr Sokołowski" />
+
+
+        <link
+            id="86237"
+            type="boardgameartist"
+            value="Zbigniew Umgelter" />
+
+
+        <link
+            id="26630"
+            type="boardgamepublisher"
+            value="Board&amp;Dice" />
+
+
+        <link
+            id="21608"
+            type="boardgamepublisher"
+            value="CMON Global Limited" />
+
+
+        <link
+            id="6194"
+            type="boardgamepublisher"
+            value="Delta Vision Publishing" />
+
+
+        <link
+            id="42147"
+            type="boardgamepublisher"
+            value="Giant Roc" />
+
+
+        <link
+            id="5380"
+            type="boardgamepublisher"
+            value="Intrafin Games" />
+
+
+        <link
+            id="30677"
+            type="boardgamepublisher"
+            value="Maldito Games" />
+
+
+        <link
+            id="44349"
+            type="boardgamepublisher"
+            value="Mosaico Jogos" />
+
+
+        <link
+            id="55187"
+            type="boardgamepublisher"
+            value="Old Dawg" />
+
+
+        <link
+            id="7466"
+            type="boardgamepublisher"
+            value="Rebel Sp. z o.o." />
+
+
+    </item>
+</items>

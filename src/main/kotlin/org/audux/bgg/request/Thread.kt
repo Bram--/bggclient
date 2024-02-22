@@ -35,9 +35,9 @@ import org.audux.bgg.response.Thread
  */
 internal fun InternalBggClient.thread(
     id: Int,
-    minArticleId: Int? = null,
-    minArticleDate: LocalDateTime? = null,
-    count: Int? = null
+    minArticleId: Int?,
+    minArticleDate: LocalDateTime?,
+    count: Int?,
 ) = request {
     client()
         .get(Constants.XML2_API_URL) {

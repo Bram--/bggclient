@@ -17,10 +17,10 @@ import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import org.audux.bgg.BggClient.InternalBggClient
+import org.audux.bgg.common.Constants.PARAM_COMMENTS
+import org.audux.bgg.common.Constants.PATH_GEEK_LIST
+import org.audux.bgg.common.Constants.XML1_API_URL
 import org.audux.bgg.common.Inclusion
-import org.audux.bgg.request.Constants.PARAM_COMMENTS
-import org.audux.bgg.request.Constants.PATH_GEEK_LIST
-import org.audux.bgg.request.Constants.XML1_API_URL
 import org.audux.bgg.response.GeekList
 import org.audux.bgg.response.Response
 
@@ -32,7 +32,7 @@ import org.audux.bgg.response.Response
  * @param id the unique ID for the geek list to retrieve
  * @param comments whether to include the comments in the response or not.
  */
-internal fun InternalBggClient.geekList(id: Int, comments: Inclusion? = null) = request {
+internal fun InternalBggClient.geekList(id: Int, comments: Inclusion?) = request {
     client()
         .get(XML1_API_URL) {
             url {

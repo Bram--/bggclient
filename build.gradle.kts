@@ -74,7 +74,8 @@ dependencies {
     // Testing dependencies.
     testApi(libs.ktor.client.mock)
 
-    testImplementation(libs.junit5.api)
+    testImplementation(libs.junit5.jupiter)
+    testImplementation(libs.junit5.params)
     testImplementation(libs.truth)
 
     testRuntimeOnly(libs.junit5.engine)

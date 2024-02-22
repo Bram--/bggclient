@@ -21,6 +21,7 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
+import org.audux.bgg.common.Constants
 import org.audux.bgg.common.FamilyType
 import org.audux.bgg.common.ForumListType
 import org.audux.bgg.common.PlayThingType
@@ -111,7 +112,7 @@ internal class WrappedLocalDateTimeDeserializer : JsonDeserializer<LocalDateTime
                 ?.takeIf { str -> str.isNotBlank() }
                 ?.let { str ->
                     val formatter =
-                        DateTimeFormatter.ofPattern("E, dd MMM yyyy HH:mm:ss Z")
+                        DateTimeFormatter.ofPattern(Constants.DAY_FIRST_DATE_TIME_FORMAT)
                             .localizedBy(Locale.US)
                     LocalDateTime.parse(str, formatter)
                 }

@@ -18,43 +18,91 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import java.time.LocalDateTime
+import org.audux.bgg.common.Constants
 
 /** Response wrapper for Guilds to be returned. */
 @JsonRootName("guild")
 data class Guild(
     /** Terms of use of the BGG API. */
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
+
+    /** Unique identifier for the guild, same as in the request. */
     @JacksonXmlProperty(isAttribute = true) val id: Int,
+
+    /** Name of the guild/group. */
     @JacksonXmlProperty(isAttribute = true) val name: String?,
-    @JsonFormat(pattern = "E, dd MMM yyyy HH:mm:ss Z")
+
+    /** The date and time the guild was created. */
+    @JsonFormat(pattern = Constants.DAY_FIRST_DATE_TIME_FORMAT)
     @JacksonXmlProperty(isAttribute = true, localName = "created")
     val createdAt: LocalDateTime?,
+
+    /** The category of the Guild e.g. an interest group, regional group etc. */
     val category: String?,
+
+    /** The external website of the Guild */
     val website: String?,
+
+    /** The username of the Guild's manager. */
     val manager: String?,
+
+    /** Description of the guild. */
     val description: String?,
+
+    /** Physical location of the guild. */
     val location: Location?,
+
+    /** List of guild members. */
     val members: GuildMembers?,
 )
 
+/** The physical location of the guild. */
 data class Location(
+    /** First address line. */
     @JsonProperty("addr1") val addressLine1: String,
+
+    /** Second address line. */
     @JsonProperty("addr2") val addressLine2: String,
+
+    /** The city the guild resides in. */
     val city: String,
+
+    /** The state or province the guild resides in. */
     val stateOrProvince: String,
+
+    /** The postal code of the guild's location. */
     val postalCode: String,
+
+    /** The country the guild resides in. */
     val country: String,
 )
 
+/** Represents a (partial) list of members of the guild. */
 data class GuildMembers(
+    /** The total number of guild members. */
     @JacksonXmlProperty(isAttribute = true) val count: Int,
+
+    /**
+     * The current page of guild members - 25 members per page/GuildMembers object.
+     *
+     * @see org.audux.bgg.request.PaginatedGuilds
+     */
     @JacksonXmlProperty(isAttribute = true) val page: Int,
+
+    /** The actual list of guild members. */
     @JsonProperty("member") val members: List<GuildMember>,
 )
 
+/**
+ * A GuildMember entry, consisting of simply a username (can be used to retrieve more user info) and
+ * a join date and time.
+ */
 data class GuildMember(
+    /** The username of the guild member. */
     @JacksonXmlProperty(isAttribute = true) val name: String,
-    @JsonFormat(pattern = "E, dd MMM yyyy HH:mm:ss Z")
+
+    /** When the user joined the guild. */
+    @JsonFormat(pattern = Constants.DAY_FIRST_DATE_TIME_FORMAT)
     @JacksonXmlProperty(isAttribute = true, localName = "date")
     val joinDate: LocalDateTime,
 )

@@ -9,16 +9,13 @@
             type="primary"
             value="History: Industrial Revolution" />
 
-
-        <description>Games (expansions, promos, etc.) featuring the Industrial Revolution in theme or gameplay.&amp;#10;&amp;#10;&amp;#10;The Industrial Revolution period (end of 18th and beginning of 19th centuries) and the development of the industries.&amp;#10;&amp;#10; </description>
-
-
         <link
             id="65901"
             inbound="true"
             type="boardgamefamily"
             value="Age of Industry" />
 
+        <description>Games (expansions, promos, etc.) featuring the Industrial Revolution in theme or gameplay.&amp;#10;&amp;#10;&amp;#10;The Industrial Revolution period (end of 18th and beginning of 19th centuries) and the development of the industries.&amp;#10;&amp;#10; </description>
 
         <link
             id="99424"
@@ -32,168 +29,5 @@
             inbound="true"
             type="boardgamefamily"
             value="Age of Industry Expansion: Belgium &amp; USSR" />
-
-
-        <link
-            id="121285"
-            inbound="true"
-            type="boardgamefamily"
-            value="Age of Industry Expansion: Great Lakes &amp; South Africa" />
-
-
-        <link
-            id="366719"
-            inbound="true"
-            type="boardgamefamily"
-            value="American Mogul" />
-
-
-        <link
-            id="377613"
-            inbound="true"
-            type="boardgamefamily"
-            value="Anno 1800: Der Solo-Modus" />
-
-
-        <link
-            id="406856"
-            inbound="true"
-            type="boardgamefamily"
-            value="Anno 1800: Die Erweiterung" />
-
-
-        <link
-            id="311193"
-            inbound="true"
-            type="boardgamefamily"
-            value="Anno 1800: The Board Game" />
-
-
-        <link
-            id="154825"
-            inbound="true"
-            type="boardgamefamily"
-            value="Arkwright" />
-
-
-        <link
-            id="300664"
-            inbound="true"
-            type="boardgamefamily"
-            value="Arkwright: The Card Game" />
-
-
-        <link
-            id="359130"
-            inbound="true"
-            type="boardgamefamily"
-            value="Arkwright: The Card Game – Game Brewer Promo Pack" />
-
-
-        <link
-            id="224517"
-            inbound="true"
-            type="boardgamefamily"
-            value="Brass: Birmingham" />
-
-
-        <link
-            id="28720"
-            inbound="true"
-            type="boardgamefamily"
-            value="Brass: Lancashire" />
-
-
-        <link
-            id="249277"
-            inbound="true"
-            type="boardgamefamily"
-            value="Brazil: Imperial" />
-
-
-        <link
-            id="365738"
-            inbound="true"
-            type="boardgamefamily"
-            value="Brazil: Imperial – Autômato" />
-
-
-        <link
-            id="19995"
-            inbound="true"
-            type="boardgamefamily"
-            value="Canal Mania" />
-
-
-        <link
-            id="131001"
-            inbound="true"
-            type="boardgamefamily"
-            value="City of the Century" />
-
-
-        <link
-            id="349961"
-            inbound="true"
-            type="boardgamefamily"
-            value="Cotton Trade: 1800-1860" />
-
-
-        <link
-            id="170951"
-            inbound="true"
-            type="boardgamefamily"
-            value="The Foreign King" />
-
-
-        <link
-            id="154809"
-            inbound="true"
-            type="boardgamefamily"
-            value="Nippon" />
-
-
-        <link
-            id="396790"
-            inbound="true"
-            type="boardgamefamily"
-            value="Nucleum" />
-
-
-        <link
-            id="408223"
-            inbound="true"
-            type="boardgamefamily"
-            value="Nucleum: Australia" />
-
-
-        <link
-            id="188472"
-            inbound="true"
-            type="boardgamefamily"
-            value="Portugal (fan expansion for Age of Industry)" />
-
-
-        <link
-            id="204"
-            inbound="true"
-            type="boardgamefamily"
-            value="Stephenson's Rocket" />
-
-
-        <link
-            id="343927"
-            inbound="true"
-            type="boardgamefamily"
-            value="Union Stockyards" />
-
-
-        <link
-            id="376142"
-            inbound="true"
-            type="boardgamefamily"
-            value="Victoria: The Board Game" />
-
-
     </item>
 </items>

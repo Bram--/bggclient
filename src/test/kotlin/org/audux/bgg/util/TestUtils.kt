@@ -13,14 +13,23 @@
  */
 package org.audux.bgg.util
 
+import co.touchlab.kermit.LogWriter
+import co.touchlab.kermit.Logger
+import co.touchlab.kermit.Severity
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.MockEngineConfig
 import io.ktor.client.engine.mock.respondOk
 import java.io.InputStream
+import org.audux.bgg.BggClient
 import org.audux.bgg.BggClient.InternalBggClient
 
 object TestUtils {
-    internal fun setupMockEngine(vararg xmlFileName: String) =
+    /**
+     * Sets up a HttpEnginecusing a [MockEngine] and [respondOk] responses with the given xml files
+     * as the actual response.
+     */
+    @JvmStatic
+    fun setupMockEngine(vararg xmlFileName: String) =
         MockEngine(
             MockEngineConfig().apply {
                 xmlFileName.map { fileName ->
@@ -29,10 +38,11 @@ object TestUtils {
             }
         )
 
-    internal fun getBggClientMapper() = InternalBggClient { MockEngine { respondOk() } }.mapper
+    /** Returns an fully configure [XmlMapper] instance that is used in the BggClient. */
+    @JvmStatic fun getBggClientMapper() = InternalBggClient().mapper
 
     /** Returns input stream of `resources/xml/{fileName}.xml` to use in testing. */
-    /** Returns input stream of `resources/xml/{fileName}.xml` to use in testing. */
+    @JvmStatic
     fun xml(fileName: String): InputStream {
         try {
             return TestUtils::class.java.classLoader.getResourceAsStream("xml/$fileName.xml")!!
@@ -40,4 +50,32 @@ object TestUtils {
             throw IllegalArgumentException("Could not find xml/$fileName.xml", e)
         }
     }
+
+    /** Sets up [TestLogWriter] for the Logger so assertions can be made. */
+    @JvmStatic
+    @JvmOverloads
+    fun captureLoggerWrites(severity: BggClient.Severity = BggClient.Severity.Verbose) =
+        TestLogWriter().also {
+            Logger.setLogWriters(it)
+            BggClient.setLoggerSeverity(severity)
+        }
+
+    /** LogWriter for test assertions. */
+    class TestLogWriter : LogWriter() {
+        private val logWrites: MutableList<LogWrite> = mutableListOf()
+
+        override fun log(severity: Severity, message: String, tag: String, throwable: Throwable?) {
+            logWrites.add(LogWrite(severity, message, tag, throwable))
+        }
+
+        fun logsWritten() = logWrites.toList()
+    }
+
+    /** All data that is logged in a single [Logger.log] call. */
+    data class LogWrite(
+        val severity: Severity,
+        val message: String,
+        val tag: String,
+        val throwable: Throwable?
+    )
 }

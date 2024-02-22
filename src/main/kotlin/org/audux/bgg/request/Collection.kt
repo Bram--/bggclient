@@ -19,40 +19,40 @@ import io.ktor.http.appendPathSegments
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import org.audux.bgg.BggClient.InternalBggClient
+import org.audux.bgg.common.Constants.PARAM_BGG_RATING
+import org.audux.bgg.common.Constants.PARAM_BRIEF
+import org.audux.bgg.common.Constants.PARAM_COLLECTION_ID
+import org.audux.bgg.common.Constants.PARAM_COMMENT
+import org.audux.bgg.common.Constants.PARAM_EXCLUDE_SUBTYPE
+import org.audux.bgg.common.Constants.PARAM_HAS_PARTS
+import org.audux.bgg.common.Constants.PARAM_ID
+import org.audux.bgg.common.Constants.PARAM_MAX_PLAYS
+import org.audux.bgg.common.Constants.PARAM_MINIMUM_BGG_RATING
+import org.audux.bgg.common.Constants.PARAM_MINIMUM_PLAYS
+import org.audux.bgg.common.Constants.PARAM_MINIMUM_RATING
+import org.audux.bgg.common.Constants.PARAM_MODIFIED_SINCE
+import org.audux.bgg.common.Constants.PARAM_OWN
+import org.audux.bgg.common.Constants.PARAM_PLAYED
+import org.audux.bgg.common.Constants.PARAM_PREVIOUSLY_OWNED
+import org.audux.bgg.common.Constants.PARAM_PRE_ORDERED
+import org.audux.bgg.common.Constants.PARAM_RATED
+import org.audux.bgg.common.Constants.PARAM_RATING
+import org.audux.bgg.common.Constants.PARAM_STATS
+import org.audux.bgg.common.Constants.PARAM_SUBTYPE
+import org.audux.bgg.common.Constants.PARAM_TRADE
+import org.audux.bgg.common.Constants.PARAM_USERNAME
+import org.audux.bgg.common.Constants.PARAM_VERSION
+import org.audux.bgg.common.Constants.PARAM_WANT
+import org.audux.bgg.common.Constants.PARAM_WANT_PARTS
+import org.audux.bgg.common.Constants.PARAM_WANT_TO_BUY
+import org.audux.bgg.common.Constants.PARAM_WANT_TO_PLAY
+import org.audux.bgg.common.Constants.PARAM_WISHLIST
+import org.audux.bgg.common.Constants.PARAM_WISHLIST_PRIORITY
+import org.audux.bgg.common.Constants.PATH_COLLECTION
+import org.audux.bgg.common.Constants.REQUEST_DATE_TIME_FORMAT
+import org.audux.bgg.common.Constants.XML2_API_URL
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.common.ThingType
-import org.audux.bgg.request.Constants.PARAM_BGG_RATING
-import org.audux.bgg.request.Constants.PARAM_BRIEF
-import org.audux.bgg.request.Constants.PARAM_COLLECTION_ID
-import org.audux.bgg.request.Constants.PARAM_COMMENT
-import org.audux.bgg.request.Constants.PARAM_EXCLUDE_SUBTYPE
-import org.audux.bgg.request.Constants.PARAM_HAS_PARTS
-import org.audux.bgg.request.Constants.PARAM_ID
-import org.audux.bgg.request.Constants.PARAM_MAX_PLAYS
-import org.audux.bgg.request.Constants.PARAM_MINIMUM_BGG_RATING
-import org.audux.bgg.request.Constants.PARAM_MINIMUM_PLAYS
-import org.audux.bgg.request.Constants.PARAM_MINIMUM_RATING
-import org.audux.bgg.request.Constants.PARAM_MODIFIED_SINCE
-import org.audux.bgg.request.Constants.PARAM_OWN
-import org.audux.bgg.request.Constants.PARAM_PLAYED
-import org.audux.bgg.request.Constants.PARAM_PREVIOUSLY_OWNED
-import org.audux.bgg.request.Constants.PARAM_PRE_ORDERED
-import org.audux.bgg.request.Constants.PARAM_RATED
-import org.audux.bgg.request.Constants.PARAM_RATING
-import org.audux.bgg.request.Constants.PARAM_STATS
-import org.audux.bgg.request.Constants.PARAM_SUBTYPE
-import org.audux.bgg.request.Constants.PARAM_TRADE
-import org.audux.bgg.request.Constants.PARAM_USERNAME
-import org.audux.bgg.request.Constants.PARAM_VERSION
-import org.audux.bgg.request.Constants.PARAM_WANT
-import org.audux.bgg.request.Constants.PARAM_WANT_PARTS
-import org.audux.bgg.request.Constants.PARAM_WANT_TO_BUY
-import org.audux.bgg.request.Constants.PARAM_WANT_TO_PLAY
-import org.audux.bgg.request.Constants.PARAM_WISHLIST
-import org.audux.bgg.request.Constants.PARAM_WISHLIST_PRIORITY
-import org.audux.bgg.request.Constants.PATH_COLLECTION
-import org.audux.bgg.request.Constants.REQUEST_DATE_TIME_FORMAT
-import org.audux.bgg.request.Constants.XML2_API_URL
 import org.audux.bgg.response.Collection
 import org.audux.bgg.response.Response
 
@@ -122,33 +122,33 @@ import org.audux.bgg.response.Response
 internal fun InternalBggClient.collection(
     userName: String,
     subType: ThingType,
-    excludeSubType: ThingType? = null,
-    ids: Array<Int>? = null,
-    version: Boolean = false,
-    brief: Boolean = false,
-    stats: Boolean = false,
-    own: Inclusion? = null,
-    rated: Inclusion? = null,
-    played: Inclusion? = null,
-    comment: Inclusion? = null,
-    trade: Inclusion? = null,
-    want: Inclusion? = null,
-    wishlist: Inclusion? = null,
-    wishlistPriority: Int? = null,
-    preOrdered: Inclusion? = null,
-    wantToPlay: Inclusion? = null,
-    wantToBuy: Inclusion? = null,
-    previouslyOwned: Inclusion? = null,
-    hasParts: Inclusion? = null,
-    wantParts: Inclusion? = null,
-    minRating: Int? = null,
-    rating: Int? = null,
-    minBggRating: Int? = null,
-    bggRating: Int? = null,
-    minimumPlays: Int? = null,
-    maxPlays: Int? = null,
-    collectionId: Int? = null,
-    modifiedSince: LocalDateTime? = null,
+    excludeSubType: ThingType?,
+    ids: Array<Int>?,
+    version: Boolean,
+    brief: Boolean,
+    stats: Boolean,
+    own: Inclusion?,
+    rated: Inclusion?,
+    played: Inclusion?,
+    comment: Inclusion?,
+    trade: Inclusion?,
+    want: Inclusion?,
+    wishlist: Inclusion?,
+    wishlistPriority: Int?,
+    preOrdered: Inclusion?,
+    wantToPlay: Inclusion?,
+    wantToBuy: Inclusion?,
+    previouslyOwned: Inclusion?,
+    hasParts: Inclusion?,
+    wantParts: Inclusion?,
+    minRating: Int?,
+    rating: Int?,
+    minBggRating: Int?,
+    bggRating: Int?,
+    minimumPlays: Int?,
+    maxPlays: Int?,
+    collectionId: Int?,
+    modifiedSince: LocalDateTime?,
 ) = request {
     client()
         .get(XML2_API_URL) {

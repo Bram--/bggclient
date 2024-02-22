@@ -76,35 +76,41 @@ data class Thing(
     val description: String?,
 
     /** The year it was published in e.g. `2019`. */
-    val yearPublished: WrappedValue<Int>?,
+    @JsonDeserialize(using = WrappedIntDeserializer::class) val yearPublished: Int?,
 
     /**
      * The date it was published (For RPG-issues).
      *
      * Note: Most publish dates only contain years and have an invalid date format, i.e. '1999-0-0'
      */
-    val datePublished: WrappedValue<String>?,
+    @JsonDeserialize(using = WrappedStringDeserializer::class) val datePublished: String?,
 
     /** The year it was released in e.g. `2019`. (For video games) */
-    val releaseDate: WrappedValue<LocalDate>?,
+    @JsonDeserialize(using = WrappedLocalDateDeserializer::class) val releaseDate: LocalDate?,
 
     /** Minimum number of players required. */
-    val minPlayers: WrappedValue<Int>?,
+    @JsonDeserialize(using = WrappedIntDeserializer::class) val minPlayers: Int?,
 
     /** Maximum number of players. */
-    val maxPlayers: WrappedValue<Int>?,
+    @JsonDeserialize(using = WrappedDoubleDeserializer::class) val maxPlayers: Double?,
 
     /** How many minutes on average it takes to complete the thing/game. */
-    @JacksonXmlProperty(localName = "playingtime") val playingTimeInMinutes: WrappedValue<Int>?,
+    @JacksonXmlProperty(localName = "playingtime")
+    @JsonDeserialize(using = WrappedIntDeserializer::class)
+    val playingTimeInMinutes: Int?,
 
     /** How many minutes on the lower end it takes to complete the thing/game. */
-    @JacksonXmlProperty(localName = "minplaytime") val minPlayingTimeInMinutes: WrappedValue<Int>?,
+    @JacksonXmlProperty(localName = "minplaytime")
+    @JsonDeserialize(using = WrappedIntDeserializer::class)
+    val minPlayingTimeInMinutes: Int?,
 
     /** How many minutes on the high end it takes to complete the thing/game. */
-    @JacksonXmlProperty(localName = "maxplaytime") val maxPlayingTimeInMinutes: WrappedValue<Int>?,
+    @JacksonXmlProperty(localName = "maxplaytime")
+    @JsonDeserialize(using = WrappedIntDeserializer::class)
+    val maxPlayingTimeInMinutes: Int?,
 
     /** Minimum age to play/participate in the thing. */
-    val minAge: WrappedValue<Int>?,
+    @JsonDeserialize(using = WrappedIntDeserializer::class) val minAge: Int?,
 
     /** A list of videos associated with the thing, could be reviews, how to plays, unboxing etc. */
     @JacksonXmlElementWrapper(localName = "videos") val videos: List<Video> = listOf(),
@@ -129,10 +135,10 @@ data class Thing(
     val versions: List<Version> = listOf(),
 
     /** Series codes for RPG items. */
-    val seriesCode: WrappedValue<String>?,
+    @JsonDeserialize(using = WrappedStringDeserializer::class) val seriesCode: String?,
 
     /** The issue index for the RPG issue. */
-    val issueIndex: WrappedValue<Int>?,
+    @JsonDeserialize(using = WrappedIntDeserializer::class) val issueIndex: Int?,
 
     /** Primary name. */
     @JsonIgnore var name: String = ""
@@ -162,6 +168,58 @@ data class Thing(
             field = field + value
             field.forEach { if (it.type == "primary") name = it.value }
         }
+
+    fun copy(
+        id: Int = this.id,
+        type: ThingType = this.type,
+        thumbnail: String? = this.thumbnail,
+        image: String? = this.image,
+        description: String? = this.description,
+        yearPublished: Int? = this.yearPublished,
+        datePublished: String? = this.datePublished,
+        releaseDate: LocalDate? = this.releaseDate,
+        minPlayers: Int? = this.minPlayers,
+        maxPlayers: Double? = this.maxPlayers,
+        playingTimeInMinutes: Int? = this.playingTimeInMinutes,
+        minPlayingTimeInMinutes: Int? = this.minPlayingTimeInMinutes,
+        maxPlayingTimeInMinutes: Int? = this.maxPlayingTimeInMinutes,
+        minAge: Int? = this.minAge,
+        videos: List<Video> = this.videos,
+        comments: Comments? = this.comments,
+        statistics: Statistics? = this.statistics,
+        listings: List<MarketplaceListing> = this.listings,
+        versions: List<Version> = this.versions,
+        seriesCode: String? = this.seriesCode,
+        issueIndex: Int? = this.issueIndex
+    ) =
+        Thing(
+                id,
+                type,
+                thumbnail,
+                image,
+                description,
+                yearPublished,
+                datePublished,
+                releaseDate,
+                minPlayers,
+                maxPlayers,
+                playingTimeInMinutes,
+                minPlayingTimeInMinutes,
+                maxPlayingTimeInMinutes,
+                minAge,
+                videos,
+                comments,
+                statistics,
+                listings,
+                versions,
+                seriesCode,
+                issueIndex,
+            )
+            .also {
+                it.names = this.names
+                it.links = this.links
+                it.polls = this.polls
+            }
 }
 
 /** Available versions of the thing e.g. Different prints of a boardgame. */
@@ -170,7 +228,7 @@ data class Version(
     @JacksonXmlProperty(isAttribute = true) val type: String,
 
     /** Unique ID of this product. */
-    @JacksonXmlProperty(isAttribute = true) val id: Number,
+    @JacksonXmlProperty(isAttribute = true) val id: Int,
 
     /** Thumbnail image of the product - 200x150. */
     val thumbnail: String?,
@@ -179,25 +237,25 @@ data class Version(
     val image: String?,
 
     /** When the product was published. */
-    val yearPublished: WrappedValue<Number>?,
+    @JsonDeserialize(using = WrappedIntDeserializer::class) val yearPublished: Int?,
 
     /** The year it was released in e.g. `2019`. (For video games) */
-    val releaseDate: WrappedValue<LocalDate>?,
+    @JsonDeserialize(using = WrappedLocalDateDeserializer::class) val releaseDate: LocalDate?,
 
     /** Product code of the product. */
-    val productCode: WrappedValue<String>?,
+    @JsonDeserialize(using = WrappedStringDeserializer::class) val productCode: String?,
 
     /** Width in inches. */
-    val width: WrappedValue<Number>?,
+    @JsonDeserialize(using = WrappedDoubleDeserializer::class) val width: Double?,
 
     /** Length in inches. */
-    val length: WrappedValue<Number>?,
+    @JsonDeserialize(using = WrappedDoubleDeserializer::class) val length: Double?,
 
     /** Depth in inches. */
-    val depth: WrappedValue<Number>?,
+    @JsonDeserialize(using = WrappedDoubleDeserializer::class) val depth: Double?,
 
     /** Weight in lbs (pounds). */
-    val weight: WrappedValue<Number>?,
+    @JsonDeserialize(using = WrappedDoubleDeserializer::class) val weight: Double?,
 ) {
     /** Names of the product, consisting of a primary and optionally alternatives. */
     @JsonProperty("name")
@@ -312,16 +370,16 @@ data class Comment(
 /** A single listing for the thing i.e. a 'for sale'-listing. */
 data class MarketplaceListing(
     /** When the listing was created. */
-    val listDate: WrappedLocalDateTime,
+    @JsonDeserialize(using = WrappedLocalDateTimeDeserializer::class) val listDate: LocalDateTime,
 
     /** The requested price for the listing. */
     val price: Price,
 
     /** The condition of the item e.g. 'new' etc. */
-    val condition: WrappedValue<String>?,
+    @JsonDeserialize(using = WrappedStringDeserializer::class) val condition: String?,
 
     /** Description of the listing. */
-    val notes: WrappedValue<String>?,
+    @JsonDeserialize(using = WrappedStringDeserializer::class) val notes: String?,
 
     /** Link to the listing. */
     @JsonProperty("link") val webLink: Weblink,
@@ -330,7 +388,7 @@ data class MarketplaceListing(
 /** Encapsulates a price for a given [MarketplaceListing] */
 data class Price(
     /** The actual price. */
-    val value: Number,
+    val value: Double,
 
     /** The currency for the listing - ISO 4217. */
     val currency: String,

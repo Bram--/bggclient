@@ -27,16 +27,16 @@ data class Plays(
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
 
     /** The ID of the user. */
-    @JacksonXmlProperty(isAttribute = true) val userid: Number,
+    @JacksonXmlProperty(isAttribute = true) val userid: Int,
 
     /** The username, same as in the request. */
     @JacksonXmlProperty(isAttribute = true) val username: String,
 
     /** Total number of plays - used in pagination. */
-    @JacksonXmlProperty(isAttribute = true) val total: Number,
+    @JacksonXmlProperty(isAttribute = true) val total: Int,
 
     /** The current page number. */
-    @JacksonXmlProperty(isAttribute = true) val page: Number,
+    @JacksonXmlProperty(isAttribute = true) val page: Int,
 
     /** List of the actual plays. */
     @JacksonXmlProperty(localName = "play") val plays: List<Play> = listOf()
@@ -48,16 +48,16 @@ data class Plays(
  */
 data class Play(
     /** Unique ID of the play - not used */
-    @JacksonXmlProperty(isAttribute = true) val id: Number,
+    @JacksonXmlProperty(isAttribute = true) val id: Int,
 
     /** The date the play took place. */
     @JacksonXmlProperty(isAttribute = true) val date: LocalDate,
 
     /** The number of plays, of the same game with the same players. */
-    @JacksonXmlProperty(isAttribute = true) val quantity: Number,
+    @JacksonXmlProperty(isAttribute = true) val quantity: Int,
 
     /** The duration of the play(s). */
-    @JacksonXmlProperty(isAttribute = true, localName = "length") val lengthInMinutes: Number,
+    @JacksonXmlProperty(isAttribute = true, localName = "length") val lengthInMinutes: Int,
 
     /** Whether the game was completed or not. */
     @JacksonXmlProperty(isAttribute = true)
@@ -99,7 +99,7 @@ data class PlayItem(
      * The unique identifier of the thing, used to retrieve more information using the
      * [org.audux.bgg.request.things] API.
      */
-    @JacksonXmlProperty(isAttribute = true) val objectId: Number,
+    @JacksonXmlProperty(isAttribute = true) val objectId: Int,
 
     /** The sub types for this thing e.g. board game, rpg etc. */
     @JacksonXmlElementWrapper(localName = "subtypes", useWrapping = false)
@@ -107,7 +107,10 @@ data class PlayItem(
 )
 
 /** A SubType of a thing e.g. board game. */
-data class SubType(val subtype: WrappedSubType)
+data class SubType(
+    @JsonDeserialize(using = WrappedSubTypeDeserializer::class)
+    val subtype: org.audux.bgg.common.SubType
+)
 
 /**
  * Represents a person in the play i.e. their username, id, what color they played, how they did
@@ -118,7 +121,7 @@ data class Player(
     @JacksonXmlProperty(isAttribute = true) val username: String?,
 
     /** Optional user ID of the player - only set when the username is present. */
-    @JacksonXmlProperty(isAttribute = true) val userid: Number?,
+    @JacksonXmlProperty(isAttribute = true) val userid: Int?,
 
     /** The name of the player, could be first name, lastname or even a nickname. */
     @JacksonXmlProperty(isAttribute = true) val name: String?,
@@ -135,7 +138,7 @@ data class Player(
     val new: Boolean,
 
     /** Optionally the rating the player gave this game and play. */
-    @JacksonXmlProperty(isAttribute = true) val rating: Number,
+    @JacksonXmlProperty(isAttribute = true) val rating: Double,
 
     /** Did this player win? */
     @JacksonXmlProperty(isAttribute = true)
@@ -143,5 +146,5 @@ data class Player(
     val win: Boolean,
 
     /** The end score of the player for this play. */
-    @JacksonXmlProperty(isAttribute = true) val score: Number? = null,
+    @JacksonXmlProperty(isAttribute = true) val score: Double? = null,
 )

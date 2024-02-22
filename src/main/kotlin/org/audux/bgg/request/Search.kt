@@ -17,12 +17,12 @@ import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import org.audux.bgg.BggClient.InternalBggClient
+import org.audux.bgg.common.Constants.PARAM_EXACT
+import org.audux.bgg.common.Constants.PARAM_QUERY
+import org.audux.bgg.common.Constants.PARAM_TYPE
+import org.audux.bgg.common.Constants.PATH_SEARCH
+import org.audux.bgg.common.Constants.XML2_API_URL
 import org.audux.bgg.common.ThingType
-import org.audux.bgg.request.Constants.PARAM_EXACT
-import org.audux.bgg.request.Constants.PARAM_QUERY
-import org.audux.bgg.request.Constants.PARAM_TYPE
-import org.audux.bgg.request.Constants.PATH_SEARCH
-import org.audux.bgg.request.Constants.XML2_API_URL
 import org.audux.bgg.response.Response
 import org.audux.bgg.response.SearchResults
 
@@ -38,7 +38,7 @@ import org.audux.bgg.response.SearchResults
 internal fun InternalBggClient.search(
     query: String,
     types: Array<ThingType> = arrayOf(),
-    exactMatch: Boolean = false,
+    exactMatch: Boolean,
 ) = request {
     client()
         .get(XML2_API_URL) {

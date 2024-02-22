@@ -14,6 +14,7 @@
 package org.audux.bgg.request
 
 import co.touchlab.kermit.Logger
+import java.time.LocalDate
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.jvm.Throws
@@ -25,7 +26,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.audux.bgg.BggClient
 import org.audux.bgg.BggRequestException
+import org.audux.bgg.common.Domains
 import org.audux.bgg.common.Inclusion
+import org.audux.bgg.common.PlayThingType
+import org.audux.bgg.common.SubType
 import org.audux.bgg.response.Buddy
 import org.audux.bgg.response.Forum
 import org.audux.bgg.response.Guild
@@ -125,7 +129,8 @@ internal constructor(
 class PaginatedGuilds
 internal constructor(
     private val client: BggClient.InternalBggClient,
-    private val members: Inclusion? = null,
+    private val members: Inclusion?,
+    private val sort: String?,
     private val request: suspend () -> Response<Guild>
 ) : PaginatedRequest<Guild>(client, request) {
     companion object {
@@ -151,14 +156,21 @@ internal constructor(
                 guild.data.members?.let { guildMembers ->
                     allGuildMembers.addAllAbsent(guildMembers.members)
 
-                    // Number of pages to paginate: (CurrentPage + 1)..lastPage.
+                    // Int of pages to paginate: (CurrentPage + 1)..lastPage.
                     val currentPage = guildMembers.page.toInt()
                     lastPage = min(ceil(guildMembers.count.toDouble() / PAGE_SIZE).toInt(), toPage)
 
                     // Start pagination concurrently.
                     concurrentRequests((currentPage + 1)..lastPage) { page ->
                         val response =
-                            client.guilds(id = guild.data.id, page = page, members = members).call()
+                            client
+                                .guilds(
+                                    id = guild.data.id,
+                                    page = page,
+                                    members = members,
+                                    sort = sort
+                                )
+                                .call()
 
                         if (response.isError()) {
                             // Ignore errors but do log them.
@@ -186,6 +198,11 @@ internal constructor(
 class PaginatedPlays
 internal constructor(
     private val client: BggClient.InternalBggClient,
+    private val id: Int?,
+    private val type: PlayThingType?,
+    private val minDate: LocalDate?,
+    private val maxDate: LocalDate?,
+    private val subType: SubType?,
     private val request: suspend () -> Response<Plays>
 ) : PaginatedRequest<Plays>(client, request) {
     companion object {
@@ -200,13 +217,24 @@ internal constructor(
                 if (plays.data == null) return@Request plays
                 val allPlays = CopyOnWriteArrayList<Play>().apply { addAllAbsent(plays.data.plays) }
 
-                // Number of pages to paginate: (CurrentPage + 1)..lastPage.
+                // Int of pages to paginate: (CurrentPage + 1)..lastPage.
                 val currentPage = plays.data.page.toInt()
                 val lastPage = min(ceil(plays.data.total.toDouble() / PAGE_SIZE).toInt(), toPage)
 
                 // Start pagination concurrently.
                 concurrentRequests((currentPage + 1)..lastPage) { page ->
-                    val response = client.plays(username = plays.data.username, page = page).call()
+                    val response =
+                        client
+                            .plays(
+                                username = plays.data.username,
+                                id = id,
+                                page = page,
+                                type = type,
+                                minDate = minDate,
+                                maxDate = maxDate,
+                                subType = subType,
+                            )
+                            .call()
                     if (response.isError()) {
                         // Ignore errors but do log them.
                         Logger.w("Error paginating plays page $page")
@@ -252,7 +280,7 @@ internal constructor(
                         )
                     }
 
-                // Number of pages to paginate: (CurrentPage + 1)..lastPage.
+                // Int of pages to paginate: (CurrentPage + 1)..lastPage.
                 val maxComments =
                     things.data.things.maxOfOrNull { it.comments?.totalItems ?: 0 } ?: 0
                 val lastPage = min(toPage, ceil(maxComments.toDouble() / pageSize).toInt())
@@ -311,6 +339,9 @@ internal constructor(
     private val client: BggClient.InternalBggClient,
     private val buddies: Inclusion?,
     private val guilds: Inclusion?,
+    private val top: Inclusion?,
+    private val hot: Inclusion?,
+    private val domain: Domains?,
     private val request: suspend () -> Response<User>,
 ) : PaginatedRequest<User>(client, request) {
     companion object {
@@ -341,7 +372,7 @@ internal constructor(
                         user.data.buddies?.let { addAllAbsent(it.buddies) }
                     }
 
-                // Number of pages to paginate.
+                // Int of pages to paginate.
                 val currentPage =
                     user.data.guilds?.page?.toInt() ?: user.data.buddies?.page?.toInt() ?: 1
 
@@ -361,7 +392,10 @@ internal constructor(
                                 name = user.data.name,
                                 guilds = guilds,
                                 buddies = buddies,
+                                top = top,
+                                hot = hot,
                                 page = page,
+                                domain = domain,
                             )
                             .call()
 
@@ -401,10 +435,9 @@ internal constructor(
  * Runs `pages.first`..`pages.last` pagination requests, where the actual request happens inside
  * [request].
  */
-private suspend inline fun <T> concurrentRequests(
-    pages: IntRange,
-    crossinline request: suspend (page: Int) -> T
-) {
+// Do not inline as Jacoco fails to count it as covered in Kotlin unit tests.
+// See: https://github.com/jacoco/jacoco/issues/654
+private suspend fun <T> concurrentRequests(pages: IntRange, request: suspend (page: Int) -> T) {
     val jobs = CopyOnWriteArrayList<Job>()
     runBlocking {
         pages.forEach { jobs.add(launch { request(it) }) }

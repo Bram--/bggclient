@@ -14,8 +14,14 @@
 package org.audux.bgg.response
 
 import com.fasterxml.jackson.core.JsonParser
+import com.fasterxml.jackson.core.JsonToken
 import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JsonDeserializer
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Locale
+import org.audux.bgg.common.Constants
 import org.audux.bgg.common.FamilyType
 import org.audux.bgg.common.ForumListType
 import org.audux.bgg.common.PlayThingType
@@ -63,3 +69,74 @@ internal class SubTypeDeserializer : JsonDeserializer<SubType>() {
     override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
         SubType.fromParam(parser?.valueAsString)
 }
+
+/** Deserializes `<elementName value="Value" />` objects into a `String("Value")` property. */
+internal class WrappedStringDeserializer : JsonDeserializer<String?>() {
+    override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
+        readWrappedValue(parser) { it.valueAsString }
+}
+
+/** Deserializes `<elementName value="123" />` objects into an `Int(123)` property. */
+internal class WrappedIntDeserializer : JsonDeserializer<Int?>() {
+    override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
+        readWrappedValue(parser) { it.valueAsInt }
+}
+
+/** Deserializes `<elementName value="123.123" />` objects into an `Double(123.123)` property. */
+internal class WrappedDoubleDeserializer : JsonDeserializer<Double?>() {
+    override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
+        readWrappedValue(parser) { it.valueAsDouble }
+}
+
+/**
+ * Deserializes `<elementName value="2012-10-12" />` objects into a `LocalDate.of(2012, 10, 12)
+ * property.
+ */
+internal class WrappedLocalDateDeserializer : JsonDeserializer<LocalDate?>() {
+    override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
+        readWrappedValue(parser) {
+            it.valueAsString
+                ?.takeIf { str -> str.isNotBlank() }
+                ?.let { str -> LocalDate.parse(str) }
+        }
+}
+
+/**
+ * Deserializes `<elementName value="2012-10-12" />` objects into a `LocalDate.of(2012, 10, 12)
+ * property.
+ */
+internal class WrappedLocalDateTimeDeserializer : JsonDeserializer<LocalDateTime?>() {
+    override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
+        readWrappedValue(parser) {
+            it.valueAsString
+                ?.takeIf { str -> str.isNotBlank() }
+                ?.let { str ->
+                    val formatter =
+                        DateTimeFormatter.ofPattern(Constants.DAY_FIRST_DATE_TIME_FORMAT)
+                            .localizedBy(Locale.US)
+                    LocalDateTime.parse(str, formatter)
+                }
+        }
+}
+
+/**
+ * Deserializes `<elementName value="2012-10-12" />` objects into a `LocalDate.of(2012, 10, 12)
+ * property.
+ */
+internal class WrappedSubTypeDeserializer : JsonDeserializer<SubType?>() {
+    override fun deserialize(parser: JsonParser?, context: DeserializationContext?) =
+        readWrappedValue(parser) { SubType.fromParam(parser?.valueAsString) }
+}
+
+/** Deserializes and trims strings. */
+private fun <T> readWrappedValue(parser: JsonParser?, read: (JsonParser) -> T): T? =
+    parser?.let {
+        var value: T? = null
+        while (it.nextToken() != JsonToken.END_OBJECT) {
+            if (it.currentToken == JsonToken.VALUE_STRING) {
+                value = read(it)
+            }
+        }
+
+        return value
+    }

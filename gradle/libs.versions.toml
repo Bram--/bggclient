@@ -6,7 +6,7 @@ junit5 = "5.8.1"
 kermit = "2.0.2"
 ktfmt-gradle = "0.15.1"
 ktor = "2.3.+"
-org-jetbrains-kotlin-jvm = "1.9.10"
+org-jetbrains-kotlin-jvm = "1.9.22"
 org-jetbrains-kotlin-jdk8 = "1.7.3"
 serialization = "1.6.1"
 slf4j = "1.7.36"
@@ -18,7 +18,9 @@ jackson-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr
 jackson-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
 jackson-xml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-xml", version.ref = "jackson" }
 junit5-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit5" }
+junit5-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit5" }
 junit5-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit5" }
+junit5-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit5" }
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 kotlin-coroutines-jdk8 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "org-jetbrains-kotlin-jdk8" }
 kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "dateTime" }
@@ -32,3 +34,4 @@ truth = { module = "com.google.truth:truth", version.ref = "truth" }
 [plugins]
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
 ktfmt-gradle = { id = "com.ncorti.ktfmt.gradle", version.ref = "ktfmt-gradle" }
+

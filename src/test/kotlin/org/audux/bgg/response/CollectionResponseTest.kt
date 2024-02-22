@@ -74,11 +74,11 @@ class CollectionResponseTest {
                             ratings =
                                 Ratings(
                                     value = "7",
-                                    usersRated = WrappedValue(101690),
-                                    average = WrappedValue(7.69089),
-                                    bayesAverage = WrappedValue(7.58314),
-                                    stdDev = WrappedValue(1.277),
-                                    median = WrappedValue(0),
+                                    usersRated = 101690,
+                                    average = 7.69089,
+                                    bayesAverage = 7.58314,
+                                    stdDev = 1.277,
+                                    median = 0.0,
                                     ranks =
                                         listOf(
                                             Rank(

@@ -338,8 +338,6 @@ class ThingsResponseTest {
             val listings = things.things[0].listings
             assertThat(listings).hasSize(11)
             assertThat(listings[0].listDate).isEqualTo(LocalDateTime.of(2023, 10, 6, 19, 41, 25))
-            //            WrappedLocalDateTimeSubject.assertThat(listings[0].listDate)
-            //                .isEqualTo(LocalDateTime.of(2023, 10, 6, 19, 41, 25))
             assertThat(listings[0].listDate).isEqualTo(LocalDateTime.of(2023, 10, 6, 19, 41, 25))
             assertThat(listings[0].price.value).isEqualTo(80.00)
             assertThat(listings[0].price.currency).isEqualTo("USD")

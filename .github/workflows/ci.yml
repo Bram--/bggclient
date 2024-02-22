@@ -16,7 +16,7 @@ jobs:
       actions: read
       contents: read
       id-token: write
-      pages: writw
+      pages: write
       pull-requests: write
     steps:
       - uses: actions/checkout@v4

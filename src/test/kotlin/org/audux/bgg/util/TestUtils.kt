@@ -28,6 +28,7 @@ object TestUtils {
      * Sets up a HttpEnginecusing a [MockEngine] and [respondOk] responses with the given xml files
      * as the actual response.
      */
+    @JvmStatic
     fun setupMockEngine(vararg xmlFileName: String) =
         MockEngine(
             MockEngineConfig().apply {
@@ -38,9 +39,10 @@ object TestUtils {
         )
 
     /** Returns an fully configure [XmlMapper] instance that is used in the BggClient. */
-    fun getBggClientMapper() = InternalBggClient().mapper
+    @JvmStatic fun getBggClientMapper() = InternalBggClient().mapper
 
     /** Returns input stream of `resources/xml/{fileName}.xml` to use in testing. */
+    @JvmStatic
     fun xml(fileName: String): InputStream {
         try {
             return TestUtils::class.java.classLoader.getResourceAsStream("xml/$fileName.xml")!!
@@ -50,14 +52,16 @@ object TestUtils {
     }
 
     /** Sets up [TestLogWriter] for the Logger so assertions can be made. */
-    internal fun captureLoggerWrites(severity: BggClient.Severity = BggClient.Severity.Verbose) =
+    @JvmStatic
+    @JvmOverloads
+    fun captureLoggerWrites(severity: BggClient.Severity = BggClient.Severity.Verbose) =
         TestLogWriter().also {
             Logger.setLogWriters(it)
             BggClient.setLoggerSeverity(severity)
         }
 
     /** LogWriter for test assertions. */
-    internal class TestLogWriter : LogWriter() {
+    class TestLogWriter : LogWriter() {
         private val logWrites: MutableList<LogWrite> = mutableListOf()
 
         override fun log(severity: Severity, message: String, tag: String, throwable: Throwable?) {

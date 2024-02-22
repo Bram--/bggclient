@@ -170,6 +170,9 @@ class ThingsRequestTest {
                     ),
                 )
             assertThat(response.data?.things).hasSize(1)
+            assertThat(response.data?.things!![0].names).hasSize(3)
+            assertThat(response.data?.things!![0].links).hasSize(35)
+            assertThat(response.data?.things!![0].polls).hasSize(3)
             assertThat(response.data?.things!![0].comments?.totalItems).isEqualTo(213)
             assertThat(response.data?.things!![0].comments?.comments).hasSize(213)
         }
@@ -230,11 +233,41 @@ class ThingsRequestTest {
         }
 
         @Test
-        fun `Quietly skips failures`() = runBlocking {
+        fun `Quietly skips empty responses`() = runBlocking {
             val engine =
                 TestUtils.setupMockEngine(
                     "thing?id=396790&comments=1&page=1",
                     "thing?id=-1",
+                    "thing?id=396790&page=3",
+                )
+
+            BggClient.engine = { engine }
+
+            val response =
+                BggClient.things(ids = arrayOf(396790), comments = true).paginate().call()
+
+            assertThat(engine.requestHistory).hasSize(3)
+            assertThat(engine.requestHistory.map { it.url })
+                .containsExactly(
+                    Url("https://boardgamegeek.com/xmlapi2/thing?id=396790&comments=1"),
+                    Url(
+                        "https://boardgamegeek.com/xmlapi2/thing?id=396790&comments=1&page=2&pagesize=100"
+                    ),
+                    Url(
+                        "https://boardgamegeek.com/xmlapi2/thing?id=396790&comments=1&page=3&pagesize=100"
+                    ),
+                )
+            assertThat(response.data?.things).hasSize(1)
+            assertThat(response.data?.things!![0].comments?.totalItems).isEqualTo(213)
+            assertThat(response.data?.things!![0].comments?.comments).hasSize(100)
+        }
+
+        @Test
+        fun `Quietly skips failures`() = runBlocking {
+            val engine =
+                TestUtils.setupMockEngine(
+                    "thing?id=396790&comments=1&page=1",
+                    "thread",
                     "thing?id=396790&comments=1&page=3",
                 )
 

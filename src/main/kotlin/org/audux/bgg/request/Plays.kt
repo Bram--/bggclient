@@ -20,8 +20,6 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import org.audux.bgg.BggClient.InternalBggClient
 import org.audux.bgg.common.Constants
-import org.audux.bgg.common.PlayThingType
-import org.audux.bgg.common.SubType
 import org.audux.bgg.common.Constants.PARAM_ID
 import org.audux.bgg.common.Constants.PARAM_PAGE
 import org.audux.bgg.common.Constants.PARAM_SUBTYPE
@@ -29,6 +27,8 @@ import org.audux.bgg.common.Constants.PARAM_TYPE
 import org.audux.bgg.common.Constants.PARAM_USERNAME
 import org.audux.bgg.common.Constants.PATH_PLAYS
 import org.audux.bgg.common.Constants.XML2_API_URL
+import org.audux.bgg.common.PlayThingType
+import org.audux.bgg.common.SubType
 import org.audux.bgg.response.Plays
 import org.audux.bgg.response.Response
 
@@ -49,14 +49,14 @@ import org.audux.bgg.response.Response
  */
 internal fun InternalBggClient.plays(
     username: String,
-    id: Int? = null,
-    type: PlayThingType? = null,
-    minDate: LocalDate? = null,
-    maxDate: LocalDate? = null,
-    subType: SubType? = null,
-    page: Int? = null,
+    id: Int?,
+    type: PlayThingType?,
+    minDate: LocalDate?,
+    maxDate: LocalDate?,
+    subType: SubType?,
+    page: Int?,
 ) =
-    PaginatedPlays(this) {
+    PaginatedPlays(this, id, type, minDate, maxDate, subType) {
         val formatter = DateTimeFormatter.ofPattern(Constants.REQUEST_DATE_FORMAT)
         client()
             .get(XML2_API_URL) {

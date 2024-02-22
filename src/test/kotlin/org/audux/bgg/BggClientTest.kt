@@ -9,14 +9,14 @@ import io.ktor.client.engine.mock.respondOk
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.HttpStatusCode
+import java.util.concurrent.CompletableFuture
+import java.util.concurrent.CountDownLatch
 import kotlinx.coroutines.runBlocking
 import org.audux.bgg.response.Response
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import java.util.concurrent.CompletableFuture
-import java.util.concurrent.CountDownLatch
 
 class BggClientTest {
     @ParameterizedTest

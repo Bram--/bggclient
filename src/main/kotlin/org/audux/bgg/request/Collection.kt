@@ -19,8 +19,6 @@ import io.ktor.http.appendPathSegments
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import org.audux.bgg.BggClient.InternalBggClient
-import org.audux.bgg.common.Inclusion
-import org.audux.bgg.common.ThingType
 import org.audux.bgg.common.Constants.PARAM_BGG_RATING
 import org.audux.bgg.common.Constants.PARAM_BRIEF
 import org.audux.bgg.common.Constants.PARAM_COLLECTION_ID
@@ -53,6 +51,8 @@ import org.audux.bgg.common.Constants.PARAM_WISHLIST_PRIORITY
 import org.audux.bgg.common.Constants.PATH_COLLECTION
 import org.audux.bgg.common.Constants.REQUEST_DATE_TIME_FORMAT
 import org.audux.bgg.common.Constants.XML2_API_URL
+import org.audux.bgg.common.Inclusion
+import org.audux.bgg.common.ThingType
 import org.audux.bgg.response.Collection
 import org.audux.bgg.response.Response
 
@@ -122,33 +122,33 @@ import org.audux.bgg.response.Response
 internal fun InternalBggClient.collection(
     userName: String,
     subType: ThingType,
-    excludeSubType: ThingType? = null,
-    ids: Array<Int>? = null,
-    version: Boolean = false,
-    brief: Boolean = false,
-    stats: Boolean = false,
-    own: Inclusion? = null,
-    rated: Inclusion? = null,
-    played: Inclusion? = null,
-    comment: Inclusion? = null,
-    trade: Inclusion? = null,
-    want: Inclusion? = null,
-    wishlist: Inclusion? = null,
-    wishlistPriority: Int? = null,
-    preOrdered: Inclusion? = null,
-    wantToPlay: Inclusion? = null,
-    wantToBuy: Inclusion? = null,
-    previouslyOwned: Inclusion? = null,
-    hasParts: Inclusion? = null,
-    wantParts: Inclusion? = null,
-    minRating: Int? = null,
-    rating: Int? = null,
-    minBggRating: Int? = null,
-    bggRating: Int? = null,
-    minimumPlays: Int? = null,
-    maxPlays: Int? = null,
-    collectionId: Int? = null,
-    modifiedSince: LocalDateTime? = null,
+    excludeSubType: ThingType?,
+    ids: Array<Int>?,
+    version: Boolean,
+    brief: Boolean,
+    stats: Boolean,
+    own: Inclusion?,
+    rated: Inclusion?,
+    played: Inclusion?,
+    comment: Inclusion?,
+    trade: Inclusion?,
+    want: Inclusion?,
+    wishlist: Inclusion?,
+    wishlistPriority: Int?,
+    preOrdered: Inclusion?,
+    wantToPlay: Inclusion?,
+    wantToBuy: Inclusion?,
+    previouslyOwned: Inclusion?,
+    hasParts: Inclusion?,
+    wantParts: Inclusion?,
+    minRating: Int?,
+    rating: Int?,
+    minBggRating: Int?,
+    bggRating: Int?,
+    minimumPlays: Int?,
+    maxPlays: Int?,
+    collectionId: Int?,
+    modifiedSince: LocalDateTime?,
 ) = request {
     client()
         .get(XML2_API_URL) {

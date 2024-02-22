@@ -168,6 +168,58 @@ data class Thing(
             field = field + value
             field.forEach { if (it.type == "primary") name = it.value }
         }
+
+    fun copy(
+        id: Int = this.id,
+        type: ThingType = this.type,
+        thumbnail: String? = this.thumbnail,
+        image: String? = this.image,
+        description: String? = this.description,
+        yearPublished: Int? = this.yearPublished,
+        datePublished: String? = this.datePublished,
+        releaseDate: LocalDate? = this.releaseDate,
+        minPlayers: Int? = this.minPlayers,
+        maxPlayers: Double? = this.maxPlayers,
+        playingTimeInMinutes: Int? = this.playingTimeInMinutes,
+        minPlayingTimeInMinutes: Int? = this.minPlayingTimeInMinutes,
+        maxPlayingTimeInMinutes: Int? = this.maxPlayingTimeInMinutes,
+        minAge: Int? = this.minAge,
+        videos: List<Video> = this.videos,
+        comments: Comments? = this.comments,
+        statistics: Statistics? = this.statistics,
+        listings: List<MarketplaceListing> = this.listings,
+        versions: List<Version> = this.versions,
+        seriesCode: String? = this.seriesCode,
+        issueIndex: Int? = this.issueIndex
+    ) =
+        Thing(
+                id,
+                type,
+                thumbnail,
+                image,
+                description,
+                yearPublished,
+                datePublished,
+                releaseDate,
+                minPlayers,
+                maxPlayers,
+                playingTimeInMinutes,
+                minPlayingTimeInMinutes,
+                maxPlayingTimeInMinutes,
+                minAge,
+                videos,
+                comments,
+                statistics,
+                listings,
+                versions,
+                seriesCode,
+                issueIndex,
+            )
+            .also {
+                it.names = this.names
+                it.links = this.links
+                it.polls = this.polls
+            }
 }
 
 /** Available versions of the thing e.g. Different prints of a boardgame. */

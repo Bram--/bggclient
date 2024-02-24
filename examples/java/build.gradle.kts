@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.audux.bgg:bggclient:0.4.4")
+    implementation("org.audux.bgg:bggclient:0.4.5")
 
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")

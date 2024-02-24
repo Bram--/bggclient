@@ -16,7 +16,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "org.audux.bgg"
             artifactId = "bggclient"
-            version = "0.4.4"
+            version = "0.4.5"
 
             pom {
                 name = "Unofficial JVM BGG client"
@@ -65,7 +65,6 @@ dependencies {
     implementation(libs.jackson.xml)
     implementation(libs.javax.xml.stream)
     implementation(libs.kermit)
-    implementation(libs.kotlin.datetime)
     implementation(libs.kotlin.serialization)
     implementation(libs.ktor.core)
     implementation(libs.ktor.client)

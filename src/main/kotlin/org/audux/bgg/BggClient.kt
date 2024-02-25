@@ -14,7 +14,6 @@
 package org.audux.bgg
 
 import co.touchlab.kermit.Logger
-import co.touchlab.kermit.Severity
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.MapperFeature
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -37,7 +36,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.future.future
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.audux.bgg.common.Domains
+import org.audux.bgg.common.Domain
 import org.audux.bgg.common.FamilyType
 import org.audux.bgg.common.ForumListType
 import org.audux.bgg.common.HotListType
@@ -56,6 +55,7 @@ import org.audux.bgg.request.guilds
 import org.audux.bgg.request.hotItems
 import org.audux.bgg.request.plays
 import org.audux.bgg.request.search
+import org.audux.bgg.request.sitemapIndex
 import org.audux.bgg.request.things
 import org.audux.bgg.request.thread
 import org.audux.bgg.request.user
@@ -246,9 +246,7 @@ object BggClient {
      * @param id The id of either the Family or Thing to retrieve
      * @param type Single [ForumListType] to retrieve, either a [Thing] or [Family]
      */
-    @JvmStatic
-    @JvmOverloads
-    fun forumList(id: Int, type: ForumListType) = InternalBggClient().forumList(id, type)
+    @JvmStatic fun forumList(id: Int, type: ForumListType) = InternalBggClient().forumList(id, type)
 
     /**
      * Retrieves the list of threads for the given forum id.
@@ -342,6 +340,27 @@ object BggClient {
         types: Array<ThingType> = arrayOf(),
         exactMatch: Boolean = false,
     ) = InternalBggClient().search(query, types, exactMatch)
+
+    /**
+     * Requests the Sitemap index for the given Domain. Call
+     * [org.audux.bgg.request.DiffusingSitemap.diffuse] to request specific sitemaps.
+     *
+     * For example requesting all board game designer pages can be done as follows:
+     * ```
+     * val designers =
+     *      BggClient.sitemapIndex().diffuse(SitemapLocationType.BOARD_GAME_DESIGNERS).call()
+     * ```
+     *
+     * @param domain The [Domain] to request the sitemap for [Domain.BOARD_GAME_GEEK] returns board
+     *   game related sitemaps, using [Domain.VIDEO_GAME_GEEK] will return video game related
+     *   sitemaps. All returned data/ids are usable with BggClient APIs. E.g. a video game sitemap
+     *   might contain an URL like `https://videogamegeek.com/videogame/68287/master-orion`. This ID
+     *   `68287` can be used to request more information using the [things] API - regardless of its
+     *   type.
+     */
+    @JvmStatic
+    fun sitemapIndex(domain: Domain = Domain.BOARD_GAME_GEEK) =
+        InternalBggClient().sitemapIndex(domain)
 
     /**
      * Request a Thing or list of things. Multiple things can be requested by passing in several
@@ -440,7 +459,7 @@ object BggClient {
         guilds: Inclusion? = null,
         top: Inclusion? = null,
         hot: Inclusion? = null,
-        domain: Domains? = null,
+        domain: Domain? = null,
         page: Int? = null,
     ) = InternalBggClient().user(name, buddies, guilds, top, hot, domain, page)
 

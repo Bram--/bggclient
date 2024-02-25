@@ -16,9 +16,9 @@ package org.audux.bgg.common
 /** Collection of constants used in creating an URL for the BGG API. */
 internal object Constants {
     /** Base URL for the XML API2. */
-    const val XML2_API_URL = "https://boardgamegeek.com/xmlapi2"
+    const val XML2_API_URL = "https://boardgamgeek.com/xmlapi2"
     /** Base URL for the XML API(1). */
-    const val XML1_API_URL = "https://boardgamegeek.com/xmlapi"
+    const val XML1_API_URL = "https://boardgamgeek.com/xmlapi"
 
     const val PATH_COLLECTION = "collection"
     const val PATH_FAMILY = "family"
@@ -29,6 +29,7 @@ internal object Constants {
     const val PATH_HOT = "hot"
     const val PATH_PLAYS = "plays"
     const val PATH_SEARCH = "search"
+    const val PATH_SITEMAP = "sitemapindex"
     const val PATH_THING = "thing"
     const val PATH_THREAD = "thread"
     const val PATH_USER = "user"

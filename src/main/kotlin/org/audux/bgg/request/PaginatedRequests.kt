@@ -26,9 +26,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.audux.bgg.BggClient
 import org.audux.bgg.BggRequestException
-import org.audux.bgg.common.Domains
+import org.audux.bgg.common.Domain
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.common.PlayThingType
+import org.audux.bgg.common.SitemapLocationType
 import org.audux.bgg.common.SubType
 import org.audux.bgg.response.Buddy
 import org.audux.bgg.response.Forum
@@ -38,10 +39,62 @@ import org.audux.bgg.response.GuildReference
 import org.audux.bgg.response.Play
 import org.audux.bgg.response.Plays
 import org.audux.bgg.response.Response
+import org.audux.bgg.response.SitemapIndex
+import org.audux.bgg.response.SitemapUrl
 import org.audux.bgg.response.Thing
 import org.audux.bgg.response.Things
 import org.audux.bgg.response.ThreadSummary
 import org.audux.bgg.response.User
+
+/** Diffusing request implementation for [sitemapIndex]. */
+class DiffusingSitemap
+internal constructor(
+    private val client: BggClient.InternalBggClient,
+    private val request: suspend () -> Response<SitemapIndex>
+) : Request<SitemapIndex>(client, request) {
+
+    /**
+     * After requesting the [SitemapIndex] all URLs that are of the given type are requested. If
+     * [limitToTypes] is not set _all_ sitemaps will be requested. this will result in 600+ requests
+     * to BGG!
+     *
+     * @param limitToTypes The type of sitemaps to request e.g. if [SitemapLocationType.BOARD_GAMES]
+     *   is set it will only request sitemaps that contain board games, like
+     *   `https://boardgamegeek.com/sitemap_geekitems_boardgame_page_15`.
+     */
+    fun diffuse(
+        vararg limitToTypes: SitemapLocationType
+    ): Request<Map<SitemapLocationType, List<SitemapUrl>>> =
+        Request(client) {
+            // Run the initial sitemap index request.
+            request().let { sitemapIndex ->
+                if (sitemapIndex.data == null) return@Request Response(error = sitemapIndex.error)
+                val allSitemaps = ConcurrentHashMap<SitemapLocationType, MutableList<SitemapUrl>>()
+                // Filter sitemaps by given types.
+                val sitemaps =
+                    sitemapIndex.data.sitemaps.filter {
+                        limitToTypes.isEmpty() || limitToTypes.contains(it.type)
+                    }
+
+                // Start requesting all the sitemap concurrently.
+                concurrentRequests(sitemaps.indices) { index ->
+                    val sitemap = sitemaps[index]
+                    val response = client.sitemap(sitemap.location).call()
+
+                    if (response.data == null || response.isError()) {
+                        Logger.w("Error retrieving ${sitemap.location}")
+                    } else {
+                        // Add all URLs to the sitemaps hash map.
+                        allSitemaps.compute(sitemap.type) { _, value ->
+                            (value ?: mutableListOf()).apply { addAll(response.data.sitemaps) }
+                        }
+                    }
+                }
+                // Finally build the response manually.
+                Response(data = allSitemaps)
+            }
+        }
+}
 
 /**
  * Allows pagination on compatible API requests. Using [paginate] will automatically request all
@@ -157,7 +210,7 @@ internal constructor(
                     allGuildMembers.addAllAbsent(guildMembers.members)
 
                     // Int of pages to paginate: (CurrentPage + 1)..lastPage.
-                    val currentPage = guildMembers.page.toInt()
+                    val currentPage = guildMembers.page
                     lastPage = min(ceil(guildMembers.count.toDouble() / PAGE_SIZE).toInt(), toPage)
 
                     // Start pagination concurrently.
@@ -218,7 +271,7 @@ internal constructor(
                 val allPlays = CopyOnWriteArrayList<Play>().apply { addAllAbsent(plays.data.plays) }
 
                 // Int of pages to paginate: (CurrentPage + 1)..lastPage.
-                val currentPage = plays.data.page.toInt()
+                val currentPage = plays.data.page
                 val lastPage = min(ceil(plays.data.total.toDouble() / PAGE_SIZE).toInt(), toPage)
 
                 // Start pagination concurrently.
@@ -341,7 +394,7 @@ internal constructor(
     private val guilds: Inclusion?,
     private val top: Inclusion?,
     private val hot: Inclusion?,
-    private val domain: Domains?,
+    private val domain: Domain?,
     private val request: suspend () -> Response<User>,
 ) : PaginatedRequest<User>(client, request) {
     companion object {
@@ -373,15 +426,10 @@ internal constructor(
                     }
 
                 // Int of pages to paginate.
-                val currentPage =
-                    user.data.guilds?.page?.toInt() ?: user.data.buddies?.page?.toInt() ?: 1
+                val currentPage = user.data.guilds?.page ?: user.data.buddies?.page ?: 1
 
                 // Calculate the last page needed to request.
-                val maxPage =
-                    max(
-                        user.data.guilds?.total?.toInt() ?: 1,
-                        user.data.buddies?.total?.toInt() ?: 1
-                    )
+                val maxPage = max(user.data.guilds?.total ?: 1, user.data.buddies?.total ?: 1)
                 val lastPage = min(ceil(maxPage.toDouble() / PAGE_SIZE).toInt(), toPage)
 
                 // Retrieve all pages
@@ -443,6 +491,6 @@ private suspend fun <T> concurrentRequests(pages: IntRange, request: suspend (pa
         pages.forEach { jobs.add(launch { request(it) }) }
 
         // Wait for all requests to complete.
-        jobs.forEach() { it.join() }
+        jobs.forEach { it.join() }
     }
 }

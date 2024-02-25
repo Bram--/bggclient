@@ -20,7 +20,7 @@ import io.ktor.http.Url
 import kotlinx.coroutines.runBlocking
 import org.audux.bgg.BggClient
 import org.audux.bgg.BggRequestException
-import org.audux.bgg.common.Domains
+import org.audux.bgg.common.Domain
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Nested
@@ -74,7 +74,7 @@ class UserRequestTest {
                         guilds = Inclusion.INCLUDE,
                         top = Inclusion.INCLUDE,
                         hot = Inclusion.INCLUDE,
-                        domain = Domains.BOARD_GAME_GEEK,
+                        domain = Domain.BOARD_GAME_GEEK,
                         page = 1,
                     )
                     .call()

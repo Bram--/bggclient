@@ -26,9 +26,14 @@ import org.audux.bgg.response.WrappedIntDeserializer
 enum class ThingType(val param: String) {
     UNKNOWN(""), // Used whenever the type is empty or not recognized.
     BOARD_GAME("boardgame"),
-    BOARD_GAME_EXPANSION("boardgameexpansion"),
     BOARD_GAME_ACCESSORY("boardgameaccessory"),
+    BOARD_GAME_COMPILATION("boardgamecompilation"),
+    BOARD_GAME_EXPANSION("boardgameexpansion"),
+    BOARD_GAME_ISSUE("boardgameissue"),
     VIDEO_GAME("videogame"),
+    VIDEO_GAME_COMPILATION("videogamecompilation"),
+    VIDEO_GAME_EXPANSION("videogameexpansion"),
+    VIDEO_GAME_HARDWARE("videogamehardware"),
     RPG_ITEM("rpgitem"),
     RPG_ISSUE("rpgissue");
 
@@ -124,10 +129,10 @@ enum class Inclusion {
 }
 
 /** Different domains used for the users' hot- and top-10. */
-enum class Domains(val param: String) {
-    BOARD_GAME_GEEK("boardgame"),
-    RPG_GEEK("rpg"),
-    VIDEO_GAME_GEEK("videogame"),
+enum class Domain(val param: String, val address: String) {
+    BOARD_GAME_GEEK("boardgame", "https://boardgamegeek.com"),
+    RPG_GEEK("rpg", "https://rpggeek.com"),
+    VIDEO_GAME_GEEK("videogame", "https://videogamegeek.com"),
 }
 
 /** Encapsulates the name of a Thing either primary or alternate name. */

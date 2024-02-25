@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
-import org.audux.bgg.common.Domains;
+import org.audux.bgg.common.Domain;
 import org.audux.bgg.common.FamilyType;
 import org.audux.bgg.common.ForumListType;
 import org.audux.bgg.common.HotListType;
@@ -22,6 +22,7 @@ import org.audux.bgg.common.Name;
 import org.audux.bgg.common.PlayThingType;
 import org.audux.bgg.common.Rank;
 import org.audux.bgg.common.Ratings;
+import org.audux.bgg.common.SitemapLocationType;
 import org.audux.bgg.common.SubType;
 import org.audux.bgg.common.ThingType;
 import org.audux.bgg.response.CollectionItem;
@@ -36,6 +37,7 @@ import org.audux.bgg.response.Location;
 import org.audux.bgg.response.PlayItem;
 import org.audux.bgg.response.Player;
 import org.audux.bgg.response.SearchResult;
+import org.audux.bgg.response.SitemapUrl;
 import org.audux.bgg.response.Status;
 import org.audux.bgg.response.ThreadSummary;
 import org.junit.jupiter.api.Test;
@@ -643,7 +645,7 @@ public class BggClientJavaTest {
                 /* guilds= */ INCLUDE,
                 /* top= */ EXCLUDE,
                 /* hot= */ EXCLUDE,
-                /* domain= */ Domains.BOARD_GAME_GEEK)
+                /* domain= */ Domain.BOARD_GAME_GEEK)
             .paginate()
             .callAsync();
     var response = future.get(2_000, MILLISECONDS);
@@ -673,5 +675,35 @@ public class BggClientJavaTest {
     assertThat(user.getBuddies().getBuddies()).hasSize(2_200);
     assertThat(requireNonNull(user.getGuilds()).getTotal()).isEqualTo(1_900);
     assertThat(user.getGuilds().getGuilds()).hasSize(1_900);
+  }
+
+  @Test
+  public void sitemapIndexRequest()
+      throws ExecutionException, InterruptedException, TimeoutException, BggRequestException {
+    var engine =
+        setupMockEngine(
+            "sitemapindex.diffuse",
+            "sitemap_boardgame_page1",
+            "sitemap_boardgameversion_page1",
+            "sitemap_files_page1");
+    BggClient.setEngine(() -> engine);
+
+    var future = BggClient.sitemapIndex(Domain.BOARD_GAME_GEEK).diffuse().callAsync();
+    var response = future.get(2_000, MILLISECONDS);
+
+    assertThat(response.getError()).isNull();
+    assertThat(response.getData()).isNotNull();
+    var sitemaps = response.getData();
+    assertThat(sitemaps).hasSize(3);
+    assertThat(sitemaps.get(SitemapLocationType.BOARD_GAMES)).hasSize(10);
+    assertThat(sitemaps.get(SitemapLocationType.BOARD_GAMES).get(0))
+        .isEqualTo(
+            new SitemapUrl(
+                /* location= */ "https://boardgamegeek.com/boardgame/1/die-macher",
+                /* changeFrequency= */ "daily",
+                /* priority= */ 1.0,
+                /* lastModified= */ null));
+    assertThat(sitemaps.get(SitemapLocationType.BOARD_GAME_VERSIONS)).hasSize(9);
+    assertThat(sitemaps.get(SitemapLocationType.FILES)).hasSize(11);
   }
 }

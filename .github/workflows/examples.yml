@@ -21,6 +21,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '17'
+
+      - name: Mvn local install
+        run: |
+          ./gradlew publishToMavenLocal
+
       - uses: actions/cache@v4
         with:
           path: |
@@ -30,15 +39,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
           working-directory: ${{ matrix.dir }}
-
-      - uses: actions/setup-java@v4
-        with:
-          distribution: 'corretto'
-          java-version: '17'
-
-      - name: Mvn local install
-        run: |
-          ./gradlew publishToMavenLocal
 
       - name: Run Examples builds
         run: |

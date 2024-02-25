@@ -2,7 +2,7 @@ package org.audux.bgg.examples.java;
 
 import org.audux.bgg.BggClient;
 import org.audux.bgg.BggClient.Severity;
-import org.audux.bgg.common.Domains;
+import org.audux.bgg.common.Domain;
 import org.audux.bgg.common.Inclusion;
 import org.audux.bgg.response.Response;
 import org.audux.bgg.response.User;
@@ -28,7 +28,7 @@ public class Main {
                         /* guilds= */ Inclusion.INCLUDE,
                         /* top= */ Inclusion.INCLUDE,
                         /* hot= */ Inclusion.INCLUDE,
-                        /* domain= */ Domains.BOARD_GAME_GEEK,
+                        /* domain= */ Domain.BOARD_GAME_GEEK,
                         /* page= */ 1)
                 .paginate(1)
                 .callAsync();

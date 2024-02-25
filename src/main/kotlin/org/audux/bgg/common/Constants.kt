@@ -29,6 +29,7 @@ internal object Constants {
     const val PATH_HOT = "hot"
     const val PATH_PLAYS = "plays"
     const val PATH_SEARCH = "search"
+    const val PATH_SITEMAP = "sitemapindex"
     const val PATH_THING = "thing"
     const val PATH_THREAD = "thread"
     const val PATH_USER = "user"

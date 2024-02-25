@@ -26,7 +26,7 @@ import org.audux.bgg.common.Constants.PARAM_PAGE
 import org.audux.bgg.common.Constants.PARAM_TOP
 import org.audux.bgg.common.Constants.PATH_USER
 import org.audux.bgg.common.Constants.XML2_API_URL
-import org.audux.bgg.common.Domains
+import org.audux.bgg.common.Domain
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.response.Response
 import org.audux.bgg.response.User
@@ -54,7 +54,7 @@ internal fun InternalBggClient.user(
     guilds: Inclusion?,
     top: Inclusion?,
     hot: Inclusion?,
-    domain: Domains?,
+    domain: Domain?,
     page: Int?,
 ) =
     PaginatedUser(this, buddies, guilds, top, hot, domain) {

@@ -25,7 +25,7 @@ import org.audux.bgg.BggClient.InternalBggClient
 
 object TestUtils {
     /**
-     * Sets up a HttpEnginecusing a [MockEngine] and [respondOk] responses with the given xml files
+     * Sets up a HttpEngine using a [MockEngine] and [respondOk] responses with the given xml files
      * as the actual response.
      */
     @JvmStatic

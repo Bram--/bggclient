@@ -14,6 +14,12 @@
 package org.audux.bgg.request
 
 import com.google.common.truth.Truth.assertThat
+import io.ktor.client.engine.mock.MockEngine
+import io.ktor.client.engine.mock.MockEngineConfig
+import io.ktor.client.engine.mock.MockRequestHandleScope
+import io.ktor.client.engine.mock.respondBadRequest
+import io.ktor.client.engine.mock.respondOk
+import io.ktor.client.request.HttpRequestData
 import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Url
@@ -23,6 +29,7 @@ import org.audux.bgg.common.Domain
 import org.audux.bgg.common.SitemapLocationType
 import org.audux.bgg.response.SitemapLocation
 import org.audux.bgg.util.TestUtils
+import org.audux.bgg.util.TestUtils.xml
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
@@ -199,12 +206,7 @@ class SitemapIndexRequestTest {
         @Test
         fun `Automatically requests all pages in the sitemap index`() = runBlocking {
             val engine =
-                TestUtils.setupMockEngine(
-                    "sitemapindex.diffuse",
-                    "sitemap_boardgame_page1",
-                    "sitemap_boardgameversion_page1",
-                    "sitemap_files_page1"
-                )
+                MockEngine(MockEngineConfig().apply { addHandler { setupSitemapResponses(it) } })
             BggClient.engine = { engine }
 
             val response = BggClient.sitemapIndex().diffuse().call()
@@ -223,5 +225,18 @@ class SitemapIndexRequestTest {
             assertThat(response.data!![SitemapLocationType.BOARD_GAME_VERSIONS]).hasSize(9)
             assertThat(response.data!![SitemapLocationType.FILES]).hasSize(11)
         }
+
+        private fun MockRequestHandleScope.setupSitemapResponses(requestData: HttpRequestData) =
+            if (requestData.url.toString().endsWith("sitemapindex")) {
+                respondOk(String(xml("sitemapindex.diffuse").readAllBytes()))
+            } else if (requestData.url.toString().endsWith("boardgame_page_1")) {
+                respondOk(String(xml("sitemap_boardgame_page1").readAllBytes()))
+            } else if (requestData.url.toString().endsWith("boardgameversion_page_1")) {
+                respondOk(String(xml("sitemap_boardgameversion_page1").readAllBytes()))
+            } else if (requestData.url.toString().endsWith("files_page_1")) {
+                respondOk(String(xml("sitemap_files_page1").readAllBytes()))
+            } else {
+                respondBadRequest()
+            }
     }
 }

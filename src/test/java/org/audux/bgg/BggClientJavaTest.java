@@ -551,7 +551,7 @@ public class BggClientJavaTest {
 
     var future =
         BggClient.things(
-                /* ids= */ new Integer[] {},
+                /* ids= */ new Integer[] { 396790 },
                 /* types= */ new ThingType[] {},
                 /* stats= */ false,
                 /* versions= */ false,

@@ -58,6 +58,13 @@ publishing {
     }
 }
 
+signing {
+    val signingKey = System.getenv("MAVEN_SIGNING_KEY")
+    val signingPassword = System.getenv("MAVEN_SIGNING_PASSWORD")
+    useInMemoryPgpKeys(signingKey, signingPassword)
+    sign(publishing.publications)
+}
+
 ktfmt {
     kotlinLangStyle()
 

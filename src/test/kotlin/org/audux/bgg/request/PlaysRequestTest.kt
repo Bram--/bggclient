@@ -97,7 +97,7 @@ class PlaysRequestTest {
             val response =
                 BggClient.plays(
                         username = "Novaeux",
-                        id = "123",
+                        id = 123,
                         page = 1,
                         subType = SubType.BOARD_GAME,
                         type = PlayThingType.THING,

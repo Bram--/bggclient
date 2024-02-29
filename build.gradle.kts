@@ -2,6 +2,7 @@ plugins {
     jacoco
     `java-library`
     `maven-publish`
+    signing
     alias(libs.plugins.org.jetbrains.kotlin.jvm)
     alias(libs.plugins.ktfmt.gradle)
 }

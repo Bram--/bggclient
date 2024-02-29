@@ -46,6 +46,12 @@ publishing {
             from(components["java"])
         }
     }
+    signing {
+        val signingKey = System.getenv("MAVEN_SIGNING_KEY")
+        val signingPassword = System.getenv("MAVEN_SIGNING_PASSWORD")
+        useInMemoryPgpKeys(signingKey, signingPassword)
+        sign(publishing.publications)
+    }
 
     repositories {
         maven {
@@ -57,13 +63,6 @@ publishing {
             }
         }
     }
-}
-
-signing {
-    val signingKey = System.getenv("MAVEN_SIGNING_KEY")
-    val signingPassword = System.getenv("MAVEN_SIGNING_PASSWORD")
-    useInMemoryPgpKeys(signingKey, signingPassword)
-    sign(publishing.publications)
 }
 
 ktfmt {

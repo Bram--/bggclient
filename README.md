@@ -1,4 +1,4 @@
-[![GitHub License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0) [![Build](https://github.com/Bram--/bggclient/actions/workflows/ci.yml/badge.svg)](https://github.com/Bram--/bggclient/actions/workflows/ci.yml)
+[![GitHub License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0) [![Build](https://github.com/Bram--/bggclient/actions/workflows/ci.yml/badge.svg)](https://github.com/Bram--/bggclient/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/Bram--/bggclient/graph/badge.svg?token=FJDN8I5FR1)](https://codecov.io/gh/Bram--/bggclient)
 
 # Board Game Geek Client/BGGClient
 
@@ -15,67 +15,23 @@ instead.
 
 A short summary of all available APIs/Endpoints available.
 
-* [BggClient#collection](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20collection)
-  \- Request details about a user's collection. Returns a (partial)
-  [Collection](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Collection.kt)
 
-* [BggClient#familyItems](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20familyItems)
-  \- Family thing endpoint that retrieve details about the given family ID and associated `Link`
-  objects. Returns
-  a [Family](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Family.kt)
+| API | Description |
+|----|----|
+| [BggClient#collection](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20collection) | Request details about a user's collection. Returns a (partial) [Collection](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Collection.kt) |
+|  [BggClient#familyItems](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20familyItems) |  Family thing endpoint that retrieve details about the given family ID and associated `Link` objects. Returns a [Family](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Family.kt) |
+| [BggClient#forumList](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20forumList) | Retrieves the list of available forums for the given id / type combination. e.g. Retrieve all the available forums for `id=342942, type=thing` i.e. Ark nova. Returns a [ForumList](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/ForumList.kt) |
+| [BggClient#forum](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20forum) | Retrieves the list of threads for the given forum id. Returns a [Forum](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Forum.kt) |
+| [BggClient#geekList](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20geekList) | Retrieves a specific geek list by its ID, returning its items and optionally comments left on the GeekList. Returns a [GeekList](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/GeekList.kt) |
+| [BggClient#guilds](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20guilds) | Retrieve information about the given guild (id) like name, description, members etc. Returns a [Guild](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Guild.kt) |
+| [BggClient#hotItems](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20hotItems) | Hotness endpoint that retrieve the list of most 50 hot/active items on the site filtered by type. Returns a [HotList](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Hot.kt) |
+| [BggClient#plays](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20plays) | Request a list of plays (max 100 at the time) for the given user. Returns a [Plays](https://github.com/Bram--/bggclient/blob/ main/src/main/kotlin/org/audux/bgg/response/Plays.kt) |
+| [BggClient#search](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20search) | Search endpoint that allows searching by name for things on BGG. Returns [SearchResults](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Search.kt) |
+| [BggClient#sitemapIndex](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20sitemapIndex) | Requests the Sitemap index for the given Domain. Call `org.audux.bgg.request.DiffusingSitemap.diffuse` to request specific sitemaps. Returns a [SitemapIndex](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/SitemapIndex.kt) or a list of [Sitemap](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Sitemap.kt) objects if  diffuse  is called. |
+| [BggClient#things](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20things) | Request a Thing or list of things. Multiple things can be requested by passing in several IDs. At least one ID is required to make this request. Sending along `types` might result in an empty as the API filters based on the `ThingType`. Returns [Things](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Things.kt) |
+| [BggClient#thread](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20thread) | Retrieves the list of articles/posts for the given thread. Returns a [Thread](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Thread.kt) |
+| [BggClient#user](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20user) | User endpoint that retrieves a specific user by their `name`. Returns a [User](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/User.kt) |
 
-* [BggClient#forumList](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20forumList)
-  \- Retrieves the list of available forums for the given id / type combination. e.g. Retrieve all
-  the available forums for `[id=342942, type=thing]` i.e. Ark nova. Returns
-  a [ForumList](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/ForumList.kt)
-
-* [BggClient#forum](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20forum)
-  \- Retrieves the list of threads for the given forum id. Returns
-  a [Forum](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Forum.kt)
-
-* [BggClient#geekList](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20geekList)
-  \- Retrieves a specific geek list by its ID, returning its items and optionally comments left on
-  the GeekList. Returns
-  a [GeekList](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/GeekList.kt)
-
-* [BggClient#guilds](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20guilds)
-  \- Retrieve information about the given guild (id) like name, description, members etc. Returns
-  a [Guild](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Guild.kt)
-
-* [BggClient#hotItems](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20hotItems)
-  \- Hotness endpoint that retrieve the list of most 50 hot/active items on the site filtered by
-  type. Returns
-  a [HotList](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Hot.kt)
-
-* [BggClient#plays](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20plays)
-  \- Request a list of plays (max 100 at the time) for the given user. Returns
-  a [Plays](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Plays.kt)
-
-* [BggClient#search](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20search)
-  \- Search endpoint that allows searching by name for things on BGG. Returns
-  [SearchResults](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Search.kt)
-
-* [BggClient#sitemapIndex](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20sitemapIndex)
-  \- Requests the Sitemap index for the given Domain.
-  Call `org.audux.bgg.request.DiffusingSitemap.diffuse` to request specific sitemaps. Returns
-  a [SitemapIndex](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/SitemapIndex.kt)
-  or a list of
-  [Sitemap](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Sitemap.kt)
-  objects if diffuse is called.
-
-* [BggClient#things](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20things)
-  \- Request a Thing or list of things. Multiple things can be requested by passing in several IDs.
-  At least one ID is required to make this request. Sending along `types` might result in an empty
-  as the API filters based on the `ThingType`. Returns
-  [Things](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Things.kt)
-
-* [BggClient#thread](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20thread)
-  \- Retrieves the list of articles/posts for the given thread. Returns
-  a [Thread](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Thread.kt)
-
-* [BggClient#user](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20user)
-  \- User endpoint that retrieves a specific user by their `name`. Returns
-  a [User](https://github.com/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/User.kt)
 
 ## Usage
 

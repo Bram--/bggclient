@@ -2,7 +2,6 @@ plugins {
     jacoco
     `java-library`
     `maven-publish`
-    signing
     alias(libs.plugins.org.jetbrains.kotlin.jvm)
     alias(libs.plugins.ktfmt.gradle)
 }
@@ -45,12 +44,6 @@ publishing {
 
             from(components["java"])
         }
-    }
-    signing {
-        val signingKey = System.getenv("MAVEN_SIGNING_KEY")
-        val signingPassword = System.getenv("MAVEN_SIGNING_PASSWORD")
-        useInMemoryPgpKeys(signingKey, signingPassword)
-        sign(publishing.publications)
     }
 
     repositories {

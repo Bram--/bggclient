@@ -224,7 +224,27 @@ class SitemapIndexRequestTest {
             assertThat(response.data!![SitemapLocationType.BOARD_GAMES]).hasSize(10)
             assertThat(response.data!![SitemapLocationType.BOARD_GAME_VERSIONS]).hasSize(9)
             assertThat(response.data!![SitemapLocationType.FILES]).hasSize(11)
+        }    
+
+        @Test
+        fun `Skips empty responses`() = runBlocking {
+            val engine = TestUtils.setupMockEngine("sitemapindex", "thread", "thread", "thread")                
+            BggClient.engine = { engine }
+
+            val response = BggClient.sitemapIndex().diffuse().call()
+
+            assertThat(engine.requestHistory.map { it.url })
+                .containsExactly(
+                    Url("https://boardgamegeek.com/sitemapindex"),
+                    Url("https://boardgamegeek.com/sitemap_geekitems_boardgame_page_1"),
+                    Url("https://boardgamegeek.com/sitemap_geekitems_boardgameversion_page_1"),
+                    Url("https://boardgamegeek.com/sitemap_files_page_1"),
+                )
+            assertThat(response.isError()).isTrue()
+            assertThat(response.isSuccess()).isFalse()
+            assertThat(response.data).isEmptY()
         }
+
 
         private fun MockRequestHandleScope.setupSitemapResponses(requestData: HttpRequestData) =
             if (requestData.url.toString().endsWith("sitemapindex")) {

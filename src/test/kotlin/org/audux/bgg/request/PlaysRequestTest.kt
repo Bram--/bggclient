@@ -97,6 +97,7 @@ class PlaysRequestTest {
             val response =
                 BggClient.plays(
                         username = "Novaeux",
+                        id = "123",
                         page = 1,
                         subType = SubType.BOARD_GAME,
                         type = PlayThingType.THING,
@@ -109,7 +110,7 @@ class PlaysRequestTest {
             assertThat(request.url)
                 .isEqualTo(
                     Url(
-                        "https://boardgamegeek.com/xmlapi2/plays?username=Novaeux&type=thing&mindate=2018-02-02&maxdate=2020-02-07&subtype=boardgame&page=1"
+                        "https://boardgamegeek.com/xmlapi2/plays?username=Novaeux&id=123&type=thing&mindate=2018-02-02&maxdate=2020-02-07&subtype=boardgame&page=1"
                     )
                 )
             assertThat(response.data?.plays).hasSize(6)

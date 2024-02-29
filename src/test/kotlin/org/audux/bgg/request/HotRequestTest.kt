@@ -26,6 +26,31 @@ import org.junit.jupiter.api.Test
 /** Unit tests for [hotItems] extension function. */
 class HotRequestTest {
     @Test
+    fun `Makes a request with minimal parameters`() {
+        runBlocking {
+            val engine = TestUtils.setupMockEngine("hot")
+            BggClient.engine = { engine }
+
+            val response = BggClient.hotItems().call()
+
+            val request = engine.requestHistory[0]
+            assertThat(engine.requestHistory).hasSize(1)
+            assertThat(request.method).isEqualTo(HttpMethod.Get)
+            assertThat(request.headers)
+                .isEqualTo(
+                    Headers.build {
+                        appendAll("Accept", listOf("*/*"))
+                        appendAll("Accept-Charset", listOf("UTF-8"))
+                    }
+                )
+            assertThat(request.url).isEqualTo(Url("https://boardgamegeek.com/xmlapi2/hot"))
+            assertThat(response.isError()).isFalse()
+            assertThat(response.isSuccess()).isTrue()
+            assertThat(response.data?.results).hasSize(50)
+        }
+    }
+
+    @Test
     fun `Makes a request with all parameters`() {
         runBlocking {
             val engine = TestUtils.setupMockEngine("hot")

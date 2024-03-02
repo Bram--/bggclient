@@ -22,7 +22,8 @@ publishing {
 
             pom {
                 name = "Unofficial JVM BGG client"
-                description = "Library to fetch data from the Board game geek (XML) APIs. Usable in Java and Kotlin on the JVM or Android."
+                description =
+                    "Library to fetch data from the Board game geek (XML) APIs. Usable in Java and Kotlin on the JVM or Android."
                 url = "https://github.com/Bram--/bggclient"
                 licenses {
                     license {
@@ -57,11 +58,16 @@ nmcp {
     }
 }
 
-
 signing {
-   useInMemoryPgpKeys(System.getenv("GPG_SIGNING_KEY"), System.getenv("GPG_SIGNING_PASSWORD"))
-
-    sign(publishing.publications["mavenJava"])
+    if (project.gradle.startParameter.taskNames.contains("publishAllPublicationsToCentralPortal")) {
+        afterEvaluate {
+            useInMemoryPgpKeys(
+                System.getenv("GPG_SIGNING_KEY"),
+                System.getenv("GPG_SIGNING_PASSWORD")
+            )
+            sign(publishing.publications["mavenJava"])
+        }
+    }
 }
 
 ktfmt {

@@ -59,3 +59,17 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: Bram--/bggclient
+
+      - name: Generate API documentation
+        if: ${{ github.ref == 'refs/heads/master' && github.event_name != 'pull_request' }}
+        run: |
+          ./gradlew dokkaHtml
+  
+      - name: Deploy API documentation to Github Pages
+        if: ${{ github.ref == 'refs/heads/master' && github.event_name != 'pull_request' }}
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: build/dokka/html
+          target-folder: api
+    

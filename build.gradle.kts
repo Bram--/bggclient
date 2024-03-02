@@ -59,7 +59,8 @@ nmcp {
 
 
 signing {
-    useGpgCmd()
+   useInMemoryPgpKeys(System.getenv("GPG_SIGNING_KEY"), System.getenv("GPG_SIGNING_PASSWORD"))
+
     sign(publishing.publications["mavenJava"])
 }
 

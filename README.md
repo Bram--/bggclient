@@ -1,4 +1,4 @@
-[![GitHub License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0) [![Build](https://github.com/Bram--/bggclient/actions/workflows/ci.yml/badge.svg)](https://github.com/Bram--/bggclient/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/Bram--/bggclient/graph/badge.svg?token=FJDN8I5FR1)](https://codecov.io/gh/Bram--/bggclient)
+[![GitHub License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0) [![Build](https://github.com/Bram--/bggclient/actions/workflows/ci.yml/badge.svg)](https://github.com/Bram--/bggclient/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/Bram--/bggclient/graph/badge.svg?token=FJDN8I5FR1)](https://codecov.io/gh/Bram--/bggclient) [![Maven Central](https://img.shields.io/maven-central/v/org.audux.bgg/bggclient.svg)](https://central.sonatype.com/artifact/org.audux.bgg/bggclient)
 
 # Board Game Geek Client/BGGClient
 
@@ -35,15 +35,24 @@ A short summary of all available APIs/Endpoints available.
 
 ## Usage
 
-TODO: Publish
+The library is published on [MavenCentral as bggclient](https://central.sonatype.com/artifact/org.audux.bgg/bggclient) so using it is as simple as adding a single line to Gradle.
 
 ##### Gradle
 
-TODO: Publish
+```kotlin
+implementation("org.audux.bgg:bggclient:0.5.1")
+```
 
 ##### Maven
 
-TODO: Publish
+```xml
+<dependency>
+    <groupId>org.audux.bgg</groupId>
+    <artifactId>bggclient</artifactId>
+    <version>0.5.0</version>
+</dependency>
+```
+
 
 ## Examples
 

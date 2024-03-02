@@ -2,8 +2,10 @@ plugins {
     jacoco
     `java-library`
     `maven-publish`
+    signing
     alias(libs.plugins.org.jetbrains.kotlin.jvm)
     alias(libs.plugins.ktfmt.gradle)
+    id("com.gradleup.nmcp").version("0.0.4")
 }
 
 java {
@@ -13,14 +15,15 @@ java {
 
 publishing {
     publications {
-        create<MavenPublication>("maven") {
+        create<MavenPublication>("mavenJava") {
             groupId = "org.audux.bgg"
             artifactId = "bggclient"
-            version = "0.5.0"
+            version = "0.5.1"
 
             pom {
                 name = "Unofficial JVM BGG client"
-                description = "Wrapper around the Board Game Geek's XML1 and XML2 APIs"
+                description =
+                    "Library to fetch data from the Board game geek (XML) APIs. Usable in Java and Kotlin on the JVM or Android."
                 url = "https://github.com/Bram--/bggclient"
                 licenses {
                     license {
@@ -45,15 +48,24 @@ publishing {
             from(components["java"])
         }
     }
+}
 
-    repositories {
-        maven {
-            name = "OSSRH"
-            url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
-            credentials {
-                username = System.getenv("MAVEN_USERNAME")
-                password = System.getenv("MAVEN_PASSWORD")
-            }
+nmcp {
+    publish("mavenJava") {
+        username = System.getenv("MAVEN_USERNAME")
+        password = System.getenv("MAVEN_PASSWORD")
+        publicationType = "AUTOMATIC"
+    }
+}
+
+signing {
+    if (project.gradle.startParameter.taskNames.contains("publishAllPublicationsToCentralPortal")) {
+        afterEvaluate {
+            useInMemoryPgpKeys(
+                System.getenv("GPG_SIGNING_KEY"),
+                System.getenv("GPG_SIGNING_PASSWORD")
+            )
+            sign(publishing.publications["mavenJava"])
         }
     }
 }

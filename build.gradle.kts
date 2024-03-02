@@ -3,9 +3,10 @@ plugins {
     `java-library`
     `maven-publish`
     signing
-    alias(libs.plugins.org.jetbrains.kotlin.jvm)
+    alias(libs.plugins.com.gradleup.nmcp)
     alias(libs.plugins.ktfmt.gradle)
-    id("com.gradleup.nmcp").version("0.0.4")
+    alias(libs.plugins.org.jetbrains.dokka)
+    alias(libs.plugins.org.jetbrains.kotlin.jvm)
 }
 
 java {

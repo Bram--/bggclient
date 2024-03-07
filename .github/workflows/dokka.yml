@@ -1,0 +1,41 @@
+name: Docs
+
+on:
+  push:
+    branches:
+      - main
+      - release
+
+jobs:
+  build:
+    name: docs
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      id-token: write
+      pages: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '17'
+      - name: Run build
+        run: |
+          ./gradlew clean build
+
+      - name: Generate API documentation
+        if: ${{ github.ref == 'refs/heads/master' && github.event_name != 'pull_request' }}
+        run: |
+          ./gradlew dokkaHtml
+  
+      - name: Deploy API documentation to Github Pages
+        if: ${{ github.ref == 'refs/heads/master' && github.event_name != 'pull_request' }}
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: build/dokka/html
+          target-folder: docs

@@ -5,6 +5,8 @@ on:
     branches:
       - main
       - release
+  workflow_dispatch:
+  
 
 jobs:
   build:
@@ -23,19 +25,17 @@ jobs:
         with:
           distribution: 'corretto'
           java-version: '17'
-      - name: Run build
-        run: |
-          ./gradlew clean build
 
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+
+      
       - name: Generate API documentation
-        if: ${{ github.ref == 'refs/heads/master' && github.event_name != 'pull_request' }}
         run: |
           ./gradlew dokkaHtml
   
       - name: Deploy API documentation to Github Pages
-        if: ${{ github.ref == 'refs/heads/master' && github.event_name != 'pull_request' }}
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages
           folder: build/dokka/html
           target-folder: docs

@@ -26,7 +26,7 @@ import org.jetbrains.annotations.VisibleForTesting
  * Additional requests will be canceled and re-queued to be send whenever another request has been
  * completed.
  */
-val ClientRateLimitPlugin =
+internal val ClientRateLimitPlugin =
     createClientPlugin(
         "ClientRateLimitPlugin",
         createConfiguration = ::ConcurrentRequestLimiterConfiguration
@@ -39,7 +39,7 @@ val ClientRateLimitPlugin =
  * Implementation of [ClientRateLimitPlugin] ensuring not more than
  * [ConcurrentRequestLimiterConfiguration.requestLimit] are being made concurrently.
  */
-class ConcurrentRequestLimiter(private val requestLimit: Int) {
+internal class ConcurrentRequestLimiter(private val requestLimit: Int) {
     internal val inFlightRequests = AtomicSingletonInteger.instance
 
     /**
@@ -85,7 +85,7 @@ class ConcurrentRequestLimiter(private val requestLimit: Int) {
  *
  * @property requestLimit The maximum number of concurrent requests that can be made.
  */
-class ConcurrentRequestLimiterConfiguration {
+internal class ConcurrentRequestLimiterConfiguration {
     var requestLimit: Int = 10
 }
 

@@ -1,3 +1,6 @@
+import org.jetbrains.dokka.gradle.DokkaTask
+import java.net.URL
+
 plugins {
     jacoco
     `java-library`
@@ -19,7 +22,7 @@ publishing {
         create<MavenPublication>("mavenJava") {
             groupId = "org.audux.bgg"
             artifactId = "bggclient"
-            version = "0.5.1"
+            version = "0.6.0"
 
             pom {
                 name = "Unofficial JVM BGG client"
@@ -121,6 +124,25 @@ tasks {
         reports {
             xml.required.set(true)
             html.required.set(true)
+        }
+    }
+}
+
+tasks.withType<DokkaTask>().configureEach {
+    dokkaSourceSets {
+        named("main") {
+            moduleName.set("BggClient")
+            includes.from(project.files(), "MODULE.md", "PACKAGES.md")
+            noStdlibLink.set(true)
+            noJdkLink.set(true)
+            noAndroidSdkLink.set(true)
+
+            sourceLink {
+                localDirectory.set(file("src/main/kotlin"))
+                remoteUrl.set(
+                    URL("https://github.com/Bram--/bggclient/tree/main")
+                )
+            }
         }
     }
 }

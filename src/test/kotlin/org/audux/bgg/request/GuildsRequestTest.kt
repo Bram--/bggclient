@@ -26,14 +26,14 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-/** Unit tests for [guilds] extension function. */
+/** Unit tests for [guild] extension function. */
 class GuildsRequestTest {
     @Test
     fun `Makes a request with wrong guild id`() = runBlocking {
         val engine = TestUtils.setupMockEngine("guilds?id=-1")
         BggClient.engine = { engine }
 
-        val response = BggClient.guilds(id = -1).call()
+        val response = BggClient.guild(id = -1).call()
 
         val request = engine.requestHistory[0]
         assertThat(engine.requestHistory).hasSize(1)
@@ -63,7 +63,7 @@ class GuildsRequestTest {
         val engine = TestUtils.setupMockEngine("guilds?id=2310")
         BggClient.engine = { engine }
 
-        val response = BggClient.guilds(id = 2310).call()
+        val response = BggClient.guild(id = 2310).call()
 
         val request = engine.requestHistory[0]
         assertThat(engine.requestHistory).hasSize(1)
@@ -87,7 +87,7 @@ class GuildsRequestTest {
         BggClient.engine = { engine }
 
         val response =
-            BggClient.guilds(
+            BggClient.guild(
                     id = 2310,
                     members = Inclusion.INCLUDE,
                     sort = "date",
@@ -117,8 +117,7 @@ class GuildsRequestTest {
 
             BggClient.engine = { engine }
 
-            val response =
-                BggClient.guilds(id = 2310, members = Inclusion.INCLUDE).paginate().call()
+            val response = BggClient.guild(id = 2310, members = Inclusion.INCLUDE).paginate().call()
 
             assertThat(engine.requestHistory).hasSize(3)
             assertThat(engine.requestHistory.map { it.url })
@@ -142,7 +141,7 @@ class GuildsRequestTest {
             BggClient.engine = { engine }
 
             val response =
-                BggClient.guilds(id = 2310, members = Inclusion.INCLUDE).paginate(toPage = 2).call()
+                BggClient.guild(id = 2310, members = Inclusion.INCLUDE).paginate(toPage = 2).call()
 
             assertThat(engine.requestHistory).hasSize(2)
             assertThat(engine.requestHistory.map { it.url })
@@ -164,7 +163,7 @@ class GuildsRequestTest {
             BggClient.engine = { engine }
 
             val response =
-                BggClient.guilds(id = 2310, members = Inclusion.INCLUDE, page = 2).paginate().call()
+                BggClient.guild(id = 2310, members = Inclusion.INCLUDE, page = 2).paginate().call()
 
             assertThat(engine.requestHistory).hasSize(2)
             assertThat(engine.requestHistory.map { it.url })
@@ -187,8 +186,7 @@ class GuildsRequestTest {
 
             BggClient.engine = { engine }
 
-            val response =
-                BggClient.guilds(id = 2310, members = Inclusion.INCLUDE).paginate().call()
+            val response = BggClient.guild(id = 2310, members = Inclusion.INCLUDE).paginate().call()
 
             assertThat(engine.requestHistory).hasSize(3)
             assertThat(engine.requestHistory.map { it.url })
@@ -208,7 +206,7 @@ class GuildsRequestTest {
                 BggClient.engine = { engine }
 
                 assertThrows("Nothing to paginate without the members parameter set") {
-                    BggClient.guilds(id = 2310).paginate().call()
+                    BggClient.guild(id = 2310).paginate().call()
                 }
                     as BggRequestException
             }

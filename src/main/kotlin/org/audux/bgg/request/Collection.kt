@@ -18,7 +18,7 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import org.audux.bgg.BggClient.InternalBggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.Constants.PARAM_BGG_RATING
 import org.audux.bgg.common.Constants.PARAM_BRIEF
 import org.audux.bgg.common.Constants.PARAM_COLLECTION_ID
@@ -56,69 +56,7 @@ import org.audux.bgg.common.ThingType
 import org.audux.bgg.response.Collection
 import org.audux.bgg.response.Response
 
-/**
- * Request details about a user's collection.
- *
- * NOTE: The default (or using [subType]=[ThingType.BOARD_GAME]) returns both [ThingType.BOARD_GAME]
- * and [ThingType.BOARD_GAME_EXPANSION] in the collection... BUT incorrectly marks the [subType] as
- * [ThingType.BOARD_GAME] for the expansions. Workaround is to use
- * [excludeSubType]=[ThingType.BOARD_GAME_EXPANSION] and make a 2nd call asking for
- * [subType]=[ThingType.BOARD_GAME_EXPANSION]
- *
- * @param userName Name of the user to request the collection for
- * @param subType Specifies which collection you want to retrieve - only one type at the time
- * @param excludeSubType Specifies which subtype you want to exclude from the results.
- * @param ids Filter collection to specifically listed item(s).
- * @param version Returns version info for each item in your collection.
- * @param brief Returns more abbreviated results.
- * @param stats Returns expanded rating/ranking info for the collection.
- * @param own Filter for owned games. Set to [Inclusion.EXCLUDE] to exclude these items so marked.
- *   Set to [Inclusion.INCLUDE] for returning owned games and 0 for non-owned games.
- * @param rated Filter for whether an item has been rated. Set to [Inclusion.EXCLUDE] to exclude
- *   these items so marked. Set to [Inclusion.INCLUDE] to include only these items so marked.
- * @param played Filter for whether an item has been played. Set to [Inclusion.EXCLUDE] to exclude
- *   these items so marked. Set to [Inclusion.INCLUDE] to include only these items so marked.
- * @param comment Filter for items that have been commented. Set to [Inclusion.EXCLUDE] to exclude
- *   these items so marked. Set to [Inclusion.INCLUDE] to include only these items so marked.
- * @param trade Filter for items marked for trade. Set to [Inclusion.EXCLUDE] to exclude these items
- *   so marked. Set to [Inclusion.INCLUDE] to include only these items so marked.
- * @param want Filter for items wanted in trade. Set to [Inclusion.EXCLUDE] to exclude these items
- *   so marked. Set to [Inclusion.INCLUDE] to include only these items so marked.
- * @param wishlist Filter for items on the wishlist. Set to [Inclusion.EXCLUDE] to exclude these
- *   items so marked. Set to [Inclusion.INCLUDE] to include only these items so marked.
- * @param wishlistPriority Filter for wishlist priority. Returns only items of the specified
- *   priority. Range 1-5.
- * @param preOrdered Filter for pre-ordered games. Set to [Inclusion.EXCLUDE] to exclude these items
- *   so marked. Set to [Inclusion.INCLUDE] to include only these items so marked.
- * @param wantToPlay Filter for items marked as wanting to play. Set to [Inclusion.EXCLUDE] to
- *   exclude these items so marked. Set to [Inclusion.EXCLUDE] to include only these items so
- *   marked.
- * @param wantToBuy Filter for ownership flag. Set to [Inclusion.EXCLUDE] to exclude these items so
- *   marked. Set to [Inclusion.INCLUDE] to include only these items so marked.
- * @param previouslyOwned Filter for games marked previously owned. Set to [Inclusion.EXCLUDE] to
- *   exclude these items so marked. Set to [Inclusion.INCLUDE] to include only these items so
- *   marked.
- * @param hasParts Filter on whether there is a comment in the Has Parts field of the item. Set to
- *   [Inclusion.EXCLUDE] to exclude these items so marked. Set to [Inclusion.INCLUDE] to include
- *   only these items so marked.
- * @param wantParts Filter on whether there is a comment in the Wants Parts field of the item. Set
- *   to [Inclusion.EXCLUDE] to exclude these items so marked. Set to [Inclusion.INCLUDE] to include
- *   only these items so marked.
- * @param minRating Filter on minimum personal rating assigned for that item in the collection.
- *   Range 1-10.
- * @param rating Filter on maximum personal rating assigned for that item in the collection. Rang
- *   1-10
- * @param minBggRating Filter on minimum BGG rating for that item in the collection. Range 1-10 (Or
- *   -1). NOTE: 0 is ignored. You can use -1 e.g. min -1 and max 1 to get items with no bgg rating.
- * @param bggRating Filter on maximum BGG rating for that item in the collection. Range 1-10.
- * @param minimumPlays Filter by minimum number of recorded plays.
- * @param maxPlays Filter by maximum number of recorded plays.
- * @param collectionId Restrict the collection results to the single specified collection id.
- *   `Collid` is returned in the results of normal queries as well.
- * @param modifiedSince Restricts the collection results to only those whose status (own, want,
- *   fortrade, etc.) has changed or been added since the date specified (does not return results for
- *   deletions).
- */
+/** @see org.audux.bgg.BggClient.collection */
 internal fun InternalBggClient.collection(
     userName: String,
     subType: ThingType,

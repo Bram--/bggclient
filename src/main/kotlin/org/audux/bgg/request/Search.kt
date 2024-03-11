@@ -16,7 +16,7 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.BggClient.InternalBggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.Constants.PARAM_EXACT
 import org.audux.bgg.common.Constants.PARAM_QUERY
 import org.audux.bgg.common.Constants.PARAM_TYPE
@@ -26,15 +26,7 @@ import org.audux.bgg.common.ThingType
 import org.audux.bgg.response.Response
 import org.audux.bgg.response.SearchResults
 
-/**
- * Search endpoint that allows searching by name for things on BGG.
- *
- * @param query Returns all types of items that match [query]. Spaces in the SEARCH_QUERY are
- *   replaced by a
- * @param types Returns all items that match SEARCH_QUERY of type [ThingType]. You can return
- *   multiple types by using more.
- * @param exactMatch Limit results to items that match the [query] exactly
- */
+/** @see org.audux.bgg.BggClient.search */
 internal fun InternalBggClient.search(
     query: String,
     types: Array<ThingType> = arrayOf(),

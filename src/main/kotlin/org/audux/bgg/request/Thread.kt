@@ -18,21 +18,12 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import org.audux.bgg.BggClient.InternalBggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.Constants
 import org.audux.bgg.response.Response
 import org.audux.bgg.response.Thread
 
-/**
- * Retrieves the list of articles/posts for the given thread.
- *
- * @param id The id of the thread.
- * @param minArticleId Filters the results so that only articles with an equal or higher id than NNN
- *   will be returned.
- * @param minArticleDate Filters the results so that only articles after the specified date an time
- *   (HH:MM:SS) or later will be returned.
- * @param count Limits the number of articles returned to no more than NNN.
- */
+/** @see org.audux.bgg.BggClient.thread */
 internal fun InternalBggClient.thread(
     id: Int,
     minArticleId: Int?,

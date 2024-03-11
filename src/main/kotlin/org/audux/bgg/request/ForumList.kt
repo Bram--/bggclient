@@ -16,21 +16,13 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.BggClient.InternalBggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.Constants
 import org.audux.bgg.common.ForumListType
-import org.audux.bgg.response.Family
 import org.audux.bgg.response.ForumList
 import org.audux.bgg.response.Response
-import org.audux.bgg.response.Thing
 
-/**
- * Retrieves the list of available forums for the given id / type combination. e.g. Retrieve all the
- * available forums for `[id=342942, type=thing]` i.e. Ark nova.
- *
- * @param id The id of either the Family or Thing to retrieve
- * @param type Single [ForumListType] to retrieve, either a [Thing] or [Family]
- */
+/** @see org.audux.bgg.BggClient.forumList */
 internal fun InternalBggClient.forumList(id: Int, type: ForumListType) = request {
     client()
         .get(Constants.XML2_API_URL) {

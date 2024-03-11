@@ -21,7 +21,7 @@ import io.ktor.client.engine.mock.MockEngineConfig
 import io.ktor.client.engine.mock.respondOk
 import java.io.InputStream
 import org.audux.bgg.BggClient
-import org.audux.bgg.BggClient.InternalBggClient
+import org.audux.bgg.InternalBggClient
 
 object TestUtils {
     /**

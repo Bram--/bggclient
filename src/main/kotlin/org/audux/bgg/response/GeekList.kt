@@ -57,7 +57,7 @@ data class GeekList(
     /** The actual items in the geek list e.g. a list of board games. */
     @JacksonXmlProperty(localName = "item") val items: List<GeekListItem>
 ) {
-    /** The list of comments of this list. */
+    /** The list of comments of this list, only set if set to include in the request. */
     @JsonProperty("comment")
     var comments: List<GeekListComment> = mutableListOf()
         set(value) {

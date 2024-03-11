@@ -16,21 +16,12 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.BggClient.InternalBggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.Constants
 import org.audux.bgg.response.Forum
 import org.audux.bgg.response.Response
 
-/**
- * Retrieves the list of threads for the given forum id.
- *
- * Note: Pagination data is not returned in the response but can be calculated by
- * `Math.ceil(numThreads/50)`.
- *
- * @param id The id of the forum.
- * @param page Used to paginate, this is the page that is returned, only 50 threads per page are
- *   returned. Note that page 0 and 1 are the same.
- */
+/** @see org.audux.bgg.BggClient.forum */
 internal fun InternalBggClient.forum(id: Int, page: Int?) =
     PaginatedForum(this, page ?: 1) {
         client()

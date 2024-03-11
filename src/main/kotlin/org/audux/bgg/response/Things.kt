@@ -17,10 +17,8 @@ import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
-import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeInfo
-import com.fasterxml.jackson.annotation.Nulls
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
@@ -39,7 +37,7 @@ data class Things(
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
 
     /** List of the actual things. */
-    @JsonSetter(nulls = Nulls.SKIP) @JacksonXmlProperty(localName = "item") val things: List<Thing>
+    @JacksonXmlProperty(localName = "item") val things: List<Thing>
 )
 
 /**
@@ -72,8 +70,7 @@ data class Thing(
     @JsonDeserialize(using = TrimmedStringDeserializer::class) val image: String?,
 
     /** Long form description of the thing. */
-    // TODO: Unescape HTML.
-    val description: String?,
+    @JsonDeserialize(using = TrimmedStringDeserializer::class) val description: String?,
 
     /** The year it was published in e.g. `2019`. */
     @JsonDeserialize(using = WrappedIntDeserializer::class) val yearPublished: Int?,
@@ -491,7 +488,7 @@ data class PollResult(
     @JacksonXmlProperty(localName = "numvotes", isAttribute = true) val numberOfVotes: Int,
 )
 
-/** A single aggregate result i.e. votes for a single poll option. */
+/** A single aggregate result i.e. votes for a single poll option including a level/gradation. */
 data class LeveledPollResult(
     /** The name/value of the poll option. */
     @JacksonXmlProperty(isAttribute = true) val value: String,
@@ -499,7 +496,7 @@ data class LeveledPollResult(
     /** The number of votes cast on this option. */
     @JacksonXmlProperty(localName = "numvotes", isAttribute = true) val numberOfVotes: Int,
 
-    /** The number of votes cast on this option. */
+    /** The level or gradation of his option e.g. 1 with other options going up to 5. */
     @JacksonXmlProperty(isAttribute = true) val level: Int,
 )
 // endregion Polls

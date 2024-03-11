@@ -366,7 +366,7 @@ public class BggClientJavaTest {
             "guilds?id=2310&members=1&page=3");
     BggClient.setEngine(() -> engine);
 
-    var future = BggClient.guilds(/* id= */ 2310, /* members= */ INCLUDE).paginate().callAsync();
+    var future = BggClient.guild(/* id= */ 2310, /* members= */ INCLUDE).paginate().callAsync();
     var response = future.get(2_000, MILLISECONDS);
 
     assertThat(response.getError()).isNull();
@@ -402,7 +402,7 @@ public class BggClientJavaTest {
   public void hotRequest() throws ExecutionException, InterruptedException, TimeoutException {
     BggClient.setEngine(() -> setupMockEngine("hot"));
 
-    var future = BggClient.hotItems(HotListType.BOARD_GAME).callAsync();
+    var future = BggClient.hotList(HotListType.BOARD_GAME).callAsync();
     var response = future.get(2_000, MILLISECONDS);
 
     assertThat(response.getError()).isNull();
@@ -577,7 +577,7 @@ public class BggClientJavaTest {
     assertThat(thing.getImage())
         .isEqualTo(
             "https://cf.geekdo-images.com/fIVUaMvbfy6GCOgfxt7xaw__original/img/dBMnuz3SrgxsDLHT6pwbQFPQBIw=/0x0/filters:format(jpeg)/pic7647168.jpg");
-    assertThat(thing.getDescription()).hasLength(1833);
+    assertThat(thing.getDescription()).hasLength(1824);
     assertThat(thing.getYearPublished()).isEqualTo(2023);
     assertThat(thing.getMinPlayers()).isEqualTo(1);
     assertThat(thing.getMaxPlayers()).isEqualTo(4.0);

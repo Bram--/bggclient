@@ -13,7 +13,7 @@
  */
 package org.audux.bgg.request
 
-import org.audux.bgg.BggClient.InternalBggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.response.Response
 
 /** Encapsulates a request to BGG so it can be scheduled or queued for later execution. */

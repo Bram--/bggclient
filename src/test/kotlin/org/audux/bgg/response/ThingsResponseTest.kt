@@ -52,7 +52,7 @@ class ThingsResponseTest {
             assertThat(thing.name).isEqualTo("Die Macher")
             assertThat(thing.type).isEqualTo(ThingType.BOARD_GAME)
             assertThat(thing.names).hasSize(3)
-            assertThat(thing.description).hasLength(1270)
+            assertThat(thing.description).hasLength(1268)
             assertThat(thing.yearPublished).isEqualTo(1986)
             assertThat(thing.minPlayers).isEqualTo(3)
             assertThat(thing.maxPlayers).isEqualTo(5.0)

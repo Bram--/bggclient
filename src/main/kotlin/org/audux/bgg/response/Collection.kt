@@ -22,7 +22,10 @@ import java.time.LocalDateTime
 import org.audux.bgg.common.Ratings
 import org.audux.bgg.common.ThingType
 
-/** Response wrapper for Hot lists to be returned. */
+/**
+ * Response wrapper for the user's Collection. These contain lists of items like board games wrapped
+ * in [CollectionItem].
+ */
 @JsonRootName("items")
 data class Collection(
     /** Terms of use of the BGG API. */

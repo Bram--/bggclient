@@ -16,7 +16,7 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.BggClient.InternalBggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.Constants.PARAM_BUDDIES
 import org.audux.bgg.common.Constants.PARAM_DOMAIN
 import org.audux.bgg.common.Constants.PARAM_GUILDS
@@ -31,23 +31,7 @@ import org.audux.bgg.common.Inclusion
 import org.audux.bgg.response.Response
 import org.audux.bgg.response.User
 
-/**
- * User endpoint that retrieves a specific user by their [name].
- *
- * @param name Specifies the user name (only one user is request-able at a time).
- * @param buddies Turns on buddies reporting. Results are paged; see page parameter.
- * @param guilds Turns on optional guilds reporting. Results are paged; see page parameter.
- * @param hot Include the user's hot 10 list from their profile. Omitted if empty.
- * @param top Include the user's top 10 list from their profile. Omitted if empty.
- * @param domain Controls the domain for the users hot 10 and top 10 lists. The DOMAIN default is
- *   boardgame; valid values are: boardgame, rpg, or videogame
- * @param page Specifies the page of buddy and guild results to return. The default page is 1 if you
- *   don't specify it; page size is 100 records (Current implementation seems to return 1000
- *   records). The page parameter controls paging for both buddies and guilds list if both are
- *   specified. If a <buddies> or <guilds> node is empty, it means that you have requested a page
- *   higher than that needed to list all the buddies/guilds or, if you're on page 1, it means that
- *   that user has no buddies and is not part of any guilds.
- */
+/** @see org.audux.bgg.BggClient.user */
 internal fun InternalBggClient.user(
     name: String,
     buddies: Inclusion?,

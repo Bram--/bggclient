@@ -1,6 +1,4 @@
-# Module Board Game Geek Client/BGGClient
-
-[![GitHub License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0) [![Build](https://github.com/Bram--/bggclient/actions/workflows/ci.yml/badge.svg)](https://github.com/Bram--/bggclient/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/Bram--/bggclient/graph/badge.svg?token=FJDN8I5FR1)](https://codecov.io/gh/Bram--/bggclient) [![Maven Central](https://img.shields.io/maven-central/v/org.audux.bgg/bggclient.svg)](https://central.sonatype.com/artifact/org.audux.bgg/bggclient)
+# Module BggClient
 
 BggClient is a API client for the Board Game Geek XML APIs. These APIs work for all geek domains,
 meaning Board games, video games and RPGs can be retrieved. It works on both the JVM and Android (
@@ -13,36 +11,12 @@ instead.
 
 ## APIs overview
 
-A short summary of all available APIs/Endpoints is available
-in [the documentation](https://bram--.github.io/bggclient/).
-
-## Usage
-
-The library is published
-on [MavenCentral as bggclient](https://central.sonatype.com/artifact/org.audux.bgg/bggclient) so
-using it is as simple as adding a single line to Gradle.
-
-##### Gradle
-
-```kotlin
-implementation("org.audux.bgg:bggclient:0.6.0")
-```
-
-##### Maven
-
-```xml
-
-<dependency>
-    <groupId>org.audux.bgg</groupId>
-    <artifactId>bggclient</artifactId>
-    <version>0.6.0</version>
-</dependency>
-```
+See [org.audux.bgg.BggClient] for an overview of the APIs
 
 ## Examples
 
 Below are few short example more complicated examples can be found in
-the [examples folder](/Bram--/bggclient/tree/main/examples).
+the [examples folder](https://github.com/Bram--/bggclient/tree/main/examples).
 
 ### Simple board game request in Kotlin
 
@@ -59,12 +33,10 @@ runBlocking {
 
 This returns all information about a `Thing` - in this case a board game including any comments
 users have left on the thing. Comments are paginated and would only return the last 100.
-See [BggClient#things](/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20things)
-for the full API. The actual response is `Response<Thing>` which is a wrapper that holds the
-response data or holds an
-error instead. Depending on what is requested (e.g. are comments included in the request?) the
-object is (partially)
-filled: [Thing object](/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Things.kt)
+See [org.audux.bgg.BggClient.things] for the full API. The actual response is `Response<Thing>`
+which is a wrapper that holds the response data or holds an error instead. Depending on what is
+requested (e.g. are comments included in the request?) the object is (partially)
+filled: [org.audux.bgg.response.Thing]
 
 _Note that `call()` needs to be called in a suspense function._
 
@@ -93,12 +65,10 @@ java.util.concurrent.CompletableFuture<Response<Things>>future=
 The same as the Kotlin example above; this returns all information about a `Thing` - in this case a
 board game including any comments
 users have left on the thing. Comments are paginated and would only return the last 100. See
-[BggClient#things](/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/BggClient.kt#:~:text=fun%20things)
-for the full API. The actual response is `Response<Thing>` which is a wrapper that holds the
-response data or holds an
-error instead. Depending on what is requested (e.g. are comments included in the request?) the
-object is (partially) filled:
-[Thing object](/Bram--/bggclient/blob/main/src/main/kotlin/org/audux/bgg/response/Things.kt)
+[org.audux.bgg.BggClient.things] for the full API. The actual response is `Response<Thing>` which is
+a wrapper that holds the response data or holds an error instead. Depending on what is requested (
+e.g. are comments included in the request?) the object is (partially)
+filled: [org.audux.bgg.response.Thing]
 
 ### Async request
 

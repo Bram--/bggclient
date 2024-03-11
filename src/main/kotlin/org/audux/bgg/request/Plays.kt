@@ -18,7 +18,7 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import org.audux.bgg.BggClient.InternalBggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.Constants
 import org.audux.bgg.common.Constants.PARAM_ID
 import org.audux.bgg.common.Constants.PARAM_PAGE
@@ -32,21 +32,7 @@ import org.audux.bgg.common.SubType
 import org.audux.bgg.response.Plays
 import org.audux.bgg.response.Response
 
-/**
- * Request a list of plays (max 100 at the time) for the given user.
- *
- * @param username Name of the player you want to request play information for. Data is returned in
- *   backwards-chronological form. You must include either a username or an id and type to get
- *   results.
- * @param id Id number of the item you want to request play information for. Data is returned in
- *   backwards-chronological form.
- * @param type Type of the item you want to request play information for. Valid types include: thing
- *   family
- * @param minDate Returns only plays of the specified date or later.
- * @param maxDate Returns only plays of the specified date or earlier.
- * @param subType=TYPE Limits play results to the specified TYPE; boardgame is the default.
- * @param page The page of information to request. Page size is 100 records.
- */
+/** @see org.audux.bgg.BggClient.plays */
 internal fun InternalBggClient.plays(
     username: String,
     id: Int?,

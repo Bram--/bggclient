@@ -16,13 +16,13 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.BggClient.InternalBggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.Constants
 import org.audux.bgg.common.Domain
 import org.audux.bgg.response.Response
 import org.audux.bgg.response.SitemapIndex
 
-/** Requests the Sitemap index for the given Domain. */
+/** @see org.audux.bgg.BggClient.sitemapIndex */
 internal fun InternalBggClient.sitemapIndex(domain: Domain) =
     DiffusingSitemap(this) {
         client()

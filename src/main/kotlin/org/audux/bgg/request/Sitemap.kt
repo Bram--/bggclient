@@ -15,7 +15,7 @@ package org.audux.bgg.request
 
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
-import org.audux.bgg.BggClient.InternalBggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.response.Response
 import org.audux.bgg.response.Sitemap
 

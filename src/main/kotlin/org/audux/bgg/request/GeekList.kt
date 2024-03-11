@@ -16,7 +16,7 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.BggClient.InternalBggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.Constants.PARAM_COMMENTS
 import org.audux.bgg.common.Constants.PATH_GEEK_LIST
 import org.audux.bgg.common.Constants.XML1_API_URL
@@ -24,14 +24,7 @@ import org.audux.bgg.common.Inclusion
 import org.audux.bgg.response.GeekList
 import org.audux.bgg.response.Response
 
-/**
- * Geek list endpoint, retrieves a specific geek list by its ID.
- *
- * NOTE: This request returns a (http) 202 the first time the request is made.
- *
- * @param id the unique ID for the geek list to retrieve
- * @param comments whether to include the comments in the response or not.
- */
+/** @see org.audux.bgg.BggClient.geekList */
 internal fun InternalBggClient.geekList(id: Int, comments: Inclusion?) = request {
     client()
         .get(XML1_API_URL) {

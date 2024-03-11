@@ -14,28 +14,9 @@
 package org.audux.bgg
 
 import co.touchlab.kermit.Logger
-import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.databind.MapperFeature
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule
-import com.fasterxml.jackson.dataformat.xml.XmlMapper
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.module.kotlin.KotlinFeature
-import com.fasterxml.jackson.module.kotlin.KotlinModule
-import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
-import io.ktor.client.plugins.HttpRequestRetry
 import java.time.LocalDate
 import java.time.LocalDateTime
-import java.util.Locale
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.future.future
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.audux.bgg.common.Domain
 import org.audux.bgg.common.FamilyType
 import org.audux.bgg.common.ForumListType
@@ -44,15 +25,13 @@ import org.audux.bgg.common.Inclusion
 import org.audux.bgg.common.PlayThingType
 import org.audux.bgg.common.SubType
 import org.audux.bgg.common.ThingType
-import org.audux.bgg.plugin.ClientRateLimitPlugin
-import org.audux.bgg.request.Request
 import org.audux.bgg.request.collection
 import org.audux.bgg.request.familyItems
 import org.audux.bgg.request.forum
 import org.audux.bgg.request.forumList
 import org.audux.bgg.request.geekList
-import org.audux.bgg.request.guilds
-import org.audux.bgg.request.hotItems
+import org.audux.bgg.request.guild
+import org.audux.bgg.request.hotList
 import org.audux.bgg.request.plays
 import org.audux.bgg.request.search
 import org.audux.bgg.request.sitemapIndex
@@ -65,24 +44,45 @@ import org.audux.bgg.response.Thing
 import org.jetbrains.annotations.VisibleForTesting
 
 /**
- * Unofficial Board Game Geek API Client for the
- * [BGG XML2 API2](https://boardgamegeek.com/wiki/page/BGG_XML_API2).
+ * BggClient is a API client for the
+ * [Board Game Geek XML(1) API](https://boardgamegeek.com/wiki/page/BGG_XML_API) and
+ * [Board Game Geek XML2 API](https://boardgamegeek.com/wiki/page/BGG_XML_API2). These APIs work for
+ * all geek domains, meaning Board games, video games and RPGs can be retrieved. It works on both
+ * the JVM and Android (24+). Before using the any of these BGG APIs please refer to the
+ * [Terms of Use](https://boardgamegeek.com/wiki/page/XML_API_Terms_of_Use#) for the APIs. Finally
+ * If you're looking for all Board game IDs and some basic information please refer to
+ * [this page](https://boardgamegeek.com/data_dumps/bg_ranks) that contains CSV with all boardgames
+ * instead.
  *
- * Search example usage:
- * ```
- * BggClient
- *      .search("Scythe", arrayOf(ThingType.BOARD_GAME, ThingType.BOARD_GAME_EXPANSION))
- *      .call { response -> println(response) }
- * ```
+ * **A short summary of the APIs available:** Clicking through the API documentation will have more
+ * information as well as example code.
+ *
+ * |API           |Description                                                                                                                                                                                                                                                                         |
+ * |--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ * |[collection]  |Request details about a user's collection. Returns a (partial) [org.audux.bgg.response.Collection]                                                                                                                                                                                  |
+ * |[familyItems] |Family thing endpoint that retrieve details about the given family ID and associated `Link` objects. Returns a [org.audux.bgg.response.Family]                                                                                                                                      |
+ * |[forumList]   |Retrieves the list of available forums for the given id / type combination. e.g. Retrieve all the available forums for `id=342942, type=thing` i.e. Ark nova. Returns a [org.audux.bgg.response.ForumList]                                                                          |
+ * |[forum]       |Retrieves the list of threads for the given forum id. Returns a [org.audux.bgg.response.Forum]                                                                                                                                                                                      |
+ * |[geekList]    |Retrieves a specific geek list by its ID, returning its items and optionally comments left on the GeekList. Returns a [org.audux.bgg.response.GeekList]                                                                                                                             |
+ * |[guild]       |Retrieve information about the given guild (id) like name, description, members etc. Returns a [org.audux.bgg.response.Guild]                                                                                                                                                       |
+ * |[hotList]     |Hotness endpoint that retrieve the list of most 50 hot/active items on the site filtered by type. Returns a [org.audux.bgg.response.HotList]                                                                                                                                        |
+ * |[plays]       |Request a list of plays (max 100 at the time) for the given user. Returns a [org.audux.bgg.response.Plays]                                                                                                                                                                          |
+ * |[search]      |Search endpoint that allows searching by name for things on BGG. Returns [org.audux.bgg.response.SearchResults]                                                                                                                                                                     |
+ * |[sitemapIndex]|Requests the Sitemap index for the given Domain. Call `org.audux.bgg.request.DiffusingSitemap.diffuse` to request specific sitemaps. Returns a [org.audux.bgg.response.SitemapIndex]                                                                                                |
+ * |[things]      |Request a Thing or list of things. Multiple things can be requested by passing in several IDs. At least one ID is required to make this request. Sending along `types` might result in an empty as the API filters based on the `ThingType`. Returns [org.audux.bgg.response.Things]|
+ * |[thread]      |Retrieves the list of articles/posts for the given thread. Returns a [org.audux.bgg.response.Thread]                                                                                                                                                                                |
+ * |[user]        |User endpoint that retrieves a specific user by their `name`. Returns a [org.audux.bgg.response.User]                                                                                                                                                                               |
  */
 object BggClient {
     init {
         setLoggerSeverity(Severity.Warn)
     }
 
+    /** @suppress */
     @VisibleForTesting @JvmStatic var engine = { CIO.create() }
 
-    private var configuration = BggClientConfiguration()
+    /** @suppress */
+    internal var configuration = BggClientConfiguration()
 
     /**
      * Allows configuration of requests strategies of the BggClient.
@@ -95,13 +95,33 @@ object BggClient {
     }
 
     /**
-     * Request details about a user's collection.
+     * Request details about a user's collection and returning a
+     * [org.audux.bgg.response.Collection].
+     *
+     * Requesting the only played board games _and_ board game expansions for the user can be done
+     * as follows:
+     * ```
+     * Response<User> playedGames =
+     *      BggClient.collection(userName = "user", played = Inclusion.INCLUDE).call()
+     * println(playedGames.data) // Prints all played games in their collection.
+     * ```
+     *
+     * The actual data class returned is [Request<Collection>](org.audux.bgg.request.Request) which
+     * can then be used to make the actual call to the API using `call` or `callAsync`. This will
+     * then return a [Response] and wrap a data class (on success). e.g. the above example might
+     * return a [org.audux.bgg.response.Collection] looking something as follows:
+     * ```
+     *   Collection(totalItems = 2, publishDate = '23-04-2024', items = listOf(
+     *      CollectionItem(collectionId = 100, objectId = 12345, name = "Example 1", ....),
+     *      CollectionItem(collectionId = 101, objectId = 12325, name = "Example 2", ....)
+     *   )
+     * ```
      *
      * NOTE: The default (or using [subType]=[ThingType.BOARD_GAME]) returns both
      * [ThingType.BOARD_GAME] and [ThingType.BOARD_GAME_EXPANSION] in the collection... BUT
      * incorrectly marks the [subType] as [ThingType.BOARD_GAME] for the expansions. Workaround is
      * to use [excludeSubType]=[ThingType.BOARD_GAME_EXPANSION] and make a 2nd call asking for
-     * [subType]=[ThingType.BOARD_GAME_EXPANSION]
+     * [subType]=[ThingType.BOARD_GAME_EXPANSION].
      *
      * @param userName Name of the user to request the collection for
      * @param subType Specifies which collection you want to retrieve - only one type at the time
@@ -227,12 +247,32 @@ object BggClient {
             )
 
     /**
-     * Family thing endpoint that retrieve details about the given family ID and associated `Link`
-     * objects.
+     * Family items endpoint that retrieve details about the given family ID and associated `Link`
+     * objects. The data class returned from the API call is a [org.audux.bgg.response.FamilyItem].
+     * The family items (ids)/types are returned from the [things] endpoint where they might appear
+     * as a link on the `Thing`.
+     *
+     * Requesting more information about the family with ID 50152 can be done as follows:
+     * ```
+     * Response<Family> familyItems =
+     *      BggClient.familyItems(ids = arrayOf(50152)).call()
+     * println(familyItems.data) // Prints information about the family and associated links.
+     * ```
+     *
+     * The actual data class returned is [Request<Family>](org.audux.bgg.request.Request) which can
+     * then be used to make the actual call to the API using `call` or `callAsync`. This will then
+     * return a [Response] and wrap a data class (on success). e.g. the above example might return a
+     * [org.audux.bgg.response.Family] looking something as follows:
+     * ```
+     *   Family(items = listOf(
+     *      FamilyItem(id = 50152, familyType = FamilyType.BOARD_GAME_FAMILY, links = listOf(
+     *          Link(id="65901",value="Age of Industry", type = FamilyType.BOARD_GAME_FAMILY)
+     *   )))
+     * ```
      *
      * @param ids array of IDs returning only families of the specified id.
-     * @param types Single [HotListType] returning only items of the specified type, defaults to
-     *   [HotListType.BOARD_GAME].
+     * @param types Single [FamilyType] returning only items of the specified type, defaults to
+     *   [FamilyType.BOARD_GAME_FAMILY].
      */
     @JvmStatic
     @JvmOverloads
@@ -240,16 +280,35 @@ object BggClient {
         InternalBggClient().familyItems(ids, types)
 
     /**
-     * Retrieves the list of available forums for the given id / type combination. e.g. Retrieve all
-     * the available forums for `[id=342942, type=thing]` i.e. Ark nova.
+     * Retrieves the list of threads for the given forum id in a [org.audux.bgg.response.Forum].
      *
-     * @param id The id of either the Family or Thing to retrieve
-     * @param type Single [ForumListType] to retrieve, either a [Thing] or [Family]
-     */
-    @JvmStatic fun forumList(id: Int, type: ForumListType) = InternalBggClient().forumList(id, type)
-
-    /**
-     * Retrieves the list of threads for the given forum id.
+     * Requesting the first 50 threads for Ark Nova review forum can be done as follows:
+     * ```
+     * Response<Forum> forum = BggClient.forum(id = 3696791).call()
+     * println(forum.data) // Prints a list of threads (max 50)
+     * ```
+     *
+     * If all threads should be retrieved pagination can be used as follows:
+     * ```
+     * Response<Forum> forum = BggClient.forum(id = 3696791).paginate().call()
+     * println(forum.data) // Prints a list of ALL threads
+     * ```
+     *
+     * The actual class returned is [org.audux.bgg.request.PaginatedForum]) which can then be used
+     * to paginate or make the actual call to the API using `call` or `callAsync`. This will then
+     * return a [Response] and wrap a data class (on success). e.g. the above example might return a
+     * [org.audux.bgg.response.Forum] looking something as follows:
+     * ```
+     * ForumList(id = 123, title = "Reviews", numThreads = 300, threads = listOf(
+     *      ThreadSummary(
+     *          id = 12345,
+     *          subject = "Reviews are cool",
+     *          userName = "posterUserName",
+     *          lastPostDate = LocalDateTime, // "Tue, 23 Jan 2024 09:13:43 +0000"
+     *          numArticles = 65),
+     *          // etc...
+     * ))
+     * ```
      *
      * Note: Pagination data is not returned in the response but can be calculated by
      * `Math.ceil(numThreads/50)`.
@@ -263,7 +322,70 @@ object BggClient {
     fun forum(id: Int, page: Int? = null) = InternalBggClient().forum(id, page)
 
     /**
-     * Geek list endpoint, retrieves a specific geek list by its ID.
+     * Retrieves the list of available forums for the given id / type combination, returning a
+     * [org.audux.bgg.response.ForumList].
+     *
+     * Requesting all forums for Ark Nova can be done as follows:
+     * ```
+     * Response<ForumList> forumList =
+     *      BggClient.forumList(id = 342942, type = ForumListType.THING).call()
+     * println(forumList.data) // Prints a list of forum summaries for Ark Nova
+     * ```
+     *
+     * The actual data class returned is [Request<ForumList>](org.audux.bgg.request.Request) which
+     * can then be used to make the actual call to the API using `call` or `callAsync`. This will
+     * then return a [Response] and wrap a data class (on success). e.g. the above example might
+     * return a [org.audux.bgg.response.ForumList] looking something as follows:
+     * ```
+     * ForumList(id = 342942, type = ForumListType.THING, forums = listOf(
+     *      ForumSummary(
+     *          id = 3696791,
+     *          title = "Reviews",
+     *          description = "Post your game reviews ....",
+     *          lastPostDate = LocalDateTime, // "Tue, 23 Jan 2024 09:13:43 +0000"
+     *          numPosts = 1603,
+     *          numThreads = 65),
+     *          // etc...
+     * ))
+     * ```
+     *
+     * @param id The id of either the Family or Thing to retrieve
+     * @param type Single [ForumListType] to retrieve, either a [Thing] or [Family]
+     */
+    @JvmStatic fun forumList(id: Int, type: ForumListType) = InternalBggClient().forumList(id, type)
+
+    /**
+     * Geek list endpoint, retrieves a specific geek list by its ID and return a
+     * [org.audux.bgg.response.GeekList].
+     *
+     * Requesting more information about the Geek list with ID 331520 _and_ retrieving all its
+     * comment can be done as follows:
+     * ```
+     * Response<GeekList> geekList = BggClient.geekList(id = 331520).call()
+     * println(geekList.data) // Prints information about the family and associated links.
+     * ```
+     *
+     * The actual data class returned is [Request<GeekList>](org.audux.bgg.request.Request) which
+     * can then be used to make the actual call to the API using `call` or `callAsync`. This will
+     * then return a [Response] and wrap a data class (on success). e.g. the above example might
+     * return a [org.audux.bgg.response.GeekList] looking something as follows:
+     * ```
+     *   GeekList(id = 221520, title = "title",
+     *      items = listOf(
+     *          GeekListItem(
+     *              id = 104,
+     *              objectType = "thing",
+     *              subType = SubType.BOARD_GAME,
+     *              objectName = "Board game name"
+     *          ),
+     *          // etc...
+     *      ),
+     *      comments = listOf(
+     *          GeekListComment(userName = "Name", value = "Awesome!", thumbs = 10),
+     *          // etc...
+     *      ),
+     *   )
+     * ```
      *
      * NOTE: This request returns a (http) 202 the first time the request is made.
      *
@@ -276,6 +398,41 @@ object BggClient {
 
     /**
      * Retrieve information about the given guild (id) like name, description, members etc.
+     * returning a [org.audux.bgg.response.Guild].
+     *
+     * Requesting the more information about a specific ID including its members(limited to 25) can
+     * be done as follows:
+     * ```
+     * Response<Guild> guild = BggClient.guild(id = 123, members = Inclusion.INCLUDE).call()
+     * println(guild.data) // Prints a the guild information and the first 25 guild members.
+     * ```
+     *
+     * If all guild members should be retrieved, pagination can be used as follows:
+     * ```
+     * Response<Guild> guild = BggClient
+     *      .guild(id = 123, members = Inclusion.INCLUDE).paginate().call()
+     * println(guild.data) // Prints a the guild information and ALL guild members.
+     * ```
+     *
+     * The actual class returned is [org.audux.bgg.request.PaginatedGuilds]) which can then be used
+     * to paginate or make the actual call to the API using `call` or `callAsync`. This will then
+     * return a [Response] and wrap a data class (on success). e.g. the above pagination example
+     * might return a [org.audux.bgg.response.Guild] looking something as follows:
+     * ```
+     * Guild(
+     *  id = 123,
+     *  name ="Guild name,
+     *  created = LocalDateTime,
+     *  // ...
+     *  members = GuildMembers(
+     *      count = 62,
+     *      page = 3, // Or 1 if pagination is not used.
+     *      members = listOf(
+     *          GuildMember(name = "userName", joinDate = LocalDateTime),
+     *          // +61 more if pagination is used...
+     *      )
+     * )
+     * ```
      *
      * @param id ID of the guild you want to view.
      * @param members Include member roster in the results. Member list is paged and sorted.
@@ -284,21 +441,85 @@ object BggClient {
      */
     @JvmStatic
     @JvmOverloads
-    fun guilds(id: Int, members: Inclusion? = null, sort: String? = null, page: Int? = null) =
-        InternalBggClient().guilds(id, members, sort, page)
+    fun guild(id: Int, members: Inclusion? = null, sort: String? = null, page: Int? = null) =
+        InternalBggClient().guild(id, members, sort, page)
 
     /**
-     * Hotness endpoint that retrieve the list of most 50 active items on the site filtered by type.
+     * Hotness endpoint that retrieve the list of most 50 active items on the site filtered by type,
+     * returning a [org.audux.bgg.response.HotList].
+     *
+     * Requesting the top 50 'hottest' board games right now can be done as follows:
+     * ```
+     * Response<HotList> hotList = BggClient.hotList(type = HotListType.BOARD_GAME).call()
+     * println(familyItems.data) // Prints a list of HotListItem with some info about the board game
+     * ```
+     *
+     * The actual data class returned is [Request<Hot>](org.audux.bgg.request.Request) which can
+     * then be used to make the actual call to the API using `call` or `callAsync`. This will then
+     * return a [Response] and wrap a data class (on success). e.g. the above example might return a
+     * [org.audux.bgg.response.HotList] looking something as follows:
+     * ```
+     * HotList(items = listOf(
+     *  ListItem(
+     *      id = 123,
+     *      rank = 1,
+     *      name = "The HOTTEST game",
+     *      thumbnail = "http://...",
+     *      yearPublished = 1999
+     *  ),
+     *  // +49 items...
+     * )
+     * ```
      *
      * @param type Single [HotListType] returning only items of the specified type, defaults to
      *   [HotListType.BOARD_GAME].
      */
     @JvmStatic
     @JvmOverloads
-    fun hotItems(type: HotListType? = null) = InternalBggClient().hotItems(type)
+    fun hotList(type: HotListType? = null) = InternalBggClient().hotList(type)
 
     /**
-     * Request a list of plays (max 100 at the time) for the given user.
+     * Request a list of plays (max 100 at the time) for the given user, returning
+     * [org.audux.bgg.response.Plays].
+     *
+     * Requesting a list of plays after 2022 for a specific username be done as follows:
+     * ```
+     * Response<Plays> plays = BggClient
+     *      .plays(username = "user", minDate = LocalDate.of(2023, 1, 1)).call()
+     * println(plays.data) // Prints a Plays object with a list of (max 100) Play objects.
+     * ```
+     *
+     * If the number of plays exceeds 100 not all would've been retrieved with the above API call.
+     * In order to do so pagination can be used:
+     * ```
+     * Response<Plays> plays = BggClient
+     *      .plays(username = "user", minDate = LocalDate.of(2023, 1, 1)).paginate().call()
+     * println(plays.data) // Prints a Plays object with a list of ALL Play objects.
+     * ```
+     *
+     * The actual class returned is [org.audux.bgg.request.PaginatedPlays]) which can then be used
+     * to paginate or make the actual call to the API using `call` or `callAsync`. This will then
+     * return a [Response] and wrap a data class (on success). e.g. the above pagination example
+     * might return a [org.audux.bgg.response.Plays] looking something as follows:
+     * ```
+     * Plays(
+     *      username = "user",
+     *      userid="12345",
+     *      total = 240,
+     *      page = 1, // 1 if no pagination or last page when paginating
+     *      plays = listOf(
+     *          Play(
+     *              id = 45678,
+     *              date = LocalDate,
+     *              quantity = 2,
+     *              lengthInMinutes = 120,
+     *              item = PlayItem(name = "Earth", objectId = 350184, /** ... */),
+     *              players = listOf(),
+     *          ),
+     *          // etc...
+     *     )
+     * )
+     * ```
      *
      * @param username Name of the player you want to request play information for. Data is returned
      *   in backwards-chronological form. You must include either a username or an id and type to
@@ -306,7 +527,7 @@ object BggClient {
      * @param id Id number of the item you want to request play information for. Data is returned in
      *   backwards-chronological form.
      * @param type Type of the item you want to request play information for. Valid types include:
-     *   thing family
+     *   [PlayThingType].
      * @param minDate Returns only plays of the specified date or later.
      * @param maxDate Returns only plays of the specified date or earlier.
      * @param subType=TYPE Limits play results to the specified TYPE; boardgame is the default.
@@ -325,7 +546,31 @@ object BggClient {
     ) = InternalBggClient().plays(username, id, type, minDate, maxDate, subType, page)
 
     /**
-     * Search endpoint that allows searching by name for things on BGG.
+     * Search endpoint that allows searching by name for things on BGG return a
+     * [org.audux.bgg.response.SearchResults].
+     *
+     * Search for a board game start with 'My little' can be done as follows:
+     * ```
+     * Response<searchResults> searchResults = BggClient
+     *      .search(query = 'My Little', type = arrayOf(ThingType.BOARD_GAME)).call()
+     * println(searchResults.data) // Prints an object with a list of 140+ SearchResult objects.
+     * ```
+     *
+     * The actual data class returned is [Request<SearchResults>](org.audux.bgg.request.Request)
+     * which can then be used to make the actual call to the API using `call` or `callAsync`. This
+     * will then return a [Response] and wrap a data class (on success). e.g. the above example
+     * might return a [org.audux.bgg.response.SearchResults] looking something as follows:
+     * ```
+     *   SearchResults(total = 144, results = listOf(
+     *      SearchResult(
+     *          name = Name(type = "primary" value = "Connect 4: My Little Pony"),
+     *          id = 167159,
+     *          type = ThingType.BOARD_GAME,
+     *          yearpublished = 2014,
+     *      ),
+     *      // etc...
+     *   )
+     * ```
      *
      * @param query Returns all types of items that match [query]. Spaces in the SEARCH_QUERY are
      *   replaced by a
@@ -343,12 +588,36 @@ object BggClient {
 
     /**
      * Requests the Sitemap index for the given Domain. Call
-     * [org.audux.bgg.request.DiffusingSitemap.diffuse] to request specific sitemaps.
+     * [org.audux.bgg.request.DiffusingSitemap.diffuse] to request specific sitemaps, returning
+     * either a [org.audux.bgg.response.SitemapIndex] OR (when using `diffuse`) a map of
+     * [org.audux.bgg.response.SitemapUrl] keyed by [org.audux.bgg.common.SitemapLocationType].
      *
-     * For example requesting all board game designer pages can be done as follows:
+     * For example requesting all sitemaps in the Sitemap index can be done as follows:
      * ```
-     * val designers =
-     *      BggClient.sitemapIndex().diffuse(SitemapLocationType.BOARD_GAME_DESIGNERS).call()
+     * val sitemapIndex = BggClient.sitemapIndex().call()
+     * ```
+     *
+     * For requesting only a type of sitemap and immediately request the URLs in it (opposed to a
+     * link to the sitemap), can be done as follows. Here a request is made to retrieve all board
+     * game pages:
+     * ```
+     * val boardGameUrls = BggClient.sitemapIndex().diffuse(SitemapLocationType.BOARD_GAMES).call()
+     * ```
+     *
+     * The actual class returned is [org.audux.bgg.request.DiffusingSitemap]) which can then be used
+     * to request ALL sitemaps or make the actual call to the API using `call` or `callAsync`. This
+     * will then return a [Response] and wrap a data class (on success). e.g. the above pagination
+     * example might return a [org.audux.bgg.response.SitemapIndex]. When using `diffuse()` the
+     * response might looks something like:
+     * ```
+     * Map<SitemapLocationType, List<SitemapLocationUrl>) response = mapOf(
+     *      SitemapLocationType.BOARD_GAMES to listOf(
+     *          SitemapUrl(location = "https://boardgamegeek.com/boardgame/1/die-macher", ...),
+     *          SitemapUrl(location = "https://boardgamegeek.com/boardgame/2/dragonmaster", ...),
+     *          SitemapUrl(location = "https://boardgamegeek.com/boardgame/3/samurai", ...),
+     *      ),
+     *      // etc...
+     * )
      * ```
      *
      * @param domain The [Domain] to request the sitemap for [Domain.BOARD_GAME_GEEK] returns board
@@ -365,7 +634,101 @@ object BggClient {
     /**
      * Request a Thing or list of things. Multiple things can be requested by passing in several
      * IDs. At least one ID is required to make this request. Sending along [types] might result in
-     * an empty as the API filters based on the [ThingType].
+     * an empty as the API filters based on the [ThingType]. This returns
+     * [org.audux.bgg.response.Things].
+     *
+     * Requesting detailed information about Scythe and Ark Nova can be done as follows:
+     * ```
+     * Response<Things> things = BggClient.things(
+     *      ids = arrayOf(169786, 342942),
+     *      stats = true,
+     *      versions = true,
+     *      videos = true,
+     *      marketplace = false,
+     *      comments = false
+     *  )
+     * // Prints a detailed information (including marketplace data, comments etc.) of
+     * // both Scythe and Ark Nova. Only containing the first 100 comments of each
+     * println(plays.data)
+     * ```
+     *
+     * If the number of comments exceeds `pageSize` (default 100) not all comments would be
+     * retrieved with the above API call. In order to do so pagination can be used. When paginating
+     * the last page is whichever thing has the most comments e.g. if Ark Nova has 200 comments and
+     * Scythe has 1000, 9 additional requests will be made and the last page(in the response data
+     * classes) would be 10,
+     * ```
+     * Response<Things> things = BggClient.things(
+     *      ids = arrayOf(169786, 342942),
+     *      stats = true,
+     *      versions = true,
+     *      videos = true,
+     *      marketplace = false,
+     *      comments = false
+     *  ).paginate()
+     * // Prints a detailed information (including marketplace data, comments etc.) of
+     * // both Scythe and Ark Nova. Only containing ALL comments of both.
+     * println(plays.data)
+     * ```
+     *
+     * The actual class returned is [org.audux.bgg.request.PaginatedThings]) which can then be used
+     * to paginate or make the actual call to the API using `call` or `callAsync`. This will then
+     * return a [Response] and wrap a data class (on success). e.g. the above pagination example
+     * might return a [org.audux.bgg.response.Things] looking something as follows:
+     * ```
+     * Things(
+     *      username = "user",
+     *      things = listOf(
+     *          id = 169786,
+     *          name = "Scythe", // Primary name
+     *          names = listOf(Name(...)),
+     *          polls = listOf(
+     *              LanguageDependencePoll(
+     *                  name = "Language Dependence",
+     *                  votes = 900,
+     *                  results = listOf(
+     *                      LeveledPollResult(level = 1 value="..." numberOfVotes = 6),
+     *                      LeveledPollResult(level = 2 value="..." numberOfVotes = 16),
+     *                      // etc....
+     *                  )
+     *              ),
+     *              PlayerAgePoll(
+     *                  name = "User Suggested Player Age",
+     *                  votes = 200,
+     *                  results = listOf(
+     *                      PollResult(value="2", numberOfVotes = 0),
+     *                      // ... etc.
+     *                      PollResult(value="21 and up", numberOfVotes = 120),
+     *                  )
+     *              ),
+     *              NumberOfPlayersPoll(
+     *                  name = "User Suggested Number of Players",
+     *                  votes = 50,
+     *                  results = listOf(
+     *                      NumberOfPlayerResults(
+     *                          numberOfPlayers = "1",
+     *                          results = listOf(
+     *                              PollResult(value = "Best", numberOfVotes = 3)
+     *                              PollResult(value = "Recommended", numberOfVotes = 24)
+     *                              PollResult(value = "Not Recommended", numberOfVotes = 12)
+     *                          ),
+     *                      ),
+     *                      // etc...
+     *                  )
+     *              ),
+     *
+     *              // And much more!
+     *          ),
+     *      ),
+     *      things = listOf(
+     *          id = 342942,
+     *          name = "Ark Nova", // Primary name
+     *          names = listOf(Name(...)),
+     *          polls = listOf( ..... )
+     *          // And much more..
+     *      )
+     * )
+     * ```
      *
      * @param ids Specifies the id of the thing(s) to retrieve. To request multiple things with a
      *   single query, can specify a comma-delimited list of ids.
@@ -416,7 +779,44 @@ object BggClient {
             )
 
     /**
-     * Retrieves the list of articles/posts for the given thread.
+     * Retrieves the list of articles/posts for the given thread - requesting ALL articles/posts.
+     * Returning [org.audux.bgg.response.Thread].
+     *
+     * If all threads should be retrieved pagination can be used as follows:
+     * ```
+     * Response<Thread> thread = BggClient.thread(id = 3208373).paginate().call()
+     * println(forum.data) // Prints thread details and a list of `articles`
+     * ```
+     *
+     * The actual class returned is [org.audux.bgg.request.Request]) which can then be used to
+     * paginate or make the actual call to the API using `call` or `callAsync`. This will then
+     * return a [Response] and wrap a data class (on success). e.g. the above example might return a
+     * [org.audux.bgg.response.Thread] looking something as follows:
+     * ```
+     * Thread(
+     *      id = 3208373,
+     *      subject = "New Maps for Ark Nova + Marine World",
+     *      link = "https://boardgamegeel.com/...",
+     *      numArticles = 300,
+     *      articles = listOf(
+     *          Article(
+     *              id = 43461362,
+     *              username = "username"
+     *              link = "https://boardgamegeek.com/thread/3208373/article/43461362#43461362",
+     *              postdate = LocalDateTime,
+     *              editdate = LocalDateTime
+     *              numedits = 4>
+     *              subject = "New Maps for Ark Nova + Marine World"
+     *              body = "Hi. Here are 3 new maps for the community:...."
+     *           ),
+     *           // etc..,
+     *      )
+     * )
+     * ```
+     *
+     * Note: Pagination can be achieved using the `count` and `minArticleId` but is not implemented
+     * by this library. As a result some API calls may return a 500, 502 or 408 as there are too
+     * many posts.
      *
      * @param id The id of the thread.
      * @param minArticleId Filters the results so that only articles with an equal or higher id than
@@ -435,7 +835,56 @@ object BggClient {
     ) = InternalBggClient().thread(id, minArticleId, minArticleDate, count)
 
     /**
-     * User endpoint that retrieves a specific user by their [name].
+     * User endpoint that retrieves a specific user by their [name] returning a
+     * [org.audux.bgg.response.User].
+     *
+     * Retrieving a user including their guilds, friends/buddies, personal hot- and top-list.
+     *
+     * ```
+     * Response<User> user =
+     *      BggClient.user(
+     *          name = "username",
+     *          buddies = Inclusion.INCLUDE,
+     *          guilds = Inclusion.INCLUDE,
+     *          hot = Inclusion.INCLUDE,
+     *          top = Inclusion.INCLUDE
+     *      ).paginate().call()
+     * println(forum.data) // Prints a list of buddies and guilds threads
+     * ```
+     *
+     * The actual class returned is [org.audux.bgg.request.PaginatedUser]) which can then be used to
+     * paginate or make the actual call to the API using `call` or `callAsync`. This will then
+     * return a [Response] and wrap a data class (on success). e.g. the above example might return a
+     * [org.audux.bgg.response.User] looking something as follows:
+     * ```
+     * User(
+     *      id = 123,
+     *      username = "Username",
+     *      firstname = "Firstname",
+     *      lastname = "Surname",
+     *      avatarLink = "N/A",
+     *      yearRegistered = 2020,
+     *      lastLogin = LocalDate,
+     *      buddies = Buddies(
+     *          total = 100,
+     *          buddies = listOf(
+     *              Buddy(name = "BuddyUserName", id = 123),
+     *              // etc..
+     *          )
+     *      ),
+     *      guilds = Guilds(
+     *          total = 100,
+     *          guilds = listOf(
+     *              GuildReference(name = "Board Games Club" id= 1234),
+     *              // etc..
+     *          )
+     *      ),
+     *      // etc...
+     * ))
+     * ```
+     *
+     * Note: Pagination is unlikely to be needed as the page size (number of guilds & buddies
+     * returned) is 1000.
      *
      * @param name Specifies the user name (only one user is request-able at a time).
      * @param buddies Turns on buddies reporting. Results are paged; see page parameter.
@@ -463,7 +912,11 @@ object BggClient {
         page: Int? = null,
     ) = InternalBggClient().user(name, buddies, guilds, top, hot, domain, page)
 
-    /** Logging level Severity for the BGGClient logging. */
+    /**
+     * Logging level Severity for the BGGClient logging.
+     *
+     * @suppress
+     */
     enum class Severity {
         Verbose,
         Debug,
@@ -485,86 +938,6 @@ object BggClient {
             }
         )
     }
-
-    /** Internal BGG Client containing the actual implementations of the API Calls. */
-    internal class InternalBggClient {
-        private val clientScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
-
-        internal val client = {
-            HttpClient(engine()) {
-                install(ClientRateLimitPlugin) {
-                    requestLimit = configuration.maxConcurrentRequests
-                }
-                install(HttpRequestRetry) {
-                    exponentialDelay(
-                        base = configuration.retryBase,
-                        maxDelayMs = configuration.retryMaxDelayMs,
-                        randomizationMs = configuration.retryRandomizationMs
-                    )
-                    retryIf(maxRetries = configuration.maxRetries) { request, response ->
-                        response.status.value.let {
-                            // Add 429 (TooManyRequests) and 202 (Accepted) for retries, see:
-                            // https://boardgamegeek.com/thread/1188687/export-collections-has-been-updated-xmlapi-develop
-                            (it in (500..599) + 202 + 429).also { shouldRetry ->
-                                if (shouldRetry) {
-                                    Logger.i("HttpRequestRetry") {
-                                        "Got status code $it Retrying request[${request.url}"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                expectSuccess = true
-            }
-        }
-
-        val mapper: ObjectMapper =
-            XmlMapper.builder()
-                .apply {
-                    configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
-                    configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true)
-
-                    addModule(JacksonXmlModule())
-                    addModule(JavaTimeModule())
-                    addModule(
-                        KotlinModule.Builder()
-                            .enable(KotlinFeature.NullToEmptyCollection)
-                            .enable(KotlinFeature.StrictNullChecks)
-                            .build()
-                    )
-
-                    // Keep hardcoded to US: https://bugs.openjdk.org/browse/JDK-8251317
-                    // en_GB Locale uses 'Sept' as a shortname when formatting dates (e.g. 'MMM').
-                    // The locale en_US remains 'Sep'.
-                    defaultLocale(Locale.US)
-                    defaultMergeable(true)
-                    defaultUseWrapper(false)
-                }
-                .build()
-
-        /**
-         * Calls/Launches a request async, once a response is available it will call
-         * [responseCallback].
-         */
-        internal fun <T> callAsync(request: suspend () -> T, responseCallback: (T) -> Unit) =
-            clientScope.launch {
-                val response = request()
-                withContext(Dispatchers.Default) { responseCallback(response) }
-            }
-
-        /** Calls/Launches a request and returns it's response. */
-        @OptIn(DelicateCoroutinesApi::class)
-        internal fun <T> callAsync(request: suspend () -> Response<T>) =
-            GlobalScope.future { request() }
-
-        /** Calls/Launches a request and returns it's response. */
-        internal suspend fun <T> call(request: suspend () -> Response<T>) = request()
-
-        /** Returns a wrapped request for later execution. */
-        internal fun <T> request(request: suspend () -> Response<T>) = Request(this, request)
-    }
 }
 
 /**
@@ -575,11 +948,11 @@ object BggClient {
  * [retryRandomizationMs] This is then calculated using the Exponential backoff algorithm: delay
  * equals to `retryBase ^ retryAttempt * 1000 + [0..randomizationMs]`
  *
- * @param maxConcurrentRequests How many requests can be active at the same time.
- * @param maxRetries How many retries per URL should be tried.
- * @param retryBase see kdoc for formula
- * @param retryMaxDelayMs see kdoc for formula
- * @param retryRandomizationMs see kdoc for formula
+ * @property maxConcurrentRequests How many requests can be active at the same time.
+ * @property maxRetries How many retries per URL should be tried.
+ * @property retryBase see kdoc for formula
+ * @property retryMaxDelayMs see kdoc for formula
+ * @property retryRandomizationMs see kdoc for formula
  */
 data class BggClientConfiguration(
     var maxConcurrentRequests: Int = 10,

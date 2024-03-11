@@ -26,10 +26,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.audux.bgg.BggClient
 import org.audux.bgg.BggRequestException
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.Domain
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.common.PlayThingType
-import org.audux.bgg.common.SitemapLocationType
 import org.audux.bgg.common.SubType
 import org.audux.bgg.response.Buddy
 import org.audux.bgg.response.Forum
@@ -39,62 +39,10 @@ import org.audux.bgg.response.GuildReference
 import org.audux.bgg.response.Play
 import org.audux.bgg.response.Plays
 import org.audux.bgg.response.Response
-import org.audux.bgg.response.SitemapIndex
-import org.audux.bgg.response.SitemapUrl
 import org.audux.bgg.response.Thing
 import org.audux.bgg.response.Things
 import org.audux.bgg.response.ThreadSummary
 import org.audux.bgg.response.User
-
-/** Diffusing request implementation for [sitemapIndex]. */
-class DiffusingSitemap
-internal constructor(
-    private val client: BggClient.InternalBggClient,
-    private val request: suspend () -> Response<SitemapIndex>
-) : Request<SitemapIndex>(client, request) {
-
-    /**
-     * After requesting the [SitemapIndex] all URLs that are of the given type are requested. If
-     * [limitToTypes] is not set _all_ sitemaps will be requested. this will result in 600+ requests
-     * to BGG!
-     *
-     * @param limitToTypes The type of sitemaps to request e.g. if [SitemapLocationType.BOARD_GAMES]
-     *   is set it will only request sitemaps that contain board games, like
-     *   `https://boardgamegeek.com/sitemap_geekitems_boardgame_page_15`.
-     */
-    fun diffuse(
-        vararg limitToTypes: SitemapLocationType
-    ): Request<Map<SitemapLocationType, List<SitemapUrl>>> =
-        Request(client) {
-            // Run the initial sitemap index request.
-            request().let { sitemapIndex ->
-                if (sitemapIndex.data == null) return@Request Response(error = sitemapIndex.error)
-                val allSitemaps = ConcurrentHashMap<SitemapLocationType, MutableList<SitemapUrl>>()
-                // Filter sitemaps by given types.
-                val sitemaps =
-                    sitemapIndex.data.sitemaps.filter {
-                        limitToTypes.isEmpty() || limitToTypes.contains(it.type)
-                    }
-
-                // Start requesting all the sitemap concurrently.
-                concurrentRequests(sitemaps.indices) { index ->
-                    val sitemap = sitemaps[index]
-                    val response = client.sitemap(sitemap.location).call()
-
-                    if (response.data == null || response.isError()) {
-                        Logger.w("Error retrieving ${sitemap.location}")
-                    } else {
-                        // Add all URLs to the sitemaps hash map.
-                        allSitemaps.compute(sitemap.type) { _, value ->
-                            (value ?: mutableListOf()).apply { addAll(response.data.sitemaps) }
-                        }
-                    }
-                }
-                // Finally build the response manually.
-                Response(data = allSitemaps)
-            }
-        }
-}
 
 /**
  * Allows pagination on compatible API requests. Using [paginate] will automatically request all
@@ -107,7 +55,7 @@ internal constructor(
  *   from 10 onwards.
  */
 abstract class PaginatedRequest<T>
-internal constructor(client: BggClient.InternalBggClient, request: suspend () -> Response<T>) :
+internal constructor(client: InternalBggClient, request: suspend () -> Response<T>) :
     Request<T>(client, request) {
 
     /**
@@ -131,6 +79,7 @@ internal constructor(client: BggClient.InternalBggClient, request: suspend () ->
      * No-arg implementation for Java.
      *
      * @see paginate
+     * @suppress
      */
     @Throws(BggRequestException::class) fun paginate() = paginate(Int.MAX_VALUE)
 }
@@ -138,10 +87,11 @@ internal constructor(client: BggClient.InternalBggClient, request: suspend () ->
 /** [PaginatedRequest] implementation for [forum]. */
 class PaginatedForum
 internal constructor(
-    private val client: BggClient.InternalBggClient,
+    private val client: InternalBggClient,
     private val currentPage: Int,
     private val request: suspend () -> Response<Forum>
 ) : PaginatedRequest<Forum>(client, request) {
+    /** @suppress */
     companion object {
         /**
          * The pageSize for forum requests i.e. the number of [ThreadSummary]s returned per request.
@@ -178,14 +128,15 @@ internal constructor(
         }
 }
 
-/** [PaginatedRequest] implementation for [guilds]. */
+/** [PaginatedRequest] implementation for [guild]. */
 class PaginatedGuilds
 internal constructor(
-    private val client: BggClient.InternalBggClient,
+    private val client: InternalBggClient,
     private val members: Inclusion?,
     private val sort: String?,
     private val request: suspend () -> Response<Guild>
 ) : PaginatedRequest<Guild>(client, request) {
+    /** @suppress */
     companion object {
         /**
          * The pageSize for guild requests i.e. the number of [GuildMember]s returned per request.
@@ -217,7 +168,7 @@ internal constructor(
                     concurrentRequests((currentPage + 1)..lastPage) { page ->
                         val response =
                             client
-                                .guilds(
+                                .guild(
                                     id = guild.data.id,
                                     page = page,
                                     members = members,
@@ -250,7 +201,7 @@ internal constructor(
 /** [PaginatedRequest] implementation for [plays]. */
 class PaginatedPlays
 internal constructor(
-    private val client: BggClient.InternalBggClient,
+    private val client: InternalBggClient,
     private val id: Int?,
     private val type: PlayThingType?,
     private val minDate: LocalDate?,
@@ -258,6 +209,7 @@ internal constructor(
     private val subType: SubType?,
     private val request: suspend () -> Response<Plays>
 ) : PaginatedRequest<Plays>(client, request) {
+    /** @suppress */
     companion object {
         /** The pageSize for plays requests i.e. the number of [Play]s returned per request. */
         const val PAGE_SIZE = 100
@@ -306,7 +258,7 @@ internal constructor(
 /** [PaginatedRequest] implementation for [things]. */
 class PaginatedThings
 internal constructor(
-    private val client: BggClient.InternalBggClient,
+    private val client: InternalBggClient,
     private val ids: Array<Int>,
     private val currentPage: Int,
     private val pageSize: Int,
@@ -328,9 +280,7 @@ internal constructor(
                 // Create a Concurrent Hashmap to collect Things and update their comments.
                 val thingList =
                     ConcurrentHashMap<Int, Thing>().apply {
-                        this.putAll(
-                            mapOf(*things.data.things.map { Pair(it.id, it) }.toTypedArray())
-                        )
+                        putAll(mapOf(*things.data.things.map { Pair(it.id, it) }.toTypedArray()))
                     }
 
                 // Int of pages to paginate: (CurrentPage + 1)..lastPage.
@@ -389,7 +339,7 @@ internal constructor(
  */
 class PaginatedUser
 internal constructor(
-    private val client: BggClient.InternalBggClient,
+    private val client: InternalBggClient,
     private val buddies: Inclusion?,
     private val guilds: Inclusion?,
     private val top: Inclusion?,
@@ -397,6 +347,7 @@ internal constructor(
     private val domain: Domain?,
     private val request: suspend () -> Response<User>,
 ) : PaginatedRequest<User>(client, request) {
+    /** @suppress */
     companion object {
         /**
          * The pageSize for user requests i.e. the number of [Buddy]s and [GuildReference]s returned
@@ -483,9 +434,10 @@ internal constructor(
  * Runs `pages.first`..`pages.last` pagination requests, where the actual request happens inside
  * [request].
  */
-// Do not inline as Jacoco fails to count it as covered in Kotlin unit tests.
-// See: https://github.com/jacoco/jacoco/issues/654
-private suspend fun <T> concurrentRequests(pages: IntRange, request: suspend (page: Int) -> T) {
+internal suspend inline fun <T> concurrentRequests(
+    pages: IntRange,
+    crossinline request: suspend (page: Int) -> T
+) {
     val jobs = CopyOnWriteArrayList<Job>()
     runBlocking {
         pages.forEach { jobs.add(launch { request(it) }) }

@@ -23,6 +23,10 @@ import kotlinx.coroutines.withContext
 /**
  * Wraps a successful or erroneous response, if a valid response was given it can be found in [data]
  * otherwise the response can be found as a string in [error].
+ *
+ * @param T The type of response for example [User]
+ * @property error Contains the response body when the response could not be parsed by [T]
+ * @property data Contains the wrapped successful response
  */
 data class Response<T>(
     val error: String? = null,
@@ -34,7 +38,7 @@ data class Response<T>(
     /** Whether the request was erroneous or not. */
     fun isError() = !isSuccess()
 
-    companion object {
+    internal companion object {
         /** Create a new response from the given response string, using the [mapper]. */
         suspend inline fun <reified T> from(bodyAsText: String, mapper: ObjectMapper): Response<T> =
             withContext(Dispatchers.Default) {

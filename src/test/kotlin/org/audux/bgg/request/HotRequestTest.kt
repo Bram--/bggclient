@@ -23,7 +23,7 @@ import org.audux.bgg.common.HotListType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 
-/** Unit tests for [hotItems] extension function. */
+/** Unit tests for [hotList] extension function. */
 class HotRequestTest {
     @Test
     fun `Makes a request with minimal parameters`() {
@@ -31,7 +31,7 @@ class HotRequestTest {
             val engine = TestUtils.setupMockEngine("hot")
             BggClient.engine = { engine }
 
-            val response = BggClient.hotItems().call()
+            val response = BggClient.hotList().call()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
@@ -56,7 +56,7 @@ class HotRequestTest {
             val engine = TestUtils.setupMockEngine("hot")
             BggClient.engine = { engine }
 
-            val response = BggClient.hotItems(HotListType.BOARD_GAME).call()
+            val response = BggClient.hotList(HotListType.BOARD_GAME).call()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)

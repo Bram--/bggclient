@@ -16,8 +16,8 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.BggClient.InternalBggClient
 import org.audux.bgg.BggRequestException
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.Constants.PARAM_COMMENTS
 import org.audux.bgg.common.Constants.PARAM_ID
 import org.audux.bgg.common.Constants.PARAM_MARKETPLACE
@@ -34,30 +34,7 @@ import org.audux.bgg.common.ThingType
 import org.audux.bgg.response.Response
 import org.audux.bgg.response.Things
 
-/**
- * Request a Thing or list of things. Multiple things can be requested by passing in several IDs. At
- * least one ID is required to make this request. Sending along [types] might result in an empty as
- * the API filters based on the [ThingType].
- *
- * @param ids Specifies the id of the thing(s) to retrieve. To request multiple things with a single
- *   query, can specify a comma-delimited list of ids.
- * @param types Specifies that, regardless of the type of thing asked for by id, the results are
- *   filtered by the [ThingType] objects specified. Leave empty to return all types.
- * @param stats Returns ranking and rating stats for the thing.
- * @param versions Returns version info for the thing.
- * @param videos Returns videos for the thing.
- * @param marketplace Returns marketplace data.
- * @param comments Returns all comments about the thing. Also includes ratings when commented. See
- *   page parameter.
- * @param ratingComments Returns all ratings for the thing. Also includes comments when rated. See
- *   page parameter. The [ratingComments] and [comments] parameters cannot be used together, as the
- *   output always appears in the <comments> node of the XML; comments parameter takes precedence if
- *   both are specified. Ratings are sorted in descending rating value, based on the highest rating
- *   they have assigned to that thing (each thing in the collection can have a different rating).
- * @param page Defaults to 1, controls the page of data to see for comments, and ratings data.
- * @param pageSize Set the number of records to return in paging. Minimum is 10, maximum is 100.
- *   Defaults to 100.
- */
+/** @see org.audux.bgg.BggClient.things */
 internal fun InternalBggClient.things(
     ids: Array<Int>,
     types: Array<ThingType>,

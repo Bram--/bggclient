@@ -16,7 +16,7 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.BggClient.InternalBggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.Constants.PARAM_ID
 import org.audux.bgg.common.Constants.PARAM_MEMBERS
 import org.audux.bgg.common.Constants.PARAM_PAGE
@@ -27,15 +27,8 @@ import org.audux.bgg.common.Inclusion
 import org.audux.bgg.response.Guild
 import org.audux.bgg.response.Response
 
-/**
- * Retrieve information about the given guild (id) like name, description, members etc.
- *
- * @param id ID of the guild you want to view.
- * @param members Include member roster in the results. Member list is paged and sorted.
- * @param sort Specifies how to sort the members list; default is username.
- * @param page The page of the members list to return. page size is 25.
- */
-internal fun InternalBggClient.guilds(
+/** @see org.audux.bgg.BggClient.guild */
+internal fun InternalBggClient.guild(
     id: Int,
     members: Inclusion?,
     sort: String?,

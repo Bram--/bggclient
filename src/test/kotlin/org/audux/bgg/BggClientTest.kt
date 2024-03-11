@@ -91,7 +91,7 @@ class BggClientTest {
         val latch = CountDownLatch(1)
         var response: String? = null
 
-        BggClient.InternalBggClient().apply {
+        InternalBggClient().apply {
             request {
                     Response(
                         data = client().get("https://www.google.com/test").bodyAsText(),
@@ -117,7 +117,7 @@ class BggClientTest {
         var response: String?
         var future: CompletableFuture<Response<String>>? = null
 
-        BggClient.InternalBggClient().apply {
+        InternalBggClient().apply {
             future =
                 request {
                         Response(
@@ -141,7 +141,7 @@ class BggClientTest {
         var response: String?
 
         runBlocking {
-            BggClient.InternalBggClient().apply {
+            InternalBggClient().apply {
                 response =
                     request {
                             Response(

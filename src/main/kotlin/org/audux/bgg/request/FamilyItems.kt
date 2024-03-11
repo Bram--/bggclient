@@ -16,21 +16,13 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.BggClient.InternalBggClient
+import org.audux.bgg.InternalBggClient
 import org.audux.bgg.common.Constants
 import org.audux.bgg.common.FamilyType
-import org.audux.bgg.common.HotListType
 import org.audux.bgg.response.Family
 import org.audux.bgg.response.Response
 
-/**
- * Family thing endpoint that retrieve details about the given family ID and associated `Link`
- * objects.
- *
- * @param ids array of IDs returning only families of the specified id.
- * @param types Single [HotListType] returning only items of the specified type, defaults to
- *   [HotListType.BOARD_GAME].
- */
+/** @see org.audux.bgg.BggClient.familyItems */
 internal fun InternalBggClient.familyItems(ids: Array<Int>, types: Array<FamilyType> = arrayOf()) =
     request {
         client()

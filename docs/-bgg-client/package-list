@@ -206,37 +206,19 @@ $dokka.location:org.audux.bgg.common/ThingType/entries/#/PointingToDeclaration/
 $dokka.location:org.audux.bgg.common/ThingType/param/#/PointingToDeclaration/-bgg-client/org.audux.bgg.common/-thing-type/param.html
 $dokka.location:org.audux.bgg.common/ThingType/valueOf/#kotlin.String/PointingToDeclaration/-bgg-client/org.audux.bgg.common/-thing-type/value-of.html
 $dokka.location:org.audux.bgg.common/ThingType/values/#/PointingToDeclaration/-bgg-client/org.audux.bgg.common/-thing-type/values.html
-$dokka.location:org.audux.bgg.plugin////PointingToDeclaration/-bgg-client/org.audux.bgg.plugin/index.html
-$dokka.location:org.audux.bgg.plugin//ClientRateLimitPlugin/#/PointingToDeclaration/-bgg-client/org.audux.bgg.plugin/-client-rate-limit-plugin.html
-$dokka.location:org.audux.bgg.plugin/ConcurrentRequestLimiter.Companion///PointingToDeclaration/-bgg-client/org.audux.bgg.plugin/-concurrent-request-limiter/-companion/index.html
-$dokka.location:org.audux.bgg.plugin/ConcurrentRequestLimiter///PointingToDeclaration/-bgg-client/org.audux.bgg.plugin/-concurrent-request-limiter/index.html
-$dokka.location:org.audux.bgg.plugin/ConcurrentRequestLimiter/ConcurrentRequestLimiter/#kotlin.Int/PointingToDeclaration/-bgg-client/org.audux.bgg.plugin/-concurrent-request-limiter/-concurrent-request-limiter.html
-$dokka.location:org.audux.bgg.plugin/ConcurrentRequestLimiter/onNewRequest/#io.ktor.client.request.HttpRequestBuilder/PointingToDeclaration/-bgg-client/org.audux.bgg.plugin/-concurrent-request-limiter/on-new-request.html
-$dokka.location:org.audux.bgg.plugin/ConcurrentRequestLimiterConfiguration///PointingToDeclaration/-bgg-client/org.audux.bgg.plugin/-concurrent-request-limiter-configuration/index.html
-$dokka.location:org.audux.bgg.plugin/ConcurrentRequestLimiterConfiguration/ConcurrentRequestLimiterConfiguration/#/PointingToDeclaration/-bgg-client/org.audux.bgg.plugin/-concurrent-request-limiter-configuration/-concurrent-request-limiter-configuration.html
-$dokka.location:org.audux.bgg.plugin/ConcurrentRequestLimiterConfiguration/requestLimit/#/PointingToDeclaration/-bgg-client/org.audux.bgg.plugin/-concurrent-request-limiter-configuration/request-limit.html
 $dokka.location:org.audux.bgg.request////PointingToDeclaration/-bgg-client/org.audux.bgg.request/index.html
 $dokka.location:org.audux.bgg.request/DiffusingSitemap///PointingToDeclaration/-bgg-client/org.audux.bgg.request/-diffusing-sitemap/index.html
 $dokka.location:org.audux.bgg.request/DiffusingSitemap/diffuse/#kotlin.Array[org.audux.bgg.common.SitemapLocationType]/PointingToDeclaration/-bgg-client/org.audux.bgg.request/-diffusing-sitemap/diffuse.html
-$dokka.location:org.audux.bgg.request/PaginatedForum.Companion///PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-forum/-companion/index.html
-$dokka.location:org.audux.bgg.request/PaginatedForum.Companion/PAGE_SIZE/#/PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-forum/-companion/-p-a-g-e_-s-i-z-e.html
 $dokka.location:org.audux.bgg.request/PaginatedForum///PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-forum/index.html
 $dokka.location:org.audux.bgg.request/PaginatedForum/paginate/#kotlin.Int/PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-forum/paginate.html
-$dokka.location:org.audux.bgg.request/PaginatedGuilds.Companion///PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-guilds/-companion/index.html
-$dokka.location:org.audux.bgg.request/PaginatedGuilds.Companion/PAGE_SIZE/#/PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-guilds/-companion/-p-a-g-e_-s-i-z-e.html
 $dokka.location:org.audux.bgg.request/PaginatedGuilds///PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-guilds/index.html
 $dokka.location:org.audux.bgg.request/PaginatedGuilds/paginate/#kotlin.Int/PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-guilds/paginate.html
-$dokka.location:org.audux.bgg.request/PaginatedPlays.Companion///PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-plays/-companion/index.html
-$dokka.location:org.audux.bgg.request/PaginatedPlays.Companion/PAGE_SIZE/#/PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-plays/-companion/-p-a-g-e_-s-i-z-e.html
 $dokka.location:org.audux.bgg.request/PaginatedPlays///PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-plays/index.html
 $dokka.location:org.audux.bgg.request/PaginatedPlays/paginate/#kotlin.Int/PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-plays/paginate.html
 $dokka.location:org.audux.bgg.request/PaginatedRequest///PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-request/index.html
-$dokka.location:org.audux.bgg.request/PaginatedRequest/paginate/#/PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-request/paginate.html
 $dokka.location:org.audux.bgg.request/PaginatedRequest/paginate/#kotlin.Int/PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-request/paginate.html
 $dokka.location:org.audux.bgg.request/PaginatedThings///PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-things/index.html
 $dokka.location:org.audux.bgg.request/PaginatedThings/paginate/#kotlin.Int/PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-things/paginate.html
-$dokka.location:org.audux.bgg.request/PaginatedUser.Companion///PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-user/-companion/index.html
-$dokka.location:org.audux.bgg.request/PaginatedUser.Companion/PAGE_SIZE/#/PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-user/-companion/-p-a-g-e_-s-i-z-e.html
 $dokka.location:org.audux.bgg.request/PaginatedUser///PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-user/index.html
 $dokka.location:org.audux.bgg.request/PaginatedUser/paginate/#kotlin.Int/PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-user/paginate.html
 $dokka.location:org.audux.bgg.request/Request///PointingToDeclaration/-bgg-client/org.audux.bgg.request/-request/index.html
@@ -511,8 +493,6 @@ $dokka.location:org.audux.bgg.response/Price///PointingToDeclaration/-bgg-clien
 $dokka.location:org.audux.bgg.response/Price/Price/#kotlin.Double#kotlin.String/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-price/-price.html
 $dokka.location:org.audux.bgg.response/Price/currency/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-price/currency.html
 $dokka.location:org.audux.bgg.response/Price/value/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-price/value.html
-$dokka.location:org.audux.bgg.response/Response.Companion///PointingToDeclaration/-bgg-client/org.audux.bgg.response/-response/-companion/index.html
-$dokka.location:org.audux.bgg.response/Response.Companion/from/#kotlin.String#com.fasterxml.jackson.databind.ObjectMapper/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-response/-companion/from.html
 $dokka.location:org.audux.bgg.response/Response///PointingToDeclaration/-bgg-client/org.audux.bgg.response/-response/index.html
 $dokka.location:org.audux.bgg.response/Response/Response/#kotlin.String?#TypeParam(bounds=[kotlin.Any?])?/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-response/-response.html
 $dokka.location:org.audux.bgg.response/Response/data/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-response/data.html
@@ -667,25 +647,15 @@ $dokka.location:org.audux.bgg.response/Weblink/Weblink/#java.net.URI#kotlin.Stri
 $dokka.location:org.audux.bgg.response/Weblink/href/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-weblink/href.html
 $dokka.location:org.audux.bgg.response/Weblink/title/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-weblink/title.html
 $dokka.location:org.audux.bgg////PointingToDeclaration/-bgg-client/org.audux.bgg/index.html
-$dokka.location:org.audux.bgg/BggClient.Severity.Debug///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-bgg-client/org.audux.bgg/-bgg-client/-severity/-debug/index.html
-$dokka.location:org.audux.bgg/BggClient.Severity.Error///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-bgg-client/org.audux.bgg/-bgg-client/-severity/-error/index.html
-$dokka.location:org.audux.bgg/BggClient.Severity.Info///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-bgg-client/org.audux.bgg/-bgg-client/-severity/-info/index.html
-$dokka.location:org.audux.bgg/BggClient.Severity.Verbose///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-bgg-client/org.audux.bgg/-bgg-client/-severity/-verbose/index.html
-$dokka.location:org.audux.bgg/BggClient.Severity.Warn///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-bgg-client/org.audux.bgg/-bgg-client/-severity/-warn/index.html
-$dokka.location:org.audux.bgg/BggClient.Severity///PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/-severity/index.html
-$dokka.location:org.audux.bgg/BggClient.Severity/entries/#/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/-severity/entries.html
-$dokka.location:org.audux.bgg/BggClient.Severity/valueOf/#kotlin.String/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/-severity/value-of.html
-$dokka.location:org.audux.bgg/BggClient.Severity/values/#/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/-severity/values.html
 $dokka.location:org.audux.bgg/BggClient///PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/index.html
 $dokka.location:org.audux.bgg/BggClient/collection/#kotlin.String#org.audux.bgg.common.ThingType#org.audux.bgg.common.ThingType?#kotlin.Array[kotlin.Int]?#kotlin.Boolean#kotlin.Boolean#kotlin.Boolean#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Inclusion?#kotlin.Int?#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Inclusion?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Int?#java.time.LocalDateTime?/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/collection.html
 $dokka.location:org.audux.bgg/BggClient/configure/#kotlin.Function1[org.audux.bgg.BggClientConfiguration,kotlin.Unit]/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/configure.html
-$dokka.location:org.audux.bgg/BggClient/engine/#/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/engine.html
 $dokka.location:org.audux.bgg/BggClient/familyItems/#kotlin.Array[kotlin.Int]#kotlin.Array[org.audux.bgg.common.FamilyType]/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/family-items.html
 $dokka.location:org.audux.bgg/BggClient/forum/#kotlin.Int#kotlin.Int?/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/forum.html
 $dokka.location:org.audux.bgg/BggClient/forumList/#kotlin.Int#org.audux.bgg.common.ForumListType/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/forum-list.html
 $dokka.location:org.audux.bgg/BggClient/geekList/#kotlin.Int#org.audux.bgg.common.Inclusion?/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/geek-list.html
-$dokka.location:org.audux.bgg/BggClient/guilds/#kotlin.Int#org.audux.bgg.common.Inclusion?#kotlin.String?#kotlin.Int?/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/guilds.html
-$dokka.location:org.audux.bgg/BggClient/hotItems/#org.audux.bgg.common.HotListType?/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/hot-items.html
+$dokka.location:org.audux.bgg/BggClient/guild/#kotlin.Int#org.audux.bgg.common.Inclusion?#kotlin.String?#kotlin.Int?/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/guild.html
+$dokka.location:org.audux.bgg/BggClient/hotList/#org.audux.bgg.common.HotListType?/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/hot-list.html
 $dokka.location:org.audux.bgg/BggClient/plays/#kotlin.String#kotlin.Int?#org.audux.bgg.common.PlayThingType?#java.time.LocalDate?#java.time.LocalDate?#org.audux.bgg.common.SubType?#kotlin.Int?/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/plays.html
 $dokka.location:org.audux.bgg/BggClient/search/#kotlin.String#kotlin.Array[org.audux.bgg.common.ThingType]#kotlin.Boolean/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/search.html
 $dokka.location:org.audux.bgg/BggClient/setLoggerSeverity/#org.audux.bgg.BggClient.Severity/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/set-logger-severity.html
@@ -704,7 +674,6 @@ $dokka.location:org.audux.bgg/BggRequestException///PointingToDeclaration/-bgg-
 $dokka.location:org.audux.bgg/BggRequestException/BggRequestException/#kotlin.String/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-request-exception/-bgg-request-exception.html
 org.audux.bgg
 org.audux.bgg.common
-org.audux.bgg.plugin
 org.audux.bgg.request
 org.audux.bgg.response
 

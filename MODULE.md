@@ -46,20 +46,24 @@ Using the library in Java is the same as in Kotlin, however it uses a `Completab
 request and response can be used in Java.
 
 ```java
-java.util.concurrent.CompletableFuture<Response<Things>>future=
-        BggClient.things(
-        /* ids= */ new Integer[]{396790},
-        /* types= */ new ThingType[]{},
-        /* stats= */ false,
-        /* versions= */ false,
-        /* videos= */ false,
-        /* marketplace= */ false,
-        /* comments= */ true,
-        /* ratingComments= */ false)
-        .callAsync();
+class Example() {
+    public static void main(String... arguments) {
+        CompletableFuture<Response<Things>> future = 
+                BggClient.things(
+                                /* ids= */ new Integer[]{396790},
+                                /* types= */ new ThingType[]{},
+                                /* stats= */ false,
+                                /* versions= */ false,
+                                /* videos= */ false,
+                                /* marketplace= */ false,
+                                /* comments= */ true,
+                                /* ratingComments= */ false)
+                        .callAsync();
 
-// Blocking get - for example purposes only.
-        Response<Things> response=future.get(2_000,MILLISECONDS);
+        // Blocking get - for example purposes only.
+        Response<Things> response = future.get(2_000, MILLISECONDS);
+    }
+}
 ```
 
 The same as the Kotlin example above; this returns all information about a `Thing` - in this case a

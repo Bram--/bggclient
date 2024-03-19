@@ -22,7 +22,7 @@ publishing {
         create<MavenPublication>("mavenJava") {
             groupId = "org.audux.bgg"
             artifactId = "bggclient"
-            version = "0.6.0"
+            version = "0.7.0"
 
             pom {
                 name = "Unofficial JVM BGG client"

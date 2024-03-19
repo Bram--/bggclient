@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
@@ -138,85 +139,36 @@ data class Thing(
     @JsonDeserialize(using = WrappedIntDeserializer::class) val issueIndex: Int?,
 
     /** Primary name. */
-    @JsonIgnore var name: String = ""
-) {
+    @JsonIgnore var name: String = "",
+
     /** Contains a list of polls such as the [PlayerAgePoll]. */
-    @JsonProperty("poll")
-    var polls: List<Poll> = listOf()
-        set(value) {
-            field = field + value
-        }
+    var polls: List<Poll> = listOf(),
 
     /**
      * Depending on the [type] this list may contain different links e.g. for boardgames links such
      * as: `boardgamecategory`, `boardgamefamily`, `boardgamemechanic` etc. may be included. For
      * `rpgitem` similar but different links are returned e.g. `rpgitemcategory` etc.
      */
-    @JacksonXmlProperty(localName = "link")
-    var links: List<Link> = listOf()
-        set(value) {
-            field = field + value
-        }
+    var links: List<Link> = listOf(),
 
     /** Names of the thing, consisting of a primary and optionally alternatives. */
-    @JsonProperty("name")
-    var names: List<Name> = listOf()
-        set(value) {
-            field = field + value
-            field.forEach { if (it.type == "primary") name = it.value }
-        }
+    var names: List<Name> = listOf(),
+) {
+    @JsonSetter("poll")
+    fun internalSetPolls(value: List<Poll>) {
+        polls = polls + value
+    }
 
-    fun copy(
-        id: Int = this.id,
-        type: ThingType = this.type,
-        thumbnail: String? = this.thumbnail,
-        image: String? = this.image,
-        description: String? = this.description,
-        yearPublished: Int? = this.yearPublished,
-        datePublished: String? = this.datePublished,
-        releaseDate: LocalDate? = this.releaseDate,
-        minPlayers: Int? = this.minPlayers,
-        maxPlayers: Double? = this.maxPlayers,
-        playingTimeInMinutes: Int? = this.playingTimeInMinutes,
-        minPlayingTimeInMinutes: Int? = this.minPlayingTimeInMinutes,
-        maxPlayingTimeInMinutes: Int? = this.maxPlayingTimeInMinutes,
-        minAge: Int? = this.minAge,
-        videos: List<Video> = this.videos,
-        comments: Comments? = this.comments,
-        statistics: Statistics? = this.statistics,
-        listings: List<MarketplaceListing> = this.listings,
-        versions: List<Version> = this.versions,
-        seriesCode: String? = this.seriesCode,
-        issueIndex: Int? = this.issueIndex
-    ) =
-        Thing(
-                id,
-                type,
-                thumbnail,
-                image,
-                description,
-                yearPublished,
-                datePublished,
-                releaseDate,
-                minPlayers,
-                maxPlayers,
-                playingTimeInMinutes,
-                minPlayingTimeInMinutes,
-                maxPlayingTimeInMinutes,
-                minAge,
-                videos,
-                comments,
-                statistics,
-                listings,
-                versions,
-                seriesCode,
-                issueIndex,
-            )
-            .also {
-                it.names = this.names
-                it.links = this.links
-                it.polls = this.polls
-            }
+    @JsonSetter("link")
+    fun internalSetLinks(value: List<Link>) {
+        links = links + value
+    }
+
+    @JsonSetter("name")
+    fun internalSetNames(value: List<Name>) {
+        names = names + value
+        names.forEach { if (it.type == "primary") name = it.value }
+    }
 }
 
 /** Available versions of the thing e.g. Different prints of a boardgame. */
@@ -253,24 +205,27 @@ data class Version(
 
     /** Weight in lbs (pounds). */
     @JsonDeserialize(using = WrappedDoubleDeserializer::class) val weight: Double?,
-) {
-    /** Names of the product, consisting of a primary and optionally alternatives. */
-    @JsonProperty("name")
-    var names: List<Name> = listOf()
-        set(value) {
-            field = field + value
-            field.forEach { if (it.type == "primary") name = it.value }
-        }
 
     /** Primary name. */
-    @JsonIgnore var name = ""
+    @JsonIgnore var name: String = "",
+
+    /** Names of the product, consisting of a primary and optionally alternatives. */
+    var names: List<Name> = listOf(),
 
     /** Additional information about this product e.g. Language, artist(s) etc. */
-    @JsonProperty("link")
-    var links: List<Link> = listOf()
-        set(value) {
-            field = field + value
-        }
+    var links: List<Link> = listOf(),
+) {
+    @JsonSetter("name")
+    fun internalSetNames(value: List<Name>) {
+        names = names + value
+        names.forEach { if (it.type == "primary") name = it.value }
+    }
+
+    /** Additional information about this product e.g. Language, artist(s) etc. */
+    @JsonSetter("link")
+    fun internalSetLinks(value: List<Link>) {
+        links = links + value
+    }
 }
 
 /**

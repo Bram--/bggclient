@@ -15,6 +15,8 @@ package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import java.net.URI
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -39,6 +41,15 @@ class ThingsResponseTest {
         val things = mapper.readValue(TestUtils.xml("thing?id=1,2,3"), Things::class.java)
 
         assertThat(things.things).hasSize(3)
+    }
+
+    @Test
+    fun `is (K)Serializable`() {
+        val things = mapper.readValue(TestUtils.xml("thing?id=1"), Things::class.java)
+        val thing = things.things[0]
+        val encodedThing = Json.encodeToString(thing)
+
+        assertThat(Json.decodeFromString<Thing>(encodedThing)).isEqualTo(thing)
     }
 
     @Nested

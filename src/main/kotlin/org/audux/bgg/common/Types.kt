@@ -16,6 +16,7 @@ package org.audux.bgg.common
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
+import kotlinx.serialization.Serializable
 import org.audux.bgg.response.WrappedDoubleDeserializer
 import org.audux.bgg.response.WrappedIntDeserializer
 
@@ -23,6 +24,7 @@ import org.audux.bgg.response.WrappedIntDeserializer
  * The different kind/type of things the API may return such as a board game or expansion etc.
  * [See docs for more info](https://boardgamegeek.com/wiki/page/BGG_XML_API2#Thing_Items).
  */
+@Serializable
 enum class ThingType(val param: String) {
     UNKNOWN(""), // Used whenever the type is empty or not recognized.
     BOARD_GAME("boardgame"),
@@ -47,6 +49,7 @@ enum class ThingType(val param: String) {
  *
  * Note: About half of these types actually do _not_ return any list.
  */
+@Serializable
 enum class HotListType(val param: String) {
     UNKNOWN(""), // Used whenever the type is empty or not recognized.
     BOARD_GAME("boardgame"),
@@ -60,6 +63,7 @@ enum class HotListType(val param: String) {
 }
 
 /** Different sub types returned in the [org.audux.bgg.request.plays] request/ response */
+@Serializable
 enum class SubType(val param: String) {
     UNKNOWN(""), // Used whenever the type is empty or not recognized.
     BOARD_GAME("boardgame"),
@@ -81,6 +85,7 @@ enum class SubType(val param: String) {
  * The different kind/type of families the API may return such as a board game or rpgs.
  * [See docs for more info](https://boardgamegeek.com/wiki/page/BGG_XML_API2#Family_Items).
  */
+@Serializable
 enum class FamilyType(val param: String) {
     UNKNOWN(""), // Used whenever the type is empty or not recognized.
     RPG("rpg"),
@@ -96,6 +101,7 @@ enum class FamilyType(val param: String) {
  * Used to map the id in the forumlist request to either a family ot thing.
  * [See docs for more info](https://boardgamegeek.com/wiki/page/BGG_XML_API2#Forum_Lists).
  */
+@Serializable
 enum class ForumListType(val param: String) {
     UNKNOWN(""), // Used whenever the type is empty or not recognized.
     THING("thing"),
@@ -107,6 +113,7 @@ enum class ForumListType(val param: String) {
 }
 
 /** Used to show what type of thing it is when played, either a thing or a family(?) */
+@Serializable
 enum class PlayThingType(val param: String) {
     UNKNOWN(""), // Used whenever the type is empty or not recognized.
     THING("thing"),
@@ -121,6 +128,7 @@ enum class PlayThingType(val param: String) {
  * Used to either include or exclude certain items in a request, see
  * [org.audux.bgg.request.collection] and [org.audux.bgg.request.user].
  */
+@Serializable
 enum class Inclusion {
     INCLUDE,
     EXCLUDE;
@@ -129,6 +137,7 @@ enum class Inclusion {
 }
 
 /** Different domains used for the users' hot- and top-10. */
+@Serializable
 enum class Domain(val param: String, val address: String) {
     BOARD_GAME_GEEK("boardgame", "https://boardgamegeek.com"),
     RPG_GEEK("rpg", "https://rpggeek.com"),
@@ -136,6 +145,7 @@ enum class Domain(val param: String, val address: String) {
 }
 
 /** Encapsulates the name of a Thing either primary or alternate name. */
+@Serializable
 data class Name(
     /** The actual name. */
     @JacksonXmlProperty(isAttribute = true) val value: String,
@@ -151,6 +161,7 @@ data class Name(
 )
 
 /** Wrapper for [Ratings]. */
+@Serializable
 data class Statistics(
     /** Unused attribute? */
     @JacksonXmlProperty(isAttribute = true) val page: Int?,
@@ -163,6 +174,7 @@ data class Statistics(
  * Contains rating aggregated and other statistics like average rating, standard deviation, number
  * of comments.
  */
+@Serializable
 data class Ratings(
     /** A user rating if available. */
     @JacksonXmlProperty(isAttribute = true) val value: String? = null,
@@ -211,6 +223,7 @@ data class Ratings(
 )
 
 /** Represents a rank in a single ranking (Consisting of type & name). */
+@Serializable
 data class Rank(
     /** Unique of the ranking type - ID and type+name should always be a coupled. */
     @JacksonXmlProperty(isAttribute = true) val id: Int,
@@ -248,6 +261,7 @@ data class Rank(
  *
  *   And so on.
  */
+@Serializable
 data class Link(
     /**
      * The id for the link, most of these cannot be retrieved via the API although a 'family'-API

@@ -23,7 +23,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import kotlinx.serialization.Polymorphic
 import java.net.URI
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -148,7 +147,7 @@ data class Thing(
     @JsonIgnore var name: String = "",
 
     /** Contains a list of polls such as the [PlayerAgePoll]. */
-    @Polymorphic var polls: List<Poll> = listOf(),
+    var polls: List<Poll> = listOf(),
 
     /**
      * Depending on the [type] this list may contain different links e.g. for boardgames links such
@@ -367,8 +366,7 @@ data class Price(
 @Serializable
 data class Weblink(
     /** Link to web resource. */
-    @Serializable(with = URISerializer::class)
-    val href: URI,
+    @Serializable(with = URISerializer::class) val href: URI,
 
     /** The title of the resource. */
     val title: String,

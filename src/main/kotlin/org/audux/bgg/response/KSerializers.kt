@@ -50,7 +50,7 @@ class URISerializer : KSerializer<URI> {
 }
 
 @OptIn(InternalSerializationApi::class)
-class PollSerializer<T : Poll>(valueSerializer: KSerializer<T>) : KSerializer<Poll> {
+class PollSerializer : KSerializer<Poll> {
     private val serializer =
         SealedClassSerializer(
             "Poll",
@@ -62,7 +62,7 @@ class PollSerializer<T : Poll>(valueSerializer: KSerializer<T>) : KSerializer<Po
             ),
             arrayOf(
                 LanguageDependencePoll.serializer(),
-                PlayerAgePoll.serializer(valueSerializer),
+                PlayerAgePoll.serializer(),
                 NumberOfPlayersPoll.serializer(),
             ),
         )

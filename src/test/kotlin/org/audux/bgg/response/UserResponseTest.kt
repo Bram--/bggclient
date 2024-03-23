@@ -16,6 +16,9 @@ package org.audux.bgg.response
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
 import java.time.LocalDate
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.audux.bgg.util.TestUtils
 import org.audux.bgg.util.TestUtils.xml
 import org.junit.jupiter.api.Test
@@ -29,6 +32,14 @@ class UserResponseTest {
         val results = mapper.readValue(xml("user?name=NULL"), User::class.java)
 
         assertThat(results.name).isEmpty()
+    }
+
+    @Test
+    fun `is (K)Serializable`() {
+        val user = mapper.readValue(xml("user?name=Novaeux"), User::class.java)
+        val encodedUser = Json.encodeToString(user)
+
+        assertThat(Json.decodeFromString<User>(encodedUser)).isEqualTo(user)
     }
 
     @Test

@@ -11,6 +11,8 @@ import com.google.common.collect.Lists;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 import org.audux.bgg.common.Domain;
@@ -344,15 +346,15 @@ public class BggClientJavaTest {
                     + " Rank games right after playing, add notes to remember specific"
                     + " things and thoughts, and keep your collection up to date! It"
                     + " only takes a couple of games not added to easily forget you even"
-                    + " have a game."));
-    var firstComment =
-        new GeekListComment(
+                    + " have a game.",
+                List.of()));
+
+    var firstComment = new GeekListComment(
             /* username= */ "TomandJonna",
             /* date= */ LocalDateTime.of(2024, 2, 7, 14, 47, 55),
             /* postDate= */ LocalDateTime.of(2024, 2, 7, 14, 47, 55),
             /* editDate= */ LocalDateTime.of(2024, 2, 7, 14, 47, 55),
             /* thumbs= */ 2);
-    firstComment.setValue("Thank you");
     assertThat(geekList.getComments().get(0)).isEqualTo(firstComment);
   }
 

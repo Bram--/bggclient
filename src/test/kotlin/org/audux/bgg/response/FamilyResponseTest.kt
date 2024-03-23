@@ -15,6 +15,9 @@ package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.audux.bgg.common.FamilyType
 import org.audux.bgg.common.Link
 import org.audux.bgg.common.Name
@@ -30,6 +33,14 @@ class FamilyResponseTest {
         val results = mapper.readValue(TestUtils.xml("family?id=-1"), Family::class.java)
 
         assertThat(results.items).hasSize(0)
+    }
+
+    @Test
+    fun `is (K)Serializable`() {
+        val family = mapper.readValue(TestUtils.xml("family?id=-1"), Family::class.java)
+        val encodedFamily = Json.encodeToString(family)
+
+        assertThat(Json.decodeFromString<Family>(encodedFamily)).isEqualTo(family)
     }
 
     @Test

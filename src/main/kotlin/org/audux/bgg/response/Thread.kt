@@ -19,9 +19,11 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import java.time.LocalDateTime
+import kotlinx.serialization.Serializable
 
 /** Encapsulates an entire thread and all of its articles/posts. */
 @JsonRootName("thread")
+@Serializable
 data class Thread(
     /** Terms of use of the BGG API. */
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
@@ -43,6 +45,7 @@ data class Thread(
 )
 
 /** Encapsulates an article in the current thread. */
+@Serializable
 data class Article(
     /** Unique ID that is used in the link below. */
     @JacksonXmlProperty(isAttribute = true) val id: Int,
@@ -61,11 +64,13 @@ data class Article(
     /** The date and time this article was created. */
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssz")
     @JacksonXmlProperty(isAttribute = true)
+    @Serializable(with = LocalDateTimeSerializer::class)
     val postDate: LocalDateTime?,
 
     /** The date and time a post was last edited. */
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssz")
     @JacksonXmlProperty(isAttribute = true)
+    @Serializable(with = LocalDateTimeSerializer::class)
     val editDate: LocalDateTime?,
 
     /** Title/Subject of the article/post. */

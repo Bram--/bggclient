@@ -16,6 +16,9 @@ package org.audux.bgg.response
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
 import java.time.LocalDateTime
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 
@@ -46,6 +49,14 @@ class GuildResponseTest {
                     country = "United Kingdom",
                 )
             )
+    }
+
+    @Test
+    fun `is (K)Serializable`() {
+        val guild = mapper.readValue(TestUtils.xml("guilds?id=2310"), Guild::class.java)
+        val encodedGuild = Json.encodeToString(guild)
+
+        assertThat(Json.decodeFromString<Guild>(encodedGuild)).isEqualTo(guild)
     }
 
     @Test

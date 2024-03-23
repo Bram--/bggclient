@@ -18,12 +18,14 @@ import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import java.time.LocalDate
+import kotlinx.serialization.Serializable
 
 /**
  * Response wrapper for User response, contains user information and optionally lists of buddies,
  * guilds, top games and hot games.
  */
 @JsonRootName("user")
+@Serializable
 data class User(
     /** Terms of use of the BGG API. */
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
@@ -47,7 +49,9 @@ data class User(
     @JsonDeserialize(using = WrappedIntDeserializer::class) val yearRegistered: Int?,
 
     /** Date the user last logged in */
-    @JsonDeserialize(using = WrappedLocalDateDeserializer::class) val lastLogin: LocalDate?,
+    @JsonDeserialize(using = WrappedLocalDateDeserializer::class)
+    @Serializable(with = LocalDateSerializer::class)
+    val lastLogin: LocalDate?,
 
     /** The state or province the user lives - if provided. */
     @JsonDeserialize(using = WrappedStringDeserializer::class) val stateOrProvince: String?,
@@ -90,6 +94,7 @@ data class User(
 )
 
 /** List of Buddies/Friends of the user. */
+@Serializable
 data class Buddies(
     /** Total number of buddies. */
     val total: Int,
@@ -102,6 +107,7 @@ data class Buddies(
 )
 
 /** Buddy of the user. */
+@Serializable
 data class Buddy(
     /** The id of the buddy. */
     @JacksonXmlProperty(isAttribute = true) val id: Int,
@@ -111,6 +117,7 @@ data class Buddy(
 )
 
 /** Guilds user is a member of. */
+@Serializable
 data class Guilds(
     /** The total number of guilds user is a member of. */
     val total: Int,
@@ -123,6 +130,7 @@ data class Guilds(
 )
 
 /** The id and name of a guild the user is a member of. */
+@Serializable
 data class GuildReference(
     /** The id of the guild. */
     @JacksonXmlProperty(isAttribute = true) val id: Int,
@@ -132,6 +140,7 @@ data class GuildReference(
 )
 
 /** The list of Hot items the user has added to their 'hot list' - as seen on their profile. */
+@Serializable
 data class Hot(
     /** The domain the hot list was specified on i.e. 'boardgame' - same as in the request. */
     @JacksonXmlProperty(isAttribute = true) val domain: String,
@@ -141,6 +150,7 @@ data class Hot(
 )
 
 /** The list of Top items the user has added to their 'top list' - as seen on their profile. */
+@Serializable
 data class Top(
     /** The domain the top list was specified on i.e. 'boardgame' - same as in the request. */
     @JacksonXmlProperty(isAttribute = true) val domain: String,
@@ -153,6 +163,7 @@ data class Top(
  * Simple view of a item in the hot or top lists of the user, describing a boardgame, rpg etc. The
  * [org.audux.bgg.request.things] api may be used to request more information about the thing.
  */
+@Serializable
 data class ListItem(
     /** The (local) rank of the thin, i.e. the rank of the item in the user's hot or top list. */
     @JacksonXmlProperty(isAttribute = true) val rank: Int,

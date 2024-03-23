@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import java.time.LocalDateTime
+import kotlinx.serialization.Serializable
 import org.audux.bgg.common.Ratings
 import org.audux.bgg.common.ThingType
 
@@ -26,6 +27,7 @@ import org.audux.bgg.common.ThingType
  * Response wrapper for the user's Collection. These contain lists of items like board games wrapped
  * in [CollectionItem].
  */
+@Serializable
 @JsonRootName("items")
 data class Collection(
     /** Terms of use of the BGG API. */
@@ -43,6 +45,7 @@ data class Collection(
 
 /** An item in the collection e.g. a board game, rpg etc. */
 @JsonIgnoreProperties("objecttype")
+@Serializable
 data class CollectionItem(
     @JacksonXmlProperty(isAttribute = true, localName = "collid") val collectionId: Int,
     @JacksonXmlProperty(isAttribute = true) val objectId: Int,
@@ -84,6 +87,7 @@ data class CollectionItem(
 )
 
 /** The status of collection item e.g. whether the user owns it, wants it etc. */
+@Serializable
 data class Status(
     /** Whether item is currently owned. */
     @JsonDeserialize(using = NumberToBooleanDeserializer::class)
@@ -131,10 +135,12 @@ data class Status(
     /** Whether item is currently owned. */
     @JacksonXmlProperty(isAttribute = true)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Serializable(with = LocalDateSerializer::class)
     val lastModified: LocalDateTime? = null,
 )
 
 /** Statistics for a collection item. */
+@Serializable
 data class CollectionStatistics(
     /** Minimum number of players. */
     @JacksonXmlProperty(localName = "minplayers") val minimumPlayers: Int?,

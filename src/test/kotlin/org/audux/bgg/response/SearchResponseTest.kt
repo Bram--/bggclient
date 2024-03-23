@@ -15,6 +15,9 @@ package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.audux.bgg.common.Name
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.util.TestUtils
@@ -31,6 +34,16 @@ class SearchResponseTest {
 
         assertThat(results.total).isEqualTo(0)
         assertThat(results.results).hasSize(0)
+    }
+
+    @Test
+    fun `is (K)Serializable`() {
+        val searchResults =
+            mapper.readValue(TestUtils.xml("search?query=my+little"), SearchResults::class.java)
+        val encodedSearchResults = Json.encodeToString(searchResults)
+
+        assertThat(Json.decodeFromString<SearchResults>(encodedSearchResults))
+            .isEqualTo(searchResults)
     }
 
     @Test

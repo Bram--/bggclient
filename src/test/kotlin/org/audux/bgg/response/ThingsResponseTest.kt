@@ -18,6 +18,7 @@ import com.google.common.truth.Truth.assertThat
 import java.net.URI
 import java.time.LocalDate
 import java.time.LocalDateTime
+import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.audux.bgg.common.ThingType

@@ -16,6 +16,9 @@ package org.audux.bgg.response
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
 import java.time.LocalDate
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.audux.bgg.common.PlayThingType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
@@ -30,6 +33,14 @@ class PlaysResponseTest {
 
         assertThat(results.username).isEqualTo("null")
         assertThat(results.plays).isEmpty()
+    }
+
+    @Test
+    fun `is (K)Serializable`() {
+        val plays = mapper.readValue(TestUtils.xml("plays?username=Novaeux"), Plays::class.java)
+        val encodedPlays = Json.encodeToString(plays)
+
+        assertThat(Json.decodeFromString<Plays>(encodedPlays)).isEqualTo(plays)
     }
 
     @Test

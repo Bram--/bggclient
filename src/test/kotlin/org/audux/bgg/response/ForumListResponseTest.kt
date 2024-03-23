@@ -17,6 +17,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 
@@ -29,6 +32,14 @@ class ForumListResponseTest {
         val results = mapper.readValue(TestUtils.xml("forumlist?id=-1"), ForumList::class.java)
 
         assertThat(results.forums).hasSize(0)
+    }
+
+    @Test
+    fun `is (K)Serializable`() {
+        val forumList = mapper.readValue(TestUtils.xml("forumlist?id=-1"), ForumList::class.java)
+        val encodedForumList = Json.encodeToString(forumList)
+
+        assertThat(Json.decodeFromString<ForumList>(encodedForumList)).isEqualTo(forumList)
     }
 
     @Test

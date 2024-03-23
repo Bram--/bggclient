@@ -15,6 +15,9 @@ package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 
@@ -27,6 +30,14 @@ class HotResponseTest {
         val results = mapper.readValue(TestUtils.xml("hot?type=rpgperson"), HotList::class.java)
 
         assertThat(results.results).hasSize(0)
+    }
+
+    @Test
+    fun `is (K)Serializable`() {
+        val hotList = mapper.readValue(TestUtils.xml("hot?type=rpgperson"), HotList::class.java)
+        val encodedHotList = Json.encodeToString(hotList)
+
+        assertThat(Json.decodeFromString<HotList>(encodedHotList)).isEqualTo(hotList)
     }
 
     @Test

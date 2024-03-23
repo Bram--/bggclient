@@ -15,12 +15,23 @@ package org.audux.bgg.response
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 
 /** Unit test for [Hot] data classes. */
 class SitemapIndexResponseTest {
     private val mapper: ObjectMapper = TestUtils.getBggClientMapper()
+
+    @Test
+    fun `is (K)Serializable`() {
+        val sitemapIndex = mapper.readValue(TestUtils.xml("sitemapindex"), SitemapIndex::class.java)
+        val encodedSitemapIndex = Json.encodeToString(sitemapIndex)
+
+        assertThat(Json.decodeFromString<SitemapIndex>(encodedSitemapIndex)).isEqualTo(sitemapIndex)
+    }
 
     @Test
     fun `Parses a Sitemap Index`() {

@@ -16,6 +16,9 @@ package org.audux.bgg.response
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
 import java.time.LocalDateTime
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.audux.bgg.common.SubType
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
@@ -30,6 +33,14 @@ class GeekListResponseTest {
         assertThrows<Exception> {
             mapper.readValue(TestUtils.xml("geeklist?id=0"), GeekList::class.java)
         }
+    }
+
+    @Test
+    fun `is (K)Serializable`() {
+        val geekList = mapper.readValue(TestUtils.xml("geeklist?id=331520"), GeekList::class.java)
+        val encodedGeekList = Json.encodeToString(geekList)
+
+        assertThat(Json.decodeFromString<GeekList>(encodedGeekList)).isEqualTo(geekList)
     }
 
     @Test

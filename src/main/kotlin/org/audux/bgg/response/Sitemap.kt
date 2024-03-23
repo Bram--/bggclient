@@ -19,10 +19,12 @@ import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import java.time.LocalDate
+import kotlinx.serialization.Serializable
 
 /** Represents a single Sitemap containing a set of URLs. */
 @JsonRootName("urlset")
 @JsonIgnoreProperties("schemaLocation")
+@Serializable
 data class Sitemap(
     /** List of the URLs in this Sitemap. */
     @JacksonXmlProperty(localName = "url") val sitemaps: List<SitemapUrl>
@@ -32,6 +34,7 @@ data class Sitemap(
  * Single URL/Location contained in the Sitemap; could, for example, represent a single Board game
  * page.
  */
+@Serializable
 data class SitemapUrl(
     /** The actual URL/Web address */
     @JsonProperty("loc")
@@ -45,5 +48,7 @@ data class SitemapUrl(
     val priority: Double?,
 
     /** The date the page was last modified. */
-    @JsonProperty("lastmod") val lastModified: LocalDate?,
+    @JsonProperty("lastmod")
+    @Serializable(with = LocalDateSerializer::class)
+    val lastModified: LocalDate?,
 )

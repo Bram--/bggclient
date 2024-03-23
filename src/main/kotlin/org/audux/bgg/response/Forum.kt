@@ -19,12 +19,14 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import java.time.LocalDateTime
+import kotlinx.serialization.Serializable
 
 /**
  * Encapsulates a forum containing a list of thread summaries - these can be retrieve using in
  * [org.audux.bgg.request.thread] endpoint.
  */
 @JsonRootName("forum")
+@Serializable
 data class Forum(
     /** Terms of use of the BGG API. */
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
@@ -51,6 +53,7 @@ data class Forum(
     /** The date and time a post was last made. */
     @JsonFormat(pattern = "E, dd MMM yyyy HH:mm:ss Z")
     @JacksonXmlProperty(isAttribute = true)
+    @Serializable(with = LocalDateTimeSerializer::class)
     val lastPostDate: LocalDateTime?,
 
     /** The list of threads in this forum. */
@@ -60,6 +63,7 @@ data class Forum(
 /**
  * Summary of a thread in the forum, contains some stats and aggregated data but no articles/posts.
  */
+@Serializable
 data class ThreadSummary(
     /** Unique ID that can be used to look up more information using the thread endpoint. */
     @JacksonXmlProperty(isAttribute = true) val id: Int,
@@ -80,10 +84,12 @@ data class ThreadSummary(
     /** The date and time this thread was created. */
     @JsonFormat(pattern = "E, dd MMM yyyy HH:mm:ss Z")
     @JacksonXmlProperty(isAttribute = true)
+    @Serializable(with = LocalDateTimeSerializer::class)
     val postDate: LocalDateTime?,
 
     /** The date and time a post was last made in this thread. */
     @JsonFormat(pattern = "E, dd MMM yyyy HH:mm:ss Z")
     @JacksonXmlProperty(isAttribute = true)
+    @Serializable(with = LocalDateTimeSerializer::class)
     val lastPostDate: LocalDateTime?,
 )

@@ -16,11 +16,13 @@ package org.audux.bgg.response
 import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
+import kotlinx.serialization.Serializable
 import org.audux.bgg.common.Name
 import org.audux.bgg.common.ThingType
 
 /** Response wrapper for the search results/items to be returned. */
 @JsonRootName("items")
+@Serializable
 data class SearchResults(
     /** Terms of use of the BGG API. */
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
@@ -33,6 +35,7 @@ data class SearchResults(
 )
 
 /** Encapsulates a single search result. */
+@Serializable
 data class SearchResult(
     /** Primary or alternative name. */
     val name: Name,

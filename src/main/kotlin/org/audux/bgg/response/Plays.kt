@@ -18,10 +18,12 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import java.time.LocalDate
+import kotlinx.serialization.Serializable
 import org.audux.bgg.common.PlayThingType
 
 /** Response wrapper for plays by the user to be returned. */
 @JsonRootName("plays")
+@Serializable
 data class Plays(
     /** Terms of use of the BGG API. */
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
@@ -46,12 +48,15 @@ data class Plays(
  * Represents a single(or batched as specified by `quantity`) play, including the 'thing'/game and
  * its players.
  */
+@Serializable
 data class Play(
     /** Unique ID of the play - not used */
     @JacksonXmlProperty(isAttribute = true) val id: Int,
 
     /** The date the play took place. */
-    @JacksonXmlProperty(isAttribute = true) val date: LocalDate,
+    @JacksonXmlProperty(isAttribute = true)
+    @Serializable(with = LocalDateSerializer::class)
+    val date: LocalDate,
 
     /** The number of plays, of the same game with the same players. */
     @JacksonXmlProperty(isAttribute = true) val quantity: Int,
@@ -86,6 +91,7 @@ data class Play(
 )
 
 /** Represents the item/thing that was played e.g. a board game. */
+@Serializable
 data class PlayItem(
     /** The name of the item. */
     @JacksonXmlProperty(isAttribute = true) val name: String,
@@ -107,6 +113,7 @@ data class PlayItem(
 )
 
 /** A SubType of a thing e.g. board game. */
+@Serializable
 data class SubType(
     @JsonDeserialize(using = WrappedSubTypeDeserializer::class)
     val subtype: org.audux.bgg.common.SubType
@@ -116,6 +123,7 @@ data class SubType(
  * Represents a person in the play i.e. their username, id, what color they played, how they did
  * etc.
  */
+@Serializable
 data class Player(
     /** Optional username of the player. */
     @JacksonXmlProperty(isAttribute = true) val username: String?,

@@ -9,7 +9,7 @@ ktor = "2.3.8"
 org-jetbrains-dokka = "1.9.10"
 org-jetbrains-kotlin-jvm = "1.9.22"
 org-jetbrains-kotlin-jdk8 = "1.8.0"
-serialization = "1.6.3"
+serialization = "1.5.0"
 slf4j = "2.0.12"
 truth = "1.4.1"
 
@@ -24,6 +24,7 @@ junit5-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 kotlin-coroutines-jdk8 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "org-jetbrains-kotlin-jdk8" }
 kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "serialization" }
+kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm", version.ref = "serialization" }
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
@@ -35,4 +36,5 @@ org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org
 ktfmt-gradle = { id = "com.ncorti.ktfmt.gradle", version.ref = "ktfmt-gradle" }
 com-gradleup-nmcp = { id = "com.gradleup.nmcp", version.ref = "com-gradleup-nmcp" }
 org-jetbrains-dokka = { id = "org.jetbrains.dokka", version.ref = "org-jetbrains-dokka" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "org-jetbrains-kotlin-jvm" }
 

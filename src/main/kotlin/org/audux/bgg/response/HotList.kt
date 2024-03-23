@@ -16,9 +16,11 @@ package org.audux.bgg.response
 import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
+import kotlinx.serialization.Serializable
 
 /** Response wrapper for Hot lists to be returned. */
 @JsonRootName("items")
+@Serializable
 data class HotList(
     /** Terms of use of the BGG API. */
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
@@ -28,6 +30,7 @@ data class HotList(
 )
 
 /** Encapsulates a ranked item in the hot list. */
+@Serializable
 data class HotListItem(
     /** Unique ID that can be used to look up more information using the thing endpoint. */
     @JacksonXmlProperty(isAttribute = true) val id: Int,

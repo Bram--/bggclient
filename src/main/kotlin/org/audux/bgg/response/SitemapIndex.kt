@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
+import kotlinx.serialization.Serializable
 import org.audux.bgg.common.SitemapLocationType
 
 /**
@@ -26,12 +27,14 @@ import org.audux.bgg.common.SitemapLocationType
  */
 @JsonRootName("sitemapindex")
 @JsonIgnoreProperties("schemaLocation")
+@Serializable
 data class SitemapIndex(
     /** List of sitemap locations. */
     @JacksonXmlProperty(localName = "sitemap") val sitemaps: List<SitemapLocation>
 )
 
 /** A URL/Location of a single sitemap/sitemap page. */
+@Serializable
 data class SitemapLocation(
     /** The URL/Web address of the sitemap. */
     @JsonProperty("loc")

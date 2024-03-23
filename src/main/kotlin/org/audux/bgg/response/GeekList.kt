@@ -17,15 +17,18 @@ import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText
 import java.time.LocalDateTime
+import kotlinx.serialization.Serializable
 import org.audux.bgg.common.Constants
 
 /** Encapsulates a geek list including its items and optionally its comments. */
 @JsonRootName("geeklist")
 @JsonIgnoreProperties("postdate_timestamp", "editdate_timestamp")
+@Serializable
 data class GeekList(
     /** Terms of use of the BGG API. */
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
@@ -34,10 +37,14 @@ data class GeekList(
     @JacksonXmlProperty(isAttribute = true) val id: Int,
 
     /** The date and time the geek list was posted/published. */
-    @JsonFormat(pattern = Constants.DAY_FIRST_DATE_TIME_FORMAT) val postDate: LocalDateTime,
+    @JsonFormat(pattern = Constants.DAY_FIRST_DATE_TIME_FORMAT)
+    @Serializable(with = LocalDateTimeSerializer::class)
+    val postDate: LocalDateTime,
 
     /** The date and time the geek list was last edited - the same as [postDate] if not edited. */
-    @JsonFormat(pattern = Constants.DAY_FIRST_DATE_TIME_FORMAT) val editDate: LocalDateTime,
+    @JsonFormat(pattern = Constants.DAY_FIRST_DATE_TIME_FORMAT)
+    @Serializable(with = LocalDateTimeSerializer::class)
+    val editDate: LocalDateTime,
 
     /** The number of thumbs up/likes the geek list received. */
     val thumbs: Int,
@@ -66,6 +73,7 @@ data class GeekList(
 }
 
 /** A single comment on either a Geek list or a Geek list item. */
+@Serializable
 data class GeekListComment(
     /** The username of the user that left the comment. */
     @JacksonXmlProperty(isAttribute = true) val username: String,
@@ -73,16 +81,19 @@ data class GeekListComment(
     /** The date the comment was originally posted. */
     @JacksonXmlProperty(isAttribute = true)
     @JsonFormat(pattern = Constants.DAY_FIRST_DATE_TIME_FORMAT)
+    @Serializable(with = LocalDateTimeSerializer::class)
     val date: LocalDateTime,
 
     /** The date the comment was originally posted. */
     @JacksonXmlProperty(isAttribute = true)
     @JsonFormat(pattern = Constants.DAY_FIRST_DATE_TIME_FORMAT)
+    @Serializable(with = LocalDateTimeSerializer::class)
     val postDate: LocalDateTime,
 
     /** The date the comment was last edited - the same as [postDate] if not edited. */
     @JacksonXmlProperty(isAttribute = true)
     @JsonFormat(pattern = Constants.DAY_FIRST_DATE_TIME_FORMAT)
+    @Serializable(with = LocalDateTimeSerializer::class)
     val editDate: LocalDateTime,
 
     /** The number of thumbs up/likes on this item. */
@@ -97,6 +108,7 @@ data class GeekListComment(
 }
 
 /** An item in the geek list e.g. a board game including a description/[body] */
+@Serializable
 data class GeekListItem(
     /** The ID of the geek list item - NOT the id of the object. */
     @JacksonXmlProperty(isAttribute = true) val id: Int,
@@ -124,11 +136,13 @@ data class GeekListItem(
     /** The original date this item was added/posted to the list. */
     @JacksonXmlProperty(isAttribute = true)
     @JsonFormat(pattern = Constants.DAY_FIRST_DATE_TIME_FORMAT)
+    @Serializable(with = LocalDateTimeSerializer::class)
     val postDate: LocalDateTime,
 
     /** The date this item was last edited/changed. */
     @JacksonXmlProperty(isAttribute = true)
     @JsonFormat(pattern = Constants.DAY_FIRST_DATE_TIME_FORMAT)
+    @Serializable(with = LocalDateTimeSerializer::class)
     val editDate: LocalDateTime,
 
     /** The number of thumbs up/likes this item has received. */
@@ -140,11 +154,12 @@ data class GeekListItem(
      */
     @JacksonXmlProperty(isAttribute = true) val imageId: Int? = null,
     @JsonDeserialize(using = TrimmedStringDeserializer::class) val body: String,
-) {
+
     /** The list of comments of this list. */
-    @JsonProperty("comment")
-    var comments: List<GeekListComment> = mutableListOf()
-        set(value) {
-            field = field + value
-        }
+    var comments: List<GeekListComment> = mutableListOf(),
+) {
+    @JsonSetter("comment")
+    fun internalSetComment(value: List<GeekListComment>) {
+        comments = comments + value
+    }
 }

@@ -7,6 +7,7 @@ plugins {
     `maven-publish`
     signing
     alias(libs.plugins.com.gradleup.nmcp)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ktfmt.gradle)
     alias(libs.plugins.org.jetbrains.dokka)
     alias(libs.plugins.org.jetbrains.kotlin.jvm)
@@ -22,7 +23,7 @@ publishing {
         create<MavenPublication>("mavenJava") {
             groupId = "org.audux.bgg"
             artifactId = "bggclient"
-            version = "0.6.0"
+            version = "0.8.0"
 
             pom {
                 name = "Unofficial JVM BGG client"
@@ -100,6 +101,7 @@ dependencies {
     // Testing dependencies.
     testApi(libs.ktor.client.mock)
 
+    testImplementation(libs.kotlin.serialization.json)
     testImplementation(libs.junit5.jupiter)
     testImplementation(libs.junit5.params)
     testImplementation(libs.truth)

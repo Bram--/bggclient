@@ -18,10 +18,12 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import java.time.LocalDateTime
+import kotlinx.serialization.Serializable
 import org.audux.bgg.common.Constants
 
 /** Response wrapper for Guilds to be returned. */
 @JsonRootName("guild")
+@Serializable
 data class Guild(
     /** Terms of use of the BGG API. */
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
@@ -35,6 +37,7 @@ data class Guild(
     /** The date and time the guild was created. */
     @JsonFormat(pattern = Constants.DAY_FIRST_DATE_TIME_FORMAT)
     @JacksonXmlProperty(isAttribute = true, localName = "created")
+    @Serializable(with = LocalDateTimeSerializer::class)
     val createdAt: LocalDateTime?,
 
     /** The category of the Guild e.g. an interest group, regional group etc. */
@@ -57,6 +60,7 @@ data class Guild(
 )
 
 /** The physical location of the guild. */
+@Serializable
 data class Location(
     /** First address line. */
     @JsonProperty("addr1") val addressLine1: String,
@@ -78,6 +82,7 @@ data class Location(
 )
 
 /** Represents a (partial) list of members of the guild. */
+@Serializable
 data class GuildMembers(
     /** The total number of guild members. */
     @JacksonXmlProperty(isAttribute = true) val count: Int,
@@ -97,6 +102,7 @@ data class GuildMembers(
  * A GuildMember entry, consisting of simply a username (can be used to retrieve more user info) and
  * a join date and time.
  */
+@Serializable
 data class GuildMember(
     /** The username of the guild member. */
     @JacksonXmlProperty(isAttribute = true) val name: String,
@@ -104,5 +110,6 @@ data class GuildMember(
     /** When the user joined the guild. */
     @JsonFormat(pattern = Constants.DAY_FIRST_DATE_TIME_FORMAT)
     @JacksonXmlProperty(isAttribute = true, localName = "date")
+    @Serializable(with = LocalDateTimeSerializer::class)
     val joinDate: LocalDateTime,
 )

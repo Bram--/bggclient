@@ -18,10 +18,12 @@ import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import java.time.LocalDateTime
+import kotlinx.serialization.Serializable
 import org.audux.bgg.common.ForumListType
 
 /** Response wrapper for a list of forums for the given id/thing pair. */
 @JsonRootName("forums")
+@Serializable
 data class ForumList(
     /** Terms of use of the BGG API. */
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
@@ -42,6 +44,7 @@ data class ForumList(
  * Encapsulates the summary of a forum - these can be retrieve using the
  * [org.audux.bgg.request.forum] endpoint.
  */
+@Serializable
 data class ForumSummary(
     /** Unique ID that can be used to look up more information using the forum endpoint. */
     @JacksonXmlProperty(isAttribute = true) val id: Int,
@@ -73,5 +76,6 @@ data class ForumSummary(
     /** The date and time a post was last made. */
     @JsonFormat(pattern = "E, dd MMM yyyy HH:mm:ss Z")
     @JacksonXmlProperty(isAttribute = true)
+    @Serializable(with = LocalDateTimeSerializer::class)
     val lastPostDate: LocalDateTime?,
 )

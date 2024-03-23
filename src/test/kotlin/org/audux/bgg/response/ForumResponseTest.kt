@@ -17,6 +17,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -33,6 +36,14 @@ class ForumResponseTest {
                 as Exception
 
         assertThat(exception).hasMessageThat().contains("Unexpected character")
+    }
+
+    @Test
+    fun `is (K)Serializable`() {
+        val forum = mapper.readValue(TestUtils.xml("forum?id=3696796"), Forum::class.java)
+        val encodedForum = Json.encodeToString(forum)
+
+        assertThat(Json.decodeFromString<Forum>(encodedForum)).isEqualTo(forum)
     }
 
     @Test

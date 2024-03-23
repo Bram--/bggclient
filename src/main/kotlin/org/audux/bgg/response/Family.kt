@@ -16,12 +16,14 @@ package org.audux.bgg.response
 import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
+import kotlinx.serialization.Serializable
 import org.audux.bgg.common.FamilyType
 import org.audux.bgg.common.Link
 import org.audux.bgg.common.Name
 
 /** Response wrapper for Family items, e.g. games having a related theme or gameplay. */
 @JsonRootName("items")
+@Serializable
 data class Family(
     /** Terms of use of the BGG API. */
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
@@ -31,6 +33,7 @@ data class Family(
 )
 
 /** The actual Family item e.g. a `boardgamefamily`, rpg etc. */
+@Serializable
 data class FamilyItem(
     /** Unique ID that can be used to look up more information using the thing endpoint. */
     @JacksonXmlProperty(isAttribute = true) val id: Int,

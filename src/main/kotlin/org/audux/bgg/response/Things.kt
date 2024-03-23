@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
+import com.fasterxml.jackson.annotation.JsonSetter
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
@@ -25,12 +26,14 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import java.net.URI
 import java.time.LocalDate
 import java.time.LocalDateTime
+import kotlinx.serialization.Serializable
 import org.audux.bgg.common.Link
 import org.audux.bgg.common.Name
 import org.audux.bgg.common.Statistics
 import org.audux.bgg.common.ThingType
 
 /** Response wrapper for the things to be returned. */
+@Serializable
 @JsonRootName("items")
 data class Things(
     /** Terms of use of the BGG API. */
@@ -52,6 +55,7 @@ data class Things(
  *
  * @see org.audux.bgg.request.things
  */
+@Serializable
 data class Thing(
     /** Unique BGG identifier. */
     val id: Int,
@@ -83,7 +87,9 @@ data class Thing(
     @JsonDeserialize(using = WrappedStringDeserializer::class) val datePublished: String?,
 
     /** The year it was released in e.g. `2019`. (For video games) */
-    @JsonDeserialize(using = WrappedLocalDateDeserializer::class) val releaseDate: LocalDate?,
+    @JsonDeserialize(using = WrappedLocalDateDeserializer::class)
+    @Serializable(with = LocalDateSerializer::class)
+    val releaseDate: LocalDate?,
 
     /** Minimum number of players required. */
     @JsonDeserialize(using = WrappedIntDeserializer::class) val minPlayers: Int?,
@@ -138,88 +144,40 @@ data class Thing(
     @JsonDeserialize(using = WrappedIntDeserializer::class) val issueIndex: Int?,
 
     /** Primary name. */
-    @JsonIgnore var name: String = ""
-) {
+    @JsonIgnore var name: String = "",
+
     /** Contains a list of polls such as the [PlayerAgePoll]. */
-    @JsonProperty("poll")
-    var polls: List<Poll> = listOf()
-        set(value) {
-            field = field + value
-        }
+    var polls: List<Poll> = listOf(),
 
     /**
      * Depending on the [type] this list may contain different links e.g. for boardgames links such
      * as: `boardgamecategory`, `boardgamefamily`, `boardgamemechanic` etc. may be included. For
      * `rpgitem` similar but different links are returned e.g. `rpgitemcategory` etc.
      */
-    @JacksonXmlProperty(localName = "link")
-    var links: List<Link> = listOf()
-        set(value) {
-            field = field + value
-        }
+    var links: List<Link> = listOf(),
 
     /** Names of the thing, consisting of a primary and optionally alternatives. */
-    @JsonProperty("name")
-    var names: List<Name> = listOf()
-        set(value) {
-            field = field + value
-            field.forEach { if (it.type == "primary") name = it.value }
-        }
+    var names: List<Name> = listOf(),
+) {
+    @JsonSetter("poll")
+    fun internalSetPolls(value: List<Poll>) {
+        polls = polls + value
+    }
 
-    fun copy(
-        id: Int = this.id,
-        type: ThingType = this.type,
-        thumbnail: String? = this.thumbnail,
-        image: String? = this.image,
-        description: String? = this.description,
-        yearPublished: Int? = this.yearPublished,
-        datePublished: String? = this.datePublished,
-        releaseDate: LocalDate? = this.releaseDate,
-        minPlayers: Int? = this.minPlayers,
-        maxPlayers: Double? = this.maxPlayers,
-        playingTimeInMinutes: Int? = this.playingTimeInMinutes,
-        minPlayingTimeInMinutes: Int? = this.minPlayingTimeInMinutes,
-        maxPlayingTimeInMinutes: Int? = this.maxPlayingTimeInMinutes,
-        minAge: Int? = this.minAge,
-        videos: List<Video> = this.videos,
-        comments: Comments? = this.comments,
-        statistics: Statistics? = this.statistics,
-        listings: List<MarketplaceListing> = this.listings,
-        versions: List<Version> = this.versions,
-        seriesCode: String? = this.seriesCode,
-        issueIndex: Int? = this.issueIndex
-    ) =
-        Thing(
-                id,
-                type,
-                thumbnail,
-                image,
-                description,
-                yearPublished,
-                datePublished,
-                releaseDate,
-                minPlayers,
-                maxPlayers,
-                playingTimeInMinutes,
-                minPlayingTimeInMinutes,
-                maxPlayingTimeInMinutes,
-                minAge,
-                videos,
-                comments,
-                statistics,
-                listings,
-                versions,
-                seriesCode,
-                issueIndex,
-            )
-            .also {
-                it.names = this.names
-                it.links = this.links
-                it.polls = this.polls
-            }
+    @JsonSetter("link")
+    fun internalSetLinks(value: List<Link>) {
+        links = links + value
+    }
+
+    @JsonSetter("name")
+    fun internalSetNames(value: List<Name>) {
+        names = names + value
+        names.forEach { if (it.type == "primary") name = it.value }
+    }
 }
 
 /** Available versions of the thing e.g. Different prints of a boardgame. */
+@Serializable
 data class Version(
     /** Type of version e.g. 'boardgameversion'. */
     @JacksonXmlProperty(isAttribute = true) val type: String,
@@ -237,7 +195,9 @@ data class Version(
     @JsonDeserialize(using = WrappedIntDeserializer::class) val yearPublished: Int?,
 
     /** The year it was released in e.g. `2019`. (For video games) */
-    @JsonDeserialize(using = WrappedLocalDateDeserializer::class) val releaseDate: LocalDate?,
+    @JsonDeserialize(using = WrappedLocalDateDeserializer::class)
+    @Serializable(with = LocalDateSerializer::class)
+    val releaseDate: LocalDate?,
 
     /** Product code of the product. */
     @JsonDeserialize(using = WrappedStringDeserializer::class) val productCode: String?,
@@ -253,30 +213,34 @@ data class Version(
 
     /** Weight in lbs (pounds). */
     @JsonDeserialize(using = WrappedDoubleDeserializer::class) val weight: Double?,
-) {
-    /** Names of the product, consisting of a primary and optionally alternatives. */
-    @JsonProperty("name")
-    var names: List<Name> = listOf()
-        set(value) {
-            field = field + value
-            field.forEach { if (it.type == "primary") name = it.value }
-        }
 
     /** Primary name. */
-    @JsonIgnore var name = ""
+    @JsonIgnore var name: String = "",
+
+    /** Names of the product, consisting of a primary and optionally alternatives. */
+    var names: List<Name> = listOf(),
 
     /** Additional information about this product e.g. Language, artist(s) etc. */
-    @JsonProperty("link")
-    var links: List<Link> = listOf()
-        set(value) {
-            field = field + value
-        }
+    var links: List<Link> = listOf(),
+) {
+    @JsonSetter("name")
+    fun internalSetNames(value: List<Name>) {
+        names = names + value
+        names.forEach { if (it.type == "primary") name = it.value }
+    }
+
+    /** Additional information about this product e.g. Language, artist(s) etc. */
+    @JsonSetter("link")
+    fun internalSetLinks(value: List<Link>) {
+        links = links + value
+    }
 }
 
 /**
  * Describes an associated video on the thing. In addition to a title and link the videos are also
  * categorized: `instructional`, `review` etc. and contain poster(user) information.
  */
+@Serializable
 data class Video(
     /** The unique ID to retrieve the video on BGG. */
     @JacksonXmlProperty(isAttribute = true) val id: Int,
@@ -311,6 +275,7 @@ data class Video(
     /** When the video was posted. */
     @JacksonXmlProperty(isAttribute = true)
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssz")
+    @Serializable(with = LocalDateTimeSerializer::class)
     val postDate: LocalDateTime
 )
 
@@ -321,6 +286,7 @@ data class Video(
  *
  * @see org.audux.bgg.request.things
  */
+@Serializable
 data class Comments(
     /**
      * The current page of comments.
@@ -331,8 +297,8 @@ data class Comments(
 
     /**
      * Total number of comments for the specified type of comments, current items in this collection
-     * are specified by the request: [org.audux.bgg.request.Constants.PARAM_PAGE] and
-     * [org.audux.bgg.request.Constants.PARAM_PAGE_SIZE] which are passed in via the `page` and
+     * are specified by the request: [org.audux.bgg.common.Constants.PARAM_PAGE] and
+     * [org.audux.bgg.common.Constants.PARAM_PAGE_SIZE] which are passed in via the `page` and
      * `pageSize` parameters in [org.audux.bgg.request.things].
      */
     @JacksonXmlProperty(isAttribute = true) val totalItems: Int,
@@ -348,6 +314,7 @@ data class Comments(
  * Encapsulated both ratings and comments. Comments can have both [rating] and [value] set but which
  * one will always be set in the collection is specified in the request instead.
  */
+@Serializable
 data class Comment(
     /** Username of the user that posted the rating/comment. */
     @JacksonXmlProperty(isAttribute = true) val username: String,
@@ -365,9 +332,12 @@ data class Comment(
 
 // region Marketplace
 /** A single listing for the thing i.e. a 'for sale'-listing. */
+@Serializable
 data class MarketplaceListing(
     /** When the listing was created. */
-    @JsonDeserialize(using = WrappedLocalDateTimeDeserializer::class) val listDate: LocalDateTime,
+    @JsonDeserialize(using = WrappedLocalDateTimeDeserializer::class)
+    @Serializable(with = LocalDateTimeSerializer::class)
+    val listDate: LocalDateTime,
 
     /** The requested price for the listing. */
     val price: Price,
@@ -383,6 +353,7 @@ data class MarketplaceListing(
 )
 
 /** Encapsulates a price for a given [MarketplaceListing] */
+@Serializable
 data class Price(
     /** The actual price. */
     val value: Double,
@@ -392,9 +363,10 @@ data class Price(
 )
 
 /** Link to a web resource including a title/description. */
+@Serializable
 data class Weblink(
     /** Link to web resource. */
-    val href: URI,
+    @Serializable(with = URISerializer::class) val href: URI,
 
     /** The title of the resource. */
     val title: String,
@@ -416,9 +388,11 @@ data class Weblink(
     JsonSubTypes.Type(value = PlayerAgePoll::class, name = "suggested_playerage"),
     JsonSubTypes.Type(value = NumberOfPlayersPoll::class, name = "suggested_numplayers"),
 )
-interface Poll
+@Serializable(with = PollSerializer::class)
+sealed interface Poll
 
 /** Poll that contains the votes for the preferred number of players to engage with the thing. */
+@Serializable
 data class NumberOfPlayersPoll(
     /** English name/title of the poll e.g. "User Suggested Number of Players". */
     @JacksonXmlProperty(isAttribute = true) val title: String,
@@ -443,6 +417,7 @@ data class NumberOfPlayersPoll(
  *  </results>
  * ```
  */
+@Serializable
 data class NumberOfPlayersResults(
     /** The number of players these votes were cast for. */
     @JacksonXmlProperty(localName = "numplayers") val numberOfPlayers: String,
@@ -452,6 +427,7 @@ data class NumberOfPlayersResults(
 )
 
 /** Poll that contains the votes for the minimum age to engage with the thing. */
+@Serializable
 data class PlayerAgePoll(
     /** English name/title of the poll e.g. "User Suggested Player Age". */
     @JacksonXmlProperty(isAttribute = true) val title: String,
@@ -466,6 +442,7 @@ data class PlayerAgePoll(
 ) : Poll
 
 /** Poll that contains the votes for the minimum age to engage with the thing. */
+@Serializable
 data class LanguageDependencePoll(
     /** English name/title of the poll e.g. "Language Dependence". */
     @JacksonXmlProperty(isAttribute = true) val title: String,
@@ -480,6 +457,7 @@ data class LanguageDependencePoll(
 ) : Poll
 
 /** A single aggregate result i.e. votes for a single poll option. */
+@Serializable
 data class PollResult(
     /** The name/value of the poll option. */
     @JacksonXmlProperty(isAttribute = true) val value: String,
@@ -489,6 +467,7 @@ data class PollResult(
 )
 
 /** A single aggregate result i.e. votes for a single poll option including a level/gradation. */
+@Serializable
 data class LeveledPollResult(
     /** The name/value of the poll option. */
     @JacksonXmlProperty(isAttribute = true) val value: String,

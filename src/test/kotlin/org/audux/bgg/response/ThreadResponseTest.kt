@@ -17,6 +17,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.common.truth.Truth.assertThat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.audux.bgg.util.TestUtils
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -30,6 +33,14 @@ class ThreadResponseTest {
         assertThrows<Exception> {
             mapper.readValue(TestUtils.xml("thread?id=0"), Thread::class.java)
         }
+    }
+
+    @Test
+    fun `is (K)Serializable`() {
+        val thread = mapper.readValue(TestUtils.xml("thread"), Thread::class.java)
+        val encodedThread = Json.encodeToString(thread)
+
+        assertThat(Json.decodeFromString<Thread>(encodedThread)).isEqualTo(thread)
     }
 
     @Test

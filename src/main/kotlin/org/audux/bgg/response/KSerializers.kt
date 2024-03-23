@@ -13,7 +13,7 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
 /** [KSerializer] for a [LocalDate]. */
-class LocalDateSerializer : KSerializer<LocalDate> {
+internal class LocalDateSerializer : KSerializer<LocalDate> {
     override val descriptor: SerialDescriptor =
         PrimitiveSerialDescriptor("LocalDate", PrimitiveKind.STRING)
 
@@ -25,7 +25,7 @@ class LocalDateSerializer : KSerializer<LocalDate> {
 }
 
 /** [KSerializer] for a [LocalDateTime]. */
-class LocalDateTimeSerializer : KSerializer<LocalDateTime> {
+internal class LocalDateTimeSerializer : KSerializer<LocalDateTime> {
     override val descriptor: SerialDescriptor =
         PrimitiveSerialDescriptor("LocalDateTime", PrimitiveKind.STRING)
 
@@ -38,7 +38,7 @@ class LocalDateTimeSerializer : KSerializer<LocalDateTime> {
 }
 
 /** [KSerializer] for a [URI]. */
-class URISerializer : KSerializer<URI> {
+internal class URISerializer : KSerializer<URI> {
     override val descriptor: SerialDescriptor =
         PrimitiveSerialDescriptor("URI", PrimitiveKind.STRING)
 
@@ -49,8 +49,9 @@ class URISerializer : KSerializer<URI> {
     override fun deserialize(decoder: Decoder): URI = URI.create(decoder.decodeString())
 }
 
+/** [KSerializer] for [Poll] and all sub-classes. */
 @OptIn(InternalSerializationApi::class)
-class PollSerializer : KSerializer<Poll> {
+internal class PollSerializer : KSerializer<Poll> {
     private val serializer =
         SealedClassSerializer(
             "Poll",

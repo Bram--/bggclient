@@ -37,7 +37,7 @@ class FamilyResponseTest {
 
     @Test
     fun `is (K)Serializable`() {
-        val family = mapper.readValue(TestUtils.xml("family?id=-1"), Family::class.java)
+        val family = mapper.readValue(TestUtils.xml("family"), Family::class.java)
         val encodedFamily = Json.encodeToString(family)
 
         assertThat(Json.decodeFromString<Family>(encodedFamily)).isEqualTo(family)

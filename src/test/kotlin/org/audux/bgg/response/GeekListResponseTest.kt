@@ -37,7 +37,8 @@ class GeekListResponseTest {
 
     @Test
     fun `is (K)Serializable`() {
-        val geekList = mapper.readValue(TestUtils.xml("geeklist?id=331520"), GeekList::class.java)
+        val geekList =
+            mapper.readValue(TestUtils.xml("geeklist?id=331520&comments=1"), GeekList::class.java)
         val encodedGeekList = Json.encodeToString(geekList)
 
         assertThat(Json.decodeFromString<GeekList>(encodedGeekList)).isEqualTo(geekList)

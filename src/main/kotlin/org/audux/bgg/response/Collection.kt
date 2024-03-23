@@ -135,7 +135,7 @@ data class Status(
     /** Whether item is currently owned. */
     @JacksonXmlProperty(isAttribute = true)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @Serializable(with = LocalDateSerializer::class)
+    @Serializable(with = LocalDateTimeSerializer::class)
     val lastModified: LocalDateTime? = null,
 )
 

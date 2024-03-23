@@ -36,7 +36,7 @@ class ForumListResponseTest {
 
     @Test
     fun `is (K)Serializable`() {
-        val forumList = mapper.readValue(TestUtils.xml("forumlist?id=-1"), ForumList::class.java)
+        val forumList = mapper.readValue(TestUtils.xml("forumlist"), ForumList::class.java)
         val encodedForumList = Json.encodeToString(forumList)
 
         assertThat(Json.decodeFromString<ForumList>(encodedForumList)).isEqualTo(forumList)

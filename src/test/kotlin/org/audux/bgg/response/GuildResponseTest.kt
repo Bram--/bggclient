@@ -53,7 +53,8 @@ class GuildResponseTest {
 
     @Test
     fun `is (K)Serializable`() {
-        val guild = mapper.readValue(TestUtils.xml("guilds?id=2310"), Guild::class.java)
+        val guild =
+            mapper.readValue(TestUtils.xml("guilds?id=2310&members=1&page=1"), Guild::class.java)
         val encodedGuild = Json.encodeToString(guild)
 
         assertThat(Json.decodeFromString<Guild>(encodedGuild)).isEqualTo(guild)

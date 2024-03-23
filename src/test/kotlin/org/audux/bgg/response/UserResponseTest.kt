@@ -36,7 +36,11 @@ class UserResponseTest {
 
     @Test
     fun `is (K)Serializable`() {
-        val user = mapper.readValue(xml("user?name=Novaeux"), User::class.java)
+        val user =
+            mapper.readValue(
+                xml("user?name=Novaeux&buddies=1&hot=1&top=1&guilds=1&page=1&domain=boardgame"),
+                User::class.java
+            )
         val encodedUser = Json.encodeToString(user)
 
         assertThat(Json.decodeFromString<User>(encodedUser)).isEqualTo(user)

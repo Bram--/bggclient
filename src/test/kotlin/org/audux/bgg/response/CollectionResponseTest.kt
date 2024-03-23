@@ -40,7 +40,12 @@ class CollectionResponseTest {
     @Test
     fun `is (K)Serializable`() {
         val collection =
-            mapper.readValue(TestUtils.xml("collection?username=empty"), Collection::class.java)
+            mapper.readValue(
+                TestUtils.xml(
+                    "collection?username=novaeux&stats=1&subtype=boardgame&excludesubtype=boardgameexpansion"
+                ),
+                Collection::class.java
+            )
         val encodedCollection = Json.encodeToString(collection)
 
         assertThat(Json.decodeFromString<Collection>(encodedCollection)).isEqualTo(collection)

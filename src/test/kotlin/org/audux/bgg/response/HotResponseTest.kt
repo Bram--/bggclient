@@ -34,7 +34,7 @@ class HotResponseTest {
 
     @Test
     fun `is (K)Serializable`() {
-        val hotList = mapper.readValue(TestUtils.xml("hot?type=rpgperson"), HotList::class.java)
+        val hotList = mapper.readValue(TestUtils.xml("hot"), HotList::class.java)
         val encodedHotList = Json.encodeToString(hotList)
 
         assertThat(Json.decodeFromString<HotList>(encodedHotList)).isEqualTo(hotList)

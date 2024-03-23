@@ -76,6 +76,6 @@ data class ForumSummary(
     /** The date and time a post was last made. */
     @JsonFormat(pattern = "E, dd MMM yyyy HH:mm:ss Z")
     @JacksonXmlProperty(isAttribute = true)
-    @Serializable(with = LocalDateSerializer::class)
+    @Serializable(with = LocalDateTimeSerializer::class)
     val lastPostDate: LocalDateTime?,
 )

@@ -16,12 +16,26 @@ import kotlinx.coroutines.runBlocking
 import org.audux.bgg.response.Response
 import org.audux.bgg.util.TestUtils
 import org.audux.bgg.util.TestUtils.delayedResponse
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class BggClientTest {
+    private lateinit var defaultConfiguration: BggClientConfiguration
+
+    @BeforeEach
+    fun setUp() {
+        defaultConfiguration = BggClient.configuration
+    }
+
+    @AfterEach
+    fun tearDown() {
+        BggClient.configuration = defaultConfiguration
+    }
+
     @ParameterizedTest
     @ValueSource(ints = [202, 429, 500, 599])
     fun `Retries on Http status codes`(statusCode: Int) {

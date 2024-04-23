@@ -17,28 +17,19 @@ import com.google.common.truth.Truth.assertThat
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.MockEngineConfig
-import io.ktor.client.engine.mock.MockRequestHandleScope
-import io.ktor.client.engine.mock.respondOk
 import io.ktor.client.plugins.api.createClientPlugin
-import io.ktor.client.request.HttpRequestData
-import io.ktor.client.request.HttpResponseData
 import io.ktor.client.request.get
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import org.audux.bgg.util.TestUtils.delayedResponse
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 /** Tests for [ClientRateLimitPlugin] and [ConcurrentRequestLimiter]. */
 class ClientRateLimitPluginTest {
     private lateinit var requestLimiter: ConcurrentRequestLimiter
-    private var delayedResponse:
-        suspend MockRequestHandleScope.(HttpRequestData) -> HttpResponseData =
-        {
-            delay(20)
-            respondOk("OK")
-        }
 
     @BeforeEach
     fun beforeEach() {
@@ -49,9 +40,9 @@ class ClientRateLimitPluginTest {
     fun `Does not enqueue incoming requests that do not exceed the concurrent requests limit`() {
         val client =
             createClient(requestLimit = 3) {
-                addHandler(delayedResponse)
-                addHandler(delayedResponse)
-                addHandler(delayedResponse)
+                addHandler(delayedResponse())
+                addHandler(delayedResponse())
+                addHandler(delayedResponse())
             }
 
         val jobs = runBlocking {
@@ -79,9 +70,9 @@ class ClientRateLimitPluginTest {
     fun `Enqueues incoming requests that would exceed the concurrent requests limit`() {
         val client =
             createClient(requestLimit = 2) {
-                addHandler(delayedResponse)
-                addHandler(delayedResponse)
-                addHandler(delayedResponse)
+                addHandler(delayedResponse())
+                addHandler(delayedResponse())
+                addHandler(delayedResponse())
             }
 
         val jobs = runBlocking {
@@ -109,11 +100,11 @@ class ClientRateLimitPluginTest {
     fun `Enqueues incoming requests that would exceed the concurrent requests limit even for different clients`() {
         val clients =
             listOf(
-                createClient(requestLimit = 2) { addHandler(delayedResponse) },
-                createClient(requestLimit = 2) { addHandler(delayedResponse) },
-                createClient(requestLimit = 2) { addHandler(delayedResponse) },
-                createClient(requestLimit = 2) { addHandler(delayedResponse) },
-                createClient(requestLimit = 2) { addHandler(delayedResponse) },
+                createClient(requestLimit = 2) { addHandler(delayedResponse()) },
+                createClient(requestLimit = 2) { addHandler(delayedResponse()) },
+                createClient(requestLimit = 2) { addHandler(delayedResponse()) },
+                createClient(requestLimit = 2) { addHandler(delayedResponse()) },
+                createClient(requestLimit = 2) { addHandler(delayedResponse()) },
             )
 
         val jobs = runBlocking {

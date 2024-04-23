@@ -6,6 +6,7 @@ import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.MockEngineConfig
 import io.ktor.client.engine.mock.respond
 import io.ktor.client.engine.mock.respondOk
+import io.ktor.client.plugins.HttpRequestTimeoutException
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.HttpStatusCode
@@ -14,11 +15,27 @@ import java.util.concurrent.CountDownLatch
 import kotlinx.coroutines.runBlocking
 import org.audux.bgg.response.Response
 import org.audux.bgg.util.TestUtils
+import org.audux.bgg.util.TestUtils.delayedResponse
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class BggClientTest {
+    private lateinit var defaultConfiguration: BggClientConfiguration
+
+    @BeforeEach
+    fun setUp() {
+        defaultConfiguration = BggClient.configuration
+    }
+
+    @AfterEach
+    fun tearDown() {
+        BggClient.configuration = defaultConfiguration
+    }
+
     @ParameterizedTest
     @ValueSource(ints = [202, 429, 500, 599])
     fun `Retries on Http status codes`(statusCode: Int) {
@@ -155,6 +172,28 @@ class BggClientTest {
         }
 
         assertThat(response).isEqualTo("Response")
+    }
+
+    @Test
+    fun `Throws Exception when request timeout has been met`() {
+        runBlocking {
+            BggClient.configure { this.requestTimeoutMillis = 10 }
+            BggClient.engine = {
+                MockEngine(MockEngineConfig().apply { addHandler(delayedResponse(1_000)) })
+            }
+
+            InternalBggClient().apply {
+                assertThrows<HttpRequestTimeoutException> {
+                    request {
+                            Response(
+                                data = client().get("https://www.google.com/test").bodyAsText(),
+                                error = null
+                            )
+                        }
+                        .call()
+                }
+            }
+        }
     }
 
     private fun testRetryConfiguration(config: BggClientConfiguration) =

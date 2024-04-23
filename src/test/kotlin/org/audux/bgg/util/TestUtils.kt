@@ -18,8 +18,12 @@ import co.touchlab.kermit.Logger
 import co.touchlab.kermit.Severity
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.MockEngineConfig
+import io.ktor.client.engine.mock.MockRequestHandleScope
 import io.ktor.client.engine.mock.respondOk
+import io.ktor.client.request.HttpRequestData
+import io.ktor.client.request.HttpResponseData
 import java.io.InputStream
+import kotlinx.coroutines.delay
 import org.audux.bgg.BggClient
 import org.audux.bgg.InternalBggClient
 
@@ -69,6 +73,13 @@ object TestUtils {
         }
 
         fun logsWritten() = logWrites.toList()
+    }
+
+    fun delayedResponse(
+        delayMs: Long = 20
+    ): suspend MockRequestHandleScope.(HttpRequestData) -> HttpResponseData = {
+        delay(delayMs)
+        respondOk("OK")
     }
 
     /** All data that is logged in a single [Logger.log] call. */

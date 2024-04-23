@@ -25,7 +25,7 @@ using it is as simple as adding a single line to Gradle.
 ##### Gradle
 
 ```kotlin
-implementation("org.audux.bgg:bggclient:0.8.0")
+implementation("org.audux.bgg:bggclient:0.8.1")
 ```
 
 ##### Maven
@@ -35,7 +35,7 @@ implementation("org.audux.bgg:bggclient:0.8.0")
 <dependency>
     <groupId>org.audux.bgg</groupId>
     <artifactId>bggclient</artifactId>
-    <version>0.8.0</version>
+    <version>0.8.1</version>
 </dependency>
 ```
 

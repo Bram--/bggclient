@@ -953,6 +953,7 @@ object BggClient {
  * @property retryBase see kdoc for formula
  * @property retryMaxDelayMs see kdoc for formula
  * @property retryRandomizationMs see kdoc for formula
+ * @property requestTimeoutMillis At which point requests time out/throw an time out Exception.
  */
 data class BggClientConfiguration(
     var maxConcurrentRequests: Int = 10,
@@ -960,6 +961,7 @@ data class BggClientConfiguration(
     var retryBase: Double = 2.0,
     var retryMaxDelayMs: Long = 60_000,
     var retryRandomizationMs: Long = 1_000,
+    var requestTimeoutMillis: Long = 15_000
 )
 
 /** Thrown whenever any exception is thrown during a request to BGG. */

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.module.kotlin.KotlinFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpRequestRetry
+import io.ktor.client.plugins.HttpTimeout
 import java.util.Locale
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -32,6 +33,9 @@ internal class InternalBggClient {
         HttpClient(BggClient.engine()) {
             install(ClientRateLimitPlugin) {
                 requestLimit = BggClient.configuration.maxConcurrentRequests
+            }
+            install(HttpTimeout) {
+                requestTimeoutMillis = BggClient.configuration.requestTimeoutMillis
             }
             install(HttpRequestRetry) {
                 exponentialDelay(

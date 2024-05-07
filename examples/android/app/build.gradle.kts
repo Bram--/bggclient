@@ -68,7 +68,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
     implementation("io.coil-kt:coil-compose:2.5.0")
-    implementation("org.audux.bgg:bggclient:0.8.1")
+    implementation("org.audux.bgg:bggclient:0.9.0")
 
     testImplementation("junit:junit:4.13.2")
 

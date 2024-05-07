@@ -52,7 +52,7 @@ public class BggClientJavaTest {
     BggClient.setEngine(
         () -> setupMockEngine("collection?username=novaeux&stats=1&subtype=rpgitem"));
 
-    var future = BggClient.collection("Novaeux", ThingType.BOARD_GAME).callAsync();
+    var future = BggClient.collection("Novaeux", ThingType.RPG_ITEM).callAsync();
     var response = future.get(5_000, MILLISECONDS);
 
     assertThat(response.getError()).isNull();

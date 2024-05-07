@@ -79,6 +79,9 @@ data class CollectionItem(
     /** Comment owner/user left on the collection item. */
     val comment: String? = null,
 
+    /** Comment owner/user left on the wishlist item. */
+    val wishlistComment: String? = null,
+
     /** Text user left on the condition of the item. */
     val conditionText: String? = null,
 

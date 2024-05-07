@@ -1295,6 +1295,7 @@
             wanttoplay="0"
             wishlist="1"
             wishlistpriority="3" />
+        <wishlistcomment>Testing 1...2...3..</wishlistcomment>
         <numplays>0</numplays>
     </item>
     <item

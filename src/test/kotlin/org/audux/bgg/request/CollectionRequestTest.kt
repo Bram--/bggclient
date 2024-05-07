@@ -78,8 +78,7 @@ class CollectionRequestTest {
                 TestUtils.setupMockEngine("collection?username=novaeux&stats=1&subtype=rpgitem")
             BggClient.engine = { engine }
 
-            val response =
-                BggClient.collection(userName = "Noveaux", subType = ThingType.RPG_ITEM).call()
+            val response = BggClient.collection(userName = "Noveaux").call()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
@@ -92,11 +91,7 @@ class CollectionRequestTest {
                     }
                 )
             assertThat(request.url)
-                .isEqualTo(
-                    Url(
-                        "https://boardgamegeek.com/xmlapi2/collection?username=Noveaux&subtype=rpgitem"
-                    )
-                )
+                .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/collection?username=Noveaux"))
             assertThat(response.isError()).isFalse()
             assertThat(response.isSuccess()).isTrue()
             assertThat(response.data!!.items).hasSize(1)

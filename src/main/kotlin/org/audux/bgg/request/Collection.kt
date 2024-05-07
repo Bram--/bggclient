@@ -59,7 +59,7 @@ import org.audux.bgg.response.Response
 /** @see org.audux.bgg.BggClient.collection */
 internal fun InternalBggClient.collection(
     userName: String,
-    subType: ThingType,
+    subType: ThingType?,
     excludeSubType: ThingType?,
     ids: Array<Int>?,
     version: Boolean,
@@ -94,7 +94,7 @@ internal fun InternalBggClient.collection(
                 appendPathSegments(PATH_COLLECTION)
                 parameters.apply {
                     append(PARAM_USERNAME, userName)
-                    append(PARAM_SUBTYPE, subType.param)
+                    subType?.let { append(PARAM_SUBTYPE, it.param) }
 
                     excludeSubType?.let { append(PARAM_EXCLUDE_SUBTYPE, it.param) }
                     ids?.let { append(PARAM_ID, it.joinToString(",")) }

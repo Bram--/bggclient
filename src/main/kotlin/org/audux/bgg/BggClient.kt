@@ -184,7 +184,7 @@ object BggClient {
     @JvmOverloads
     fun collection(
         userName: String,
-        subType: ThingType,
+        subType: ThingType? = null,
         excludeSubType: ThingType? = null,
         ids: Array<Int>? = null,
         version: Boolean = false,

@@ -20,7 +20,7 @@ application {
 }
 
 dependencies {
-    implementation("org.audux.bgg:bggclient:0.8.1")
+    implementation("org.audux.bgg:bggclient:0.9.0")
 
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }

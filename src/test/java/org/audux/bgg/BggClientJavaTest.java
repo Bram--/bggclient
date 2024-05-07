@@ -84,6 +84,7 @@ public class BggClientJavaTest {
                 /* numPlays= */ 0,
                 /* comment= */ null,
                 /* conditionText= */ null,
+                /* wishlistComment= */ null,
                 new CollectionStatistics(
                     /* minimumPlayer= */ null,
                     /* maximumPlayers= */ null,

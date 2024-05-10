@@ -58,6 +58,4 @@ jobs:
         uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: Bram--/bggclient
-          target-folder: api
-    
+          slug: Bram--/bggclient    

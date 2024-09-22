@@ -662,7 +662,6 @@ $dokka.location:org.audux.bgg/BggClient/forumList/#kotlin.Int#org.audux.bgg.comm
 $dokka.location:org.audux.bgg/BggClient/geekList/#kotlin.Int#org.audux.bgg.common.Inclusion?/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/geek-list.html
 $dokka.location:org.audux.bgg/BggClient/guild/#kotlin.Int#org.audux.bgg.common.Inclusion?#kotlin.String?#kotlin.Int?/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/guild.html
 $dokka.location:org.audux.bgg/BggClient/hotList/#org.audux.bgg.common.HotListType?/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/hot-list.html
-$dokka.location:org.audux.bgg/BggClient/main/#kotlin.Array[kotlin.String]/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/main.html
 $dokka.location:org.audux.bgg/BggClient/plays/#kotlin.String#kotlin.Int?#org.audux.bgg.common.PlayThingType?#java.time.LocalDate?#java.time.LocalDate?#org.audux.bgg.common.SubType?#kotlin.Int?/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/plays.html
 $dokka.location:org.audux.bgg/BggClient/search/#kotlin.String#kotlin.Array[org.audux.bgg.common.ThingType]#kotlin.Boolean/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/search.html
 $dokka.location:org.audux.bgg/BggClient/setLoggerSeverity/#org.audux.bgg.BggClient.Severity/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/set-logger-severity.html

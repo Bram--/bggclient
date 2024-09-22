@@ -96,6 +96,7 @@ dependencies {
     implementation(libs.kotlin.serialization)
     implementation(libs.ktor.core)
     implementation(libs.ktor.client)
+    implementation(libs.ktor.client.encoding)
     implementation(libs.slf4j)
 
     // Testing dependencies.

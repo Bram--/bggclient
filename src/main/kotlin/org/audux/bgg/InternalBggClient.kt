@@ -12,6 +12,7 @@ import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.HttpTimeout
+import io.ktor.client.plugins.compression.ContentEncoding
 import java.util.Locale
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -31,12 +32,32 @@ internal class InternalBggClient {
 
     internal val client = {
         HttpClient(BggClient.engine()) {
+            // This plugin serves two primary purposes:
+            //
+            // * Sets the Accept-Encoding header with the specified quality value.
+            // * Decodes content received from a server to obtain the original payload.
+            install(ContentEncoding) { gzip() }
+
+            // Limit the number of concurrent requests BGGClient makes at any time.
             install(ClientRateLimitPlugin) {
                 requestLimit = BggClient.configuration.maxConcurrentRequests
             }
+
+            // HttpTimeout handles the following behaviours:
+            //
+            // * Request timeout — a time period required to process an HTTP call: from sending a
+            //  request to receiving a response.
+            // * Connection timeout — a time period in which a client should establish a
+            //  connection with a server.
+            // * Socket timeout — a maximum time of inactivity between two data packets when
+            //  exchanging data with a server.
             install(HttpTimeout) {
                 requestTimeoutMillis = BggClient.configuration.requestTimeoutMillis
             }
+
+            // Plugin to configure the retry policy for failed requests in various ways: specify
+            // the number of retries, configure conditions for retrying a request, or modify a
+            // request before retrying.
             install(HttpRequestRetry) {
                 exponentialDelay(
                     base = BggClient.configuration.retryBase,

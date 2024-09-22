@@ -17,7 +17,6 @@ import co.touchlab.kermit.Logger
 import io.ktor.client.engine.cio.CIO
 import java.time.LocalDate
 import java.time.LocalDateTime
-import kotlinx.coroutines.runBlocking
 import org.audux.bgg.common.Domain
 import org.audux.bgg.common.FamilyType
 import org.audux.bgg.common.ForumListType
@@ -93,12 +92,6 @@ object BggClient {
     @JvmStatic
     fun configure(block: BggClientConfiguration.() -> Unit) {
         configuration = BggClientConfiguration().apply { block.invoke(this) }
-    }
-
-    @JvmStatic
-    fun main(vararg args: String) {
-        BggClient.setLoggerSeverity(Severity.Verbose)
-        runBlocking { println(BggClient.hotList(type = HotListType.BOARD_GAME).call()) }
     }
 
     /**

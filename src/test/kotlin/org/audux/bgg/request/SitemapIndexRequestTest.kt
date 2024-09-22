@@ -20,7 +20,6 @@ import io.ktor.client.engine.mock.MockRequestHandleScope
 import io.ktor.client.engine.mock.respondBadRequest
 import io.ktor.client.engine.mock.respondOk
 import io.ktor.client.request.HttpRequestData
-import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import kotlinx.coroutines.runBlocking
@@ -45,10 +44,7 @@ class SitemapIndexRequestTest {
         val request = engine.requestHistory[0]
         assertThat(engine.requestHistory).hasSize(1)
         assertThat(request.method).isEqualTo(HttpMethod.Get)
-        assertThat(request.headers)
-            .isEqualTo(
-                TestUtils.DEFAULT_HEADERS
-            )
+        assertThat(request.headers).isEqualTo(TestUtils.DEFAULT_HEADERS)
         assertThat(request.url).isEqualTo(Url("https://boardgamegeek.com/sitemapindex"))
         assertThat(response.isError()).isFalse()
         assertThat(response.isSuccess()).isTrue()
@@ -102,10 +98,7 @@ class SitemapIndexRequestTest {
         val request = engine.requestHistory[0]
         assertThat(engine.requestHistory).hasSize(1)
         assertThat(request.method).isEqualTo(HttpMethod.Get)
-        assertThat(request.headers)
-            .isEqualTo(
-                TestUtils.DEFAULT_HEADERS
-            )
+        assertThat(request.headers).isEqualTo(TestUtils.DEFAULT_HEADERS)
         assertThat(request.url).isEqualTo(Url("https://videogamegeek.com/sitemapindex"))
         assertThat(response.isError()).isFalse()
         assertThat(response.isSuccess()).isTrue()
@@ -151,10 +144,7 @@ class SitemapIndexRequestTest {
         val request = engine.requestHistory[0]
         assertThat(engine.requestHistory).hasSize(1)
         assertThat(request.method).isEqualTo(HttpMethod.Get)
-        assertThat(request.headers)
-            .isEqualTo(
-                TestUtils.DEFAULT_HEADERS
-            )
+        assertThat(request.headers).isEqualTo(TestUtils.DEFAULT_HEADERS)
         assertThat(request.url).isEqualTo(Url("https://rpggeek.com/sitemapindex"))
         assertThat(response.isError()).isFalse()
         assertThat(response.isSuccess()).isTrue()

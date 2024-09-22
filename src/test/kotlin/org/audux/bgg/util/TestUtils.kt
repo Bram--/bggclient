@@ -30,11 +30,12 @@ import org.audux.bgg.BggClient
 import org.audux.bgg.InternalBggClient
 
 object TestUtils {
-    val DEFAULT_HEADERS = Headers.build {
-        appendAll("Accept-Encoding", listOf("gzip"))
-        appendAll("Accept-Charset", listOf("UTF-8"))
-        appendAll("Accept", listOf("*/*"))
-    }
+    val DEFAULT_HEADERS =
+        Headers.build {
+            appendAll("Accept-Encoding", listOf("gzip"))
+            appendAll("Accept-Charset", listOf("UTF-8"))
+            appendAll("Accept", listOf("*/*"))
+        }
 
     /**
      * Sets up a HttpEngine using a [MockEngine] and [respondOk] responses with the given xml files
@@ -52,8 +53,7 @@ object TestUtils {
         )
 
     /** Returns an fully configure [XmlMapper] instance that is used in the BggClient. */
-    @JvmStatic
-    fun getBggClientMapper() = InternalBggClient().mapper
+    @JvmStatic fun getBggClientMapper() = InternalBggClient().mapper
 
     /** Returns input stream of `resources/xml/{fileName}.xml` to use in testing. */
     @JvmStatic

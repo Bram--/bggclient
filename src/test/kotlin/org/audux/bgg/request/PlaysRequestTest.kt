@@ -14,7 +14,6 @@
 package org.audux.bgg.request
 
 import com.google.common.truth.Truth.assertThat
-import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import java.time.LocalDate
@@ -40,8 +39,7 @@ class PlaysRequestTest {
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
-            assertThat(request.headers)
-                .isEqualTo(TestUtils.DEFAULT_HEADERS)
+            assertThat(request.headers).isEqualTo(TestUtils.DEFAULT_HEADERS)
             assertThat(request.url)
                 .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/plays?username=userdoesnotexist"))
             assertThat(response.isError()).isTrue()
@@ -68,8 +66,7 @@ class PlaysRequestTest {
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
-            assertThat(request.headers)
-                .isEqualTo(TestUtils.DEFAULT_HEADERS)
+            assertThat(request.headers).isEqualTo(TestUtils.DEFAULT_HEADERS)
             assertThat(request.url)
                 .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/plays?username=Novaeux"))
             assertThat(response.isError()).isFalse()

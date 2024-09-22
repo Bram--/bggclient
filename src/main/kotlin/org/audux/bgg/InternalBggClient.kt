@@ -36,9 +36,7 @@ internal class InternalBggClient {
             //
             // * Sets the Accept-Encoding header with the specified quality value.
             // * Decodes content received from a server to obtain the original payload.
-            install(ContentEncoding) {
-                gzip()
-            }
+            install(ContentEncoding) { gzip() }
 
             // Limit the number of concurrent requests BGGClient makes at any time.
             install(ClientRateLimitPlugin) {
@@ -85,24 +83,29 @@ internal class InternalBggClient {
         }
     }
 
-    val mapper: ObjectMapper = XmlMapper.builder().apply {
-        configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
-        configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true)
+    val mapper: ObjectMapper =
+        XmlMapper.builder()
+            .apply {
+                configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
+                configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true)
 
-        addModule(JacksonXmlModule())
-        addModule(JavaTimeModule())
-        addModule(
-            KotlinModule.Builder().enable(KotlinFeature.NullToEmptyCollection)
-                .enable(KotlinFeature.StrictNullChecks).build()
-        )
+                addModule(JacksonXmlModule())
+                addModule(JavaTimeModule())
+                addModule(
+                    KotlinModule.Builder()
+                        .enable(KotlinFeature.NullToEmptyCollection)
+                        .enable(KotlinFeature.StrictNullChecks)
+                        .build()
+                )
 
-        // Keep hardcoded to US: https://bugs.openjdk.org/browse/JDK-8251317
-        // en_GB Locale uses 'Sept' as a shortname when formatting dates (e.g. 'MMM').
-        // The locale en_US remains 'Sep'.
-        defaultLocale(Locale.US)
-        defaultMergeable(true)
-        defaultUseWrapper(false)
-    }.build()
+                // Keep hardcoded to US: https://bugs.openjdk.org/browse/JDK-8251317
+                // en_GB Locale uses 'Sept' as a shortname when formatting dates (e.g. 'MMM').
+                // The locale en_US remains 'Sep'.
+                defaultLocale(Locale.US)
+                defaultMergeable(true)
+                defaultUseWrapper(false)
+            }
+            .build()
 
     /**
      * Calls/Launches a request async, once a response is available it will call [responseCallback].

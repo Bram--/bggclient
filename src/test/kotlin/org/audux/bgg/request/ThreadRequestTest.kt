@@ -14,7 +14,6 @@
 package org.audux.bgg.request
 
 import com.google.common.truth.Truth.assertThat
-import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Url
 import java.time.LocalDateTime
@@ -36,8 +35,7 @@ class ThreadRequestTest {
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
-            assertThat(request.headers)
-                .isEqualTo(TestUtils.DEFAULT_HEADERS)
+            assertThat(request.headers).isEqualTo(TestUtils.DEFAULT_HEADERS)
             assertThat(request.url).isEqualTo(Url("https://boardgamegeek.com/xmlapi2/thread?id=0"))
             assertThat(response.isError()).isTrue()
             assertThat(response.isSuccess()).isFalse()
@@ -61,8 +59,7 @@ class ThreadRequestTest {
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
-            assertThat(request.headers)
-                .isEqualTo(TestUtils.DEFAULT_HEADERS)
+            assertThat(request.headers).isEqualTo(TestUtils.DEFAULT_HEADERS)
             assertThat(request.url)
                 .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/thread?id=3208373"))
             assertThat(response.isError()).isFalse()

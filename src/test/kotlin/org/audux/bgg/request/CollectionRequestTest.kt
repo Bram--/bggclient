@@ -14,7 +14,6 @@
 package org.audux.bgg.request
 
 import com.google.common.truth.Truth.assertThat
-import io.ktor.http.Headers
 import io.ktor.http.HttpMethod
 import io.ktor.http.Parameters
 import io.ktor.http.URLBuilder
@@ -43,8 +42,7 @@ class CollectionRequestTest {
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
-            assertThat(request.headers)
-                .isEqualTo(TestUtils.DEFAULT_HEADERS)
+            assertThat(request.headers).isEqualTo(TestUtils.DEFAULT_HEADERS)
             assertThat(request.url)
                 .isEqualTo(
                     Url(
@@ -78,8 +76,7 @@ class CollectionRequestTest {
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
-            assertThat(request.headers)
-                .isEqualTo(TestUtils.DEFAULT_HEADERS)
+            assertThat(request.headers).isEqualTo(TestUtils.DEFAULT_HEADERS)
             assertThat(request.url)
                 .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/collection?username=Noveaux"))
             assertThat(response.isError()).isFalse()

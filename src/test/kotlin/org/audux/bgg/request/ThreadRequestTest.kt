@@ -37,12 +37,7 @@ class ThreadRequestTest {
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
             assertThat(request.headers)
-                .isEqualTo(
-                    Headers.build {
-                        appendAll("Accept", listOf("*/*"))
-                        appendAll("Accept-Charset", listOf("UTF-8"))
-                    }
-                )
+                .isEqualTo(TestUtils.DEFAULT_HEADERS)
             assertThat(request.url).isEqualTo(Url("https://boardgamegeek.com/xmlapi2/thread?id=0"))
             assertThat(response.isError()).isTrue()
             assertThat(response.isSuccess()).isFalse()
@@ -67,12 +62,7 @@ class ThreadRequestTest {
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
             assertThat(request.headers)
-                .isEqualTo(
-                    Headers.build {
-                        appendAll("Accept", listOf("*/*"))
-                        appendAll("Accept-Charset", listOf("UTF-8"))
-                    }
-                )
+                .isEqualTo(TestUtils.DEFAULT_HEADERS)
             assertThat(request.url)
                 .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/thread?id=3208373"))
             assertThat(response.isError()).isFalse()

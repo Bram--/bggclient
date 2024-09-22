@@ -40,10 +40,7 @@ class GuildsRequestTest {
         assertThat(request.method).isEqualTo(HttpMethod.Get)
         assertThat(request.headers)
             .isEqualTo(
-                Headers.build {
-                    appendAll("Accept", listOf("*/*"))
-                    appendAll("Accept-Charset", listOf("UTF-8"))
-                }
+                TestUtils.DEFAULT_HEADERS
             )
         assertThat(request.url).isEqualTo(Url("https://boardgamegeek.com/xmlapi2/guilds?id=-1"))
         assertThat(response.isError()).isTrue()
@@ -70,10 +67,7 @@ class GuildsRequestTest {
         assertThat(request.method).isEqualTo(HttpMethod.Get)
         assertThat(request.headers)
             .isEqualTo(
-                Headers.build {
-                    appendAll("Accept", listOf("*/*"))
-                    appendAll("Accept-Charset", listOf("UTF-8"))
-                }
+                TestUtils.DEFAULT_HEADERS
             )
         assertThat(request.url).isEqualTo(Url("https://boardgamegeek.com/xmlapi2/guilds?id=2310"))
         assertThat(response.isError()).isFalse()

@@ -19,31 +19,41 @@ import co.touchlab.kermit.Severity
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.MockEngineConfig
 import io.ktor.client.engine.mock.MockRequestHandleScope
+import io.ktor.client.engine.mock.respond
 import io.ktor.client.engine.mock.respondOk
 import io.ktor.client.request.HttpRequestData
 import io.ktor.client.request.HttpResponseData
+import io.ktor.http.Headers
 import java.io.InputStream
 import kotlinx.coroutines.delay
 import org.audux.bgg.BggClient
 import org.audux.bgg.InternalBggClient
 
 object TestUtils {
+    val DEFAULT_HEADERS = Headers.build {
+        appendAll("Accept-Encoding", listOf("gzip"))
+        appendAll("Accept-Charset", listOf("UTF-8"))
+        appendAll("Accept", listOf("*/*"))
+    }
+
     /**
      * Sets up a HttpEngine using a [MockEngine] and [respondOk] responses with the given xml files
      * as the actual response.
      */
     @JvmStatic
-    fun setupMockEngine(vararg xmlFileName: String) =
+    @JvmOverloads
+    fun setupMockEngine(vararg xmlFileName: String, headers: Headers = Headers.Empty) =
         MockEngine(
             MockEngineConfig().apply {
                 xmlFileName.map { fileName ->
-                    addHandler { respondOk(String(xml(fileName).readAllBytes())) }
+                    addHandler { respond(xml(fileName).readAllBytes(), headers = headers) }
                 }
             }
         )
 
     /** Returns an fully configure [XmlMapper] instance that is used in the BggClient. */
-    @JvmStatic fun getBggClientMapper() = InternalBggClient().mapper
+    @JvmStatic
+    fun getBggClientMapper() = InternalBggClient().mapper
 
     /** Returns input stream of `resources/xml/{fileName}.xml` to use in testing. */
     @JvmStatic

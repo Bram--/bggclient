@@ -15,6 +15,7 @@ package org.audux.bgg
 
 import co.touchlab.kermit.Logger
 import io.ktor.client.engine.cio.CIO
+import kotlinx.coroutines.runBlocking
 import java.time.LocalDate
 import java.time.LocalDateTime
 import org.audux.bgg.common.Domain
@@ -79,7 +80,9 @@ object BggClient {
     }
 
     /** @suppress */
-    @VisibleForTesting @JvmStatic var engine = { CIO.create() }
+    @VisibleForTesting
+    @JvmStatic
+    var engine = { CIO.create() }
 
     /** @suppress */
     internal var configuration = BggClientConfiguration()
@@ -92,6 +95,15 @@ object BggClient {
     @JvmStatic
     fun configure(block: BggClientConfiguration.() -> Unit) {
         configuration = BggClientConfiguration().apply { block.invoke(this) }
+    }
+
+
+    @JvmStatic
+    fun main(vararg args: String) {
+        BggClient.setLoggerSeverity(Severity.Verbose)
+        runBlocking {
+            println(BggClient.hotList(type = HotListType.BOARD_GAME).call());
+        }
     }
 
     /**
@@ -352,7 +364,8 @@ object BggClient {
      * @param id The id of either the Family or Thing to retrieve
      * @param type Single [ForumListType] to retrieve, either a [Thing] or [Family]
      */
-    @JvmStatic fun forumList(id: Int, type: ForumListType) = InternalBggClient().forumList(id, type)
+    @JvmStatic
+    fun forumList(id: Int, type: ForumListType) = InternalBggClient().forumList(id, type)
 
     /**
      * Geek list endpoint, retrieves a specific geek list by its ID and return a

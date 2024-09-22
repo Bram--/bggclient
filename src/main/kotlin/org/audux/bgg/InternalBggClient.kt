@@ -12,6 +12,7 @@ import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.HttpTimeout
+import io.ktor.client.plugins.compression.ContentEncoding
 import java.util.Locale
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -31,12 +32,34 @@ internal class InternalBggClient {
 
     internal val client = {
         HttpClient(BggClient.engine()) {
+            // This plugin serves two primary purposes:
+            //
+            // * Sets the Accept-Encoding header with the specified quality value.
+            // * Decodes content received from a server to obtain the original payload.
+            install(ContentEncoding) {
+                gzip()
+            }
+
+            // Limit the number of concurrent requests BGGClient makes at any time.
             install(ClientRateLimitPlugin) {
                 requestLimit = BggClient.configuration.maxConcurrentRequests
             }
+
+            // HttpTimeout handles the following behaviours:
+            //
+            // * Request timeout — a time period required to process an HTTP call: from sending a
+            //  request to receiving a response.
+            // * Connection timeout — a time period in which a client should establish a
+            //  connection with a server.
+            // * Socket timeout — a maximum time of inactivity between two data packets when
+            //  exchanging data with a server.
             install(HttpTimeout) {
                 requestTimeoutMillis = BggClient.configuration.requestTimeoutMillis
             }
+
+            // Plugin to configure the retry policy for failed requests in various ways: specify
+            // the number of retries, configure conditions for retrying a request, or modify a
+            // request before retrying.
             install(HttpRequestRetry) {
                 exponentialDelay(
                     base = BggClient.configuration.retryBase,
@@ -62,29 +85,24 @@ internal class InternalBggClient {
         }
     }
 
-    val mapper: ObjectMapper =
-        XmlMapper.builder()
-            .apply {
-                configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
-                configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true)
+    val mapper: ObjectMapper = XmlMapper.builder().apply {
+        configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
+        configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true)
 
-                addModule(JacksonXmlModule())
-                addModule(JavaTimeModule())
-                addModule(
-                    KotlinModule.Builder()
-                        .enable(KotlinFeature.NullToEmptyCollection)
-                        .enable(KotlinFeature.StrictNullChecks)
-                        .build()
-                )
+        addModule(JacksonXmlModule())
+        addModule(JavaTimeModule())
+        addModule(
+            KotlinModule.Builder().enable(KotlinFeature.NullToEmptyCollection)
+                .enable(KotlinFeature.StrictNullChecks).build()
+        )
 
-                // Keep hardcoded to US: https://bugs.openjdk.org/browse/JDK-8251317
-                // en_GB Locale uses 'Sept' as a shortname when formatting dates (e.g. 'MMM').
-                // The locale en_US remains 'Sep'.
-                defaultLocale(Locale.US)
-                defaultMergeable(true)
-                defaultUseWrapper(false)
-            }
-            .build()
+        // Keep hardcoded to US: https://bugs.openjdk.org/browse/JDK-8251317
+        // en_GB Locale uses 'Sept' as a shortname when formatting dates (e.g. 'MMM').
+        // The locale en_US remains 'Sep'.
+        defaultLocale(Locale.US)
+        defaultMergeable(true)
+        defaultUseWrapper(false)
+    }.build()
 
     /**
      * Calls/Launches a request async, once a response is available it will call [responseCallback].

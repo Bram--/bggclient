@@ -36,13 +36,7 @@ class HotListRequestTest {
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
-            assertThat(request.headers)
-                .isEqualTo(
-                    Headers.build {
-                        appendAll("Accept", listOf("*/*"))
-                        appendAll("Accept-Charset", listOf("UTF-8"))
-                    }
-                )
+            assertThat(request.headers).isEqualTo(TestUtils.DEFAULT_HEADERS)
             assertThat(request.url).isEqualTo(Url("https://boardgamegeek.com/xmlapi2/hot"))
             assertThat(response.isError()).isFalse()
             assertThat(response.isSuccess()).isTrue()
@@ -61,15 +55,8 @@ class HotListRequestTest {
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
-            assertThat(request.headers)
-                .isEqualTo(
-                    Headers.build {
-                        appendAll("Accept", listOf("*/*"))
-                        appendAll("Accept-Charset", listOf("UTF-8"))
-                    }
-                )
-            assertThat(request.url)
-                .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/hot?type=boardgame"))
+            assertThat(request.headers).isEqualTo(TestUtils.DEFAULT_HEADERS)
+            assertThat(request.url).isEqualTo(Url("https://boardgamegeek.com/xmlapi2/hot?type=boardgame"))
             assertThat(response.isError()).isFalse()
             assertThat(response.isSuccess()).isTrue()
             assertThat(response.data?.results).hasSize(50)
@@ -80,7 +67,10 @@ class HotListRequestTest {
     @Test
     fun `Issue 31 - Handles malformed input`() {
         runBlocking {
-            val engine = TestUtils.setupMockEngine("hot.gzipped")
+            val engine = TestUtils.setupMockEngine("hot?type=boardgame", headers = Headers.build {
+                append("content-encoding", "gzip")
+                append("content-type", "text/xml; charset=\"UTF-8\"")
+            })
             BggClient.engine = { engine }
 
             val response = BggClient.hotList(HotListType.BOARD_GAME).call()
@@ -88,15 +78,10 @@ class HotListRequestTest {
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
-            assertThat(request.headers)
-                .isEqualTo(
-                    Headers.build {
-                        appendAll("Accept", listOf("*/*"))
-                        appendAll("Accept-Charset", listOf("UTF-8"))
-                    }
-                )
+            assertThat(request.headers).isEqualTo(TestUtils.DEFAULT_HEADERS)
             assertThat(request.url)
                 .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/hot?type=boardgame"))
+
             assertThat(response.isError()).isFalse()
             assertThat(response.isSuccess()).isTrue()
             assertThat(response.data?.results).hasSize(50)

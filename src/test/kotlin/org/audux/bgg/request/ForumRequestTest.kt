@@ -37,10 +37,7 @@ class ForumRequestTest {
         assertThat(request.method).isEqualTo(HttpMethod.Get)
         assertThat(request.headers)
             .isEqualTo(
-                Headers.build {
-                    appendAll("Accept", listOf("*/*"))
-                    appendAll("Accept-Charset", listOf("UTF-8"))
-                }
+                TestUtils.DEFAULT_HEADERS
             )
         assertThat(request.url).isEqualTo(Url("https://boardgamegeek.com/xmlapi2/forum?id=-1"))
         assertThat(response.isError()).isTrue()
@@ -61,10 +58,7 @@ class ForumRequestTest {
         assertThat(request.method).isEqualTo(HttpMethod.Get)
         assertThat(request.headers)
             .isEqualTo(
-                Headers.build {
-                    appendAll("Accept", listOf("*/*"))
-                    appendAll("Accept-Charset", listOf("UTF-8"))
-                }
+                TestUtils.DEFAULT_HEADERS
             )
         assertThat(request.url).isEqualTo(Url("https://boardgamegeek.com/xmlapi2/forum?id=3696796"))
         assertThat(response.isError()).isFalse()

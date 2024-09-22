@@ -44,12 +44,7 @@ class UserRequestTest {
             assertThat(engine.requestHistory).hasSize(1)
             assertThat(request.method).isEqualTo(HttpMethod.Get)
             assertThat(request.headers)
-                .isEqualTo(
-                    Headers.build {
-                        appendAll("Accept", listOf("*/*"))
-                        appendAll("Accept-Charset", listOf("UTF-8"))
-                    }
-                )
+                .isEqualTo(TestUtils.DEFAULT_HEADERS)
             assertThat(request.url)
                 .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/user?name=Novaeux"))
             assertThat(response.isError()).isFalse()

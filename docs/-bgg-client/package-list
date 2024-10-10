@@ -681,7 +681,8 @@ $dokka.location:org.audux.bgg/BggClient/things/#kotlin.Array[kotlin.Int]#kotlin.
 $dokka.location:org.audux.bgg/BggClient/thread/#kotlin.Int#kotlin.Int?#java.time.LocalDateTime?#kotlin.Int?/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/thread.html
 $dokka.location:org.audux.bgg/BggClient/user/#kotlin.String#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Domain?#kotlin.Int?/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/user.html
 $dokka.location:org.audux.bgg/BggClientConfiguration///PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client-configuration/index.html
-$dokka.location:org.audux.bgg/BggClientConfiguration/BggClientConfiguration/#kotlin.Int#kotlin.Int#kotlin.Double#kotlin.Long#kotlin.Long#kotlin.Long/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client-configuration/-bgg-client-configuration.html
+$dokka.location:org.audux.bgg/BggClientConfiguration/BggClientConfiguration/#kotlin.Int#kotlin.Int#kotlin.Double#kotlin.Long#kotlin.Long#kotlin.Long#kotlin.Boolean/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client-configuration/-bgg-client-configuration.html
+$dokka.location:org.audux.bgg/BggClientConfiguration/failOnUnknownProperties/#/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client-configuration/fail-on-unknown-properties.html
 $dokka.location:org.audux.bgg/BggClientConfiguration/maxConcurrentRequests/#/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client-configuration/max-concurrent-requests.html
 $dokka.location:org.audux.bgg/BggClientConfiguration/maxRetries/#/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client-configuration/max-retries.html
 $dokka.location:org.audux.bgg/BggClientConfiguration/requestTimeoutMillis/#/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client-configuration/request-timeout-millis.html

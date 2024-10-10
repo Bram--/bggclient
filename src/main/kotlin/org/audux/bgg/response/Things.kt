@@ -59,13 +59,14 @@ data class Things(
 data class Thing(
     /** Unique BGG identifier. */
     val id: Int,
+    val error: String?,
 
     /**
      * The type of thing e.g. boardgame, expansion etc.
      *
      * @see org.audux.bgg.common.ThingType
      */
-    @JsonDeserialize(using = ThingTypeDeserializer::class) val type: ThingType,
+    @JsonDeserialize(using = ThingTypeDeserializer::class) val type: ThingType?,
 
     /** URL to 200 by 150 thumbnail image. */
     @JsonDeserialize(using = TrimmedStringDeserializer::class) val thumbnail: String?,
@@ -148,6 +149,9 @@ data class Thing(
 
     /** Contains a list of polls such as the [PlayerAgePoll]. */
     var polls: List<Poll> = listOf(),
+
+    /** Contains a list of poll summaries that relate to the `polls`. */
+    @JacksonXmlProperty(localName = "poll-summary") var pollSummary: List<PollSummary> = listOf(),
 
     /**
      * Depending on the [type] this list may contain different links e.g. for boardgames links such
@@ -477,5 +481,33 @@ data class LeveledPollResult(
 
     /** The level or gradation of his option e.g. 1 with other options going up to 5. */
     @JacksonXmlProperty(isAttribute = true) val level: Int,
+)
+
+/**
+ * Small version of the [Poll] result objects that only return the top results like 'bestwith' or
+ * 'recommendedwith'.
+ */
+@Serializable
+data class PollSummary(
+    /** The name of the poll. */
+    @JacksonXmlProperty(isAttribute = true) val name: String?,
+
+    /** The title of the poll. */
+    @JacksonXmlProperty(isAttribute = true) val title: String?,
+
+    /** Result set for the poll summary. */
+    @JacksonXmlElementWrapper(useWrapping = false)
+    @JacksonXmlProperty(localName = "result")
+    val results: List<PollSummaryResult> = emptyList(),
+)
+
+/** A result for the summaries like: "bestwith". */
+@Serializable
+data class PollSummaryResult(
+    /** The name of the poll option. */
+    @JacksonXmlProperty(isAttribute = true) val name: String?,
+
+    /** The title of the poll option. */
+    @JacksonXmlProperty(isAttribute = true) val value: String?,
 )
 // endregion Polls

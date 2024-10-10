@@ -40,6 +40,10 @@
                 <result value="Not Recommended" numvotes="62"/>
             </results>
         </poll>
+        <poll-summary name="suggested_numplayers" title="User Suggested Number of Players">
+            <result name="bestwith" value="Best with 3–4 players" />
+            <result name="recommmendedwith" value="Recommended with 2–5 players" />
+        </poll-summary>
         <playingtime value="240"/>
         <minplaytime value="240"/>
         <maxplaytime value="240"/>

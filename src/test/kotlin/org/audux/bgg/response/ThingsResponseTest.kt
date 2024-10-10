@@ -38,6 +38,14 @@ class ThingsResponseTest {
     }
 
     @Test
+    fun `parses an item wih an error field`() {
+        val things = mapper.readValue(TestUtils.xml("thing?id=with-error"), Things::class.java)
+
+        assertThat(things.things).hasSize(1)
+        assertThat(things.things[0].error).isEqualTo("Exception")
+    }
+
+    @Test
     fun `parses multiple things`() {
         val things = mapper.readValue(TestUtils.xml("thing?id=1,2,3"), Things::class.java)
 
@@ -92,6 +100,33 @@ class ThingsResponseTest {
                     PlayerAgePoll::class.java,
                     LanguageDependencePoll::class.java,
                     NumberOfPlayersPoll::class.java
+                )
+        }
+
+        @Test
+        fun `parses poll-summaries`() {
+            val things = mapper.readValue(TestUtils.xml("thing?id=1"), Things::class.java)
+
+            assertThat(things.things).hasSize(1)
+            val thing = things.things[0]
+            assertThat(thing.pollSummary).hasSize(1)
+            assertThat(thing.pollSummary[0])
+                .isEqualTo(
+                    PollSummary(
+                        name = "suggested_numplayers",
+                        title = "User Suggested Number of Players",
+                        results =
+                            listOf(
+                                PollSummaryResult(
+                                    name = "bestwith",
+                                    value = "Best with 3–4 players"
+                                ),
+                                PollSummaryResult(
+                                    name = "recommmendedwith",
+                                    value = "Recommended with 2–5 players"
+                                )
+                            )
+                    )
                 )
         }
 

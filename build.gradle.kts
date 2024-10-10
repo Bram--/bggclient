@@ -110,6 +110,10 @@ dependencies {
     testRuntimeOnly(libs.junit5.engine)
 }
 
+kotlin {
+    jvmToolchain(11)
+}
+
 jacoco {
     toolVersion = "0.8.9"
     reportsDirectory = layout.buildDirectory.dir("jacoco")

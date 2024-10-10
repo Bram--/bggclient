@@ -491,6 +491,15 @@ $dokka.location:org.audux.bgg.response/PollResult///PointingToDeclaration/-bgg-
 $dokka.location:org.audux.bgg.response/PollResult/PollResult/#kotlin.String#kotlin.Int/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-poll-result/-poll-result.html
 $dokka.location:org.audux.bgg.response/PollResult/numberOfVotes/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-poll-result/number-of-votes.html
 $dokka.location:org.audux.bgg.response/PollResult/value/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-poll-result/value.html
+$dokka.location:org.audux.bgg.response/PollSummary///PointingToDeclaration/-bgg-client/org.audux.bgg.response/-poll-summary/index.html
+$dokka.location:org.audux.bgg.response/PollSummary/PollSummary/#kotlin.String?#kotlin.String?#kotlin.collections.List[org.audux.bgg.response.PollSummaryResult]/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-poll-summary/-poll-summary.html
+$dokka.location:org.audux.bgg.response/PollSummary/name/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-poll-summary/name.html
+$dokka.location:org.audux.bgg.response/PollSummary/results/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-poll-summary/results.html
+$dokka.location:org.audux.bgg.response/PollSummary/title/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-poll-summary/title.html
+$dokka.location:org.audux.bgg.response/PollSummaryResult///PointingToDeclaration/-bgg-client/org.audux.bgg.response/-poll-summary-result/index.html
+$dokka.location:org.audux.bgg.response/PollSummaryResult/PollSummaryResult/#kotlin.String?#kotlin.String?/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-poll-summary-result/-poll-summary-result.html
+$dokka.location:org.audux.bgg.response/PollSummaryResult/name/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-poll-summary-result/name.html
+$dokka.location:org.audux.bgg.response/PollSummaryResult/value/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-poll-summary-result/value.html
 $dokka.location:org.audux.bgg.response/Price///PointingToDeclaration/-bgg-client/org.audux.bgg.response/-price/index.html
 $dokka.location:org.audux.bgg.response/Price/Price/#kotlin.Double#kotlin.String/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-price/-price.html
 $dokka.location:org.audux.bgg.response/Price/currency/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-price/currency.html
@@ -544,10 +553,11 @@ $dokka.location:org.audux.bgg.response/SubType///PointingToDeclaration/-bgg-cli
 $dokka.location:org.audux.bgg.response/SubType/SubType/#org.audux.bgg.common.SubType/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-sub-type/-sub-type.html
 $dokka.location:org.audux.bgg.response/SubType/subtype/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-sub-type/subtype.html
 $dokka.location:org.audux.bgg.response/Thing///PointingToDeclaration/-bgg-client/org.audux.bgg.response/-thing/index.html
-$dokka.location:org.audux.bgg.response/Thing/Thing/#kotlin.Int#org.audux.bgg.common.ThingType#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.Int?#kotlin.String?#java.time.LocalDate?#kotlin.Int?#kotlin.Double?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.collections.List[org.audux.bgg.response.Video]#org.audux.bgg.response.Comments?#org.audux.bgg.common.Statistics?#kotlin.collections.List[org.audux.bgg.response.MarketplaceListing]#kotlin.collections.List[org.audux.bgg.response.Version]#kotlin.String?#kotlin.Int?#kotlin.String#kotlin.collections.List[org.audux.bgg.response.Poll]#kotlin.collections.List[org.audux.bgg.common.Link]#kotlin.collections.List[org.audux.bgg.common.Name]/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-thing/-thing.html
+$dokka.location:org.audux.bgg.response/Thing/Thing/#kotlin.Int#kotlin.String?#org.audux.bgg.common.ThingType?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.Int?#kotlin.String?#java.time.LocalDate?#kotlin.Int?#kotlin.Double?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.collections.List[org.audux.bgg.response.Video]#org.audux.bgg.response.Comments?#org.audux.bgg.common.Statistics?#kotlin.collections.List[org.audux.bgg.response.MarketplaceListing]#kotlin.collections.List[org.audux.bgg.response.Version]#kotlin.String?#kotlin.Int?#kotlin.String#kotlin.collections.List[org.audux.bgg.response.Poll]#kotlin.collections.List[org.audux.bgg.response.PollSummary]#kotlin.collections.List[org.audux.bgg.common.Link]#kotlin.collections.List[org.audux.bgg.common.Name]/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-thing/-thing.html
 $dokka.location:org.audux.bgg.response/Thing/comments/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-thing/comments.html
 $dokka.location:org.audux.bgg.response/Thing/datePublished/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-thing/date-published.html
 $dokka.location:org.audux.bgg.response/Thing/description/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-thing/description.html
+$dokka.location:org.audux.bgg.response/Thing/error/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-thing/error.html
 $dokka.location:org.audux.bgg.response/Thing/id/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-thing/id.html
 $dokka.location:org.audux.bgg.response/Thing/image/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-thing/image.html
 $dokka.location:org.audux.bgg.response/Thing/internalSetLinks/#kotlin.collections.List[org.audux.bgg.common.Link]/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-thing/internal-set-links.html
@@ -564,6 +574,7 @@ $dokka.location:org.audux.bgg.response/Thing/minPlayingTimeInMinutes/#/PointingT
 $dokka.location:org.audux.bgg.response/Thing/name/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-thing/name.html
 $dokka.location:org.audux.bgg.response/Thing/names/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-thing/names.html
 $dokka.location:org.audux.bgg.response/Thing/playingTimeInMinutes/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-thing/playing-time-in-minutes.html
+$dokka.location:org.audux.bgg.response/Thing/pollSummary/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-thing/poll-summary.html
 $dokka.location:org.audux.bgg.response/Thing/polls/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-thing/polls.html
 $dokka.location:org.audux.bgg.response/Thing/releaseDate/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-thing/release-date.html
 $dokka.location:org.audux.bgg.response/Thing/seriesCode/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-thing/series-code.html

@@ -13,11 +13,14 @@ import io.ktor.http.HttpStatusCode
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.CountDownLatch
 import kotlinx.coroutines.runBlocking
+import org.audux.bgg.request.things
 import org.audux.bgg.response.Response
 import org.audux.bgg.util.TestUtils
 import org.audux.bgg.util.TestUtils.delayedResponse
+import org.audux.bgg.util.TestUtils.setupMockEngine
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -193,6 +196,41 @@ class BggClientTest {
                         .call()
                 }
             }
+        }
+    }
+
+    @Nested
+    inner class UnknownProperty {
+        @Test
+        fun `fails parsing an unknown property`() = runBlocking {
+            BggClient.configure { failOnUnknownProperties = true }
+            BggClient.engine = { setupMockEngine("thing?id=with-unknown-property") }
+
+            val response = BggClient.things(ids = arrayOf(1)).call()
+
+            assertThat(response.data).isNull()
+            assertThat(response.error)
+                .isEqualTo(
+                    "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
+                        "<items termsofuse=\"https://boardgamegeek.com/xmlapi/termsofuse\">\n" +
+                        "    <item><unkown>Exception</unkown></item>\n" +
+                        "</items>"
+                )
+
+            BggClient.configure { failOnUnknownProperties = true }
+        }
+
+        @Test
+        fun `parses an item wih an unknown field`() = runBlocking {
+            BggClient.configure { failOnUnknownProperties = false }
+            BggClient.engine = { setupMockEngine("thing?id=with-unknown-property") }
+
+            val response = BggClient.things(ids = arrayOf(1)).call()
+
+            assertThat(response.data).isNotNull()
+            assertThat(response.error).isNull()
+
+            BggClient.configure { failOnUnknownProperties = true }
         }
     }
 

@@ -954,6 +954,8 @@ object BggClient {
  * @property retryMaxDelayMs see kdoc for formula
  * @property retryRandomizationMs see kdoc for formula
  * @property requestTimeoutMillis At which point requests time out/throw an time out Exception.
+ * @property failOnUnknownProperties whether BGGClient should fail when it encounters unknown
+ *   properties or if it should parse what it can for the given api.
  */
 data class BggClientConfiguration(
     var maxConcurrentRequests: Int = 10,
@@ -961,7 +963,8 @@ data class BggClientConfiguration(
     var retryBase: Double = 2.0,
     var retryMaxDelayMs: Long = 60_000,
     var retryRandomizationMs: Long = 1_000,
-    var requestTimeoutMillis: Long = 15_000
+    var requestTimeoutMillis: Long = 15_000,
+    var failOnUnknownProperties: Boolean = true,
 )
 
 /** Thrown whenever any exception is thrown during a request to BGG. */

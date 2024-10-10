@@ -87,7 +87,10 @@ internal class InternalBggClient {
         XmlMapper.builder()
             .apply {
                 configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
-                configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true)
+                configure(
+                    DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+                    BggClient.configuration.failOnUnknownProperties
+                )
 
                 addModule(JacksonXmlModule())
                 addModule(JavaTimeModule())

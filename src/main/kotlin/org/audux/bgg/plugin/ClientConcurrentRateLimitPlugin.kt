@@ -18,8 +18,6 @@ import io.ktor.client.plugins.api.createClientPlugin
 import io.ktor.client.request.HttpRequestBuilder
 import java.util.concurrent.atomic.AtomicInteger
 import kotlinx.coroutines.delay
-import org.jetbrains.annotations.Contract
-import org.jetbrains.annotations.VisibleForTesting
 
 /**
  * Ktor plugin to configure the client to limit the number of concurrent requests it can make.
@@ -40,7 +38,7 @@ internal val ClientConcurrentRateLimitPlugin =
  * [ConcurrentRequestLimiterConfiguration.requestLimit] are being made concurrently.
  */
 internal class ConcurrentRequestLimiter(private val requestLimit: Int) {
-    internal val inFlightRequests = AtomicSingletonInteger.instance
+    internal val inFlightRequests = AtomicInteger()
 
     /**
      * Keeps an counter for the number of requests that are active/in-flight. If ever the limit is
@@ -86,22 +84,3 @@ internal class ConcurrentRequestLimiter(private val requestLimit: Int) {
  * @property requestLimit The maximum number of concurrent requests that can be made.
  */
 internal data class ConcurrentRequestLimiterConfiguration(var requestLimit: Int = 10)
-
-/**
- * Singleton [AtomicInteger] to be shared between [org.audux.bgg.BggClient] instances as a new
- * instance of the plugin is created for each client.
- */
-internal class AtomicSingletonInteger
-@Contract(pure = true)
-private constructor(initialValue: Int) : AtomicInteger(initialValue) {
-    companion object {
-        val instance: AtomicSingletonInteger by lazy { AtomicSingletonInteger(0) }
-    }
-
-    /** Clears the in-flight requests counter. */
-    @VisibleForTesting fun reset() = this.set(0)
-
-    override fun toByte() = get().toByte()
-
-    override fun toShort() = get().toShort()
-}

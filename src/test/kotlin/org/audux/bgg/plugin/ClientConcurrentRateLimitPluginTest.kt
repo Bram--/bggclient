@@ -24,17 +24,11 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.audux.bgg.util.TestUtils.delayedResponse
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 /** Tests for [ClientConcurrentRateLimitPlugin] and [ConcurrentRequestLimiter]. */
 class ClientConcurrentRateLimitPluginTest {
     private lateinit var requestLimiter: ConcurrentRequestLimiter
-
-    @BeforeEach
-    fun beforeEach() {
-        AtomicSingletonInteger.instance.reset()
-    }
 
     @Test
     fun `Does not enqueue incoming requests that do not exceed the concurrent requests limit`() {

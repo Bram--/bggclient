@@ -89,6 +89,6 @@ class SitemapResponseTest {
             location = location,
             changeFrequency = "daily",
             priority = 1.0,
-            lastModified = null
+            lastModified = null,
         )
 }

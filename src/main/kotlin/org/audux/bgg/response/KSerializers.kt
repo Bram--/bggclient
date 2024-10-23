@@ -59,7 +59,7 @@ internal class PollSerializer : KSerializer<Poll> {
             arrayOf(
                 LanguageDependencePoll::class,
                 PlayerAgePoll::class,
-                NumberOfPlayersPoll::class
+                NumberOfPlayersPoll::class,
             ),
             arrayOf(
                 LanguageDependencePoll.serializer(),

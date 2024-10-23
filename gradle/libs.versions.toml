@@ -1,23 +1,23 @@
 [versions]
 com-gradleup-nmcp = "0.0.8"
-jackson = "2.17.1"
-javax-xml-stream = "1.0-2"
-junit5 = "5.10.2"
-kermit = "2.0.3"
-ktfmt-gradle = "0.18.0"
-ktor = "2.3.11"
+jackson = "2.18.0"
+jakarta-xml-binding = "4.0.2"
+junit5 = "5.11.3"
+kermit = "2.0.4"
+ktfmt-gradle = "0.20.1"
+ktor = "2.3.12"
 org-jetbrains-dokka = "1.9.20"
 org-jetbrains-kotlin-jdk8 = "1.8.1"
 org-jetbrains-kotlin-jvm = "2.0.0"
 serialization = "1.6.3"
-slf4j = "2.0.13"
-truth = "1.4.2"
+slf4j = "2.0.16"
+truth = "1.4.4"
 
 [libraries]
 jackson-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
 jackson-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin", version.ref = "jackson" }
 jackson-xml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-xml", version.ref = "jackson" }
-javax-xml-stream = { module = "javax.xml.stream:stax-api", version.ref = "javax-xml-stream" }
+javax-xml-stream = { module = "jakarta.xml.bind:jakarta.xml.bind-api", version.ref = "jakarta-xml-binding" }
 junit5-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit5" }
 junit5-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit5" }
 junit5-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit5" }

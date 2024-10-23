@@ -17,6 +17,8 @@ import co.touchlab.kermit.Logger
 import io.ktor.client.engine.cio.CIO
 import java.time.LocalDate
 import java.time.LocalDateTime
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 import org.audux.bgg.common.Domain
 import org.audux.bgg.common.FamilyType
 import org.audux.bgg.common.ForumListType
@@ -211,7 +213,7 @@ object BggClient {
         minimumPlays: Int? = null,
         maxPlays: Int? = null,
         collectionId: Int? = null,
-        modifiedSince: LocalDateTime? = null
+        modifiedSince: LocalDateTime? = null,
     ) =
         InternalBggClient()
             .collection(
@@ -243,7 +245,7 @@ object BggClient {
                 minimumPlays,
                 maxPlays,
                 collectionId,
-                modifiedSince
+                modifiedSince,
             )
 
     /**
@@ -580,11 +582,8 @@ object BggClient {
      */
     @JvmStatic
     @JvmOverloads
-    fun search(
-        query: String,
-        types: Array<ThingType> = arrayOf(),
-        exactMatch: Boolean = false,
-    ) = InternalBggClient().search(query, types, exactMatch)
+    fun search(query: String, types: Array<ThingType> = arrayOf(), exactMatch: Boolean = false) =
+        InternalBggClient().search(query, types, exactMatch)
 
     /**
      * Requests the Sitemap index for the given Domain. Call
@@ -775,7 +774,7 @@ object BggClient {
                 comments,
                 ratingComments,
                 page,
-                pageSize
+                pageSize,
             )
 
     /**
@@ -831,7 +830,7 @@ object BggClient {
         id: Int,
         minArticleId: Int? = null,
         minArticleDate: LocalDateTime? = null,
-        count: Int? = null
+        count: Int? = null,
     ) = InternalBggClient().thread(id, minArticleId, minArticleDate, count)
 
     /**
@@ -922,7 +921,7 @@ object BggClient {
         Debug,
         Info,
         Warn,
-        Error
+        Error,
     }
 
     /** Sets the Logger severity defaults to [Severity.Error] */
@@ -956,6 +955,10 @@ object BggClient {
  * @property requestTimeoutMillis At which point requests time out/throw an time out Exception.
  * @property failOnUnknownProperties whether BGGClient should fail when it encounters unknown
  *   properties or if it should parse what it can for the given api.
+ * @property requestsPerWindowLimit Throttles the client to have [requestsPerWindowLimit] request
+ *   per [requestWindowSize], e.g. "60 requests per 60.seconds".
+ * @property requestWindowSize Throttles the client to have [requestsPerWindowLimit] request per
+ *   [requestWindowSize], e.g. "60 requests per 60.seconds".
  */
 data class BggClientConfiguration(
     var maxConcurrentRequests: Int = 10,
@@ -965,6 +968,8 @@ data class BggClientConfiguration(
     var retryRandomizationMs: Long = 1_000,
     var requestTimeoutMillis: Long = 15_000,
     var failOnUnknownProperties: Boolean = true,
+    var requestsPerWindowLimit: Int = 60,
+    var requestWindowSize: Duration = 60.seconds,
 )
 
 /** Thrown whenever any exception is thrown during a request to BGG. */

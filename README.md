@@ -25,7 +25,7 @@ using it is as simple as adding a single line to Gradle.
 ##### Gradle
 
 ```kotlin
-implementation("org.audux.bgg:bggclient:0.9.4")
+implementation("org.audux.bgg:bggclient:1.0.0")
 ```
 
 ##### Maven
@@ -35,7 +35,7 @@ implementation("org.audux.bgg:bggclient:0.9.4")
 <dependency>
     <groupId>org.audux.bgg</groupId>
     <artifactId>bggclient</artifactId>
-    <version>0.9.4</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -175,12 +175,15 @@ Data contains a (multi) map of types and URLs (`Map<SitemapLocationType, List<Si
 
 `BggClientConfiguration` allows the client to be configured differently. This allows the user to
 increase the maximum number of retries, the maximum number of concurrent requests and how the
-exponential delay is calculated.
+exponential delay is calculated. The below example also configured (The already default) request 
+limit to 60 request per minute - this appears to be the BGG limit.
 
 ```kotlin
 BggClient.configure {
     maxConcurrentRequests = 5
     maxRetries = 100
+    requestsPerWindowLimit = 60
+    requestWindowSize = 60.seconds
 }
 ```
 

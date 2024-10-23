@@ -44,7 +44,7 @@ class CollectionResponseTest {
                 TestUtils.xml(
                     "collection?username=novaeux&stats=1&subtype=boardgame&excludesubtype=boardgameexpansion"
                 ),
-                Collection::class.java
+                Collection::class.java,
             )
         val encodedCollection = Json.encodeToString(collection)
 
@@ -58,7 +58,7 @@ class CollectionResponseTest {
                 TestUtils.xml(
                     "collection?username=novaeux&stats=1&subtype=boardgame&excludesubtype=boardgameexpansion"
                 ),
-                Collection::class.java
+                Collection::class.java,
             )
 
         assertThat(results.items).hasSize(105)
@@ -104,7 +104,7 @@ class CollectionResponseTest {
                                                 friendlyName = "Board Game Rank",
                                                 type = "subtype",
                                                 value = "89",
-                                                bayesAverage = "7.58314"
+                                                bayesAverage = "7.58314",
                                             ),
                                             Rank(
                                                 id = 5497,
@@ -112,7 +112,7 @@ class CollectionResponseTest {
                                                 friendlyName = "Strategy Game Rank",
                                                 type = "family",
                                                 value = "90",
-                                                bayesAverage = "7.5477"
+                                                bayesAverage = "7.5477",
                                             ),
                                             Rank(
                                                 id = 5499,
@@ -120,11 +120,11 @@ class CollectionResponseTest {
                                                 friendlyName = "Family Game Rank",
                                                 type = "family",
                                                 value = "12",
-                                                bayesAverage = "7.57952"
+                                                bayesAverage = "7.57952",
                                             ),
                                         ),
                                 ),
-                        )
+                        ),
                 )
             )
     }
@@ -134,7 +134,7 @@ class CollectionResponseTest {
         val results =
             mapper.readValue(
                 TestUtils.xml("collection?username=novaeux&stats=1&subtype=rpgitem"),
-                Collection::class.java
+                Collection::class.java,
             )
 
         assertThat(results.items).hasSize(1)

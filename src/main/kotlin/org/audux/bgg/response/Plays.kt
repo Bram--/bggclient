@@ -41,7 +41,7 @@ data class Plays(
     @JacksonXmlProperty(isAttribute = true) val page: Int,
 
     /** List of the actual plays. */
-    @JacksonXmlProperty(localName = "play") val plays: List<Play> = listOf()
+    @JacksonXmlProperty(localName = "play") val plays: List<Play> = listOf(),
 )
 
 /**

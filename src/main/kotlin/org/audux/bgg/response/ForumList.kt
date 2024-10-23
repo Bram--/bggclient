@@ -37,7 +37,7 @@ data class ForumList(
     val type: ForumListType,
 
     /** List of the actual available forums. */
-    @JacksonXmlProperty(localName = "forum") val forums: List<ForumSummary>
+    @JacksonXmlProperty(localName = "forum") val forums: List<ForumSummary>,
 )
 
 /**

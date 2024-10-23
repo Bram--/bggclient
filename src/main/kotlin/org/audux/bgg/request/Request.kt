@@ -20,7 +20,7 @@ import org.audux.bgg.response.Response
 open class Request<T>
 internal constructor(
     private val client: InternalBggClient,
-    private val request: suspend () -> Response<T>
+    private val request: suspend () -> Response<T>,
 ) {
     /**
      * Execute the encapsulated [T] request asynchronously and returns the `response` in the

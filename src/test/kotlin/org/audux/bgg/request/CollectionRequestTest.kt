@@ -164,7 +164,7 @@ class CollectionRequestTest {
                                 append("maxplays", "99")
                                 append("collid", "-1")
                                 append("modifiedsince", "2020-01-01 00:00:00")
-                            }
+                            },
                     )
                     .build()
             assertThat(request.url).isEqualTo(expectedUrl)

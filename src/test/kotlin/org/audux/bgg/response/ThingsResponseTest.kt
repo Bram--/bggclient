@@ -59,7 +59,7 @@ class ThingsResponseTest {
                 TestUtils.xml(
                     "thing?id=396790&stats=1&ratingcomments=1&versions=1&marketplace=1&videos=1"
                 ),
-                Things::class.java
+                Things::class.java,
             )
         val thing = things.things[0]
         val encodedThing = Json.encodeToString(thing)
@@ -99,7 +99,7 @@ class ThingsResponseTest {
                 .containsExactly(
                     PlayerAgePoll::class.java,
                     LanguageDependencePoll::class.java,
-                    NumberOfPlayersPoll::class.java
+                    NumberOfPlayersPoll::class.java,
                 )
         }
 
@@ -119,13 +119,13 @@ class ThingsResponseTest {
                             listOf(
                                 PollSummaryResult(
                                     name = "bestwith",
-                                    value = "Best with 3–4 players"
+                                    value = "Best with 3–4 players",
                                 ),
                                 PollSummaryResult(
                                     name = "recommmendedwith",
-                                    value = "Recommended with 2–5 players"
-                                )
-                            )
+                                    value = "Recommended with 2–5 players",
+                                ),
+                            ),
                     )
                 )
         }
@@ -263,7 +263,7 @@ class ThingsResponseTest {
                     TestUtils.xml(
                         "thing?id=396790&stats=1&ratingcomments=1&versions=1&marketplace=1&videos=1"
                     ),
-                    Things::class.java
+                    Things::class.java,
                 )
 
             assertThat(things.things).hasSize(1)
@@ -287,7 +287,7 @@ class ThingsResponseTest {
                     TestUtils.xml(
                         "thing?id=396790&stats=1&ratingcomments=1&versions=1&marketplace=1&videos=1"
                     ),
-                    Things::class.java
+                    Things::class.java,
                 )
 
             assertThat(things.things).hasSize(1)
@@ -313,7 +313,7 @@ class ThingsResponseTest {
                     TestUtils.xml(
                         "thing?id=396790&stats=1&ratingcomments=1&versions=1&marketplace=1&videos=1"
                     ),
-                    Things::class.java
+                    Things::class.java,
                 )
 
             assertThat(things.things).hasSize(1)
@@ -349,7 +349,7 @@ class ThingsResponseTest {
                     TestUtils.xml(
                         "thing?id=396790&stats=1&ratingcomments=1&versions=1&marketplace=1&videos=1"
                     ),
-                    Things::class.java
+                    Things::class.java,
                 )
 
             assertThat(things.things).hasSize(1)
@@ -384,7 +384,7 @@ class ThingsResponseTest {
                     TestUtils.xml(
                         "thing?id=396790&stats=1&ratingcomments=1&versions=1&marketplace=1&videos=1"
                     ),
-                    Things::class.java
+                    Things::class.java,
                 )
 
             assertThat(things.things).hasSize(1)
@@ -411,7 +411,7 @@ class ThingsResponseTest {
                     TestUtils.xml(
                         "thing?id=307683&stats=1&ratingcomments=1&versions=1&marketplace=1&videos=1"
                     ),
-                    Things::class.java
+                    Things::class.java,
                 )
 
             assertThat(things.things).hasSize(1)
@@ -449,7 +449,7 @@ class ThingsResponseTest {
                     TestUtils.xml(
                         "thing?id=307689&stats=1&ratingcomments=1&versions=1&marketplace=1&videos=1"
                     ),
-                    Things::class.java
+                    Things::class.java,
                 )
 
             assertThat(things.things).hasSize(1)
@@ -481,7 +481,7 @@ class ThingsResponseTest {
                     TestUtils.xml(
                         "thing?id=140545&stats=1&ratingcomments=1&versions=1&marketplace=1&videos=1"
                     ),
-                    Things::class.java
+                    Things::class.java,
                 )
 
             assertThat(things.things).hasSize(1)
@@ -514,7 +514,7 @@ class ThingsResponseTest {
                     TestUtils.xml(
                         "thing?id=311654&stats=1&ratingcomments=1&versions=1&marketplace=1&videos=1"
                     ),
-                    Things::class.java
+                    Things::class.java,
                 )
 
             assertThat(things.things).hasSize(1)
@@ -545,7 +545,7 @@ class ThingsResponseTest {
             val things =
                 mapper.readValue(
                     TestUtils.xml("thing?id=51651&stats=1&ratingcomments=1&videos=1&marketplace=1"),
-                    Things::class.java
+                    Things::class.java,
                 )
 
             assertThat(things.things).hasSize(1)

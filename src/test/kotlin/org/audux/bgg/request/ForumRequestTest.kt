@@ -80,7 +80,7 @@ class ForumRequestTest {
                 TestUtils.setupMockEngine(
                     "forum?id=3696796",
                     "forum?id=3696796&page=2",
-                    "forum?id=3696796&page=3"
+                    "forum?id=3696796&page=3",
                 )
 
             BggClient.engine = { engine }
@@ -104,7 +104,7 @@ class ForumRequestTest {
                 TestUtils.setupMockEngine(
                     "forum?id=3696796",
                     "forum?id=3696796&page=2",
-                    "forum?id=3696796&page=3"
+                    "forum?id=3696796&page=3",
                 )
             BggClient.engine = { engine }
 
@@ -114,7 +114,7 @@ class ForumRequestTest {
             assertThat(engine.requestHistory.map { it.url })
                 .containsExactly(
                     Url("https://boardgamegeek.com/xmlapi2/forum?id=3696796"),
-                    Url("https://boardgamegeek.com/xmlapi2/forum?id=3696796&page=2")
+                    Url("https://boardgamegeek.com/xmlapi2/forum?id=3696796&page=2"),
                 )
             assertThat(response.data!!.numThreads).isEqualTo(148)
             assertThat(response.data!!.threads).hasSize(100)
@@ -132,7 +132,7 @@ class ForumRequestTest {
             assertThat(engine.requestHistory.map { it.url })
                 .containsExactly(
                     Url("https://boardgamegeek.com/xmlapi2/forum?id=3696796&page=2"),
-                    Url("https://boardgamegeek.com/xmlapi2/forum?id=3696796&page=3")
+                    Url("https://boardgamegeek.com/xmlapi2/forum?id=3696796&page=3"),
                 )
             assertThat(response.data!!.numThreads).isEqualTo(148)
             assertThat(response.data!!.threads).hasSize(98)
@@ -144,7 +144,7 @@ class ForumRequestTest {
                 TestUtils.setupMockEngine(
                     "forum?id=3696796",
                     "forum?id=-1", // Erroneous reply
-                    "forum?id=3696796&page=3"
+                    "forum?id=3696796&page=3",
                 )
 
             BggClient.engine = { engine }

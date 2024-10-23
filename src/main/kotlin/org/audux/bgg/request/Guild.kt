@@ -28,12 +28,7 @@ import org.audux.bgg.response.Guild
 import org.audux.bgg.response.Response
 
 /** @see org.audux.bgg.BggClient.guild */
-internal fun InternalBggClient.guild(
-    id: Int,
-    members: Inclusion?,
-    sort: String?,
-    page: Int?,
-) =
+internal fun InternalBggClient.guild(id: Int, members: Inclusion?, sort: String?, page: Int?) =
     PaginatedGuilds(this, members, sort) {
         client()
             .get(XML2_API_URL) {

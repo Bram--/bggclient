@@ -37,9 +37,7 @@ class SearchRequestTest {
             assertThat(request.method).isEqualTo(HttpMethod.Get)
             assertThat(request.headers).isEqualTo(TestUtils.DEFAULT_HEADERS)
             assertThat(request.url)
-                .isEqualTo(
-                    Url("https://boardgamegeek.com/xmlapi2/search?query=my+little"),
-                )
+                .isEqualTo(Url("https://boardgamegeek.com/xmlapi2/search?query=my+little"))
             assertThat(response.isError()).isFalse()
             assertThat(response.isSuccess()).isTrue()
             assertThat(response.data?.results).hasSize(144)
@@ -56,7 +54,7 @@ class SearchRequestTest {
                 BggClient.search(
                         query = "my little",
                         types = arrayOf(ThingType.BOARD_GAME, ThingType.RPG_ITEM),
-                        exactMatch = true
+                        exactMatch = true,
                     )
                     .call()
 
@@ -65,7 +63,7 @@ class SearchRequestTest {
                 .isEqualTo(
                     Url(
                         "https://boardgamegeek.com/xmlapi2/search?query=my+little&type=boardgame%2Crpgitem&exact=1"
-                    ),
+                    )
                 )
             assertThat(response.data?.results).hasSize(144)
         }

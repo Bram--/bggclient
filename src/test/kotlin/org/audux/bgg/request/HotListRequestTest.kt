@@ -74,7 +74,7 @@ class HotListRequestTest {
                         Headers.build {
                             append("content-encoding", "gzip")
                             append("content-type", "text/xml; charset=\"UTF-8\"")
-                        }
+                        },
                 )
             BggClient.engine = { engine }
 

@@ -68,7 +68,7 @@ class PlaysResponseTest {
                     name = "Sid Meier's Civilization: The Board Game",
                     objectType = PlayThingType.THING,
                     objectId = 77130,
-                    subTypes = listOf(SubType(org.audux.bgg.common.SubType.BOARD_GAME))
+                    subTypes = listOf(SubType(org.audux.bgg.common.SubType.BOARD_GAME)),
                 )
             )
         assertThat(civGame.players)
@@ -81,7 +81,7 @@ class PlaysResponseTest {
                     new = false,
                     rating = 0.0,
                     win = true,
-                    color = "Purple"
+                    color = "Purple",
                 ),
                 Player(
                     username = "",
@@ -91,7 +91,7 @@ class PlaysResponseTest {
                     new = false,
                     rating = 0.0,
                     win = false,
-                    color = "Yellow"
+                    color = "Yellow",
                 ),
                 Player(
                     username = "",
@@ -101,7 +101,7 @@ class PlaysResponseTest {
                     color = "",
                     new = false,
                     rating = 0.0,
-                    win = false
+                    win = false,
                 ),
             )
     }

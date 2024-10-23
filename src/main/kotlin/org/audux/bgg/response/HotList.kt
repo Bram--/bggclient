@@ -26,7 +26,7 @@ data class HotList(
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
 
     /** List of the actual things. */
-    @JacksonXmlProperty(localName = "item") val results: List<HotListItem>
+    @JacksonXmlProperty(localName = "item") val results: List<HotListItem>,
 )
 
 /** Encapsulates a ranked item in the hot list. */

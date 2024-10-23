@@ -40,7 +40,7 @@ data class Things(
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
 
     /** List of the actual things. */
-    @JacksonXmlProperty(localName = "item") val things: List<Thing>
+    @JacksonXmlProperty(localName = "item") val things: List<Thing>,
 )
 
 /**
@@ -280,7 +280,7 @@ data class Video(
     @JacksonXmlProperty(isAttribute = true)
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssz")
     @Serializable(with = LocalDateTimeSerializer::class)
-    val postDate: LocalDateTime
+    val postDate: LocalDateTime,
 )
 
 // region Comments
@@ -332,6 +332,7 @@ data class Comment(
     /** The comment the user posted. */
     @JacksonXmlProperty(isAttribute = true) val value: String?,
 )
+
 // endregion
 
 // region Marketplace
@@ -375,6 +376,7 @@ data class Weblink(
     /** The title of the resource. */
     val title: String,
 )
+
 // endregion
 
 // region All Poll classes
@@ -385,7 +387,7 @@ data class Weblink(
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.EXISTING_PROPERTY,
-    property = "name"
+    property = "name",
 )
 @JsonSubTypes(
     JsonSubTypes.Type(value = LanguageDependencePoll::class, name = "language_dependence"),

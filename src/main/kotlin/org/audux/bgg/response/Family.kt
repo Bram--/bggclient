@@ -29,7 +29,7 @@ data class Family(
     @JacksonXmlProperty(isAttribute = true) val termsOfUse: String,
 
     /** List of the actual items. */
-    @JacksonXmlProperty(localName = "item") val items: List<FamilyItem>
+    @JacksonXmlProperty(localName = "item") val items: List<FamilyItem>,
 )
 
 /** The actual Family item e.g. a `boardgamefamily`, rpg etc. */
@@ -53,5 +53,5 @@ data class FamilyItem(
      * List of the items that are part of this family, e.g. board games that have a certain theme or
      * gameplay.
      */
-    @JacksonXmlProperty(localName = "link") val links: List<Link>
+    @JacksonXmlProperty(localName = "link") val links: List<Link>,
 )

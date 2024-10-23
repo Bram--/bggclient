@@ -39,7 +39,7 @@ class UserResponseTest {
         val user =
             mapper.readValue(
                 xml("user?name=Novaeux&buddies=1&hot=1&top=1&guilds=1&page=1&domain=boardgame"),
-                User::class.java
+                User::class.java,
             )
         val encodedUser = Json.encodeToString(user)
 
@@ -77,7 +77,7 @@ class UserResponseTest {
         val results =
             mapper.readValue(
                 xml("user?name=Novaeux&buddies=1&hot=1&top=1&guilds=1&page=1&domain=boardgame"),
-                User::class.java
+                User::class.java,
             )
 
         assertThat(results.name).isEqualTo("Novaeux")

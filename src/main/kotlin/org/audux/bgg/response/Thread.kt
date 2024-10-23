@@ -56,7 +56,7 @@ data class Article(
     /** Username of the article creator/poster. */
     @JsonDeserialize(using = TrimmedStringDeserializer::class)
     @JacksonXmlProperty(isAttribute = true)
-    val username: String,
+    val username: String?,
 
     /** The number of edits made to this article. */
     @JacksonXmlProperty(isAttribute = true) val numEdits: Int,

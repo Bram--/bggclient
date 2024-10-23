@@ -62,21 +62,21 @@ class FamilyResponseTest {
                                 type = "boardgamefamily",
                                 id = 65901,
                                 value = "Age of Industry",
-                                inbound = true
+                                inbound = true,
                             ),
                             Link(
                                 type = "boardgamefamily",
                                 id = 99424,
                                 value = "Age of Industry Expansion #1: Japan and Minnesota",
-                                inbound = true
+                                inbound = true,
                             ),
                             Link(
                                 type = "boardgamefamily",
                                 id = 136217,
                                 value = "Age of Industry Expansion: Belgium & USSR",
-                                inbound = true
+                                inbound = true,
                             ),
-                        )
+                        ),
                 )
             )
     }

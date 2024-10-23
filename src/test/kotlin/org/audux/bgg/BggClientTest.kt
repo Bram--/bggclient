@@ -98,7 +98,7 @@ class BggClientTest {
                     message =
                         "Got status code 202 Retrying request[https://boardgamegeek.com/xmlapi2/user?name=Novaeux",
                     tag = "HttpRequestRetry",
-                    throwable = null
+                    throwable = null,
                 )
             )
     }
@@ -115,7 +115,7 @@ class BggClientTest {
             request {
                     Response(
                         data = client().get("https://www.google.com/test").bodyAsText(),
-                        error = null
+                        error = null,
                     )
                 }
                 .callAsync() {
@@ -142,7 +142,7 @@ class BggClientTest {
                 request {
                         Response(
                             data = client().get("https://www.google.com/test").bodyAsText(),
-                            error = null
+                            error = null,
                         )
                     }
                     .callAsync()
@@ -166,7 +166,7 @@ class BggClientTest {
                     request {
                             Response(
                                 data = client().get("https://www.google.com/test").bodyAsText(),
-                                error = null
+                                error = null,
                             )
                         }
                         .call()
@@ -190,7 +190,7 @@ class BggClientTest {
                     request {
                             Response(
                                 data = client().get("https://www.google.com/test").bodyAsText(),
-                                error = null
+                                error = null,
                             )
                         }
                         .call()

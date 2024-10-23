@@ -20,7 +20,7 @@ import org.audux.bgg.response.SitemapUrl
 class DiffusingSitemap
 internal constructor(
     private val client: InternalBggClient,
-    private val request: suspend () -> Response<SitemapIndex>
+    private val request: suspend () -> Response<SitemapIndex>,
 ) : Request<SitemapIndex>(client, request) {
 
     /**

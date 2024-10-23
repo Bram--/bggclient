@@ -99,7 +99,7 @@ class UserRequestTest {
                 BggClient.user(
                         name = "Novaeux",
                         buddies = Inclusion.INCLUDE,
-                        guilds = Inclusion.INCLUDE
+                        guilds = Inclusion.INCLUDE,
                     )
                     .paginate()
                     .call()
@@ -183,7 +183,7 @@ class UserRequestTest {
                 BggClient.user(
                         name = "Novaeux",
                         buddies = Inclusion.INCLUDE,
-                        guilds = Inclusion.INCLUDE
+                        guilds = Inclusion.INCLUDE,
                     )
                     .paginate(toPage = 2)
                     .call()
@@ -216,7 +216,7 @@ class UserRequestTest {
                         name = "Novaeux",
                         buddies = Inclusion.INCLUDE,
                         guilds = Inclusion.INCLUDE,
-                        page = 2
+                        page = 2,
                     )
                     .paginate()
                     .call()
@@ -252,7 +252,7 @@ class UserRequestTest {
                 BggClient.user(
                         name = "Novaeux",
                         buddies = Inclusion.INCLUDE,
-                        guilds = Inclusion.INCLUDE
+                        guilds = Inclusion.INCLUDE,
                     )
                     .paginate()
                     .call()
@@ -289,7 +289,7 @@ class UserRequestTest {
                 BggClient.user(
                         name = "Novaeux",
                         buddies = Inclusion.INCLUDE,
-                        guilds = Inclusion.INCLUDE
+                        guilds = Inclusion.INCLUDE,
                     )
                     .paginate()
                     .call()

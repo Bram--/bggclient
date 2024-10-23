@@ -113,7 +113,7 @@ data class Buddy(
     @JacksonXmlProperty(isAttribute = true) val id: Int,
 
     /** The username of the buddy. */
-    @JacksonXmlProperty(isAttribute = true) val name: String
+    @JacksonXmlProperty(isAttribute = true) val name: String,
 )
 
 /** Guilds user is a member of. */

@@ -92,11 +92,15 @@ object TestUtils {
         respondOk("OK")
     }
 
+    fun instantResponse(): MockRequestHandleScope.(HttpRequestData) -> HttpResponseData = {
+        respondOk("OK")
+    }
+
     /** All data that is logged in a single [Logger.log] call. */
     data class LogWrite(
         val severity: Severity,
         val message: String,
         val tag: String,
-        val throwable: Throwable?
+        val throwable: Throwable?,
     )
 }

@@ -74,13 +74,7 @@ class GuildsRequestTest {
         BggClient.engine = { engine }
 
         val response =
-            BggClient.guild(
-                    id = 2310,
-                    members = Inclusion.INCLUDE,
-                    sort = "date",
-                    page = 1,
-                )
-                .call()
+            BggClient.guild(id = 2310, members = Inclusion.INCLUDE, sort = "date", page = 1).call()
 
         val request = engine.requestHistory[0]
         assertThat(request.url)
@@ -145,7 +139,7 @@ class GuildsRequestTest {
             val engine =
                 TestUtils.setupMockEngine(
                     "guilds?id=2310&members=1&page=2",
-                    "guilds?id=2310&members=1&page=3"
+                    "guilds?id=2310&members=1&page=3",
                 )
             BggClient.engine = { engine }
 

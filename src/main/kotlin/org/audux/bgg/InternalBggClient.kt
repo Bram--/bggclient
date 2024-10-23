@@ -22,6 +22,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.future.future
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.audux.bgg.plugin.ClientConcurrentRateLimitPlugin
 import org.audux.bgg.plugin.ClientRateLimitPlugin
 import org.audux.bgg.request.Request
 import org.audux.bgg.response.Response
@@ -39,8 +40,14 @@ internal class InternalBggClient {
             install(ContentEncoding) { gzip() }
 
             // Limit the number of concurrent requests BGGClient makes at any time.
-            install(ClientRateLimitPlugin) {
+            install(ClientConcurrentRateLimitPlugin) {
                 requestLimit = BggClient.configuration.maxConcurrentRequests
+            }
+
+            // Limit the number of request that are made per window e.g. (60 request per minute).
+            install(ClientRateLimitPlugin) {
+                requestLimit = BggClient.configuration.requestsPerWindowLimit
+                windowSize = BggClient.configuration.requestWindowSize
             }
 
             // HttpTimeout handles the following behaviours:
@@ -62,7 +69,7 @@ internal class InternalBggClient {
                 exponentialDelay(
                     base = BggClient.configuration.retryBase,
                     maxDelayMs = BggClient.configuration.retryMaxDelayMs,
-                    randomizationMs = BggClient.configuration.retryRandomizationMs
+                    randomizationMs = BggClient.configuration.retryRandomizationMs,
                 )
                 retryIf(maxRetries = BggClient.configuration.maxRetries) { request, response ->
                     response.status.value.let {
@@ -89,7 +96,7 @@ internal class InternalBggClient {
                 configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
                 configure(
                     DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
-                    BggClient.configuration.failOnUnknownProperties
+                    BggClient.configuration.failOnUnknownProperties,
                 )
 
                 addModule(JacksonXmlModule())

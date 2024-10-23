@@ -54,7 +54,7 @@ class FamilyRequestTest {
             val response =
                 BggClient.familyItems(
                         ids = arrayOf(50152, 50153),
-                        arrayOf(FamilyType.BOARD_GAME_FAMILY, FamilyType.RPG)
+                        arrayOf(FamilyType.BOARD_GAME_FAMILY, FamilyType.RPG),
                     )
                     .call()
 

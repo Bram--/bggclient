@@ -39,7 +39,7 @@ data class SitemapLocation(
     /** The URL/Web address of the sitemap. */
     @JsonProperty("loc")
     @JsonDeserialize(using = TrimmedStringDeserializer::class)
-    val location: String,
+    val location: String
 ) {
     /**
      * Calculated property that represents the type of sitemap e.g. Board games, Video games, Board

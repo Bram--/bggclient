@@ -40,7 +40,7 @@ data class Collection(
     @JacksonXmlProperty(isAttribute = true, localName = "pubdate") val publishDate: String,
 
     /** List of the actual things. */
-    @JacksonXmlProperty(localName = "item") val items: List<CollectionItem>
+    @JacksonXmlProperty(localName = "item") val items: List<CollectionItem>,
 )
 
 /** An item in the collection e.g. a board game, rpg etc. */

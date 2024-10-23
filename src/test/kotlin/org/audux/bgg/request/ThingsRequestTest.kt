@@ -48,7 +48,7 @@ class ThingsRequestTest {
                             protocol = URLProtocol.HTTPS,
                             host = "boardgamegeek.com",
                             pathSegments = listOf("xmlapi2", "thing"),
-                            parameters = Parameters.build { append("id", "1,2,3") }
+                            parameters = Parameters.build { append("id", "1,2,3") },
                         )
                         .build()
                 )
@@ -97,7 +97,7 @@ class ThingsRequestTest {
                                     append("comments", "1")
                                     append("page", "2")
                                     append("pagesize", "100")
-                                }
+                                },
                         )
                         .build()
                 )

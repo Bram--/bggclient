@@ -79,7 +79,7 @@ class ThreadRequestTest {
                         id = 3208373,
                         minArticleId = 10,
                         minArticleDate = LocalDateTime.of(2020, 1, 1, 0, 0),
-                        count = 100_000
+                        count = 100_000,
                     )
                     .call()
 

@@ -28,10 +28,7 @@ import kotlinx.coroutines.withContext
  * @property error Contains the response body when the response could not be parsed by [T]
  * @property data Contains the wrapped successful response
  */
-data class Response<T>(
-    val error: String? = null,
-    val data: T? = null,
-) {
+data class Response<T>(val error: String? = null, val data: T? = null) {
     /** Whether the request was successful or not. */
     fun isSuccess() = error.isNullOrBlank()
 

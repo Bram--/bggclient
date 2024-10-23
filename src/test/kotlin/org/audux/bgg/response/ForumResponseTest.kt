@@ -60,7 +60,7 @@ class ForumResponseTest {
                     author = "Farouke",
                     numArticles = 11,
                     postDate = LocalDateTime.parse("Sun, 11 Feb 2024 13:15:58 +0000", formatter),
-                    lastPostDate = LocalDateTime.parse("Wed, 14 Feb 2024 22:44:14 +0000", formatter)
+                    lastPostDate = LocalDateTime.parse("Wed, 14 Feb 2024 22:44:14 +0000", formatter),
                 )
             )
     }

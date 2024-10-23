@@ -30,12 +30,7 @@ class ForumListRequestTest {
             val engine = TestUtils.setupMockEngine("forumlist")
             BggClient.engine = { engine }
 
-            val response =
-                BggClient.forumList(
-                        id = 342942,
-                        type = ForumListType.THING,
-                    )
-                    .call()
+            val response = BggClient.forumList(id = 342942, type = ForumListType.THING).call()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)

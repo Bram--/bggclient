@@ -89,7 +89,7 @@ class PaginatedForum
 internal constructor(
     private val client: InternalBggClient,
     private val currentPage: Int,
-    private val request: suspend () -> Response<Forum>
+    private val request: suspend () -> Response<Forum>,
 ) : PaginatedRequest<Forum>(client, request) {
     /** @suppress */
     companion object {
@@ -134,7 +134,7 @@ internal constructor(
     private val client: InternalBggClient,
     private val members: Inclusion?,
     private val sort: String?,
-    private val request: suspend () -> Response<Guild>
+    private val request: suspend () -> Response<Guild>,
 ) : PaginatedRequest<Guild>(client, request) {
     /** @suppress */
     companion object {
@@ -172,7 +172,7 @@ internal constructor(
                                     id = guild.data.id,
                                     page = page,
                                     members = members,
-                                    sort = sort
+                                    sort = sort,
                                 )
                                 .call()
 
@@ -207,7 +207,7 @@ internal constructor(
     private val minDate: LocalDate?,
     private val maxDate: LocalDate?,
     private val subType: SubType?,
-    private val request: suspend () -> Response<Plays>
+    private val request: suspend () -> Response<Plays>,
 ) : PaginatedRequest<Plays>(client, request) {
     /** @suppress */
     companion object {
@@ -264,7 +264,7 @@ internal constructor(
     private val pageSize: Int,
     private val comments: Boolean,
     private val ratingComments: Boolean,
-    private val request: suspend () -> Response<Things>
+    private val request: suspend () -> Response<Things>,
 ) : PaginatedRequest<Things>(client, request) {
     override fun paginate(toPage: Int) =
         Request(client) {
@@ -296,7 +296,7 @@ internal constructor(
                                 page = page,
                                 pageSize = pageSize,
                                 comments = comments,
-                                ratingComments = ratingComments
+                                ratingComments = ratingComments,
                             )
                             .call()
 
@@ -319,7 +319,7 @@ internal constructor(
                                                 page = lastPage,
                                                 comments =
                                                     existingThing.comments.comments +
-                                                        newThing.comments.comments
+                                                        newThing.comments.comments,
                                             )
                                     )
                             }
@@ -417,13 +417,10 @@ internal constructor(
                             buddies =
                                 user.data.buddies?.copy(
                                     page = lastPage,
-                                    buddies = allBuddies.toList()
+                                    buddies = allBuddies.toList(),
                                 ),
                             guilds =
-                                user.data.guilds?.copy(
-                                    page = lastPage,
-                                    guilds = allGuilds.toList()
-                                ),
+                                user.data.guilds?.copy(page = lastPage, guilds = allGuilds.toList()),
                         )
                 )
             }
@@ -436,7 +433,7 @@ internal constructor(
  */
 internal suspend inline fun <T> concurrentRequests(
     pages: IntRange,
-    crossinline request: suspend (page: Int) -> T
+    crossinline request: suspend (page: Int) -> T,
 ) {
     val jobs = CopyOnWriteArrayList<Job>()
     runBlocking {

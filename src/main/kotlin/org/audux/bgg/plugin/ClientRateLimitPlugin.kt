@@ -17,93 +17,76 @@ import co.touchlab.kermit.Logger
 import io.ktor.client.plugins.api.createClientPlugin
 import io.ktor.client.request.HttpRequestBuilder
 import java.util.concurrent.atomic.AtomicInteger
+import java.util.concurrent.atomic.AtomicReference
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
+import kotlin.time.TimeMark
+import kotlin.time.TimeSource
 import kotlinx.coroutines.delay
-import org.jetbrains.annotations.Contract
 import org.jetbrains.annotations.VisibleForTesting
 
 /**
- * Ktor plugin to configure the client to limit the number of concurrent requests it can make.
- * Additional requests will be canceled and re-queued to be send whenever another request has been
- * completed.
+ * Ktor client rate limit plugin.
+ *
+ * <p>This configures the client to limit the number of requests it can make per [Duration]. For
+ * example the plugin can be configured to do 60 requests per minute, or 1 request per second etc.
  */
 internal val ClientRateLimitPlugin =
     createClientPlugin(
         "ClientRateLimitPlugin",
-        createConfiguration = ::ConcurrentRequestLimiterConfiguration
+        createConfiguration = ::RequestLimiterConfiguration,
     ) {
-        val requestLimiter = ConcurrentRequestLimiter(pluginConfig.requestLimit)
+        val requestLimiter = RequestLimiter(pluginConfig.requestLimit, pluginConfig.windowSize)
         onRequest { request, _ -> requestLimiter.onNewRequest(request) }
     }
 
 /**
- * Implementation of [ClientRateLimitPlugin] ensuring not more than
- * [ConcurrentRequestLimiterConfiguration.requestLimit] are being made concurrently.
+ * Implementation of [ClientRateLimitPlugin] ensuring not more than [requestLimit] are being within
+ * the period of [windowLength].
  */
-internal class ConcurrentRequestLimiter(private val requestLimit: Int) {
-    internal val inFlightRequests = AtomicSingletonInteger.instance
+internal class RequestLimiter(private val requestLimit: Int, private val windowLength: Duration) {
+    private val timeSource: TimeSource = TimeSource.Monotonic
+    private var currentWindowStart: AtomicReference<TimeMark?> = AtomicReference()
 
-    /**
-     * Keeps an counter for the number of requests that are active/in-flight. If ever the limit is
-     * reached the request is held indefinitely until this request or other requests are
-     * completed/cancelled.
-     *
-     * Called on [io.ktor.client.plugins.api.ClientPluginBuilder.onRequest].
-     */
+    @VisibleForTesting internal var requestsInCurrentWindow: AtomicInteger = AtomicInteger(0)
+
     suspend fun onNewRequest(request: HttpRequestBuilder) {
-        logger.v(tag = "ConcurrentRequestLimiter") { "#OnNewRequest()" }
-        // Ensure inFlight requests count is decremented whenever a request [Job] completes.
-        request.executionContext.invokeOnCompletion {
-            logger.v(tag = "ConcurrentRequestLimiter") { "Request completed" }
-            inFlightRequests.decrementAndGet()
+        var windowStart = currentWindowStart.get()
+        if (windowStart == null || windowStart.plus(windowLength).hasPassedNow()) {
+            windowStart = timeSource.markNow()
+            currentWindowStart.set(windowStart)
         }
+        logger.v(tag = "RequestLimiter") { "#OnNewRequest()" }
 
-        // Check whether the `inFlightRequests` count has been reached, if so delay and check again.
-        do {
-            val currentInFlightRequests = inFlightRequests.get()
-            if (currentInFlightRequests < requestLimit) {
-                inFlightRequests.incrementAndGet()
-                break
+        val requestsMadeInWindow = requestsInCurrentWindow.get()
+        if (requestsMadeInWindow < requestLimit) {
+            requestsInCurrentWindow.incrementAndGet()
+        } else {
+            logger.i(tag = "RequestLimiter") {
+                "Requests limit for window reached[$requestsMadeInWindow/$requestLimit]"
             }
 
-            logger.v(tag = "ConcurrentRequestLimiter") {
-                "Concurrent Requests limit reached[$currentInFlightRequests/$requestLimit]"
+            delay(windowLength.minus(windowStart.elapsedNow()))
+            logger.v(tag = "RequestLimiter") {
+                "Delay completed ${windowStart.elapsedNow().inWholeMilliseconds}"
             }
-
-            // Delay and yield as we've reached the concurrent request limit.
-            delay(IDLING_DELAY)
-        } while (true)
+        }
     }
 
     companion object {
         private val logger = Logger.withTag("ClientRateLimitPlugin")
-        private const val IDLING_DELAY = 50L
     }
 }
 
 /**
- * Configuration for the concurrent request limiter.
+ * Configuration for [RequestLimiter]
  *
- * @property requestLimit The maximum number of concurrent requests that can be made.
+ * @property requestLimit Throttles the client to have [requestLimit] request per [windowSize], e.g.
+ *   "60 requests per 60.seconds".
+ * @property windowSize Throttles the client to have [requestLimit] request per [windowSize], e.g.
+ *   "60 requests per 60.seconds".
  */
-internal class ConcurrentRequestLimiterConfiguration {
-    var requestLimit: Int = 10
-}
-
-/**
- * Singleton [AtomicInteger] to be shared between [org.audux.bgg.BggClient] instances as a new
- * instance of the plugin is created for each client.
- */
-internal class AtomicSingletonInteger
-@Contract(pure = true)
-private constructor(initialValue: Int) : AtomicInteger(initialValue) {
-    companion object {
-        val instance: AtomicSingletonInteger by lazy { AtomicSingletonInteger(0) }
-    }
-
-    /** Clears the in-flight requests counter. */
-    @VisibleForTesting fun reset() = this.set(0)
-
-    override fun toByte() = get().toByte()
-
-    override fun toShort() = get().toShort()
-}
+internal data class RequestLimiterConfiguration(
+    var requestLimit: Int = 60,
+    var windowSize: Duration = 60.seconds,
+)

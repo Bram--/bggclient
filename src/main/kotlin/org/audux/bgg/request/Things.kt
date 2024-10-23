@@ -53,7 +53,7 @@ internal fun InternalBggClient.things(
         currentPage = page,
         pageSize = pageSize ?: 100,
         comments = comments,
-        ratingComments = ratingComments
+        ratingComments = ratingComments,
     ) {
         if (pageSize != null && !(10..100).contains(pageSize)) {
             throw BggRequestException("pageSize must be between 10 and 100")

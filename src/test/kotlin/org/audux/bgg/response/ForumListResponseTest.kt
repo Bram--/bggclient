@@ -59,7 +59,7 @@ class ForumListResponseTest {
                         "Post your game reviews in this forum.  <A href=\"/thread/59278\">Click here for help on writing game reviews.</A>",
                     numThreads = 65,
                     numPosts = 1603,
-                    lastPostDate = LocalDateTime.parse("Tue, 23 Jan 2024 09:13:43 +0000", formatter)
+                    lastPostDate = LocalDateTime.parse("Tue, 23 Jan 2024 09:13:43 +0000", formatter),
                 ),
                 ForumSummary(
                     id = 3696792,
@@ -69,7 +69,7 @@ class ForumListResponseTest {
                     description = "Post your session reports here.",
                     numThreads = 12,
                     numPosts = 99,
-                    lastPostDate = LocalDateTime.parse("Sun, 14 Jan 2024 22:56:08 +0000", formatter)
+                    lastPostDate = LocalDateTime.parse("Sun, 14 Jan 2024 22:56:08 +0000", formatter),
                 ),
                 ForumSummary(
                     id = 3696793,
@@ -79,7 +79,7 @@ class ForumListResponseTest {
                     description = "Post any related article to this game here.",
                     numThreads = 633,
                     numPosts = 9271,
-                    lastPostDate = LocalDateTime.parse("Wed, 24 Jan 2024 17:29:58 +0000", formatter)
+                    lastPostDate = LocalDateTime.parse("Wed, 24 Jan 2024 17:29:58 +0000", formatter),
                 ),
                 ForumSummary(
                     id = 3696794,
@@ -89,7 +89,7 @@ class ForumListResponseTest {
                     description = "Post any rules questions you have here.",
                     numThreads = 1096,
                     numPosts = 8191,
-                    lastPostDate = LocalDateTime.parse("Tue, 23 Jan 2024 20:53:33 +0000", formatter)
+                    lastPostDate = LocalDateTime.parse("Tue, 23 Jan 2024 20:53:33 +0000", formatter),
                 ),
                 ForumSummary(
                     id = 3696795,
@@ -99,7 +99,7 @@ class ForumListResponseTest {
                     description = "Post strategy and tactics articles here.",
                     numThreads = 119,
                     numPosts = 1853,
-                    lastPostDate = LocalDateTime.parse("Tue, 23 Jan 2024 18:50:11 +0000", formatter)
+                    lastPostDate = LocalDateTime.parse("Tue, 23 Jan 2024 18:50:11 +0000", formatter),
                 ),
                 ForumSummary(
                     id = 3696796,
@@ -109,7 +109,7 @@ class ForumListResponseTest {
                     description = "Post variants to the game rules here.",
                     numThreads = 146,
                     numPosts = 2335,
-                    lastPostDate = LocalDateTime.parse("Tue, 23 Jan 2024 12:33:44 +0000", formatter)
+                    lastPostDate = LocalDateTime.parse("Tue, 23 Jan 2024 12:33:44 +0000", formatter),
                 ),
                 ForumSummary(
                     id = 3696797,
@@ -119,7 +119,7 @@ class ForumListResponseTest {
                     description = "Post time sensitive announcements here.",
                     numThreads = 19,
                     numPosts = 726,
-                    lastPostDate = LocalDateTime.parse("Fri, 19 Jan 2024 15:29:10 +0000", formatter)
+                    lastPostDate = LocalDateTime.parse("Fri, 19 Jan 2024 15:29:10 +0000", formatter),
                 ),
                 ForumSummary(
                     id = 3696798,
@@ -129,7 +129,7 @@ class ForumListResponseTest {
                     description = "Post crowdfunding / preorder content here.",
                     numThreads = 0,
                     numPosts = 0,
-                    lastPostDate = null
+                    lastPostDate = null,
                 ),
                 ForumSummary(
                     id = 3696799,
@@ -139,7 +139,7 @@ class ForumListResponseTest {
                     description = "Run Play By Forum (PBF) games here.",
                     numThreads = 0,
                     numPosts = 0,
-                    lastPostDate = null
+                    lastPostDate = null,
                 ),
                 ForumSummary(
                     id = 3696800,
@@ -149,7 +149,7 @@ class ForumListResponseTest {
                     description = "Post here to find local gamers and to promote local events.",
                     numThreads = 12,
                     numPosts = 228,
-                    lastPostDate = LocalDateTime.parse("Mon, 22 Jan 2024 13:22:41 +0000", formatter)
+                    lastPostDate = LocalDateTime.parse("Mon, 22 Jan 2024 13:22:41 +0000", formatter),
                 ),
             )
     }

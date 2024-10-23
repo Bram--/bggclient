@@ -31,7 +31,7 @@ data class SearchResults(
     @JacksonXmlProperty(isAttribute = true) val total: Int,
 
     /** List of the actual things. */
-    @JacksonXmlProperty(localName = "item") val results: List<SearchResult>
+    @JacksonXmlProperty(localName = "item") val results: List<SearchResult>,
 )
 
 /** Encapsulates a single search result. */

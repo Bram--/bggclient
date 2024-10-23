@@ -227,7 +227,7 @@ $dokka.location:org.audux.bgg.request/Request/callAsync/#/PointingToDeclaration/
 $dokka.location:org.audux.bgg.request/Request/callAsync/#kotlin.Function1[org.audux.bgg.response.Response[TypeParam(bounds=[kotlin.Any?])],kotlin.Unit]/PointingToDeclaration/-bgg-client/org.audux.bgg.request/-request/call-async.html
 $dokka.location:org.audux.bgg.response////PointingToDeclaration/-bgg-client/org.audux.bgg.response/index.html
 $dokka.location:org.audux.bgg.response/Article///PointingToDeclaration/-bgg-client/org.audux.bgg.response/-article/index.html
-$dokka.location:org.audux.bgg.response/Article/Article/#kotlin.Int#kotlin.String#kotlin.String#kotlin.Int#java.time.LocalDateTime?#java.time.LocalDateTime?#kotlin.String#kotlin.String/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-article/-article.html
+$dokka.location:org.audux.bgg.response/Article/Article/#kotlin.Int#kotlin.String#kotlin.String?#kotlin.Int#java.time.LocalDateTime?#java.time.LocalDateTime?#kotlin.String#kotlin.String/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-article/-article.html
 $dokka.location:org.audux.bgg.response/Article/body/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-article/body.html
 $dokka.location:org.audux.bgg.response/Article/editDate/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-article/edit-date.html
 $dokka.location:org.audux.bgg.response/Article/id/#/PointingToDeclaration/-bgg-client/org.audux.bgg.response/-article/id.html
@@ -681,11 +681,13 @@ $dokka.location:org.audux.bgg/BggClient/things/#kotlin.Array[kotlin.Int]#kotlin.
 $dokka.location:org.audux.bgg/BggClient/thread/#kotlin.Int#kotlin.Int?#java.time.LocalDateTime?#kotlin.Int?/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/thread.html
 $dokka.location:org.audux.bgg/BggClient/user/#kotlin.String#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Domain?#kotlin.Int?/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client/user.html
 $dokka.location:org.audux.bgg/BggClientConfiguration///PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client-configuration/index.html
-$dokka.location:org.audux.bgg/BggClientConfiguration/BggClientConfiguration/#kotlin.Int#kotlin.Int#kotlin.Double#kotlin.Long#kotlin.Long#kotlin.Long#kotlin.Boolean/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client-configuration/-bgg-client-configuration.html
+$dokka.location:org.audux.bgg/BggClientConfiguration/BggClientConfiguration/#kotlin.Int#kotlin.Int#kotlin.Double#kotlin.Long#kotlin.Long#kotlin.Long#kotlin.Boolean#kotlin.Int#kotlin.time.Duration/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client-configuration/-bgg-client-configuration.html
 $dokka.location:org.audux.bgg/BggClientConfiguration/failOnUnknownProperties/#/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client-configuration/fail-on-unknown-properties.html
 $dokka.location:org.audux.bgg/BggClientConfiguration/maxConcurrentRequests/#/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client-configuration/max-concurrent-requests.html
 $dokka.location:org.audux.bgg/BggClientConfiguration/maxRetries/#/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client-configuration/max-retries.html
 $dokka.location:org.audux.bgg/BggClientConfiguration/requestTimeoutMillis/#/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client-configuration/request-timeout-millis.html
+$dokka.location:org.audux.bgg/BggClientConfiguration/requestWindowSize/#/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client-configuration/request-window-size.html
+$dokka.location:org.audux.bgg/BggClientConfiguration/requestsPerWindowLimit/#/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client-configuration/requests-per-window-limit.html
 $dokka.location:org.audux.bgg/BggClientConfiguration/retryBase/#/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client-configuration/retry-base.html
 $dokka.location:org.audux.bgg/BggClientConfiguration/retryMaxDelayMs/#/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client-configuration/retry-max-delay-ms.html
 $dokka.location:org.audux.bgg/BggClientConfiguration/retryRandomizationMs/#/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client-configuration/retry-randomization-ms.html

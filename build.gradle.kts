@@ -1,5 +1,5 @@
-import org.jetbrains.dokka.gradle.DokkaTask
 import java.net.URL
+import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
     jacoco
@@ -23,7 +23,7 @@ publishing {
         create<MavenPublication>("mavenJava") {
             groupId = "org.audux.bgg"
             artifactId = "bggclient"
-            version = "1.0.1"
+            version = "1.1.0"
 
             pom {
                 name = "Unofficial JVM BGG client"
@@ -68,7 +68,7 @@ signing {
         afterEvaluate {
             useInMemoryPgpKeys(
                 System.getenv("GPG_SIGNING_KEY"),
-                System.getenv("GPG_SIGNING_PASSWORD")
+                System.getenv("GPG_SIGNING_PASSWORD"),
             )
             sign(publishing.publications["mavenJava"])
         }
@@ -102,20 +102,19 @@ dependencies {
     // Testing dependencies.
     testApi(libs.ktor.client.mock)
 
-    testImplementation(libs.kotlin.serialization.json)
     testImplementation(libs.junit5.jupiter)
     testImplementation(libs.junit5.params)
+    testImplementation(libs.junit5.platform)
+    testImplementation(libs.kotlin.serialization.json)
     testImplementation(libs.truth)
 
     testRuntimeOnly(libs.junit5.engine)
 }
 
-kotlin {
-    jvmToolchain(11)
-}
+kotlin { jvmToolchain(11) }
 
 jacoco {
-    toolVersion = "0.8.9"
+    toolVersion = "0.8.12"
     reportsDirectory = layout.buildDirectory.dir("jacoco")
 }
 
@@ -146,9 +145,7 @@ tasks.withType<DokkaTask>().configureEach {
 
             sourceLink {
                 localDirectory.set(file("src/main/kotlin"))
-                remoteUrl.set(
-                    URL("https://github.com/Bram--/bggclient/tree/main")
-                )
+                remoteUrl.set(URL("https://github.com/Bram--/bggclient/tree/main"))
             }
         }
     }

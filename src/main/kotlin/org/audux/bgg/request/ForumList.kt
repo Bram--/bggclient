@@ -23,7 +23,7 @@ import org.audux.bgg.response.ForumList
 import org.audux.bgg.response.Response
 
 /** @see org.audux.bgg.BggClient.forumList */
-internal fun InstantiableClient.forumList(id: Int, type: ForumListType) = request {
+fun InstantiableClient.forumList(id: Int, type: ForumListType) = request {
     client()
         .get(Constants.XML2_API_URL) {
             url {

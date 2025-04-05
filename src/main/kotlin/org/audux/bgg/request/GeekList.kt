@@ -25,7 +25,7 @@ import org.audux.bgg.response.GeekList
 import org.audux.bgg.response.Response
 
 /** @see org.audux.bgg.BggClient.geekList */
-internal fun InstantiableClient.geekList(id: Int, comments: Inclusion?) = request {
+fun InstantiableClient.geekList(id: Int, comments: Inclusion?) = request {
     client()
         .get(XML1_API_URL) {
             url {

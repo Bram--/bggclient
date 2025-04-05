@@ -22,7 +22,7 @@ import org.audux.bgg.response.Forum
 import org.audux.bgg.response.Response
 
 /** @see org.audux.bgg.BggClient.forum */
-internal fun InstantiableClient.forum(id: Int, page: Int?) =
+fun InstantiableClient.forum(id: Int, page: Int?) =
     PaginatedForum(this, page ?: 1) {
         client()
             .get(Constants.XML2_API_URL) {

@@ -24,6 +24,6 @@ import org.audux.bgg.response.Sitemap
  *
  * @param url The URL to the sitemap retrieved from [sitemapIndex].
  */
-internal fun InstantiableClient.sitemap(url: String) = request {
+fun InstantiableClient.sitemap(url: String) = request {
     client().get(url).let { Response.from<Sitemap>(it.bodyAsText(), mapper) }
 }

@@ -23,7 +23,7 @@ import org.audux.bgg.response.Family
 import org.audux.bgg.response.Response
 
 /** @see org.audux.bgg.BggClient.familyItems */
-internal fun InstantiableClient.familyItems(ids: Array<Int>, types: Array<FamilyType> = arrayOf()) =
+fun InstantiableClient.familyItems(ids: Array<Int>, types: Array<FamilyType> = arrayOf()) =
     request {
         client()
             .get(Constants.XML2_API_URL) {

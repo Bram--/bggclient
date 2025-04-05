@@ -33,7 +33,7 @@ import org.audux.bgg.response.Plays
 import org.audux.bgg.response.Response
 
 /** @see org.audux.bgg.BggClient.plays */
-internal fun InstantiableClient.plays(
+fun InstantiableClient.plays(
     username: String,
     id: Int?,
     type: PlayThingType?,

@@ -57,7 +57,7 @@ import org.audux.bgg.response.Collection
 import org.audux.bgg.response.Response
 
 /** @see org.audux.bgg.BggClient.collection */
-internal fun InstantiableClient.collection(
+fun InstantiableClient.collection(
     userName: String,
     subType: ThingType?,
     excludeSubType: ThingType?,

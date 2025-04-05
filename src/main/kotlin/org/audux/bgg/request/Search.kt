@@ -27,7 +27,7 @@ import org.audux.bgg.response.Response
 import org.audux.bgg.response.SearchResults
 
 /** @see org.audux.bgg.BggClient.search */
-internal fun InstantiableClient.search(
+fun InstantiableClient.search(
     query: String,
     types: Array<ThingType> = arrayOf(),
     exactMatch: Boolean,

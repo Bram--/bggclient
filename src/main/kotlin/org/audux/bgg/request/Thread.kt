@@ -24,7 +24,7 @@ import org.audux.bgg.response.Response
 import org.audux.bgg.response.Thread
 
 /** @see org.audux.bgg.BggClient.thread */
-internal fun InstantiableClient.thread(
+fun InstantiableClient.thread(
     id: Int,
     minArticleId: Int?,
     minArticleDate: LocalDateTime?,

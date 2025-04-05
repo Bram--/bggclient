@@ -35,7 +35,7 @@ import org.audux.bgg.response.Response
 import org.audux.bgg.response.Things
 
 /** @see org.audux.bgg.BggClient.things */
-internal fun InstantiableClient.things(
+fun InstantiableClient.things(
     ids: Array<Int>,
     types: Array<ThingType>,
     stats: Boolean,

@@ -32,7 +32,7 @@ import org.audux.bgg.response.Response
 import org.audux.bgg.response.User
 
 /** @see org.audux.bgg.BggClient.user */
-internal fun InstantiableClient.user(
+fun InstantiableClient.user(
     name: String,
     buddies: Inclusion?,
     guilds: Inclusion?,

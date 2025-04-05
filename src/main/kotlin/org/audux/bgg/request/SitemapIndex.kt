@@ -23,7 +23,7 @@ import org.audux.bgg.response.Response
 import org.audux.bgg.response.SitemapIndex
 
 /** @see org.audux.bgg.BggClient.sitemapIndex */
-internal fun InstantiableClient.sitemapIndex(domain: Domain) =
+fun InstantiableClient.sitemapIndex(domain: Domain) =
     DiffusingSitemap(this) {
         client()
             .get(domain.address) { url { appendPathSegments(Constants.PATH_SITEMAP) } }

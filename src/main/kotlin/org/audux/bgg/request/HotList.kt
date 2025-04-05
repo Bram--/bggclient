@@ -25,7 +25,7 @@ import org.audux.bgg.response.HotList
 import org.audux.bgg.response.Response
 
 /** @see org.audux.bgg.BggClient.hotList */
-internal fun InstantiableClient.hotList(type: HotListType?) = request {
+fun InstantiableClient.hotList(type: HotListType?) = request {
     client()
         .get(XML2_API_URL) {
             url {

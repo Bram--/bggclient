@@ -693,6 +693,13 @@ $dokka.location:org.audux.bgg/BggClientConfiguration/retryMaxDelayMs/#/PointingT
 $dokka.location:org.audux.bgg/BggClientConfiguration/retryRandomizationMs/#/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-client-configuration/retry-randomization-ms.html
 $dokka.location:org.audux.bgg/BggRequestException///PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-request-exception/index.html
 $dokka.location:org.audux.bgg/BggRequestException/BggRequestException/#kotlin.String/PointingToDeclaration/-bgg-client/org.audux.bgg/-bgg-request-exception/-bgg-request-exception.html
+$dokka.location:org.audux.bgg/InstantiableClient///PointingToDeclaration/-bgg-client/org.audux.bgg/-instantiable-client/index.html
+$dokka.location:org.audux.bgg/InstantiableClient/InstantiableClient/#kotlin.Function0[io.ktor.client.engine.HttpClientEngine]/PointingToDeclaration/-bgg-client/org.audux.bgg/-instantiable-client/-instantiable-client.html
+$dokka.location:org.audux.bgg/InstantiableClient/call/#kotlin.coroutines.SuspendFunction0[org.audux.bgg.response.Response[TypeParam(bounds=[kotlin.Any?])]]/PointingToDeclaration/-bgg-client/org.audux.bgg/-instantiable-client/call.html
+$dokka.location:org.audux.bgg/InstantiableClient/callAsync/#kotlin.coroutines.SuspendFunction0[TypeParam(bounds=[kotlin.Any?])]#kotlin.Function1[TypeParam(bounds=[kotlin.Any?]),kotlin.Unit]/PointingToDeclaration/-bgg-client/org.audux.bgg/-instantiable-client/call-async.html
+$dokka.location:org.audux.bgg/InstantiableClient/callAsync/#kotlin.coroutines.SuspendFunction0[org.audux.bgg.response.Response[TypeParam(bounds=[kotlin.Any?])]]/PointingToDeclaration/-bgg-client/org.audux.bgg/-instantiable-client/call-async.html
+$dokka.location:org.audux.bgg/InstantiableClient/client/#/PointingToDeclaration/-bgg-client/org.audux.bgg/-instantiable-client/client.html
+$dokka.location:org.audux.bgg/InstantiableClient/request/#kotlin.coroutines.SuspendFunction0[org.audux.bgg.response.Response[TypeParam(bounds=[kotlin.Any?])]]/PointingToDeclaration/-bgg-client/org.audux.bgg/-instantiable-client/request.html
 org.audux.bgg
 org.audux.bgg.common
 org.audux.bgg.request

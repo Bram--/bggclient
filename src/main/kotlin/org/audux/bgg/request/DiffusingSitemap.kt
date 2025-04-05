@@ -2,7 +2,7 @@ package org.audux.bgg.request
 
 import co.touchlab.kermit.Logger
 import java.util.concurrent.ConcurrentHashMap
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.InstantiableClient
 import org.audux.bgg.common.SitemapLocationType
 import org.audux.bgg.response.Response
 import org.audux.bgg.response.SitemapIndex
@@ -19,7 +19,7 @@ import org.audux.bgg.response.SitemapUrl
  */
 class DiffusingSitemap
 internal constructor(
-    private val client: InternalBggClient,
+    private val client: InstantiableClient,
     private val request: suspend () -> Response<SitemapIndex>,
 ) : Request<SitemapIndex>(client, request) {
 

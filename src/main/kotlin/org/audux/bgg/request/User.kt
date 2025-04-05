@@ -16,7 +16,7 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.InstantiableClient
 import org.audux.bgg.common.Constants.PARAM_BUDDIES
 import org.audux.bgg.common.Constants.PARAM_DOMAIN
 import org.audux.bgg.common.Constants.PARAM_GUILDS
@@ -32,7 +32,7 @@ import org.audux.bgg.response.Response
 import org.audux.bgg.response.User
 
 /** @see org.audux.bgg.BggClient.user */
-internal fun InternalBggClient.user(
+internal fun InstantiableClient.user(
     name: String,
     buddies: Inclusion?,
     guilds: Inclusion?,

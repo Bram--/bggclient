@@ -10,6 +10,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.KotlinFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.ktor.client.HttpClient
+import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.compression.ContentEncoding
@@ -27,12 +28,12 @@ import org.audux.bgg.plugin.ClientRateLimitPlugin
 import org.audux.bgg.request.Request
 import org.audux.bgg.response.Response
 
-/** Internal BGG Client containing the actual implementations of the API Calls. */
-internal class InternalBggClient {
+/** BGG Client containing the actual implementations of the API Calls. */
+class InstantiableClient(engine: () -> HttpClientEngine = BggClient.engine) {
     private val clientScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
-    internal val client = {
-        HttpClient(BggClient.engine()) {
+    val client = {
+        HttpClient(engine()) {
             // This plugin serves two primary purposes:
             //
             // * Sets the Accept-Encoding header with the specified quality value.
@@ -90,7 +91,7 @@ internal class InternalBggClient {
         }
     }
 
-    val mapper: ObjectMapper =
+    internal val mapper: ObjectMapper =
         XmlMapper.builder()
             .apply {
                 configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true)
@@ -120,7 +121,7 @@ internal class InternalBggClient {
     /**
      * Calls/Launches a request async, once a response is available it will call [responseCallback].
      */
-    internal fun <T> callAsync(request: suspend () -> T, responseCallback: (T) -> Unit) =
+    fun <T> callAsync(request: suspend () -> T, responseCallback: (T) -> Unit) =
         clientScope.launch {
             val response = request()
             withContext(Dispatchers.Default) { responseCallback(response) }
@@ -128,12 +129,11 @@ internal class InternalBggClient {
 
     /** Calls/Launches a request and returns it's response. */
     @OptIn(DelicateCoroutinesApi::class)
-    internal fun <T> callAsync(request: suspend () -> Response<T>) =
-        GlobalScope.future { request() }
+    fun <T> callAsync(request: suspend () -> Response<T>) = GlobalScope.future { request() }
 
     /** Calls/Launches a request and returns it's response. */
-    internal suspend fun <T> call(request: suspend () -> Response<T>) = request()
+    suspend fun <T> call(request: suspend () -> Response<T>) = request()
 
     /** Returns a wrapped request for later execution. */
-    internal fun <T> request(request: suspend () -> Response<T>) = Request(this, request)
+    fun <T> request(request: suspend () -> Response<T>) = Request(this, request)
 }

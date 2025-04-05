@@ -18,13 +18,13 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.InstantiableClient
 import org.audux.bgg.common.Constants
 import org.audux.bgg.response.Response
 import org.audux.bgg.response.Thread
 
 /** @see org.audux.bgg.BggClient.thread */
-internal fun InternalBggClient.thread(
+internal fun InstantiableClient.thread(
     id: Int,
     minArticleId: Int?,
     minArticleDate: LocalDateTime?,

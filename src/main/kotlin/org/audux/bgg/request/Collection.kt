@@ -18,7 +18,7 @@ import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.InstantiableClient
 import org.audux.bgg.common.Constants.PARAM_BGG_RATING
 import org.audux.bgg.common.Constants.PARAM_BRIEF
 import org.audux.bgg.common.Constants.PARAM_COLLECTION_ID
@@ -57,7 +57,7 @@ import org.audux.bgg.response.Collection
 import org.audux.bgg.response.Response
 
 /** @see org.audux.bgg.BggClient.collection */
-internal fun InternalBggClient.collection(
+internal fun InstantiableClient.collection(
     userName: String,
     subType: ThingType?,
     excludeSubType: ThingType?,

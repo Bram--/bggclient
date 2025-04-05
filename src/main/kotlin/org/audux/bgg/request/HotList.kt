@@ -16,7 +16,7 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.InstantiableClient
 import org.audux.bgg.common.Constants.PARAM_TYPE
 import org.audux.bgg.common.Constants.PATH_HOT
 import org.audux.bgg.common.Constants.XML2_API_URL
@@ -25,7 +25,7 @@ import org.audux.bgg.response.HotList
 import org.audux.bgg.response.Response
 
 /** @see org.audux.bgg.BggClient.hotList */
-internal fun InternalBggClient.hotList(type: HotListType?) = request {
+internal fun InstantiableClient.hotList(type: HotListType?) = request {
     client()
         .get(XML2_API_URL) {
             url {

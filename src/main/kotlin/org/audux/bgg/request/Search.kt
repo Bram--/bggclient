@@ -16,7 +16,7 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.InstantiableClient
 import org.audux.bgg.common.Constants.PARAM_EXACT
 import org.audux.bgg.common.Constants.PARAM_QUERY
 import org.audux.bgg.common.Constants.PARAM_TYPE
@@ -27,7 +27,7 @@ import org.audux.bgg.response.Response
 import org.audux.bgg.response.SearchResults
 
 /** @see org.audux.bgg.BggClient.search */
-internal fun InternalBggClient.search(
+internal fun InstantiableClient.search(
     query: String,
     types: Array<ThingType> = arrayOf(),
     exactMatch: Boolean,

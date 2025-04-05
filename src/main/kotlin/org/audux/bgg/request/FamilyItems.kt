@@ -16,14 +16,14 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.InstantiableClient
 import org.audux.bgg.common.Constants
 import org.audux.bgg.common.FamilyType
 import org.audux.bgg.response.Family
 import org.audux.bgg.response.Response
 
 /** @see org.audux.bgg.BggClient.familyItems */
-internal fun InternalBggClient.familyItems(ids: Array<Int>, types: Array<FamilyType> = arrayOf()) =
+internal fun InstantiableClient.familyItems(ids: Array<Int>, types: Array<FamilyType> = arrayOf()) =
     request {
         client()
             .get(Constants.XML2_API_URL) {

@@ -15,7 +15,7 @@ package org.audux.bgg.request
 
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.InstantiableClient
 import org.audux.bgg.response.Response
 import org.audux.bgg.response.Sitemap
 
@@ -24,6 +24,6 @@ import org.audux.bgg.response.Sitemap
  *
  * @param url The URL to the sitemap retrieved from [sitemapIndex].
  */
-internal fun InternalBggClient.sitemap(url: String) = request {
+internal fun InstantiableClient.sitemap(url: String) = request {
     client().get(url).let { Response.from<Sitemap>(it.bodyAsText(), mapper) }
 }

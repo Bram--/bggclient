@@ -27,7 +27,7 @@ import io.ktor.http.Headers
 import java.io.InputStream
 import kotlinx.coroutines.delay
 import org.audux.bgg.BggClient
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.InstantiableClient
 
 object TestUtils {
     val DEFAULT_HEADERS =
@@ -53,7 +53,7 @@ object TestUtils {
         )
 
     /** Returns an fully configure [XmlMapper] instance that is used in the BggClient. */
-    @JvmStatic fun getBggClientMapper() = InternalBggClient().mapper
+    @JvmStatic fun getBggClientMapper() = InstantiableClient().mapper
 
     /** Returns input stream of `resources/xml/{fileName}.xml` to use in testing. */
     @JvmStatic

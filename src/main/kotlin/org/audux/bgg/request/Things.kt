@@ -17,7 +17,7 @@ import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
 import org.audux.bgg.BggRequestException
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.InstantiableClient
 import org.audux.bgg.common.Constants.PARAM_COMMENTS
 import org.audux.bgg.common.Constants.PARAM_ID
 import org.audux.bgg.common.Constants.PARAM_MARKETPLACE
@@ -35,7 +35,7 @@ import org.audux.bgg.response.Response
 import org.audux.bgg.response.Things
 
 /** @see org.audux.bgg.BggClient.things */
-internal fun InternalBggClient.things(
+internal fun InstantiableClient.things(
     ids: Array<Int>,
     types: Array<ThingType>,
     stats: Boolean,

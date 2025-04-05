@@ -13,7 +13,6 @@ import io.ktor.http.HttpStatusCode
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.CountDownLatch
 import kotlinx.coroutines.runBlocking
-import org.audux.bgg.request.things
 import org.audux.bgg.response.Response
 import org.audux.bgg.util.TestUtils
 import org.audux.bgg.util.TestUtils.delayedResponse
@@ -111,7 +110,7 @@ class BggClientTest {
         val latch = CountDownLatch(1)
         var response: String? = null
 
-        InternalBggClient().apply {
+        InstantiableClient().apply {
             request {
                     Response(
                         data = client().get("https://www.google.com/test").bodyAsText(),
@@ -137,7 +136,7 @@ class BggClientTest {
         var response: String?
         var future: CompletableFuture<Response<String>>? = null
 
-        InternalBggClient().apply {
+        InstantiableClient().apply {
             future =
                 request {
                         Response(
@@ -161,7 +160,7 @@ class BggClientTest {
         var response: String?
 
         runBlocking {
-            InternalBggClient().apply {
+            InstantiableClient().apply {
                 response =
                     request {
                             Response(
@@ -185,7 +184,7 @@ class BggClientTest {
                 MockEngine(MockEngineConfig().apply { addHandler(delayedResponse(1_000)) })
             }
 
-            InternalBggClient().apply {
+            InstantiableClient().apply {
                 assertThrows<HttpRequestTimeoutException> {
                     request {
                             Response(

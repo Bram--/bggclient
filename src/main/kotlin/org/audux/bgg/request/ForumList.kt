@@ -16,14 +16,14 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.InstantiableClient
 import org.audux.bgg.common.Constants
 import org.audux.bgg.common.ForumListType
 import org.audux.bgg.response.ForumList
 import org.audux.bgg.response.Response
 
 /** @see org.audux.bgg.BggClient.forumList */
-internal fun InternalBggClient.forumList(id: Int, type: ForumListType) = request {
+internal fun InstantiableClient.forumList(id: Int, type: ForumListType) = request {
     client()
         .get(Constants.XML2_API_URL) {
             url {

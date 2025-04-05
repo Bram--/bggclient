@@ -26,7 +26,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.audux.bgg.BggClient
 import org.audux.bgg.BggRequestException
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.InstantiableClient
 import org.audux.bgg.common.Domain
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.common.PlayThingType
@@ -55,7 +55,7 @@ import org.audux.bgg.response.User
  *   from 10 onwards.
  */
 abstract class PaginatedRequest<T>
-internal constructor(client: InternalBggClient, request: suspend () -> Response<T>) :
+internal constructor(client: InstantiableClient, request: suspend () -> Response<T>) :
     Request<T>(client, request) {
 
     /**
@@ -87,7 +87,7 @@ internal constructor(client: InternalBggClient, request: suspend () -> Response<
 /** [PaginatedRequest] implementation for [forum]. */
 class PaginatedForum
 internal constructor(
-    private val client: InternalBggClient,
+    private val client: InstantiableClient,
     private val currentPage: Int,
     private val request: suspend () -> Response<Forum>,
 ) : PaginatedRequest<Forum>(client, request) {
@@ -131,7 +131,7 @@ internal constructor(
 /** [PaginatedRequest] implementation for [guild]. */
 class PaginatedGuilds
 internal constructor(
-    private val client: InternalBggClient,
+    private val client: InstantiableClient,
     private val members: Inclusion?,
     private val sort: String?,
     private val request: suspend () -> Response<Guild>,
@@ -201,7 +201,7 @@ internal constructor(
 /** [PaginatedRequest] implementation for [plays]. */
 class PaginatedPlays
 internal constructor(
-    private val client: InternalBggClient,
+    private val client: InstantiableClient,
     private val id: Int?,
     private val type: PlayThingType?,
     private val minDate: LocalDate?,
@@ -258,7 +258,7 @@ internal constructor(
 /** [PaginatedRequest] implementation for [things]. */
 class PaginatedThings
 internal constructor(
-    private val client: InternalBggClient,
+    private val client: InstantiableClient,
     private val ids: Array<Int>,
     private val currentPage: Int,
     private val pageSize: Int,
@@ -339,7 +339,7 @@ internal constructor(
  */
 class PaginatedUser
 internal constructor(
-    private val client: InternalBggClient,
+    private val client: InstantiableClient,
     private val buddies: Inclusion?,
     private val guilds: Inclusion?,
     private val top: Inclusion?,

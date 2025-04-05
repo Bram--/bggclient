@@ -23,7 +23,7 @@ publishing {
         create<MavenPublication>("mavenJava") {
             groupId = "org.audux.bgg"
             artifactId = "bggclient"
-            version = "1.1.0"
+            version = "1.2.0"
 
             pom {
                 name = "Unofficial JVM BGG client"
@@ -80,8 +80,6 @@ ktfmt {
 
     removeUnusedImports.set(true)
 }
-
-sourceSets { main { kotlin { exclude("examples/") } } }
 
 repositories { mavenCentral() }
 

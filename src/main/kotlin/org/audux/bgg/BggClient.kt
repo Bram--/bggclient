@@ -215,7 +215,7 @@ object BggClient {
         collectionId: Int? = null,
         modifiedSince: LocalDateTime? = null,
     ) =
-        InternalBggClient()
+        InstantiableClient()
             .collection(
                 userName,
                 subType,
@@ -279,7 +279,7 @@ object BggClient {
     @JvmStatic
     @JvmOverloads
     fun familyItems(ids: Array<Int>, types: Array<FamilyType> = arrayOf()) =
-        InternalBggClient().familyItems(ids, types)
+        InstantiableClient().familyItems(ids, types)
 
     /**
      * Retrieves the list of threads for the given forum id in a [org.audux.bgg.response.Forum].
@@ -321,7 +321,7 @@ object BggClient {
      */
     @JvmStatic
     @JvmOverloads
-    fun forum(id: Int, page: Int? = null) = InternalBggClient().forum(id, page)
+    fun forum(id: Int, page: Int? = null) = InstantiableClient().forum(id, page)
 
     /**
      * Retrieves the list of available forums for the given id / type combination, returning a
@@ -354,7 +354,8 @@ object BggClient {
      * @param id The id of either the Family or Thing to retrieve
      * @param type Single [ForumListType] to retrieve, either a [Thing] or [Family]
      */
-    @JvmStatic fun forumList(id: Int, type: ForumListType) = InternalBggClient().forumList(id, type)
+    @JvmStatic
+    fun forumList(id: Int, type: ForumListType) = InstantiableClient().forumList(id, type)
 
     /**
      * Geek list endpoint, retrieves a specific geek list by its ID and return a
@@ -396,7 +397,7 @@ object BggClient {
      */
     @JvmStatic
     @JvmOverloads
-    fun geekList(id: Int, comments: Inclusion? = null) = InternalBggClient().geekList(id, comments)
+    fun geekList(id: Int, comments: Inclusion? = null) = InstantiableClient().geekList(id, comments)
 
     /**
      * Retrieve information about the given guild (id) like name, description, members etc.
@@ -444,7 +445,7 @@ object BggClient {
     @JvmStatic
     @JvmOverloads
     fun guild(id: Int, members: Inclusion? = null, sort: String? = null, page: Int? = null) =
-        InternalBggClient().guild(id, members, sort, page)
+        InstantiableClient().guild(id, members, sort, page)
 
     /**
      * Hotness endpoint that retrieve the list of most 50 active items on the site filtered by type,
@@ -478,7 +479,7 @@ object BggClient {
      */
     @JvmStatic
     @JvmOverloads
-    fun hotList(type: HotListType? = null) = InternalBggClient().hotList(type)
+    fun hotList(type: HotListType? = null) = InstantiableClient().hotList(type)
 
     /**
      * Request a list of plays (max 100 at the time) for the given user, returning
@@ -545,7 +546,7 @@ object BggClient {
         maxDate: LocalDate? = null,
         subType: SubType? = null,
         page: Int? = null,
-    ) = InternalBggClient().plays(username, id, type, minDate, maxDate, subType, page)
+    ) = InstantiableClient().plays(username, id, type, minDate, maxDate, subType, page)
 
     /**
      * Search endpoint that allows searching by name for things on BGG return a
@@ -583,7 +584,7 @@ object BggClient {
     @JvmStatic
     @JvmOverloads
     fun search(query: String, types: Array<ThingType> = arrayOf(), exactMatch: Boolean = false) =
-        InternalBggClient().search(query, types, exactMatch)
+        InstantiableClient().search(query, types, exactMatch)
 
     /**
      * Requests the Sitemap index for the given Domain. Call
@@ -628,7 +629,7 @@ object BggClient {
      */
     @JvmStatic
     fun sitemapIndex(domain: Domain = Domain.BOARD_GAME_GEEK) =
-        InternalBggClient().sitemapIndex(domain)
+        InstantiableClient().sitemapIndex(domain)
 
     /**
      * Request a Thing or list of things. Multiple things can be requested by passing in several
@@ -763,7 +764,7 @@ object BggClient {
         page: Int = 1,
         pageSize: Int? = null,
     ) =
-        InternalBggClient()
+        InstantiableClient()
             .things(
                 ids,
                 types,
@@ -831,7 +832,7 @@ object BggClient {
         minArticleId: Int? = null,
         minArticleDate: LocalDateTime? = null,
         count: Int? = null,
-    ) = InternalBggClient().thread(id, minArticleId, minArticleDate, count)
+    ) = InstantiableClient().thread(id, minArticleId, minArticleDate, count)
 
     /**
      * User endpoint that retrieves a specific user by their [name] returning a
@@ -909,7 +910,7 @@ object BggClient {
         hot: Inclusion? = null,
         domain: Domain? = null,
         page: Int? = null,
-    ) = InternalBggClient().user(name, buddies, guilds, top, hot, domain, page)
+    ) = InstantiableClient().user(name, buddies, guilds, top, hot, domain, page)
 
     /**
      * Logging level Severity for the BGGClient logging.

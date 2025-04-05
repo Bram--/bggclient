@@ -16,7 +16,7 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.InstantiableClient
 import org.audux.bgg.common.Constants.PARAM_COMMENTS
 import org.audux.bgg.common.Constants.PATH_GEEK_LIST
 import org.audux.bgg.common.Constants.XML1_API_URL
@@ -25,7 +25,7 @@ import org.audux.bgg.response.GeekList
 import org.audux.bgg.response.Response
 
 /** @see org.audux.bgg.BggClient.geekList */
-internal fun InternalBggClient.geekList(id: Int, comments: Inclusion?) = request {
+internal fun InstantiableClient.geekList(id: Int, comments: Inclusion?) = request {
     client()
         .get(XML1_API_URL) {
             url {

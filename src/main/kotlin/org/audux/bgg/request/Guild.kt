@@ -16,7 +16,7 @@ package org.audux.bgg.request
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.appendPathSegments
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.InstantiableClient
 import org.audux.bgg.common.Constants.PARAM_ID
 import org.audux.bgg.common.Constants.PARAM_MEMBERS
 import org.audux.bgg.common.Constants.PARAM_PAGE
@@ -28,7 +28,7 @@ import org.audux.bgg.response.Guild
 import org.audux.bgg.response.Response
 
 /** @see org.audux.bgg.BggClient.guild */
-internal fun InternalBggClient.guild(id: Int, members: Inclusion?, sort: String?, page: Int?) =
+internal fun InstantiableClient.guild(id: Int, members: Inclusion?, sort: String?, page: Int?) =
     PaginatedGuilds(this, members, sort) {
         client()
             .get(XML2_API_URL) {

@@ -13,13 +13,13 @@
  */
 package org.audux.bgg.request
 
-import org.audux.bgg.InternalBggClient
+import org.audux.bgg.InstantiableClient
 import org.audux.bgg.response.Response
 
 /** Encapsulates a request to BGG so it can be scheduled or queued for later execution. */
 open class Request<T>
 internal constructor(
-    private val client: InternalBggClient,
+    private val client: InstantiableClient,
     private val request: suspend () -> Response<T>,
 ) {
     /**

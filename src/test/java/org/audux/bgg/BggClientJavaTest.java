@@ -42,9 +42,19 @@ import org.audux.bgg.response.SearchResult;
 import org.audux.bgg.response.SitemapUrl;
 import org.audux.bgg.response.Status;
 import org.audux.bgg.response.ThreadSummary;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class BggClientJavaTest {
+
+  @BeforeEach
+  void setUp() {
+      BggClient.configure(config -> {
+          config.setAuthToken("AuthTokenForTesting");
+          return null;
+      });
+  }
+
 
   @Test
   public void collectionRequest()

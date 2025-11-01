@@ -14,6 +14,8 @@ import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.compression.ContentEncoding
+import io.ktor.client.plugins.defaultRequest
+import io.ktor.client.request.header
 import java.util.Locale
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -23,14 +25,21 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.future.future
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.audux.bgg.BggClient.engine
 import org.audux.bgg.plugin.ClientConcurrentRateLimitPlugin
 import org.audux.bgg.plugin.ClientRateLimitPlugin
 import org.audux.bgg.request.Request
 import org.audux.bgg.response.Response
 
 /** BGG Client containing the actual implementations of the API Calls. */
-class InstantiableClient(engine: () -> HttpClientEngine = BggClient.engine) {
+class InstantiableClient(authToken: String, engine: () -> HttpClientEngine = BggClient.engine) {
     private val clientScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+
+    init {
+        check(authToken.isNotBlank()) {
+            "Authorization is now requirement to use the BGG XML Apu. Make sure authToken is set before calling the BGGClient"
+        }
+    }
 
     val client = {
         HttpClient(engine()) {
@@ -86,6 +95,8 @@ class InstantiableClient(engine: () -> HttpClientEngine = BggClient.engine) {
                     }
                 }
             }
+
+            defaultRequest { header("Authorization", "Bearer $authToken") }
 
             expectSuccess = true
         }

@@ -30,10 +30,13 @@ import org.audux.bgg.BggClient
 import org.audux.bgg.InstantiableClient
 
 object TestUtils {
+    const val TEST_AUTH_TOKEN = "TestAuthToken"
+
     val DEFAULT_HEADERS =
         Headers.build {
             appendAll("Accept-Encoding", listOf("gzip"))
             appendAll("Accept-Charset", listOf("UTF-8"))
+            appendAll("Authorization", listOf("Bearer $TEST_AUTH_TOKEN"))
             appendAll("Accept", listOf("*/*"))
         }
 
@@ -53,7 +56,7 @@ object TestUtils {
         )
 
     /** Returns an fully configure [XmlMapper] instance that is used in the BggClient. */
-    @JvmStatic fun getBggClientMapper() = InstantiableClient().mapper
+    @JvmStatic fun getBggClientMapper() = InstantiableClient("TestAuthToken").mapper
 
     /** Returns input stream of `resources/xml/{fileName}.xml` to use in testing. */
     @JvmStatic

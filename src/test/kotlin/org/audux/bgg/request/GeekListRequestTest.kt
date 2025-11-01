@@ -20,6 +20,7 @@ import kotlinx.coroutines.runBlocking
 import org.audux.bgg.BggClient
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.util.TestUtils
+import org.audux.bgg.util.TestUtils.TEST_AUTH_TOKEN
 import org.junit.jupiter.api.Test
 
 /** Unit tests for [geekList] extension function. */
@@ -30,7 +31,7 @@ class GeekListRequestTest {
             val engine = TestUtils.setupMockEngine("geeklist?id=331520")
             BggClient.engine = { engine }
 
-            val response = BggClient.geekList(id = 331520).call()
+            val response = BggClient.authToken(TEST_AUTH_TOKEN).geekList(id = 331520).call()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
@@ -50,7 +51,17 @@ class GeekListRequestTest {
             val engine = TestUtils.setupMockEngine("geeklist?id=331520&comments=1")
             BggClient.engine = { engine }
 
-            val response = BggClient.geekList(id = 331520, comments = Inclusion.INCLUDE).call()
+            val response =
+                runCatching {
+                        BggClient.authToken(TEST_AUTH_TOKEN)
+                            .geekList(id = 331520, comments = Inclusion.INCLUDE)
+                            .call()
+                    }
+                    .onFailure {
+                        it.printStackTrace()
+                        println("ERRRORRRROROR")
+                    }
+                    .getOrNull()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)
@@ -58,7 +69,7 @@ class GeekListRequestTest {
             assertThat(request.headers).isEqualTo(TestUtils.DEFAULT_HEADERS)
             assertThat(request.url)
                 .isEqualTo(Url("https://boardgamegeek.com/xmlapi/geeklist/331520?comments=1"))
-            assertThat(response.data?.items).hasSize(10)
+            assertThat(response?.data?.items).hasSize(10)
         }
     }
 }

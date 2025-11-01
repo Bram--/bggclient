@@ -15,6 +15,7 @@ import java.util.concurrent.CountDownLatch
 import kotlinx.coroutines.runBlocking
 import org.audux.bgg.response.Response
 import org.audux.bgg.util.TestUtils
+import org.audux.bgg.util.TestUtils.TEST_AUTH_TOKEN
 import org.audux.bgg.util.TestUtils.delayedResponse
 import org.audux.bgg.util.TestUtils.setupMockEngine
 import org.junit.jupiter.api.AfterEach
@@ -27,10 +28,12 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class BggClientTest {
     private lateinit var defaultConfiguration: BggClientConfiguration
+    private val authToken = "TestAuthToken"
 
     @BeforeEach
     fun setUp() {
         defaultConfiguration = BggClient.configuration
+        BggClient.authToken(TEST_AUTH_TOKEN)
     }
 
     @AfterEach
@@ -110,7 +113,7 @@ class BggClientTest {
         val latch = CountDownLatch(1)
         var response: String? = null
 
-        InstantiableClient().apply {
+        InstantiableClient(authToken).apply {
             request {
                     Response(
                         data = client().get("https://www.google.com/test").bodyAsText(),
@@ -136,7 +139,7 @@ class BggClientTest {
         var response: String?
         var future: CompletableFuture<Response<String>>? = null
 
-        InstantiableClient().apply {
+        InstantiableClient(authToken).apply {
             future =
                 request {
                         Response(
@@ -160,7 +163,7 @@ class BggClientTest {
         var response: String?
 
         runBlocking {
-            InstantiableClient().apply {
+            InstantiableClient(authToken).apply {
                 response =
                     request {
                             Response(
@@ -184,7 +187,7 @@ class BggClientTest {
                 MockEngine(MockEngineConfig().apply { addHandler(delayedResponse(1_000)) })
             }
 
-            InstantiableClient().apply {
+            InstantiableClient(authToken).apply {
                 assertThrows<HttpRequestTimeoutException> {
                     request {
                             Response(
@@ -230,6 +233,29 @@ class BggClientTest {
             assertThat(response.error).isNull()
 
             BggClient.configure { failOnUnknownProperties = true }
+        }
+    }
+
+    @Nested
+    inner class AuthToken {
+        @Test
+        fun `Throws Exception when no Auth token is set`() {
+            BggClient.configure { authToken = "" }
+            BggClient.authToken("")
+            BggClient.engine = {
+                MockEngine(MockEngineConfig().apply { addHandler { respondOk("Response") } })
+            }
+
+            assertThrows<IllegalStateException> { BggClient.forum(1) }
+        }
+
+        @Test
+        fun `Does not throws Exception when Auth token is set in configuration`() = runBlocking {
+            BggClient.authToken("")
+            BggClient.engine = { setupMockEngine("forum?id=3696796") }
+            BggClient.configure { authToken = TEST_AUTH_TOKEN }
+
+            assertThat(BggClient.forum(1).call().isError()).isFalse()
         }
     }
 

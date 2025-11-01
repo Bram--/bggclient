@@ -2,17 +2,17 @@
 com-gradleup-nmcp = "0.0.9"
 jackson = "2.18.3"
 javax-xml-stream = "1.0-2"
-junit5 = "5.12.0"
-junit5-platform = "1.12.0"
-kermit = "2.0.5"
+junit5 = "5.14.0"
+junit5-platform = "1.14.0"
+kermit = "2.0.8"
 ktfmt-gradle = "0.22.0"
-ktor = "3.1.2"
+ktor = "3.3.1"
 org-jetbrains-dokka = "1.9.20"
 org-jetbrains-kotlin-jdk8 = "1.10.1"
 org-jetbrains-kotlin-jvm = "2.1.10"
 serialization = "1.8.0"
 slf4j = "2.0.17"
-truth = "1.4.4"
+truth = "1.4.5"
 
 [libraries]
 jackson-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
@@ -28,7 +28,7 @@ kotlin-coroutines-jdk8 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jd
 kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "serialization" }
 kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm", version.ref = "serialization" }
 ktor-client = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
-ktor-client-encoding = { module = "io.ktor:ktor-client-encoding", version.ref ="ktor" }
+ktor-client-encoding = { module = "io.ktor:ktor-client-encoding", version.ref = "ktor" }
 ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 slf4j = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j" }

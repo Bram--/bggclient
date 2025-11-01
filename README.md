@@ -11,6 +11,9 @@ If you're looking for all Board game IDs and some basic information please refer
 [this page](https://boardgamegeek.com/data_dumps/bg_ranks) that contains CSV with all boardgames
 instead.
 
+**Note** Ensure that the `BggClient.authToken` method is called with a valid Bearer token. Board Game Geek [now 
+requires](https://boardgamegeek.com/using_the_xml_api#toc10) a valid Auth token to be set.
+
 ## APIs overview
 
 A short summary of all available APIs/Endpoints is available
@@ -25,7 +28,7 @@ using it is as simple as adding a single line to Gradle.
 ##### Gradle
 
 ```kotlin
-implementation("org.audux.bgg:bggclient:1.2.1")
+implementation("org.audux.bgg:bggclient:1.3.0")
 ```
 
 ##### Maven
@@ -35,7 +38,7 @@ implementation("org.audux.bgg:bggclient:1.2.1")
 <dependency>
     <groupId>org.audux.bgg</groupId>
     <artifactId>bggclient</artifactId>
-    <version>1.2.1</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 

@@ -55,23 +55,20 @@ publishing {
     }
 }
 
-nmcp {
-    publish("mavenJava") {
+nmcpAggregation {
+    centralPortal {
         username = System.getenv("MAVEN_USERNAME")
         password = System.getenv("MAVEN_PASSWORD")
-        publicationType = "AUTOMATIC"
+        publishingType = "AUTOMATIC"
     }
+
+    publishAllProjectsProbablyBreakingProjectIsolation()
 }
 
 signing {
-    if (project.gradle.startParameter.taskNames.contains("publishAllPublicationsToCentralPortal")) {
-        afterEvaluate {
-            useInMemoryPgpKeys(
-                System.getenv("GPG_SIGNING_KEY"),
-                System.getenv("GPG_SIGNING_PASSWORD"),
-            )
-            sign(publishing.publications["mavenJava"])
-        }
+    afterEvaluate {
+        useInMemoryPgpKeys(System.getenv("GPG_SIGNING_KEY"), System.getenv("GPG_SIGNING_PASSWORD"))
+        sign(publishing.publications["mavenJava"])
     }
 }
 

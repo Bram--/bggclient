@@ -18,7 +18,7 @@ jobs:
       pages: write
       pull-requests: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: actions/cache@v4
         with:
@@ -29,7 +29,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: 'corretto'
           java-version: '17'
@@ -38,14 +38,14 @@ jobs:
           ./gradlew clean build
 
       - name: Archive test report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: Test report
           path: build/reports/tests/test
 
       - name: Add coverage to PR
         id: jacoco
-        uses: madrapps/jacoco-report@v1.6.1
+        uses: madrapps/jacoco-report@v1.7.2
         with:
           paths: |
             ${{ github.workspace }}/build/jacoco/test/jacocoTestReport.xml,

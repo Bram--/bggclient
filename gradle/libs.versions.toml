@@ -1,5 +1,5 @@
 [versions]
-com-gradleup-nmcp = "1.2.0"
+com-gradleup-nmcp = "1.4.4"
 jackson = "2.18.3"
 javax-xml-stream = "1.0-2"
 junit5 = "5.14.0"

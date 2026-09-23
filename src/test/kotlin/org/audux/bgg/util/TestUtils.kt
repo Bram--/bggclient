@@ -54,6 +54,34 @@ object TestUtils {
             }
         )
 
+    /**
+     * Sets up a HttpEngine using a [MockEngine] that matches the request URL against the given
+     * [routes], responding with the XML file of the first matching route. Unlike [setupMockEngine]
+     * (which matches responses to requests in arrival order) this responds correctly to
+     * concurrently made requests, e.g. when paginating or using
+     * [org.audux.bgg.request.DiffusingSitemap.diffuse].
+     *
+     * @param routes Pairs of (URL fragment, XML file name in `resources/xml/`), the first matching
+     *   fragment determines the response.
+     */
+    @JvmStatic
+    @JvmOverloads
+    fun setupUrlRoutedMockEngine(
+        vararg routes: Pair<String, String>,
+        headers: Headers = Headers.Empty,
+    ) =
+        MockEngine(
+            MockEngineConfig().apply {
+                addHandler { request ->
+                    val url = request.url.toString()
+                    val fileName =
+                        routes.firstOrNull { (fragment, _) -> url.contains(fragment) }?.second
+                            ?: error("No mock response registered for $url")
+                    respond(xml(fileName).readAllBytes(), headers = headers)
+                }
+            }
+        )
+
     /** Returns an fully configure [XmlMapper] instance that is used in the BggClient. */
     @JvmStatic fun getBggClientMapper() = InstantiableClient("TestAuthToken").mapper
 

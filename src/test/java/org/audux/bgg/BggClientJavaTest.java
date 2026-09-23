@@ -6,6 +6,7 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static org.audux.bgg.common.Inclusion.EXCLUDE;
 import static org.audux.bgg.common.Inclusion.INCLUDE;
 import static org.audux.bgg.util.TestUtils.setupMockEngine;
+import static org.audux.bgg.util.TestUtils.setupUrlRoutedMockEngine;
 
 import com.google.common.collect.Lists;
 import java.time.LocalDate;
@@ -42,6 +43,7 @@ import org.audux.bgg.response.SearchResult;
 import org.audux.bgg.response.SitemapUrl;
 import org.audux.bgg.response.Status;
 import org.audux.bgg.response.ThreadSummary;
+import kotlin.Pair;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -693,12 +695,13 @@ public class BggClientJavaTest {
   @Test
   public void sitemapIndexRequest()
       throws ExecutionException, InterruptedException, TimeoutException, BggRequestException {
+    // Responses are matched by URL as the sitemaps are requested concurrently.
     var engine =
-        setupMockEngine(
-            "sitemapindex.diffuse",
-            "sitemap_boardgame_page1",
-            "sitemap_boardgameversion_page1",
-            "sitemap_files_page1");
+        setupUrlRoutedMockEngine(
+            new Pair<>("sitemapindex", "sitemapindex.diffuse"),
+            new Pair<>("boardgameversion_page_1", "sitemap_boardgameversion_page1"),
+            new Pair<>("boardgame_page_1", "sitemap_boardgame_page1"),
+            new Pair<>("files_page_1", "sitemap_files_page1"));
     BggClient.setEngine(() -> engine);
 
     var future = BggClient.sitemapIndex(Domain.BOARD_GAME_GEEK).diffuse().callAsync();

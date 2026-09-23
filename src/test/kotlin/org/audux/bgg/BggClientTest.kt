@@ -121,8 +121,8 @@ class BggClientTest {
                     )
                 }
                 .callAsync() {
-                    latch.countDown()
                     response = it.data
+                    latch.countDown()
                 }
         }
 

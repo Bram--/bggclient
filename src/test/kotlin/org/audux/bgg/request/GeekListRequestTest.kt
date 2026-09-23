@@ -52,16 +52,9 @@ class GeekListRequestTest {
             BggClient.engine = { engine }
 
             val response =
-                runCatching {
-                        BggClient.authToken(TEST_AUTH_TOKEN)
-                            .geekList(id = 331520, comments = Inclusion.INCLUDE)
-                            .call()
-                    }
-                    .onFailure {
-                        it.printStackTrace()
-                        println("ERRRORRRROROR")
-                    }
-                    .getOrNull()
+                BggClient.authToken(TEST_AUTH_TOKEN)
+                    .geekList(id = 331520, comments = Inclusion.INCLUDE)
+                    .call()
 
             val request = engine.requestHistory[0]
             assertThat(engine.requestHistory).hasSize(1)

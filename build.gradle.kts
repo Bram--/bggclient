@@ -1,6 +1,3 @@
-import java.net.URL
-import org.jetbrains.dokka.gradle.DokkaTask
-
 plugins {
     jacoco
     `java-library`
@@ -129,19 +126,17 @@ tasks {
     }
 }
 
-tasks.withType<DokkaTask>().configureEach {
-    dokkaSourceSets {
-        named("main") {
-            moduleName.set("BggClient")
-            includes.from(project.files(), "MODULE.md", "PACKAGES.md")
-            noStdlibLink.set(true)
-            noJdkLink.set(true)
-            noAndroidSdkLink.set(true)
+dokka {
+    moduleName.set("BggClient")
+    dokkaSourceSets.main {
+        includes.from("MODULE.md", "PACKAGES.md")
+        enableKotlinStdLibDocumentationLink.set(false)
+        enableJdkDocumentationLink.set(false)
+        enableAndroidDocumentationLink.set(false)
 
-            sourceLink {
-                localDirectory.set(file("src/main/kotlin"))
-                remoteUrl.set(URL("https://github.com/Bram--/bggclient/tree/main"))
-            }
+        sourceLink {
+            localDirectory.set(file("src/main/kotlin"))
+            remoteUrl("https://github.com/Bram--/bggclient/tree/main")
         }
     }
 }

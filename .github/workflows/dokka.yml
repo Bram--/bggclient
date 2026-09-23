@@ -32,7 +32,7 @@ jobs:
       
       - name: Generate API documentation
         run: |
-          ./gradlew dokkaHtml
+          ./gradlew dokkaGenerateHtml
   
       - name: Deploy API documentation to Github Pages
         uses: JamesIves/github-pages-deploy-action@v4

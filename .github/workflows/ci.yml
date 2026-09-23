@@ -18,9 +18,9 @@ jobs:
       pages: write
       pull-requests: write
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
-      - uses: actions/cache@v5
+      - uses: actions/cache@v6
         with:
           path: |
             ~/.gradle/caches
@@ -45,7 +45,7 @@ jobs:
 
       - name: Add coverage to PR
         id: jacoco
-        uses: madrapps/jacoco-report@v1.7.2
+        uses: madrapps/jacoco-report@v1.8.0
         with:
           paths: |
             ${{ github.workspace }}/build/jacoco/test/jacocoTestReport.xml,
@@ -55,7 +55,7 @@ jobs:
           update-comment: true
 
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v6.0.1    
+        uses: codecov/codecov-action@v7.0.0    
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: Bram--/bggclient    

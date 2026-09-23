@@ -115,11 +115,11 @@ class BggClientTest {
 
         InstantiableClient(authToken).apply {
             request {
-                    Response(
-                        data = client().get("https://www.google.com/test").bodyAsText(),
-                        error = null,
-                    )
-                }
+                Response(
+                    data = client().get("https://www.google.com/test").bodyAsText(),
+                    error = null,
+                )
+            }
                 .callAsync() {
                     response = it.data
                     latch.countDown()
@@ -142,11 +142,11 @@ class BggClientTest {
         InstantiableClient(authToken).apply {
             future =
                 request {
-                        Response(
-                            data = client().get("https://www.google.com/test").bodyAsText(),
-                            error = null,
-                        )
-                    }
+                    Response(
+                        data = client().get("https://www.google.com/test").bodyAsText(),
+                        error = null,
+                    )
+                }
                     .callAsync()
         }
 
@@ -166,11 +166,11 @@ class BggClientTest {
             InstantiableClient(authToken).apply {
                 response =
                     request {
-                            Response(
-                                data = client().get("https://www.google.com/test").bodyAsText(),
-                                error = null,
-                            )
-                        }
+                        Response(
+                            data = client().get("https://www.google.com/test").bodyAsText(),
+                            error = null,
+                        )
+                    }
                         .call()
                         .data
             }
@@ -190,11 +190,11 @@ class BggClientTest {
             InstantiableClient(authToken).apply {
                 assertThrows<HttpRequestTimeoutException> {
                     request {
-                            Response(
-                                data = client().get("https://www.google.com/test").bodyAsText(),
-                                error = null,
-                            )
-                        }
+                        Response(
+                            data = client().get("https://www.google.com/test").bodyAsText(),
+                            error = null,
+                        )
+                    }
                         .call()
                 }
             }
@@ -259,10 +259,9 @@ class BggClientTest {
         }
     }
 
-    private fun testRetryConfiguration(config: BggClientConfiguration) =
-        config.apply {
-            retryBase = 1.0
-            retryMaxDelayMs = 1_000
-            retryRandomizationMs = 1
-        }
+    private fun testRetryConfiguration(config: BggClientConfiguration) = config.apply {
+        retryBase = 1.0
+        retryMaxDelayMs = 1_000
+        retryRandomizationMs = 1
+    }
 }

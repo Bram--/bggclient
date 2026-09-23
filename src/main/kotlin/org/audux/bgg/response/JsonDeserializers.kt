@@ -129,14 +129,13 @@ internal class WrappedSubTypeDeserializer : JsonDeserializer<SubType?>() {
 }
 
 /** Deserializes and trims strings. */
-private fun <T> readWrappedValue(parser: JsonParser?, read: (JsonParser) -> T): T? =
-    parser?.let {
-        var value: T? = null
-        while (it.nextToken() != JsonToken.END_OBJECT) {
-            if (it.currentToken == JsonToken.VALUE_STRING) {
-                value = read(it)
-            }
+private fun <T> readWrappedValue(parser: JsonParser?, read: (JsonParser) -> T): T? = parser?.let {
+    var value: T? = null
+    while (it.nextToken() != JsonToken.END_OBJECT) {
+        if (it.currentToken == JsonToken.VALUE_STRING) {
+            value = read(it)
         }
-
-        return value
     }
+
+    return value
+}

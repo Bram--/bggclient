@@ -420,7 +420,10 @@ internal constructor(
                                     buddies = allBuddies.toList(),
                                 ),
                             guilds =
-                                user.data.guilds?.copy(page = lastPage, guilds = allGuilds.toList()),
+                                user.data.guilds?.copy(
+                                    page = lastPage,
+                                    guilds = allGuilds.toList(),
+                                ),
                         )
                 )
             }

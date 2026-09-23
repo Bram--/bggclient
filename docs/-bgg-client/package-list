@@ -222,7 +222,7 @@ $dokka.location:org.audux.bgg.request//things/org.audux.bgg.InstantiableClient#k
 $dokka.location:org.audux.bgg.request//thread/org.audux.bgg.InstantiableClient#kotlin.Int#kotlin.Int?#java.time.LocalDateTime?#kotlin.Int?/PointingToDeclaration/-bgg-client/org.audux.bgg.request/thread.html
 $dokka.location:org.audux.bgg.request//user/org.audux.bgg.InstantiableClient#kotlin.String#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Inclusion?#org.audux.bgg.common.Domain?#kotlin.Int?/PointingToDeclaration/-bgg-client/org.audux.bgg.request/user.html
 $dokka.location:org.audux.bgg.request/DiffusingSitemap///PointingToDeclaration/-bgg-client/org.audux.bgg.request/-diffusing-sitemap/index.html
-$dokka.location:org.audux.bgg.request/DiffusingSitemap/diffuse/#kotlin.Array[org.audux.bgg.common.SitemapLocationType]/PointingToDeclaration/-bgg-client/org.audux.bgg.request/-diffusing-sitemap/diffuse.html
+$dokka.location:org.audux.bgg.request/DiffusingSitemap/diffuse/#org.audux.bgg.common.SitemapLocationType/PointingToDeclaration/-bgg-client/org.audux.bgg.request/-diffusing-sitemap/diffuse.html
 $dokka.location:org.audux.bgg.request/PaginatedForum///PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-forum/index.html
 $dokka.location:org.audux.bgg.request/PaginatedForum/paginate/#kotlin.Int/PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-forum/paginate.html
 $dokka.location:org.audux.bgg.request/PaginatedGuilds///PointingToDeclaration/-bgg-client/org.audux.bgg.request/-paginated-guilds/index.html
@@ -720,4 +720,3 @@ org.audux.bgg
 org.audux.bgg.common
 org.audux.bgg.request
 org.audux.bgg.response
-

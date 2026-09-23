@@ -15,9 +15,11 @@ package org.audux.bgg.response
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonMerge
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.annotation.JsonRootName
 import com.fasterxml.jackson.annotation.JsonSetter
+import com.fasterxml.jackson.annotation.OptBoolean
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText
@@ -65,6 +67,10 @@ data class GeekList(
     @JacksonXmlProperty(localName = "item") val items: List<GeekListItem>,
 ) {
     /** The list of comments of this list, only set if set to include in the request. */
+    // Merging is disabled explicitly: with `defaultMergeable(true)` Jackson 2.20+ buffers
+    // merging properties and re-parses them later, which drops the virtual array wrapping
+    // the XML module applies to repeated <comment> elements (see jackson-databind#5237).
+    @JsonMerge(OptBoolean.FALSE)
     @JsonProperty("comment")
     var comments: List<GeekListComment> = mutableListOf()
         set(value) {

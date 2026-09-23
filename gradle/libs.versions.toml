@@ -11,7 +11,7 @@ org-jetbrains-dokka = "2.1.0"
 org-jetbrains-kotlin-jdk8 = "1.10.2"
 org-jetbrains-kotlin-jvm = "2.4.20"
 serialization = "1.11.0"
-slf4j = "2.0.17"
+slf4j = "2.0.19"
 truth = "1.4.5"
 
 [libraries]

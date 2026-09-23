@@ -32,12 +32,11 @@ import org.audux.bgg.InstantiableClient
 object TestUtils {
     const val TEST_AUTH_TOKEN = "TestAuthToken"
 
-    val DEFAULT_HEADERS =
-        Headers.build {
-            appendAll("Accept-Encoding", listOf("gzip"))
-            appendAll("Authorization", listOf("Bearer $TEST_AUTH_TOKEN"))
-            appendAll("Accept", listOf("*/*"))
-        }
+    val DEFAULT_HEADERS = Headers.build {
+        appendAll("Accept-Encoding", listOf("gzip"))
+        appendAll("Authorization", listOf("Bearer $TEST_AUTH_TOKEN"))
+        appendAll("Accept", listOf("*/*"))
+    }
 
     /**
      * Sets up a HttpEngine using a [MockEngine] and [respondOk] responses with the given xml files

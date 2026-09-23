@@ -35,7 +35,6 @@ object TestUtils {
     val DEFAULT_HEADERS =
         Headers.build {
             appendAll("Accept-Encoding", listOf("gzip"))
-            appendAll("Accept-Charset", listOf("UTF-8"))
             appendAll("Authorization", listOf("Bearer $TEST_AUTH_TOKEN"))
             appendAll("Accept", listOf("*/*"))
         }

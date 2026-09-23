@@ -29,11 +29,17 @@ import org.audux.bgg.common.SitemapLocationType
 import org.audux.bgg.response.SitemapLocation
 import org.audux.bgg.util.TestUtils
 import org.audux.bgg.util.TestUtils.xml
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
 /** Unit tests for [sitemapIndex] extension function. */
 class SitemapIndexRequestTest {
+    @BeforeEach
+    fun setUp() {
+        BggClient.authToken(TestUtils.TEST_AUTH_TOKEN)
+    }
+
     @Test
     fun `Makes a request to retrieve the sitemap index - boardgamegeek_com`() = runBlocking {
         val engine = TestUtils.setupMockEngine("sitemapindex")

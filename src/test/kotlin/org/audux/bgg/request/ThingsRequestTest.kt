@@ -24,12 +24,18 @@ import org.audux.bgg.BggClient
 import org.audux.bgg.BggRequestException
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.util.TestUtils
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 /** Unit test for [things] extension function. */
 class ThingsRequestTest {
+    @BeforeEach
+    fun setUp() {
+        BggClient.authToken(TestUtils.TEST_AUTH_TOKEN)
+    }
+
     @Test
     fun `Makes a request with minimal parameters`() {
         runBlocking {

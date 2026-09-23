@@ -20,10 +20,16 @@ import kotlinx.coroutines.runBlocking
 import org.audux.bgg.BggClient
 import org.audux.bgg.common.ForumListType
 import org.audux.bgg.util.TestUtils
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 /** Unit tests for [forumList] extension function. */
 class ForumListRequestTest {
+    @BeforeEach
+    fun setUp() {
+        BggClient.authToken(TestUtils.TEST_AUTH_TOKEN)
+    }
+
     @Test
     fun `Makes a request with all parameters`() {
         runBlocking {

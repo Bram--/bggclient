@@ -22,12 +22,18 @@ import org.audux.bgg.BggRequestException
 import org.audux.bgg.common.Domain
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.util.TestUtils
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 /** Unit tests for [user] extension function. */
 class UserRequestTest {
+    @BeforeEach
+    fun setUp() {
+        BggClient.authToken(TestUtils.TEST_AUTH_TOKEN)
+    }
+
     @Test
     fun `Makes a request with minimum parameters`() {
         runBlocking {

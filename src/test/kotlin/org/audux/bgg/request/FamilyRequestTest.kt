@@ -20,10 +20,16 @@ import kotlinx.coroutines.runBlocking
 import org.audux.bgg.BggClient
 import org.audux.bgg.common.FamilyType
 import org.audux.bgg.util.TestUtils
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 /** Unit tests for [familyItems] extension function. */
 class FamilyRequestTest {
+    @BeforeEach
+    fun setUp() {
+        BggClient.authToken(TestUtils.TEST_AUTH_TOKEN)
+    }
+
     @Test
     fun `Makes a request with minimum parameters`() {
         runBlocking {

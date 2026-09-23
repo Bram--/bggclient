@@ -25,10 +25,16 @@ import org.audux.bgg.BggClient
 import org.audux.bgg.common.Inclusion
 import org.audux.bgg.common.ThingType
 import org.audux.bgg.util.TestUtils
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 /** Unit tests for [collection] extension function. */
 class CollectionRequestTest {
+    @BeforeEach
+    fun setUp() {
+        BggClient.authToken(TestUtils.TEST_AUTH_TOKEN)
+    }
+
     @Test
     fun `Makes a request with a user that does not exist`() {
         runBlocking {

@@ -19,11 +19,17 @@ import io.ktor.http.Url
 import kotlinx.coroutines.runBlocking
 import org.audux.bgg.BggClient
 import org.audux.bgg.util.TestUtils
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
 /** Unit tests for [forum] extension function. */
 class ForumRequestTest {
+    @BeforeEach
+    fun setUp() {
+        BggClient.authToken(TestUtils.TEST_AUTH_TOKEN)
+    }
+
     @Test
     fun `Makes a request with wrong forum ID`() = runBlocking {
         val engine = TestUtils.setupMockEngine("forum?id=-1")
